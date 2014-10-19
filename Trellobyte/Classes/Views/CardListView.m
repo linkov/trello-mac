@@ -10,16 +10,20 @@
 
 @implementation CardListView 
 
-- (void)drawRect:(NSRect)dirtyRect
-{
+- (void)drawRect:(NSRect)dirtyRect {
     // Drawing code here.
-    NSRect drawRect = NSInsetRect(self.bounds, 5, 5);
+    NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
 
     if (self.selected)
     {
-        [[NSColor blueColor] set];
-        [NSBezierPath strokeRect:drawRect];
+        [[NSColor lightGrayColor] set];
+   }
+    else {
+
+        [[NSColor clearColor] set];
     }
+
+    [NSBezierPath fillRect:drawRect];
 }
 
 #pragma mark Properties

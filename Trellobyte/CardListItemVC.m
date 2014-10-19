@@ -15,7 +15,7 @@
     [super setSelected:selected];
 
     // forward selection to the prototype view
-    [(CardListView *)self.view setSelected:selected];
+    [(CardListView *)[self view] setSelected:selected];
 }
 
 @end

@@ -73,11 +73,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(networkingOperationDidFinish:) name:AFNetworkingTaskDidCompleteNotification object:nil];
 
 
-//    self.inspectorWidthCopy = [self.cardInspectorWidth copy];
-//
-//    self.inspectorWidthCopy = [NSLayoutConstraint constraintWithItem:self.cardInspector attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:self.cardInspector attribute:<#(NSLayoutAttribute)#> multiplier:<#(CGFloat)#> constant:<#(CGFloat)#>]
-
-
     self.cardInspectorWidth.constant = 0;
     [self.cardInspector layoutSubtreeIfNeeded];
 
@@ -112,14 +107,14 @@
 
 - (void)didSelectCard:(Card *)card {
 
+    [self animateInspectorIn:YES];
 
-  //  self.cardInspector.wantsLayer = YES;
-  //  self.cardInspector.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
+}
 
-    // [self.cardInspector layoutSubtreeIfNeeded];
+- (void)animateInspectorIn:(BOOL)bringIn {
 
     [self.rightView updateConstraintsForSubtreeIfNeeded];
-     self.cardInspectorWidth.constant = 250;
+    self.cardInspectorWidth.constant = bringIn ? 250 : 0;
     [self.rightView setNeedsUpdateConstraints:YES];
 
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
@@ -129,12 +124,13 @@
         [self.rightView layoutSubtreeIfNeeded];
 
     } completionHandler:^{
-
+        
     }];
-
 }
 
 - (IBAction)didSelect:(NSOutlineView *)sender {
+
+     [self animateInspectorIn:NO];
 
     if (self.selectedItem.isLeaf) {
 
