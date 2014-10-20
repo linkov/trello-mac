@@ -5,6 +5,7 @@
 //  Created by alex on 10/19/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSColor+Util.h"
 #import "Xtrace.h"
 #import "CardListView.h"
 
@@ -16,7 +17,7 @@
 
     if (self.selected)
     {
-        [[NSColor lightGrayColor] set];
+        [[NSColor colorWithHexColorString:@"0099CC"] set];
    }
     else {
 

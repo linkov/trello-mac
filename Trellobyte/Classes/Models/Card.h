@@ -15,6 +15,7 @@
 @property NSUInteger pos;
 @property NSArray *members;
 @property (nonatomic,strong) NSString *owner;
+@property (strong) NSArray *labels;
 
 + (NSURLSessionDataTask *)fetchCardsForListID:(NSString *)listID withBlock:(void (^)(NSArray *posts, NSError *error))block;
 

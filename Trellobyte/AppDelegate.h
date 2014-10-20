@@ -6,6 +6,8 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
+@class CardInspectorVC;
+
 #import <Cocoa/Cocoa.h>
 #import "Board.h"
 
@@ -29,6 +31,7 @@
 @property (weak) IBOutlet NSView *rightView;
 @property (weak) IBOutlet NSLayoutConstraint *leadingSpaceToScrollView;
 @property (weak) IBOutlet NSView *cardInspector;
+@property (weak) IBOutlet CardInspectorVC *cardInspectorVC;
 
 @end
 

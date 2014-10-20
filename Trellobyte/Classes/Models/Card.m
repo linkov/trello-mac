@@ -5,6 +5,8 @@
 //  Created by alex on 10/18/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+
+#import "Label.h"
 #import "AFTrelloAPIClient.h"
 #import "Card.h"
 
@@ -20,6 +22,15 @@
     self.name = [attributes valueForKeyPath:@"name"];
     self.members = [attributes valueForKeyPath:@"idMembers"];
 
+    NSMutableArray *mutableArray = [NSMutableArray new];
+    for (NSDictionary *labelDict in [attributes valueForKeyPath:@"labels"]) {
+
+        Label *label = [[Label alloc]initWithAttributes:labelDict];
+        [mutableArray addObject:label];
+    }
+
+    self.labels = mutableArray;
+
 
     return self;
 }
@@ -29,7 +40,7 @@
 + (NSURLSessionDataTask *)fetchCardsForListID:(NSString *)listID withBlock:(void (^)(NSArray *posts, NSError *error))block {
 
     NSString *URL = [NSString stringWithFormat:@"lists/%@",listID];
-    NSString *URL2 = [NSString stringWithFormat:@"?key=6825229a76db5b6a5737eb97e9c4a923&token=19b58b73689c960cff5a07ceb0d9e3f848207e53059e892af1cadcbeb0174592&lists=open&cards=open&card_fields=name,pos,idMembers"];
+    NSString *URL2 = [NSString stringWithFormat:@"?key=6825229a76db5b6a5737eb97e9c4a923&token=19b58b73689c960cff5a07ceb0d9e3f848207e53059e892af1cadcbeb0174592&lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
 
     NSString *URLF = [NSString stringWithFormat:@"%@%@",URL,URL2];
 

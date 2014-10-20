@@ -5,7 +5,7 @@
 //  Created by alex on 10/18/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import "CardInspectorVC.h"
 #import "AppDelegate.h"
 #import "Board.h"
 #import "Card.h"
@@ -108,10 +108,15 @@
 - (void)didSelectCard:(Card *)card {
 
     [self animateInspectorIn:YES];
+    self.cardInspectorVC.activeCard = card;
 
 }
 
 - (void)animateInspectorIn:(BOOL)bringIn {
+
+
+    self.rightView.wantsLayer = YES;
+    self.rightView.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
 
     [self.rightView updateConstraintsForSubtreeIfNeeded];
     self.cardInspectorWidth.constant = bringIn ? 250 : 0;
@@ -124,6 +129,7 @@
         [self.rightView layoutSubtreeIfNeeded];
 
     } completionHandler:^{
+
         
     }];
 }
