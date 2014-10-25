@@ -57,7 +57,7 @@
     if (self.activeCard.labels.count>0) {
 
         self.labelsArray.content = self.activeCard.labels;
-        [self.labelCollection setNeedsDisplay:YES];
+        //[self.labelCollection setNeedsDisplay:YES];
 
         NSLog(@"labelsArray = %@",self.labelsArray.content);
     }

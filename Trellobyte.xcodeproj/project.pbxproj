@@ -652,6 +652,7 @@
 				F199C8BF19F54F2200EF1994 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F1A99CBA19F1B08700CF6301 /* Build configuration list for PBXProject "Trellobyte" */ = {
 			isa = XCConfigurationList;

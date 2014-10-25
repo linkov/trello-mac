@@ -22,4 +22,26 @@
 //    self.textColor = [NSColor blackColor];
 //}
 
+//- (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
+//
+//    if (self.backgroundStyle == NSBackgroundStyleLight) {
+//        self.textColor = [NSColor greenColor];
+//    } else {
+//        self.textColor = [NSColor blueColor];
+//    }
+//
+//}
+//
+//- (void)setTextColor:(NSColor *)textColor {
+//
+//    _textColor = textColor;
+//
+//}
+//
+//- (void)setHighlighted:(BOOL)highlighted {
+//
+//    NSLog(@"setHighlighted - %@",highlighted ? @"YES" : @"NO");
+//}
+
+
 @end

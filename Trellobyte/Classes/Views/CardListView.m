@@ -27,12 +27,25 @@
     [NSBezierPath fillRect:drawRect];
 }
 
-#pragma mark Properties
+
+- (void)layoutSubtreeIfNeeded {
+
+    [super layoutSubtreeIfNeeded];
+    
+}
+
+- (void)viewDidMoveToSuperview {
+
+}
+
+#pragma mark - Properties
 
 - (void)setSelected:(BOOL)selected
 {
     _selected = selected;
+
     [self setNeedsDisplay:YES];
 }
+
 
 @end

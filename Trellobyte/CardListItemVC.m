@@ -14,8 +14,20 @@
 {
     [super setSelected:selected];
 
-    // forward selection to the prototype view
+    if (selected) {
+        self.textColor = [NSColor whiteColor];
+    }
+    else {
+        self.textColor = [NSColor blackColor];
+    }
+
     [(CardListView *)[self view] setSelected:selected];
+}
+
+- (void)viewDidLayout {
+
+    [super viewDidLayout];
+
 }
 
 @end

@@ -9,6 +9,6 @@
 #import <Cocoa/Cocoa.h>
 
 @interface CardListItemVC : NSCollectionViewItem
-
+@property (strong) NSColor *textColor;
 
 @end

@@ -343,7 +343,7 @@
 - (void)reloadCollection {
 
     self.cardsArrayController.content = self.cards;
-    [self.cardCollection setNeedsDisplay:YES];
+    //[self.cardCollection setNeedsDisplay:YES];
 }
 
 - (NSString *)twoLetterIDFromName:(NSString *)name {
