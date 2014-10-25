@@ -10,6 +10,12 @@
 
 @interface NSImage (Util)
 
-- (NSImage*)imageRotatedByDegrees:(CGFloat)degrees;
+- (NSImage *)imageRotatedByDegrees:(CGFloat)degrees;
+- (NSImage *)imageTintedWithColor:(NSColor *)tint;
+
+- (NSImage *)grayscaleImageWithAlphaValue:(CGFloat)alphaValue
+                          saturationValue:(CGFloat)saturationValue
+                          brightnessValue:(CGFloat)brightnessValue
+                            contrastValue:(CGFloat)contrastValue;
 
 @end

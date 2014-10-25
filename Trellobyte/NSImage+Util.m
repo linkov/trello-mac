@@ -5,7 +5,7 @@
 //  Created by alex on 10/25/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import <QuartzCore/QuartzCore.h>
 #import "NSImage+Util.h"
 
 @implementation NSImage (Util)
@@ -46,6 +46,53 @@
     [rotatedImage unlockFocus];
     
     return rotatedImage;
+}
+
+- (NSImage *)imageTintedWithColor:(NSColor *)tint
+{
+    NSImage *image = [self copy];
+    if (tint) {
+        [image lockFocus];
+        [tint set];
+        NSRect imageRect = {NSZeroPoint, [image size]};
+        NSRectFillUsingOperation(imageRect, NSCompositeSourceAtop);
+        [image unlockFocus];
+    }
+    return image;
+}
+
+- (NSImage *)grayscaleImageWithAlphaValue:(CGFloat)alphaValue
+                          saturationValue:(CGFloat)saturationValue
+                          brightnessValue:(CGFloat)brightnessValue
+                            contrastValue:(CGFloat)contrastValue
+{
+    NSSize size = [self size];
+    NSRect bounds = { NSZeroPoint, size };
+    NSImage *tintedImage = [[NSImage alloc] initWithSize:size];
+
+    [tintedImage lockFocus];
+
+    CIFilter *monochromeFilter = [CIFilter filterWithName:@"CIColorMonochrome"];
+    [monochromeFilter setDefaults];
+    [monochromeFilter setValue:[CIImage imageWithData:[self TIFFRepresentation]] forKey:@"inputImage"];
+    [monochromeFilter setValue:[CIColor colorWithRed:0 green:0 blue:0 alpha:1] forKey:@"inputColor"];
+    [monochromeFilter setValue:[NSNumber numberWithFloat:1] forKey:@"inputIntensity"];
+
+    CIFilter *colorFilter = [CIFilter filterWithName:@"CIColorControls"];
+    [colorFilter setDefaults];
+    [colorFilter setValue:[monochromeFilter valueForKey:@"outputImage"] forKey:@"inputImage"];
+    [colorFilter setValue:[NSNumber numberWithFloat:saturationValue]  forKey:@"inputSaturation"];
+    [colorFilter setValue:[NSNumber numberWithFloat:brightnessValue] forKey:@"inputBrightness"];
+    [colorFilter setValue:[NSNumber numberWithFloat:contrastValue] forKey:@"inputContrast"];
+
+    [[colorFilter valueForKey:@"outputImage"] drawAtPoint:NSZeroPoint
+                                                 fromRect:bounds
+                                                operation:NSCompositeCopy
+                                                 fraction:alphaValue];
+
+    [tintedImage unlockFocus];
+
+    return tintedImage;
 }
 
 @end

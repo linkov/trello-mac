@@ -444,8 +444,7 @@
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
 
- //   CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
-//   selectedView.isDropping = YES;
+
 
 
 
@@ -466,11 +465,12 @@
     CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
     NSImage *dragImage = [[NSImage alloc] initWithData:[selectedView.view dataWithPDFInsideRect:[selectedView.view bounds]]];
 
+    NSImage *tintedImage = [dragImage grayscaleImageWithAlphaValue:1.0 saturationValue:.7 brightnessValue:0.5 contrastValue:.4];
 
     NSGraphicsContext *context;
     context = [NSGraphicsContext currentContext];
     NSRect rect = NSMakeRect(0, 0, dragImage.size.width, dragImage.size.height);
-    CGImageRef cgImage = [dragImage CGImageForProposedRect:&rect
+    CGImageRef cgImage = [tintedImage CGImageForProposedRect:&rect
                                     context:context
                                       hints:NULL];
 
@@ -481,7 +481,6 @@
     //animatated content size init
     syncFirst.bounds =  selectedView.view.layer.bounds;
     syncFirst.position = CGPointMake(selectedView.view.layer.position.x+250, selectedView.view.layer.position.y);// selectedView.view.layer.position;
-    syncFirst.backgroundColor = [NSColor redColor].CGColor;
     syncFirst.contents =(__bridge id)(cgImage);
 
     [selectedView.view.superview setWantsLayer:YES];
@@ -490,7 +489,7 @@
 
     CABasicAnimation* rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotationAnimation.toValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(-3)];
-    rotationAnimation.duration = 0.4f;
+    rotationAnimation.duration = 0.2f;
     rotationAnimation.repeatCount= 0;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
 

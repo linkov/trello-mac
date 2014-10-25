@@ -12,16 +12,17 @@
 
 - (void)setSelected:(BOOL)selected
 {
+
     [super setSelected:selected];
 
-    if (selected || self.isDropping) {
+    if (selected) {
         self.textColor = [NSColor whiteColor];
     }
     else {
         self.textColor = [NSColor blackColor];
     }
 
-    [(CardListView *)[self view] setSelected:self.isDropping ? YES : selected];
+    [(CardListView *)[self view] setSelected:selected];
 }
 
 - (void)viewDidLayout {

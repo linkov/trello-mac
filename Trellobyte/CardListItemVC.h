@@ -10,6 +10,5 @@
 
 @interface CardListItemVC : NSCollectionViewItem
 @property (strong) NSColor *textColor;
-@property BOOL isDropping;
 
 @end
