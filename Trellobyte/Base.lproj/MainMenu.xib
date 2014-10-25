@@ -789,7 +789,7 @@
                                             <rect key="frame" x="1" y="1" width="248" height="158"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
-                                                <collectionView selectable="YES" id="yFR-fy-wQy">
+                                                <collectionView selectable="YES" id="yFR-fy-wQy" customClass="CardsCollectionView">
                                                     <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     <color key="primaryBackgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -874,7 +874,7 @@
                     <rect key="frame" x="43" y="10" width="549" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" id="2w5-sK-F2b">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" patternImage="C0834093-7D48-4F74-986C-5A7AE8031536" colorSpace="pattern"/>
+                        <color key="textColor" patternImage="9DFA3EAD-19BA-46C8-98A2-52BD19BC6ABF" colorSpace="pattern"/>
                         <color key="backgroundColor" red="0.66748403280000002" green="0.83257299269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <binding destination="CWs-gt-is8" name="value" keyPath="representedObject.name" id="DB7-ln-wnr"/>
@@ -934,7 +934,7 @@
         </viewController>
     </objects>
     <resources>
-        <image name="C0834093-7D48-4F74-986C-5A7AE8031536" width="320" height="460">
+        <image name="9DFA3EAD-19BA-46C8-98A2-52BD19BC6ABF" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw

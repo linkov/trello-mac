@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F119AE6219FC13B60061D7DF /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE6119FC13B60061D7DF /* NSImage+Util.m */; };
+		F119AE6319FC13B60061D7DF /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE6119FC13B60061D7DF /* NSImage+Util.m */; };
+		F119AE6519FC16B70061D7DF /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F119AE6419FC16B70061D7DF /* QuartzCore.framework */; };
+		F119AE6819FC2C0F0061D7DF /* CardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE6719FC2C0F0061D7DF /* CardsCollectionView.m */; };
+		F119AE6919FC2C0F0061D7DF /* CardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE6719FC2C0F0061D7DF /* CardsCollectionView.m */; };
 		F127915619F427940021B0FE /* CardLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F127915519F427940021B0FE /* CardLabel.m */; };
 		F127915819F43C450021B0FE /* CardInspector.xib in Resources */ = {isa = PBXBuildFile; fileRef = F127915719F43C450021B0FE /* CardInspector.xib */; };
 		F15A60E619F2BC2800056979 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = F15A60E519F2BC2800056979 /* User.m */; };
@@ -74,6 +79,11 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		F119AE6019FC13B60061D7DF /* NSImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Util.h"; sourceTree = "<group>"; };
+		F119AE6119FC13B60061D7DF /* NSImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Util.m"; sourceTree = "<group>"; };
+		F119AE6419FC16B70061D7DF /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		F119AE6619FC2C0F0061D7DF /* CardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardsCollectionView.h; sourceTree = "<group>"; };
+		F119AE6719FC2C0F0061D7DF /* CardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardsCollectionView.m; sourceTree = "<group>"; };
 		F127915419F427940021B0FE /* CardLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CardLabel.h; sourceTree = "<group>"; };
 		F127915519F427940021B0FE /* CardLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CardLabel.m; sourceTree = "<group>"; };
 		F127915719F43C450021B0FE /* CardInspector.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = CardInspector.xib; path = Classes/Views/CardInspector.xib; sourceTree = "<group>"; };
@@ -160,6 +170,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F119AE6519FC16B70061D7DF /* QuartzCore.framework in Frameworks */,
 				F1A99D1719F1CB9100CF6301 /* Security.framework in Frameworks */,
 				F1A99D1519F1CB7D00CF6301 /* SystemConfiguration.framework in Frameworks */,
 				F1A99D1319F1CB7300CF6301 /* CoreServices.framework in Frameworks */,
@@ -172,6 +183,8 @@
 		F15A60E719F2CDC200056979 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F119AE6619FC2C0F0061D7DF /* CardsCollectionView.h */,
+				F119AE6719FC2C0F0061D7DF /* CardsCollectionView.m */,
 				F127915419F427940021B0FE /* CardLabel.h */,
 				F127915519F427940021B0FE /* CardLabel.m */,
 				F15A60F119F3EF8400056979 /* CardListView.h */,
@@ -194,6 +207,7 @@
 		F199C8A619F54F2200EF1994 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F119AE6419FC16B70061D7DF /* QuartzCore.framework */,
 				F199C8A719F54F2200EF1994 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
@@ -253,6 +267,8 @@
 				F1A99CE319F1CB3000CF6301 /* AppDelegate.h */,
 				F1A99CE419F1CB3000CF6301 /* AppDelegate.m */,
 				F1CD4C6C19F45BB000054B3F /* NSColor+Util.h */,
+				F119AE6019FC13B60061D7DF /* NSImage+Util.h */,
+				F119AE6119FC13B60061D7DF /* NSImage+Util.m */,
 				F1CD4C6D19F45BB000054B3F /* NSColor+Util.m */,
 				F15A60F819F3F61E00056979 /* CardListItemVC.h */,
 				F15A60F919F3F61E00056979 /* CardListItemVC.m */,
@@ -440,7 +456,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F119AE6919FC2C0F0061D7DF /* CardsCollectionView.m in Sources */,
 				F199C8B219F54F2200EF1994 /* TodayViewController.m in Sources */,
+				F119AE6319FC13B60061D7DF /* NSImage+Util.m in Sources */,
 				F199C8B519F54F2200EF1994 /* ListRowViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -449,6 +467,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F119AE6819FC2C0F0061D7DF /* CardsCollectionView.m in Sources */,
 				F15A60F719F3F08B00056979 /* Xtrace.mm in Sources */,
 				F15A60FA19F3F61E00056979 /* CardListItemVC.m in Sources */,
 				F1A99D1F19F1CF5B00CF6301 /* Board.m in Sources */,
@@ -459,6 +478,7 @@
 				F1CD4C6819F446F500054B3F /* Label.m in Sources */,
 				F15A60FD19F407E600056979 /* CardInspectorVC.m in Sources */,
 				F1A99D0A19F1CB6000CF6301 /* AFHTTPRequestOperationManager.m in Sources */,
+				F119AE6219FC13B60061D7DF /* NSImage+Util.m in Sources */,
 				F1A99D0C19F1CB6000CF6301 /* AFNetworkReachabilityManager.m in Sources */,
 				F1CD4C7119F45D1A00054B3F /* LeftMenuOutlineView.m in Sources */,
 				F15A60E619F2BC2800056979 /* User.m in Sources */,

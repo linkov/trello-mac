@@ -5,6 +5,9 @@
 //  Created by alex on 10/18/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+#define RADIANS_TO_DEGREES(__ANGLE__) ((__ANGLE__) / (float)M_PI * 180.0f)
+
 #import "CardInspectorVC.h"
 #import "AppDelegate.h"
 #import "Board.h"
@@ -15,6 +18,9 @@
 #import "Xtrace.h"
 #import "CardListView.h"
 #import "CardListItemVC.h"
+#import "NSImage+Util.h"
+
+#import <Quartz/Quartz.h>
 
 @interface AppDelegate () <NSCollectionViewDelegate>
 @property (weak) IBOutlet NSLayoutConstraint *cardInspectorWidth;
@@ -26,6 +32,7 @@
 @property (weak) IBOutlet NSWindow *window;
 @property BOOL animationInProgress;
 @property NSUInteger activeOperations;
+@property NSPoint dragPoint;
 
 
 @property (strong) NSLayoutConstraint *inspectorWidthCopy;
@@ -418,8 +425,7 @@
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
 
-
-    [self.cardsArrayController setSelectionIndexes:[NSIndexSet new]];
+   // [self.cardsArrayController setSelectionIndexes:[NSIndexSet new]];
 
     NSLog(@"Validate Drop");
     return NSDragOperationMove;
@@ -428,33 +434,89 @@
 - (void)collectionView:(NSCollectionView *)collectionView updateDraggingItemsForDrag:(id<NSDraggingInfo>)draggingInfo {
 
     NSLog(@"info - %@",draggingInfo);
+
+    NSPoint dragPoint = draggingInfo.draggingLocation;
+    NSLog(@"drag y - %f",dragPoint.y);
+
+    self.dragPoint = dragPoint;
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
 
-    CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
-    selectedView.isDropping = YES;
+ //   CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
+//   selectedView.isDropping = YES;
 
 
-//    selectedView.view.wantsLayer = YES;
-//    selectedView.view.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
-//    selectedView.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0);
-//
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//
-//        context.duration = 0.6;
-//        [context setAllowsImplicitAnimation:YES];
-//        [selectedView.view layoutSubtreeIfNeeded];
-//
-//
-//    } completionHandler:^{
-//
-//    }];
+
 
 
     NSLog(@"Can Drag");
     return YES;
+}
+
+/*To convert NSImage in CGImage*/
+
+
+- (NSImage *)collectionView:(NSCollectionView *)collectionView draggingImageForItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event offset:(NSPointPointer)dragImageOffset {
+
+
+
+
+    CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
+    NSImage *dragImage = [[NSImage alloc] initWithData:[selectedView.view dataWithPDFInsideRect:[selectedView.view bounds]]];
+
+
+    NSGraphicsContext *context;
+    context = [NSGraphicsContext currentContext];
+    NSRect rect = NSMakeRect(0, 0, dragImage.size.width, dragImage.size.height);
+    CGImageRef cgImage = [dragImage CGImageForProposedRect:&rect
+                                    context:context
+                                      hints:NULL];
+
+    CALayer *syncFirst = [CALayer layer];
+
+///    NSPoint point = CGPointMake(200, 0);
+ ///   dragImageOffset = &point;
+    //animatated content size init
+    syncFirst.bounds =  selectedView.view.layer.bounds;
+    syncFirst.position = CGPointMake(selectedView.view.layer.position.x+250, selectedView.view.layer.position.y);// selectedView.view.layer.position;
+    syncFirst.backgroundColor = [NSColor redColor].CGColor;
+    syncFirst.contents =(__bridge id)(cgImage);
+
+    [selectedView.view.superview setWantsLayer:YES];
+
+    [selectedView.view.superview.layer addSublayer:syncFirst];
+
+    CABasicAnimation* rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotationAnimation.toValue = [NSNumber numberWithFloat:DEGREES_TO_RADIANS(-3)];
+    rotationAnimation.duration = 0.4f;
+    rotationAnimation.repeatCount= 0;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+
+    [rotationAnimation setFillMode:kCAFillModeForwards];
+    [rotationAnimation setRemovedOnCompletion:NO];
+
+    //syncFirst.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(-3), 0, 0, 1);
+//    [syncFirst addAnimation:rotationAnimation forKey:@"rotateAnimation"];
+
+
+
+    [CATransaction begin]; {
+        [CATransaction setCompletionBlock:^{
+            //[CATransaction setDisableActions:YES];
+           // [syncFirst removeFromSuperlayer];
+            [syncFirst setOpacity:0.f];
+            //syncFirst.transform = CATransform3DMakeRotation(DEGREES_TO_RADIANS(-3), 0, 0, 1);
+        }];
+
+        [syncFirst addAnimation:rotationAnimation forKey:@"rotateAnimation"];
+
+    } [CATransaction commit];
+
+
+    return [dragImage imageRotatedByDegrees:3];
+
 }
 
 
@@ -469,21 +531,41 @@
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
+    NSPoint dropPoint = draggingInfo.draggingLocation;
+    NSLog(@"drop y - %f",dropPoint.y);
+
+    if (dropOperation == NSCollectionViewDropBefore) {
+
+        NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+        NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+        NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        NSInteger draggedCell = [indexes firstIndex];
+
+        NSLog(@"Accept Drag");
+
+//        NSLog(@"active card - %@",self.cardInspectorVC.activeCard.name);
+//        NSLog(@"dragged card - %@",[[self.cardsArrayController.arrangedObjects objectAtIndex:draggedCell] name]);
+
+        if (self.dragPoint.y < dropPoint.y) {
+
+            [self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+        }
+        //
+        [self.cardsArrayController  insertObject: self.cardInspectorVC.activeCard atArrangedObjectIndex: index];
 
 
-         NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-         NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
-         NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-         NSInteger draggedCell = [indexes firstIndex];
+        if (self.dragPoint.y > dropPoint.y)  {
 
-    NSLog(@"Accept Drag");
-    CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:draggedCell];
-    selectedView.isDropping = NO;
+            [self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+        }
 
-    [self.cardsArrayController  insertObject: self.cardInspectorVC.activeCard atArrangedObjectIndex: index];
-    [self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+        
+        
+        return YES;
+    }
 
-         return YES;
+
+    return NO;
      }
 
 @end
