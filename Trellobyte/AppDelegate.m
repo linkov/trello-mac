@@ -13,6 +13,8 @@
 #import "AFTrelloAPIClient.h"
 #import "AFNetworking.h"
 #import "Xtrace.h"
+#import "CardListView.h"
+#import "CardListItemVC.h"
 
 @interface AppDelegate () <NSCollectionViewDelegate>
 @property (weak) IBOutlet NSLayoutConstraint *cardInspectorWidth;
@@ -75,6 +77,8 @@
 
     self.cardInspectorWidth.constant = 0;
     [self.cardInspector layoutSubtreeIfNeeded];
+
+    [self.cardCollection registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
 
 
 
@@ -300,7 +304,7 @@
 
         if (!error) {
 
-            self.cards = posts;
+            self.cards = [NSMutableArray arrayWithArray:posts];
 
             [self matchOwners];
 
@@ -412,11 +416,74 @@
 
 #pragma mark - NSCollectionViewDelegate
 
-- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+-(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
 
 
+    [self.cardsArrayController setSelectionIndexes:[NSIndexSet new]];
+
+    NSLog(@"Validate Drop");
+    return NSDragOperationMove;
+}
+
+- (void)collectionView:(NSCollectionView *)collectionView updateDraggingItemsForDrag:(id<NSDraggingInfo>)draggingInfo {
+
+    NSLog(@"info - %@",draggingInfo);
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+
+
+    CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:indexes.lastIndex];
+    selectedView.isDropping = YES;
+
+
+//    selectedView.view.wantsLayer = YES;
+//    selectedView.view.layerContentsRedrawPolicy = NSViewLayerContentsRedrawOnSetNeedsDisplay;
+//    selectedView.view.layer.transform = CATransform3DMakeScale(0.5, 0.5, 0);
+//
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//
+//        context.duration = 0.6;
+//        [context setAllowsImplicitAnimation:YES];
+//        [selectedView.view layoutSubtreeIfNeeded];
+//
+//
+//    } completionHandler:^{
+//
+//    }];
+
+
+    NSLog(@"Can Drag");
+    return YES;
 }
 
 
+-(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:indexes];
+//    [pasteboard setDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
+     // Here we temporarily store the index of the Cell,
+     // being dragged to pasteboard.
+     return YES;
+     }
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+
+
+
+         NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+         NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+         NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+         NSInteger draggedCell = [indexes firstIndex];
+
+    NSLog(@"Accept Drag");
+    CardListItemVC *selectedView = (CardListItemVC *)[collectionView itemAtIndex:draggedCell];
+    selectedView.isDropping = NO;
+
+    [self.cardsArrayController  insertObject: self.cardInspectorVC.activeCard atArrangedObjectIndex: index];
+    [self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+
+         return YES;
+     }
 
 @end

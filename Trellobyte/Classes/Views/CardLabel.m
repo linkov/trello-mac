@@ -39,7 +39,7 @@
         return [NSColor redColor];
     }
 
-    return [NSColor whiteColor];
+    return [NSColor darkGrayColor];
 }
 
 @end

@@ -14,7 +14,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate, NSOutlineViewDelegate>
 @property (weak) IBOutlet NSProgressIndicator *progress;
 
-@property (strong) NSArray *cards;
+@property (strong) NSMutableArray *cards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 @property (strong) IBOutlet NSArrayController *boardsArrayController;
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
