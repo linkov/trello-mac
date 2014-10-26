@@ -87,6 +87,12 @@
 
     [self.cardCollection registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
 
+//    [self.window trackEventsMatchingMask:NSEventMaskFromType(NSEventTypeSwipe) timeout:0 mode:@"" handler:^(NSEvent *event, BOOL *stop) {
+//
+//        NSLog(@"event = %@",event);
+//
+//    }];
+
 
 
 }

@@ -1,0 +1,608 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7A19FD4CFC0061D7DF /* AppDelegate.m */; };
+		F119AE7D19FD4CFC0061D7DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7C19FD4CFC0061D7DF /* main.m */; };
+		F119AE8219FD4CFC0061D7DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8119FD4CFC0061D7DF /* Images.xcassets */; };
+		F119AE8519FD4CFC0061D7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8319FD4CFC0061D7DF /* Main.storyboard */; };
+		F119AE9119FD4CFC0061D7DF /* VectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE9019FD4CFC0061D7DF /* VectorTests.m */; };
+		F14BBF4A19FD55360026B3DC /* SDWBoardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4319FD55360026B3DC /* SDWBoardsController.m */; };
+		F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4619FD55360026B3DC /* SDWCardViewController.m */; };
+		F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4D19FD55800026B3DC /* SDWCardsController.m */; };
+		F14BBF6419FD55E70026B3DC /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5219FD55E70026B3DC /* AFHTTPRequestOperation.m */; };
+		F14BBF6519FD55E70026B3DC /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5419FD55E70026B3DC /* AFHTTPRequestOperationManager.m */; };
+		F14BBF6619FD55E70026B3DC /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5619FD55E70026B3DC /* AFHTTPSessionManager.m */; };
+		F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5919FD55E70026B3DC /* AFNetworkReachabilityManager.m */; };
+		F14BBF6819FD55E70026B3DC /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5B19FD55E70026B3DC /* AFSecurityPolicy.m */; };
+		F14BBF6919FD55E70026B3DC /* AFURLConnectionOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5D19FD55E70026B3DC /* AFURLConnectionOperation.m */; };
+		F14BBF6A19FD55E70026B3DC /* AFURLRequestSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF5F19FD55E70026B3DC /* AFURLRequestSerialization.m */; };
+		F14BBF6B19FD55E70026B3DC /* AFURLResponseSerialization.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF6119FD55E70026B3DC /* AFURLResponseSerialization.m */; };
+		F14BBF6C19FD55E70026B3DC /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF6319FD55E70026B3DC /* AFURLSessionManager.m */; };
+		F14BBF7219FD56AD0026B3DC /* SDWMainSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF7119FD56AD0026B3DC /* SDWMainSplitController.m */; };
+		F14BBF7519FD57400026B3DC /* AFTrelloAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF7419FD57400026B3DC /* AFTrelloAPIClient.m */; };
+		F14BBF7819FD59400026B3DC /* SDWBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF7719FD59400026B3DC /* SDWBoard.m */; };
+		F14BBF7B19FD5A230026B3DC /* AFRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF7A19FD5A230026B3DC /* AFRecordModel.m */; };
+		F14BBF7E19FD5DB70026B3DC /* SDWSourceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF7D19FD5DB70026B3DC /* SDWSourceListModel.m */; };
+		F14BBF8119FD60010026B3DC /* AFRecordPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8019FD60010026B3DC /* AFRecordPathManager.m */; };
+		F14BBF8419FD699F0026B3DC /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8319FD699F0026B3DC /* AFRecord.m */; };
+		F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8619FD788F0026B3DC /* SDWCard.m */; };
+		F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8919FD78EE0026B3DC /* SDWLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F119AE8B19FD4CFC0061D7DF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F119AE6C19FD4CFC0061D7DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F119AE7319FD4CFC0061D7DF;
+			remoteInfo = Vector;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		F119AE7419FD4CFC0061D7DF /* Vector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vector.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F119AE7819FD4CFC0061D7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F119AE7919FD4CFC0061D7DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		F119AE7A19FD4CFC0061D7DF /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		F119AE7C19FD4CFC0061D7DF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		F119AE8119FD4CFC0061D7DF /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		F119AE8419FD4CFC0061D7DF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F119AE8A19FD4CFC0061D7DF /* VectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F119AE8F19FD4CFC0061D7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F119AE9019FD4CFC0061D7DF /* VectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VectorTests.m; sourceTree = "<group>"; };
+		F14BBF4219FD55360026B3DC /* SDWBoardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsController.h; sourceTree = "<group>"; };
+		F14BBF4319FD55360026B3DC /* SDWBoardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardsController.m; sourceTree = "<group>"; };
+		F14BBF4519FD55360026B3DC /* SDWCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardViewController.h; sourceTree = "<group>"; };
+		F14BBF4619FD55360026B3DC /* SDWCardViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardViewController.m; sourceTree = "<group>"; };
+		F14BBF4C19FD55800026B3DC /* SDWCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsController.h; sourceTree = "<group>"; };
+		F14BBF4D19FD55800026B3DC /* SDWCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsController.m; sourceTree = "<group>"; };
+		F14BBF5119FD55E70026B3DC /* AFHTTPRequestOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperation.h; sourceTree = "<group>"; };
+		F14BBF5219FD55E70026B3DC /* AFHTTPRequestOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperation.m; sourceTree = "<group>"; };
+		F14BBF5319FD55E70026B3DC /* AFHTTPRequestOperationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPRequestOperationManager.h; sourceTree = "<group>"; };
+		F14BBF5419FD55E70026B3DC /* AFHTTPRequestOperationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPRequestOperationManager.m; sourceTree = "<group>"; };
+		F14BBF5519FD55E70026B3DC /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
+		F14BBF5619FD55E70026B3DC /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
+		F14BBF5719FD55E70026B3DC /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
+		F14BBF5819FD55E70026B3DC /* AFNetworkReachabilityManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworkReachabilityManager.h; sourceTree = "<group>"; };
+		F14BBF5919FD55E70026B3DC /* AFNetworkReachabilityManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetworkReachabilityManager.m; sourceTree = "<group>"; };
+		F14BBF5A19FD55E70026B3DC /* AFSecurityPolicy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFSecurityPolicy.h; sourceTree = "<group>"; };
+		F14BBF5B19FD55E70026B3DC /* AFSecurityPolicy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFSecurityPolicy.m; sourceTree = "<group>"; };
+		F14BBF5C19FD55E70026B3DC /* AFURLConnectionOperation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLConnectionOperation.h; sourceTree = "<group>"; };
+		F14BBF5D19FD55E70026B3DC /* AFURLConnectionOperation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLConnectionOperation.m; sourceTree = "<group>"; };
+		F14BBF5E19FD55E70026B3DC /* AFURLRequestSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLRequestSerialization.h; sourceTree = "<group>"; };
+		F14BBF5F19FD55E70026B3DC /* AFURLRequestSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLRequestSerialization.m; sourceTree = "<group>"; };
+		F14BBF6019FD55E70026B3DC /* AFURLResponseSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLResponseSerialization.h; sourceTree = "<group>"; };
+		F14BBF6119FD55E70026B3DC /* AFURLResponseSerialization.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLResponseSerialization.m; sourceTree = "<group>"; };
+		F14BBF6219FD55E70026B3DC /* AFURLSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFURLSessionManager.h; sourceTree = "<group>"; };
+		F14BBF6319FD55E70026B3DC /* AFURLSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFURLSessionManager.m; sourceTree = "<group>"; };
+		F14BBF7019FD56AD0026B3DC /* SDWMainSplitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainSplitController.h; sourceTree = "<group>"; };
+		F14BBF7119FD56AD0026B3DC /* SDWMainSplitController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainSplitController.m; sourceTree = "<group>"; };
+		F14BBF7319FD57400026B3DC /* AFTrelloAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFTrelloAPIClient.h; sourceTree = "<group>"; };
+		F14BBF7419FD57400026B3DC /* AFTrelloAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFTrelloAPIClient.m; sourceTree = "<group>"; };
+		F14BBF7619FD59400026B3DC /* SDWBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoard.h; sourceTree = "<group>"; };
+		F14BBF7719FD59400026B3DC /* SDWBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoard.m; sourceTree = "<group>"; };
+		F14BBF7919FD5A230026B3DC /* AFRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecordModel.h; sourceTree = "<group>"; };
+		F14BBF7A19FD5A230026B3DC /* AFRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecordModel.m; sourceTree = "<group>"; };
+		F14BBF7C19FD5DB70026B3DC /* SDWSourceListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSourceListModel.h; sourceTree = "<group>"; };
+		F14BBF7D19FD5DB70026B3DC /* SDWSourceListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSourceListModel.m; sourceTree = "<group>"; };
+		F14BBF7F19FD60010026B3DC /* AFRecordPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecordPathManager.h; sourceTree = "<group>"; };
+		F14BBF8019FD60010026B3DC /* AFRecordPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecordPathManager.m; sourceTree = "<group>"; };
+		F14BBF8219FD699F0026B3DC /* AFRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecord.h; sourceTree = "<group>"; };
+		F14BBF8319FD699F0026B3DC /* AFRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecord.m; sourceTree = "<group>"; };
+		F14BBF8519FD788F0026B3DC /* SDWCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCard.h; sourceTree = "<group>"; };
+		F14BBF8619FD788F0026B3DC /* SDWCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCard.m; sourceTree = "<group>"; };
+		F14BBF8819FD78EE0026B3DC /* SDWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabel.h; sourceTree = "<group>"; };
+		F14BBF8919FD78EE0026B3DC /* SDWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabel.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F119AE7119FD4CFC0061D7DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F119AE8719FD4CFC0061D7DF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		F119AE6B19FD4CFC0061D7DF = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4F19FD55E70026B3DC /* __Vendor */,
+				F119AE7619FD4CFC0061D7DF /* Vector */,
+				F119AE8D19FD4CFC0061D7DF /* VectorTests */,
+				F119AE7519FD4CFC0061D7DF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		F119AE7519FD4CFC0061D7DF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F119AE7419FD4CFC0061D7DF /* Vector.app */,
+				F119AE8A19FD4CFC0061D7DF /* VectorTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F119AE7619FD4CFC0061D7DF /* Vector */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4019FD55360026B3DC /* Classes */,
+				F119AE7919FD4CFC0061D7DF /* AppDelegate.h */,
+				F119AE7A19FD4CFC0061D7DF /* AppDelegate.m */,
+				F119AE8119FD4CFC0061D7DF /* Images.xcassets */,
+				F119AE8319FD4CFC0061D7DF /* Main.storyboard */,
+				F119AE7719FD4CFC0061D7DF /* Supporting Files */,
+			);
+			path = Vector;
+			sourceTree = "<group>";
+		};
+		F119AE7719FD4CFC0061D7DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F119AE7819FD4CFC0061D7DF /* Info.plist */,
+				F119AE7C19FD4CFC0061D7DF /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F119AE8D19FD4CFC0061D7DF /* VectorTests */ = {
+			isa = PBXGroup;
+			children = (
+				F119AE9019FD4CFC0061D7DF /* VectorTests.m */,
+				F119AE8E19FD4CFC0061D7DF /* Supporting Files */,
+			);
+			path = VectorTests;
+			sourceTree = "<group>";
+		};
+		F119AE8E19FD4CFC0061D7DF /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				F119AE8F19FD4CFC0061D7DF /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		F14BBF4019FD55360026B3DC /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4119FD55360026B3DC /* BoardList */,
+				F14BBF4419FD55360026B3DC /* CardInspector */,
+				F14BBF4719FD55360026B3DC /* CardList */,
+				F14BBF4819FD55360026B3DC /* Model */,
+				F14BBF4919FD55360026B3DC /* Network */,
+				F14BBF7019FD56AD0026B3DC /* SDWMainSplitController.h */,
+				F14BBF7119FD56AD0026B3DC /* SDWMainSplitController.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		F14BBF4119FD55360026B3DC /* BoardList */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4219FD55360026B3DC /* SDWBoardsController.h */,
+				F14BBF4319FD55360026B3DC /* SDWBoardsController.m */,
+			);
+			path = BoardList;
+			sourceTree = "<group>";
+		};
+		F14BBF4419FD55360026B3DC /* CardInspector */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4519FD55360026B3DC /* SDWCardViewController.h */,
+				F14BBF4619FD55360026B3DC /* SDWCardViewController.m */,
+			);
+			path = CardInspector;
+			sourceTree = "<group>";
+		};
+		F14BBF4719FD55360026B3DC /* CardList */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF4C19FD55800026B3DC /* SDWCardsController.h */,
+				F14BBF4D19FD55800026B3DC /* SDWCardsController.m */,
+			);
+			path = CardList;
+			sourceTree = "<group>";
+		};
+		F14BBF4819FD55360026B3DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF8219FD699F0026B3DC /* AFRecord.h */,
+				F14BBF8319FD699F0026B3DC /* AFRecord.m */,
+				F14BBF7F19FD60010026B3DC /* AFRecordPathManager.h */,
+				F14BBF8019FD60010026B3DC /* AFRecordPathManager.m */,
+				F14BBF7919FD5A230026B3DC /* AFRecordModel.h */,
+				F14BBF7A19FD5A230026B3DC /* AFRecordModel.m */,
+				F14BBF7C19FD5DB70026B3DC /* SDWSourceListModel.h */,
+				F14BBF7D19FD5DB70026B3DC /* SDWSourceListModel.m */,
+				F14BBF8819FD78EE0026B3DC /* SDWLabel.h */,
+				F14BBF8919FD78EE0026B3DC /* SDWLabel.m */,
+				F14BBF8519FD788F0026B3DC /* SDWCard.h */,
+				F14BBF8619FD788F0026B3DC /* SDWCard.m */,
+				F14BBF7619FD59400026B3DC /* SDWBoard.h */,
+				F14BBF7719FD59400026B3DC /* SDWBoard.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F14BBF4919FD55360026B3DC /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF7319FD57400026B3DC /* AFTrelloAPIClient.h */,
+				F14BBF7419FD57400026B3DC /* AFTrelloAPIClient.m */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		F14BBF4F19FD55E70026B3DC /* __Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF5019FD55E70026B3DC /* AFNetworking */,
+			);
+			name = __Vendor;
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		F14BBF5019FD55E70026B3DC /* AFNetworking */ = {
+			isa = PBXGroup;
+			children = (
+				F14BBF5119FD55E70026B3DC /* AFHTTPRequestOperation.h */,
+				F14BBF5219FD55E70026B3DC /* AFHTTPRequestOperation.m */,
+				F14BBF5319FD55E70026B3DC /* AFHTTPRequestOperationManager.h */,
+				F14BBF5419FD55E70026B3DC /* AFHTTPRequestOperationManager.m */,
+				F14BBF5519FD55E70026B3DC /* AFHTTPSessionManager.h */,
+				F14BBF5619FD55E70026B3DC /* AFHTTPSessionManager.m */,
+				F14BBF5719FD55E70026B3DC /* AFNetworking.h */,
+				F14BBF5819FD55E70026B3DC /* AFNetworkReachabilityManager.h */,
+				F14BBF5919FD55E70026B3DC /* AFNetworkReachabilityManager.m */,
+				F14BBF5A19FD55E70026B3DC /* AFSecurityPolicy.h */,
+				F14BBF5B19FD55E70026B3DC /* AFSecurityPolicy.m */,
+				F14BBF5C19FD55E70026B3DC /* AFURLConnectionOperation.h */,
+				F14BBF5D19FD55E70026B3DC /* AFURLConnectionOperation.m */,
+				F14BBF5E19FD55E70026B3DC /* AFURLRequestSerialization.h */,
+				F14BBF5F19FD55E70026B3DC /* AFURLRequestSerialization.m */,
+				F14BBF6019FD55E70026B3DC /* AFURLResponseSerialization.h */,
+				F14BBF6119FD55E70026B3DC /* AFURLResponseSerialization.m */,
+				F14BBF6219FD55E70026B3DC /* AFURLSessionManager.h */,
+				F14BBF6319FD55E70026B3DC /* AFURLSessionManager.m */,
+			);
+			path = AFNetworking;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F119AE7319FD4CFC0061D7DF /* Vector */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F119AE9419FD4CFC0061D7DF /* Build configuration list for PBXNativeTarget "Vector" */;
+			buildPhases = (
+				F119AE7019FD4CFC0061D7DF /* Sources */,
+				F119AE7119FD4CFC0061D7DF /* Frameworks */,
+				F119AE7219FD4CFC0061D7DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Vector;
+			productName = Vector;
+			productReference = F119AE7419FD4CFC0061D7DF /* Vector.app */;
+			productType = "com.apple.product-type.application";
+		};
+		F119AE8919FD4CFC0061D7DF /* VectorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F119AE9719FD4CFC0061D7DF /* Build configuration list for PBXNativeTarget "VectorTests" */;
+			buildPhases = (
+				F119AE8619FD4CFC0061D7DF /* Sources */,
+				F119AE8719FD4CFC0061D7DF /* Frameworks */,
+				F119AE8819FD4CFC0061D7DF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F119AE8C19FD4CFC0061D7DF /* PBXTargetDependency */,
+			);
+			name = VectorTests;
+			productName = VectorTests;
+			productReference = F119AE8A19FD4CFC0061D7DF /* VectorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F119AE6C19FD4CFC0061D7DF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = SDWR;
+				TargetAttributes = {
+					F119AE7319FD4CFC0061D7DF = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					F119AE8919FD4CFC0061D7DF = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = F119AE7319FD4CFC0061D7DF;
+					};
+				};
+			};
+			buildConfigurationList = F119AE6F19FD4CFC0061D7DF /* Build configuration list for PBXProject "Vector" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F119AE6B19FD4CFC0061D7DF;
+			productRefGroup = F119AE7519FD4CFC0061D7DF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F119AE7319FD4CFC0061D7DF /* Vector */,
+				F119AE8919FD4CFC0061D7DF /* VectorTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F119AE7219FD4CFC0061D7DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F119AE8219FD4CFC0061D7DF /* Images.xcassets in Resources */,
+				F119AE8519FD4CFC0061D7DF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F119AE8819FD4CFC0061D7DF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F119AE7019FD4CFC0061D7DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F14BBF6919FD55E70026B3DC /* AFURLConnectionOperation.m in Sources */,
+				F14BBF7819FD59400026B3DC /* SDWBoard.m in Sources */,
+				F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */,
+				F14BBF6419FD55E70026B3DC /* AFHTTPRequestOperation.m in Sources */,
+				F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */,
+				F14BBF6C19FD55E70026B3DC /* AFURLSessionManager.m in Sources */,
+				F14BBF6A19FD55E70026B3DC /* AFURLRequestSerialization.m in Sources */,
+				F14BBF8119FD60010026B3DC /* AFRecordPathManager.m in Sources */,
+				F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */,
+				F14BBF7219FD56AD0026B3DC /* SDWMainSplitController.m in Sources */,
+				F14BBF6B19FD55E70026B3DC /* AFURLResponseSerialization.m in Sources */,
+				F14BBF7519FD57400026B3DC /* AFTrelloAPIClient.m in Sources */,
+				F14BBF4A19FD55360026B3DC /* SDWBoardsController.m in Sources */,
+				F14BBF7E19FD5DB70026B3DC /* SDWSourceListModel.m in Sources */,
+				F14BBF8419FD699F0026B3DC /* AFRecord.m in Sources */,
+				F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */,
+				F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */,
+				F14BBF6519FD55E70026B3DC /* AFHTTPRequestOperationManager.m in Sources */,
+				F14BBF7B19FD5A230026B3DC /* AFRecordModel.m in Sources */,
+				F14BBF6819FD55E70026B3DC /* AFSecurityPolicy.m in Sources */,
+				F119AE7D19FD4CFC0061D7DF /* main.m in Sources */,
+				F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */,
+				F14BBF6619FD55E70026B3DC /* AFHTTPSessionManager.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F119AE8619FD4CFC0061D7DF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F119AE9119FD4CFC0061D7DF /* VectorTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F119AE8C19FD4CFC0061D7DF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F119AE7319FD4CFC0061D7DF /* Vector */;
+			targetProxy = F119AE8B19FD4CFC0061D7DF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		F119AE8319FD4CFC0061D7DF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F119AE8419FD4CFC0061D7DF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F119AE9219FD4CFC0061D7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		F119AE9319FD4CFC0061D7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		F119AE9519FD4CFC0061D7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Vector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F119AE9619FD4CFC0061D7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = Vector/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		F119AE9819FD4CFC0061D7DF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VectorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vector.app/Contents/MacOS/Vector";
+			};
+			name = Debug;
+		};
+		F119AE9919FD4CFC0061D7DF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				COMBINE_HIDPI_IMAGES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = VectorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Vector.app/Contents/MacOS/Vector";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F119AE6F19FD4CFC0061D7DF /* Build configuration list for PBXProject "Vector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F119AE9219FD4CFC0061D7DF /* Debug */,
+				F119AE9319FD4CFC0061D7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F119AE9419FD4CFC0061D7DF /* Build configuration list for PBXNativeTarget "Vector" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F119AE9519FD4CFC0061D7DF /* Debug */,
+				F119AE9619FD4CFC0061D7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F119AE9719FD4CFC0061D7DF /* Build configuration list for PBXNativeTarget "VectorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F119AE9819FD4CFC0061D7DF /* Debug */,
+				F119AE9919FD4CFC0061D7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F119AE6C19FD4CFC0061D7DF /* Project object */;
+}
