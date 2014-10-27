@@ -10,6 +10,10 @@
 #import "SDWCardsController.h"
 
 @interface SDWCardsController ()
+@property (strong) IBOutlet NSArrayController *cardsArrayController;
+
+@property (strong) NSArray *cards;
+@property (strong) IBOutlet NSCollectionView *collectionView;
 
 @end
 
@@ -17,7 +21,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+
+
+    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
+}
+
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    
+}
+
+- (void)viewDidLayout {
+    [super viewDidLayout];
+
 }
 
 - (void)setupCardsForList:(NSString *)listID {
@@ -37,13 +53,22 @@
 
         if (!err) {
 
-            NSLog(@"array = %@",objs);
+            [self reloadCollection:objs];
+       //    [self.collectionView setNeedsDisplay:YES];
+          //  NSLog(@"array = %@",[objs valueForKeyPath:@"name"]);
         }
         else {
             NSLog(@"err = %@",err.localizedDescription);
         }
 
     }];
+
+}
+
+- (void)reloadCollection:(NSArray *)objects {
+
+    self.cardsArrayController.content = objects;
+
 
 }
 

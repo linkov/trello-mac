@@ -5,6 +5,8 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+
+#import "SDWMainSplitController.h"
 #import "SDWBoard.h"
 #import "SDWBoardsController.h"
 #import "SDWCardsController.h"
@@ -48,9 +50,11 @@
 
     if (board.isLeaf) {
 
-
-        SDWCardsController *cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
-        [cardsVC setupCardsForList:board.boardID];
+        SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
+        [main.cardsVC setupCardsForList:board.boardID];
+//
+//        SDWCardsController *cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
+//        [cardsVC setupCardsForList:board.boardID];
 
         return YES;
 
