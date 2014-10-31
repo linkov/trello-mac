@@ -81,19 +81,27 @@
 
 }
 
-//- (void)outlineView:(NSOutlineView *)outlineView willDisplayOutlineCell:(id)cell
-//     forTableColumn:(NSTableColumn *)tableColumn
-//               item:(id)item {
+-(BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item
+{
+    // replace this with your logic to determine whether the
+    // disclosure triangle should be hidden for a particular item
+    return NO;
+}
+
 //
-//    [cell setImage:[NSImage imageNamed: @"Navigation right 16x16 vWhite_tx"]];
-//    [cell setAlternateImage:[NSImage imageNamed: @"Navigation down 16x16 vWhite_tx"]];
-//}
-//
-//- (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item {
-//
-//    [cell setTextColor:[NSColor whiteColor]];
-//
-//}
+- (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(NSTreeNode *)item {
+
+    if (item.isLeaf) {
+
+        [cell setTextColor:[NSColor lightGrayColor]];
+    }
+    else {
+
+        [cell setTextColor:[NSColor whiteColor]];
+    }
+
+
+}
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    shouldExpandItem:(id)item {

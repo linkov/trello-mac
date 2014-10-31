@@ -703,12 +703,12 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
-                                    <rect key="frame" x="0.0" y="0.0" width="250" height="296"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="286"/>
                                     <clipView key="contentView" drawsBackground="NO" id="ZOQ-Og-rWc">
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT">
+                                            <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" red="0.15686274509803921" green="0.44705882352941179" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -733,11 +733,14 @@
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="247" height="17"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub">
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub" customClass="LeftMenuOutlineCellView">
                                                                             <font key="font" metaFont="system"/>
                                                                             <color key="textColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
+                                                                        <connections>
+                                                                            <binding destination="1l3-Ci-luo" name="value" keyPath="objectValue.name" id="qP9-YR-HIu"/>
+                                                                        </connections>
                                                                     </textField>
                                                                 </subviews>
                                                                 <constraints>
@@ -748,12 +751,10 @@
                                                                 </constraints>
                                                             </tableCellView>
                                                         </prototypeCellViews>
-                                                        <connections>
-                                                            <binding destination="qT0-9T-gOJ" name="value" keyPath="arrangedObjects.name" id="yrN-Ss-f6T"/>
-                                                        </connections>
                                                     </tableColumn>
                                                 </tableColumns>
                                                 <connections>
+                                                    <binding destination="qT0-9T-gOJ" name="content" keyPath="arrangedObjects" id="pGS-kS-MbR"/>
                                                     <outlet property="delegate" destination="Kp4-s7-wUc" id="tU8-6a-hql"/>
                                                 </connections>
                                             </outlineView>
@@ -763,7 +764,7 @@
                                     <constraints>
                                         <constraint firstAttribute="width" constant="250" id="BRP-hj-LlV"/>
                                     </constraints>
-                                    <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="wyo-CC-kt0">
+                                    <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="wyo-CC-kt0">
                                         <rect key="frame" x="1" y="119" width="238" height="15"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
@@ -778,10 +779,10 @@
                             <constraint firstItem="Hmz-VM-KlS" firstAttribute="leading" secondItem="Ksb-xN-yU4" secondAttribute="leading" id="ciS-Wf-4pY"/>
                             <constraint firstAttribute="trailing" secondItem="Hmz-VM-KlS" secondAttribute="trailing" id="hJF-OK-f7H"/>
                             <constraint firstAttribute="bottom" secondItem="Hmz-VM-KlS" secondAttribute="bottom" id="ooN-9V-8pn"/>
-                            <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" id="xcl-Re-Pas"/>
+                            <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="10" id="xcl-Re-Pas"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <color key="fillColor" red="0.15686274509803921" green="0.44705882352941179" blue="0.61568627450980395" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
@@ -864,7 +865,7 @@
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
             </objects>
-            <point key="canvasLocation" x="754" y="1202"/>
+            <point key="canvasLocation" x="811" y="1202"/>
         </scene>
         <!--Card View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -894,7 +895,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1248.5" y="1204"/>
+            <point key="canvasLocation" x="1367.5" y="1202"/>
         </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="vir-Vg-M3D">

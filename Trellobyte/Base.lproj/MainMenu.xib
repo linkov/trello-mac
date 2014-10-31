@@ -874,7 +874,7 @@
                     <rect key="frame" x="43" y="10" width="549" height="17"/>
                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" id="2w5-sK-F2b">
                         <font key="font" metaFont="system"/>
-                        <color key="textColor" patternImage="533F7CD9-4258-4EB7-953D-ABB3580E8B12" colorSpace="pattern"/>
+                        <color key="textColor" patternImage="6BFAD93F-06AC-46B1-A3F4-14643B63F25E" colorSpace="pattern"/>
                         <color key="backgroundColor" red="0.66748403280000002" green="0.83257299269999996" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <connections>
                             <binding destination="CWs-gt-is8" name="value" keyPath="representedObject.name" id="DB7-ln-wnr"/>
@@ -934,7 +934,7 @@
         </viewController>
     </objects>
     <resources>
-        <image name="533F7CD9-4258-4EB7-953D-ABB3580E8B12" width="320" height="460">
+        <image name="6BFAD93F-06AC-46B1-A3F4-14643B63F25E" width="320" height="460">
             <mutableData key="keyedArchiveRepresentation">
 YnBsaXN0MDDUAQIDBAUGPj9YJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3ASAAGGoK4HCBMU
 GR4fIyQsLzI4O1UkbnVsbNUJCgsMDQ4PEBESVk5TU2l6ZVYkY2xhc3NcTlNJbWFnZUZsYWdzVk5TUmVw
