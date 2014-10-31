@@ -11,9 +11,9 @@
 
 @interface SDWCardsController ()
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
+@property (strong) IBOutlet NSCollectionView *collectionView;
 
 @property (strong) NSArray *cards;
-@property (strong) IBOutlet NSCollectionView *collectionView;
 
 @end
 
