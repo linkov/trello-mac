@@ -17,8 +17,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mainBox.cornerRadius = 6;
-    self.mainBox.borderWidth = 4;
+    self.mainBox.cornerRadius = 3;
+    self.mainBox.borderWidth = 1;
 }
 
 @end

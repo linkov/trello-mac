@@ -24,6 +24,7 @@
 
 
     self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
+ //   [self.collectionView setBoundsOrigin:CGPointMake(-10, -10)];
 }
 
 - (void)viewWillAppear {

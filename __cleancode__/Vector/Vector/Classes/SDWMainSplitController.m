@@ -34,11 +34,11 @@
 
     self.boardsSplitItem = [NSSplitViewItem new];
     [self.boardsSplitItem setViewController:boardsVC];
-    self.boardsSplitItem.holdingPriority = NSLayoutPriorityDefaultLow;
+    //self.boardsSplitItem.holdingPriority = NSLayoutPriorityDefaultLow;
 
     self.cardsSplitItem = [NSSplitViewItem new];
     [self.cardsSplitItem setViewController:self.cardsVC];
-    self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
+    //self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
 
     self.inspectorSplitItem = [NSSplitViewItem new];
     [self.inspectorSplitItem setViewController:self.inspectorVC];
