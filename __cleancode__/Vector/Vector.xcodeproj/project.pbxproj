@@ -33,10 +33,12 @@
 		F14BBF8419FD699F0026B3DC /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8319FD699F0026B3DC /* AFRecord.m */; };
 		F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8619FD788F0026B3DC /* SDWCard.m */; };
 		F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8919FD78EE0026B3DC /* SDWLabel.m */; };
+		F1A65DF91A043685009372C5 /* LeftMenuOutlineCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A65DF81A043685009372C5 /* LeftMenuOutlineCellView.m */; };
 		F1C0E5ED1A041312000B7C4E /* SDWCardsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5EC1A041312000B7C4E /* SDWCardsCollectionViewItem.m */; };
 		F1C0E5F01A041354000B7C4E /* SDWCardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5EF1A041354000B7C4E /* SDWCardListView.m */; };
 		F1C0E5F61A0413BE000B7C4E /* NSColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5F31A0413BE000B7C4E /* NSColor+Util.m */; };
 		F1C0E5F71A0413BE000B7C4E /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */; };
+		F1E01FE31A043C0400E4942B /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1E01FE21A043C0400E4942B /* Xtrace.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,6 +105,8 @@
 		F14BBF8619FD788F0026B3DC /* SDWCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCard.m; sourceTree = "<group>"; };
 		F14BBF8819FD78EE0026B3DC /* SDWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabel.h; sourceTree = "<group>"; };
 		F14BBF8919FD78EE0026B3DC /* SDWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabel.m; sourceTree = "<group>"; };
+		F1A65DF71A043685009372C5 /* LeftMenuOutlineCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftMenuOutlineCellView.h; sourceTree = "<group>"; };
+		F1A65DF81A043685009372C5 /* LeftMenuOutlineCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftMenuOutlineCellView.m; sourceTree = "<group>"; };
 		F1C0E5EB1A041312000B7C4E /* SDWCardsCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionViewItem.h; sourceTree = "<group>"; };
 		F1C0E5EC1A041312000B7C4E /* SDWCardsCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionViewItem.m; sourceTree = "<group>"; };
 		F1C0E5EE1A041354000B7C4E /* SDWCardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardListView.h; sourceTree = "<group>"; };
@@ -111,6 +115,8 @@
 		F1C0E5F31A0413BE000B7C4E /* NSColor+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+Util.m"; sourceTree = "<group>"; };
 		F1C0E5F41A0413BE000B7C4E /* NSImage+Util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+Util.h"; sourceTree = "<group>"; };
 		F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Util.m"; sourceTree = "<group>"; };
+		F1E01FE11A043C0400E4942B /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
+		F1E01FE21A043C0400E4942B /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,6 +213,8 @@
 		F14BBF4119FD55360026B3DC /* BoardList */ = {
 			isa = PBXGroup;
 			children = (
+				F1A65DF71A043685009372C5 /* LeftMenuOutlineCellView.h */,
+				F1A65DF81A043685009372C5 /* LeftMenuOutlineCellView.m */,
 				F14BBF4219FD55360026B3DC /* SDWBoardsController.h */,
 				F14BBF4319FD55360026B3DC /* SDWBoardsController.m */,
 			);
@@ -268,6 +276,7 @@
 		F14BBF4F19FD55E70026B3DC /* __Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F1E01FE01A043C0400E4942B /* Xtrace */,
 				F14BBF5019FD55E70026B3DC /* AFNetworking */,
 			);
 			name = __Vendor;
@@ -309,6 +318,15 @@
 				F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */,
 			);
 			path = Utils;
+			sourceTree = "<group>";
+		};
+		F1E01FE01A043C0400E4942B /* Xtrace */ = {
+			isa = PBXGroup;
+			children = (
+				F1E01FE11A043C0400E4942B /* Xtrace.h */,
+				F1E01FE21A043C0400E4942B /* Xtrace.mm */,
+			);
+			path = Xtrace;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -360,6 +378,7 @@
 				TargetAttributes = {
 					F119AE7319FD4CFC0061D7DF = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 43R88X5B35;
 					};
 					F119AE8919FD4CFC0061D7DF = {
 						CreatedOnToolsVersion = 6.1;
@@ -419,8 +438,10 @@
 				F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */,
 				F1C0E5F01A041354000B7C4E /* SDWCardListView.m in Sources */,
 				F14BBF6C19FD55E70026B3DC /* AFURLSessionManager.m in Sources */,
+				F1E01FE31A043C0400E4942B /* Xtrace.mm in Sources */,
 				F14BBF6A19FD55E70026B3DC /* AFURLRequestSerialization.m in Sources */,
 				F1C0E5F71A0413BE000B7C4E /* NSImage+Util.m in Sources */,
+				F1A65DF91A043685009372C5 /* LeftMenuOutlineCellView.m in Sources */,
 				F14BBF8119FD60010026B3DC /* AFRecordPathManager.m in Sources */,
 				F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */,
 				F14BBF7219FD56AD0026B3DC /* SDWMainSplitController.m in Sources */,
@@ -550,6 +571,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Vector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -561,6 +583,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Developer ID Application";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Vector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

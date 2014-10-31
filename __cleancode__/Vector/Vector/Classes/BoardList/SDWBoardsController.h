@@ -10,4 +10,6 @@
 
 @interface SDWBoardsController : NSViewController
 
+@property (strong,nonatomic) NSColor *textColor;
+
 @end

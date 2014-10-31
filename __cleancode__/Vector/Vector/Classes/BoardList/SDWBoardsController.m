@@ -15,6 +15,7 @@
 @property (strong) NSArray *boards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 
+
 @end
 
 @implementation SDWBoardsController
@@ -23,7 +24,14 @@
     [super viewDidLoad];
 
     NSLog(@"didload");
+
+    self.textColor = [NSColor whiteColor];
     [self setupBoards];
+}
+
+- (NSColor *)textColor {
+
+    return [NSColor whiteColor];
 }
 
 - (void)setupBoards {
@@ -35,6 +43,8 @@
             NSLog(@"boards - %@",objects);
 
             self.boards = objects;
+            [self.outlineView deselectAll:nil];
+            [self.outlineView expandItem:nil expandChildren:YES];
             [self.outlineView reloadData];
         }
         else  {
@@ -62,6 +72,28 @@
         return NO;
 }
 
+- (NSCell*)outlineView:(NSOutlineView *)outlineView dataCellForTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+
+    NSTextFieldCell *cell = [tableColumn dataCell];
+    [cell setTextColor:[NSColor whiteColor]];
+
+    return cell;
+
+}
+
+//- (void)outlineView:(NSOutlineView *)outlineView willDisplayOutlineCell:(id)cell
+//     forTableColumn:(NSTableColumn *)tableColumn
+//               item:(id)item {
+//
+//    [cell setImage:[NSImage imageNamed: @"Navigation right 16x16 vWhite_tx"]];
+//    [cell setAlternateImage:[NSImage imageNamed: @"Navigation down 16x16 vWhite_tx"]];
+//}
+//
+//- (void)outlineView:(NSOutlineView *)outlineView willDisplayCell:(id)cell forTableColumn:(NSTableColumn *)tableColumn item:(id)item {
+//
+//    [cell setTextColor:[NSColor whiteColor]];
+//
+//}
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView
    shouldExpandItem:(id)item {
