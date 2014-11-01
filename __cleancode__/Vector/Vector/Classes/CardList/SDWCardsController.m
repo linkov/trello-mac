@@ -9,7 +9,7 @@
 #import "AFRecordPathManager.h"
 #import "SDWCardsController.h"
 
-@interface SDWCardsController ()
+@interface SDWCardsController () <NSCollectionViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 @property (strong) IBOutlet NSCollectionView *collectionView;
 
@@ -62,5 +62,14 @@
 
 	self.cardsArrayController.content = objects;
 }
+
+
+#pragma mark - NSCollectionViewDelegate
+
+- (void)collectionItemViewDoubleClick:(id)sender {
+
+
+}
+
 
 @end

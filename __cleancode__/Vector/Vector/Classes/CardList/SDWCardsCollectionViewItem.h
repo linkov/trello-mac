@@ -9,5 +9,9 @@
 #import <Cocoa/Cocoa.h>
 
 @interface SDWCardsCollectionViewItem : NSCollectionViewItem
+@property (weak) IBOutlet SDWCardListView *mainBox;
+@property (strong) NSColor *textColor;
+
+- (IBAction)setClr:(id)sender;
 
 @end

@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-@interface SDWCardListView : NSView
+@interface SDWCardListView : NSBox
 
+@property (strong) IBOutlet NSColor *IBfillColor;
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
+
+- (IBAction)setCRRR:(id)sender;
 
 @end

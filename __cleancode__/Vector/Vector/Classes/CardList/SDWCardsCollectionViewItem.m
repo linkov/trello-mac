@@ -5,11 +5,11 @@
 //  Created by alex on 10/31/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import "SDWCardListView.h"
 #import "SDWCardsCollectionViewItem.h"
 
 @interface SDWCardsCollectionViewItem ()
-@property (strong) IBOutlet NSBox *mainBox;
+
 
 @end
 
@@ -43,6 +43,43 @@
 //                            color:[NSColor colorWithCalibratedWhite:0 alpha:0.75]];
 //
 //    self.mainBox.shadow = bottomCardShadow;
+}
+
+- (void)setSelected:(BOOL)selected
+{
+
+    [super setSelected:selected];
+
+    self.mainBox.fillColor = [NSColor redColor];
+    [self.mainBox layoutSubtreeIfNeeded];
+
+    if (selected) {
+        self.textColor = [NSColor whiteColor];
+    }
+    else {
+        self.textColor = [NSColor blackColor];
+    }
+//
+//    [[self mainBox] setSelected:selected];
+
+    [(SDWCardListView *)[self view] setSelected:selected];
+}
+
+
+-(void)mouseDown:(NSEvent *)theEvent
+{
+    [super mouseDown:theEvent];
+
+    if (theEvent.clickCount >= 2)
+    {
+        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+    }
+}
+
+- (void)viewDidLayout {
+
+    [super viewDidLayout];
+    
 }
 
 @end

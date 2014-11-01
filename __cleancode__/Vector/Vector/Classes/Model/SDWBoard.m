@@ -25,9 +25,11 @@
 
         self.children = children;
         self.isLeaf = NO;
+        self.fontSize = 14;
     }
     else {
         self.isLeaf = YES;
+        self.fontSize = 11;
     }
 }
 
