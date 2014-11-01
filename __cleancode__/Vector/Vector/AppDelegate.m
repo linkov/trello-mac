@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "SDWAppSettings.h"
 
 @interface AppDelegate ()
 
@@ -15,11 +16,31 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application
+}
+
+-(void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor*)reply
+{
+
+    SharedSettings.userToken = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"vector://authorize#token=" withString:@""];
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification" object:nil];
+
+    NSLog(@"%@", event);
+    
+}
+
+-(void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
+    // Register ourselves as a URL handler for this URL
+    [[NSAppleEventManager sharedAppleEventManager]
+     setEventHandler:self
+     andSelector:@selector(getUrl:withReplyEvent:)
+     forEventClass:kInternetEventClass
+     andEventID:kAEGetURL];
 }
 
 @end

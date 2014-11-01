@@ -12,4 +12,6 @@
 
 @property (strong,nonatomic) NSColor *textColor;
 
+- (void)loadBoards;
+
 @end
