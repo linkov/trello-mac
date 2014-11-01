@@ -29,11 +29,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWBoard class]
-     toConcretePath:@"member/alexlink2/boards?fields=name&lists=open"];
-
     SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
     self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
     self.inspectorVC = [self.storyboard instantiateControllerWithIdentifier:@"singleCardVC"];

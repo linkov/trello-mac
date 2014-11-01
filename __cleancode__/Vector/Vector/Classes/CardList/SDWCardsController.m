@@ -20,57 +20,47 @@
 @implementation SDWCardsController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 
-    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
- //   [self.collectionView setBoundsOrigin:CGPointMake(-10, -10)];
+	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
+	//   [self.collectionView setBoundsOrigin:CGPointMake(-10, -10)];
 }
 
 - (void)viewWillAppear {
-    [super viewWillAppear];
-    
+	[super viewWillAppear];
 }
 
 - (void)viewDidLayout {
-    [super viewDidLayout];
-
+	[super viewDidLayout];
 }
 
 - (void)setupCardsForList:(NSString *)listID {
 
 
-    NSString *URL = [NSString stringWithFormat:@"lists/%@/cards",listID];
-    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
+	NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
+	NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
 
-    NSString *URLF = [NSString stringWithFormat:@"%@%@",URL,URL2];
+	NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
 
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWCard class]
-     toConcretePath:URLF];
+	[[AFRecordPathManager manager]
+	 setAFRecordMethod:@"findAll"
+	          forModel:[SDWCard class]
+	    toConcretePath:URLF];
 
-    [SDWCard findAll:^(NSArray *objs, NSError *err) {
+	[SDWCard findAll:^(NSArray *objs, NSError *err) {
 
-        if (!err) {
-
-            [self reloadCollection:objs];
-       //    [self.collectionView setNeedsDisplay:YES];
-          //  NSLog(@"array = %@",[objs valueForKeyPath:@"name"]);
-        }
-        else {
-            NSLog(@"err = %@",err.localizedDescription);
-        }
-
-    }];
-
+	    if (!err) {
+	        [self reloadCollection:objs];
+		} else {
+	        NSLog(@"err = %@", err.localizedDescription);
+		}
+	}];
 }
 
 - (void)reloadCollection:(NSArray *)objects {
 
-    self.cardsArrayController.content = objects;
-
-
+	self.cardsArrayController.content = objects;
 }
 
 @end

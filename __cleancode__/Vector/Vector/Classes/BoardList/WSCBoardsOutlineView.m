@@ -5,7 +5,7 @@
 //  Created by alex on 11/1/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import "NSColor+Util.h"
 #import "WSCBoardsOutlineView.h"
 
 @implementation WSCBoardsOutlineView
@@ -13,5 +13,11 @@
 //- (NSRect)frameOfOutlineCellAtRow:(NSInteger)row {
 //    return NSZeroRect;
 //}
+
+- (void)awakeFromNib {
+
+    self.intercellSpacing = CGSizeMake(5, 5);
+  //  self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
+}
 
 @end

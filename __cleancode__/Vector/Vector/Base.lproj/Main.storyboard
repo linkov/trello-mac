@@ -705,7 +705,7 @@
                             <subviews>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="286"/>
-                                    <clipView key="contentView" drawsBackground="NO" id="ZOQ-Og-rWc">
+                                    <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZOQ-Og-rWc">
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -721,23 +721,23 @@
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                         </tableHeaderCell>
-                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" allowsEditingTextAttributes="YES" id="K4I-sJ-JEs" customClass="LeftMenuOutlineCellView">
+                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" allowsEditingTextAttributes="YES" id="K4I-sJ-JEs">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" red="1" green="0.30980392159999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                             <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
-                                                            <tableCellView id="1l3-Ci-luo">
+                                                            <tableCellView id="1l3-Ci-luo" customClass="SDWBoardsCellView">
                                                                 <rect key="frame" x="1" y="1" width="247" height="17"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="247" height="17"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub" customClass="LeftMenuOutlineCellView">
-                                                                            <font key="font" metaFont="system"/>
+                                                                            <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                         <connections>
                                                                             <binding destination="1l3-Ci-luo" name="value" keyPath="objectValue.name" id="qP9-YR-HIu"/>
@@ -760,7 +760,7 @@
                                                 </connections>
                                             </outlineView>
                                         </subviews>
-                                        <nil key="backgroundColor"/>
+                                        <color key="backgroundColor" red="1" green="0.30980392159999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     </clipView>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="250" id="BRP-hj-LlV"/>
@@ -783,7 +783,7 @@
                             <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="10" id="xcl-Re-Pas"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
+                        <color key="fillColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>

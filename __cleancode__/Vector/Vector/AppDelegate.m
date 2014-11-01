@@ -33,6 +33,12 @@
     
 }
 
+//- (void)applicationWillBecomeActive:(NSNotification *)notification {
+//
+//    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification" object:nil];
+//
+//}
+
 -(void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
     // Register ourselves as a URL handler for this URL
