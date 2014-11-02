@@ -11,6 +11,7 @@
 @interface SDWCardsCollectionViewItem : NSCollectionViewItem
 @property (weak) IBOutlet SDWCardListView *mainBox;
 @property (strong) NSColor *textColor;
+@property (strong) IBOutlet NSStackView *stackView;
 
 - (void)expand;
 

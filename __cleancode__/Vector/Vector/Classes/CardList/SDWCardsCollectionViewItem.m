@@ -8,7 +8,7 @@
 #import "SDWCardListView.h"
 #import "SDWCardsCollectionViewItem.h"
 
-@interface SDWCardsCollectionViewItem ()
+@interface SDWCardsCollectionViewItem () <NSStackViewDelegate>
 
 
 @end
@@ -18,6 +18,14 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mainBox.cornerRadius = 3;
+
+    self.stackView.delegate = self;
+
+    //NSTextField *text = [[NSTextField alloc]init];
+    ///    text.
+
+
+    //[self.stackView addSubview:nil];
   //  self.mainBox.fillColor = [NSColor whiteColor];
 //    self.mainBox.borderWidth = 1;
     //[self.mainBox setWantsLayer:YES];

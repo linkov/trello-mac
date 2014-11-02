@@ -12,6 +12,7 @@
 		F119AE8219FD4CFC0061D7DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8119FD4CFC0061D7DF /* Images.xcassets */; };
 		F119AE8519FD4CFC0061D7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8319FD4CFC0061D7DF /* Main.storyboard */; };
 		F119AE9119FD4CFC0061D7DF /* VectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE9019FD4CFC0061D7DF /* VectorTests.m */; };
+		F139B2661A06859E003AB023 /* SDWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F139B2651A06859E003AB023 /* SDWUser.m */; };
 		F14BBF4A19FD55360026B3DC /* SDWBoardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4319FD55360026B3DC /* SDWBoardsController.m */; };
 		F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4619FD55360026B3DC /* SDWCardViewController.m */; };
 		F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4D19FD55800026B3DC /* SDWCardsController.m */; };
@@ -66,6 +67,8 @@
 		F119AE8A19FD4CFC0061D7DF /* VectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F119AE8F19FD4CFC0061D7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F119AE9019FD4CFC0061D7DF /* VectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VectorTests.m; sourceTree = "<group>"; };
+		F139B2641A06859E003AB023 /* SDWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUser.h; sourceTree = "<group>"; };
+		F139B2651A06859E003AB023 /* SDWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUser.m; sourceTree = "<group>"; };
 		F14BBF4219FD55360026B3DC /* SDWBoardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsController.h; sourceTree = "<group>"; };
 		F14BBF4319FD55360026B3DC /* SDWBoardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardsController.m; sourceTree = "<group>"; };
 		F14BBF4519FD55360026B3DC /* SDWCardViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardViewController.h; sourceTree = "<group>"; };
@@ -276,6 +279,8 @@
 				F14BBF8619FD788F0026B3DC /* SDWCard.m */,
 				F14BBF7619FD59400026B3DC /* SDWBoard.h */,
 				F14BBF7719FD59400026B3DC /* SDWBoard.m */,
+				F139B2641A06859E003AB023 /* SDWUser.h */,
+				F139B2651A06859E003AB023 /* SDWUser.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -465,6 +470,7 @@
 				F1B3AB831A04DBA500927CB9 /* SDWLoginVC.m in Sources */,
 				F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */,
 				F1C0E5F01A041354000B7C4E /* SDWCardListView.m in Sources */,
+				F139B2661A06859E003AB023 /* SDWUser.m in Sources */,
 				F1A949831A04516900B6944C /* WSCBoardsOutlineView.m in Sources */,
 				F14BBF6C19FD55E70026B3DC /* AFURLSessionManager.m in Sources */,
 				F1B3AB881A04EFEC00927CB9 /* SDWAppSettings.m in Sources */,
@@ -601,11 +607,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Vector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -613,11 +620,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Developer ID Application";
+				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Vector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

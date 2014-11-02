@@ -5,6 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "SDWUser.h"
 #import "SDWcard.h"
 #import "AFRecordPathManager.h"
 #import "SDWCardsController.h"
@@ -15,6 +16,7 @@
 @property (strong) IBOutlet NSCollectionView *collectionView;
 
 @property (strong) NSArray *cards;
+@property (strong) NSArray *storedUsers;
 
 @end
 
@@ -65,10 +67,31 @@
 
 	    if (!err) {
 	        [self reloadCollection:objs];
+          //  [self loadMembers:listID];
 		} else {
 	        NSLog(@"err = %@", err.localizedDescription);
 		}
 	}];
+}
+
+- (void)loadMembers:(NSString *)listID {
+
+    NSString *URL = [NSString stringWithFormat:@"boards/%@/members", listID];
+    [[AFRecordPathManager manager]
+     setAFRecordMethod:@"findAll"
+     forModel:[SDWUser class]
+	    toConcretePath:URL];
+
+    [SDWUser findAll:^(NSArray *objs, NSError *err) {
+
+        if (!err) {
+            self.storedUsers = objs;
+            
+        } else {
+            NSLog(@"err = %@", err.localizedDescription);
+        }
+    }];
+
 }
 
 - (void)reloadCollection:(NSArray *)objects {
