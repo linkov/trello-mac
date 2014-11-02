@@ -8,7 +8,7 @@
 #import "SDWCardListView.h"
 #import "SDWCardsCollectionViewItem.h"
 
-@interface SDWCardsCollectionViewItem () <NSStackViewDelegate>
+@interface SDWCardsCollectionViewItem ()
 
 
 @end
@@ -19,21 +19,24 @@
     [super viewDidLoad];
     self.mainBox.cornerRadius = 3;
 
-    self.stackView.delegate = self;
+    //self.stackView.delegate = self;
 
-    //NSTextField *text = [[NSTextField alloc]init];
-    ///    text.
+    NSTextField *text = [[NSTextField alloc]init];
+    [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [text setFont:[NSFont systemFontOfSize:8]];
+    [text setStringValue:@"AL"];
+    [text setEditable:NO];
+
+    NSTextField *text1 = [[NSTextField alloc]init];
+    [text1 setTranslatesAutoresizingMaskIntoConstraints:NO];
+    [text1 setFont:[NSFont systemFontOfSize:8]];
+    [text1 setStringValue:@"TC"];
+    [text1 setEditable:NO];
+  //  text1.
 
 
-    //[self.stackView addSubview:nil];
-  //  self.mainBox.fillColor = [NSColor whiteColor];
-//    self.mainBox.borderWidth = 1;
-    //[self.mainBox setWantsLayer:YES];
-
-
-//    self.mainBox.layer.masksToBounds = NO;
-//    self.view.layer.masksToBounds = NO;
-
+    [self.stackView addView:text inGravity:NSStackViewGravityTrailing];
+    [self.stackView addView:text1 inGravity:NSStackViewGravityTrailing];
 
     NSShadow *bottomCardShadow = [NSShadow new];
     bottomCardShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.75];
@@ -88,7 +91,6 @@
 }
 
 
-
 -(void)mouseDown:(NSEvent *)theEvent
 {
     [super mouseDown:theEvent];
@@ -103,6 +105,10 @@
 
     [super viewDidLayout];
     
+}
+
+- (void)viewDidAppear {
+
 }
 
 - (void)expand {

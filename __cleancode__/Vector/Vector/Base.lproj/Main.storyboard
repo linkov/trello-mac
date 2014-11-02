@@ -929,7 +929,7 @@
                                                 <binding destination="kM3-gL-jCX" name="value" keyPath="representedObject.name" id="sde-RJ-0Jc"/>
                                             </connections>
                                         </textField>
-                                        <stackView orientation="horizontal" alignment="centerY" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3uD-8Q-qvy">
+                                        <stackView orientation="horizontal" alignment="centerY" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="3uD-8Q-qvy">
                                             <rect key="frame" x="668" y="0.0" width="100" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" id="zzg-Rz-BvF"/>
