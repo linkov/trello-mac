@@ -18,7 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mainBox.cornerRadius = 3;
-    self.mainBox.fillColor = [NSColor whiteColor];
+  //  self.mainBox.fillColor = [NSColor whiteColor];
 //    self.mainBox.borderWidth = 1;
     //[self.mainBox setWantsLayer:YES];
 

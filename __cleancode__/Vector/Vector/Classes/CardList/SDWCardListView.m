@@ -22,7 +22,7 @@
     }
     else {
 
-        self.fillColor = [NSColor whiteColor];
+        self.fillColor = [NSColor colorWithHexColorString:@"F6F6F6"];
     }
 }
 

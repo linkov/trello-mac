@@ -712,7 +712,7 @@
                                             <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
-                                                <color key="backgroundColor" red="0.90980392156862744" green="0.90980392156862744" blue="0.90980392156862744" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" red="0.11764705882352941" green="0.33725490196078434" blue="0.46274509803921571" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
                                                     <tableColumn width="247" minWidth="16" maxWidth="1000" id="EuZ-6V-FKx">
@@ -736,7 +736,7 @@
                                                                         <rect key="frame" x="2" y="0.0" width="247" height="14"/>
                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub" customClass="LeftMenuOutlineCellView">
                                                                             <font key="font" metaFont="smallSystem"/>
-                                                                            <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         </textFieldCell>
                                                                         <connections>
@@ -783,7 +783,7 @@
                             <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="10" id="xcl-Re-Pas"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="fillColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
@@ -822,7 +822,7 @@
                                             <collectionView selectable="YES" id="3A0-CC-bC7">
                                                 <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                <color key="primaryBackgroundColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="primaryBackgroundColor" red="0.24313725490196078" green="0.38823529411764707" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <connections>
                                                     <binding destination="qXJ-Td-58h" name="content" keyPath="arrangedObjects" id="OIC-Ha-Fes"/>
                                                     <binding destination="qXJ-Td-58h" name="selectionIndexes" keyPath="selectionIndexes" previousBinding="OIC-Ha-Fes" id="9o5-Yq-mgC"/>
@@ -830,6 +830,7 @@
                                                 </connections>
                                             </collectionView>
                                         </subviews>
+                                        <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </clipView>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="786" id="IR0-XZ-v7m"/>
@@ -852,7 +853,7 @@
                             <constraint firstAttribute="trailing" secondItem="2nG-Pk-jcn" secondAttribute="trailing" constant="10" id="thz-yM-CV7"/>
                         </constraints>
                         <color key="borderColor" red="1" green="0.30980392159999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="fillColor" red="0.8901960784313725" green="0.8901960784313725" blue="0.8901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="fillColor" red="0.24313725490196078" green="0.38823529411764707" blue="0.47058823529411764" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>

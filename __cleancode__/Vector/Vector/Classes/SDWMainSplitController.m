@@ -29,6 +29,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+
     SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
     self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
     self.inspectorVC = [self.storyboard instantiateControllerWithIdentifier:@"singleCardVC"];
@@ -44,8 +45,6 @@
     self.inspectorSplitItem = [NSSplitViewItem new];
     [self.inspectorSplitItem setViewController:self.inspectorVC];
     self.inspectorSplitItem.collapsed = YES;
-
-
 
     [self addSplitViewItem:self.boardsSplitItem];
     [self addSplitViewItem:self.cardsSplitItem];
