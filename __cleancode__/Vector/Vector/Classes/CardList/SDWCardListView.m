@@ -8,6 +8,7 @@
 #import "NSColor+Util.h"
 #import "SDWCardListView.h"
 
+
 @implementation SDWCardListView
 
 #pragma mark - Properties
@@ -25,10 +26,28 @@
     }
 }
 
+- (void)awakeFromNib {
+
+ //   NSView *box = self.textField;
+
+
+//    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:240];
+//
+//    [self addConstraint:layout];
+
+}
 
 -(IBAction)setCRRR:(id)sender {
 
     
+}
+
+- (void)expand {
+//
+//
+//    [self addConstraints:self.constr];
+//    [self setNeedsUpdateConstraints:YES];
+//    [self updateConstraintsForSubtreeIfNeeded];
 }
 
 @end

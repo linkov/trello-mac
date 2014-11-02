@@ -43,6 +43,7 @@
 //                            color:[NSColor colorWithCalibratedWhite:0 alpha:0.75]];
 //
 //    self.mainBox.shadow = bottomCardShadow;
+
 }
 
 - (void)setSelected:(BOOL)selected
@@ -50,8 +51,6 @@
 
     [super setSelected:selected];
 
-    self.mainBox.fillColor = [NSColor redColor];
-    [self.mainBox layoutSubtreeIfNeeded];
 
     if (selected) {
         self.textColor = [NSColor whiteColor];
@@ -80,6 +79,23 @@
 
     [super viewDidLayout];
     
+}
+
+- (void)expand {
+
+    NSView *box = (SDWCardListView *)[self view];
+
+
+    NSArray *conss = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[box(600@1000)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(box)];
+    NSArray *conss1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[box(250@1000)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(box)];
+
+    [self.view addConstraints:conss];
+    [self.view addConstraints:conss1];
+    [self.view setNeedsUpdateConstraints:YES];
+    [self.view updateConstraintsForSubtreeIfNeeded];
+    [self.view layoutSubtreeIfNeeded];
+
+    //[(SDWCardListView *)[self view] expand];
 }
 
 @end

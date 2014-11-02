@@ -913,8 +913,7 @@
                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="j7U-0O-ZPc">
                                     <rect key="frame" x="8" y="8" width="768" height="14"/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="14" id="Nrx-g5-H6U"/>
-                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="200" id="cfV-gD-KkQ"/>
+                                        <constraint firstAttribute="height" constant="14" id="Knr-IM-u0V"/>
                                     </constraints>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="C8D-Yf-PBX">
                                         <font key="font" metaFont="smallSystem"/>
@@ -922,7 +921,6 @@
                                         <color key="backgroundColor" red="0.79369212960000002" green="0.67144097219999999" blue="0.0" alpha="0.0" colorSpace="calibratedRGB"/>
                                     </textFieldCell>
                                     <connections>
-                                        <action selector="setClr:" target="W0q-c4-Md7" id="gHW-nh-gde"/>
                                         <binding destination="W0q-c4-Md7" name="value" keyPath="representedObject.name" id="v8M-13-le1"/>
                                         <binding destination="W0q-c4-Md7" name="textColor" keyPath="self.textColor" id="7Nw-qZ-4lz"/>
                                     </connections>
@@ -937,6 +935,9 @@
                         </constraints>
                         <color key="borderColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                        <connections>
+                            <outlet property="textField" destination="j7U-0O-ZPc" id="8oN-Cb-BNU"/>
+                        </connections>
                     </box>
                     <connections>
                         <outlet property="mainBox" destination="Erv-NE-19E" id="krF-tq-aG9"/>
