@@ -902,8 +902,8 @@
         <!--Cards Collection View Item-->
         <scene sceneID="vir-Vg-M3D">
             <objects>
-                <collectionViewItem storyboardIdentifier="collectionProto" id="W0q-c4-Md7" customClass="SDWCardsCollectionViewItem" sceneMemberID="viewController">
-                    <box key="view" autoresizesSubviews="NO" wantsLayer="YES" borderWidth="0.0" title="Box" boxType="custom" borderType="line" id="Erv-NE-19E" customClass="SDWCardListView">
+                <collectionViewItem storyboardIdentifier="collectionProtoOld" id="W0q-c4-Md7" customClass="SDWCardsCollectionViewItem" sceneMemberID="viewController">
+                    <box key="view" autoresizesSubviews="NO" wantsLayer="YES" borderWidth="0.0" title="Box" boxType="custom" borderType="line" id="Erv-NE-19E">
                         <rect key="frame" x="0.0" y="0.0" width="784" height="32"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
@@ -935,18 +935,68 @@
                         </constraints>
                         <color key="borderColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="fillColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                        <connections>
-                            <outlet property="textField" destination="j7U-0O-ZPc" id="8oN-Cb-BNU"/>
-                        </connections>
                     </box>
-                    <connections>
-                        <outlet property="mainBox" destination="Erv-NE-19E" id="krF-tq-aG9"/>
-                    </connections>
                 </collectionViewItem>
                 <customObject id="K2j-L1-sOL" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="DYd-jl-cFU"/>
             </objects>
             <point key="canvasLocation" x="741" y="1579"/>
+        </scene>
+        <!--Cards Collection View Item-->
+        <scene sceneID="EFB-Ab-fxh">
+            <objects>
+                <collectionViewItem storyboardIdentifier="collectionProto" id="kM3-gL-jCX" customClass="SDWCardsCollectionViewItem" sceneMemberID="viewController">
+                    <view key="view" wantsLayer="YES" id="fK7-b6-0nR">
+                        <rect key="frame" x="0.0" y="0.0" width="784" height="32"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="H6c-DE-Hst" customClass="SDWCardListView">
+                                <rect key="frame" x="0.0" y="1" width="779" height="30"/>
+                                <view key="contentView">
+                                    <rect key="frame" x="0.0" y="0.0" width="779" height="30"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
+                                            <rect key="frame" x="10" y="6" width="767" height="17"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" id="vbY-RR-7CR">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="kM3-gL-jCX" name="value" keyPath="representedObject.name" id="sde-RJ-0Jc"/>
+                                            </connections>
+                                        </textField>
+                                    </subviews>
+                                </view>
+                                <constraints>
+                                    <constraint firstItem="h8j-pa-1d3" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" constant="7" id="Eut-09-jna"/>
+                                    <constraint firstAttribute="trailing" secondItem="h8j-pa-1d3" secondAttribute="trailing" constant="2" id="NxW-Dd-ieH"/>
+                                    <constraint firstAttribute="height" constant="30" id="O9z-iu-KrH"/>
+                                    <constraint firstItem="h8j-pa-1d3" firstAttribute="leading" secondItem="H6c-DE-Hst" secondAttribute="leading" constant="10" id="rrn-K7-CSc"/>
+                                </constraints>
+                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
+                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            </box>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="H6c-DE-Hst" firstAttribute="leading" secondItem="fK7-b6-0nR" secondAttribute="leading" id="BwA-F4-0bc"/>
+                            <constraint firstAttribute="trailing" secondItem="H6c-DE-Hst" secondAttribute="trailing" constant="5" id="IqD-2n-IQJ"/>
+                            <constraint firstItem="H6c-DE-Hst" firstAttribute="top" secondItem="fK7-b6-0nR" secondAttribute="top" constant="1" id="M9E-B0-GMY"/>
+                            <constraint firstAttribute="bottom" secondItem="H6c-DE-Hst" secondAttribute="bottom" constant="1" id="z0F-HE-nHm"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="mainBox" destination="H6c-DE-Hst" id="KK6-Jw-V0z"/>
+                    </connections>
+                </collectionViewItem>
+                <customObject id="3Hk-wB-0fz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <userDefaultsController id="RH9-QD-5Z2"/>
+            </objects>
+            <point key="canvasLocation" x="754" y="1685"/>
         </scene>
         <!--Sign in to Trello-->
         <scene sceneID="cAf-kc-wfB">

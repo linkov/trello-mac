@@ -32,13 +32,13 @@
         }
     }];
 
-	self.textColor = [NSColor whiteColor];
+	//self.textColor = [NSColor whiteColor];
 	[self loadBoards];
 }
 
 - (NSColor *)textColor {
 
-	return [NSColor whiteColor];
+	return [NSColor blackColor];
 }
 
 - (void)loadBoards {

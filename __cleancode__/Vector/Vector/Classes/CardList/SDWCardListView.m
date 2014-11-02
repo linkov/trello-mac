@@ -18,7 +18,7 @@
 
     if (selected) {
 
-        self.fillColor = [NSColor blueColor];
+        self.fillColor = [NSColor colorWithHexColorString:@"e2eefa"];
     }
     else {
 
@@ -29,12 +29,14 @@
 - (void)awakeFromNib {
 
   [self setTranslatesAutoresizingMaskIntoConstraints:NO];
- //   NSView *box = self.textField;
+
+   // NSView *box = self.textField;
 
 
 //    NSLayoutConstraint *layout = [NSLayoutConstraint constraintWithItem:self.textField attribute:NSLayoutAttributeHeight relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1 constant:240];
 //
 //    [self addConstraint:layout];
+
 
 }
 

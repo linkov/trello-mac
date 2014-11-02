@@ -18,7 +18,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.mainBox.cornerRadius = 3;
-    self.mainBox.borderWidth = 1;
+    self.mainBox.fillColor = [NSColor whiteColor];
+//    self.mainBox.borderWidth = 1;
     //[self.mainBox setWantsLayer:YES];
 
 
@@ -26,11 +27,11 @@
 //    self.view.layer.masksToBounds = NO;
 
 
-//    NSShadow *bottomCardShadow = [NSShadow new];
-//    bottomCardShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.75];
-//    bottomCardShadow.shadowBlurRadius = 12 * 1.0;
-//    bottomCardShadow.shadowOffset = NSMakeSize(0,-10);
-//    [self.mainBox setShadow:bottomCardShadow];
+    NSShadow *bottomCardShadow = [NSShadow new];
+    bottomCardShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.75];
+    bottomCardShadow.shadowBlurRadius = 0.2;
+    bottomCardShadow.shadowOffset = NSMakeSize(0,-0.2);
+    [self.mainBox setShadow:bottomCardShadow];
 
 //    NSShadow *shadow = [[NSShadow alloc] init];
 //    [shadow setShadowBlurRadius:3.0];
@@ -44,6 +45,10 @@
 //
 //    self.mainBox.shadow = bottomCardShadow;
 
+
+//    NSView *box = self.mainBox;
+//    NSArray *conss = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[box]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(box)];
+//    [self.view addConstraints:conss];
 }
 
 - (void)setSelected:(BOOL)selected
@@ -53,7 +58,7 @@
 
 
     if (selected) {
-        self.textColor = [NSColor whiteColor];
+        self.textColor = [NSColor blackColor];
     }
     else {
         self.textColor = [NSColor blackColor];
@@ -61,7 +66,17 @@
 //
 //    [[self mainBox] setSelected:selected];
 
-    [(SDWCardListView *)[self view] setSelected:selected];
+
+    for (id view in [self view].subviews) {
+
+        if ([view isKindOfClass:[SDWCardListView class]]) {
+
+            [(SDWCardListView *)view setSelected:selected];
+        }
+       // NSLog(@"available view = %@",view);
+    }
+
+   // [(SDWCardListView *)[self mainBox] setSelected:selected];
 }
 
 
