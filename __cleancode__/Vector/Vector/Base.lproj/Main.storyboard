@@ -930,7 +930,7 @@
                         <constraints>
                             <constraint firstItem="j7U-0O-ZPc" firstAttribute="top" secondItem="Erv-NE-19E" secondAttribute="top" constant="10" id="dT4-co-5bm"/>
                             <constraint firstAttribute="trailing" secondItem="j7U-0O-ZPc" secondAttribute="trailing" constant="8" id="dmt-PB-uRn"/>
-                            <constraint firstAttribute="bottom" secondItem="j7U-0O-ZPc" secondAttribute="bottom" constant="8" id="k3f-Er-2ER"/>
+                            <constraint firstAttribute="bottom" secondItem="j7U-0O-ZPc" secondAttribute="bottom" priority="250" constant="8" id="k3f-Er-2ER"/>
                             <constraint firstItem="j7U-0O-ZPc" firstAttribute="leading" secondItem="Erv-NE-19E" secondAttribute="leading" constant="8" id="s8p-gO-vZi"/>
                         </constraints>
                         <color key="borderColor" red="0.80392156862745101" green="0.80392156862745101" blue="0.80392156862745101" alpha="1" colorSpace="calibratedRGB"/>

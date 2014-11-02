@@ -28,6 +28,7 @@
 
 - (void)awakeFromNib {
 
+  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
  //   NSView *box = self.textField;
 
 
