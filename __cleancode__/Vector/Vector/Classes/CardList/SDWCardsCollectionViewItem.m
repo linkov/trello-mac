@@ -5,6 +5,7 @@
 //  Created by alex on 10/31/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSView+Utils.h"
 #import "SDWUser.h"
 #import "SDWAppSettings.h"
 #import "SDWCardListView.h"
@@ -145,6 +146,7 @@
         [text1 setFont:[NSFont systemFontOfSize:9]];
         [text1 setStringValue:[self memberNameFromID:memberID] ];
         [text1 setEditable:NO];
+       // [text1 insertVibrancyViewBlendingMode:NSVisualEffectBlendingModeBehindWindow];
         //  text1.
 
         [stack addView:text1 inGravity:NSStackViewGravityTrailing];

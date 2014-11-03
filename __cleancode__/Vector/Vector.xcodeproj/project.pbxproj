@@ -44,6 +44,7 @@
 		F1C0E5F61A0413BE000B7C4E /* NSColor+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5F31A0413BE000B7C4E /* NSColor+Util.m */; };
 		F1C0E5F71A0413BE000B7C4E /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */; };
 		F1E01FE31A043C0400E4942B /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1E01FE21A043C0400E4942B /* Xtrace.mm */; };
+		F1EA3B9A1A07054900D49BDA /* NSView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EA3B991A07054900D49BDA /* NSView+Utils.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,6 +132,8 @@
 		F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Util.m"; sourceTree = "<group>"; };
 		F1E01FE11A043C0400E4942B /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
 		F1E01FE21A043C0400E4942B /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
+		F1EA3B981A07054900D49BDA /* NSView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utils.h"; sourceTree = "<group>"; };
+		F1EA3B991A07054900D49BDA /* NSView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utils.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -343,6 +346,8 @@
 			isa = PBXGroup;
 			children = (
 				F1C0E5F21A0413BE000B7C4E /* NSColor+Util.h */,
+				F1EA3B981A07054900D49BDA /* NSView+Utils.h */,
+				F1EA3B991A07054900D49BDA /* NSView+Utils.m */,
 				F1B3AB861A04EFEC00927CB9 /* SDWAppSettings.h */,
 				F1B3AB871A04EFEC00927CB9 /* SDWAppSettings.m */,
 				F1C0E5F31A0413BE000B7C4E /* NSColor+Util.m */,
@@ -480,6 +485,7 @@
 				F14BBF8119FD60010026B3DC /* AFRecordPathManager.m in Sources */,
 				F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */,
 				F14BBF7219FD56AD0026B3DC /* SDWMainSplitController.m in Sources */,
+				F1EA3B9A1A07054900D49BDA /* NSView+Utils.m in Sources */,
 				F1B3AB8C1A0539F600927CB9 /* SDWBoardsCellView.m in Sources */,
 				F14BBF6B19FD55E70026B3DC /* AFURLResponseSerialization.m in Sources */,
 				F14BBF7519FD57400026B3DC /* AFTrelloAPIClient.m in Sources */,
