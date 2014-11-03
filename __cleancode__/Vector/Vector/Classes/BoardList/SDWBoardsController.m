@@ -78,7 +78,10 @@
 
 
 		SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
-		[main.cardsVC setupCardsForList:board.boardID];
+
+        SDWBoard *parentBoard = item.parentNode.representedObject;
+
+        [main.cardsVC setupCardsForList:board.boardID parentListID:parentBoard.boardID];
 
 		return YES;
 	}

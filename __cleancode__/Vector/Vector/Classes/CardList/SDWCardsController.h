@@ -10,6 +10,6 @@
 
 @interface SDWCardsController : NSViewController
 
-- (void)setupCardsForList:(NSString *)listID;
+- (void)setupCardsForList:(NSString *)listID parentListID:(NSString *)parentID ;
 
 @end

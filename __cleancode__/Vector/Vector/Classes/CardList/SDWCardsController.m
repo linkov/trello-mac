@@ -10,6 +10,7 @@
 #import "AFRecordPathManager.h"
 #import "SDWCardsController.h"
 #import "SDWCardsCollectionViewItem.h"
+#import "SDWAppSettings.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -17,6 +18,7 @@
 
 @property (strong) NSArray *cards;
 @property (strong) NSArray *storedUsers;
+@property (strong) NSString *currentListID;
 
 @end
 
@@ -50,33 +52,16 @@
 	[super viewDidLayout];
 }
 
-- (void)setupCardsForList:(NSString *)listID {
+- (void)setupCardsForList:(NSString *)listID parentListID:(NSString *)parentID {
 
 
-	NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
-	NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
-
-	NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
-
-	[[AFRecordPathManager manager]
-	 setAFRecordMethod:@"findAll"
-	          forModel:[SDWCard class]
-	    toConcretePath:URLF];
-
-	[SDWCard findAll:^(NSArray *objs, NSError *err) {
-
-	    if (!err) {
-	        [self reloadCollection:objs];
-          //  [self loadMembers:listID];
-		} else {
-	        NSLog(@"err = %@", err.localizedDescription);
-		}
-	}];
+    self.currentListID = listID;
+    [self loadMembers:parentID];
 }
 
 - (void)loadMembers:(NSString *)listID {
 
-    NSString *URL = [NSString stringWithFormat:@"boards/%@/members", listID];
+    NSString *URL = [NSString stringWithFormat:@"boards/%@/members?", listID];
     [[AFRecordPathManager manager]
      setAFRecordMethod:@"findAll"
      forModel:[SDWUser class]
@@ -85,13 +70,35 @@
     [SDWUser findAll:^(NSArray *objs, NSError *err) {
 
         if (!err) {
-            self.storedUsers = objs;
-            
+            SharedSettings.selectedListUsers = objs;
+            [self loadCardsForListID:self.currentListID];
         } else {
             NSLog(@"err = %@", err.localizedDescription);
         }
     }];
 
+}
+
+- (void)loadCardsForListID:(NSString *)listID {
+
+    NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
+    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
+
+    NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
+
+    [[AFRecordPathManager manager]
+     setAFRecordMethod:@"findAll"
+     forModel:[SDWCard class]
+	    toConcretePath:URLF];
+
+    [SDWCard findAll:^(NSArray *objs, NSError *err) {
+
+        if (!err) {
+            [self reloadCollection:objs];
+        } else {
+            NSLog(@"err = %@", err.localizedDescription);
+        }
+    }];
 }
 
 - (void)reloadCollection:(NSArray *)objects {
