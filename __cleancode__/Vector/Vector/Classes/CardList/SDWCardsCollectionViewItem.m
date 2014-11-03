@@ -142,10 +142,16 @@
     for (NSString *memberID in members) {
 
         NSTextField *text1 = [[NSTextField alloc]init];
+
+        [text1 setWantsLayer:YES];
         [text1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [text1 setFont:[NSFont systemFontOfSize:9]];
         [text1 setStringValue:[self memberNameFromID:memberID] ];
         [text1 setEditable:NO];
+
+        text1.layer.cornerRadius = 3;
+        text1.layer.borderWidth = 1;
+        text1.layer.borderColor = [NSColor lightGrayColor].CGColor;
        // [text1 insertVibrancyViewBlendingMode:NSVisualEffectBlendingModeBehindWindow];
         //  text1.
 
