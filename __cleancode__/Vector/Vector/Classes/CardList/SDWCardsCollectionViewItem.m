@@ -21,49 +21,14 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mainBox.cornerRadius = 3;
+    self.mainBox.cornerRadius = 1.5;
 
-    //self.stackView.delegate = self;
-
-//    NSTextField *text = [[NSTextField alloc]init];
-//    [text setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [text setFont:[NSFont systemFontOfSize:9]];
-//    [text setStringValue:@"AL"];
-//    [text setEditable:NO];
-//
-//    NSTextField *text1 = [[NSTextField alloc]init];
-//    [text1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-//    [text1 setFont:[NSFont systemFontOfSize:9]];
-//    [text1 setStringValue:@"TC"];
-//    [text1 setEditable:NO];
-//  //  text1.
-//
-//
-//    [self.stackView addView:text inGravity:NSStackViewGravityTrailing];
-//    [self.stackView addView:text1 inGravity:NSStackViewGravityTrailing];
-//
     NSShadow *bottomCardShadow = [NSShadow new];
     bottomCardShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.75];
-    bottomCardShadow.shadowBlurRadius = 0.2;
-    bottomCardShadow.shadowOffset = NSMakeSize(0,-0.2);
+    bottomCardShadow.shadowBlurRadius = 0.4;
+    bottomCardShadow.shadowOffset = NSMakeSize(0,-0.4);
     [self.mainBox setShadow:bottomCardShadow];
 
-//    NSShadow *shadow = [[NSShadow alloc] init];
-//    [shadow setShadowBlurRadius:3.0];
-//    [shadow setShadowOffset:NSMakeSize(0.0, 5.0)];
-//    [shadow setShadowColor:[NSColor colorWithCalibratedWhite:0.0 alpha:0.6]];
-//
-//    [self.mainBox setShadow:shadow];
-
-//    NSShadow *bottomCardShadow = [NSShadow setShadowWithOffset:NSMakeSize(0, -8 * 1.0) blurRadius:12 * 1.0
-//                            color:[NSColor colorWithCalibratedWhite:0 alpha:0.75]];
-//
-//    self.mainBox.shadow = bottomCardShadow;
-
-
-//    NSView *box = self.mainBox;
-//    NSArray *conss = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|-20-[box]-20-|" options:0 metrics:nil views:NSDictionaryOfVariableBindings(box)];
-//    [self.view addConstraints:conss];
 }
 
 - (void)setSelected:(BOOL)selected
@@ -78,8 +43,6 @@
     else {
         self.textColor = [NSColor blackColor];
     }
-//
-//    [[self mainBox] setSelected:selected];
 
 
     for (id view in [self view].subviews) {
@@ -88,10 +51,7 @@
 
             [(SDWCardListView *)view setSelected:selected];
         }
-       // NSLog(@"available view = %@",view);
     }
-
-   // [(SDWCardListView *)[self mainBox] setSelected:selected];
 }
 
 
@@ -148,17 +108,14 @@
         [text1 setFont:[NSFont systemFontOfSize:9]];
         [text1 setStringValue:[self memberNameFromID:memberID] ];
         [text1 setEditable:NO];
+        text1.alignment = NSCenterTextAlignment;
 
-        text1.layer.cornerRadius = 3;
+        text1.layer.cornerRadius = 1.5;
         text1.layer.borderWidth = 1;
         text1.layer.borderColor = [NSColor lightGrayColor].CGColor;
-       // [text1 insertVibrancyViewBlendingMode:NSVisualEffectBlendingModeBehindWindow];
-        //  text1.
 
         [stack addView:text1 inGravity:NSStackViewGravityTrailing];
     }
-
-//    NSLog(@"%@",[self.representedObject valueForKey:@"name"]);
 }
 
 - (NSString *)memberNameFromID:(NSString *)userID{

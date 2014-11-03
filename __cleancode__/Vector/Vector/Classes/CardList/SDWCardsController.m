@@ -67,7 +67,11 @@
      forModel:[SDWUser class]
 	    toConcretePath:URL];
 
+    [self.loadingIndicator startAnimation:nil];
+
     [SDWUser findAll:^(NSArray *objs, NSError *err) {
+
+        [self.loadingIndicator stopAnimation:nil];
 
         if (!err) {
             SharedSettings.selectedListUsers = objs;
@@ -91,7 +95,11 @@
      forModel:[SDWCard class]
 	    toConcretePath:URLF];
 
+    [self.loadingIndicator startAnimation:nil];
+
     [SDWCard findAll:^(NSArray *objs, NSError *err) {
+
+        [self.loadingIndicator stopAnimation:nil];
 
         if (!err) {
             [self reloadCollection:objs];

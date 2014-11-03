@@ -673,7 +673,6 @@
                     <splitViewItems>
                         <splitViewItem id="Ap8-JL-e7N" userLabel="Boards list"/>
                         <splitViewItem id="85d-57-W9m" userLabel="Cards list"/>
-                        <splitViewItem collapsed="YES" id="1aE-wx-2vH" userLabel="Card Inspector"/>
                     </splitViewItems>
                     <splitView key="splitView" dividerStyle="thin" vertical="YES" id="D7i-LU-u8D">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
@@ -682,10 +681,8 @@
                     <connections>
                         <outlet property="boardsSplitItem" destination="Ap8-JL-e7N" id="QeS-aI-BHR"/>
                         <outlet property="cardsSplitItem" destination="85d-57-W9m" id="CXQ-Qd-oKJ"/>
-                        <outlet property="inspectorSplitItem" destination="1aE-wx-2vH" id="NzV-mC-NAX"/>
                         <segue destination="Kp4-s7-wUc" kind="relationship" relationship="splitItems" id="d7g-wz-cWv"/>
                         <segue destination="s73-N2-doq" kind="relationship" relationship="splitItems" id="MxA-nF-L9d"/>
-                        <segue destination="XfG-lQ-9wD" kind="relationship" relationship="splitItems" id="dR4-C6-jcH"/>
                     </connections>
                 </splitViewController>
                 <customObject id="kzG-62-LHz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -712,7 +709,7 @@
                                             <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
-                                                <color key="backgroundColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.95686274509803926" green="0.95294117647058818" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
                                                     <tableColumn width="247" minWidth="16" maxWidth="1000" id="EuZ-6V-FKx">
@@ -783,7 +780,7 @@
                             <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="10" id="xcl-Re-Pas"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" red="0.89019607840000003" green="0.89019607840000003" blue="0.89019607840000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="fillColor" red="0.95686274509803926" green="0.95294117647058818" blue="0.95686274509803926" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
@@ -807,14 +804,14 @@
             <objects>
                 <viewController storyboardIdentifier="cardsVC" id="s73-N2-doq" customClass="SDWCardsController" sceneMemberID="viewController">
                     <box key="view" autoresizesSubviews="NO" title="Box" boxType="custom" borderType="none" id="06c-xL-hpn">
-                        <rect key="frame" x="0.0" y="0.0" width="806" height="296"/>
+                        <rect key="frame" x="0.0" y="0.0" width="811" height="296"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
-                            <rect key="frame" x="0.0" y="0.0" width="806" height="296"/>
+                            <rect key="frame" x="0.0" y="0.0" width="811" height="296"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2nG-Pk-jcn">
-                                    <rect key="frame" x="10" y="10" width="786" height="276"/>
+                                    <rect key="frame" x="15" y="10" width="786" height="276"/>
                                     <clipView key="contentView" id="MMt-v5-950">
                                         <rect key="frame" x="1" y="1" width="248" height="158"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -833,7 +830,7 @@
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </clipView>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="786" id="IR0-XZ-v7m"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="300" id="SJu-TY-IR3"/>
                                     </constraints>
                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="Txv-oA-ZKR">
                                         <rect key="frame" x="1" y="144" width="233" height="15"/>
@@ -844,12 +841,17 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
+                                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="FUK-ha-OsD">
+                                    <rect key="frame" x="397" y="140" width="16" height="16"/>
+                                </progressIndicator>
                             </subviews>
                         </view>
                         <constraints>
+                            <constraint firstItem="FUK-ha-OsD" firstAttribute="centerY" secondItem="2nG-Pk-jcn" secondAttribute="centerY" id="C2V-ai-AXD"/>
                             <constraint firstAttribute="bottom" secondItem="2nG-Pk-jcn" secondAttribute="bottom" constant="10" id="NUa-18-Z1t"/>
+                            <constraint firstItem="FUK-ha-OsD" firstAttribute="centerX" secondItem="2nG-Pk-jcn" secondAttribute="centerX" constant="-3" id="Okg-TN-WEO"/>
                             <constraint firstItem="2nG-Pk-jcn" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="10" id="e3m-N5-kND"/>
-                            <constraint firstItem="2nG-Pk-jcn" firstAttribute="leading" secondItem="06c-xL-hpn" secondAttribute="leading" constant="10" id="jKe-Xw-tis"/>
+                            <constraint firstItem="2nG-Pk-jcn" firstAttribute="leading" secondItem="06c-xL-hpn" secondAttribute="leading" constant="15" id="jKe-Xw-tis"/>
                             <constraint firstAttribute="trailing" secondItem="2nG-Pk-jcn" secondAttribute="trailing" constant="10" id="thz-yM-CV7"/>
                         </constraints>
                         <color key="borderColor" red="1" green="0.30980392159999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -858,6 +860,7 @@
                     <connections>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
                         <outlet property="collectionView" destination="3A0-CC-bC7" id="ylY-R6-JEC"/>
+                        <outlet property="loadingIndicator" destination="FUK-ha-OsD" id="W3f-Mf-ErZ"/>
                     </connections>
                 </viewController>
                 <customObject id="3Kj-1I-WP3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -871,42 +874,12 @@
             </objects>
             <point key="canvasLocation" x="811" y="1202"/>
         </scene>
-        <!--Card View Controller-->
-        <scene sceneID="hIz-AP-VOD">
-            <objects>
-                <viewController storyboardIdentifier="singleCardVC" id="XfG-lQ-9wD" customClass="SDWCardViewController" sceneMemberID="viewController">
-                    <view key="view" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="263" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <box autoresizesSubviews="NO" title="Box" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="Goq-Nv-DPW">
-                                <rect key="frame" x="43" y="91" width="177" height="114"/>
-                                <view key="contentView">
-                                    <rect key="frame" x="1" y="1" width="175" height="98"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                </view>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </box>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Goq-Nv-DPW" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="46" id="JQ3-1r-Vgl"/>
-                            <constraint firstAttribute="trailing" secondItem="Goq-Nv-DPW" secondAttribute="trailing" constant="46" id="O2y-tu-CQi"/>
-                            <constraint firstAttribute="bottom" secondItem="Goq-Nv-DPW" secondAttribute="bottom" constant="95" id="bdo-nG-cZY"/>
-                            <constraint firstItem="Goq-Nv-DPW" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="95" id="uEQ-ul-qhb"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1367.5" y="1202"/>
-        </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="EFB-Ab-fxh">
             <objects>
                 <collectionViewItem storyboardIdentifier="collectionProto" id="kM3-gL-jCX" customClass="SDWCardsCollectionViewItem" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="fK7-b6-0nR">
-                        <rect key="frame" x="0.0" y="0.0" width="784" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="784" height="31"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="H6c-DE-Hst" customClass="SDWCardListView">
@@ -920,7 +893,7 @@
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
                                             </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" id="vbY-RR-7CR">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" id="vbY-RR-7CR">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -966,7 +939,7 @@
                 <userDefaultsController id="RH9-QD-5Z2"/>
                 <userDefaultsController id="nK8-cf-FCk"/>
             </objects>
-            <point key="canvasLocation" x="739" y="1479"/>
+            <point key="canvasLocation" x="739" y="1479.5"/>
         </scene>
         <!--Sign in to Trello-->
         <scene sceneID="cAf-kc-wfB">

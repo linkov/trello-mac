@@ -12,7 +12,6 @@
 
 
 @property (strong) SDWCardsController *cardsVC;
-@property (strong) SDWCardViewController *inspectorVC;
 @property (strong) SDWBoardsController *boardsVC;
 
 @end

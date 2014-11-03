@@ -18,7 +18,6 @@
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
-@property (strong) IBOutlet NSSplitViewItem *inspectorSplitItem;
 
 @property (strong) SDWLoginVC *loginVC;
 
@@ -32,7 +31,6 @@
 
     SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
     self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
-    self.inspectorVC = [self.storyboard instantiateControllerWithIdentifier:@"singleCardVC"];
 
     self.boardsSplitItem = [NSSplitViewItem new];
     [self.boardsSplitItem setViewController:boardsVC];
@@ -42,13 +40,8 @@
     [self.cardsSplitItem setViewController:self.cardsVC];
     //self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
 
-    self.inspectorSplitItem = [NSSplitViewItem new];
-    [self.inspectorSplitItem setViewController:self.inspectorVC];
-    self.inspectorSplitItem.collapsed = YES;
-
     [self addSplitViewItem:self.boardsSplitItem];
     [self addSplitViewItem:self.cardsSplitItem];
-    [self addSplitViewItem:self.inspectorSplitItem];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
                                                       object:nil

@@ -45,6 +45,8 @@
 
 	if (SharedSettings.userToken) {
 
+        [[self cardsVC].loadingIndicator startAnimation:nil];
+
 		[[AFRecordPathManager manager]
 		 setAFRecordMethod:@"findAll"
 		          forModel:[SDWBoard class]
@@ -52,9 +54,11 @@
 
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
+            [[self cardsVC].loadingIndicator stopAnimation:nil];
+
 		    if (!error) {
 
-		        NSLog(@"boards - %@", objects);
+                NSLog(@"boards - %@", objects);
 
 		        self.boards = objects;
 		        self.outlineView.delegate = self;
@@ -68,6 +72,12 @@
 	}
 }
 
+- (SDWCardsController *)cardsVC {
+
+    SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
+    return main.cardsVC;
+}
+
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
 
@@ -76,12 +86,9 @@
 
 	if (board.isLeaf) {
 
-
-		SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
-
         SDWBoard *parentBoard = item.parentNode.representedObject;
 
-        [main.cardsVC setupCardsForList:board.boardID parentListID:parentBoard.boardID];
+        [[self cardsVC] setupCardsForList:board.boardID parentListID:parentBoard.boardID];
 
 		return YES;
 	}

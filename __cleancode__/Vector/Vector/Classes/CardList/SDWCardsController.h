@@ -11,5 +11,6 @@
 @interface SDWCardsController : NSViewController
 
 - (void)setupCardsForList:(NSString *)listID parentListID:(NSString *)parentID ;
+@property (strong) IBOutlet NSProgressIndicator *loadingIndicator;
 
 @end
