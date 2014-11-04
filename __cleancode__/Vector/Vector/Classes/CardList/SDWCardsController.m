@@ -21,6 +21,7 @@
 @property (strong) NSArray *storedUsers;
 @property (strong) NSString *currentListID;
 @property (strong) NSString *parentListName;
+@property (strong) NSString *parentListID;
 @property (strong) NSString *listName;
 
 @end
@@ -61,10 +62,18 @@
     self.parentListName = parentList.name;
     self.listName = list.name;
     self.currentListID = list.boardID;
+    self.parentListID = parentList.boardID;
 
+    [self reloadCards];
+}
+
+- (void)reloadCards {
+
+    SharedSettings.selectedListUsers = nil;
     self.cardsArrayController.content = nil;
     self.cards = nil;
-    [self loadMembers:parentList.boardID];
+    [self loadMembers:self.parentListID];
+
 }
 
 - (void)loadMembers:(NSString *)listID {

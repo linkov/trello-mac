@@ -21,4 +21,13 @@
     return [NSColor colorWithHexColorString:@"1E5676"];
 }
 
+- (void)keyDown:(NSEvent *)theEvent {
+
+    NSUInteger modifier = [theEvent modifierFlags];
+    NSUInteger key = [theEvent keyCode];
+    if (modifier == 1048840 && key == 15) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldReloadListNotification" object:nil];
+    }
+}
+
 @end

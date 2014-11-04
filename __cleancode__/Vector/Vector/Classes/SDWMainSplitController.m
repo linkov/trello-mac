@@ -78,6 +78,11 @@
 	    [self toggleSideBar];
 	}];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.shouldReloadListNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self.cardsVC reloadCards];
+    }];
+
 	// self.firstSplitItem = [self splitViewItemForViewController:boardsVC];
 }
 

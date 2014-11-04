@@ -957,8 +957,8 @@
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                             </textFieldCell>
                                             <connections>
-                                                <binding destination="kM3-gL-jCX" name="value" keyPath="representedObject.name" id="sde-RJ-0Jc"/>
                                                 <binding destination="kM3-gL-jCX" name="toolTip" keyPath="representedObject.name" id="FG1-Qu-Vt3"/>
+                                                <binding destination="kM3-gL-jCX" name="value" keyPath="representedObject.name" id="sde-RJ-0Jc"/>
                                             </connections>
                                         </textField>
                                         <stackView orientation="horizontal" alignment="centerY" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3uD-8Q-qvy">
