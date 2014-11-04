@@ -15,6 +15,7 @@
 @interface SDWCardsCollectionViewItem ()
 
 @property BOOL shouldUseInitials;
+@property (strong) NSArray *loadedUsers;
 
 @end
 
@@ -24,13 +25,63 @@
     [super viewDidLoad];
 
     self.mainBox.cornerRadius = 1.5;
-//    self.mainBox.borderColor = [NSColor colorWithHexColorString:@"ADBBAD"];
- //   self.mainBox.borderWidth = 3;
-//    NSShadow *bottomCardShadow = [NSShadow new];
-//    bottomCardShadow.shadowColor = [NSColor colorWithHexColorString:@"ADBBAD"];
-//    bottomCardShadow.shadowBlurRadius = 0.;
-//    bottomCardShadow.shadowOffset = NSMakeSize(2,-2);
-//    [self.mainBox setShadow:bottomCardShadow];
+
+}
+
+- (void)viewDidAppear {
+
+     [self loadCardUsers];
+}
+
+- (void)loadCardUsers {
+
+    self.shouldUseInitials = YES;
+
+    //TODO: why here everything from XIB is nil if accessed directly ?
+    NSStackView *stack;
+
+    for (id theview in [self view].subviews) {
+
+        NSLog(@"- %@",theview);
+        for (id view1 in [(NSView *)theview subviews]) {
+
+            NSLog(@"- %@",theview);
+            for (id view2 in [(NSView *)view1 subviews]) {
+
+                NSLog(@"-- %@",view2);
+                if ([view2 isKindOfClass:[NSStackView class]]) {
+
+                    stack = (NSStackView *)view2;
+                }
+            }
+
+        }
+    }
+
+    [stack.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    NSArray *members = [self.representedObject valueForKey:@"members"];
+
+    for (NSString *memberID in members) {
+
+        NSTextField *text = [[NSTextField alloc]init];
+
+        [text setWantsLayer:YES];
+        [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [text setFont:[NSFont systemFontOfSize:9]];
+        [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
+        [text setStringValue:[self memberNameFromID:memberID] ];
+        [text setEditable:NO];
+        text.alignment = NSCenterTextAlignment;
+
+        text.layer.cornerRadius = 1.5;
+        text.layer.borderWidth = 1;
+        text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
+
+        if (text.stringValue.length >0) {
+            [stack addView:text inGravity:NSStackViewGravityTrailing];
+        }
+    }
 
 }
 
@@ -74,55 +125,6 @@
     
 }
 
-- (void)viewDidAppear {
-
-    self.shouldUseInitials = YES;
-
-    //TODO: why here everything from XIB is nil if accessed directly ?
-    NSStackView *stack;
-
-    for (id theview in [self view].subviews) {
-
-        NSLog(@"- %@",theview);
-        for (id view1 in [(NSView *)theview subviews]) {
-
-            NSLog(@"- %@",theview);
-            for (id view2 in [(NSView *)view1 subviews]) {
-
-                NSLog(@"-- %@",view2);
-                if ([view2 isKindOfClass:[NSStackView class]]) {
-
-                    stack = (NSStackView *)view2;
-                }
-            }
-
-        }
-    }
-
-
-    NSArray *members = [self.representedObject valueForKey:@"members"];
-
-    for (NSString *memberID in members) {
-
-        NSTextField *text1 = [[NSTextField alloc]init];
-
-        [text1 setWantsLayer:YES];
-        [text1 setTranslatesAutoresizingMaskIntoConstraints:NO];
-        [text1 setFont:[NSFont systemFontOfSize:9]];
-        [text1 setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
-        [text1 setStringValue:[self memberNameFromID:memberID] ];
-        [text1 setEditable:NO];
-        text1.alignment = NSCenterTextAlignment;
-
-        text1.layer.cornerRadius = 1.5;
-        text1.layer.borderWidth = 1;
-        text1.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
-
-        if (text1.stringValue.length >0) {
-            [stack addView:text1 inGravity:NSStackViewGravityTrailing];
-        }
-    }
-}
 
 - (NSString *)memberNameFromID:(NSString *)userID{
 
