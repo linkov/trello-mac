@@ -45,6 +45,8 @@
 		F1C0E5F71A0413BE000B7C4E /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */; };
 		F1E01FE31A043C0400E4942B /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F1E01FE21A043C0400E4942B /* Xtrace.mm */; };
 		F1EA3B9A1A07054900D49BDA /* NSView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EA3B991A07054900D49BDA /* NSView+Utils.m */; };
+		F1EA3B9D1A08E80F00D49BDA /* SDWMainWindowController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EA3B9C1A08E80F00D49BDA /* SDWMainWindowController.m */; };
+		F1EA3BA01A09000000D49BDA /* SDWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1EA3B9F1A09000000D49BDA /* SDWMainSplitView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -134,6 +136,10 @@
 		F1E01FE21A043C0400E4942B /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 		F1EA3B981A07054900D49BDA /* NSView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utils.h"; sourceTree = "<group>"; };
 		F1EA3B991A07054900D49BDA /* NSView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utils.m"; sourceTree = "<group>"; };
+		F1EA3B9B1A08E80F00D49BDA /* SDWMainWindowController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainWindowController.h; sourceTree = "<group>"; };
+		F1EA3B9C1A08E80F00D49BDA /* SDWMainWindowController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainWindowController.m; sourceTree = "<group>"; };
+		F1EA3B9E1A09000000D49BDA /* SDWMainSplitView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainSplitView.h; sourceTree = "<group>"; };
+		F1EA3B9F1A09000000D49BDA /* SDWMainSplitView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainSplitView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,10 @@
 				F14BBF4919FD55360026B3DC /* Network */,
 				F14BBF7019FD56AD0026B3DC /* SDWMainSplitController.h */,
 				F14BBF7119FD56AD0026B3DC /* SDWMainSplitController.m */,
+				F1EA3B9B1A08E80F00D49BDA /* SDWMainWindowController.h */,
+				F1EA3B9C1A08E80F00D49BDA /* SDWMainWindowController.m */,
+				F1EA3B9E1A09000000D49BDA /* SDWMainSplitView.h */,
+				F1EA3B9F1A09000000D49BDA /* SDWMainSplitView.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -471,6 +481,7 @@
 				F1C0E5F61A0413BE000B7C4E /* NSColor+Util.m in Sources */,
 				F14BBF7819FD59400026B3DC /* SDWBoard.m in Sources */,
 				F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */,
+				F1EA3B9D1A08E80F00D49BDA /* SDWMainWindowController.m in Sources */,
 				F14BBF6419FD55E70026B3DC /* AFHTTPRequestOperation.m in Sources */,
 				F1B3AB831A04DBA500927CB9 /* SDWLoginVC.m in Sources */,
 				F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */,
@@ -496,6 +507,7 @@
 				F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */,
 				F14BBF6519FD55E70026B3DC /* AFHTTPRequestOperationManager.m in Sources */,
 				F14BBF7B19FD5A230026B3DC /* AFRecordModel.m in Sources */,
+				F1EA3BA01A09000000D49BDA /* SDWMainSplitView.m in Sources */,
 				F14BBF6819FD55E70026B3DC /* AFSecurityPolicy.m in Sources */,
 				F119AE7D19FD4CFC0061D7DF /* main.m in Sources */,
 				F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */,

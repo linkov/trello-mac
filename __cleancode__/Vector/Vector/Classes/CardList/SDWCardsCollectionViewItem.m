@@ -5,6 +5,7 @@
 //  Created by alex on 10/31/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSColor+Util.h"
 #import "NSView+Utils.h"
 #import "SDWUser.h"
 #import "SDWAppSettings.h"
@@ -21,13 +22,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.mainBox.cornerRadius = 1.5;
 
-    NSShadow *bottomCardShadow = [NSShadow new];
-    bottomCardShadow.shadowColor = [NSColor colorWithCalibratedWhite:0 alpha:0.75];
-    bottomCardShadow.shadowBlurRadius = 0.4;
-    bottomCardShadow.shadowOffset = NSMakeSize(0,-0.4);
-    [self.mainBox setShadow:bottomCardShadow];
+    self.mainBox.cornerRadius = 1.5;
+//    self.mainBox.borderColor = [NSColor colorWithHexColorString:@"ADBBAD"];
+ //   self.mainBox.borderWidth = 3;
+//    NSShadow *bottomCardShadow = [NSShadow new];
+//    bottomCardShadow.shadowColor = [NSColor colorWithHexColorString:@"ADBBAD"];
+//    bottomCardShadow.shadowBlurRadius = 0.;
+//    bottomCardShadow.shadowOffset = NSMakeSize(2,-2);
+//    [self.mainBox setShadow:bottomCardShadow];
 
 }
 

@@ -24,13 +24,13 @@
 	[super viewDidLoad];
 
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSApplicationWillBecomeActiveNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-
-        if (self.selectedIndex) {
-            [self.outlineView reloadData];
-            [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.selectedIndex] byExtendingSelection:NO];
-        }
-    }];
+//    [[NSNotificationCenter defaultCenter] addObserverForName:NSApplicationWillBecomeActiveNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+//
+//        if (self.selectedIndex) {
+//            [self.outlineView reloadData];
+//            [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.selectedIndex] byExtendingSelection:NO];
+//        }
+//    }];
 
 	//self.textColor = [NSColor whiteColor];
 	[self loadBoards];
@@ -88,7 +88,7 @@
 
         SDWBoard *parentBoard = item.parentNode.representedObject;
 
-        [[self cardsVC] setupCardsForList:board.boardID parentListID:parentBoard.boardID];
+        [[self cardsVC] setupCardsForList:board parentList:parentBoard];
 
 		return YES;
 	}
@@ -100,9 +100,9 @@
 }
 
 
-- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-    [rowView setEmphasized:NO];
-}
+//- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+//    [rowView setEmphasized:NO];
+//}
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
 	return NO;

@@ -28,20 +28,35 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+//   // NSWindowController *winCon = [self.storyboard instantiateInitialController];
+//   // NSWindow *window = [NSApplication sharedApplication].keyWindow;
+//  //  window.styleMask = window.styleMask | NSFullSizeContentViewWindowMask;
+//
+//  //  [NSApplication sharedApplication].keyWindow.titlebarAppearsTransparent = YES;
+//
+//    SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
+//    self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
+//
+//    self.boardsSplitItem = [NSSplitViewItem new];
+//    [self.boardsSplitItem setViewController:boardsVC];
+//    //self.boardsSplitItem.holdingPriority = NSLayoutPriorityDefaultLow;
+//
+//    self.cardsSplitItem = [NSSplitViewItem new];
+//    [self.cardsSplitItem setViewController:self.cardsVC];
+//    //self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
+//
+//    [self addSplitViewItem:self.boardsSplitItem];
+//    [self addSplitViewItem:self.cardsSplitItem];
+//
 
-    SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
-    self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
+  //  NSSplitViewItem *cardsItem = self.splitViewItems[1];
 
-    self.boardsSplitItem = [NSSplitViewItem new];
-    [self.boardsSplitItem setViewController:boardsVC];
-    //self.boardsSplitItem.holdingPriority = NSLayoutPriorityDefaultLow;
+//    NSLog(@"split item vc - %@",self.cardsSplitItem.viewController);
 
-    self.cardsSplitItem = [NSSplitViewItem new];
-    [self.cardsSplitItem setViewController:self.cardsVC];
-    //self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
 
-    [self addSplitViewItem:self.boardsSplitItem];
-    [self addSplitViewItem:self.cardsSplitItem];
+    self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
+    self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
+
 
     [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
                                                       object:nil
@@ -50,7 +65,7 @@
     {
 
         [self dismissLogin];
-        [self.boardsVC loadBoards];
+        [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
 
     }];
 

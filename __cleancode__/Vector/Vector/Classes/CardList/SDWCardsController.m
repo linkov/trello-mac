@@ -5,6 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "SDWBoard.h"
 #import "SDWUser.h"
 #import "SDWcard.h"
 #import "AFRecordPathManager.h"
@@ -19,6 +20,8 @@
 @property (strong) NSArray *cards;
 @property (strong) NSArray *storedUsers;
 @property (strong) NSString *currentListID;
+@property (strong) NSString *parentListName;
+@property (strong) NSString *listName;
 
 @end
 
@@ -39,8 +42,8 @@
 //    [self.view addConstraints:conssss1];
 
 	//   [self.collectionView setBoundsOrigin:CGPointMake(-10, -10)];
- ///   NSSize minSize = NSMakeSize(0,0);
- ///   [self.collectionView setMaxItemSize:minSize];
+    NSSize minSize = NSMakeSize(200,30);
+    [self.collectionView setMaxItemSize:minSize];
 
 }
 
@@ -52,11 +55,16 @@
 	[super viewDidLayout];
 }
 
-- (void)setupCardsForList:(NSString *)listID parentListID:(NSString *)parentID {
+- (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
 
-    self.currentListID = listID;
-    [self loadMembers:parentID];
+    self.parentListName = parentList.name;
+    self.listName = list.name;
+    self.currentListID = list.boardID;
+
+    self.cardsArrayController.content = nil;
+    self.cards = nil;
+    [self loadMembers:parentList.boardID];
 }
 
 - (void)loadMembers:(NSString *)listID {
