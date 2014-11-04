@@ -15,6 +15,7 @@
 @property (strong) NSArray *boards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 @property NSUInteger selectedIndex;
+@property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
 @end
 
@@ -23,16 +24,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200] ];
 
-//    [[NSNotificationCenter defaultCenter] addObserverForName:NSApplicationWillBecomeActiveNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//
-//        if (self.selectedIndex) {
-//            [self.outlineView reloadData];
-//            [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:self.selectedIndex] byExtendingSelection:NO];
-//        }
-//    }];
-
-	//self.textColor = [NSColor whiteColor];
 	[self loadBoards];
 }
 
@@ -52,10 +45,13 @@
 		          forModel:[SDWBoard class]
 		    toConcretePath:@"member/alexlink2/boards?fields=name&lists=open"];
 
+
+        [self.loadingProgress startAnimation:nil];
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
-            [[self cardsVC].loadingIndicator stopAnimation:nil];
+            [self.loadingProgress stopAnimation:nil];
 
+            [[self cardsVC].loadingIndicator stopAnimation:nil];
 		    if (!error) {
 
                 NSLog(@"boards - %@", objects);

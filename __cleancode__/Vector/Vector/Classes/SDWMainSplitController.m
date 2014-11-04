@@ -20,13 +20,14 @@
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
 
 @property (strong) SDWLoginVC *loginVC;
+@property (strong) NSLayoutConstraint *sideBarWidth;
 
 @end
 
 @implementation SDWMainSplitController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
+	[super viewDidLoad];
 
 //   // NSWindowController *winCon = [self.storyboard instantiateInitialController];
 //   // NSWindow *window = [NSApplication sharedApplication].keyWindow;
@@ -49,28 +50,47 @@
 //    [self addSplitViewItem:self.cardsSplitItem];
 //
 
-  //  NSSplitViewItem *cardsItem = self.splitViewItems[1];
+	//  NSSplitViewItem *cardsItem = self.splitViewItems[1];
 
 //    NSLog(@"split item vc - %@",self.cardsSplitItem.viewController);
 
 
-    self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
-    self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
+	self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
+	self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
+
+	self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
+
+	[self.boardsVC.view addConstraint:self.sideBarWidth];
+
+	[[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
+	                                                  object:nil
+	                                                   queue:[NSOperationQueue mainQueue]
+	                                              usingBlock:^(NSNotification *note)
+	{
+
+	    [self dismissLogin];
+	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
+	}];
 
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
-                                                      object:nil
-                                                       queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:^(NSNotification *note)
-    {
+	[[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didChangeSidebarStatusNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-        [self dismissLogin];
-        [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
+	    [self toggleSideBar];
+	}];
 
-    }];
+	// self.firstSplitItem = [self splitViewItemForViewController:boardsVC];
+}
 
-   // self.firstSplitItem = [self splitViewItemForViewController:boardsVC];
 
+- (void)toggleSideBar {
+
+	if (self.sideBarWidth.constant != 0) {
+
+		self.sideBarWidth.constant = 0;
+	} else {
+
+		self.sideBarWidth.constant = 200;
+	}
 }
 
 - (void)dismissLogin  {

@@ -51,4 +51,9 @@
      andEventID:kAEGetURL];
 }
 
+- (IBAction)hideSideBar:(id)sender {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didChangeSidebarStatusNotification" object:nil];
+}
+
 @end

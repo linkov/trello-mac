@@ -115,7 +115,7 @@
 
         text1.layer.cornerRadius = 1.5;
         text1.layer.borderWidth = 1;
-        text1.layer.borderColor = [NSColor lightGrayColor].CGColor;
+        text1.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
 
         [stack addView:text1 inGravity:NSStackViewGravityTrailing];
     }

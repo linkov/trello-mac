@@ -10,6 +10,7 @@
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
+- (IBAction)hideSideBar:(id)sender;
 
 @end
 
