@@ -109,6 +109,7 @@
         [text1 setWantsLayer:YES];
         [text1 setTranslatesAutoresizingMaskIntoConstraints:NO];
         [text1 setFont:[NSFont systemFontOfSize:9]];
+        [text1 setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
         [text1 setStringValue:[self memberNameFromID:memberID] ];
         [text1 setEditable:NO];
         text1.alignment = NSCenterTextAlignment;
@@ -117,7 +118,9 @@
         text1.layer.borderWidth = 1;
         text1.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
 
-        [stack addView:text1 inGravity:NSStackViewGravityTrailing];
+        if (text1.stringValue.length >0) {
+            [stack addView:text1 inGravity:NSStackViewGravityTrailing];
+        }
     }
 }
 
