@@ -23,9 +23,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
-//    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200] ];
-
 	[self loadBoards];
 }
 
@@ -79,7 +76,6 @@
 
 	SDWBoard *board = item.representedObject;
 
-
 	if (board.isLeaf) {
 
         SDWBoard *parentBoard = item.parentNode.representedObject;
@@ -94,11 +90,6 @@
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
     self.selectedIndex = self.outlineView.selectedRowIndexes.firstIndex;
 }
-
-
-//- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
-//    [rowView setEmphasized:NO];
-//}
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
 	return NO;
