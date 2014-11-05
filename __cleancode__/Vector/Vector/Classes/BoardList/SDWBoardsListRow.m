@@ -10,34 +10,24 @@
 
 @implementation SDWBoardsListRow
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-
-    NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
-
-    if (self.selected) {
-        [[NSColor colorWithHexColorString:@"3E6378"] set];
-    }
-    else  {
-        [[NSColor colorWithHexColorString:@"1E5676"] set];
-
-    }
-
-    [NSBezierPath fillRect:drawRect];
-}
-
-- (NSBackgroundStyle)interiorBackgroundStyle {
-
-    return NSBackgroundStyleDark;
-}
-
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
 
-
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
-    [[NSColor redColor] set];
+    [[NSColor colorWithHexColorString:@"3E6378"] set];
     [NSBezierPath fillRect:drawRect];
-        [super drawSelectionInRect:dirtyRect];
+
+//    NSBezierPath* bezier2Path = NSBezierPath.bezierPath;
+//    [bezier2Path moveToPoint: NSMakePoint(133, 22)];
+//    [bezier2Path curveToPoint: NSMakePoint(183.25, 22) controlPoint1: NSMakePoint(133, 22) controlPoint2: NSMakePoint(183.25, 22)];
+//    [bezier2Path lineToPoint: NSMakePoint(194, 11.46)];
+//    [bezier2Path lineToPoint: NSMakePoint(183.25, 0)];
+//    [bezier2Path lineToPoint: NSMakePoint(0, 0)];
+//    [bezier2Path lineToPoint: NSMakePoint(0, 22)];
+//    [bezier2Path lineToPoint: NSMakePoint(133, 22)];
+//    [bezier2Path lineToPoint: NSMakePoint(133, 22)];
+//    [bezier2Path closePath];
+//    [[NSColor colorWithHexColorString:@"3E6378"] setFill];
+//    [bezier2Path fill];
 }
 
 @end
