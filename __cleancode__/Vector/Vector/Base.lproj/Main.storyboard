@@ -712,22 +712,22 @@
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="15" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
+                                            <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="15" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
-                                                <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
-                                                    <tableColumn width="247" minWidth="16" maxWidth="1000" id="EuZ-6V-FKx">
+                                                    <tableColumn editable="NO" width="247" minWidth="16" maxWidth="1000" id="EuZ-6V-FKx">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                             <font key="font" size="11" name="HelveticaNeue"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                         </tableHeaderCell>
-                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" allowsEditingTextAttributes="YES" id="K4I-sJ-JEs">
+                                                        <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" drawsBackground="YES" allowsEditingTextAttributes="YES" id="K4I-sJ-JEs">
                                                             <font key="font" metaFont="system"/>
                                                             <color key="textColor" red="1" green="0.30980392159999998" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                            <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="backgroundColor" red="0.40000000000000002" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                         </textFieldCell>
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
@@ -737,10 +737,10 @@
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="247" height="14"/>
-                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub" customClass="LeftMenuOutlineCellView">
+                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </textFieldCell>
                                                                         <connections>
                                                                             <binding destination="1l3-Ci-luo" name="value" keyPath="objectValue.name" id="qP9-YR-HIu"/>
@@ -819,6 +819,7 @@
                     </box>
                     <connections>
                         <outlet property="loadingProgress" destination="8oa-dB-e8F" id="ejc-po-QX8"/>
+                        <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
                     </connections>
                 </viewController>
@@ -919,6 +920,7 @@
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
                         <outlet property="collectionView" destination="3A0-CC-bC7" id="ylY-R6-JEC"/>
                         <outlet property="loadingIndicator" destination="FUK-ha-OsD" id="W3f-Mf-ErZ"/>
+                        <outlet property="mainBox" destination="06c-xL-hpn" id="9Bn-OX-ol7"/>
                     </connections>
                 </viewController>
                 <customObject id="3Kj-1I-WP3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

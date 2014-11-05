@@ -34,6 +34,7 @@
 		F14BBF8419FD699F0026B3DC /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8319FD699F0026B3DC /* AFRecord.m */; };
 		F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8619FD788F0026B3DC /* SDWCard.m */; };
 		F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8919FD78EE0026B3DC /* SDWLabel.m */; };
+		F19B21421A0AC5D9007171AE /* SDWBoardsListRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B21411A0AC5D9007171AE /* SDWBoardsListRow.m */; };
 		F1A949831A04516900B6944C /* WSCBoardsOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A949821A04516900B6944C /* WSCBoardsOutlineView.m */; };
 		F1B3AB831A04DBA500927CB9 /* SDWLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1B3AB821A04DBA500927CB9 /* SDWLoginVC.m */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
@@ -115,6 +116,8 @@
 		F14BBF8619FD788F0026B3DC /* SDWCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCard.m; sourceTree = "<group>"; };
 		F14BBF8819FD78EE0026B3DC /* SDWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabel.h; sourceTree = "<group>"; };
 		F14BBF8919FD78EE0026B3DC /* SDWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabel.m; sourceTree = "<group>"; };
+		F19B21401A0AC5D9007171AE /* SDWBoardsListRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsListRow.h; sourceTree = "<group>"; };
+		F19B21411A0AC5D9007171AE /* SDWBoardsListRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardsListRow.m; sourceTree = "<group>"; };
 		F1A949811A04516900B6944C /* WSCBoardsOutlineView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WSCBoardsOutlineView.h; sourceTree = "<group>"; };
 		F1A949821A04516900B6944C /* WSCBoardsOutlineView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WSCBoardsOutlineView.m; sourceTree = "<group>"; };
 		F1B3AB811A04DBA500927CB9 /* SDWLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLoginVC.h; sourceTree = "<group>"; };
@@ -247,6 +250,8 @@
 				F1A949821A04516900B6944C /* WSCBoardsOutlineView.m */,
 				F14BBF4219FD55360026B3DC /* SDWBoardsController.h */,
 				F14BBF4319FD55360026B3DC /* SDWBoardsController.m */,
+				F19B21401A0AC5D9007171AE /* SDWBoardsListRow.h */,
+				F19B21411A0AC5D9007171AE /* SDWBoardsListRow.m */,
 				F1B3AB8A1A0539F600927CB9 /* SDWBoardsCellView.h */,
 				F1B3AB8B1A0539F600927CB9 /* SDWBoardsCellView.m */,
 			);
@@ -508,6 +513,7 @@
 				F14BBF6519FD55E70026B3DC /* AFHTTPRequestOperationManager.m in Sources */,
 				F14BBF7B19FD5A230026B3DC /* AFRecordModel.m in Sources */,
 				F1EA3BA01A09000000D49BDA /* SDWMainSplitView.m in Sources */,
+				F19B21421A0AC5D9007171AE /* SDWBoardsListRow.m in Sources */,
 				F14BBF6819FD55E70026B3DC /* AFSecurityPolicy.m in Sources */,
 				F119AE7D19FD4CFC0061D7DF /* main.m in Sources */,
 				F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */,

@@ -33,5 +33,4 @@
               alpha:1.0];
     return result;
 }
-
 @end

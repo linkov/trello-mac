@@ -18,7 +18,7 @@
 }
 
 - (NSColor*)dividerColor {
-    return [NSColor colorWithHexColorString:@"1E5676"];
+    return [NSColor colorWithHexColorString:@"3E6378"];
 }
 
 - (void)keyDown:(NSEvent *)theEvent {

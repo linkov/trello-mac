@@ -5,6 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSColor+Util.h"
 #import "SDWBoard.h"
 #import "SDWUser.h"
 #import "SDWcard.h"
@@ -23,6 +24,7 @@
 @property (strong) NSString *parentListName;
 @property (strong) NSString *parentListID;
 @property (strong) NSString *listName;
+@property (strong) IBOutlet NSBox *mainBox;
 
 @end
 
@@ -30,6 +32,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+    self.mainBox.fillColor  = [NSColor colorWithHexColorString:@"1E5676"];
+    self.collectionView.backgroundColors = @[[NSColor colorWithHexColorString:@"1E5676"]];
 
 
 	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
