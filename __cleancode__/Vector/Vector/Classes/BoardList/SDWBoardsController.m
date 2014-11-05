@@ -28,7 +28,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	[self loadBoards];
-	self.mainBox.fillColor = [NSColor colorWithHexColorString:@"1E5676"];
+    self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
+    self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
 }
 
 - (NSColor *)textColor {
@@ -62,7 +63,6 @@
 		        self.outlineView.delegate = self;
 		        [self.outlineView deselectAll:nil];
 		        [self.outlineView expandItem:nil expandChildren:YES];
-		        self.outlineView.allowsMultipleSelection = NO;
 		        [self.outlineView reloadData];
 			} else {
 		        NSLog(@"err = %@", error.localizedDescription);

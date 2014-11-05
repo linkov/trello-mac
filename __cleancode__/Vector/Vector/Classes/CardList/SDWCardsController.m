@@ -33,21 +33,11 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-    self.mainBox.fillColor  = [NSColor colorWithHexColorString:@"1E5676"];
-    self.collectionView.backgroundColors = @[[NSColor colorWithHexColorString:@"1E5676"]];
-
+    self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
+    self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
 
 	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
-    //[self.collectionView setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-//    NSView *box = self.collectionView;
-//    NSArray *conssss = [NSLayoutConstraint constraintsWithVisualFormat:@"H:|[box]|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(box)];
-//        NSArray *conssss1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:|[box]|" options:0 metrics:0 views:NSDictionaryOfVariableBindings(box)];
-//
-//    [self.view addConstraints:conssss];
-//    [self.view addConstraints:conssss1];
-
-	//   [self.collectionView setBoundsOrigin:CGPointMake(-10, -10)];
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
 

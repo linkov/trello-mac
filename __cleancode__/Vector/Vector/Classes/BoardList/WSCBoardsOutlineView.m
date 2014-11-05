@@ -10,14 +10,10 @@
 
 @implementation WSCBoardsOutlineView
 
-//- (NSRect)frameOfOutlineCellAtRow:(NSInteger)row {
-//    return NSZeroRect;
-//}
-
 - (void)awakeFromNib {
 
     self.intercellSpacing = CGSizeMake(5, 5);
-    self.backgroundColor = [NSColor colorWithHexColorString:@"1E5676"];
+  //  self.backgroundColor = [NSColor colorWithHexColorString:@"1E5676"];
   //  self.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
 }
 

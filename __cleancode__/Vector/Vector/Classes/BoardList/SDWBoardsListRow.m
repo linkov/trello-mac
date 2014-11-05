@@ -5,15 +5,24 @@
 //  Created by alex on 11/5/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "SDWAppSettings.h"
 #import "NSColor+Util.h"
 #import "SDWBoardsListRow.h"
 
 @implementation SDWBoardsListRow
 
+//- (void)drawRect:(NSRect)dirtyRect {
+//    [super drawRect:dirtyRect];
+//
+//    NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
+//    [[SharedSettings appBackgroundColorDark] set];
+//    [NSBezierPath fillRect:drawRect];
+//}
+
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
 
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
-    [[NSColor colorWithHexColorString:@"3E6378"] set];
+    [[SharedSettings appBackgroundColor] set];
     [NSBezierPath fillRect:drawRect];
 
 //    NSBezierPath* bezier2Path = NSBezierPath.bezierPath;

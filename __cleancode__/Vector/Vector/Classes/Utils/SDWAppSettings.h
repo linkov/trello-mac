@@ -7,7 +7,7 @@
 //
 
 #define SharedSettings [SDWAppSettings sharedSettings]
-
+#import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
 
 @interface SDWAppSettings : NSObject
@@ -17,5 +17,9 @@
 @property (strong) NSString *userToken;
 @property (strong,nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;
+
+- (NSColor *)appBackgroundColorDark;
+- (NSColor *)appBackgroundColor;
+- (NSColor *)appHighlightColor;
 
 @end

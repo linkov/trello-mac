@@ -6,7 +6,7 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-#import "NSColor+Util.h"
+#import "SDWAppSettings.h"
 #import "SDWMainSplitView.h"
 
 @implementation SDWMainSplitView
@@ -18,7 +18,7 @@
 }
 
 - (NSColor*)dividerColor {
-    return [NSColor colorWithHexColorString:@"3E6378"];
+    return [SharedSettings appBackgroundColor];
 }
 
 - (void)keyDown:(NSEvent *)theEvent {
