@@ -24,6 +24,7 @@
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *crownImageView;
 @property (strong) SDWBoard *boardWithDrop;
+@property (strong) SDWBoard *boardWithDropParent;
 
 @end
 
@@ -107,7 +108,7 @@
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
     
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID, @"idBoard":self.boardWithDropParent.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
 
             [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:@{@"cardID":cardID}];
 
@@ -174,6 +175,7 @@
 // handle drop
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(NSTreeNode *)item proposedChildIndex:(NSInteger)index {
     if (item.isLeaf) {
+        self.boardWithDropParent = item.parentNode.representedObject;
         self.boardWithDrop = item.representedObject;
         return NSDragOperationMove;
     }
