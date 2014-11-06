@@ -707,7 +707,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
-                                    <rect key="frame" x="0.0" y="0.0" width="250" height="243"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="250" height="240"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZOQ-Og-rWc">
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -774,7 +774,14 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
-                                <button wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOx-wM-t8E">
+                                <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WFc-xI-G8e" customClass="ITSwitch">
+                                    <rect key="frame" x="108" y="248" width="35" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="35" id="gmh-EW-1xv"/>
+                                        <constraint firstAttribute="height" constant="20" id="rn1-47-exr"/>
+                                    </constraints>
+                                </customView>
+                                <button hidden="YES" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOx-wM-t8E">
                                     <rect key="frame" x="112" y="244" width="26" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="26" id="IEI-0f-QP6"/>
@@ -802,12 +809,35 @@
                                         </ciFilter>
                                     </contentFilters>
                                 </progressIndicator>
+                                <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="M6O-Vv-DpA">
+                                    <rect key="frame" x="148" y="251" width="15" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="15" id="DkG-Mw-XDE"/>
+                                        <constraint firstAttribute="height" constant="15" id="uKN-Gw-YG1"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="crown-ultrasmall-tint" id="Ezh-Pu-3Zj"/>
+                                </imageView>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="OVH-sf-msq">
+                                    <rect key="frame" x="82" y="251" width="20" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="20" id="6JV-Lg-WYb"/>
+                                        <constraint firstAttribute="height" constant="15" id="9ns-Hf-nwo"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="group" id="8Vh-kT-qej"/>
+                                </imageView>
                             </subviews>
                         </view>
                         <constraints>
+                            <constraint firstItem="M6O-Vv-DpA" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="30" id="13f-5Y-3z4"/>
+                            <constraint firstItem="OVH-sf-msq" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="30" id="4g2-7b-upc"/>
+                            <constraint firstAttribute="centerX" secondItem="WFc-xI-G8e" secondAttribute="centerX" id="6G7-Xv-zha"/>
+                            <constraint firstItem="hOx-wM-t8E" firstAttribute="leading" secondItem="OVH-sf-msq" secondAttribute="trailing" constant="10" id="9IE-nj-hYa"/>
+                            <constraint firstAttribute="trailing" secondItem="M6O-Vv-DpA" secondAttribute="trailing" priority="250" constant="74" id="DWt-KR-x5j"/>
                             <constraint firstAttribute="centerX" secondItem="8oa-dB-e8F" secondAttribute="centerX" id="FhL-3q-oW6"/>
+                            <constraint firstItem="M6O-Vv-DpA" firstAttribute="leading" secondItem="hOx-wM-t8E" secondAttribute="trailing" constant="10" id="JXc-ay-dpf"/>
                             <constraint firstAttribute="centerX" secondItem="hOx-wM-t8E" secondAttribute="centerX" id="WK4-Oi-30S"/>
-                            <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="hOx-wM-t8E" secondAttribute="bottom" constant="1" id="bDj-d0-T3J"/>
+                            <constraint firstItem="Hmz-VM-KlS" firstAttribute="top" secondItem="hOx-wM-t8E" secondAttribute="bottom" constant="4" id="bDj-d0-T3J"/>
+                            <constraint firstItem="WFc-xI-G8e" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="28" id="bze-cJ-hgL"/>
                             <constraint firstItem="Hmz-VM-KlS" firstAttribute="leading" secondItem="Ksb-xN-yU4" secondAttribute="leading" id="ciS-Wf-4pY"/>
                             <constraint firstAttribute="centerY" secondItem="8oa-dB-e8F" secondAttribute="centerY" id="eO0-c2-jnt"/>
                             <constraint firstAttribute="trailing" secondItem="Hmz-VM-KlS" secondAttribute="trailing" id="hJF-OK-f7H"/>
@@ -818,6 +848,7 @@
                         <color key="fillColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </box>
                     <connections>
+                        <outlet property="crownImageView" destination="M6O-Vv-DpA" id="YAP-G3-WbM"/>
                         <outlet property="loadingProgress" destination="8oa-dB-e8F" id="ejc-po-QX8"/>
                         <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
@@ -1037,6 +1068,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="crown-ultrasmall-tint" width="15" height="15"/>
+        <image name="group" width="26" height="19"/>
         <image name="logo" width="32" height="32"/>
     </resources>
 </document>

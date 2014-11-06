@@ -7,11 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F11405941A0AEC44003B04BE /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F11405931A0AEC44003B04BE /* ITSwitch.m */; };
 		F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7A19FD4CFC0061D7DF /* AppDelegate.m */; };
 		F119AE7D19FD4CFC0061D7DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7C19FD4CFC0061D7DF /* main.m */; };
 		F119AE8219FD4CFC0061D7DF /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8119FD4CFC0061D7DF /* Images.xcassets */; };
 		F119AE8519FD4CFC0061D7DF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F119AE8319FD4CFC0061D7DF /* Main.storyboard */; };
 		F119AE9119FD4CFC0061D7DF /* VectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE9019FD4CFC0061D7DF /* VectorTests.m */; };
+		F130AD1A1A0AF9E300819659 /* NSImage+HHTint.m in Sources */ = {isa = PBXBuildFile; fileRef = F130AD191A0AF9E300819659 /* NSImage+HHTint.m */; };
 		F139B2661A06859E003AB023 /* SDWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F139B2651A06859E003AB023 /* SDWUser.m */; };
 		F14BBF4A19FD55360026B3DC /* SDWBoardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4319FD55360026B3DC /* SDWBoardsController.m */; };
 		F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF4619FD55360026B3DC /* SDWCardViewController.m */; };
@@ -61,6 +63,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F11405921A0AEC44003B04BE /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
+		F11405931A0AEC44003B04BE /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
 		F119AE7419FD4CFC0061D7DF /* Vector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vector.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F119AE7819FD4CFC0061D7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F119AE7919FD4CFC0061D7DF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -71,6 +75,8 @@
 		F119AE8A19FD4CFC0061D7DF /* VectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F119AE8F19FD4CFC0061D7DF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F119AE9019FD4CFC0061D7DF /* VectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VectorTests.m; sourceTree = "<group>"; };
+		F130AD181A0AF9E300819659 /* NSImage+HHTint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSImage+HHTint.h"; sourceTree = "<group>"; };
+		F130AD191A0AF9E300819659 /* NSImage+HHTint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+HHTint.m"; sourceTree = "<group>"; };
 		F139B2641A06859E003AB023 /* SDWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUser.h; sourceTree = "<group>"; };
 		F139B2651A06859E003AB023 /* SDWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUser.m; sourceTree = "<group>"; };
 		F14BBF4219FD55360026B3DC /* SDWBoardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsController.h; sourceTree = "<group>"; };
@@ -164,6 +170,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F11405911A0AEC44003B04BE /* ITSwitch */ = {
+			isa = PBXGroup;
+			children = (
+				F11405921A0AEC44003B04BE /* ITSwitch.h */,
+				F11405931A0AEC44003B04BE /* ITSwitch.m */,
+			);
+			path = ITSwitch;
+			sourceTree = "<group>";
+		};
 		F119AE6B19FD4CFC0061D7DF = {
 			isa = PBXGroup;
 			children = (
@@ -315,6 +330,7 @@
 		F14BBF4F19FD55E70026B3DC /* __Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F11405911A0AEC44003B04BE /* ITSwitch */,
 				F1E01FE01A043C0400E4942B /* Xtrace */,
 				F14BBF5019FD55E70026B3DC /* AFNetworking */,
 			);
@@ -360,6 +376,8 @@
 		F1C0E5F11A0413BE000B7C4E /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F130AD181A0AF9E300819659 /* NSImage+HHTint.h */,
+				F130AD191A0AF9E300819659 /* NSImage+HHTint.m */,
 				F1C0E5F21A0413BE000B7C4E /* NSColor+Util.h */,
 				F1EA3B981A07054900D49BDA /* NSView+Utils.h */,
 				F1EA3B991A07054900D49BDA /* NSView+Utils.m */,
@@ -511,6 +529,8 @@
 				F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */,
 				F14BBF4B19FD55360026B3DC /* SDWCardViewController.m in Sources */,
 				F14BBF6519FD55E70026B3DC /* AFHTTPRequestOperationManager.m in Sources */,
+				F130AD1A1A0AF9E300819659 /* NSImage+HHTint.m in Sources */,
+				F11405941A0AEC44003B04BE /* ITSwitch.m in Sources */,
 				F14BBF7B19FD5A230026B3DC /* AFRecordModel.m in Sources */,
 				F1EA3BA01A09000000D49BDA /* SDWMainSplitView.m in Sources */,
 				F19B21421A0AC5D9007171AE /* SDWBoardsListRow.m in Sources */,

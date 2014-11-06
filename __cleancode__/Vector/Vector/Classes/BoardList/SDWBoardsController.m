@@ -5,6 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSImage+HHTint.h"
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 #import "SDWMainSplitController.h"
@@ -20,6 +21,7 @@
 
 @property (strong) SDWBoardsListRow *prevSelectedRow;
 @property (strong) IBOutlet NSBox *mainBox;
+@property (strong) IBOutlet NSImageView *crownImageView;
 
 @end
 
@@ -30,6 +32,7 @@
 	[self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
+
 }
 
 - (NSColor *)textColor {
