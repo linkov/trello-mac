@@ -37,7 +37,7 @@
     self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
 
 	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
-
+    [self.collectionView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
 
@@ -130,6 +130,46 @@
 
 #pragma mark - NSCollectionViewDelegate
 
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+
+    NSLog(@"acceptDrop");
+
+    //NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+    //NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+    //NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+    //NSInteger draggedCell = [indexes firstIndex];
+    //[self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+
+    return YES;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+
+    NSLog(@"Can drap");
+    return YES;
+}
+
+
+-(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+
+    NSLog(@"Validate Drop");
+    return NSDragOperationMove;
+}
+
+-(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:indexes];
+    //    [pasteboard setDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
+    // Here we temporarily store the index of the Cell,
+    // being dragged to pasteboard.
+    return YES;
+}
+
+
+
+
+
+// double click
 - (void)collectionItemViewDoubleClick:(NSCollectionViewItem *)sender {
 
 

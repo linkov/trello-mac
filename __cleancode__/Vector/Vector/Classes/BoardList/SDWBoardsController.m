@@ -14,7 +14,7 @@
 #import "SDWCardsController.h"
 #import "SDWBoardsListRow.h"
 
-@interface SDWBoardsController () <NSOutlineViewDelegate>
+@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
 @property (strong) NSArray *boards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 @property (strong) IBOutlet NSProgressIndicator *loadingProgress;
@@ -32,6 +32,8 @@
 	[self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
+    [self.outlineView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    self.outlineView.dataSource = self;
 
 }
 
@@ -141,6 +143,18 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
 	return NO;
+}
+
+
+
+// handle drop
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
+
+    return NSDragOperationMove;
+}
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+    return YES;
 }
 
 @end
