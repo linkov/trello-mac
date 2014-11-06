@@ -41,6 +41,16 @@
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+//        SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",note.userInfo[@"cardID"]]].lastObject;
+
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+
+        self.cardsArrayController.content = arr;
+    }];
+
+
 }
 
 - (void)viewWillAppear {
@@ -134,12 +144,14 @@
 
     NSLog(@"acceptDrop");
 
-    //NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-    //NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
-    //NSIndexSet *indexes = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-    //NSInteger draggedCell = [indexes firstIndex];
-    //[self.cardsArrayController  removeObjectAtArrangedObjectIndex:draggedCell];
+    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
 
+    SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",cardID]].lastObject;
+
+    [self.cardsArrayController  removeObject:card];
+    
     return YES;
 }
 
@@ -148,6 +160,9 @@
     NSLog(@"Can drap");
     return YES;
 }
+//- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+//
+//}
 
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
@@ -157,7 +172,9 @@
 }
 
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
-    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:indexes];
+
+    SDWCard *card = [self.cards objectAtIndex:indexes.lastIndex];
+    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:card.cardID];
     //    [pasteboard setDraggedTypes:@[@"MY_DRAG_TYPE"]];
     [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
     // Here we temporarily store the index of the Cell,

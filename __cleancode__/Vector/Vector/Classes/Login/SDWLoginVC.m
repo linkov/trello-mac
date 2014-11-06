@@ -47,7 +47,7 @@
 
 
 
-    NSString *urlString = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Vector&expiration=never&response_type=token&callback_method=fragment&return_url=Vector://authorize",SharedSettings.appToken];
+    NSString *urlString = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Vector&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=Vector://authorize",SharedSettings.appToken];
     NSURL *authURL = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:authURL];
 

@@ -37,4 +37,13 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
     return [super GET:paramsStr parameters:parameters success:success failure:failure];
 }
 
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+
+    NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@",SharedSettings.appToken,SharedSettings.userToken];
+    NSString *paramsStr = [URLString stringByAppendingString:params];
+    NSLog(@"fullURL = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
+
+    return [super PUT:paramsStr parameters:parameters success:success failure:failure];
+}
+
 @end

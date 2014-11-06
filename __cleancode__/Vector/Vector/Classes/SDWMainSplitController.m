@@ -105,11 +105,11 @@
 
 - (void)viewDidAppear {
 
-    if (!SharedSettings.userToken) {
+   if (!SharedSettings.userToken) {
 
         self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
         [self presentViewControllerAsSheet:self.loginVC];
-    }
+   }
 }
 
 //- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {

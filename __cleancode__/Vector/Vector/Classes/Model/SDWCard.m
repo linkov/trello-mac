@@ -16,7 +16,7 @@
         return nil;
     }
 
-    self.cardID = (NSUInteger)[[attributes valueForKeyPath:@"id"] integerValue];
+    self.cardID = [attributes valueForKeyPath:@"id"];
     self.name = [attributes valueForKeyPath:@"name"];
     self.members = [attributes valueForKeyPath:@"idMembers"];
 

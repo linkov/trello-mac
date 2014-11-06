@@ -13,6 +13,7 @@
 #import "SDWBoardsController.h"
 #import "SDWCardsController.h"
 #import "SDWBoardsListRow.h"
+#import "AFTrelloAPIClient.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
 @property (strong) NSArray *boards;
@@ -22,6 +23,7 @@
 @property (strong) SDWBoardsListRow *prevSelectedRow;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *crownImageView;
+@property (strong) SDWBoard *boardWithDrop;
 
 @end
 
@@ -99,6 +101,28 @@
 	return row;
 }
 
+- (void)moveCard:(NSString *)cardID {
+
+    NSLog(@"selected list name %@",self.boardWithDrop.name);
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
+    
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:@{@"cardID":cardID}];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"err - %@",error.localizedDescription);
+    }];
+// post to API - move to  self.boardWithDrop.boardID
+    // on success
+
+
+}
+
+#pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
+
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
 
     SDWBoard *board =[self.outlineView itemAtRow:row];
@@ -148,12 +172,24 @@
 
 
 // handle drop
-- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(id)item proposedChildIndex:(NSInteger)index {
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(NSTreeNode *)item proposedChildIndex:(NSInteger)index {
+    if (item.isLeaf) {
+        self.boardWithDrop = item.representedObject;
+        return NSDragOperationMove;
+    }
+    return NSDragOperationNone;
 
-    return NSDragOperationMove;
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+
+    NSPasteboard *pBoard = [info draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+
+    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+    NSLog(@"cardID = %@",cardID);
+    [self moveCard:cardID];
+
     return YES;
 }
 

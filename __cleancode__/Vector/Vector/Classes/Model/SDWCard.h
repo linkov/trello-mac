@@ -10,7 +10,7 @@
 
 @interface SDWCard : AFRecordModel
 
-@property NSUInteger cardID;
+@property NSString *cardID;
 @property (nonatomic, strong) NSString *name;
 @property NSUInteger pos;
 @property NSArray *members;

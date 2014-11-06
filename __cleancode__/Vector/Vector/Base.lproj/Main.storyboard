@@ -1038,11 +1038,11 @@
             <objects>
                 <viewController title="Sign in to Trello" storyboardIdentifier="loginVC" id="O16-RF-BAi" customClass="SDWLoginVC" sceneMemberID="viewController">
                     <view key="view" id="JHe-Oz-Jdh">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="400" height="465"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <webView translatesAutoresizingMaskIntoConstraints="NO" id="Im2-3l-HHb">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="400" height="465"/>
                                 <webPreferences key="preferences" defaultFontSize="12" defaultFixedFontSize="12">
                                     <nil key="identifier"/>
                                 </webPreferences>
