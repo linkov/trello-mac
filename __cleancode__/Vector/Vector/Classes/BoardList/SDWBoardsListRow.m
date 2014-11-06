@@ -22,7 +22,7 @@
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
 
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
-    [[SharedSettings appBackgroundColor] set];
+    [[SharedSettings appHighlightColor] set];
     [NSBezierPath fillRect:drawRect];
 
 //    NSBezierPath* bezier2Path = NSBezierPath.bezierPath;

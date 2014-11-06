@@ -80,10 +80,35 @@
 	return main.cardsVC;
 }
 
-- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(id)item {
+- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
+
+    SDWBoard *board = item.representedObject;
+
+    if (!board.isLeaf) {
+
+        SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:[self.outlineView rowForItem:item]makeIfNecessary:YES];
+        boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
+        [boardNameRow setNeedsDisplay:YES];
+    }
+
+
 
 	SDWBoardsListRow *row = [SDWBoardsListRow new];
 	return row;
+}
+
+- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+
+    SDWBoard *board =[self.outlineView itemAtRow:row];
+
+    if (!board.isLeaf) {
+
+        SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
+        boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
+        [boardNameRow setNeedsDisplay:YES];
+    }
+
+
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
@@ -98,6 +123,7 @@
 
 		return YES;
 	}
+    
 	return NO;
 }
 
