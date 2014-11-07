@@ -25,6 +25,7 @@
 @property (strong) NSString *parentListID;
 @property (strong) NSString *listName;
 @property (strong) IBOutlet NSBox *mainBox;
+@property (strong) IBOutlet NSImageView *trashImageView;
 
 @end
 
@@ -40,6 +41,9 @@
     [self.collectionView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
+
+    [self.trashImageView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [self.trashImageView setHidden:YES];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 //        SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",note.userInfo[@"cardID"]]].lastObject;
@@ -139,25 +143,32 @@
 
 
 #pragma mark - NSCollectionViewDelegate
+- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+
+    [self.trashImageView setHidden:YES];
+
+
+}
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
     NSLog(@"acceptDrop");
 
-    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
-    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-
-    SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",cardID]].lastObject;
-
-    [self.cardsArrayController  removeObject:card];
-    
+//    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+//    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+//    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+//
+//    SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",cardID]].lastObject;
+//
+//    [self.cardsArrayController  removeObject:card];
+//    
     return YES;
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
-    NSLog(@"Can drap");
+    [self.trashImageView setHidden:NO];
+    NSLog(@"Can drop");
     return YES;
 }
 //- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
@@ -167,7 +178,7 @@
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
 
-    NSLog(@"Validate Drop");
+    //NSLog(@"Validate Drop");
     return NSDragOperationMove;
 }
 

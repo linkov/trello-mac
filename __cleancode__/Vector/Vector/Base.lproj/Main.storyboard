@@ -931,6 +931,14 @@
                                         </ciFilter>
                                     </contentFilters>
                                 </progressIndicator>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-eN-ucQ" customClass="SDWMenuItemImageView">
+                                    <rect key="frame" x="387" y="267" width="29" height="29"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="29" id="0A0-kJ-6kS"/>
+                                        <constraint firstAttribute="width" constant="29" id="GD7-At-D58"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="trash-ultrasmall" id="611-PE-spF"/>
+                                </imageView>
                             </subviews>
                         </view>
                         <constraints>
@@ -940,6 +948,9 @@
                             <constraint firstItem="FUK-ha-OsD" firstAttribute="centerX" secondItem="2nG-Pk-jcn" secondAttribute="centerX" constant="-3" id="Okg-TN-WEO"/>
                             <constraint firstItem="2nG-Pk-jcn" firstAttribute="top" secondItem="49o-Ud-LWD" secondAttribute="bottom" constant="4" id="QV8-rP-4bM"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="VZV-1H-Ftd"/>
+                            <constraint firstItem="qx4-eN-ucQ" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="26" id="Vfy-xg-tKJ"/>
+                            <constraint firstItem="qx4-eN-ucQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="Wm9-bS-FQx"/>
+                            <constraint firstAttribute="trailing" secondItem="qx4-eN-ucQ" secondAttribute="trailing" constant="14" id="dQ1-SX-xIa"/>
                             <constraint firstItem="2nG-Pk-jcn" firstAttribute="leading" secondItem="06c-xL-hpn" secondAttribute="leading" constant="15" id="jKe-Xw-tis"/>
                             <constraint firstItem="49o-Ud-LWD" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="30" id="nsF-KT-tgk"/>
                             <constraint firstAttribute="trailing" secondItem="2nG-Pk-jcn" secondAttribute="trailing" constant="10" id="thz-yM-CV7"/>
@@ -952,6 +963,7 @@
                         <outlet property="collectionView" destination="3A0-CC-bC7" id="ylY-R6-JEC"/>
                         <outlet property="loadingIndicator" destination="FUK-ha-OsD" id="W3f-Mf-ErZ"/>
                         <outlet property="mainBox" destination="06c-xL-hpn" id="9Bn-OX-ol7"/>
+                        <outlet property="trashImageView" destination="qx4-eN-ucQ" id="gNV-fc-vKI"/>
                     </connections>
                 </viewController>
                 <customObject id="3Kj-1I-WP3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -963,7 +975,7 @@
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
             </objects>
-            <point key="canvasLocation" x="638.5" y="1215"/>
+            <point key="canvasLocation" x="657" y="1196"/>
         </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="EFB-Ab-fxh">
@@ -1071,5 +1083,6 @@
         <image name="crown-ultrasmall-tint" width="15" height="15"/>
         <image name="group" width="26" height="19"/>
         <image name="logo" width="32" height="32"/>
+        <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>
