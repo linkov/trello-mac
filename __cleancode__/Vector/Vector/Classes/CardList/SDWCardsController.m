@@ -26,13 +26,21 @@
 @property (strong) NSString *listName;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *trashImageView;
+@property (strong) IBOutlet NSButton *addCardButton;
 
 @end
 
 @implementation SDWCardsController
 
+
+- (void)awakeFromNib {
+
+    [self.addCardButton setHidden:YES];
+}
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
 
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
     self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
@@ -59,6 +67,10 @@
 
 - (void)viewWillAppear {
 	[super viewWillAppear];
+}
+
+- (void)viewDidAppear {
+    [super viewDidAppear];
 }
 
 - (void)viewDidLayout {
@@ -137,6 +149,7 @@
 
 - (void)reloadCollection:(NSArray *)objects {
 
+    [self.addCardButton setHidden:NO];
 	self.cardsArrayController.content = objects;
     self.cards = objects;
 }
@@ -146,6 +159,7 @@
 - (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
 
     [self.trashImageView setHidden:YES];
+    [self.addCardButton setHidden:NO];
 
 
 }
@@ -168,6 +182,7 @@
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
     [self.trashImageView setHidden:NO];
+    [self.addCardButton setHidden:YES];
     NSLog(@"Can drop");
     return YES;
 }
