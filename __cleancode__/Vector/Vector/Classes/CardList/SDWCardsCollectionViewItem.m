@@ -11,11 +11,14 @@
 #import "SDWAppSettings.h"
 #import "SDWCardListView.h"
 #import "SDWCardsCollectionViewItem.h"
+#import "Utils.h"
 
-@interface SDWCardsCollectionViewItem ()
+@interface SDWCardsCollectionViewItem () <NSTextFieldDelegate>
 
 @property BOOL shouldUseInitials;
 @property (strong) NSArray *loadedUsers;
+@property (strong) IBOutlet NSTextField *textField;
+@property (strong) NSString *originalText;
 
 @end
 
@@ -23,13 +26,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
     self.mainBox.cornerRadius = 1.5;
-
+    self.textField.editable = NO;
+    self.textField.delegate = self;
 }
 
 - (void)viewDidAppear {
-
      [self loadCardUsers];
 }
 
@@ -85,11 +87,8 @@
 
 }
 
-- (void)setSelected:(BOOL)selected
-{
-
+- (void)setSelected:(BOOL)selected {
     [super setSelected:selected];
-
 
     if (selected) {
         self.textColor = [NSColor blackColor];
@@ -97,7 +96,6 @@
     else {
         self.textColor = [NSColor blackColor];
     }
-
 
     for (id view in [self view].subviews) {
 
@@ -108,31 +106,59 @@
     }
 }
 
+//- (void)keyDown:(NSEvent *)theEvent {
+//[super keyDown:theEvent];
+//
+//    NSLog(@"key = %i",theEvent.keyCode);
+//
+//
+//    if (self.textField.editable) {
+//
+//    }
+//}
 
--(void)mouseDown:(NSEvent *)theEvent
-{
+- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
+
+    NSTextField* tf = (NSTextField*)control;
+    self.originalText = tf.stringValue;
+    return YES;
+}
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+
+    if (![self.originalText isEqualToString:self.textField.stringValue]) {
+        [self.delegate cardViewShouldSaveCard:self];
+        [self.textField resignFirstResponder];
+        self.textField.editable = NO;
+    }
+
+    return YES;
+}
+
+- (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
 
-    if (theEvent.clickCount >= 2)
-    {
+    if (theEvent.clickCount >= 2) {
+        self.textField.editable = YES;
+        [self.textField becomeFirstResponder];
         [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+    }
+    else {
+        self.textField.editable = NO;
     }
 }
 
 - (void)viewDidLayout {
-
     [super viewDidLayout];
-    
 }
 
-
-- (NSString *)memberNameFromID:(NSString *)userID{
+- (NSString *)memberNameFromID:(NSString *)userID {
 
     for (SDWUser *user in SharedSettings.selectedListUsers) {
 
         if ([user.userID isEqualToString:userID]) {
 
-            NSString *str = self.shouldUseInitials ? [self twoLetterIDFromName:user.name] : user.name;
+            NSString *str = self.shouldUseInitials ? [Utils twoLetterIDFromName:user.name] : user.name;
 
 
             return str;
@@ -141,66 +167,5 @@
     return @"nope";
 }
 
-- (NSString *)twoLetterIDFromName:(NSString *)name {
-
-    NSString *finalString;
-
-    NSArray *nameArr = [name componentsSeparatedByString:@" "];
-
-    NSString *firstName = nameArr[0];
-
-    if (nameArr.count>1) {
-
-        NSString *lastName = nameArr[1];
-
-        NSMutableArray *firstNameArr = [NSMutableArray new];
-
-        [firstName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
-                                      options: NSStringEnumerationByComposedCharacterSequences
-                                   usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
-                                       // If you want to see the way the string has been split
-                                       //NSLog(@"%@", substring);
-                                       [firstNameArr addObject: substring];
-                                   }
-         ];
-
-        NSMutableArray *lastNameArr = [NSMutableArray new];
-
-        [lastName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
-                                     options: NSStringEnumerationByComposedCharacterSequences
-                                  usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
-                                      // If you want to see the way the string has been split
-                                      //NSLog(@"%@", substring);
-                                      [lastNameArr addObject: substring];
-                                  }
-         ];
-
-        finalString = [NSString stringWithFormat:@"%@%@",firstNameArr[0],lastNameArr[0]];
-    }
-    else {
-
-        finalString = @"";
-    }
-    
-    
-    return [finalString uppercaseString];
-}
-
-- (void)expand {
-
-//    NSView *box = (SDWCardListView *)[self view];
-//
-//
-//    NSArray *conss = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[box(600@1000)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(box)];
-//    NSArray *conss1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[box(250@1000)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(box)];
-//
-//    [self.view addConstraints:conss];
-//    [self.view addConstraints:conss1];
-//    [self.view setNeedsUpdateConstraints:YES];
-//    [self.view updateConstraintsForSubtreeIfNeeded];
-//    [self.view layoutSubtreeIfNeeded];
-
-    //[(SDWCardListView *)[self view] expand];
-}
 
 @end

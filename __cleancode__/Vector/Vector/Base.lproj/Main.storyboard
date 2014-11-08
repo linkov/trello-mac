@@ -720,7 +720,7 @@
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button translatesAutoresizingMaskIntoConstraints="NO" id="dWe-Kf-iJL">
+                                        <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWe-Kf-iJL">
                                             <rect key="frame" x="-6" y="-7" width="412" height="57"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" priority="250" constant="21" id="YR1-jV-KwG"/>
@@ -995,7 +995,7 @@
                                         </ciFilter>
                                     </contentFilters>
                                 </progressIndicator>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-eN-ucQ" customClass="SDWMenuItemImageView">
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-eN-ucQ" userLabel="trashcan delete area" customClass="SDWMenuItemImageView">
                                     <rect key="frame" x="387" y="267" width="29" height="29"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="29" id="0A0-kJ-6kS"/>
@@ -1057,7 +1057,7 @@
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
             </objects>
-            <point key="canvasLocation" x="657" y="1196"/>
+            <point key="canvasLocation" x="685" y="1197"/>
         </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="EFB-Ab-fxh">
@@ -1119,13 +1119,14 @@
                     <connections>
                         <outlet property="mainBox" destination="H6c-DE-Hst" id="KK6-Jw-V0z"/>
                         <outlet property="stackView" destination="3uD-8Q-qvy" id="GyU-hx-vKW"/>
+                        <outlet property="textField" destination="h8j-pa-1d3" id="ibB-cG-lme"/>
                     </connections>
                 </collectionViewItem>
                 <customObject id="3Hk-wB-0fz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <userDefaultsController id="RH9-QD-5Z2"/>
                 <userDefaultsController id="nK8-cf-FCk"/>
             </objects>
-            <point key="canvasLocation" x="738.5" y="1479"/>
+            <point key="canvasLocation" x="672.5" y="1446"/>
         </scene>
         <!--Sign in to Trello-->
         <scene sceneID="cAf-kc-wfB">

@@ -36,6 +36,7 @@
 		F14BBF8419FD699F0026B3DC /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8319FD699F0026B3DC /* AFRecord.m */; };
 		F14BBF8719FD788F0026B3DC /* SDWCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8619FD788F0026B3DC /* SDWCard.m */; };
 		F14BBF8A19FD78EE0026B3DC /* SDWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F14BBF8919FD78EE0026B3DC /* SDWLabel.m */; };
+		F15FE32D1A0E8937008924CB /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F15FE32C1A0E8937008924CB /* Utils.m */; };
 		F18AA9461A0C44CB00BA3C7D /* SDWMenuItemImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F18AA9451A0C44CB00BA3C7D /* SDWMenuItemImageView.m */; };
 		F19B21421A0AC5D9007171AE /* SDWBoardsListRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F19B21411A0AC5D9007171AE /* SDWBoardsListRow.m */; };
 		F1A949831A04516900B6944C /* WSCBoardsOutlineView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1A949821A04516900B6944C /* WSCBoardsOutlineView.m */; };
@@ -123,6 +124,8 @@
 		F14BBF8619FD788F0026B3DC /* SDWCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCard.m; sourceTree = "<group>"; };
 		F14BBF8819FD78EE0026B3DC /* SDWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabel.h; sourceTree = "<group>"; };
 		F14BBF8919FD78EE0026B3DC /* SDWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabel.m; sourceTree = "<group>"; };
+		F15FE32B1A0E8937008924CB /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
+		F15FE32C1A0E8937008924CB /* Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utils.m; sourceTree = "<group>"; };
 		F18AA9441A0C44CB00BA3C7D /* SDWMenuItemImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMenuItemImageView.h; sourceTree = "<group>"; };
 		F18AA9451A0C44CB00BA3C7D /* SDWMenuItemImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMenuItemImageView.m; sourceTree = "<group>"; };
 		F19B21401A0AC5D9007171AE /* SDWBoardsListRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsListRow.h; sourceTree = "<group>"; };
@@ -391,6 +394,8 @@
 				F1C0E5F31A0413BE000B7C4E /* NSColor+Util.m */,
 				F1C0E5F41A0413BE000B7C4E /* NSImage+Util.h */,
 				F1C0E5F51A0413BE000B7C4E /* NSImage+Util.m */,
+				F15FE32B1A0E8937008924CB /* Utils.h */,
+				F15FE32C1A0E8937008924CB /* Utils.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -513,6 +518,7 @@
 				F1EA3B9D1A08E80F00D49BDA /* SDWMainWindowController.m in Sources */,
 				F14BBF6419FD55E70026B3DC /* AFHTTPRequestOperation.m in Sources */,
 				F1B3AB831A04DBA500927CB9 /* SDWLoginVC.m in Sources */,
+				F15FE32D1A0E8937008924CB /* Utils.m in Sources */,
 				F14BBF6719FD55E70026B3DC /* AFNetworkReachabilityManager.m in Sources */,
 				F1C0E5F01A041354000B7C4E /* SDWCardListView.m in Sources */,
 				F139B2661A06859E003AB023 /* SDWUser.m in Sources */,

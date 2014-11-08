@@ -5,53 +5,58 @@
 //  Created by alex on 11/7/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+@import QuartzCore;
+
 #import "AFTrelloAPIClient.h"
 #import "SDWMenuItemImageView.h"
 
-@implementation SDWMenuItemImageView
+@interface SDWMenuItemImageView ()
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
-}
+@property BOOL canPerformAction;
+
+@end
+
+@implementation SDWMenuItemImageView
 
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
 
-    NSLog(@"entered");
+    self.canPerformAction = YES;
+    CIFilter *invert = [CIFilter filterWithName: @"CIColorInvert"];
+    [invert setDefaults];
 
+    self.layer.filters = @[invert];
     return NSDragOperationMove;
 }
 
+
 - (void)draggingEnded:(id<NSDraggingInfo>)sender {
 
-    NSPasteboard *pBoard = [sender draggingPasteboard];
-    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+    if (self.canPerformAction) {
 
-    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-    NSLog(@"cardID = %@",cardID);
-    [self deleteCard:cardID];
+        NSPasteboard *pBoard = [sender draggingPasteboard];
+        NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+
+        NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        NSLog(@"cardID = %@",cardID);
+        [self performActionForObjectID:cardID];
+
+    }
 
     NSLog(@"ended");
 
 }
 
+- (void)performActionForObjectID:(NSString *)objectID {
+
+     [self.delegate menuItemShouldValidateDropWithAction:SDWMenuItemDropActionDelete objectID:objectID];
+}
+
 - (void)draggingExited:(id<NSDraggingInfo>)sender {
 
+    self.layer.filters = @[];
+    self.canPerformAction = NO;
     NSLog(@"exited");
 }
 
-- (void)deleteCard:(NSString *)cardID {
-
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
-
-    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:nil];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        NSLog(@"err - %@",error.localizedDescription);
-    }];
-}
 
 @end

@@ -22,12 +22,16 @@
 }
 
 - (void)keyDown:(NSEvent *)theEvent {
+    [super keyDown:theEvent];
+
+    // NSLog(@"key = %i",theEvent.keyCode);
 
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
     if (modifier == 1048840 && key == 15) {
         [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldReloadListNotification" object:nil];
     }
+
 }
 
 @end

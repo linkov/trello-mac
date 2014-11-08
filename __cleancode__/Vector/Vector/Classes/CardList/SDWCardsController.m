@@ -13,8 +13,9 @@
 #import "SDWCardsController.h"
 #import "SDWCardsCollectionViewItem.h"
 #import "SDWAppSettings.h"
+#import "SDWMenuItemImageView.h"
 
-@interface SDWCardsController () <NSCollectionViewDelegate>
+@interface SDWCardsController () <NSCollectionViewDelegate,SDWMenuItemDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 @property (strong) IBOutlet NSCollectionView *collectionView;
 
@@ -25,7 +26,7 @@
 @property (strong) NSString *parentListID;
 @property (strong) NSString *listName;
 @property (strong) IBOutlet NSBox *mainBox;
-@property (strong) IBOutlet NSImageView *trashImageView;
+@property (strong) IBOutlet SDWMenuItemImageView *trashImageView;
 @property (strong) IBOutlet NSButton *addCardButton;
 
 @end
@@ -52,6 +53,7 @@
 
     [self.trashImageView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     [self.trashImageView setHidden:YES];
+    self.trashImageView.delegate = self;
 
     [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 //        SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",note.userInfo[@"cardID"]]].lastObject;
@@ -156,6 +158,9 @@
 
 
 #pragma mark - NSCollectionViewDelegate
+
+
+
 - (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
 
     [self.trashImageView setHidden:YES];
@@ -210,56 +215,53 @@
 
 
 
-
-
-// double click
 - (void)collectionItemViewDoubleClick:(NSCollectionViewItem *)sender {
 
+    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    selected.delegate = self;
+
+    
+}
 
 
-    NSLog(@"double clicked item = %@",sender);
-    SDWCardsCollectionViewItem *selected =  (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+#pragma mark - SDWCardViewDelegate
 
+- (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 
-    //[selected.view setTranslatesAutoresizingMaskIntoConstraints:NO];
+    SDWCard *card = [self.cards objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
 
-//
-    selected.view.frame = CGRectMake(selected.view.frame.origin.x, selected.view.frame.origin.y, selected.view.frame.size.width, 250);
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":cardView.textField.stringValue} success:^(NSURLSessionDataTask *task, id responseObject) {
 
-    NSMutableArray *displayed =[self.collectionView valueForKeyPath:@"_displayedItems"];
+        NSLog(@"success save");
 
-    for (SDWCardsCollectionViewItem *row in displayed) {
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
-        NSUInteger index = [displayed indexOfObject:row];
-        if (index > self.collectionView.selectionIndexes.firstIndex) {
-
-            row.view.frame =  CGRectMake(row.view.frame.origin.x, row.view.frame.origin.y+220, row.view.frame.size.width, row.view.frame.size.height);
-        }
-    }
-
-//    NSView *box = selected.view;
-//
-//    NSArray *conss = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[box(600@1000)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(box)];
-//    NSArray *conss1 = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[box(250@1000)]" options:NSLayoutFormatDirectionLeadingToTrailing metrics:nil views:NSDictionaryOfVariableBindings(box)];
-//
-//    [self.view addConstraints:conss];
-//    [self.view addConstraints:conss1];
-//    [self.view setNeedsUpdateConstraints:YES];
-//    [self.view updateConstraintsForSubtreeIfNeeded];
-//    [self.view layoutSubtreeIfNeeded];
-//
-//    [self.collectionView invalidateIntrinsicContentSize];
-//
-//    [self.collectionView updateConstraintsForSubtreeIfNeeded];
-   // self.collectionView.content = self.cards;
-
-
-   // [selected expand];
-
-//   self.collectionView.content = self.cards;
+        NSLog(@"err save - %@",error.localizedDescription);
+    }];
 
 
 }
 
+#pragma mark - SDWMenuItemDelegate
+
+- (void)menuItemShouldValidateDropWithAction:(SDWMenuItemDropAction)action objectID:(NSString *)objectID {
+
+    if (action == SDWMenuItemDropActionDelete) {
+
+        NSString *urlString = [NSString stringWithFormat:@"cards/%@?",objectID];
+
+        [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+            //TODO: don't rely on selectionIndex in the future
+            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+            [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+            self.cardsArrayController.content = arr;
+
+        } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            NSLog(@"err - %@",error.localizedDescription);
+        }];
+    }
+}
 
 @end
