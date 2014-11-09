@@ -19,7 +19,6 @@
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 @property (strong) IBOutlet NSCollectionView *collectionView;
 
-@property (strong) NSArray *cards;
 @property (strong) NSArray *storedUsers;
 @property (strong) NSString *currentListID;
 @property (strong) NSString *parentListName;
@@ -60,7 +59,6 @@
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
         [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
-
         self.cardsArrayController.content = arr;
     }];
 
@@ -94,7 +92,7 @@
 
     SharedSettings.selectedListUsers = nil;
     self.cardsArrayController.content = nil;
-    self.cards = nil;
+//    self.cards = nil;
     [self loadMembers:self.parentListID];
 
 }
@@ -152,8 +150,9 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-	self.cardsArrayController.content = objects;
-    self.cards = objects;
+    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"lastUpdate" ascending:NO];
+	self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
+    //self.cards = objects;
 }
 
 
@@ -204,8 +203,10 @@
 
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
 
-    SDWCard *card = [self.cards objectAtIndex:indexes.lastIndex];
-    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:card.cardID];
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.lastIndex];
+    NSDictionary *cardDict = @{@"cardID":card.cardID,@"boardID":card.boardID};
+
+    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
     //    [pasteboard setDraggedTypes:@[@"MY_DRAG_TYPE"]];
     [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
     // Here we temporarily store the index of the Cell,
@@ -222,25 +223,104 @@
 
     
 }
+- (IBAction)addCard:(id)sender {
+
+    SDWCard *newCard = [SDWCard new];
+    newCard.boardID = self.parentListID;
+    newCard.name = @"";
+    newCard.isSynced = NO;
+
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr insertObject:newCard atIndex:0];
+
+    self.cardsArrayController.content = arr;
+
+    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:0];
+    newRow.delegate = self;
+    newRow.selected = YES;
+    newRow.textField.editable = YES;
+    [newRow.textField becomeFirstResponder];
+
+    self.addCardButton.enabled = NO;
+
+}
 
 
 #pragma mark - SDWCardViewDelegate
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 
-    SDWCard *card = [self.cards objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    self.addCardButton.enabled = YES;
+
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:0];
+    card.name = cardView.textField.stringValue;
+
+    if (card.isSynced) {
+        [self updateCard:card];
+    }
+    else {
+        [self createCard:card];
+    }
+}
+
+- (void)updateCard:(SDWCard *)card {
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":cardView.textField.stringValue} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        //        SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
+        //        card = updatedCard;
 
         NSLog(@"success save");
+        //        SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+        //        selected.selected = NO;
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
         NSLog(@"err save - %@",error.localizedDescription);
     }];
 
+}
 
+- (void)createCard:(SDWCard *)card {
+
+    NSDictionary *params = @{
+                             @"name":card.name,
+                             @"due":@"null",
+                             @"idList":self.currentListID,
+                             @"urlSource":@"null"
+                             };
+
+    NSLog(@"params -= %@",params);
+
+    [[AFTrelloAPIClient sharedClient] POST:@"cards?"
+                                parameters:params
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+
+        SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
+
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:0];
+        [arr insertObject:updatedCard atIndex:0];
+        self.cardsArrayController.content = arr;
+
+        NSLog(@"success create");
+        //        SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+        //        selected.selected = NO;
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"err save - %@",error.localizedDescription);
+    }];
+}
+
+- (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
+    self.addCardButton.enabled = YES;
+    
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr removeObjectAtIndex:0];
+    self.cardsArrayController.content = arr;
 }
 
 #pragma mark - SDWMenuItemDelegate

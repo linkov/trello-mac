@@ -38,23 +38,11 @@
 
 - (void)viewDidAppear {
 
-    NSString *script = @"alert('Hello')";
-
-    WKUserScript *scr = [[WKUserScript alloc]initWithSource:script injectionTime:WKUserScriptInjectionTimeAtDocumentEnd forMainFrameOnly:YES];
-
-    WKUserContentController *contr;
-    [contr addUserScript:scr];
-
-
-
     NSString *urlString = [NSString stringWithFormat:@"https://trello.com/1/authorize?key=%@&name=Vector&expiration=never&response_type=token&scope=read,write&callback_method=fragment&return_url=Vector://authorize",SharedSettings.appToken];
     NSURL *authURL = [NSURL URLWithString:urlString];
     NSURLRequest *request = [NSURLRequest requestWithURL:authURL];
 
-
-
     [self.webView.mainFrame loadRequest:request];
-
 }
 
 

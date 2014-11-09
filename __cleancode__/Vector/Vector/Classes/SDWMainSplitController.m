@@ -29,32 +29,6 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-//   // NSWindowController *winCon = [self.storyboard instantiateInitialController];
-//   // NSWindow *window = [NSApplication sharedApplication].keyWindow;
-//  //  window.styleMask = window.styleMask | NSFullSizeContentViewWindowMask;
-//
-//  //  [NSApplication sharedApplication].keyWindow.titlebarAppearsTransparent = YES;
-//
-//    SDWBoardsController *boardsVC = [self.storyboard instantiateControllerWithIdentifier:@"boardsVC"];
-//    self.cardsVC = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
-//
-//    self.boardsSplitItem = [NSSplitViewItem new];
-//    [self.boardsSplitItem setViewController:boardsVC];
-//    //self.boardsSplitItem.holdingPriority = NSLayoutPriorityDefaultLow;
-//
-//    self.cardsSplitItem = [NSSplitViewItem new];
-//    [self.cardsSplitItem setViewController:self.cardsVC];
-//    //self.cardsSplitItem.holdingPriority = NSLayoutPriorityRequired;
-//
-//    [self addSplitViewItem:self.boardsSplitItem];
-//    [self addSplitViewItem:self.cardsSplitItem];
-//
-
-	//  NSSplitViewItem *cardsItem = self.splitViewItems[1];
-
-//    NSLog(@"split item vc - %@",self.cardsSplitItem.viewController);
-
-
 	self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
 	self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
 
@@ -67,6 +41,7 @@
 	                                                   queue:[NSOperationQueue mainQueue]
 	                                              usingBlock:^(NSNotification *note)
 	{
+        NSString *token = note.userInfo[@"token"];
 
 	    [self dismissLogin];
 	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
@@ -103,13 +78,18 @@
     [self dismissViewController:self.loginVC];
 }
 
-- (void)viewDidAppear {
+- (void)logout {
 
-   if (!SharedSettings.userToken) {
+    if (!SharedSettings.userToken) {
 
         self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
         [self presentViewControllerAsSheet:self.loginVC];
-   }
+    }
+}
+
+- (void)viewDidAppear {
+
+    [self logout];
 }
 
 //- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {

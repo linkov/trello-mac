@@ -10,6 +10,7 @@
 
 @interface NSImage (Util)
 
++ (NSImage *)imageWithCIImage:(CIImage *)i;
 - (NSImage *)imageRotatedByDegrees:(CGFloat)degrees;
 - (NSImage *)imageTintedWithColor:(NSColor *)tint;
 

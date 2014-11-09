@@ -16,9 +16,12 @@
         return nil;
     }
 
+    self.boardID = [attributes valueForKeyPath:@"idList"];
     self.cardID = [attributes valueForKeyPath:@"id"];
     self.name = [attributes valueForKeyPath:@"name"];
     self.members = [attributes valueForKeyPath:@"idMembers"];
+    self.lastUpdate = [attributes valueForKeyPath:@"dateLastActivity"];
+    self.isSynced = YES;
 
     NSMutableArray *mutableArray = [NSMutableArray new];
     for (NSDictionary *labelDict in [attributes valueForKeyPath:@"labels"]) {

@@ -17,5 +17,10 @@
 @property NSArray *users;
 @property (nonatomic,strong) NSString *owner;
 @property (strong) NSArray *labels;
+@property (strong) NSString *boardID;
+@property (strong) NSDate *lastUpdate;
+
+@property BOOL isSynced;
+
 
 @end

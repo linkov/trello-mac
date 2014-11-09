@@ -21,5 +21,6 @@
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;
 - (NSColor *)appHighlightColor;
+- (NSColor *)appHighlightGreenColor;
 
 @end

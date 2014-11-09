@@ -25,5 +25,7 @@
 @optional
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView;
+- (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView;
+
 
 @end

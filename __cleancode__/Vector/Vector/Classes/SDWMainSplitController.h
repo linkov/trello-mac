@@ -14,4 +14,6 @@
 @property (strong) SDWCardsController *cardsVC;
 @property (strong) SDWBoardsController *boardsVC;
 
+- (void)logout;
+
 @end

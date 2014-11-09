@@ -19,6 +19,13 @@
 //    [NSBezierPath fillRect:drawRect];
 //}
 
+- (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect {
+
+    NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
+    [[SharedSettings appHighlightGreenColor] set];
+    [NSBezierPath fillRect:drawRect];
+}
+
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
 
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);

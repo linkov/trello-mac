@@ -22,8 +22,6 @@
 }
 
 - (void)keyDown:(NSEvent *)theEvent {
-    [super keyDown:theEvent];
-
     // NSLog(@"key = %i",theEvent.keyCode);
 
     NSUInteger modifier = [theEvent modifierFlags];

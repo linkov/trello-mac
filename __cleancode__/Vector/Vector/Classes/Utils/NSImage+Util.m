@@ -95,4 +95,22 @@
     return tintedImage;
 }
 
++ (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r
+{
+    NSImage *image;
+    NSCIImageRep *ir;
+
+    ir = [NSCIImageRep imageRepWithCIImage:i];
+    image = [[NSImage alloc] initWithSize:
+              NSMakeSize(r.size.width, r.size.height)]
+             ;
+    [image addRepresentation:ir];
+    return image;
+}
+
++ (NSImage *)imageWithCIImage:(CIImage *)i
+{
+    return [self imageWithCIImage:i fromRect:[i extent]];
+}
+
 @end

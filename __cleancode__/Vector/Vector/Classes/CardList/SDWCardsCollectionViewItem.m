@@ -120,8 +120,15 @@
 - (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
 
     NSTextField* tf = (NSTextField*)control;
+    
     self.originalText = tf.stringValue;
     return YES;
+}
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+
+    if (self.textField.stringValue.length == 0) {
+        [self.delegate cardViewShouldDismissCard:self];
+    }
 }
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {

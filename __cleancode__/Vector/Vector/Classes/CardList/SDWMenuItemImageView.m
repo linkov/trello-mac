@@ -36,9 +36,8 @@
         NSPasteboard *pBoard = [sender draggingPasteboard];
         NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
 
-        NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-        NSLog(@"cardID = %@",cardID);
-        [self performActionForObjectID:cardID];
+        NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        [self performActionForObjectID:cardDict[@"cardID"]];
 
     }
 

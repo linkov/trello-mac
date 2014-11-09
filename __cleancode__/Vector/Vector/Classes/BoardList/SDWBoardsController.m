@@ -5,6 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "NSImage+Util.h"
 #import "NSImage+HHTint.h"
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
@@ -14,6 +15,8 @@
 #import "SDWCardsController.h"
 #import "SDWBoardsListRow.h"
 #import "AFTrelloAPIClient.h"
+#import "SDWLoginVC.h"
+#import <QuartzCore/QuartzCore.h>
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
 @property (strong) NSArray *boards;
@@ -25,6 +28,7 @@
 @property (strong) IBOutlet NSImageView *crownImageView;
 @property (strong) SDWBoard *boardWithDrop;
 @property (strong) SDWBoard *boardWithDropParent;
+@property (strong) IBOutlet NSButton *logoutButton;
 
 @end
 
@@ -45,9 +49,18 @@
 	return [NSColor blackColor];
 }
 
+- (IBAction)logout:(id)sender {
+
+    SharedSettings.userToken = nil;
+    [(SDWMainSplitController *)self.parentViewController logout];
+
+}
+
 - (void)loadBoards {
 
 	if (SharedSettings.userToken) {
+
+        self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
 
 		[[self cardsVC].loadingIndicator startAnimation:nil];
 
@@ -77,6 +90,10 @@
 			}
 		}];
 	}
+    else {
+
+        self.logoutButton.image = [NSImage imageNamed:@"logout-small-flip"];
+    }
 }
 
 - (SDWCardsController *)cardsVC {
@@ -102,15 +119,18 @@
 	return row;
 }
 
-- (void)moveCard:(NSString *)cardID {
+- (void)moveCard:(NSDictionary *)cardData {
 
-    NSLog(@"selected list name %@",self.boardWithDrop.name);
+//    if ([selected.boardID isEqualToString:self.boardWithDrop.boardID]) {
+//        return;
+//    }
 
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardData[@"cardID"]];
     
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID, @"idBoard":self.boardWithDropParent.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
 
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:@{@"cardID":cardID}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -188,9 +208,16 @@
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
 
-    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-    NSLog(@"cardID = %@",cardID);
-    [self moveCard:cardID];
+    NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+
+    if ([cardDict[@"boardID"] isEqualToString:self.boardWithDrop.boardID]) {
+        return NO;
+    }
+    else  {
+
+        [self moveCard:cardDict];
+
+    }
 
     return YES;
 }

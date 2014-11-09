@@ -27,12 +27,15 @@
 -(void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor*)reply
 {
 
-    SharedSettings.userToken = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"vector://authorize#token=" withString:@""];
+    NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"vector://authorize#token=" withString:@""];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification" object:nil];
+    if (token.length > 0) {
+        SharedSettings.userToken = token;
 
-    NSLog(@"%@", event);
-    
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
+                                                        object:nil userInfo:@{@"token":token}];
+
 }
 
 //- (void)applicationWillBecomeActive:(NSNotification *)notification {

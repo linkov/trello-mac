@@ -700,47 +700,33 @@
             <objects>
                 <viewController title="AddCardVC" id="np2-Rh-IHp" sceneMemberID="viewController">
                     <view key="view" id="Uo9-02-qXU">
-                        <rect key="frame" x="0.0" y="0.0" width="410" height="120"/>
+                        <rect key="frame" x="0.0" y="0.0" width="410" height="30"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box autoresizesSubviews="NO" focusRingType="exterior" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="6iX-Hq-mo0">
-                                <rect key="frame" x="5" y="5" width="400" height="110"/>
+                                <rect key="frame" x="5" y="5" width="400" height="20"/>
                                 <view key="contentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="110"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="32I-y1-8pt">
-                                            <rect key="frame" x="0.0" y="50" width="400" height="60"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="60" id="Rrm-U6-n4e"/>
+                                                <constraint firstAttribute="height" constant="20" id="Rrm-U6-n4e"/>
                                             </constraints>
-                                            <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" id="NIF-JV-qWu">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" usesSingleLineMode="YES" id="NIF-JV-qWu">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dWe-Kf-iJL">
-                                            <rect key="frame" x="-6" y="-7" width="412" height="57"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" priority="250" constant="21" id="YR1-jV-KwG"/>
-                                            </constraints>
-                                            <buttonCell key="cell" type="bevel" title="Add card" bezelStyle="regularSquare" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Nk0-Pr-y1w">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="24" name="TamilSangamMN-Bold"/>
-                                            </buttonCell>
-                                        </button>
                                     </subviews>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="dWe-Kf-iJL" secondAttribute="bottom" id="5KE-yp-ghb"/>
                                     <constraint firstItem="32I-y1-8pt" firstAttribute="leading" secondItem="6iX-Hq-mo0" secondAttribute="leading" id="7q8-ww-ogZ"/>
-                                    <constraint firstAttribute="trailing" secondItem="dWe-Kf-iJL" secondAttribute="trailing" id="7wj-Mw-9IR"/>
-                                    <constraint firstAttribute="height" constant="110" id="Dw8-1r-y8D"/>
+                                    <constraint firstAttribute="height" constant="20" id="Dw8-1r-y8D"/>
                                     <constraint firstAttribute="trailing" secondItem="32I-y1-8pt" secondAttribute="trailing" id="cAw-f6-gMB"/>
-                                    <constraint firstItem="dWe-Kf-iJL" firstAttribute="top" secondItem="32I-y1-8pt" secondAttribute="bottom" constant="4" id="fiu-cj-Xoh"/>
                                     <constraint firstItem="32I-y1-8pt" firstAttribute="top" secondItem="6iX-Hq-mo0" secondAttribute="top" id="lJC-aN-5x7"/>
-                                    <constraint firstItem="dWe-Kf-iJL" firstAttribute="leading" secondItem="6iX-Hq-mo0" secondAttribute="leading" id="mVS-CR-cht"/>
                                     <constraint firstAttribute="width" constant="400" id="xpu-TY-6DU"/>
                                 </constraints>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -757,20 +743,20 @@
                 </viewController>
                 <customObject id="lWh-TJ-ABX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1318" y="819"/>
+            <point key="canvasLocation" x="1318" y="787"/>
         </scene>
         <!--Boards Controller-->
         <scene sceneID="HLw-RW-Ydx">
             <objects>
                 <viewController storyboardIdentifier="boardsVC" id="Kp4-s7-wUc" customClass="SDWBoardsController" sceneMemberID="viewController">
-                    <box key="view" autoresizesSubviews="NO" title="Box" boxType="custom" borderType="none" id="Ksb-xN-yU4">
+                    <box key="view" autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="none" id="Ksb-xN-yU4">
                         <rect key="frame" x="0.0" y="0.0" width="250" height="296"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                         <view key="contentView">
                             <rect key="frame" x="0.0" y="0.0" width="250" height="296"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
+                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" hasHorizontalScroller="NO" maxMagnification="0.25" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="240"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZOQ-Og-rWc">
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
@@ -889,13 +875,29 @@
                                     </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="group" id="8Vh-kT-qej"/>
                                 </imageView>
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="ECb-Mt-2HD">
+                                    <rect key="frame" x="7" y="247" width="22" height="25"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="25" id="1mS-pE-es2"/>
+                                        <constraint firstAttribute="width" constant="22" id="6y5-uG-i49"/>
+                                    </constraints>
+                                    <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="logout-small" imagePosition="overlaps" alignment="center" state="on" inset="2" id="j5E-bg-BgU">
+                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                        <font key="font" metaFont="system"/>
+                                    </buttonCell>
+                                    <connections>
+                                        <action selector="logout:" target="Kp4-s7-wUc" id="stf-Vn-loB"/>
+                                    </connections>
+                                </button>
                             </subviews>
                         </view>
                         <constraints>
                             <constraint firstItem="M6O-Vv-DpA" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="30" id="13f-5Y-3z4"/>
                             <constraint firstItem="OVH-sf-msq" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="30" id="4g2-7b-upc"/>
+                            <constraint firstItem="ECb-Mt-2HD" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="24" id="4mX-WO-mQ6"/>
                             <constraint firstAttribute="centerX" secondItem="WFc-xI-G8e" secondAttribute="centerX" id="6G7-Xv-zha"/>
                             <constraint firstItem="hOx-wM-t8E" firstAttribute="leading" secondItem="OVH-sf-msq" secondAttribute="trailing" constant="10" id="9IE-nj-hYa"/>
+                            <constraint firstItem="ECb-Mt-2HD" firstAttribute="leading" secondItem="Ksb-xN-yU4" secondAttribute="leading" constant="7" id="9LP-QL-ZI9"/>
                             <constraint firstAttribute="trailing" secondItem="M6O-Vv-DpA" secondAttribute="trailing" priority="250" constant="74" id="DWt-KR-x5j"/>
                             <constraint firstAttribute="centerX" secondItem="8oa-dB-e8F" secondAttribute="centerX" id="FhL-3q-oW6"/>
                             <constraint firstItem="M6O-Vv-DpA" firstAttribute="leading" secondItem="hOx-wM-t8E" secondAttribute="trailing" constant="10" id="JXc-ay-dpf"/>
@@ -906,6 +908,7 @@
                             <constraint firstAttribute="centerY" secondItem="8oa-dB-e8F" secondAttribute="centerY" id="eO0-c2-jnt"/>
                             <constraint firstAttribute="trailing" secondItem="Hmz-VM-KlS" secondAttribute="trailing" id="hJF-OK-f7H"/>
                             <constraint firstAttribute="bottom" secondItem="Hmz-VM-KlS" secondAttribute="bottom" id="ooN-9V-8pn"/>
+                            <constraint firstItem="OVH-sf-msq" firstAttribute="leading" secondItem="ECb-Mt-2HD" secondAttribute="trailing" priority="250" constant="31" id="rVe-eS-fN9"/>
                             <constraint firstItem="hOx-wM-t8E" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="24" id="yeS-32-SFZ"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
@@ -914,6 +917,7 @@
                     <connections>
                         <outlet property="crownImageView" destination="M6O-Vv-DpA" id="YAP-G3-WbM"/>
                         <outlet property="loadingProgress" destination="8oa-dB-e8F" id="ejc-po-QX8"/>
+                        <outlet property="logoutButton" destination="ECb-Mt-2HD" id="WKI-0m-DDp"/>
                         <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
                     </connections>
@@ -929,7 +933,7 @@
                 </treeController>
                 <userDefaultsController representsSharedInstance="YES" id="bDe-ea-y9f"/>
             </objects>
-            <point key="canvasLocation" x="266" y="1202"/>
+            <point key="canvasLocation" x="267" y="1202"/>
         </scene>
         <!--Cards Controller-->
         <scene sceneID="cQG-6O-QS0">
@@ -1003,7 +1007,7 @@
                                     </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="trash-ultrasmall" id="611-PE-spF"/>
                                 </imageView>
-                                <button translatesAutoresizingMaskIntoConstraints="NO" id="sUr-Tl-WD0">
+                                <button translatesAutoresizingMaskIntoConstraints="NO" id="sUr-Tl-WD0" userLabel="add card button">
                                     <rect key="frame" x="387" y="271" width="32" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="32" id="PqG-M0-29y"/>
@@ -1014,7 +1018,7 @@
                                         <font key="font" metaFont="system"/>
                                     </buttonCell>
                                     <connections>
-                                        <segue destination="np2-Rh-IHp" kind="popover" popoverAnchorView="sUr-Tl-WD0" popoverBehavior="t" preferredEdge="maxY" id="fJ9-3Y-3sr"/>
+                                        <action selector="addCard:" target="s73-N2-doq" id="rQM-pK-Qum"/>
                                     </connections>
                                 </button>
                             </subviews>
@@ -1073,12 +1077,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
                                             <rect key="frame" x="10" y="6" width="275" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
                                             </constraints>
-                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="vbY-RR-7CR">
+                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="vbY-RR-7CR">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1167,6 +1171,7 @@
         <image name="crown-ultrasmall-tint" width="15" height="15"/>
         <image name="group" width="26" height="19"/>
         <image name="logo" width="32" height="32"/>
+        <image name="logout-small" width="20" height="16.5"/>
         <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>
