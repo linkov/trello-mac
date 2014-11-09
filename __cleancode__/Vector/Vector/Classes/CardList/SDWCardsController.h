@@ -12,6 +12,7 @@
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList;
 - (void)reloadCards;
+- (void)clearCards;
 
 @property (strong) IBOutlet NSProgressIndicator *loadingIndicator;
 

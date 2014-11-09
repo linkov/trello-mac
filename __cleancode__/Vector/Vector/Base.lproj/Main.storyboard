@@ -1047,6 +1047,7 @@
                         <outlet property="addCardButton" destination="sUr-Tl-WD0" id="qon-sS-kno"/>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
                         <outlet property="collectionView" destination="3A0-CC-bC7" id="ylY-R6-JEC"/>
+                        <outlet property="listNameLabel" destination="49o-Ud-LWD" id="Umd-f5-had"/>
                         <outlet property="loadingIndicator" destination="FUK-ha-OsD" id="W3f-Mf-ErZ"/>
                         <outlet property="mainBox" destination="06c-xL-hpn" id="9Bn-OX-ol7"/>
                         <outlet property="trashImageView" destination="qx4-eN-ucQ" id="gNV-fc-vKI"/>

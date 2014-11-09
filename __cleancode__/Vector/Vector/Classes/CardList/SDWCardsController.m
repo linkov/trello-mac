@@ -27,6 +27,7 @@
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet SDWMenuItemImageView *trashImageView;
 @property (strong) IBOutlet NSButton *addCardButton;
+@property (strong) IBOutlet NSTextField *listNameLabel;
 
 @end
 
@@ -75,6 +76,12 @@
 
 - (void)viewDidLayout {
 	[super viewDidLayout];
+}
+
+- (void)clearCards {
+
+    self.cardsArrayController.content = @[];
+    self.listNameLabel.stringValue = @"";
 }
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {

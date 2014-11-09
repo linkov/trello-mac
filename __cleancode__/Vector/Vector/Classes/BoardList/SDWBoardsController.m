@@ -53,6 +53,10 @@
 
     SharedSettings.userToken = nil;
     [(SDWMainSplitController *)self.parentViewController logout];
+    self.boards = @[];
+    [self loadBoards];
+    [self.outlineView reloadData];
+    [[self cardsVC] clearCards];
 
 }
 
