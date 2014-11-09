@@ -126,6 +126,8 @@
 }
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
 
+    self.textField.editable = NO;
+
     if (self.textField.stringValue.length == 0) {
         [self.delegate cardViewShouldDismissCard:self];
     }
