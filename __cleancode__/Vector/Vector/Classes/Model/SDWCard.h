@@ -19,6 +19,7 @@
 @property (strong) NSArray *labels;
 @property (strong) NSString *boardID;
 @property (strong) NSDate *lastUpdate;
+@property NSUInteger position;
 
 @property BOOL isSynced;
 

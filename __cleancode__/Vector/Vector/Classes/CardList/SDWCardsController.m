@@ -162,7 +162,7 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"lastUpdate" ascending:NO];
+    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
 	self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
     //self.cards = objects;
 }
@@ -264,10 +264,12 @@
 
     self.addCardButton.enabled = YES;
 
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:0];
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
     card.name = cardView.textField.stringValue;
 
+
     if (card.isSynced) {
+
         [self updateCard:card];
     }
     else {

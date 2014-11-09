@@ -16,6 +16,7 @@
         return nil;
     }
 
+    self.position = [[attributes valueForKeyPath:@"pos"] integerValue];
     self.boardID = [attributes valueForKeyPath:@"idList"];
     self.cardID = [attributes valueForKeyPath:@"id"];
     self.name = [attributes valueForKeyPath:@"name"];
