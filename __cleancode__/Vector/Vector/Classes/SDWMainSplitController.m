@@ -41,7 +41,7 @@
 	                                                   queue:[NSOperationQueue mainQueue]
 	                                              usingBlock:^(NSNotification *note)
 	{
-        NSString *token = note.userInfo[@"token"];
+        //NSString *token = note.userInfo[@"token"];
 
 	    [self dismissLogin];
 	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];

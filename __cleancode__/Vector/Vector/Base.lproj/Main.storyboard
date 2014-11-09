@@ -963,7 +963,7 @@
                                         <rect key="frame" x="1" y="1" width="248" height="158"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <collectionView selectable="YES" id="3A0-CC-bC7">
+                                            <collectionView selectable="YES" id="3A0-CC-bC7" customClass="SDWCardsCollectionView">
                                                 <rect key="frame" x="0.0" y="0.0" width="248" height="158"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <color key="primaryBackgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1079,7 +1079,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField focusRingType="exterior" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
-                                            <rect key="frame" x="10" y="6" width="275" height="17"/>
+                                            <rect key="frame" x="10" y="6" width="276" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
                                             </constraints>
@@ -1094,7 +1094,7 @@
                                             </connections>
                                         </textField>
                                         <stackView orientation="horizontal" alignment="centerY" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3uD-8Q-qvy">
-                                            <rect key="frame" x="289" y="0.0" width="100" height="30"/>
+                                            <rect key="frame" x="290" y="0.0" width="100" height="30"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="100" placeholder="YES" id="ZPu-MV-hZe"/>
                                             </constraints>
@@ -1108,7 +1108,7 @@
                                     <constraint firstAttribute="bottom" secondItem="3uD-8Q-qvy" secondAttribute="bottom" id="bLb-lo-9NO"/>
                                     <constraint firstItem="3uD-8Q-qvy" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" id="hxb-pV-dcw"/>
                                     <constraint firstItem="h8j-pa-1d3" firstAttribute="leading" secondItem="H6c-DE-Hst" secondAttribute="leading" constant="10" id="rrn-K7-CSc"/>
-                                    <constraint firstAttribute="trailing" secondItem="3uD-8Q-qvy" secondAttribute="trailing" constant="11" id="z7S-SN-8Q9"/>
+                                    <constraint firstAttribute="trailing" secondItem="3uD-8Q-qvy" secondAttribute="trailing" constant="10" id="z7S-SN-8Q9"/>
                                 </constraints>
                                 <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                 <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>

@@ -44,6 +44,20 @@
 
 }
 
+- (void)viewWillAppear {
+
+    //TODO: load last opened list
+
+//    if (SharedSettings.lastSelectedList) {
+//        [[self cardsVC] setupCardsForList:SharedSettings.lastSelectedList parentList:nil];
+//    }
+//
+//    SDWBoard *parentBoard = item.parentNode.representedObject;
+//
+//    [[self cardsVC] setupCardsForList:board parentList:parentBoard];
+
+}
+
 - (NSColor *)textColor {
 
 	return [NSColor blackColor];
@@ -167,6 +181,8 @@
 	SDWBoard *board = item.representedObject;
 
 	if (board.isLeaf) {
+
+        SharedSettings.lastSelectedList = board.boardID;
 
 		SDWBoard *parentBoard = item.parentNode.representedObject;
 

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F100BA8C1A0FE29D00427F2B /* SDWCardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F100BA8B1A0FE29D00427F2B /* SDWCardsCollectionView.m */; };
 		F11405941A0AEC44003B04BE /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F11405931A0AEC44003B04BE /* ITSwitch.m */; };
 		F119AE7B19FD4CFC0061D7DF /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7A19FD4CFC0061D7DF /* AppDelegate.m */; };
 		F119AE7D19FD4CFC0061D7DF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F119AE7C19FD4CFC0061D7DF /* main.m */; };
@@ -66,6 +67,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		F100BA8A1A0FE29D00427F2B /* SDWCardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionView.h; sourceTree = "<group>"; };
+		F100BA8B1A0FE29D00427F2B /* SDWCardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionView.m; sourceTree = "<group>"; };
 		F11405921A0AEC44003B04BE /* ITSwitch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ITSwitch.h; sourceTree = "<group>"; };
 		F11405931A0AEC44003B04BE /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
 		F119AE7419FD4CFC0061D7DF /* Vector.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Vector.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -302,6 +305,8 @@
 				F1C0E5EC1A041312000B7C4E /* SDWCardsCollectionViewItem.m */,
 				F14BBF4C19FD55800026B3DC /* SDWCardsController.h */,
 				F14BBF4D19FD55800026B3DC /* SDWCardsController.m */,
+				F100BA8A1A0FE29D00427F2B /* SDWCardsCollectionView.h */,
+				F100BA8B1A0FE29D00427F2B /* SDWCardsCollectionView.m */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				F1C0E5F71A0413BE000B7C4E /* NSImage+Util.m in Sources */,
 				F14BBF8119FD60010026B3DC /* AFRecordPathManager.m in Sources */,
 				F14BBF4E19FD55800026B3DC /* SDWCardsController.m in Sources */,
+				F100BA8C1A0FE29D00427F2B /* SDWCardsCollectionView.m in Sources */,
 				F14BBF7219FD56AD0026B3DC /* SDWMainSplitController.m in Sources */,
 				F1EA3B9A1A07054900D49BDA /* NSView+Utils.m in Sources */,
 				F1B3AB8C1A0539F600927CB9 /* SDWBoardsCellView.m in Sources */,

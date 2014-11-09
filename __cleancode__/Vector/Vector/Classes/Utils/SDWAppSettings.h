@@ -17,6 +17,7 @@
 @property (strong) NSString *userToken;
 @property (strong,nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;
+@property (strong) NSString *lastSelectedList;
 
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;
