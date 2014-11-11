@@ -50,7 +50,7 @@
 	}];
 
 
-	[[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didChangeSidebarStatusNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeSidebarStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
 	    [self toggleSideBar];
 	}];

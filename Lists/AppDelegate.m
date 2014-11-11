@@ -33,16 +33,10 @@
         SharedSettings.userToken = token;
 
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
                                                         object:nil userInfo:@{@"token":token}];
 
 }
-
-//- (void)applicationWillBecomeActive:(NSNotification *)notification {
-//
-//    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification" object:nil];
-//
-//}
 
 -(void)applicationWillFinishLaunching:(NSNotification *)aNotification
 {
@@ -56,7 +50,7 @@
 
 - (IBAction)hideSideBar:(id)sender {
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didChangeSidebarStatusNotification" object:nil];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
 }
 
 @end

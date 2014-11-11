@@ -5,10 +5,19 @@
 //  Created by alex on 11/1/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
 #define SharedSettings [SDWAppSettings sharedSettings]
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
+
+extern NSString * const SDWListsDidReceiveUserTokenNotification;
+extern NSString * const SDWListsDidChangeSidebarStatusNotification;
+
+extern NSString * const SDWListsDidRemoveCardNotification;
+extern NSString * const SDWListsShouldFilterNotification;
+extern NSString * const SDWListsShouldCreateCardNotification;
+
+extern NSString * const SDWListsShouldReloadListNotification;
+
 
 @interface SDWAppSettings : NSObject
 

@@ -55,7 +55,7 @@
     [self.trashImageView setHidden:YES];
     self.trashImageView.delegate = self;
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 //        SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",note.userInfo[@"cardID"]]].lastObject;
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
@@ -68,7 +68,7 @@
         [self addCard:nil];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.shouldFilterNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         [self loadCardsForListID:self.currentListID];
 
@@ -216,14 +216,8 @@
     NSLog(@"Can drop");
     return YES;
 }
-//- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
-//
-//}
-
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
-
-    //NSLog(@"Validate Drop");
     return NSDragOperationMove;
 }
 
@@ -244,8 +238,6 @@
 
     SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
     selected.delegate = self;
-
-    
 }
 
 

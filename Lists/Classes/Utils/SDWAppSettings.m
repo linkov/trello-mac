@@ -5,6 +5,20 @@
 //  Created by alex on 11/1/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+
+#import <AppKit/AppKit.h>
+#import <Foundation/Foundation.h>
+
+NSString * const SDWListsDidReceiveUserTokenNotification  =  @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
+NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
+
+NSString * const SDWListsDidRemoveCardNotification = @"com.sdwr.trello-mac.didRemoveCardNotification";
+NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.shouldFilterNotification";
+
+NSString * const SDWListsShouldCreateCardNotification = @"com.sdwr.trello-mac.shouldCreateCardNotification";
+NSString * const SDWListsShouldReloadListNotification = @"com.sdwr.trello-mac.shouldReloadListNotification";
+//SDWListsShouldCreateCardNotification
+
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 

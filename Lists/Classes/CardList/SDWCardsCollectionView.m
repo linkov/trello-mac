@@ -5,7 +5,7 @@
 //  Created by alex on 11/9/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import "SDWAppSettings.h"
 #import "SDWCardsCollectionView.h"
 
 @implementation SDWCardsCollectionView
@@ -18,7 +18,7 @@
 
     if (modifier == 1048840 && key == 45) {
 
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldCreateCardNotification" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     }
 
         [super keyDown:theEvent];

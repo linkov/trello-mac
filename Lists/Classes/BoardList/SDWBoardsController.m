@@ -81,7 +81,7 @@
 - (IBAction)crownSwitchDidChange:(ITSwitch *)sender {
 
     SharedSettings.shouldFilter = sender.on;
-    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldFilterNotification" object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
     self.boards = nil;
    // [self reloadDataSource];
     [self loadBoards];
@@ -218,24 +218,16 @@
 
 - (void)moveCard:(NSDictionary *)cardData {
 
-//    if ([selected.boardID isEqualToString:self.boardWithDrop.boardID]) {
-//        return;
-//    }
-
-
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardData[@"cardID"]];
     
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID, @"idBoard":self.boardWithDropParent.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
 
-            [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.didRemoveCardNotification" object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
         NSLog(@"err - %@",error.localizedDescription);
     }];
-// post to API - move to  self.boardWithDrop.boardID
-    // on success
-
 
 }
 
