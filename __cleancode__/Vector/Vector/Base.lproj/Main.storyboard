@@ -1082,12 +1082,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField focusRingType="exterior" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3" customClass="SDWCardListTextField">
                                             <rect key="frame" x="10" y="6" width="276" height="17"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
                                             </constraints>
-                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" focusRingType="exterior" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="vbY-RR-7CR">
+                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="vbY-RR-7CR">
                                                 <font key="font" metaFont="smallSystem"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>

@@ -5,7 +5,7 @@
 //  Created by alex on 10/31/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSColor+Util.h"
+#import "SDWAppSettings.h"
 #import "SDWCardListView.h"
 
 
@@ -18,11 +18,11 @@
 
     if (selected) {
 
-        self.fillColor = [NSColor colorWithHexColorString:@"e2eefa"];
+        self.fillColor = [SharedSettings appSelectionColor];
     }
     else {
 
-        self.fillColor = [NSColor colorWithHexColorString:@"FFFFFF"];
+        self.fillColor = [NSColor whiteColor];
     }
 }
 

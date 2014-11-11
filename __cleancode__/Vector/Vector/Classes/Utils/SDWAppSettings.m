@@ -55,6 +55,12 @@ static SDWAppSettings *sharedInstance = nil;
    return [NSColor colorWithHexColorString:@"1E5676"];
 }
 
+- (NSColor *)appSelectionColor {
+
+    return [NSColor colorWithHexColorString:@"deeef4"];
+}
+
+
 - (NSColor *)appHighlightGreenColor {
     return [NSColor colorWithHexColorString:@"1D8722"];
 }

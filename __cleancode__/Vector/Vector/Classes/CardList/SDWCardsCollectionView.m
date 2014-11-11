@@ -11,7 +11,7 @@
 @implementation SDWCardsCollectionView
 
 - (void)keyDown:(NSEvent *)theEvent {
-    NSLog(@"key = %i",theEvent.keyCode);
+
 
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
@@ -20,7 +20,8 @@
 
         [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldCreateCardNotification" object:nil];
     }
-    
+
+        [super keyDown:theEvent];
 }
 
 @end
