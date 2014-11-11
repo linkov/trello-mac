@@ -22,7 +22,7 @@
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
-//@property (strong) NSArray *unfilteredBoards;
+@property (strong) NSArray *unfilteredBoards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 @property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
@@ -82,6 +82,8 @@
 
     SharedSettings.shouldFilter = sender.on;
     [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldFilterNotification" object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
+    self.boards = nil;
+   // [self reloadDataSource];
     [self loadBoards];
 }
 
@@ -105,17 +107,22 @@
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
 		    [self.loadingProgress stopAnimation:nil];
-
 		    [[self cardsVC].loadingIndicator stopAnimation:nil];
+
 		    if (!error) {
 
 		        NSLog(@"boards - %@", objects);
 
-		        self.boards = objects;
+		        self.unfilteredBoards = objects;
              //   self.unfilteredBoards = objects;
 		        self.outlineView.delegate = self;
-                [self reloadDataSource];
-               if(self.crownSwitch.on) [self loadBoardsIDsWithUserCards];
+
+                if(self.crownSwitch.on) {
+                    [self loadBoardsIDsWithUserCards];
+                } else {
+                    self.boards = self.unfilteredBoards;
+                    [self reloadDataSource];
+                }
 
 			} else {
 		        NSLog(@"err = %@", error.localizedDescription);
@@ -150,6 +157,7 @@
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
+        [self.crownSwitch setOn:NO];
         NSLog(@"err - %@",error.localizedDescription);
     }];
 }
@@ -160,7 +168,7 @@
     NSMutableArray *boards = [NSMutableArray array];
 //    NSMutableArray *allBoards = [NSMutableArray arrayWithArray:self.unfilteredBoards];
 
-    for (SDWBoard *board in self.boards) {
+    for (SDWBoard *board in self.unfilteredBoards) {
 
         NSString *boardID = [ids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",board.boardID]].firstObject;
 
