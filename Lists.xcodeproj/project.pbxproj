@@ -41,7 +41,6 @@
 		F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */; };
 		F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA2C1A12AFD800FD4E85 /* Utils.m */; };
 		F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10AAA2D1A12AFD800FD4E85 /* Images.xcassets */; };
-		F10AAA6D1A12AFD800FD4E85 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F10AAA2E1A12AFD800FD4E85 /* Info.plist */; };
 		F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA2F1A12AFD800FD4E85 /* main.m */; };
 		F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA331A12AFD800FD4E85 /* AFHTTPRequestOperation.m */; };
 		F10AAA701A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA351A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m */; };
@@ -436,7 +435,6 @@
 			files = (
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
-				F10AAA6D1A12AFD800FD4E85 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

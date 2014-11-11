@@ -695,56 +695,6 @@
             </objects>
             <point key="canvasLocation" x="685" y="693"/>
         </scene>
-        <!--AddCardVC-->
-        <scene sceneID="7dc-qQ-Ddr">
-            <objects>
-                <viewController title="AddCardVC" id="np2-Rh-IHp" sceneMemberID="viewController">
-                    <view key="view" id="Uo9-02-qXU">
-                        <rect key="frame" x="0.0" y="0.0" width="410" height="30"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <box autoresizesSubviews="NO" focusRingType="exterior" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="6iX-Hq-mo0">
-                                <rect key="frame" x="5" y="5" width="400" height="20"/>
-                                <view key="contentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="32I-y1-8pt">
-                                            <rect key="frame" x="0.0" y="0.0" width="400" height="20"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="20" id="Rrm-U6-n4e"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" focusRingType="none" drawsBackground="YES" usesSingleLineMode="YES" id="NIF-JV-qWu">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="32I-y1-8pt" firstAttribute="leading" secondItem="6iX-Hq-mo0" secondAttribute="leading" id="7q8-ww-ogZ"/>
-                                    <constraint firstAttribute="height" constant="20" id="Dw8-1r-y8D"/>
-                                    <constraint firstAttribute="trailing" secondItem="32I-y1-8pt" secondAttribute="trailing" id="cAw-f6-gMB"/>
-                                    <constraint firstItem="32I-y1-8pt" firstAttribute="top" secondItem="6iX-Hq-mo0" secondAttribute="top" id="lJC-aN-5x7"/>
-                                    <constraint firstAttribute="width" constant="400" id="xpu-TY-6DU"/>
-                                </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </box>
-                        </subviews>
-                        <constraints>
-                            <constraint firstAttribute="trailing" secondItem="6iX-Hq-mo0" secondAttribute="trailing" constant="5" id="7Ny-ZK-39E"/>
-                            <constraint firstAttribute="bottom" secondItem="6iX-Hq-mo0" secondAttribute="bottom" constant="5" id="J4M-ff-vLB"/>
-                            <constraint firstItem="6iX-Hq-mo0" firstAttribute="top" secondItem="Uo9-02-qXU" secondAttribute="top" constant="5" id="ThH-JD-4jc"/>
-                            <constraint firstItem="6iX-Hq-mo0" firstAttribute="leading" secondItem="Uo9-02-qXU" secondAttribute="leading" constant="5" id="cbi-ai-PZC"/>
-                        </constraints>
-                    </view>
-                </viewController>
-                <customObject id="lWh-TJ-ABX" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1318" y="787"/>
-        </scene>
         <!--Boards Controller-->
         <scene sceneID="HLw-RW-Ydx">
             <objects>

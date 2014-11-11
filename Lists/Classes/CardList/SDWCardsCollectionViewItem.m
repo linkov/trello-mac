@@ -139,7 +139,8 @@
     if (theEvent.clickCount >= 2) {
         self.textField.editable = YES;
         [self.textField becomeFirstResponder];
-        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+      //  [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+        [self.delegate cardViewDidReceiveDoubleClick:self];
     }
     else {
         self.textField.editable = NO;

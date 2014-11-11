@@ -241,14 +241,6 @@
 }
 
 
-
-- (void)collectionItemViewDoubleClick:(NSCollectionViewItem *)sender {
-
-    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    selected.delegate = self;
-
-    
-}
 - (IBAction)addCard:(id)sender {
 
     SDWCard *newCard = [SDWCard new];
@@ -273,6 +265,12 @@
 
 
 #pragma mark - SDWCardViewDelegate
+
+- (void)cardViewDidReceiveDoubleClick:(SDWCardsCollectionViewItem *)cardView {
+
+    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    selected.delegate = self;
+}
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 
