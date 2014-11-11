@@ -14,6 +14,8 @@
 
 + (instancetype)sharedSettings;
 
+@property BOOL shouldFilter;
+@property (strong) NSString *userID;
 @property (strong) NSString *userToken;
 @property (strong,nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;

@@ -39,6 +39,17 @@ static SDWAppSettings *sharedInstance = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.token"];
 }
 
+
+- (void)setUserID:(NSString *)userID {
+    [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"com.sdwr.trello-mac.userID"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (NSString *)userID {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.userID"];
+}
+
+
 - (NSColor *)appBackgroundColor {
 
    return [NSColor colorWithHexColorString:@"1E5676"];

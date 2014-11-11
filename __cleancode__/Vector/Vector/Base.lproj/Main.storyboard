@@ -830,6 +830,9 @@
                                         <constraint firstAttribute="width" constant="35" id="gmh-EW-1xv"/>
                                         <constraint firstAttribute="height" constant="20" id="rn1-47-exr"/>
                                     </constraints>
+                                    <connections>
+                                        <action selector="crownSwitchDidChange:" target="Kp4-s7-wUc" id="KQL-Jf-p8W"/>
+                                    </connections>
                                 </customView>
                                 <button hidden="YES" wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOx-wM-t8E">
                                     <rect key="frame" x="112" y="244" width="26" height="28"/>
@@ -916,6 +919,7 @@
                     </box>
                     <connections>
                         <outlet property="crownImageView" destination="M6O-Vv-DpA" id="YAP-G3-WbM"/>
+                        <outlet property="crownSwitch" destination="WFc-xI-G8e" id="Q0Z-LG-bYD"/>
                         <outlet property="loadingProgress" destination="8oa-dB-e8F" id="ejc-po-QX8"/>
                         <outlet property="logoutButton" destination="ECb-Mt-2HD" id="WKI-0m-DDp"/>
                         <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>

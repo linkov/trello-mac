@@ -68,19 +68,13 @@
         [self addCard:nil];
     }];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.shouldFilterNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-}
+        [self loadCardsForListID:self.currentListID];
 
-- (void)viewWillAppear {
-	[super viewWillAppear];
-}
+    }];
 
-- (void)viewDidAppear {
-    [super viewDidAppear];
-}
 
-- (void)viewDidLayout {
-	[super viewDidLayout];
 }
 
 - (void)clearCards {
@@ -107,6 +101,20 @@
 //    self.cards = nil;
     [self loadMembers:self.parentListID];
 
+}
+
+- (void)reloadCardsAndFilter:(NSArray *)content {
+    NSMutableArray *filteredCards = [NSMutableArray array];
+    for (SDWCard *card in content) {
+
+        NSString *idM = [card.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self==%@",SharedSettings.userID]].firstObject;
+
+        if (idM) {
+            [filteredCards addObject:card];
+        }
+    }
+
+    self.cardsArrayController.content = filteredCards;
 }
 
 - (void)loadMembers:(NSString *)listID {
@@ -163,7 +171,13 @@
 
     [self.addCardButton setHidden:NO];
     NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
-	self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
+
+    if (SharedSettings.shouldFilter) {
+        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByTime]]];
+    } else {
+        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
+    }
+
     //self.cards = objects;
 }
 

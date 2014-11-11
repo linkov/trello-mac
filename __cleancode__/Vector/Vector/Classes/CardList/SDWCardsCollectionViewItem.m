@@ -106,17 +106,6 @@
     }
 }
 
-//- (void)keyDown:(NSEvent *)theEvent {
-//[super keyDown:theEvent];
-//
-//    NSLog(@"key = %i",theEvent.keyCode);
-//
-//
-//    if (self.textField.editable) {
-//
-//    }
-//}
-
 - (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
 
     NSTextField* tf = (NSTextField*)control;

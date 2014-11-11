@@ -17,9 +17,12 @@
 #import "AFTrelloAPIClient.h"
 #import "SDWLoginVC.h"
 #import <QuartzCore/QuartzCore.h>
+#import "ITSwitch.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
 @property (strong) NSArray *boards;
+//@property (strong) NSArray *crownBoards;
+//@property (strong) NSArray *unfilteredBoards;
 @property (strong) IBOutlet NSOutlineView *outlineView;
 @property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
@@ -29,6 +32,7 @@
 @property (strong) SDWBoard *boardWithDrop;
 @property (strong) SDWBoard *boardWithDropParent;
 @property (strong) IBOutlet NSButton *logoutButton;
+@property (strong) IBOutlet ITSwitch *crownSwitch;
 
 @end
 
@@ -41,6 +45,7 @@
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
+   // self.crownSwitch.enabled = NO;
 
 }
 
@@ -73,6 +78,12 @@
     [[self cardsVC] clearCards];
 
 }
+- (IBAction)crownSwitchDidChange:(ITSwitch *)sender {
+
+    SharedSettings.shouldFilter = sender.on;
+    [[NSNotificationCenter defaultCenter] postNotificationName:@"com.sdwr.trello-mac.shouldFilterNotification" object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
+    [self loadBoards];
+}
 
 - (void)loadBoards {
 
@@ -85,7 +96,9 @@
 		[[AFRecordPathManager manager]
 		 setAFRecordMethod:@"findAll"
 		          forModel:[SDWBoard class]
-		    toConcretePath:@"member/alexlink2/boards?fields=name&lists=open"];
+		    toConcretePath:@"members/me/boards?fields=name&lists=open"];
+        //members/me?fields=username&cards=all&card_fields=name,idBoard&boards=all&lists=all&board_lists=all
+        //members/me/boards?fields=name&lists=open
 
 
 		[self.loadingProgress startAnimation:nil];
@@ -99,10 +112,11 @@
 		        NSLog(@"boards - %@", objects);
 
 		        self.boards = objects;
+             //   self.unfilteredBoards = objects;
 		        self.outlineView.delegate = self;
-		        [self.outlineView deselectAll:nil];
-		        [self.outlineView expandItem:nil expandChildren:YES];
-		        [self.outlineView reloadData];
+                [self reloadDataSource];
+               if(self.crownSwitch.on) [self loadBoardsIDsWithUserCards];
+
 			} else {
 		        NSLog(@"err = %@", error.localizedDescription);
 			}
@@ -112,6 +126,63 @@
 
         self.logoutButton.image = [NSImage imageNamed:@"logout-small-flip"];
     }
+}
+
+- (void)reloadDataSource {
+
+    [self.outlineView deselectAll:nil];
+    [self.outlineView expandItem:nil expandChildren:YES];
+    [self.outlineView reloadData];
+}
+
+- (void)loadBoardsIDsWithUserCards {
+
+    [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        SharedSettings.userID = responseObject[@"id"];
+        NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
+        NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
+        NSLog(@"crown boards - %@",crownBoardIDs);
+        //self.crownSwitch.enabled = YES;
+        self.boards = [self filteredBoardsForIDs:crownBoardIDs listIDs:crownListIDs];
+        [self reloadDataSource];
+
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"err - %@",error.localizedDescription);
+    }];
+}
+
+
+- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
+
+    NSMutableArray *boards = [NSMutableArray array];
+//    NSMutableArray *allBoards = [NSMutableArray arrayWithArray:self.unfilteredBoards];
+
+    for (SDWBoard *board in self.boards) {
+
+        NSString *boardID = [ids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",board.boardID]].firstObject;
+
+        if (boardID) {
+            NSMutableArray *lists = [NSMutableArray array];
+            for (SDWBoard *list in board.children) {
+
+                NSString *listID = [lids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",list.boardID]].firstObject;
+
+                if (listID) {
+                    [lists addObject:list];
+                }
+
+            }
+            board.children = lists;
+            [boards addObject:board];
+        }
+
+    }
+
+    NSLog(@"filtered boards - %@",boards);
+    return boards;
 }
 
 - (SDWCardsController *)cardsVC {
@@ -172,8 +243,6 @@
         boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
         [boardNameRow setNeedsDisplay:YES];
     }
-
-
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {

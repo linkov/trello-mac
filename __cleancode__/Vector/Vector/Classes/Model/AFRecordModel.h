@@ -16,6 +16,7 @@ typedef void (^AFRecordCallback)(id, NSError *);
 @property (strong) NSDictionary *attributes;
 
 + (void)findAll:(AFRecordCallback)block;
++ (void)path:(NSString *)path findAll:(AFRecordCallback)block;
 //+ (void)attribute:(NSString *)attribute withValue:(id)searchValue findAll:(AFRecordCallback)block;
 //+ (void)attribute:(NSString *)attribute withValue:(id)searchValue findFirst:(AFRecordCallback)block;
 

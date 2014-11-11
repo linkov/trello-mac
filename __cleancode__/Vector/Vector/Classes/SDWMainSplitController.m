@@ -29,6 +29,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
+    SharedSettings.shouldFilter = NO;
+
 	self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
 	self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
 
