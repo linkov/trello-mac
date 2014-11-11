@@ -24,7 +24,6 @@
 
 @optional
 
-- (void)cardViewDidReceiveDoubleClick:(SDWCardsCollectionViewItem *)cardView;
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView;
 - (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView;
 
