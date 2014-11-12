@@ -288,12 +288,11 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
 
-        //        SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
-        //        card = updatedCard;
+        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+        selectedCard.selected = NO;
+        [selectedCard.view setNeedsDisplay:YES];
 
         NSLog(@"success save");
-        //        SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-        //        selected.selected = NO;
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
