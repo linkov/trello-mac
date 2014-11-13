@@ -32,18 +32,6 @@
     [[SharedSettings appHighlightColor] set];
     [NSBezierPath fillRect:drawRect];
 
-//    NSBezierPath* bezier2Path = NSBezierPath.bezierPath;
-//    [bezier2Path moveToPoint: NSMakePoint(133, 22)];
-//    [bezier2Path curveToPoint: NSMakePoint(183.25, 22) controlPoint1: NSMakePoint(133, 22) controlPoint2: NSMakePoint(183.25, 22)];
-//    [bezier2Path lineToPoint: NSMakePoint(194, 11.46)];
-//    [bezier2Path lineToPoint: NSMakePoint(183.25, 0)];
-//    [bezier2Path lineToPoint: NSMakePoint(0, 0)];
-//    [bezier2Path lineToPoint: NSMakePoint(0, 22)];
-//    [bezier2Path lineToPoint: NSMakePoint(133, 22)];
-//    [bezier2Path lineToPoint: NSMakePoint(133, 22)];
-//    [bezier2Path closePath];
-//    [[NSColor colorWithHexColorString:@"3E6378"] setFill];
-//    [bezier2Path fill];
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
@@ -53,10 +41,7 @@
 
     if (theEvent.clickCount >= 2) {
         [self.delegate boardRowDidDoubleClick:self];
-        //self.textLabel.editable = YES;
-        //[self.textLabel becomeFirstResponder];
-        //        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
-        // [self.delegate cardViewDidReceiveDoubleClick:self];
+
     }
 }
 
