@@ -34,6 +34,7 @@
 @property (strong) IBOutlet NSButton *logoutButton;
 @property (strong) IBOutlet ITSwitch *crownSwitch;
 @property (strong) IBOutlet NSScrollView *mainScroll;
+@property (strong) IBOutlet NSButton *reloadButton;
 
 @end
 
@@ -47,6 +48,7 @@
     [self.outlineView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
    // self.crownSwitch.enabled = NO
+    self.reloadButton.hidden = YES;
 
     [[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewWillStartLiveMagnifyNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
@@ -95,6 +97,13 @@
     [self loadBoards];
 }
 
+- (IBAction)reloadBoards:(id)sender {
+
+    self.reloadButton.hidden = YES;
+    [self loadBoards];
+}
+
+
 - (void)loadBoards {
 
 	if (SharedSettings.userToken) {
@@ -133,6 +142,7 @@
                 }
 
 			} else {
+                self.reloadButton.hidden = NO;
 		        NSLog(@"err = %@", error.localizedDescription);
 			}
 		}];

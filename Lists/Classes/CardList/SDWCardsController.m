@@ -28,6 +28,7 @@
 @property (strong) IBOutlet SDWMenuItemImageView *trashImageView;
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
+@property (strong) IBOutlet NSButton *reloadButton;
 
 @end
 
@@ -43,6 +44,7 @@
 	[super viewDidLoad];
 
 
+    self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
     self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
 
@@ -93,12 +95,16 @@
 
     [self reloadCards];
 }
+- (IBAction)reloadCardsAfterFail:(id)sender {
+
+    self.reloadButton.hidden = YES;
+    [self reloadCards];
+}
 
 - (void)reloadCards {
 
     SharedSettings.selectedListUsers = nil;
     self.cardsArrayController.content = nil;
-//    self.cards = nil;
     [self loadMembers:self.parentListID];
 
 }
@@ -135,6 +141,7 @@
             SharedSettings.selectedListUsers = objs;
             [self loadCardsForListID:self.currentListID];
         } else {
+            self.reloadButton.hidden = NO;
             NSLog(@"err = %@", err.localizedDescription);
         }
     }];
@@ -162,6 +169,7 @@
         if (!err) {
             [self reloadCollection:objs];
         } else {
+            self.reloadButton.hidden = NO;
             NSLog(@"err = %@", err.localizedDescription);
         }
     }];
