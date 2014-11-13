@@ -14,6 +14,7 @@
 #import "SDWCardsCollectionViewItem.h"
 #import "SDWAppSettings.h"
 #import "SDWMenuItemImageView.h"
+#import "PulseView.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate,SDWMenuItemDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -29,6 +30,7 @@
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
 @property (strong) IBOutlet NSButton *reloadButton;
+@property (strong) IBOutlet NSProgressIndicator *cardSavingIndicator;
 
 @end
 
@@ -42,7 +44,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
@@ -149,6 +150,10 @@
 }
 
 - (void)loadCardsForListID:(NSString *)listID {
+
+//    PulseView *pulse = [[PulseView alloc]initWithFrame:CGRectMake(0, 0, 140, 140)];
+//    pulse.wantsLayer = YES;
+//    [self.view addSubview:pulse];
 
     NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
     NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
@@ -291,11 +296,29 @@
     }
 }
 
+- (void)showCardSavingIndicator:(BOOL)show {
+
+    if (show) {
+        self.cardSavingIndicator.hidden = NO;
+        [self.cardSavingIndicator startAnimation:nil];
+    } else {
+        self.cardSavingIndicator.hidden = YES;
+        [self.cardSavingIndicator stopAnimation:nil];
+    }
+
+}
+
 - (void)updateCard:(SDWCard *)card {
+
+    [self showCardSavingIndicator:YES];
+
+    self.cardSavingIndicator.hidden = NO;
+    [self.cardSavingIndicator startAnimation:nil];
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
 
+        [self showCardSavingIndicator:NO];
         SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
         selectedCard.selected = NO;
         [selectedCard.view setNeedsDisplay:YES];
@@ -303,6 +326,7 @@
         NSLog(@"success save");
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showCardSavingIndicator:NO];
 
         NSLog(@"err save - %@",error.localizedDescription);
     }];
@@ -310,6 +334,7 @@
 }
 
 - (void)createCard:(SDWCard *)card {
+    [self showCardSavingIndicator:YES];
 
     NSDictionary *params = @{
                              @"name":card.name,
@@ -325,6 +350,8 @@
                                    success:^(NSURLSessionDataTask *task, id responseObject)
     {
 
+        [self showCardSavingIndicator:NO];
+
         SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
@@ -337,6 +364,8 @@
         //        selected.selected = NO;
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        [self showCardSavingIndicator:NO];
 
         NSLog(@"err save - %@",error.localizedDescription);
     }];
@@ -356,16 +385,20 @@
 
     if (action == SDWMenuItemDropActionDelete) {
 
+        [self showCardSavingIndicator:YES];
+
         NSString *urlString = [NSString stringWithFormat:@"cards/%@?",objectID];
 
         [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
+            [self showCardSavingIndicator:NO];
             //TODO: don't rely on selectionIndex in the future
             NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
             [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
             self.cardsArrayController.content = arr;
 
         } failure:^(NSURLSessionDataTask *task, NSError *error) {
+            [self showCardSavingIndicator:NO];
             NSLog(@"err - %@",error.localizedDescription);
         }];
     }

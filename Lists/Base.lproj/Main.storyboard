@@ -923,7 +923,7 @@
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="49o-Ud-LWD">
                                     <rect key="frame" x="18" y="267" width="51" height="25"/>
-                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Xy8-Qi-kvX">
+                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="Xy8-Qi-kvX">
                                         <font key="font" size="24" name="TektonPro-BoldObl"/>
                                         <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -1010,16 +1010,29 @@
                                         <action selector="reloadCardsAfterFail:" target="s73-N2-doq" id="4wt-0G-SFS"/>
                                     </connections>
                                 </button>
+                                <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="znm-p2-A03">
+                                    <rect key="frame" x="80" y="273" width="16" height="16"/>
+                                    <contentFilters>
+                                        <ciFilter name="CIColorInvert">
+                                            <configuration>
+                                                <null key="inputImage"/>
+                                            </configuration>
+                                        </ciFilter>
+                                    </contentFilters>
+                                </progressIndicator>
                             </subviews>
                         </view>
                         <constraints>
+                            <constraint firstItem="znm-p2-A03" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="33" id="24T-GB-QkW"/>
                             <constraint firstItem="sUr-Tl-WD0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="4t4-CV-Awn"/>
                             <constraint firstItem="FUK-ha-OsD" firstAttribute="centerY" secondItem="2nG-Pk-jcn" secondAttribute="centerY" id="C2V-ai-AXD"/>
                             <constraint firstAttribute="centerX" secondItem="tiT-U4-K4T" secondAttribute="centerX" id="JPa-oB-nt4"/>
                             <constraint firstAttribute="bottom" secondItem="2nG-Pk-jcn" secondAttribute="bottom" id="NUa-18-Z1t"/>
                             <constraint firstItem="49o-Ud-LWD" firstAttribute="leading" secondItem="06c-xL-hpn" secondAttribute="leading" constant="20" id="Ngx-a5-jlJ"/>
+                            <constraint firstItem="znm-p2-A03" firstAttribute="leading" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="13" id="Obh-pg-14s"/>
                             <constraint firstItem="FUK-ha-OsD" firstAttribute="centerX" secondItem="2nG-Pk-jcn" secondAttribute="centerX" constant="-3" id="Okg-TN-WEO"/>
                             <constraint firstItem="2nG-Pk-jcn" firstAttribute="top" secondItem="49o-Ud-LWD" secondAttribute="bottom" constant="4" id="QV8-rP-4bM"/>
+                            <constraint firstItem="sUr-Tl-WD0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="znm-p2-A03" secondAttribute="trailing" constant="10" id="Sft-7T-5ik"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="VZV-1H-Ftd"/>
                             <constraint firstItem="qx4-eN-ucQ" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="26" id="Vfy-xg-tKJ"/>
                             <constraint firstItem="qx4-eN-ucQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="Wm9-bS-FQx"/>
@@ -1036,6 +1049,7 @@
                     </box>
                     <connections>
                         <outlet property="addCardButton" destination="sUr-Tl-WD0" id="qon-sS-kno"/>
+                        <outlet property="cardSavingIndicator" destination="znm-p2-A03" id="LIY-x9-Sed"/>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
                         <outlet property="collectionView" destination="3A0-CC-bC7" id="ylY-R6-JEC"/>
                         <outlet property="listNameLabel" destination="49o-Ud-LWD" id="Umd-f5-had"/>
