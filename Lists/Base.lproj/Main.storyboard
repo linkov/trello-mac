@@ -706,7 +706,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="250" height="296"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
-                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" hasHorizontalScroller="NO" maxMagnification="0.25" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
+                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" hasHorizontalScroller="NO" maxMagnification="1" minMagnification="1" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hmz-VM-KlS">
                                     <rect key="frame" x="0.0" y="0.0" width="250" height="236"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="ZOQ-Og-rWc">
                                         <rect key="frame" x="1" y="1" width="148" height="398"/>
@@ -753,6 +753,9 @@
                                                                     <constraint firstAttribute="bottom" secondItem="dgo-3k-Zcq" secondAttribute="bottom" id="aS5-5h-4kA"/>
                                                                     <constraint firstAttribute="trailing" secondItem="dgo-3k-Zcq" secondAttribute="trailing" id="rR8-ST-UbE"/>
                                                                 </constraints>
+                                                                <connections>
+                                                                    <outlet property="textLabel" destination="dgo-3k-Zcq" id="G4L-34-3Ka"/>
+                                                                </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
                                                     </tableColumn>
@@ -865,7 +868,7 @@
                             <constraint firstItem="hOx-wM-t8E" firstAttribute="top" secondItem="Ksb-xN-yU4" secondAttribute="top" constant="24" id="yeS-32-SFZ"/>
                         </constraints>
                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                        <color key="fillColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="fillColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                     </box>
                     <connections>
                         <outlet property="crownImageView" destination="M6O-Vv-DpA" id="YAP-G3-WbM"/>
@@ -873,6 +876,7 @@
                         <outlet property="loadingProgress" destination="8oa-dB-e8F" id="ejc-po-QX8"/>
                         <outlet property="logoutButton" destination="ECb-Mt-2HD" id="WKI-0m-DDp"/>
                         <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>
+                        <outlet property="mainScroll" destination="Hmz-VM-KlS" id="bzo-WI-FPq"/>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
                     </connections>
                 </viewController>

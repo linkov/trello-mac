@@ -46,4 +46,19 @@
 //    [bezier2Path fill];
 }
 
+- (void)mouseDown:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
+
+    NSLog(@"mouseDown");
+
+    if (theEvent.clickCount >= 2) {
+        [self.delegate boardRowDidDoubleClick:self];
+        //self.textLabel.editable = YES;
+        //[self.textLabel becomeFirstResponder];
+        //        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
+        // [self.delegate cardViewDidReceiveDoubleClick:self];
+    }
+}
+
+
 @end

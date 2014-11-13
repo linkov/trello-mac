@@ -19,7 +19,7 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ITSwitch.h"
 
-@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource>
+@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
 @property (strong) NSArray *unfilteredBoards;
@@ -33,6 +33,7 @@
 @property (strong) SDWBoard *boardWithDropParent;
 @property (strong) IBOutlet NSButton *logoutButton;
 @property (strong) IBOutlet ITSwitch *crownSwitch;
+@property (strong) IBOutlet NSScrollView *mainScroll;
 
 @end
 
@@ -45,7 +46,14 @@
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
-   // self.crownSwitch.enabled = NO;
+   // self.crownSwitch.enabled = NO
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewWillStartLiveMagnifyNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        //[self loadCardsForListID:self.currentListID];
+
+    }];
+
 
 }
 
@@ -98,7 +106,7 @@
 		[[AFRecordPathManager manager]
 		 setAFRecordMethod:@"findAll"
 		          forModel:[SDWBoard class]
-		    toConcretePath:@"members/me/boards?fields=name&lists=open"];
+		    toConcretePath:@"members/me/boards?filter=open&fields=name&lists=open"];
         //members/me?fields=username&cards=all&card_fields=name,idBoard&boards=all&lists=all&board_lists=all
         //members/me/boards?fields=name&lists=open
 
@@ -231,15 +239,42 @@
 
 }
 
+#pragma mark - SDWBoardsListRowDelegate
+
+- (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow {
+
+
+//    NSTreeNode *item = [self.outlineView itemAtRow:self.outlineView.selectedRow];
+//    SDWBoard *board =[item representedObject];
+//    SDWBoard *parentBoard = item.parentNode.representedObject;
+//
+//    if (board.isLeaf) {
+//
+//        NSLog(@"%@",board.name);
+//
+//        SDWCardsController *cards = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
+//        [cards setupCardsForList:board parentList:parentBoard];
+////        NSWindowController *window = [[NSWindowController alloc]init];
+////        window.window = [NSWindow new];
+////        window.contentViewController = cards;
+////        [window showWindow:nil];
+////        [window.window makeKeyAndOrderFront:self];
+//
+//    }
+}
+
+
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
+
 
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
 
     SDWBoard *board =[self.outlineView itemAtRow:row];
+    SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
+    boardNameRow.delegate = self;
 
     if (!board.isLeaf) {
 
-        SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
         boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
         [boardNameRow setNeedsDisplay:YES];
     }
