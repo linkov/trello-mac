@@ -53,6 +53,7 @@
 		F10AAA771A12AFD800FD4E85 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA441A12AFD800FD4E85 /* AFURLSessionManager.m */; };
 		F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA471A12AFD800FD4E85 /* ITSwitch.m */; };
 		F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */; };
+		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,6 +151,7 @@
 		F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 		F119AE7419FD4CFC0061D7DF /* Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
+		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F1B3AB841A04E9A400927CB9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -362,6 +364,7 @@
 		F119AE6B19FD4CFC0061D7DF = {
 			isa = PBXGroup;
 			children = (
+				F14B360F1A1441C000AFD5C9 /* icon.icns */,
 				F10AA9E21A12AFD800FD4E85 /* Lists */,
 				F10AAA301A12AFD800FD4E85 /* Vendor */,
 				F1B3AB841A04E9A400927CB9 /* WebKit.framework */,
@@ -442,6 +445,7 @@
 			files = (
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
+				F14B36101A1441C000AFD5C9 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,28 +596,28 @@
 		F119AE9519FD4CFC0061D7DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
 			};
 			name = Debug;
 		};
 		F119AE9619FD4CFC0061D7DF /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-2";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
 			};
 			name = Release;
 		};
