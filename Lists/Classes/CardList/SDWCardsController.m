@@ -66,7 +66,7 @@
         self.cardsArrayController.content = arr;
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.shouldCreateCardNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldCreateCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         [self addCard:nil];
     }];

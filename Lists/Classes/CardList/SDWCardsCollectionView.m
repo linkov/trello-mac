@@ -21,7 +21,10 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     }
 
-        [super keyDown:theEvent];
+    if (modifier == 1048840 && key == 15) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
+    }
+
 }
 
 @end

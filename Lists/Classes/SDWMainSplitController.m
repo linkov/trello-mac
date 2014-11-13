@@ -38,7 +38,7 @@
 
 	[self.boardsVC.view addConstraint:self.sideBarWidth];
 
-	[[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.didReceiveUserTokenNotification"
+	[[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveUserTokenNotification
 	                                                  object:nil
 	                                                   queue:[NSOperationQueue mainQueue]
 	                                              usingBlock:^(NSNotification *note)
@@ -55,7 +55,7 @@
 	    [self toggleSideBar];
 	}];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:@"com.sdwr.trello-mac.shouldReloadListNotification" object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadListNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         [self.cardsVC reloadCards];
     }];
