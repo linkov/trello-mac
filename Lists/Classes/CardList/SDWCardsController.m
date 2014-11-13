@@ -59,7 +59,6 @@
     self.trashImageView.delegate = self;
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-//        SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",note.userInfo[@"cardID"]]].lastObject;
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
         [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
@@ -74,6 +73,12 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         [self loadCardsForListID:self.currentListID];
+
+    }];
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self deleteSelectedCard];
 
     }];
 
@@ -194,7 +199,6 @@
         self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
     }
 
-    //self.cards = objects;
 }
 
 
@@ -212,24 +216,12 @@
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
-    NSLog(@"acceptDrop");
-
-//    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-//    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
-//    NSString *cardID = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-//
-//    SDWCard *card = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID ==%@",cardID]].lastObject;
-//
-//    [self.cardsArrayController  removeObject:card];
-//    
     return YES;
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
-
     [self.trashImageView setHidden:NO];
     [self.addCardButton setHidden:YES];
-    NSLog(@"Can drop");
     return YES;
 }
 
@@ -243,10 +235,8 @@
     NSDictionary *cardDict = @{@"cardID":card.cardID,@"boardID":card.boardID};
 
     NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
-    //    [pasteboard setDraggedTypes:@[@"MY_DRAG_TYPE"]];
     [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
-    // Here we temporarily store the index of the Cell,
-    // being dragged to pasteboard.
+
     return YES;
 }
 
@@ -326,8 +316,6 @@
         selectedCard.selected = NO;
         [selectedCard.view setNeedsDisplay:YES];
 
-        NSLog(@"success save");
-
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showCardSavingIndicator:NO];
 
@@ -346,8 +334,6 @@
                              @"urlSource":@"null"
                              };
 
-    NSLog(@"params -= %@",params);
-
     [[AFTrelloAPIClient sharedClient] POST:@"cards?"
                                 parameters:params
                                    success:^(NSURLSessionDataTask *task, id responseObject)
@@ -361,10 +347,6 @@
         [arr removeObjectAtIndex:0];
         [arr insertObject:updatedCard atIndex:0];
         self.cardsArrayController.content = arr;
-
-        NSLog(@"success create");
-        //        SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-        //        selected.selected = NO;
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -390,21 +372,33 @@
 
         [self showCardSavingIndicator:YES];
 
-        NSString *urlString = [NSString stringWithFormat:@"cards/%@?",objectID];
-
-        [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
-            [self showCardSavingIndicator:NO];
-            //TODO: don't rely on selectionIndex in the future
-            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-            [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
-            self.cardsArrayController.content = arr;
-
-        } failure:^(NSURLSessionDataTask *task, NSError *error) {
-            [self showCardSavingIndicator:NO];
-            NSLog(@"err - %@",error.localizedDescription);
-        }];
+        [self deleteCardWithID:objectID];
     }
+}
+
+- (void)deleteSelectedCard {
+
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    [self deleteCardWithID:card.cardID];
+
+}
+
+- (void)deleteCardWithID:(NSString *)cardID {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
+
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self showCardSavingIndicator:NO];
+        //TODO: don't rely on selectionIndex in the future
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+        self.cardsArrayController.content = arr;
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showCardSavingIndicator:NO];
+        NSLog(@"err - %@",error.localizedDescription);
+    }];
 }
 
 @end

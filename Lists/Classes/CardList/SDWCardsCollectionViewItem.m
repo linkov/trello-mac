@@ -44,13 +44,10 @@
 
     for (id theview in [self view].subviews) {
 
-        NSLog(@"- %@",theview);
         for (id view1 in [(NSView *)theview subviews]) {
 
-            NSLog(@"- %@",theview);
             for (id view2 in [(NSView *)view1 subviews]) {
 
-                NSLog(@"-- %@",view2);
                 if ([view2 isKindOfClass:[NSStackView class]]) {
 
                     stack = (NSStackView *)view2;

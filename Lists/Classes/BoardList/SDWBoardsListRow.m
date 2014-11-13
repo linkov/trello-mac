@@ -37,8 +37,6 @@
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
 
-    NSLog(@"mouseDown");
-
     if (theEvent.clickCount >= 2) {
         [self.delegate boardRowDidDoubleClick:self];
 

@@ -116,9 +116,6 @@
 		 setAFRecordMethod:@"findAll"
 		          forModel:[SDWBoard class]
 		    toConcretePath:@"members/me/boards?filter=open&fields=name&lists=open"];
-        //members/me?fields=username&cards=all&card_fields=name,idBoard&boards=all&lists=all&board_lists=all
-        //members/me/boards?fields=name&lists=open
-
 
 		[self.loadingProgress startAnimation:nil];
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
@@ -127,10 +124,7 @@
 
 		    if (!error) {
 
-		        NSLog(@"boards - %@", objects);
-
 		        self.unfilteredBoards = objects;
-             //   self.unfilteredBoards = objects;
 		        self.outlineView.delegate = self;
 
                 if(self.crownSwitch.on) {
@@ -166,8 +160,6 @@
         SharedSettings.userID = responseObject[@"id"];
         NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
         NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
-        NSLog(@"crown boards - %@",crownBoardIDs);
-        //self.crownSwitch.enabled = YES;
         self.boards = [self filteredBoardsForIDs:crownBoardIDs listIDs:crownListIDs];
         [self reloadDataSource];
 
@@ -205,8 +197,6 @@
         }
 
     }
-
-    NSLog(@"filtered boards - %@",boards);
     return boards;
 }
 

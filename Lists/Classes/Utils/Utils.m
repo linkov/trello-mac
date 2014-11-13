@@ -26,8 +26,7 @@
         [firstName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
                                       options: NSStringEnumerationByComposedCharacterSequences
                                    usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
-                                       // If you want to see the way the string has been split
-                                       //NSLog(@"%@", substring);
+
                                        [firstNameArr addObject: substring];
                                    }
          ];
@@ -37,8 +36,7 @@
         [lastName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
                                      options: NSStringEnumerationByComposedCharacterSequences
                                   usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
-                                      // If you want to see the way the string has been split
-                                      //NSLog(@"%@", substring);
+
                                       [lastNameArr addObject: substring];
                                   }
          ];

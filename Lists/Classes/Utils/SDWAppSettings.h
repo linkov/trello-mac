@@ -12,6 +12,7 @@
 extern NSString * const SDWListsDidReceiveUserTokenNotification;
 extern NSString * const SDWListsDidChangeSidebarStatusNotification;
 
+extern NSString * const SDWListsShouldRemoveCardNotification;
 extern NSString * const SDWListsDidRemoveCardNotification;
 extern NSString * const SDWListsShouldFilterNotification;
 extern NSString * const SDWListsShouldCreateCardNotification;

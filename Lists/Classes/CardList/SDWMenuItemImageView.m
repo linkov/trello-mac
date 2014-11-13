@@ -41,8 +41,6 @@
 
     }
 
-    NSLog(@"ended");
-
 }
 
 - (void)performActionForObjectID:(NSString *)objectID {
@@ -54,7 +52,6 @@
 
     self.layer.filters = @[];
     self.canPerformAction = NO;
-    NSLog(@"exited");
 }
 
 
