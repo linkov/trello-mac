@@ -60,6 +60,12 @@
         [self.cardsVC reloadCards];
     }];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadBoardsNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self.cardsVC clearCards];
+        [self.boardsVC reloadBoards:nil];
+    }];
+
 	// self.firstSplitItem = [self splitViewItemForViewController:boardsVC];
 }
 

@@ -17,7 +17,7 @@ NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.should
 
 NSString * const SDWListsShouldCreateCardNotification = @"com.sdwr.trello-mac.shouldCreateCardNotification";
 NSString * const SDWListsShouldReloadListNotification = @"com.sdwr.trello-mac.shouldReloadListNotification";
-//SDWListsShouldCreateCardNotification
+NSString * const SDWListsShouldReloadBoardsNotification = @"com.sdwr.trello-mac.shouldReloadBoardsNotification";
 
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"

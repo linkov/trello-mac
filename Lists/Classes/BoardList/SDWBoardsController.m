@@ -99,6 +99,8 @@
 
 - (IBAction)reloadBoards:(id)sender {
 
+    self.boards = @[];
+    [self.outlineView reloadData];
     self.reloadButton.hidden = YES;
     [self loadBoards];
 }
@@ -109,8 +111,6 @@
 	if (SharedSettings.userToken) {
 
         self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
-
-		[[self cardsVC].loadingIndicator startAnimation:nil];
 
 		[[AFRecordPathManager manager]
 		 setAFRecordMethod:@"findAll"
@@ -124,7 +124,6 @@
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
 		    [self.loadingProgress stopAnimation:nil];
-		    [[self cardsVC].loadingIndicator stopAnimation:nil];
 
 		    if (!error) {
 

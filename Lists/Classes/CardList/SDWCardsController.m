@@ -89,6 +89,7 @@
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
 
+    self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;
     self.listName = list.name;
     self.currentListID = list.boardID;
@@ -171,7 +172,9 @@
 
         [self.loadingIndicator stopAnimation:nil];
 
+
         if (!err) {
+            self.reloadButton.hidden = YES;
             [self reloadCollection:objs];
         } else {
             self.reloadButton.hidden = NO;

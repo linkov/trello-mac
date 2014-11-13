@@ -17,6 +17,7 @@ extern NSString * const SDWListsShouldFilterNotification;
 extern NSString * const SDWListsShouldCreateCardNotification;
 
 extern NSString * const SDWListsShouldReloadListNotification;
+extern NSString * const SDWListsShouldReloadBoardsNotification;
 
 
 @interface SDWAppSettings : NSObject

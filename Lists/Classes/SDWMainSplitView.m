@@ -23,10 +23,18 @@
 
 - (void)keyDown:(NSEvent *)theEvent {
 
+
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
+
+    //1179914
+
     if (modifier == 1048840 && key == 15) {
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
+    }
+
+    if (modifier == 1179914 && key == 15) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadBoardsNotification object:nil];
     }
 
     if (modifier == 1048840 && key == 45) {

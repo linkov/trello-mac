@@ -13,5 +13,6 @@
 @property (strong,nonatomic) NSColor *textColor;
 
 - (void)loadBoards;
+- (IBAction)reloadBoards:(id)sender;
 
 @end
