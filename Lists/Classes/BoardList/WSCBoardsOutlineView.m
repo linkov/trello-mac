@@ -38,15 +38,15 @@
 
     NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"List menu"];
 
-    [theMenu insertItemWithTitle:@"New List"
-                          action:@selector(addList)
-                   keyEquivalent:@""
-                         atIndex:0];
+//    [theMenu insertItemWithTitle:@"New List"
+//                          action:@selector(addList)
+//                   keyEquivalent:@""
+//                         atIndex:0];
 
     [theMenu insertItemWithTitle:@"Delete"
                           action:@selector(removeList)
                    keyEquivalent:@""
-                         atIndex:1];
+                         atIndex:0];
 
 
     self.contextRow = row;

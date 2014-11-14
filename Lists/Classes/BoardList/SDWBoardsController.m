@@ -321,51 +321,51 @@
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {
 
 
-    SDWBoard *board = [[self.outlineView itemAtRow:listRow] representedObject];
-    self.editedListPositon = board.pos;
-    SDWBoard *parentBoard =[[[self.outlineView itemAtRow:listRow] parentNode] representedObject];
-    NSMutableArray *mutableParentBoardChildren =[NSMutableArray arrayWithArray:parentBoard.children];
-
-    NSUInteger rightClickedListIndex = [parentBoard.children indexOfObject:board];
-
-    self.parentBoardForEditedList = parentBoard;
-
-    SDWBoard *newBoard = [SDWBoard new];
-    newBoard.name = @"";
-    newBoard.isLeaf = YES;
-
-    [mutableParentBoardChildren insertObject:newBoard atIndex:rightClickedListIndex];
-    parentBoard.children = [mutableParentBoardChildren copy];
-    [self.outlineView reloadData];
-
-
-    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow makeIfNecessary:YES];
-    self.editedRow = listRow;
-
-    cellView.textLabel.editable = YES;
-    [cellView.textLabel becomeFirstResponder];
-    cellView.textLabel.delegate = self;
+//    SDWBoard *board = [[self.outlineView itemAtRow:listRow] representedObject];
+//    self.editedListPositon = board.pos;
+//    SDWBoard *parentBoard =[[[self.outlineView itemAtRow:listRow] parentNode] representedObject];
+//    NSMutableArray *mutableParentBoardChildren =[NSMutableArray arrayWithArray:parentBoard.children];
+//
+//    NSUInteger rightClickedListIndex = [parentBoard.children indexOfObject:board];
+//
+//    self.parentBoardForEditedList = parentBoard;
+//
+//    SDWBoard *newBoard = [SDWBoard new];
+//    newBoard.name = @"";
+//    newBoard.isLeaf = YES;
+//
+//    [mutableParentBoardChildren insertObject:newBoard atIndex:rightClickedListIndex];
+//    parentBoard.children = [mutableParentBoardChildren copy];
+//    [self.outlineView reloadData];
+//
+//
+//    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow makeIfNecessary:YES];
+//    self.editedRow = listRow;
+//
+//    cellView.textLabel.editable = YES;
+//    [cellView.textLabel becomeFirstResponder];
+//    cellView.textLabel.delegate = self;
 
 }
 
 #pragma mark - NSTextFieldDelegate (new list textfield)
 
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
-    self.editedListName = fieldEditor.string;
-    return YES;
-}
-- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
-    return YES;
-}
-
-- (void)controlTextDidEndEditing:(NSNotification *)obj {
-
-    if (self.editedListName.length >0) {
-        [self createList];
-    } else {
-        [self reloadBoards:nil];
-    }
-}
+//- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+//    self.editedListName = fieldEditor.string;
+//    return YES;
+//}
+//- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
+//    return YES;
+//}
+//
+//- (void)controlTextDidEndEditing:(NSNotification *)obj {
+//
+//    if (self.editedListName.length >0) {
+//        [self createList];
+//    } else {
+//        [self reloadBoards:nil];
+//    }
+//}
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
