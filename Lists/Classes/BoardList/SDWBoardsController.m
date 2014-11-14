@@ -284,7 +284,9 @@
 - (void)outlineviewShouldDelete:(WSCBoardsOutlineView *)outlineView {
 
     SDWBoard *board =[[self.outlineView itemAtRow:outlineView.contextRow] representedObject];
-    [self deleteList:board];
+    if (board.isLeaf) {
+         [self deleteList:board];
+    }
 }
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource

@@ -5,6 +5,7 @@
 //  Created by alex on 11/1/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#import "SDWBoard.h"
 #import "NSColor+Util.h"
 #import "WSCBoardsOutlineView.h"
 
@@ -17,11 +18,17 @@
     self.intercellSpacing = CGSizeMake(0, 5);
 }
 
--(NSMenu*)menuForEvent:(NSEvent*)evt
-{
+-(NSMenu*)menuForEvent:(NSEvent*)evt {
+
     NSPoint pt = [self convertPoint:[evt locationInWindow] fromView:nil];
     NSUInteger row = [self rowAtPoint:pt];
-    return [self defaultMenuForRow:row];
+
+    SDWBoard *board =[self itemAtRow:row];
+    if (board.isLeaf) {
+        return [self defaultMenuForRow:row];
+    }
+    return nil;
+
 }
 
 -(NSMenu*)defaultMenuForRow:(NSUInteger)row {
