@@ -326,19 +326,21 @@
     SDWBoard *parentBoard =[[[self.outlineView itemAtRow:listRow] parentNode] representedObject];
     NSMutableArray *mutableParentBoardChildren =[NSMutableArray arrayWithArray:parentBoard.children];
 
+    NSUInteger rightClickedListIndex = [parentBoard.children indexOfObject:board];
+
     self.parentBoardForEditedList = parentBoard;
 
     SDWBoard *newBoard = [SDWBoard new];
     newBoard.name = @"";
     newBoard.isLeaf = YES;
 
-    [mutableParentBoardChildren addObject:newBoard];
+    [mutableParentBoardChildren insertObject:newBoard atIndex:rightClickedListIndex];
     parentBoard.children = [mutableParentBoardChildren copy];
     [self.outlineView reloadData];
 
 
-    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow+1 makeIfNecessary:YES];
-    self.editedRow = listRow+1;
+    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow makeIfNecessary:YES];
+    self.editedRow = listRow;
 
     cellView.textLabel.editable = YES;
     [cellView.textLabel becomeFirstResponder];
@@ -358,8 +360,11 @@
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
 
-
-    [self createList];
+    if (self.editedListName.length >0) {
+        [self createList];
+    } else {
+        [self reloadBoards:nil];
+    }
 }
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
