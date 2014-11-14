@@ -88,12 +88,13 @@
 - (void)clearCards {
 
     self.cardsArrayController.content = @[];
-    self.listNameLabel.stringValue = @"";
+    self.listNameLabel.hidden = YES;
 }
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
 
+    self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;
     self.listName = list.name;

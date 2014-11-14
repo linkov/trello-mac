@@ -23,10 +23,18 @@
 
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     } else if (modifier == 1048840 && key == 15) {
+
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
     } else if (key == 51) {
+
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldRemoveCardNotification object:nil];
-    } else {
+
+    } else if (modifier == 1179914 && key == 15) {
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadBoardsNotification object:nil];
+    }
+
+    else {
 
         [super keyDown:theEvent];
     }
