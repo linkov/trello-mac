@@ -14,6 +14,7 @@
 
     self.boardID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];
+    self.pos = [self.attributes[@"pos"] integerValue];
 
     if ([self.attributes valueForKeyPath:@"lists"]) {
 

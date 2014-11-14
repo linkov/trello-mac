@@ -19,8 +19,9 @@
 #import <QuartzCore/QuartzCore.h>
 #import "ITSwitch.h"
 #import "WSCBoardsOutlineView.h"
+#import "SDWBoardsCellView.h"
 
-@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate>
+@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
 @property (strong) NSArray *unfilteredBoards;
@@ -36,6 +37,11 @@
 @property (strong) IBOutlet ITSwitch *crownSwitch;
 @property (strong) IBOutlet NSScrollView *mainScroll;
 @property (strong) IBOutlet NSButton *reloadButton;
+
+@property (strong) SDWBoard *parentBoardForEditedList;
+@property (strong) NSString *editedListName;
+@property NSUInteger editedListPositon;
+@property NSUInteger editedRow;
 
 @end
 
@@ -240,6 +246,30 @@
 
 }
 
+- (void)createList {
+
+    [[AFTrelloAPIClient sharedClient] POST:@"lists?"
+                                parameters:@{
+                                             @"name":self.editedListName,
+                                             @"idBoard":self.parentBoardForEditedList.boardID,
+                                             @"pos":[NSNumber numberWithInteger:self.editedListPositon]
+                                             }
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+
+        SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:self.editedRow makeIfNecessary:YES];
+
+        cellView.textLabel.editable = NO;
+        [cellView.textLabel resignFirstResponder];
+//        [self reloadBoards:nil];
+//        [[self cardsVC] clearCards];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"err - %@",error.localizedDescription);
+    }];
+}
+
 - (void)deleteList:(SDWBoard *)list {
 
     NSString *urlString = [NSString stringWithFormat:@"lists/%@?",list.boardID];
@@ -286,6 +316,50 @@
 
     SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
     [self deleteList:board];
+}
+
+- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {
+
+
+    SDWBoard *board = [[self.outlineView itemAtRow:listRow] representedObject];
+    self.editedListPositon = board.pos;
+    SDWBoard *parentBoard =[[[self.outlineView itemAtRow:listRow] parentNode] representedObject];
+    NSMutableArray *mutableParentBoardChildren =[NSMutableArray arrayWithArray:parentBoard.children];
+
+    self.parentBoardForEditedList = parentBoard;
+
+    SDWBoard *newBoard = [SDWBoard new];
+    newBoard.name = @"";
+    newBoard.isLeaf = YES;
+
+    [mutableParentBoardChildren addObject:newBoard];
+    parentBoard.children = [mutableParentBoardChildren copy];
+    [self.outlineView reloadData];
+
+
+    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow+1 makeIfNecessary:YES];
+    self.editedRow = listRow+1;
+
+    cellView.textLabel.editable = YES;
+    [cellView.textLabel becomeFirstResponder];
+    cellView.textLabel.delegate = self;
+
+}
+
+#pragma mark - NSTextFieldDelegate (new list textfield)
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+    self.editedListName = fieldEditor.string;
+    return YES;
+}
+- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
+    return YES;
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+
+
+    [self createList];
 }
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource

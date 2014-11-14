@@ -11,5 +11,7 @@
 
 @interface SDWBoardsCellView : NSTableCellView
 
+@property (strong) IBOutlet NSTextField *textLabel;
+
 @end
 

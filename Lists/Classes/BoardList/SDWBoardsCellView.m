@@ -10,16 +10,13 @@
 
 @interface SDWBoardsCellView ()
 
-@property (strong) IBOutlet NSTextField *textLabel;
-
 @end
 
 @implementation SDWBoardsCellView
 
 //- (void)awakeFromNib {
 //
-//    self.wantsLayer = YES;
-//    self.layer.backgroundColor = [NSColor colorWithHexColorString:@"1E5676"].CGColor;
+//    self.textField.editable = NO;
 //}
 
 //- (void)mouseExited:(NSEvent *)theEvent {

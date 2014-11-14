@@ -17,7 +17,7 @@
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
 
-    NSLog(@"key - %i, modifier - %i",key,modifier);
+    //NSLog(@"key - %i, modifier - %i",key,modifier);
 
     if (modifier == 1048840 && key == 45) {
 

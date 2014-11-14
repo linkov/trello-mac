@@ -21,6 +21,7 @@
 @optional
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow;
+- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow;
 
 
 @end

@@ -12,6 +12,7 @@
 
 @property (nonatomic, strong) NSString *boardID;
 @property (nonatomic, strong) NSString *name;
+@property NSUInteger pos;
 @property NSUInteger fontSize;
 
 @end
