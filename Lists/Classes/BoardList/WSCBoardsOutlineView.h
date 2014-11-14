@@ -13,7 +13,6 @@
 @interface WSCBoardsOutlineView : NSOutlineView
 
 @property (weak) id <SDWBoardsListOutlineViewDelegate> menuDelegate;
-@property NSUInteger contextRow;
 
 @end
 
@@ -21,7 +20,7 @@
 
 @optional
 
-- (void)outlineviewShouldDelete:(WSCBoardsOutlineView *)outlineView;
+- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow;
 
 
 @end

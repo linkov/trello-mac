@@ -10,6 +10,9 @@
 #import "WSCBoardsOutlineView.h"
 
 @interface WSCBoardsOutlineView ()
+
+@property NSUInteger contextRow;
+
 @end
 
 @implementation WSCBoardsOutlineView
@@ -48,7 +51,7 @@
 
 - (void)removeList:(id)sender {
 
-    [self.menuDelegate outlineviewShouldDelete:self];
+    [self.menuDelegate outlineviewShouldDeleteListAtRow:self.contextRow];
 
 }
 

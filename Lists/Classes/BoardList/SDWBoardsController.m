@@ -247,6 +247,7 @@
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
 
         [self reloadBoards:nil];
+        [[self cardsVC] clearCards];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -281,12 +282,10 @@
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
-- (void)outlineviewShouldDelete:(WSCBoardsOutlineView *)outlineView {
+- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
 
-    SDWBoard *board =[[self.outlineView itemAtRow:outlineView.contextRow] representedObject];
-    if (board.isLeaf) {
-         [self deleteList:board];
-    }
+    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
+    [self deleteList:board];
 }
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
