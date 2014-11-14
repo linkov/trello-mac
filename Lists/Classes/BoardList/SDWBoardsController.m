@@ -252,7 +252,7 @@
                                 parameters:@{
                                              @"name":self.editedListName,
                                              @"idBoard":self.parentBoardForEditedList.boardID,
-                                             @"pos":[NSNumber numberWithInteger:self.editedListPositon]
+                                             @"pos":[NSNumber numberWithInteger:self.editedListPositon-1]
                                              }
                                    success:^(NSURLSessionDataTask *task, id responseObject)
     {
@@ -261,8 +261,8 @@
 
         cellView.textLabel.editable = NO;
         [cellView.textLabel resignFirstResponder];
-//        [self reloadBoards:nil];
-//        [[self cardsVC] clearCards];
+        [self reloadBoards:nil];
+        [[self cardsVC] clearCards];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
