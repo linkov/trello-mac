@@ -9,9 +9,6 @@
 #import "WSCBoardsOutlineView.h"
 
 @interface WSCBoardsOutlineView ()
-
-@property NSUInteger contextRow;
-
 @end
 
 @implementation WSCBoardsOutlineView
@@ -20,39 +17,33 @@
     self.intercellSpacing = CGSizeMake(0, 5);
 }
 
-//-(NSMenu*)menuForEvent:(NSEvent*)evt
-//{
-//    NSPoint pt = [self convertPoint:[evt locationInWindow] fromView:nil];
-//    NSUInteger row = [self rowAtPoint:pt];
-//    return [self defaultMenuForRow:row];
-//}
-//
-//-(NSMenu*)defaultMenuForRow:(NSUInteger)row {
-//
-//    NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"Model browser context menu"];
-//
-//    [theMenu insertItemWithTitle:@"Add package"
-//                          action:@selector(addSite:)
-//                   keyEquivalent:@""
-//                         atIndex:0];
-//    [theMenu insertItemWithTitle:[NSString stringWithFormat:@"Remove '%lu'", (unsigned long)row]
-//                          action:@selector(removeSite:)
-//                   keyEquivalent:@""
-//                         atIndex:0];
-//    // you'll need to find a way of getting the information about the
-//    // row that is to be removed to the removeSite method
-//    // assuming that an ivar 'contextRow' is used for this
-//    self.contextRow = row;
-//
-//    return theMenu;
-//}
-//
-//- (void)addSite:(id)sender {
-//
-//}
-//
-//- (void)removeSite:(id)sender {
-//
-//}
+-(NSMenu*)menuForEvent:(NSEvent*)evt
+{
+    NSPoint pt = [self convertPoint:[evt locationInWindow] fromView:nil];
+    NSUInteger row = [self rowAtPoint:pt];
+    return [self defaultMenuForRow:row];
+}
+
+-(NSMenu*)defaultMenuForRow:(NSUInteger)row {
+
+    NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"List menu"];
+
+    [theMenu insertItemWithTitle:@"Delete"
+                          action:@selector(removeList:)
+                   keyEquivalent:@""
+                         atIndex:0];
+
+
+    self.contextRow = row;
+
+    return theMenu;
+}
+
+- (void)removeList:(id)sender {
+
+    [self.menuDelegate outlineviewShouldDelete:self];
+
+}
+
 
 @end

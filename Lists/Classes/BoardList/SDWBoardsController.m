@@ -18,12 +18,13 @@
 #import "SDWLoginVC.h"
 #import <QuartzCore/QuartzCore.h>
 #import "ITSwitch.h"
+#import "WSCBoardsOutlineView.h"
 
-@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate>
+@interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
 @property (strong) NSArray *unfilteredBoards;
-@property (strong) IBOutlet NSOutlineView *outlineView;
+@property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
 @property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
 @property (strong) SDWBoardsListRow *prevSelectedRow;
@@ -49,6 +50,7 @@
     self.outlineView.dataSource = self;
    // self.crownSwitch.enabled = NO
     self.reloadButton.hidden = YES;
+    self.outlineView.menuDelegate = self;
 
     [[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewWillStartLiveMagnifyNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
@@ -238,6 +240,21 @@
 
 }
 
+- (void)deleteList:(SDWBoard *)list {
+
+    NSString *urlString = [NSString stringWithFormat:@"lists/%@?",list.boardID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self reloadBoards:nil];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        NSLog(@"err - %@",error.localizedDescription);
+    }];
+
+}
+
 #pragma mark - SDWBoardsListRowDelegate
 
 - (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow {
@@ -262,6 +279,13 @@
 //    }
 }
 
+#pragma mark - SDWBoardsListOutlineViewDelegate
+
+- (void)outlineviewShouldDelete:(WSCBoardsOutlineView *)outlineView {
+
+    SDWBoard *board =[[self.outlineView itemAtRow:outlineView.contextRow] representedObject];
+    [self deleteList:board];
+}
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
