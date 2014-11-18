@@ -433,7 +433,7 @@
 - (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
 
     NSPasteboard *pBoard = [info draggingPasteboard];
-    NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+    NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
 
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
 

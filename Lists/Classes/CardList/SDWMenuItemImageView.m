@@ -34,7 +34,7 @@
     if (self.canPerformAction) {
 
         NSPasteboard *pBoard = [sender draggingPasteboard];
-        NSData *indexData = [pBoard dataForType:@"MY_DRAG_TYPE"];
+        NSData *indexData = [pBoard dataForType:@"TRASH_DRAG_TYPE"];
 
         NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
         [self performActionForObjectID:cardDict[@"cardID"]];

@@ -50,11 +50,11 @@
     self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
 
 	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
-    [self.collectionView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [self.collectionView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
 
-    [self.trashImageView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [self.trashImageView registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
     [self.trashImageView setHidden:YES];
     self.trashImageView.delegate = self;
 
@@ -217,6 +217,26 @@
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
+    NSLog(@"index - %li",(long)index);
+
+    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
+
+    if (indexData) {
+        NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
+
+        SDWCard *movedCard = [self.cardsArrayController.content objectAtIndex:itemMovedFromIndex];
+//        SDWCard *newSiblingCard = [self.cardsArrayController.content objectAtIndex:index];
+
+
+
+        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [mutableArray removeObjectAtIndex:itemMovedFromIndex];
+        [mutableArray insertObject:movedCard atIndex:index];
+        self.cardsArrayController.content = [mutableArray copy];
+    }
+
     return YES;
 }
 
@@ -233,10 +253,15 @@
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
 
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.lastIndex];
-    NSDictionary *cardDict = @{@"cardID":card.cardID,@"boardID":card.boardID};
+    NSDictionary *cardDict = @{
+                               @"cardID":card.cardID,
+                               @"boardID":card.boardID,
+                               @"itemIndex":[NSNumber numberWithInteger:indexes.firstIndex]
+                               };
 
     NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
-    [pasteboard setData:indexData forType:@"MY_DRAG_TYPE"];
+    [pasteboard setData:indexData forType:@"TRASH_DRAG_TYPE"];
+    [pasteboard setData:indexData forType:@"REORDER_DRAG_TYPE"];
 
     return YES;
 }
