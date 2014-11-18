@@ -52,7 +52,7 @@
 	[self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
-    [self.outlineView registerForDraggedTypes:@[@"MY_DRAG_TYPE"]];
+    [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
    // self.crownSwitch.enabled = NO
     self.reloadButton.hidden = YES;
