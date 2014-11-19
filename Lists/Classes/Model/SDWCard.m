@@ -16,7 +16,9 @@
         return nil;
     }
 
-    self.position = [[attributes valueForKeyPath:@"pos"] integerValue];
+    NSNumber *pos = attributes[@"pos"];
+
+    self.position = pos.integerValue;
     self.boardID = [attributes valueForKeyPath:@"idList"];
     self.cardID = [attributes valueForKeyPath:@"id"];
     self.name = [attributes valueForKeyPath:@"name"];

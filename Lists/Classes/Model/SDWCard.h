@@ -12,7 +12,6 @@
 
 @property NSString *cardID;
 @property (nonatomic, strong) NSString *name;
-@property NSUInteger pos;
 @property NSArray *members;
 @property NSArray *users;
 @property (nonatomic,strong) NSString *owner;

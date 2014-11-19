@@ -32,6 +32,8 @@
 @property (strong) IBOutlet NSButton *reloadButton;
 @property (strong) IBOutlet NSProgressIndicator *cardSavingIndicator;
 
+@property NSUInteger dropIndex;
+
 @end
 
 @implementation SDWCardsController
@@ -192,7 +194,7 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:NO];
 
     if (SharedSettings.shouldFilter) {
         [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByTime]]];
@@ -202,9 +204,16 @@
 
 }
 
+- (void)updateCardsPositions {
+
+    for (SDWCard *card in self.cardsArrayController.content) {
+
+        [self updateCardPosition:card];
+        NSLog(@"%@ - %lu",card.name,(unsigned long)card.position);
+    }
+}
 
 #pragma mark - NSCollectionViewDelegate
-
 
 
 - (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
@@ -222,22 +231,90 @@
     NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
 
-    if (indexData) {
+//    [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
+
+    if (indexData && self.dropIndex < 100000) {
+
         NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
         NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
 
-        SDWCard *movedCard = [self.cardsArrayController.content objectAtIndex:itemMovedFromIndex];
-//        SDWCard *newSiblingCard = [self.cardsArrayController.content objectAtIndex:index];
-
-
-
-        NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [mutableArray removeObjectAtIndex:itemMovedFromIndex];
-        [mutableArray insertObject:movedCard atIndex:index];
-        self.cardsArrayController.content = [mutableArray copy];
+        self.cardsArrayController.content = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.cardsArrayController.content];
     }
 
+    [self reloadCollection:self.cardsArrayController.content];
+
+//    [self _dbgArrayElementsWithTitle:@"acceptDrop_after"];
+
+    [self updateCardsPositions];
     return YES;
+}
+
+- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
+
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
+
+    // 1. swap 2 elements
+    SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
+    SDWCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
+
+    NSUInteger movedCardPos = movedCard.position;
+    NSUInteger newSiblingCardPos = newSiblingCard.position;
+
+    movedCard.position = newSiblingCardPos;
+    newSiblingCard.position = movedCardPos;
+
+    [mutableArray replaceObjectAtIndex:fromIndex withObject:movedCard];
+    [mutableArray replaceObjectAtIndex:toIndex withObject:newSiblingCard];
+
+
+    // 2. swap indexes of all elements between fromIndex and toIndex by one
+
+    if (fromIndex+1 <= toIndex) {
+
+        for (NSUInteger i = fromIndex+1; i<toIndex; i++) {
+
+            SDWCard *card1 = [mutableArray objectAtIndex:i];
+            SDWCard *card2 = [mutableArray objectAtIndex:i+1];
+
+            NSUInteger movedCardPos = card1.position;
+            NSUInteger newSiblingCardPos = card2.position;
+
+            card1.position = newSiblingCardPos;
+            card2.position = movedCardPos;
+
+            [mutableArray replaceObjectAtIndex:i withObject:card1];
+            [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
+            
+        }
+
+    } else if ( (int)fromIndex-1 > toIndex) {
+
+        for (NSUInteger i = toIndex; i < fromIndex-1; i++) {
+
+
+            if (i+1 == mutableArray.count) {
+                return mutableArray;
+            }
+
+            SDWCard *card1 = [mutableArray objectAtIndex:i];
+            SDWCard *card2 = [mutableArray objectAtIndex:i+1];
+
+            NSUInteger movedCardPos = card1.position;
+            NSUInteger newSiblingCardPos = card2.position;
+
+            card1.position = newSiblingCardPos;
+            card2.position = movedCardPos;
+
+            [mutableArray replaceObjectAtIndex:i withObject:card1];
+            [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
+            
+        }
+    }
+
+
+
+    return mutableArray;
+
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
@@ -247,12 +324,40 @@
 }
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
-    return NSDragOperationMove;
+
+    NSDragOperation dragOp;
+
+    if (*proposedDropOperation == NSCollectionViewDropBefore ) {
+
+        dragOp = NSDragOperationMove;
+
+    } else if (*proposedDropOperation == NSCollectionViewDropOn ) {
+
+        NSUInteger inx = *proposedDropIndex;
+
+        if (inx < 10000) {
+            self.dropIndex = inx;
+        }
+        dragOp = NSDragOperationNone;
+
+    }
+
+    return dragOp;
+}
+
+- (void)_dbgArrayElementsWithTitle:(NSString *)title {
+
+    NSLog(@"--------------%@-------------\n",title);
+
+    for (SDWCard *card in self.cardsArrayController.content) {
+
+        NSLog(@"%@ - %lu",card.name,(unsigned long)card.position);
+    }
 }
 
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
 
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.lastIndex];
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
     NSDictionary *cardDict = @{
                                @"cardID":card.cardID,
                                @"boardID":card.boardID,
@@ -348,6 +453,33 @@
         NSLog(@"err save - %@",error.localizedDescription);
     }];
 
+}
+
+
+- (void)updateCardPosition:(SDWCard *)card {
+
+    [self showCardSavingIndicator:YES];
+//
+//    self.cardSavingIndicator.hidden = NO;
+//    [self.cardSavingIndicator startAnimation:nil];
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?",card.cardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
+                                                                 @"value":[NSNumber numberWithInteger:card.position],
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self showCardSavingIndicator:NO];
+//        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+//        selectedCard.selected = NO;
+//        [selectedCard.view setNeedsDisplay:YES];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+       //[self showCardSavingIndicator:NO];
+
+        NSLog(@"err save pos - %@",error.localizedDescription);
+    }];
+    
 }
 
 - (void)createCard:(SDWCard *)card {
