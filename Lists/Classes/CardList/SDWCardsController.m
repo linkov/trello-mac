@@ -269,49 +269,36 @@
 
     // 2. swap indexes of all elements between fromIndex and toIndex by one
 
+    NSUInteger iterateFrom;
+    NSUInteger iterateTo;
+
     if (fromIndex+1 <= toIndex) {
 
-        for (NSUInteger i = fromIndex+1; i<toIndex; i++) {
-
-            SDWCard *card1 = [mutableArray objectAtIndex:i];
-            SDWCard *card2 = [mutableArray objectAtIndex:i+1];
-
-            NSUInteger movedCardPos = card1.position;
-            NSUInteger newSiblingCardPos = card2.position;
-
-            card1.position = newSiblingCardPos;
-            card2.position = movedCardPos;
-
-            [mutableArray replaceObjectAtIndex:i withObject:card1];
-            [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
-            
-        }
+        iterateFrom = fromIndex+1;
+        iterateTo = toIndex;
 
     } else if ( (int)fromIndex-1 > toIndex) {
 
-        for (NSUInteger i = toIndex; i < fromIndex-1; i++) {
+        iterateFrom = toIndex;
+        iterateTo = fromIndex-1;
 
-
-            if (i+1 == mutableArray.count) {
-                return mutableArray;
-            }
-
-            SDWCard *card1 = [mutableArray objectAtIndex:i];
-            SDWCard *card2 = [mutableArray objectAtIndex:i+1];
-
-            NSUInteger movedCardPos = card1.position;
-            NSUInteger newSiblingCardPos = card2.position;
-
-            card1.position = newSiblingCardPos;
-            card2.position = movedCardPos;
-
-            [mutableArray replaceObjectAtIndex:i withObject:card1];
-            [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
-            
-        }
     }
 
+    for (NSUInteger i = iterateFrom; i<iterateTo; i++) {
 
+        SDWCard *card1 = [mutableArray objectAtIndex:i];
+        SDWCard *card2 = [mutableArray objectAtIndex:i+1];
+
+        NSUInteger movedCardPos = card1.position;
+        NSUInteger newSiblingCardPos = card2.position;
+
+        card1.position = newSiblingCardPos;
+        card2.position = movedCardPos;
+
+        [mutableArray replaceObjectAtIndex:i withObject:card1];
+        [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
+
+    }
 
     return mutableArray;
 
