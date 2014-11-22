@@ -272,6 +272,10 @@
     NSUInteger iterateFrom;
     NSUInteger iterateTo;
 
+    if (![self isValidIndex:iterateFrom] || ![self isValidIndex:iterateTo]) {
+        return mutableArray;
+    }
+
     if (fromIndex+1 <= toIndex) {
 
         iterateFrom = fromIndex+1;
@@ -322,7 +326,7 @@
 
         NSUInteger inx = *proposedDropIndex;
 
-        if (inx < 10000) {
+        if ([self isValidIndex:inx]) {
             self.dropIndex = inx;
         }
         dragOp = NSDragOperationNone;
@@ -330,6 +334,15 @@
     }
 
     return dragOp;
+}
+
+//TODO: refactor
+- (BOOL)isValidIndex:(NSUInteger)index {
+
+    if (index >10000) {
+        return NO;
+    }
+    return YES;
 }
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
