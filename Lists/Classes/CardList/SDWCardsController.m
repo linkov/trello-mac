@@ -194,7 +194,7 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:NO];
+    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
 
     if (SharedSettings.shouldFilter) {
         [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByTime]]];
@@ -373,11 +373,11 @@
     newCard.isSynced = NO;
 
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr insertObject:newCard atIndex:0];
+    [arr insertObject:newCard atIndex:arr.count];
 
     self.cardsArrayController.content = arr;
 
-    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:0];
+    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:arr.count-1];
     newRow.delegate = self;
     newRow.selected = YES;
     newRow.textField.editable = YES;
@@ -489,9 +489,9 @@
         SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [arr removeObjectAtIndex:0];
-        [arr insertObject:updatedCard atIndex:0];
-        self.cardsArrayController.content = arr;
+        [arr removeObjectAtIndex:arr.count-1];
+        [arr insertObject:updatedCard atIndex:arr.count-1];
+        [self reloadCollection:arr];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -505,7 +505,7 @@
     self.addCardButton.enabled = YES;
     
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr removeObjectAtIndex:0];
+    [arr removeObjectAtIndex:arr.count-1];
     self.cardsArrayController.content = arr;
 }
 
