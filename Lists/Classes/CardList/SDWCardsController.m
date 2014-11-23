@@ -345,6 +345,12 @@
     return YES;
 }
 
+//TODO: refactor
+- (NSUInteger)bottomObjectIndex:(NSArray *)arr {
+
+    return arr.count == 0 ? 0 : arr.count-1;
+}
+
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
 
     NSLog(@"--------------%@-------------\n",title);
@@ -390,7 +396,7 @@
 
     self.cardsArrayController.content = arr;
 
-    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:arr.count-1];
+    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:[self bottomObjectIndex:arr]];
     newRow.delegate = self;
     newRow.selected = YES;
     newRow.textField.editable = YES;
@@ -502,8 +508,8 @@
         SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [arr removeObjectAtIndex:arr.count-1];
-        [arr insertObject:updatedCard atIndex:arr.count-1];
+        [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
+        [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
         [self reloadCollection:arr];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -518,7 +524,7 @@
     self.addCardButton.enabled = YES;
     
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr removeObjectAtIndex:arr.count-1];
+    [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
     self.cardsArrayController.content = arr;
 }
 
