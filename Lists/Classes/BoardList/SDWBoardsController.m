@@ -123,7 +123,7 @@
 		[[AFRecordPathManager manager]
 		 setAFRecordMethod:@"findAll"
 		          forModel:[SDWBoard class]
-		    toConcretePath:@"members/me/boards?filter=open&fields=name&lists=open"];
+		    toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
 
 		[self.loadingProgress startAnimation:nil];
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
@@ -132,7 +132,9 @@
 
 		    if (!error) {
 
-		        self.unfilteredBoards = objects;
+                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:NO];
+
+		        self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
 		        self.outlineView.delegate = self;
 
                 if(self.crownSwitch.on) {

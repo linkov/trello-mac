@@ -194,12 +194,12 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-    NSSortDescriptor *sortByTime = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+    NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
 
     if (SharedSettings.shouldFilter) {
-        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByTime]]];
+        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByPos]]];
     } else {
-        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByTime]];
+        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByPos]];
     }
 
 }
