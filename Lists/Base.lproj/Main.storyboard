@@ -1110,7 +1110,6 @@
                                 <constraints>
                                     <constraint firstItem="3uD-8Q-qvy" firstAttribute="leading" secondItem="h8j-pa-1d3" secondAttribute="trailing" constant="4" id="EMD-kp-82f"/>
                                     <constraint firstItem="h8j-pa-1d3" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" constant="7" id="Eut-09-jna"/>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="400" id="Pxc-vd-Tbv"/>
                                     <constraint firstAttribute="bottom" secondItem="3uD-8Q-qvy" secondAttribute="bottom" id="bLb-lo-9NO"/>
                                     <constraint firstItem="3uD-8Q-qvy" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" id="hxb-pV-dcw"/>
                                     <constraint firstItem="h8j-pa-1d3" firstAttribute="leading" secondItem="H6c-DE-Hst" secondAttribute="leading" constant="10" id="rrn-K7-CSc"/>

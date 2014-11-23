@@ -226,12 +226,14 @@
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
-    NSLog(@"index - %li",(long)index);
+    if (index > [self.cardsArrayController.arrangedObjects count]) {
+        return NO;
+    }
 
     NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
 
-//    [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
+   // [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
 
     if (indexData && self.dropIndex < 100000) {
 
@@ -243,7 +245,7 @@
 
     [self reloadCollection:self.cardsArrayController.content];
 
-//    [self _dbgArrayElementsWithTitle:@"acceptDrop_after"];
+   // [self _dbgArrayElementsWithTitle:@"acceptDrop_after"];
 
     [self updateCardsPositions];
     return YES;
@@ -255,7 +257,7 @@
 
     // 1. swap 2 elements
     SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
-    SDWCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
+    SDWCard *newSiblingCard = [mutableArray objectAtIndex:self.dropIndex];
 
     NSUInteger movedCardPos = movedCard.position;
     NSUInteger newSiblingCardPos = newSiblingCard.position;
@@ -263,45 +265,12 @@
     movedCard.position = newSiblingCardPos;
     newSiblingCard.position = movedCardPos;
 
-    [mutableArray replaceObjectAtIndex:fromIndex withObject:movedCard];
-    [mutableArray replaceObjectAtIndex:toIndex withObject:newSiblingCard];
+    [mutableArray removeObject:movedCard];
+    [mutableArray insertObject:movedCard atIndex:self.dropIndex];
 
-
-    // 2. swap indexes of all elements between fromIndex and toIndex by one
-
-    NSUInteger iterateFrom;
-    NSUInteger iterateTo;
-
-    if (![self isValidIndex:iterateFrom] || ![self isValidIndex:iterateTo]) {
-        return mutableArray;
-    }
-
-    if (fromIndex+1 <= toIndex) {
-
-        iterateFrom = fromIndex+1;
-        iterateTo = toIndex;
-
-    } else if ( (int)fromIndex-1 > toIndex) {
-
-        iterateFrom = toIndex;
-        iterateTo = fromIndex-1;
-
-    }
-
-    for (NSUInteger i = iterateFrom; i<iterateTo; i++) {
-
-        SDWCard *card1 = [mutableArray objectAtIndex:i];
-        SDWCard *card2 = [mutableArray objectAtIndex:i+1];
-
-        NSUInteger movedCardPos = card1.position;
-        NSUInteger newSiblingCardPos = card2.position;
-
-        card1.position = newSiblingCardPos;
-        card2.position = movedCardPos;
-
-        [mutableArray replaceObjectAtIndex:i withObject:card1];
-        [mutableArray replaceObjectAtIndex:i+1 withObject:card2];
-
+    for (int i = 0; i<mutableArray.count; i++) {
+        SDWCard *card = mutableArray[i];
+        card.position = i;
     }
 
     return mutableArray;
@@ -309,12 +278,17 @@
 }
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+
     [self.trashImageView setHidden:NO];
     [self.addCardButton setHidden:YES];
     return YES;
 }
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+
+    if ([self.cardsArrayController.arrangedObjects count] == 1) {
+        return NSDragOperationNone;
+    }
 
     NSDragOperation dragOp;
 
