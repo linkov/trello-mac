@@ -103,6 +103,11 @@
     }
 }
 
+- (NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+
+    return nil;
+}
+
 - (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
 
     NSTextField* tf = (NSTextField*)control;
@@ -110,6 +115,10 @@
     self.originalText = tf.stringValue;
     return YES;
 }
+
+- (void)controlTextDidChange:(NSNotification *)obj {}
+
+
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
 
     self.textField.editable = NO;

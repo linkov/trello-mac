@@ -520,12 +520,17 @@
     }];
 }
 
-- (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
+- (void)dismissNewEditedCard {
+
     self.addCardButton.enabled = YES;
-    
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
     self.cardsArrayController.content = arr;
+}
+
+- (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
+
+    [self dismissNewEditedCard];
 }
 
 #pragma mark - SDWMenuItemDelegate
