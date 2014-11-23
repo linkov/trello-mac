@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 
@@ -18,6 +18,8 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
     //[[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints"];
+
+    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
