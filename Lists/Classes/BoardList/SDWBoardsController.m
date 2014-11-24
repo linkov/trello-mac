@@ -405,6 +405,10 @@
 
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
 
+    if (self.outlineView.selectedRow == -1) {
+        return;
+    }
+
 	self.prevSelectedRow.selected = NO;
 	[self.prevSelectedRow setNeedsDisplay:YES];
 
