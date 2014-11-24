@@ -26,8 +26,6 @@
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
 
-    //1179914
-
     if (modifier == 1048840 && key == 15) { // CMD+R
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
     }
