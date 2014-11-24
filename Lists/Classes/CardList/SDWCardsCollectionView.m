@@ -15,6 +15,7 @@
 - (void)keyDown:(NSEvent *)theEvent {
 
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
+
 }
 
 @end

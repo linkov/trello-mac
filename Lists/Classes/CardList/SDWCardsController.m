@@ -437,6 +437,7 @@
         [self showCardSavingIndicator:NO];
         SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
         selectedCard.selected = NO;
+        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
         [selectedCard.view setNeedsDisplay:YES];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
