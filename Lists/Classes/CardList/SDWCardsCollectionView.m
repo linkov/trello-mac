@@ -19,7 +19,7 @@
 
     //NSLog(@"key - %i, modifier - %i",key,modifier);
 
-    if (modifier == 1048840 && key == 45) {
+    if (modifier == 1048840 && key == 45) { // CMD+N
 
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     } else if (modifier == 1048840 && key == 15) {

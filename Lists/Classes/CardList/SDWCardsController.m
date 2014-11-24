@@ -357,8 +357,16 @@
     selected.delegate = self;
 }
 
+- (BOOL)isShowingListCards {
+
+    return (BOOL)self.currentListID;
+}
 
 - (IBAction)addCard:(id)sender {
+
+    if (![self isShowingListCards]) {
+        return;
+    }
 
     SDWCard *newCard = [SDWCard new];
     newCard.boardID = self.parentListID;

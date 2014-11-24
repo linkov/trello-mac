@@ -29,16 +29,16 @@
 
     //1179914
 
-    if (modifier == 1048840 && key == 15) {
+    if (modifier == 1048840 && key == 15) { // CMD+R
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
     }
 
-    if (modifier == 1179914 && key == 15) {
+    if (modifier == 1179914 && key == 15) { // SHIFT+CMD+R
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadBoardsNotification object:nil];
     }
 
-    if (modifier == 1048840 && key == 45) {
-
+    if (modifier == 1048840 && key == 45) { // CMD+N
+        NSLog(@"new");
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     }
 
