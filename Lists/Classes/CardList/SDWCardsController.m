@@ -113,6 +113,10 @@
 
 - (void)reloadCards {
 
+    if (![self isShowingListCards]) {
+        return;
+    }
+
     SharedSettings.selectedListUsers = nil;
     self.cardsArrayController.content = nil;
     [self loadMembers:self.parentListID];

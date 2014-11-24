@@ -5,7 +5,7 @@
 //  Created by alex on 11/4/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-
+#import "SDWShortcutsManager.h"
 #import "SDWAppSettings.h"
 #import "SDWMainSplitView.h"
 
@@ -23,25 +23,7 @@
 
 - (void)keyDown:(NSEvent *)theEvent {
 
-
-    NSUInteger modifier = [theEvent modifierFlags];
-    NSUInteger key = [theEvent keyCode];
-
-    //1179914
-
-    if (modifier == 1048840 && key == 15) { // CMD+R
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
-    }
-
-    if (modifier == 1179914 && key == 15) { // SHIFT+CMD+R
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadBoardsNotification object:nil];
-    }
-
-    if (modifier == 1048840 && key == 45) { // CMD+N
-        NSLog(@"new");
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
-    }
-
+    [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 }
 
 @end

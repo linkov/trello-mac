@@ -58,6 +58,8 @@
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
 		F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1665A661A22847700A1519D /* Crashlytics.framework */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
+		F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */; };
+		F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -160,6 +162,10 @@
 		F14B36141A145ADF00AFD5C9 /* PulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseView.m; sourceTree = "<group>"; };
 		F1665A661A22847700A1519D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F1B3AB841A04E9A400927CB9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainWindow.h; sourceTree = "<group>"; };
+		F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainWindow.m; sourceTree = "<group>"; };
+		F1C4549E1A23ED0A002FFAF6 /* SDWShortcutsManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWShortcutsManager.h; sourceTree = "<group>"; };
+		F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWShortcutsManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +212,8 @@
 				F10AAA1B1A12AFD800FD4E85 /* SDWMainSplitView.m */,
 				F10AAA1C1A12AFD800FD4E85 /* SDWMainWindowController.h */,
 				F10AAA1D1A12AFD800FD4E85 /* SDWMainWindowController.m */,
+				F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */,
+				F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */,
 				F10AAA1E1A12AFD800FD4E85 /* Utils */,
 			);
 			path = Classes;
@@ -314,6 +322,8 @@
 				F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */,
 				F10AAA2B1A12AFD800FD4E85 /* Utils.h */,
 				F10AAA2C1A12AFD800FD4E85 /* Utils.m */,
+				F1C4549E1A23ED0A002FFAF6 /* SDWShortcutsManager.h */,
+				F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -486,6 +496,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */,
 				F10AAA641A12AFD800FD4E85 /* SDWMainWindowController.m in Sources */,
 				F10AAA4E1A12AFD800FD4E85 /* SDWBoardsController.m in Sources */,
 				F10AAA651A12AFD800FD4E85 /* NSColor+Util.m in Sources */,
@@ -531,6 +542,7 @@
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
 				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
+				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
