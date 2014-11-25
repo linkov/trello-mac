@@ -35,7 +35,6 @@
     }
 
     if (modifier == 1048840 && key == 45) { // CMD+N
-        NSLog(@"new");
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     }
 }

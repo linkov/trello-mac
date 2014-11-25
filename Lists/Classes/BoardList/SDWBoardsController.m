@@ -146,7 +146,7 @@
 
 			} else {
                 self.reloadButton.hidden = NO;
-		        NSLog(@"err = %@", error.localizedDescription);
+		        CLS_LOG(@"err = %@", error.localizedDescription);
 			}
 		}];
 	}
@@ -177,7 +177,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
         [self.crownSwitch setOn:NO];
-        NSLog(@"err - %@",error.localizedDescription);
+        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 }
 
@@ -249,7 +249,7 @@
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
-        NSLog(@"err - %@",error.localizedDescription);
+        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 
 }
@@ -274,7 +274,7 @@
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
-        NSLog(@"err - %@",error.localizedDescription);
+        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 }
 
@@ -289,7 +289,7 @@
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
-        NSLog(@"err - %@",error.localizedDescription);
+        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 
 }
@@ -305,7 +305,7 @@
 //
 //    if (board.isLeaf) {
 //
-//        NSLog(@"%@",board.name);
+//        CLS_LOG(@"%@",board.name);
 //
 //        SDWCardsController *cards = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
 //        [cards setupCardsForList:board parentList:parentBoard];

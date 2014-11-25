@@ -156,7 +156,7 @@
             [self loadCardsForListID:self.currentListID];
         } else {
             self.reloadButton.hidden = NO;
-            NSLog(@"err = %@", err.localizedDescription);
+            CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
 
@@ -190,7 +190,7 @@
             [self reloadCollection:objs];
         } else {
             self.reloadButton.hidden = NO;
-            NSLog(@"err = %@", err.localizedDescription);
+            CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
 }
@@ -213,7 +213,7 @@
     for (SDWCard *card in self.cardsArrayController.content) {
 
         [self updateCardPosition:card];
-        NSLog(@"%@ - %lu",card.name,(unsigned long)card.position);
+        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
     }
 }
 
@@ -331,11 +331,11 @@
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
 
-    NSLog(@"--------------%@-------------\n",title);
+    CLS_LOG(@"--------------%@-------------\n",title);
 
     for (SDWCard *card in self.cardsArrayController.content) {
 
-        NSLog(@"%@ - %lu",card.name,(unsigned long)card.position);
+        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
     }
 }
 
@@ -443,7 +443,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showCardSavingIndicator:NO];
 
-        NSLog(@"err save - %@",error.localizedDescription);
+        CLS_LOG(@"err save - %@",error.localizedDescription);
     }];
 
 }
@@ -470,7 +470,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
        //[self showCardSavingIndicator:NO];
 
-        NSLog(@"err save pos - %@",error.localizedDescription);
+        CLS_LOG(@"err save pos - %@",error.localizedDescription);
     }];
     
 }
@@ -503,7 +503,7 @@
 
         [self showCardSavingIndicator:NO];
 
-        NSLog(@"err save - %@",error.localizedDescription);
+        CLS_LOG(@"err save - %@",error.localizedDescription);
     }];
 }
 
@@ -553,7 +553,7 @@
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showCardSavingIndicator:NO];
-        NSLog(@"err - %@",error.localizedDescription);
+        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 }
 

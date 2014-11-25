@@ -8,6 +8,7 @@
 #define SharedSettings [SDWAppSettings sharedSettings]
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
+#import <Crashlytics/Crashlytics.h>
 
 extern NSString * const SDWListsDidReceiveUserTokenNotification;
 extern NSString * const SDWListsDidChangeSidebarStatusNotification;

@@ -14,23 +14,4 @@
 
 @implementation SDWBoardsCellView
 
-//- (void)awakeFromNib {
-//
-//    self.textField.editable = NO;
-//}
-
-//- (void)mouseExited:(NSEvent *)theEvent {
-//
-//    NSLog(@"mouseExited");
-//}
-//
-//- (void)mouseMoved:(NSEvent *)theEvent {
-//
-//    NSLog(@"mouseMoved");
-//}
-
-
-
-
-
 @end
