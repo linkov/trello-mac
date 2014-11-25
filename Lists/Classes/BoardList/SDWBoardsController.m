@@ -237,7 +237,13 @@
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardData[@"cardID"]];
     
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idList":self.boardWithDrop.boardID, @"idBoard":self.boardWithDropParent.boardID} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
+                                                                 @"idList":self.boardWithDrop.boardID,
+                                                                 @"idBoard":self.boardWithDropParent.boardID,
+                                                                 @"pos":@0
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject)
+    {
 
             [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
 
