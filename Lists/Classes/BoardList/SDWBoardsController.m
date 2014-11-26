@@ -296,27 +296,7 @@
 
 #pragma mark - SDWBoardsListRowDelegate
 
-- (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow {
-
-
-//    NSTreeNode *item = [self.outlineView itemAtRow:self.outlineView.selectedRow];
-//    SDWBoard *board =[item representedObject];
-//    SDWBoard *parentBoard = item.parentNode.representedObject;
-//
-//    if (board.isLeaf) {
-//
-//        CLS_LOG(@"%@",board.name);
-//
-//        SDWCardsController *cards = [self.storyboard instantiateControllerWithIdentifier:@"cardsVC"];
-//        [cards setupCardsForList:board parentList:parentBoard];
-////        NSWindowController *window = [[NSWindowController alloc]init];
-////        window.window = [NSWindow new];
-////        window.contentViewController = cards;
-////        [window showWindow:nil];
-////        [window.window makeKeyAndOrderFront:self];
-//
-//    }
-}
+- (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow {}
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
@@ -326,35 +306,7 @@
     [self deleteList:board];
 }
 
-- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {
-
-
-//    SDWBoard *board = [[self.outlineView itemAtRow:listRow] representedObject];
-//    self.editedListPositon = board.pos;
-//    SDWBoard *parentBoard =[[[self.outlineView itemAtRow:listRow] parentNode] representedObject];
-//    NSMutableArray *mutableParentBoardChildren =[NSMutableArray arrayWithArray:parentBoard.children];
-//
-//    NSUInteger rightClickedListIndex = [parentBoard.children indexOfObject:board];
-//
-//    self.parentBoardForEditedList = parentBoard;
-//
-//    SDWBoard *newBoard = [SDWBoard new];
-//    newBoard.name = @"";
-//    newBoard.isLeaf = YES;
-//
-//    [mutableParentBoardChildren insertObject:newBoard atIndex:rightClickedListIndex];
-//    parentBoard.children = [mutableParentBoardChildren copy];
-//    [self.outlineView reloadData];
-//
-//
-//    SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:listRow makeIfNecessary:YES];
-//    self.editedRow = listRow;
-//
-//    cellView.textLabel.editable = YES;
-//    [cellView.textLabel becomeFirstResponder];
-//    cellView.textLabel.delegate = self;
-
-}
+- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {}
 
 #pragma mark - NSTextFieldDelegate (new list textfield)
 
@@ -426,9 +378,8 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
-	return NO;
+	return YES;
 }
-
 
 
 // handle drop

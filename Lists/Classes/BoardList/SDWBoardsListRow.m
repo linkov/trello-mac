@@ -43,5 +43,14 @@
     }
 }
 
+-(void)didAddSubview:(NSView *)subview {
+    [super didAddSubview:subview];
+
+    if ( [subview isKindOfClass:[NSButton class]] ) {
+        [(NSButton *)subview setImage:[NSImage imageNamed:@"trian-closed"]];
+        [(NSButton *)subview setAlternateImage:[NSImage imageNamed:@"trian-open"]];
+    }
+}
+
 
 @end
