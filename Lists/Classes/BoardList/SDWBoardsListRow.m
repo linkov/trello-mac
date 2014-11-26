@@ -11,14 +11,6 @@
 
 @implementation SDWBoardsListRow
 
-//- (void)drawRect:(NSRect)dirtyRect {
-//    [super drawRect:dirtyRect];
-//
-//    NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
-//    [[SharedSettings appBackgroundColorDark] set];
-//    [NSBezierPath fillRect:drawRect];
-//}
-
 - (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect {
 
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);

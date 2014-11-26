@@ -38,11 +38,6 @@
 
     NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"List menu"];
 
-//    [theMenu insertItemWithTitle:@"New List"
-//                          action:@selector(addList)
-//                   keyEquivalent:@""
-//                         atIndex:0];
-
     [theMenu insertItemWithTitle:@"Delete"
                           action:@selector(removeList)
                    keyEquivalent:@""

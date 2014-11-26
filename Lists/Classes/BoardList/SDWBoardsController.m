@@ -67,20 +67,6 @@
 
 }
 
-- (void)viewWillAppear {
-
-    //TODO: load last opened list
-
-//    if (SharedSettings.lastSelectedList) {
-//        [[self cardsVC] setupCardsForList:SharedSettings.lastSelectedList parentList:nil];
-//    }
-//
-//    SDWBoard *parentBoard = item.parentNode.representedObject;
-//
-//    [[self cardsVC] setupCardsForList:board parentList:parentBoard];
-
-}
-
 - (NSColor *)textColor {
 
 	return [NSColor blackColor];
@@ -308,24 +294,6 @@
 
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {}
 
-#pragma mark - NSTextFieldDelegate (new list textfield)
-
-//- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
-//    self.editedListName = fieldEditor.string;
-//    return YES;
-//}
-//- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
-//    return YES;
-//}
-//
-//- (void)controlTextDidEndEditing:(NSNotification *)obj {
-//
-//    if (self.editedListName.length >0) {
-//        [self createList];
-//    } else {
-//        [self reloadBoards:nil];
-//    }
-//}
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 

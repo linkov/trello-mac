@@ -496,9 +496,6 @@
 - (void)updateCardPosition:(SDWCard *)card {
 
     [self showCardSavingIndicator:YES];
-//
-//    self.cardSavingIndicator.hidden = NO;
-//    [self.cardSavingIndicator startAnimation:nil];
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
@@ -507,13 +504,8 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject) {
 
         [self showCardSavingIndicator:NO];
-//        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//        selectedCard.selected = NO;
-//        [selectedCard.view setNeedsDisplay:YES];
-
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-       //[self showCardSavingIndicator:NO];
-
+       [self showCardSavingIndicator:NO];
         CLS_LOG(@"err save pos - %@",error.localizedDescription);
     }];
     
@@ -544,9 +536,7 @@
         [self reloadCollection:arr];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
         [self showCardSavingIndicator:NO];
-
         CLS_LOG(@"err save - %@",error.localizedDescription);
     }];
 }
