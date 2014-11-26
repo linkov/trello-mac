@@ -88,84 +88,43 @@
 
     if (![self isShowingListCards]) {
 
-        SDWProgressIndicator *progress  = [[SDWProgressIndicator alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//        SDWProgressIndicator *progress  = [[SDWProgressIndicator alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//
+//        progress.wantsLayer = YES;
+//        [progress setTranslatesAutoresizingMaskIntoConstraints:NO];
+//
+//        
+//        [self.view addSubview:progress];
+//
+//
+//        NSArray *constaintsProgressV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
+//        NSArray *constaintsProgressH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
+//
+//
+//        [self.view addConstraints:constaintsProgressV];
+//        [self.view addConstraints:constaintsProgressH];
+//
+//        NSLayoutConstraint *centerProgressX;
+//        centerProgressX = [NSLayoutConstraint constraintWithItem:progress
+//                                                       attribute:NSLayoutAttributeCenterX
+//                                                       relatedBy:NSLayoutRelationEqual
+//                                                          toItem:progress.superview
+//                                                       attribute:NSLayoutAttributeCenterX
+//                                                      multiplier:1
+//                                                        constant:0];
+//        [self.view addConstraint:centerProgressX];
+//
+//        NSLayoutConstraint *centerProgressY;
+//        centerProgressY = [NSLayoutConstraint constraintWithItem:progress
+//                                               attribute:NSLayoutAttributeCenterY
+//                                               relatedBy:NSLayoutRelationEqual
+//                                                  toItem:progress.superview
+//                                               attribute:NSLayoutAttributeCenterY
+//                                              multiplier:1
+//                                                constant:0];
+//        [self.view addConstraint:centerProgressY];
 
-        progress.wantsLayer = YES;
-        //progress.isIndeterminate = YES;
-        //progress.numberOfLines = 2;
-        [progress setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-
-        NSView *progressContainer = [[NSView alloc]init];
-        progressContainer.wantsLayer = YES;
-        progressContainer.layer.backgroundColor = [NSColor clearColor].CGColor;
-        [progressContainer addSubview:progress];
-
-        [progressContainer setTranslatesAutoresizingMaskIntoConstraints:NO];
-        
-        [self.view addSubview:progressContainer];
-
-        ///// progress container AL
-
-        NSArray *constaintsV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[progressContainer(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progressContainer)];
-        NSArray *constaintsH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[progressContainer(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progressContainer)];
-
-
-        [self.view addConstraints:constaintsV];
-        [self.view addConstraints:constaintsH];
-
-        NSLayoutConstraint *centerX;
-        centerX = [NSLayoutConstraint constraintWithItem:progressContainer
-                                         attribute:NSLayoutAttributeCenterX
-                                         relatedBy:NSLayoutRelationEqual
-                                            toItem:progressContainer.superview
-                                         attribute:NSLayoutAttributeCenterX
-                                        multiplier:1
-                                          constant:0];
-        [self.view addConstraint:centerX];
-
-        NSLayoutConstraint *centerY;
-        centerY = [NSLayoutConstraint constraintWithItem:progressContainer
-                                               attribute:NSLayoutAttributeCenterY
-                                               relatedBy:NSLayoutRelationEqual
-                                                  toItem:progressContainer.superview
-                                               attribute:NSLayoutAttributeCenterY
-                                              multiplier:1
-                                                constant:0];
-        [self.view addConstraint:centerY];
-
-
-        ///// progress AL
-
-
-        NSArray *constaintsProgressV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
-        NSArray *constaintsProgressH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
-
-
-        [progressContainer addConstraints:constaintsProgressV];
-        [progressContainer addConstraints:constaintsProgressH];
-
-        NSLayoutConstraint *centerProgressX;
-        centerProgressX = [NSLayoutConstraint constraintWithItem:progress
-                                                       attribute:NSLayoutAttributeCenterX
-                                                       relatedBy:NSLayoutRelationEqual
-                                                          toItem:progress.superview
-                                                       attribute:NSLayoutAttributeCenterX
-                                                      multiplier:1
-                                                        constant:0];
-        [progressContainer addConstraint:centerProgressX];
-
-        NSLayoutConstraint *centerProgressY;
-        centerProgressY = [NSLayoutConstraint constraintWithItem:progress
-                                               attribute:NSLayoutAttributeCenterY
-                                               relatedBy:NSLayoutRelationEqual
-                                                  toItem:progress.superview
-                                               attribute:NSLayoutAttributeCenterY
-                                              multiplier:1
-                                                constant:0];
-        [progressContainer addConstraint:centerProgressY];
-
-        [progress animateOnce];
+        //[progress animateOnce];
 
     }
 

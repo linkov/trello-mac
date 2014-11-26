@@ -11,4 +11,7 @@
 
 - (void)animateOnce;
 
+- (void)stopAnimation;
+- (void)startAnimation;
+
 @end

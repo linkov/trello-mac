@@ -33,7 +33,7 @@
 
         NSMutableArray *lastNameArr = [NSMutableArray new];
 
-        [lastName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
+        [lastName enumerateSubstringsInRange: NSMakeRange(0,lastName.length)
                                      options: NSStringEnumerationByComposedCharacterSequences
                                   usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
 

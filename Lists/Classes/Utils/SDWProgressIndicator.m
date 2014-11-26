@@ -93,5 +93,18 @@
     [self.line1Layer addAnimation:animation1 forKey:@"primary_on1"];
 }
 
+- (void)stopAnimation {
+
+    self.hidden = YES;
+    [self.lineLayer removeAllAnimations];
+    [self.line1Layer removeAllAnimations];
+    [self.line2Layer removeAllAnimations];
+}
+- (void)startAnimation {
+
+    self.hidden = NO;
+    [self animateOnce];
+}
+
 
 @end
