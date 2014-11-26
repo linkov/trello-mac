@@ -11,6 +11,15 @@
 
 @implementation SDWBoardsListRow
 
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+
+    NSRect separatorLine = NSRectFromCGRect(CGRectMake(0, self.bounds.size.height-0.5, self.bounds.size.width, 0.5));
+    [[SharedSettings appBackgroundColorDark] set];
+    [NSBezierPath fillRect:separatorLine];
+
+}
+
 - (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect {
 
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);

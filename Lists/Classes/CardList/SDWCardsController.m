@@ -208,10 +208,6 @@
 
 - (void)loadCardsForListID:(NSString *)listID {
 
-//    PulseView *pulse = [[PulseView alloc]initWithFrame:CGRectMake(0, 0, 140, 140)];
-//    pulse.wantsLayer = YES;
-//    [self.view addSubview:pulse];
-
     NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
     NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
 

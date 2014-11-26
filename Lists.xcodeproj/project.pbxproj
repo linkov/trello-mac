@@ -61,6 +61,7 @@
 		F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */; };
 		F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */; };
 		F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */; };
+		F1C454AD1A267AE7002FFAF6 /* SDWLiveUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -169,6 +170,8 @@
 		F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWShortcutsManager.m; sourceTree = "<group>"; };
 		F1C454A81A2534BF002FFAF6 /* SDWProgressIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWProgressIndicator.h; sourceTree = "<group>"; };
 		F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWProgressIndicator.m; sourceTree = "<group>"; };
+		F1C454AB1A267AE7002FFAF6 /* SDWLiveUpdateManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLiveUpdateManager.h; sourceTree = "<group>"; };
+		F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLiveUpdateManager.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -325,9 +328,11 @@
 				F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */,
 				F10AAA2B1A12AFD800FD4E85 /* Utils.h */,
 				F10AAA2C1A12AFD800FD4E85 /* Utils.m */,
-				F1C4549E1A23ED0A002FFAF6 /* SDWShortcutsManager.h */,
 				F1C454A81A2534BF002FFAF6 /* SDWProgressIndicator.h */,
 				F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */,
+				F1C454AB1A267AE7002FFAF6 /* SDWLiveUpdateManager.h */,
+				F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */,
+				F1C4549E1A23ED0A002FFAF6 /* SDWShortcutsManager.h */,
 				F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */,
 			);
 			path = Utils;
@@ -503,6 +508,7 @@
 			files = (
 				F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */,
 				F10AAA641A12AFD800FD4E85 /* SDWMainWindowController.m in Sources */,
+				F1C454AD1A267AE7002FFAF6 /* SDWLiveUpdateManager.m in Sources */,
 				F10AAA4E1A12AFD800FD4E85 /* SDWBoardsController.m in Sources */,
 				F10AAA651A12AFD800FD4E85 /* NSColor+Util.m in Sources */,
 				F10AAA771A12AFD800FD4E85 /* AFURLSessionManager.m in Sources */,

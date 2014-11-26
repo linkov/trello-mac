@@ -38,5 +38,6 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 - (NSColor *)appHighlightColor;
 - (NSColor *)appHighlightGreenColor;
 - (NSColor *)appSelectionColor;
+- (NSColor *)appUIColor;
 
 @end
