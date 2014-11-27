@@ -25,8 +25,6 @@
 
     self.wantsLayer = YES;
 
-    //self.layer.backgroundColor = [NSColor redColor].CGColor;
-
     CGColorRef lineColor = [NSColor colorWithHexColorString:@"1E5676"].CGColor;
 
     self.line2Layer = [[CAShapeLayer alloc]init];
@@ -97,19 +95,36 @@
 
 - (void)stopAnimation {
 
-    // to prevent animation flashing for very short time on fast connection
-    CABasicAnimation *line3Anim = (CABasicAnimation *)[self.line1Layer animationForKey:@"op3"];
 
-    if (line3Anim.toValue == [NSNumber numberWithInt:1]) {
+    [self.lineLayer removeAllAnimations];
+    [self.line1Layer removeAllAnimations];
+    [self.line2Layer removeAllAnimations];
 
-        [self.lineLayer removeAllAnimations];
-        [self.line1Layer removeAllAnimations];
-        [self.line2Layer removeAllAnimations];
-    } else {
-        [self stopAnimation];
-    }
-
-
+//    // to prevent animation flashing for very short time on fast connection
+////    CABasicAnimation *line3Anim = (CABasicAnimation *)[self.line1Layer animationForKey:@"op3"];
+////
+////    if (line3Anim.toValue == [NSNumber numberWithInt:1]) {
+//
+//
+////    } else {
+////        [self stopAnimation];
+////    }
+////
+//
+//
+//
+//    [CATransaction begin];
+//    [CATransaction setCompletionBlock:^{
+//
+//        [self.lineLayer removeAllAnimations];
+//        [self.line1Layer removeAllAnimations];
+//        [self.line2Layer removeAllAnimations];
+//
+//    }];
+//    [self.layer addAnimation:[self mainOpacityAnimation] forKey:@"mainOp"];
+//    [CATransaction commit];
+//
+//    self.layer.opacity = 0.0;
 
 }
 - (void)startAnimation {
@@ -125,6 +140,17 @@
 
 
 #pragma mark - Utils
+- (CABasicAnimation *)mainOpacityAnimation {
+
+    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
+    animation.fromValue = [NSNumber numberWithInt:1];
+    animation.toValue = [NSNumber numberWithInt:0.0];
+    animation.duration = 0.3;
+    animation.removedOnCompletion = YES;
+    animation.fillMode = kCAFillModeBackwards;
+    return animation;
+}
+
 - (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time {
 
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];

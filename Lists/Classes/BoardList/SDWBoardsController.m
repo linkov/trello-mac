@@ -20,13 +20,13 @@
 #import "ITSwitch.h"
 #import "WSCBoardsOutlineView.h"
 #import "SDWBoardsCellView.h"
+#import "SDWProgressIndicator.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
 @property (strong) NSArray *unfilteredBoards;
 @property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
-@property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
 @property (strong) NSTreeNode *lastSelectedItem;
 @property (strong) SDWBoardsListRow *prevSelectedRow;
@@ -43,6 +43,7 @@
 @property (strong) NSString *editedListName;
 @property NSUInteger editedListPositon;
 @property NSUInteger editedRow;
+@property (strong) IBOutlet SDWProgressIndicator *loadingProgress;
 
 @property BOOL isAccessingExpandViaDataReload;
 
@@ -114,10 +115,10 @@
 		          forModel:[SDWBoard class]
 		    toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
 
-		[self.loadingProgress startAnimation:nil];
+		[self.loadingProgress startAnimationSmall];
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
-		    [self.loadingProgress stopAnimation:nil];
+		    [self.loadingProgress stopAnimation];
 
 		    if (!error) {
 
