@@ -402,7 +402,11 @@
 
 - (BOOL)isShowingListCards {
 
-    return (BOOL)self.currentListID;
+    if (self.currentListID.length) {
+        return YES;
+    }
+
+    return NO;
 }
 
 - (IBAction)addCard:(id)sender {
