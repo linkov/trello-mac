@@ -28,6 +28,7 @@
 @property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
 @property (strong) IBOutlet NSProgressIndicator *loadingProgress;
 
+@property (strong) NSTreeNode *lastSelectedItem;
 @property (strong) SDWBoardsListRow *prevSelectedRow;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *crownImageView;
@@ -325,7 +326,7 @@
 	if (board.isLeaf) {
 
         SharedSettings.lastSelectedList = board.boardID;
-
+        self.lastSelectedItem = item;
 		SDWBoard *parentBoard = item.parentNode.representedObject;
 
 		[[self cardsVC] setupCardsForList:board parentList:parentBoard];
@@ -365,7 +366,6 @@
             return NO;
         }
 
-
     } else {
 
         SDWBoard *board  = [item representedObject];
@@ -376,13 +376,16 @@
 
     }
 
-
     return YES;
 }
 
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView
- shouldCollapseItem:(id)item {
+ shouldCollapseItem:(NSTreeNode *)item {
+
+    if([item.childNodes containsObject:self.lastSelectedItem]) {
+        [[self cardsVC] clearCards];
+    }
 
     SDWBoard *board  = [item representedObject];
     NSMutableSet *set = [NSMutableSet setWithSet:SharedSettings.collapsedBoardsIDs];
