@@ -139,7 +139,6 @@
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
-
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;

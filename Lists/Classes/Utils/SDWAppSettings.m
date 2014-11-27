@@ -6,8 +6,23 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
+
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
+
+#define defaults                                [NSUserDefaults standardUserDefaults]
+#define saveDefaults()                          [defaults synchronize]
+
+#define setBoolForKey(value, key)               [defaults setBool:value forKey:key]
+#define setObjectForKey(object, key)            [defaults setObject:object forKey:key]
+
+#define setBoolForKeyAndSave(value, key)        setBoolForKey(value, key); saveDefaults()
+#define setObjectForKeyAndSave(object, key)     setObjectForKey(object, key);  saveDefaults()
+
+#define objectForKey(key)                       [defaults objectForKey:key]
+#define boolForKey(key)                         [defaults boolForKey:key]
+
+#define valueForKeyExists(key)                  objectForKey(key) != nil
 
 NSString * const SDWListsDidReceiveUserTokenNotification  =  @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
@@ -23,7 +38,10 @@ NSString * const SDWListsShouldReloadBoardsNotification = @"com.sdwr.trello-mac.
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 
-@implementation SDWAppSettings
+@implementation SDWAppSettings {
+
+    NSSet *_collapsedBoardsIDs;
+}
 
 
 static SDWAppSettings *sharedInstance = nil;
@@ -93,6 +111,33 @@ static SDWAppSettings *sharedInstance = nil;
 - (NSColor *)appBackgroundColorDark {
 
     return [NSColor colorWithCalibratedRed:0.096 green:0.265 blue:0.387 alpha:1.000];
+}
+
+
+
+- (void)setCollapsedBoardsIDs:(NSSet *)collapsedBoardsIDs {
+    _collapsedBoardsIDs = collapsedBoardsIDs;
+    [self saveCustomObject:collapsedBoardsIDs forKey:@"collapsedBoards"];
+}
+
+- (NSSet *)collapsedBoardsIDs {
+    if (!_collapsedBoardsIDs) {
+        _collapsedBoardsIDs = [self customObjectForKey:@"collapsedBoards"];
+    }
+    return _collapsedBoardsIDs;
+}
+
+
+#pragma mark - Helpers
+
+- (void)saveCustomObject:(id)object forKey:(NSString *)key {
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
+    setObjectForKeyAndSave(data, key);
+}
+
+- (id)customObjectForKey:(NSString *)key {
+    NSData *data = objectForKey(key);
+    return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 
 @end

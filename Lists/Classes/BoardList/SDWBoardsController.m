@@ -43,6 +43,8 @@
 @property NSUInteger editedListPositon;
 @property NSUInteger editedRow;
 
+@property BOOL isAccessingExpandViaDataReload;
+
 @end
 
 @implementation SDWBoardsController
@@ -144,9 +146,14 @@
 
 - (void)reloadDataSource {
 
+    self.isAccessingExpandViaDataReload = YES;
+
     [self.outlineView deselectAll:nil];
     [self.outlineView expandItem:nil expandChildren:YES];
     [self.outlineView reloadData];
+
+    self.isAccessingExpandViaDataReload = NO;
+
 }
 
 - (void)loadBoardsIDsWithUserCards {
@@ -329,6 +336,7 @@
 	return NO;
 }
 
+
 - (void)outlineViewSelectionDidChange:(NSNotification *)notification {
 
     if (self.outlineView.selectedRow == -1) {
@@ -345,10 +353,46 @@
 	self.prevSelectedRow = selectedRow;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldShowOutlineCellForItem:(id)item {
-	return YES;
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView
+   shouldExpandItem:(id)item {
+
+    SDWBoard *board  = [item representedObject];
+
+    if (self.isAccessingExpandViaDataReload) {
+
+        if ([SharedSettings.collapsedBoardsIDs containsObject:board.boardID]) {
+            return NO;
+        }
+
+
+    } else {
+
+        SDWBoard *board  = [item representedObject];
+
+        NSMutableSet *set = [NSMutableSet setWithSet:SharedSettings.collapsedBoardsIDs];
+        [set removeObject:board.boardID];
+        SharedSettings.collapsedBoardsIDs = [NSSet setWithSet:set];
+
+    }
+
+
+    return YES;
 }
 
+
+- (BOOL)outlineView:(NSOutlineView *)outlineView
+ shouldCollapseItem:(id)item {
+
+    SDWBoard *board  = [item representedObject];
+    NSMutableSet *set = [NSMutableSet setWithSet:SharedSettings.collapsedBoardsIDs];
+
+    [set addObject:board.boardID];
+
+    SharedSettings.collapsedBoardsIDs = [NSSet setWithSet:set];
+
+    return YES;
+}
 
 // handle drop
 - (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(NSTreeNode *)item proposedChildIndex:(NSInteger)index {

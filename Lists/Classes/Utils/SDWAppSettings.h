@@ -33,6 +33,8 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 @property (strong) NSArray *selectedListUsers;
 @property (strong) NSString *lastSelectedList;
 
+@property (strong) NSSet *collapsedBoardsIDs;
+
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;
 - (NSColor *)appHighlightColor;
