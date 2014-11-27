@@ -212,17 +212,6 @@
 
 - (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
 
-    SDWBoard *board = item.representedObject;
-
-    if (!board.isLeaf) {
-
-        SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:[self.outlineView rowForItem:item]makeIfNecessary:YES];
-        boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
-        [boardNameRow setNeedsDisplay:YES];
-    }
-
-
-
 	SDWBoardsListRow *row = [SDWBoardsListRow new];
 	return row;
 }
@@ -305,18 +294,17 @@
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
-
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
 
-    SDWBoard *board =[self.outlineView itemAtRow:row];
+    SDWBoard *board =[[self.outlineView itemAtRow:row] representedObject];
     SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
     boardNameRow.delegate = self;
 
     if (!board.isLeaf) {
-
         boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
         [boardNameRow setNeedsDisplay:YES];
     }
+
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
