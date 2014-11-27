@@ -34,6 +34,7 @@
 @property (strong) IBOutlet NSProgressIndicator *cardSavingIndicator;
 
 @property NSUInteger dropIndex;
+@property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
 
 @end
 
@@ -47,6 +48,8 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+   // self.cardSavingIndicator.layer.backgroundColor = [NSColor redColor].CGColor;
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
@@ -86,47 +89,10 @@
     }];
 
 
-    if (![self isShowingListCards]) {
-
-//        SDWProgressIndicator *progress  = [[SDWProgressIndicator alloc]initWithFrame:CGRectMake(0, 0, 100, 100)];
+//    if (![self isShowingListCards]) {
 //
-//        progress.wantsLayer = YES;
-//        [progress setTranslatesAutoresizingMaskIntoConstraints:NO];
-//
-//        
-//        [self.view addSubview:progress];
-//
-//
-//        NSArray *constaintsProgressV = [NSLayoutConstraint constraintsWithVisualFormat:@"V:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
-//        NSArray *constaintsProgressH = [NSLayoutConstraint constraintsWithVisualFormat:@"H:[progress(100)]" options:0 metrics:nil views:NSDictionaryOfVariableBindings(progress)];
-//
-//
-//        [self.view addConstraints:constaintsProgressV];
-//        [self.view addConstraints:constaintsProgressH];
-//
-//        NSLayoutConstraint *centerProgressX;
-//        centerProgressX = [NSLayoutConstraint constraintWithItem:progress
-//                                                       attribute:NSLayoutAttributeCenterX
-//                                                       relatedBy:NSLayoutRelationEqual
-//                                                          toItem:progress.superview
-//                                                       attribute:NSLayoutAttributeCenterX
-//                                                      multiplier:1
-//                                                        constant:0];
-//        [self.view addConstraint:centerProgressX];
-//
-//        NSLayoutConstraint *centerProgressY;
-//        centerProgressY = [NSLayoutConstraint constraintWithItem:progress
-//                                               attribute:NSLayoutAttributeCenterY
-//                                               relatedBy:NSLayoutRelationEqual
-//                                                  toItem:progress.superview
-//                                               attribute:NSLayoutAttributeCenterY
-//                                              multiplier:1
-//                                                constant:0];
-//        [self.view addConstraint:centerProgressY];
-
-        //[progress animateOnce];
-
-    }
+//        self.mainProgressIndicator.hidden = NO;
+//    }
 
 
 }
@@ -188,7 +154,8 @@
      forModel:[SDWUser class]
 	    toConcretePath:URL];
 
-    [self.loadingIndicator startAnimation:nil];
+   // [self.loadingIndicator startAnimation:nil];
+    [self.mainProgressIndicator startAnimation];
 
     [SDWUser findAll:^(NSArray *objs, NSError *err) {
 
@@ -221,7 +188,8 @@
 
     [SDWCard findAll:^(NSArray *objs, NSError *err) {
 
-        [self.loadingIndicator stopAnimation:nil];
+        //[self.loadingIndicator stopAnimation:nil];
+        [self.mainProgressIndicator stopAnimation];
 
 
         if (!err) {

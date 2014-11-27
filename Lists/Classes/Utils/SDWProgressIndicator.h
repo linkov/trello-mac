@@ -9,8 +9,6 @@
 
 @interface SDWProgressIndicator : NSView
 
-- (void)animateOnce;
-
 - (void)stopAnimation;
 - (void)startAnimation;
 
