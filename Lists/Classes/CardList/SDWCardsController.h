@@ -14,6 +14,4 @@
 - (void)reloadCards;
 - (void)clearCards;
 
-@property (strong) IBOutlet NSProgressIndicator *loadingIndicator;
-
 @end

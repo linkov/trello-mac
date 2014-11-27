@@ -10,6 +10,8 @@
 @interface SDWProgressIndicator : NSView
 
 - (void)stopAnimation;
+
 - (void)startAnimation;
+- (void)startAnimationSmall;
 
 @end

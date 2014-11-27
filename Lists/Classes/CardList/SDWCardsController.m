@@ -31,10 +31,10 @@
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
 @property (strong) IBOutlet NSButton *reloadButton;
-@property (strong) IBOutlet NSProgressIndicator *cardSavingIndicator;
 
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
+@property (strong) IBOutlet SDWProgressIndicator *cardActionIndicator;
 
 @end
 
@@ -48,8 +48,6 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
-   // self.cardSavingIndicator.layer.backgroundColor = [NSColor redColor].CGColor;
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
@@ -159,8 +157,6 @@
 
     [SDWUser findAll:^(NSArray *objs, NSError *err) {
 
-        [self.loadingIndicator stopAnimation:nil];
-
         if (!err) {
             SharedSettings.selectedListUsers = objs;
             [self loadCardsForListID:self.currentListID];
@@ -183,8 +179,6 @@
      setAFRecordMethod:@"findAll"
      forModel:[SDWCard class]
 	    toConcretePath:URLF];
-
-    [self.loadingIndicator startAnimation:nil];
 
     [SDWCard findAll:^(NSArray *objs, NSError *err) {
 
@@ -426,11 +420,9 @@
 - (void)showCardSavingIndicator:(BOOL)show {
 
     if (show) {
-        self.cardSavingIndicator.hidden = NO;
-        [self.cardSavingIndicator startAnimation:nil];
+        [self.cardActionIndicator startAnimationSmall];
     } else {
-        self.cardSavingIndicator.hidden = YES;
-        [self.cardSavingIndicator stopAnimation:nil];
+        [self.cardActionIndicator stopAnimation];
     }
 
 }
@@ -438,9 +430,6 @@
 - (void)updateCard:(SDWCard *)card {
 
     [self showCardSavingIndicator:YES];
-
-    self.cardSavingIndicator.hidden = NO;
-    [self.cardSavingIndicator startAnimation:nil];
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
