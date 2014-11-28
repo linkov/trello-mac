@@ -10,6 +10,8 @@
 
 @interface SDWCardsController : NSViewController
 
+@property (strong) IBOutlet NSImageView *onboardingImage;
+
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList;
 - (void)reloadCards;
 - (void)clearCards;

@@ -47,6 +47,7 @@
 
 	    [self dismissLogin];
 	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
+        self.cardsVC.onboardingImage.hidden = NO;
 	}];
 
 

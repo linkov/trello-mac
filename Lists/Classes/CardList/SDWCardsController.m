@@ -35,7 +35,7 @@
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
 @property (strong) IBOutlet SDWProgressIndicator *cardActionIndicator;
-@property (strong) IBOutlet NSImageView *onboardingImage;
+
 
 @end
 
@@ -164,6 +164,7 @@
             [self loadCardsForListID:self.currentListID];
         } else {
             self.reloadButton.hidden = NO;
+            [self.mainProgressIndicator stopAnimation];
             CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
