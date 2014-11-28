@@ -108,6 +108,8 @@
 
 	if (SharedSettings.userToken) {
 
+        [self.loadingProgress startAnimationSmall];
+
         self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
 
 		[[AFRecordPathManager manager]
@@ -115,7 +117,7 @@
 		          forModel:[SDWBoard class]
 		    toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
 
-		[self.loadingProgress startAnimationSmall];
+
 		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
 
 		    [self.loadingProgress stopAnimation];

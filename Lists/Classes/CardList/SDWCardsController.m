@@ -409,7 +409,6 @@
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
     card.name = cardView.textField.stringValue;
 
-
     if (card.isSynced) {
 
         [self updateCard:card];
@@ -461,11 +460,12 @@
                                                                  }
                                   success:^(NSURLSessionDataTask *task, id responseObject) {
 
-        [self showCardSavingIndicator:NO];
+
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-       [self showCardSavingIndicator:NO];
         CLS_LOG(@"err save pos - %@",error.localizedDescription);
     }];
+
+    [self showCardSavingIndicator:NO];
     
 }
 

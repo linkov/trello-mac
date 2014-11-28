@@ -21,6 +21,8 @@
 
 @implementation SDWProgressIndicator
 
+
+//TODO: make it DRY
 - (void)animateSmall {
 
     self.wantsLayer = YES;
@@ -100,41 +102,18 @@
     [self.line1Layer removeAllAnimations];
     [self.line2Layer removeAllAnimations];
 
-//    // to prevent animation flashing for very short time on fast connection
-////    CABasicAnimation *line3Anim = (CABasicAnimation *)[self.line1Layer animationForKey:@"op3"];
-////
-////    if (line3Anim.toValue == [NSNumber numberWithInt:1]) {
-//
-//
-////    } else {
-////        [self stopAnimation];
-////    }
-////
-//
-//
-//
-//    [CATransaction begin];
-//    [CATransaction setCompletionBlock:^{
-//
-//        [self.lineLayer removeAllAnimations];
-//        [self.line1Layer removeAllAnimations];
-//        [self.line2Layer removeAllAnimations];
-//
-//    }];
-//    [self.layer addAnimation:[self mainOpacityAnimation] forKey:@"mainOp"];
-//    [CATransaction commit];
-//
-//    self.layer.opacity = 0.0;
+    self.hidden = YES;
 
 }
 - (void)startAnimation {
 
-   // self.hidden = NO;
+    self.hidden = NO;
     [self animate];
 }
 
 - (void)startAnimationSmall {
 
+    self.hidden = NO;
     [self animateSmall];
 }
 
