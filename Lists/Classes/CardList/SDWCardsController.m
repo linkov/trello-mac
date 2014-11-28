@@ -35,6 +35,7 @@
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
 @property (strong) IBOutlet SDWProgressIndicator *cardActionIndicator;
+@property (strong) IBOutlet NSImageView *onboardingImage;
 
 @end
 
@@ -87,10 +88,10 @@
     }];
 
 
-//    if (![self isShowingListCards]) {
-//
-//        self.mainProgressIndicator.hidden = NO;
-//    }
+    if (![self isShowingListCards]) {
+
+        self.onboardingImage.hidden = NO;
+    }
 
 
 }
@@ -103,6 +104,7 @@
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
+    self.onboardingImage.hidden = YES;
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;
