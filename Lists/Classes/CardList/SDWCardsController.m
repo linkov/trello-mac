@@ -422,7 +422,7 @@
 - (void)showCardSavingIndicator:(BOOL)show {
 
     if (show) {
-        [self.cardActionIndicator startAnimationSmall];
+        [self.cardActionIndicator startAnimation];
     } else {
         [self.cardActionIndicator stopAnimation];
     }

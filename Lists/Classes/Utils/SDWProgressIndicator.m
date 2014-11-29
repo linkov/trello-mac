@@ -38,15 +38,13 @@ typedef enum {
 
     self.hidden = NO;
     [self _setupLayers];
-    [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeRegular];
-    [self _runAnimation];
-}
 
-- (void)startAnimationSmall {
+    if (self.bounds.size.width == 100) {
+        [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeRegular];
+    } else {
+        [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeSmall];
+    }
 
-    self.hidden = NO;
-    [self _setupLayers];
-    [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeSmall];
     [self _runAnimation];
 }
 

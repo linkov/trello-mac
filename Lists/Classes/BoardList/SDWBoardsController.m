@@ -108,7 +108,7 @@
 
 	if (SharedSettings.userToken) {
 
-        [self.loadingProgress startAnimationSmall];
+        [self.loadingProgress startAnimation];
 
         self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
 
