@@ -58,17 +58,38 @@
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
-   // self.crownSwitch.enabled = NO
     self.reloadButton.hidden = YES;
     self.outlineView.menuDelegate = self;
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:NSScrollViewWillStartLiveMagnifyNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+}
 
-        //[self loadCardsForListID:self.currentListID];
+#pragma mark - Utils
 
-    }];
+- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
 
+    NSMutableArray *boards = [NSMutableArray array];
 
+    for (SDWBoard *board in self.unfilteredBoards) {
+
+        NSString *boardID = [ids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",board.boardID]].firstObject;
+
+        if (boardID) {
+            NSMutableArray *lists = [NSMutableArray array];
+            for (SDWBoard *list in board.children) {
+
+                NSString *listID = [lids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",list.boardID]].firstObject;
+
+                if (listID) {
+                    [lists addObject:list];
+                }
+
+            }
+            board.children = lists;
+            [boards addObject:board];
+        }
+        
+    }
+    return boards;
 }
 
 - (NSColor *)textColor {
@@ -91,9 +112,11 @@
     SharedSettings.shouldFilter = sender.on;
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
     self.boards = nil;
-   // [self reloadDataSource];
     [self loadBoards];
 }
+
+
+#pragma mark - Board operations
 
 - (IBAction)reloadBoards:(id)sender {
 
@@ -102,7 +125,6 @@
     self.reloadButton.hidden = YES;
     [self loadBoards];
 }
-
 
 - (void)loadBoards {
 
@@ -179,44 +201,14 @@
 }
 
 
-- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
 
-    NSMutableArray *boards = [NSMutableArray array];
-//    NSMutableArray *allBoards = [NSMutableArray arrayWithArray:self.unfilteredBoards];
 
-    for (SDWBoard *board in self.unfilteredBoards) {
-
-        NSString *boardID = [ids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",board.boardID]].firstObject;
-
-        if (boardID) {
-            NSMutableArray *lists = [NSMutableArray array];
-            for (SDWBoard *list in board.children) {
-
-                NSString *listID = [lids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",list.boardID]].firstObject;
-
-                if (listID) {
-                    [lists addObject:list];
-                }
-
-            }
-            board.children = lists;
-            [boards addObject:board];
-        }
-
-    }
-    return boards;
-}
+#pragma mark - Card operations
 
 - (SDWCardsController *)cardsVC {
 
 	SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
 	return main.cardsVC;
-}
-
-- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
-
-	SDWBoardsListRow *row = [SDWBoardsListRow new];
-	return row;
 }
 
 - (void)moveCard:(NSDictionary *)cardData {
@@ -239,6 +231,9 @@
     }];
 
 }
+
+
+#pragma mark - List operations
 
 - (void)createList {
 
@@ -297,6 +292,12 @@
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
+- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
+
+    SDWBoardsListRow *row = [SDWBoardsListRow new];
+    return row;
+}
+
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
 
     SDWBoard *board =[[self.outlineView itemAtRow:row] representedObject];
@@ -346,8 +347,7 @@
 }
 
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView
-   shouldExpandItem:(id)item {
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item {
 
     SDWBoard *board  = [item representedObject];
 
@@ -371,8 +371,7 @@
 }
 
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView
- shouldCollapseItem:(NSTreeNode *)item {
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldCollapseItem:(NSTreeNode *)item {
 
     if([item.childNodes containsObject:self.lastSelectedItem]) {
         [[self cardsVC] clearCards];

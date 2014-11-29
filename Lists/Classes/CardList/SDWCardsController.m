@@ -42,6 +42,8 @@
 @implementation SDWCardsController
 
 
+#pragma mark - Lifecycle
+
 - (void)awakeFromNib {
 
     [self.addCardButton setHidden:YES];
@@ -63,6 +65,20 @@
     [self.trashImageView setHidden:YES];
     self.trashImageView.delegate = self;
 
+    [self subscribeToEvents];
+
+    if (![self isShowingListCards]) {
+
+        self.onboardingImage.hidden = NO;
+    }
+
+
+}
+
+#pragma mark - Utils
+
+- (void)subscribeToEvents {
+
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
@@ -81,20 +97,9 @@
 
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
-
-        [self deleteSelectedCard];
-
-    }];
-
-
-    if (![self isShowingListCards]) {
-
-        self.onboardingImage.hidden = NO;
-    }
-
-
 }
+
+#pragma mark - Card actions
 
 - (void)clearCards {
 
@@ -276,6 +281,7 @@
     [mutableArray removeObject:movedCard];
     [mutableArray insertObject:movedCard atIndex:self.dropIndex];
 
+    // 2. set positions to all cards equal to cards' indexes in array
     for (int i = 0; i<mutableArray.count; i++) {
         SDWCard *card = mutableArray[i];
         card.position = i;
@@ -523,13 +529,6 @@
 
         [self deleteCardWithID:objectID];
     }
-}
-
-- (void)deleteSelectedCard {
-
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    [self deleteCardWithID:card.cardID];
-
 }
 
 - (void)deleteCardWithID:(NSString *)cardID {

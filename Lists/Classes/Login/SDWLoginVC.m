@@ -10,31 +10,12 @@
 #import "SDWAppSettings.h"
 #import "SDWLoginVC.h"
 
-@interface SDWLoginVC () <WKNavigationDelegate>
+@interface SDWLoginVC ()
 @property (strong) IBOutlet WebView *webView;
 
 @end
 
 @implementation SDWLoginVC
-
-- (void)viewDidLoad {
-    [super viewDidLoad];
-
-    [self.webView setResourceLoadDelegate:self];
-
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationAction:(WKNavigationAction *)navigationAction decisionHandler:(void (^)(WKNavigationActionPolicy))decisionHandler {
-
-
-}
-
-- (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler {
-
-    //navigationResponse.response
-
-}
-
 
 - (void)viewDidAppear {
 
@@ -45,11 +26,5 @@
     [self.webView.mainFrame loadRequest:request];
 }
 
-
-- (void)updateToken {
-
-   // SharedSettings.userToken = @"0eacb1b8f4ae6d6c415cec52459267aa885af5e33b4328347f3a7367e5b522be";
-
-}
 
 @end

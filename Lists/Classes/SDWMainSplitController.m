@@ -43,7 +43,6 @@
 	                                                   queue:[NSOperationQueue mainQueue]
 	                                              usingBlock:^(NSNotification *note)
 	{
-        //NSString *token = note.userInfo[@"token"];
 
 	    [self dismissLogin];
 	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
@@ -67,7 +66,6 @@
         [self.boardsVC reloadBoards:nil];
     }];
 
-	// self.firstSplitItem = [self splitViewItemForViewController:boardsVC];
 }
 
 
@@ -101,9 +99,5 @@
     [self logout];
 }
 
-//- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
-//
-//
-//}
 
 @end
