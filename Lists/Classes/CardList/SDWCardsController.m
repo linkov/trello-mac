@@ -77,6 +77,16 @@
 
 #pragma mark - Utils
 
+- (void)showCardSavingIndicator:(BOOL)show {
+
+    if (show) {
+        [self.cardActionIndicator startAnimation];
+    } else {
+        [self.cardActionIndicator stopAnimation];
+    }
+    
+}
+
 - (void)subscribeToEvents {
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -99,7 +109,139 @@
 
 }
 
+
+- (BOOL)isShowingListCards {
+
+    if (self.currentListID.length) {
+        return YES;
+    }
+
+    return NO;
+}
+
+//TODO: refactor
+- (BOOL)isValidIndex:(NSUInteger)index {
+
+    if (index >10000) {
+        return NO;
+    }
+    return YES;
+}
+
+//TODO: refactor
+- (NSUInteger)bottomObjectIndex:(NSArray *)arr {
+
+    return arr.count == 0 ? 0 : arr.count-1;
+}
+
+
+- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
+
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
+
+    // 1. swap 2 elements
+    SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
+    SDWCard *newSiblingCard = [mutableArray objectAtIndex:self.dropIndex];
+
+    NSUInteger movedCardPos = movedCard.position;
+    NSUInteger newSiblingCardPos = newSiblingCard.position;
+
+    movedCard.position = newSiblingCardPos;
+    newSiblingCard.position = movedCardPos;
+
+    [mutableArray removeObject:movedCard];
+    [mutableArray insertObject:movedCard atIndex:self.dropIndex];
+
+    // 2. set positions to all cards equal to cards' indexes in array
+    for (int i = 0; i<mutableArray.count; i++) {
+        SDWCard *card = mutableArray[i];
+        card.position = i;
+    }
+
+    return mutableArray;
+    
+}
+
 #pragma mark - Card actions
+
+- (void)updateCard:(SDWCard *)card {
+
+    [self showCardSavingIndicator:YES];
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self showCardSavingIndicator:NO];
+        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+        selectedCard.selected = NO;
+        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
+        [selectedCard.view setNeedsDisplay:YES];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showCardSavingIndicator:NO];
+
+        CLS_LOG(@"err save - %@",error.localizedDescription);
+    }];
+
+}
+
+
+- (void)updateCardPosition:(SDWCard *)card {
+
+    [self showCardSavingIndicator:YES];
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?",card.cardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
+                                                                 @"value":[NSNumber numberWithInteger:card.position],
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      CLS_LOG(@"err save pos - %@",error.localizedDescription);
+                                  }];
+
+    [self showCardSavingIndicator:NO];
+
+}
+
+- (void)createCard:(SDWCard *)card {
+    [self showCardSavingIndicator:YES];
+
+    NSDictionary *params = @{
+                             @"name":card.name,
+                             @"due":@"null",
+                             @"idList":self.currentListID,
+                             @"urlSource":@"null"
+                             };
+
+    [[AFTrelloAPIClient sharedClient] POST:@"cards?"
+                                parameters:params
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         [self showCardSavingIndicator:NO];
+
+         SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
+
+         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+         [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
+         [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
+         [self reloadCollection:arr];
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         [self showCardSavingIndicator:NO];
+         CLS_LOG(@"err save - %@",error.localizedDescription);
+     }];
+}
+
+- (void)dismissNewEditedCard {
+    
+    self.addCardButton.enabled = YES;
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
+    self.cardsArrayController.content = arr;
+}
 
 - (void)clearCards {
 
@@ -226,7 +368,7 @@
     }
 }
 
-#pragma mark - NSCollectionViewDelegate
+#pragma mark - NSCollectionViewDelegate,NSCollectionViewDatasource
 
 
 - (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
@@ -264,33 +406,6 @@
     return YES;
 }
 
-- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
-
-    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
-
-    // 1. swap 2 elements
-    SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
-    SDWCard *newSiblingCard = [mutableArray objectAtIndex:self.dropIndex];
-
-    NSUInteger movedCardPos = movedCard.position;
-    NSUInteger newSiblingCardPos = newSiblingCard.position;
-
-    movedCard.position = newSiblingCardPos;
-    newSiblingCard.position = movedCardPos;
-
-    [mutableArray removeObject:movedCard];
-    [mutableArray insertObject:movedCard atIndex:self.dropIndex];
-
-    // 2. set positions to all cards equal to cards' indexes in array
-    for (int i = 0; i<mutableArray.count; i++) {
-        SDWCard *card = mutableArray[i];
-        card.position = i;
-    }
-
-    return mutableArray;
-
-}
-
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
     [self.trashImageView setHidden:NO];
@@ -322,21 +437,6 @@
     }
 
     return dragOp;
-}
-
-//TODO: refactor
-- (BOOL)isValidIndex:(NSUInteger)index {
-
-    if (index >10000) {
-        return NO;
-    }
-    return YES;
-}
-
-//TODO: refactor
-- (NSUInteger)bottomObjectIndex:(NSArray *)arr {
-
-    return arr.count == 0 ? 0 : arr.count-1;
 }
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
@@ -371,14 +471,6 @@
     selected.delegate = self;
 }
 
-- (BOOL)isShowingListCards {
-
-    if (self.currentListID.length) {
-        return YES;
-    }
-
-    return NO;
-}
 
 - (IBAction)addCard:(id)sender {
 
@@ -423,95 +515,6 @@
     else {
         [self createCard:card];
     }
-}
-
-- (void)showCardSavingIndicator:(BOOL)show {
-
-    if (show) {
-        [self.cardActionIndicator startAnimation];
-    } else {
-        [self.cardActionIndicator stopAnimation];
-    }
-
-}
-
-- (void)updateCard:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        [self showCardSavingIndicator:NO];
-        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-        selectedCard.selected = NO;
-        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
-        [selectedCard.view setNeedsDisplay:YES];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self showCardSavingIndicator:NO];
-
-        CLS_LOG(@"err save - %@",error.localizedDescription);
-    }];
-
-}
-
-
-- (void)updateCardPosition:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?",card.cardID];
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
-                                                                 @"value":[NSNumber numberWithInteger:card.position],
-                                                                 }
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
-
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CLS_LOG(@"err save pos - %@",error.localizedDescription);
-    }];
-
-    [self showCardSavingIndicator:NO];
-    
-}
-
-- (void)createCard:(SDWCard *)card {
-    [self showCardSavingIndicator:YES];
-
-    NSDictionary *params = @{
-                             @"name":card.name,
-                             @"due":@"null",
-                             @"idList":self.currentListID,
-                             @"urlSource":@"null"
-                             };
-
-    [[AFTrelloAPIClient sharedClient] POST:@"cards?"
-                                parameters:params
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
-    {
-
-        [self showCardSavingIndicator:NO];
-
-        SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
-
-        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
-        [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
-        [self reloadCollection:arr];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        [self showCardSavingIndicator:NO];
-        CLS_LOG(@"err save - %@",error.localizedDescription);
-    }];
-}
-
-- (void)dismissNewEditedCard {
-
-    self.addCardButton.enabled = YES;
-    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
-    self.cardsArrayController.content = arr;
 }
 
 - (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
