@@ -5,102 +5,31 @@
 //  Created by alex on 11/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SDWProgressIndicator.h"
 
+typedef enum {
+    SDWIndicatorTypeRegular = 0,
+    SDWIndicatorTypeSmall,
+} SDWIndicatorType;
 
 @interface SDWProgressIndicator ()
 
-@property (strong) CAShapeLayer *lineLayer;
-@property (strong) CAShapeLayer *line1Layer;
-@property (strong) CAShapeLayer *line2Layer;
+@property (strong) CAShapeLayer *secondLine;
+@property (strong) CAShapeLayer *thirdLine;
+@property (strong) CAShapeLayer *firstLine;
 
 @end
 
 @implementation SDWProgressIndicator
 
 
-//TODO: make it DRY
-- (void)animateSmall {
-
-    self.wantsLayer = YES;
-
-    CGColorRef lineColor = [NSColor colorWithHexColorString:@"1E5676"].CGColor;
-
-    self.line2Layer = [[CAShapeLayer alloc]init];
-    self.line2Layer.position = CGPointMake(1, 10);
-    self.line2Layer.fillColor = lineColor;
-    self.line2Layer.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 14, 3), .5, .5, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.line2Layer];
-
-    self.lineLayer = [[CAShapeLayer alloc]init];
-    self.lineLayer.position = CGPointMake(1, 5);
-    self.lineLayer.fillColor = lineColor;
-    self.lineLayer.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 10, 3), .5, .5, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.lineLayer];
-
-
-    self.line1Layer = [[CAShapeLayer alloc]init];
-    self.line1Layer.position = CGPointMake(1, 0);
-    self.line1Layer.fillColor = lineColor;
-    self.line1Layer.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 6, 3), .5, .5, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.line1Layer];
-
-    self.lineLayer.opacity = self.line1Layer.opacity =  self.line2Layer.opacity = 0;
-
-    [self.line2Layer addAnimation:[self opacityAnimationWithBeginTime:0.1] forKey:@"op1"];
-    [self.lineLayer addAnimation:[self opacityAnimationWithBeginTime:0.3] forKey:@"op2"];
-    [self.line1Layer addAnimation:[self opacityAnimationWithBeginTime:0.5] forKey:@"op3"];
-}
-
-- (void)animate {
-
-    self.wantsLayer = YES;
-
-    CGColorRef lineColor =[NSColor colorWithHexColorString:@"1E5676"].CGColor;
-
-    self.line2Layer = [[CAShapeLayer alloc]init];
-    self.line2Layer.position = CGPointMake(15, 40);
-    self.line2Layer.fillColor = lineColor;
-    self.line2Layer.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 60, 15), 2, 2, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.line2Layer];
-
-    self.lineLayer = [[CAShapeLayer alloc]init];
-    self.lineLayer.position = CGPointMake(15, 20);
-    self.lineLayer.fillColor = lineColor;
-    self.lineLayer.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 45, 15), 2, 2, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.lineLayer];
-
-
-    self.line1Layer = [[CAShapeLayer alloc]init];
-    self.line1Layer.position = CGPointMake(15, 0);
-    self.line1Layer.fillColor = lineColor;
-    self.line1Layer.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 30, 15), 2, 2, &CGAffineTransformIdentity);
-
-    [self.layer addSublayer:self.line1Layer];
-
-    self.lineLayer.opacity = self.line1Layer.opacity =  self.line2Layer.opacity = 0;
-
-    [self.line2Layer addAnimation:[self opacityAnimationWithBeginTime:0.1] forKey:@"op1"];
-    [self.lineLayer addAnimation:[self opacityAnimationWithBeginTime:0.3] forKey:@"op2"];
-    [self.line1Layer addAnimation:[self opacityAnimationWithBeginTime:0.5] forKey:@"op3"];
-
-
-}
-
 - (void)stopAnimation {
 
-
-    [self.lineLayer removeAllAnimations];
-    [self.line1Layer removeAllAnimations];
-    [self.line2Layer removeAllAnimations];
+    [self.secondLine removeAllAnimations];
+    [self.thirdLine removeAllAnimations];
+    [self.firstLine removeAllAnimations];
 
     self.hidden = YES;
 
@@ -108,27 +37,78 @@
 - (void)startAnimation {
 
     self.hidden = NO;
-    [self animate];
+    [self _setupLayers];
+    [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeRegular];
+    [self _runAnimation];
 }
 
 - (void)startAnimationSmall {
 
     self.hidden = NO;
-    [self animateSmall];
+    [self _setupLayers];
+    [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeSmall];
+    [self _runAnimation];
 }
 
+- (void)_setupLayers {
+
+    self.wantsLayer = YES;
+
+    CGColorRef lineColor = [SharedSettings appBackgroundColor].CGColor;
+
+    self.firstLine = [[CAShapeLayer alloc]init];
+    [self.layer addSublayer:self.firstLine];
+
+    self.secondLine = [[CAShapeLayer alloc]init];
+    [self.layer addSublayer:self.secondLine];
+
+
+    self.thirdLine = [[CAShapeLayer alloc]init];
+    [self.layer addSublayer:self.thirdLine];
+
+    self.firstLine.fillColor = self.thirdLine.fillColor = self.secondLine.fillColor = lineColor;
+
+}
+
+- (void)_setupPositionAndSizeForIndicatorType:(SDWIndicatorType)type {
+
+    if (type == SDWIndicatorTypeSmall) {
+
+        self.firstLine.position = CGPointMake(1, 10);
+        self.firstLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 14, 3), .5, .5, &CGAffineTransformIdentity);
+
+        self.secondLine.position = CGPointMake(1, 5);
+        self.secondLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 10, 3), .5, .5, &CGAffineTransformIdentity);
+
+        self.thirdLine.position = CGPointMake(1, 0);
+        self.thirdLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 6, 3), .5, .5, &CGAffineTransformIdentity);
+
+    } else {
+
+        self.firstLine.position = CGPointMake(15, 40);
+        self.firstLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 60, 15), 2, 2, &CGAffineTransformIdentity);
+
+        self.secondLine.position = CGPointMake(15, 20);
+        self.secondLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 45, 15), 2, 2, &CGAffineTransformIdentity);
+
+        self.thirdLine.position = CGPointMake(15, 0);
+        self.thirdLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 30, 15), 2, 2, &CGAffineTransformIdentity);
+
+    }
+
+}
+
+
+- (void)_runAnimation {
+
+    self.secondLine.opacity = self.thirdLine.opacity =  self.firstLine.opacity = 0;
+
+    [self.firstLine addAnimation:[self opacityAnimationWithBeginTime:0.1] forKey:@"op1"];
+    [self.secondLine addAnimation:[self opacityAnimationWithBeginTime:0.3] forKey:@"op2"];
+    [self.thirdLine addAnimation:[self opacityAnimationWithBeginTime:0.5] forKey:@"op3"];
+}
 
 #pragma mark - Utils
-- (CABasicAnimation *)mainOpacityAnimation {
-
-    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.fromValue = [NSNumber numberWithInt:1];
-    animation.toValue = [NSNumber numberWithInt:0.0];
-    animation.duration = 0.3;
-    animation.removedOnCompletion = YES;
-    animation.fillMode = kCAFillModeBackwards;
-    return animation;
-}
 
 - (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time {
 
