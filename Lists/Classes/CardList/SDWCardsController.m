@@ -251,7 +251,7 @@
 
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
 
-    self.onboardingImage.hidden = YES;
+    [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;
