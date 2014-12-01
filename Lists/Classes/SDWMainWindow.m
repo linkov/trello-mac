@@ -16,21 +16,9 @@
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 }
 
+/* trash quicklook event b/c it causes crash  */
+- (void)quickLookWithEvent:(NSEvent *)event {}
 
-// TODO: make code less opaque (http://www.sluse.com/view/20507457)
-- (void)sendEvent:(NSEvent *)theEvent {
-
-    /*
-     3 finger multi-touch tap causes crash in [LULookupDefinitionModule _focusTermUsingQueue:handler:]
-     so we block it
-     */
-    if (theEvent.type == NSSystemDefined && theEvent.subtype == 9) {
-
-    } else {
-
-        [super sendEvent:theEvent];
-    }
-}
 
 
 @end
