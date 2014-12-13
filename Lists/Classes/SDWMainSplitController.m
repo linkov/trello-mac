@@ -18,9 +18,11 @@
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
+@property (strong) IBOutlet NSSplitViewItem *cardDetailSplitItem;
 
 @property (strong) SDWLoginVC *loginVC;
 @property (strong) NSLayoutConstraint *sideBarWidth;
+@property (strong) NSLayoutConstraint *cardDetailsWidth;
 
 @end
 
@@ -33,10 +35,15 @@
 
 	self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
 	self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
+    self.cardDetailsVC = (SDWCardViewController *)self.cardDetailSplitItem.viewController;
 
 	self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
 
 	[self.boardsVC.view addConstraint:self.sideBarWidth];
+
+    self.cardDetailsWidth = [NSLayoutConstraint constraintWithItem:self.cardDetailsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:300];
+
+    [self.cardDetailsVC.view addConstraint:self.cardDetailsWidth];
 
 	[[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveUserTokenNotification
 	                                                  object:nil
@@ -55,6 +62,11 @@
 	    [self toggleSideBar];
 	}];
 
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeCardDetailsStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self toggleCardDetails];
+    }];
+
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadListNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
         [self.cardsVC reloadCards];
@@ -68,6 +80,17 @@
 
 }
 
+- (void)toggleCardDetails {
+
+    if (self.cardDetailsWidth.constant != 0) {
+
+        self.cardDetailsWidth.constant = 0;
+    } else {
+
+        self.cardDetailsWidth.constant = 300;
+    }
+
+}
 
 - (void)toggleSideBar {
 

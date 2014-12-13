@@ -16,6 +16,8 @@
 #import "SDWMenuItemImageView.h"
 #import "PulseView.h"
 #import "SDWProgressIndicator.h"
+#import "SDWCardViewController.h"
+#import "SDWMainSplitController.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate,SDWMenuItemDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -76,6 +78,12 @@
 }
 
 #pragma mark - Utils
+
+- (SDWCardViewController *)cardDetailsVC {
+
+    SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
+    return main.cardDetailsVC;
+}
 
 - (void)showCardSavingIndicator:(BOOL)show {
 
@@ -449,6 +457,7 @@
     }
 }
 
+
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
 
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
@@ -469,6 +478,14 @@
 
     SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
     selected.delegate = self;
+}
+
+- (void)collectionItemViewClick:(NSCollectionViewItem *)sender {
+
+    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    NSLog(@"selected: %@",selectedCard.name);
+
+    [[self cardDetailsVC] setCard:selectedCard];
 }
 
 

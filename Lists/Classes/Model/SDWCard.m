@@ -24,6 +24,7 @@
     self.name = [attributes valueForKeyPath:@"name"];
     self.members = [attributes valueForKeyPath:@"idMembers"];
     self.lastUpdate = [attributes valueForKeyPath:@"dateLastActivity"];
+    self.cardDescription = attributes[@"desc"];
     self.isSynced = YES;
 
     NSMutableArray *mutableArray = [NSMutableArray new];

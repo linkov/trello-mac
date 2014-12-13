@@ -55,4 +55,9 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
 }
 
+- (IBAction)hideCardDetails:(id)sender {
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeCardDetailsStatusNotification object:nil];
+}
+
 @end

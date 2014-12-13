@@ -150,6 +150,7 @@
     }
     else {
         self.textField.editable = NO;
+        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewClick:) to:nil from:self];
     }
 }
 

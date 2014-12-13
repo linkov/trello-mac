@@ -13,6 +13,7 @@
 
 @property (strong) SDWCardsController *cardsVC;
 @property (strong) SDWBoardsController *boardsVC;
+@property (strong) SDWCardViewController *cardDetailsVC;
 
 - (void)logout;
 

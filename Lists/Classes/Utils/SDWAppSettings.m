@@ -26,6 +26,7 @@
 
 NSString * const SDWListsDidReceiveUserTokenNotification  =  @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
+NSString * const SDWListsDidChangeCardDetailsStatusNotification  =  @"com.sdwr.trello-mac.didChangeCardDetailsStatusNotification";
 
 NSString * const SDWListsDidRemoveCardNotification = @"com.sdwr.trello-mac.didRemoveCardNotification";
 NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.shouldFilterNotification";

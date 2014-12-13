@@ -19,6 +19,7 @@
 @property (strong) NSString *boardID;
 @property (strong) NSDate *lastUpdate;
 @property NSUInteger position;
+@property (strong) NSString *cardDescription;
 
 @property BOOL isSynced;
 

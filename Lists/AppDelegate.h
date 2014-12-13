@@ -11,6 +11,7 @@
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 
 - (IBAction)hideSideBar:(id)sender;
+- (IBAction)hideCardDetails:(id)sender;
 
 @end
 
