@@ -457,7 +457,6 @@
     }
 }
 
-
 -(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
 
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
@@ -483,7 +482,7 @@
 - (void)collectionItemViewClick:(NSCollectionViewItem *)sender {
 
     SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    NSLog(@"selected: %@",selectedCard.name);
+  //  NSLog(@"selected: %@",selectedCard.name);
 
     [[self cardDetailsVC] setCard:selectedCard];
 }
@@ -524,6 +523,8 @@
 
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
     card.name = cardView.textField.stringValue;
+
+    [[self cardDetailsVC] setCard:card];
 
     if (card.isSynced) {
 

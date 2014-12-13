@@ -33,6 +33,26 @@
 
 - (void)viewDidAppear {
      [self loadCardUsers];
+    [self markDescription];
+}
+
+- (void)markDescription {
+
+    NSString *descString = [self.representedObject valueForKey:@"cardDescription"];
+  //  NSLog(@"desc - %@",descString);
+
+    if (descString.length > 0) {
+
+        for (id view in [self view].subviews) {
+
+            if ([view isKindOfClass:[SDWCardListView class]]) {
+
+                [(SDWCardListView *)view setHasDescription:YES];
+            }
+        }
+    }
+
+
 }
 
 - (void)loadCardUsers {
@@ -147,8 +167,7 @@
         [self.textField becomeFirstResponder];
         [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
        // [self.delegate cardViewDidReceiveDoubleClick:self];
-    }
-    else {
+    } else if (theEvent.clickCount == 1) {
         self.textField.editable = NO;
         [NSApplication.sharedApplication sendAction:@selector(collectionItemViewClick:) to:nil from:self];
     }

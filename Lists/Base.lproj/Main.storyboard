@@ -1074,6 +1074,7 @@
                     <declaredKeys>
                         <string>name</string>
                         <string>members</string>
+                        <string>cardDescription</string>
                     </declaredKeys>
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
@@ -1149,7 +1150,7 @@
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </clipView>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="FSQ-dz-ojv"/>
+                                                        <constraint firstAttribute="width" priority="750" constant="260" id="FSQ-dz-ojv"/>
                                                         <constraint firstAttribute="height" constant="50" id="nye-X8-nRS"/>
                                                     </constraints>
                                                     <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="nLV-zt-MVj">
@@ -1163,10 +1164,10 @@
                                                 </scrollView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7bz-y9-NZA" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" constant="20" id="JG7-2G-liN"/>
-                                                <constraint firstAttribute="trailing" secondItem="Tkg-jf-kNw" secondAttribute="trailing" constant="20" id="SlH-o4-INC"/>
+                                                <constraint firstItem="7bz-y9-NZA" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="20" id="JG7-2G-liN"/>
+                                                <constraint firstAttribute="trailing" secondItem="Tkg-jf-kNw" secondAttribute="trailing" priority="750" constant="20" id="SlH-o4-INC"/>
                                                 <constraint firstAttribute="trailing" secondItem="7bz-y9-NZA" secondAttribute="trailing" constant="20" id="cau-Pg-wTM"/>
-                                                <constraint firstItem="Tkg-jf-kNw" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" constant="20" id="m4l-Tb-o3L"/>
+                                                <constraint firstItem="Tkg-jf-kNw" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="20" id="m4l-Tb-o3L"/>
                                                 <constraint firstItem="7bz-y9-NZA" firstAttribute="top" secondItem="JhT-wW-IRh" secondAttribute="top" constant="10" id="rHf-vk-pBg"/>
                                                 <constraint firstItem="Tkg-jf-kNw" firstAttribute="top" secondItem="7bz-y9-NZA" secondAttribute="bottom" constant="2" id="sct-Qh-Nk9"/>
                                             </constraints>
@@ -1180,7 +1181,7 @@
                                     </constraints>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="300" id="Qhp-FS-4jA"/>
+                                    <constraint firstAttribute="width" priority="750" constant="300" id="Qhp-FS-4jA"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" verticalHuggingPriority="750" horizontal="YES" id="hdq-rm-F3x">
                                     <rect key="frame" x="1" y="79" width="181" height="16"/>
@@ -1234,6 +1235,10 @@
                                     <rect key="frame" x="0.0" y="0.0" width="400" height="30"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
+                                        <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6R-h4-F19">
+                                            <rect key="frame" x="0.0" y="-9" width="48" height="48"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="note" id="88p-t9-DQi"/>
+                                        </imageView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
                                             <rect key="frame" x="10" y="6" width="276" height="17"/>
                                             <constraints>
@@ -1329,6 +1334,7 @@
         <image name="group" width="26" height="19"/>
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16.5"/>
+        <image name="note" width="8" height="10"/>
         <image name="onboard" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
         <image name="trash-ultrasmall" width="15" height="17"/>

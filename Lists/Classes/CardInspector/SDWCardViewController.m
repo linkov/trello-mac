@@ -32,11 +32,18 @@
 - (void)setCard:(SDWCard *)card {
     _card = card;
 
+    NSString *cardName;
+    if ([self.card.name isKindOfClass:[NSAttributedString class]]) {
+        cardName = [(NSAttributedString *)self.card.name string];
+    } else {
+        cardName = self.card.name;
+    }
+
     self.logoImageView.hidden = YES;
 
     self.cardNameTextView.hidden = self.cardDescriptionTextView.hidden = NO;
 
-    self.cardNameTextView.string = self.card.name;
+    self.cardNameTextView.string = cardName;
     self.cardDescriptionTextView.string = self.card.cardDescription;
 }
 

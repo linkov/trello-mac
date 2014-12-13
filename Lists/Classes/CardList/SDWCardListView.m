@@ -15,18 +15,22 @@
 
 #pragma mark - Properties
 
-//- (void)drawRect:(NSRect)dirtyRect {
-//    [super drawRect:dirtyRect];
-//
-//        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(3, self.bounds.size.height/2-6/2, 6, 6)];
-//        [[NSColor lightGrayColor] setFill];
-//        [[NSColor grayColor] setStroke];
-//        [ovalPath fill];
-//        [ovalPath stroke];
-//}
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
 
-- (void)setSelected:(BOOL)selected
-{
+    if(self.hasDescription) {
+
+        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(3.5, self.bounds.size.height/2-4/2, 4, 4)];
+
+        [[SharedSettings appBackgroundColorDark] setFill];
+        [[SharedSettings appBackgroundColor] setStroke];
+        [ovalPath fill];
+        //[ovalPath stroke];
+    }
+
+}
+
+- (void)setSelected:(BOOL)selected {
 
     if (selected) {
 
@@ -38,17 +42,19 @@
     }
 }
 
+- (void)setHasDescription:(BOOL)hasDescription {
+    _hasDescription = hasDescription;
+
+    [self setNeedsDisplay:YES];
+}
+
 - (void)awakeFromNib {
 
   [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
 }
 
--(IBAction)setCRRR:(id)sender {
-
-    
-}
-
+-(IBAction)setCRRR:(id)sender {}
 - (void)expand {}
 
 @end
