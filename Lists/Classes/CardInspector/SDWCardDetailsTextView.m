@@ -6,6 +6,7 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 #import "SDWAppSettings.h"
+#import "NSColor+Util.h"
 #import "SDWCardDetailsTextView.h"
 
 @implementation SDWCardDetailsTextView
@@ -13,7 +14,7 @@
 - (void)awakeFromNib {
 
   //  self.wantsLayer = YES;
-    self.textColor = [NSColor whiteColor];
+    self.textColor = [NSColor colorWithHexColorString:@"E8E8E8"];
     self.backgroundColor = [NSColor clearColor];
  //   self.textContainerInset = CGSizeMake(4, 4);
   //  self.layer.cornerRadius = 1.5;

@@ -1042,7 +1042,7 @@
                                         <constraint firstAttribute="width" constant="424" id="Uk8-Ar-IYa"/>
                                         <constraint firstAttribute="height" constant="453" id="iQU-aS-epv"/>
                                     </constraints>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="onboard" id="Pp8-sx-3Ie"/>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="onboad" id="Pp8-sx-3Ie"/>
                                 </imageView>
                             </subviews>
                         </view>
@@ -1526,7 +1526,7 @@
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16.5"/>
         <image name="note" width="8" height="10"/>
-        <image name="onboard" width="424" height="453"/>
+        <image name="onboad" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
         <image name="save" width="24" height="24"/>
         <image name="trash-ultrasmall" width="15" height="17"/>
