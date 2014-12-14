@@ -1096,17 +1096,17 @@
                                     <rect key="frame" x="1" y="1" width="181" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhT-wW-IRh">
+                                        <view translatesAutoresizingMaskIntoConstraints="NO" id="JhT-wW-IRh">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="477"/>
                                             <subviews>
-                                                <box autoresizesSubviews="NO" title="Due" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="hBZ-s6-qwb" customClass="SDWCardDetailBox">
-                                                    <rect key="frame" x="20" y="281" width="260" height="24"/>
+                                                <box autoresizesSubviews="NO" wantsLayer="YES" title="Due" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="hBZ-s6-qwb" customClass="SDWCardDetailBox">
+                                                    <rect key="frame" x="15" y="281" width="270" height="24"/>
                                                     <view key="contentView">
-                                                        <rect key="frame" x="1" y="1" width="258" height="22"/>
+                                                        <rect key="frame" x="1" y="1" width="268" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <scrollView borderType="none" horizontalLineScroll="0.0" horizontalPageScroll="0.0" verticalLineScroll="0.0" verticalPageScroll="0.0" hasHorizontalScroller="NO" hasVerticalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" verticalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="C8Z-us-xB5">
-                                                                <rect key="frame" x="3" y="-1" width="252" height="20"/>
+                                                                <rect key="frame" x="3" y="-1" width="262" height="20"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="7O0-h1-age">
                                                                     <rect key="frame" x="1" y="1" width="223" height="133"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1115,10 +1115,10 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                                                            <size key="minSize" width="252" height="20"/>
+                                                                            <size key="minSize" width="262" height="20"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <size key="minSize" width="252" height="20"/>
+                                                                            <size key="minSize" width="262" height="20"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                         </textView>
                                                                     </subviews>
@@ -1136,26 +1136,44 @@
                                                                     <autoresizingMask key="autoresizingMask"/>
                                                                 </scroller>
                                                             </scrollView>
+                                                            <button fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pEq-IP-k4A">
+                                                                <rect key="frame" x="246" y="3" width="16" height="16"/>
+                                                                <contentFilters>
+                                                                    <ciFilter name="CIColorInvert">
+                                                                        <configuration>
+                                                                            <null key="inputImage"/>
+                                                                        </configuration>
+                                                                    </ciFilter>
+                                                                </contentFilters>
+                                                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="dueButton" imagePosition="only" alignment="center" inset="2" id="LqQ-eO-hsP">
+                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                    <font key="font" metaFont="system"/>
+                                                                </buttonCell>
+                                                                <connections>
+                                                                    <segue destination="IAy-p1-why" kind="popover" popoverAnchorView="pEq-IP-k4A" popoverBehavior="t" preferredEdge="maxY" id="xoB-2S-58w"/>
+                                                                </connections>
+                                                            </button>
                                                         </subviews>
                                                     </view>
                                                     <constraints>
                                                         <constraint firstAttribute="trailing" secondItem="C8Z-us-xB5" secondAttribute="trailing" constant="4" id="4Qc-JV-reR"/>
                                                         <constraint firstAttribute="bottom" secondItem="C8Z-us-xB5" secondAttribute="bottom" id="ODj-wd-Jjf"/>
+                                                        <constraint firstAttribute="width" constant="270" id="bGJ-aU-nRj"/>
                                                         <constraint firstItem="C8Z-us-xB5" firstAttribute="top" secondItem="hBZ-s6-qwb" secondAttribute="top" constant="4" id="e94-ye-DTx"/>
-                                                        <constraint firstAttribute="width" constant="260" id="jGA-HF-ISl"/>
+                                                        <constraint firstAttribute="width" constant="270" id="jGA-HF-ISl"/>
                                                         <constraint firstItem="C8Z-us-xB5" firstAttribute="leading" secondItem="hBZ-s6-qwb" secondAttribute="leading" constant="4" id="rsF-EI-a2m"/>
                                                     </constraints>
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="zkM-aD-O2j" customClass="SDWCardDetailBox">
-                                                    <rect key="frame" x="20" y="307" width="260" height="100"/>
+                                                    <rect key="frame" x="15" y="307" width="270" height="100"/>
                                                     <view key="contentView">
-                                                        <rect key="frame" x="1" y="1" width="258" height="98"/>
+                                                        <rect key="frame" x="1" y="1" width="268" height="98"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkg-jf-kNw">
-                                                                <rect key="frame" x="3" y="3" width="252" height="88"/>
+                                                                <rect key="frame" x="3" y="3" width="262" height="88"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Tp9-0v-AJf">
                                                                     <rect key="frame" x="1" y="1" width="223" height="133"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1164,10 +1182,10 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <size key="minSize" width="252" height="88"/>
+                                                                            <size key="minSize" width="262" height="88"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                             <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                            <size key="minSize" width="252" height="88"/>
+                                                                            <size key="minSize" width="262" height="88"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                         </textView>
                                                                     </subviews>
@@ -1185,7 +1203,7 @@
                                                         </subviews>
                                                     </view>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="260" id="4UF-VB-z7v"/>
+                                                        <constraint firstAttribute="width" priority="750" constant="270" id="4UF-VB-z7v"/>
                                                         <constraint firstAttribute="height" constant="100" id="KXm-WD-1Ut"/>
                                                         <constraint firstAttribute="bottom" secondItem="Tkg-jf-kNw" secondAttribute="bottom" constant="4" id="MRa-K8-QQW"/>
                                                         <constraint firstItem="Tkg-jf-kNw" firstAttribute="top" secondItem="zkM-aD-O2j" secondAttribute="top" constant="8" id="ORp-iQ-abo"/>
@@ -1196,13 +1214,13 @@
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="vfH-Ff-uV9" customClass="SDWCardDetailBox">
-                                                    <rect key="frame" x="20" y="409" width="260" height="58"/>
+                                                    <rect key="frame" x="15" y="409" width="270" height="58"/>
                                                     <view key="contentView">
-                                                        <rect key="frame" x="1" y="1" width="258" height="56"/>
+                                                        <rect key="frame" x="1" y="1" width="268" height="56"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bz-y9-NZA">
-                                                                <rect key="frame" x="3" y="3" width="252" height="46"/>
+                                                                <rect key="frame" x="3" y="3" width="262" height="46"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="IoN-on-MyC">
                                                                     <rect key="frame" x="1" y="1" width="238" height="133"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1212,18 +1230,15 @@
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                            <size key="minSize" width="252" height="46"/>
+                                                                            <size key="minSize" width="262" height="46"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                             <color key="insertionPointColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                            <size key="minSize" width="252" height="46"/>
+                                                                            <size key="minSize" width="262" height="46"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                         </textView>
                                                                     </subviews>
                                                                     <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                 </clipView>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="width" priority="750" constant="260" id="FSQ-dz-ojv"/>
-                                                                </constraints>
                                                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="YES" id="nLV-zt-MVj">
                                                                     <rect key="frame" x="-100" y="-100" width="87" height="18"/>
                                                                     <autoresizingMask key="autoresizingMask"/>
@@ -1248,14 +1263,14 @@
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="vfH-Ff-uV9" firstAttribute="top" secondItem="JhT-wW-IRh" secondAttribute="top" constant="10" id="7AT-VW-GBv"/>
-                                                <constraint firstItem="vfH-Ff-uV9" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" constant="20" id="ED4-cY-yKy"/>
+                                                <constraint firstItem="vfH-Ff-uV9" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="ED4-cY-yKy"/>
                                                 <constraint firstItem="hBZ-s6-qwb" firstAttribute="top" secondItem="zkM-aD-O2j" secondAttribute="bottom" constant="2" id="Hr4-W8-dRN"/>
                                                 <constraint firstItem="zkM-aD-O2j" firstAttribute="top" secondItem="vfH-Ff-uV9" secondAttribute="bottom" constant="2" id="UhE-8N-KUm"/>
-                                                <constraint firstItem="hBZ-s6-qwb" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" constant="20" id="Vkh-ei-n7B"/>
-                                                <constraint firstAttribute="trailing" secondItem="vfH-Ff-uV9" secondAttribute="trailing" constant="20" id="YnT-e2-xhU"/>
-                                                <constraint firstAttribute="trailing" secondItem="hBZ-s6-qwb" secondAttribute="trailing" constant="20" id="c3u-Rt-bxa"/>
-                                                <constraint firstItem="zkM-aD-O2j" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" constant="20" id="o56-J4-6hV"/>
-                                                <constraint firstAttribute="trailing" secondItem="zkM-aD-O2j" secondAttribute="trailing" constant="20" id="z7X-Uh-SNG"/>
+                                                <constraint firstItem="hBZ-s6-qwb" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="Vkh-ei-n7B"/>
+                                                <constraint firstAttribute="trailing" secondItem="vfH-Ff-uV9" secondAttribute="trailing" priority="750" constant="15" id="YnT-e2-xhU"/>
+                                                <constraint firstAttribute="trailing" secondItem="hBZ-s6-qwb" secondAttribute="trailing" priority="750" constant="15" id="c3u-Rt-bxa"/>
+                                                <constraint firstItem="zkM-aD-O2j" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="o56-J4-6hV"/>
+                                                <constraint firstAttribute="trailing" secondItem="zkM-aD-O2j" secondAttribute="trailing" priority="750" constant="15" id="z7X-Uh-SNG"/>
                                             </constraints>
                                         </view>
                                     </subviews>
@@ -1273,7 +1288,7 @@
                                     <rect key="frame" x="1" y="79" width="181" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="DBe-aE-uyS">
+                                <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="DBe-aE-uyS">
                                     <rect key="frame" x="166" y="1" width="16" height="94"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -1286,10 +1301,26 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="backLogo" id="pJP-ls-RGh"/>
                             </imageView>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="IWY-HC-Ix1">
+                                <rect key="frame" x="262" y="477" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="24" id="04b-9C-Qnk"/>
+                                    <constraint firstAttribute="width" constant="24" id="Tzm-ao-zDs"/>
+                                </constraints>
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="save" imagePosition="only" alignment="center" inset="2" id="o0d-5Y-ZRA">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="saveCard:" target="gSz-Ss-KrC" id="ZvG-b7-BzW"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="centerX" secondItem="azM-yC-ZOz" secondAttribute="centerX" id="6PD-OA-Oes"/>
+                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" priority="750" constant="26" id="7p6-wc-iZo"/>
                             <constraint firstAttribute="trailing" secondItem="TyL-MY-5MR" secondAttribute="trailing" id="9Jk-ca-3Zx"/>
+                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="262" id="Fje-Lm-YFy"/>
                             <constraint firstItem="TyL-MY-5MR" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="50" id="Krw-5w-JHV"/>
                             <constraint firstAttribute="bottom" secondItem="TyL-MY-5MR" secondAttribute="bottom" id="dcl-PE-mMi"/>
                             <constraint firstItem="TyL-MY-5MR" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" id="jsU-qa-eac"/>
@@ -1304,12 +1335,60 @@
                         <outlet property="dueDateTextView" destination="OJ0-qv-8Fj" id="mNE-YO-0FI"/>
                         <outlet property="logoImageView" destination="azM-yC-ZOz" id="PwP-Gp-AfN"/>
                         <outlet property="nameBox" destination="vfH-Ff-uV9" id="JP6-6s-EDa"/>
+                        <outlet property="saveButton" destination="IWY-HC-Ix1" id="cIc-9e-uLh"/>
                         <outlet property="scrollView" destination="TyL-MY-5MR" id="EEW-GM-wb4"/>
                     </connections>
                 </viewController>
                 <customObject id="Gtm-aa-RcQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1069" y="1287.5"/>
+        </scene>
+        <!--Card CalendarVC-->
+        <scene sceneID="dJW-OH-SRG">
+            <objects>
+                <viewController id="IAy-p1-why" customClass="SDWCardCalendarVC" sceneMemberID="viewController">
+                    <view key="view" id="WVn-xb-BjY">
+                        <rect key="frame" x="0.0" y="0.0" width="142" height="186"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <datePicker verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="HuS-T1-sc0">
+                                <rect key="frame" x="0.0" y="38" width="142" height="148"/>
+                                <datePickerCell key="cell" state="on" alignment="left" drawsBackground="NO" datePickerStyle="clockAndCalendar" id="ZAC-Bt-jVD">
+                                    <font key="font" metaFont="system"/>
+                                    <date key="date" timeIntervalSinceReferenceDate="-596016000">
+                                        <!--1982-02-11 16:00:00 +0000-->
+                                    </date>
+                                    <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </datePickerCell>
+                            </datePicker>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="UKO-3h-gQS">
+                                <rect key="frame" x="12" y="5" width="119" height="28"/>
+                                <buttonCell key="cell" type="push" title="Remove due date" bezelStyle="rounded" alignment="center" controlSize="small" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="bvY-AD-xwt">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="smallSystem"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="removeDue:" target="IAy-p1-why" id="u8f-p8-xiS"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="UKO-3h-gQS" firstAttribute="top" secondItem="HuS-T1-sc0" secondAttribute="bottom" constant="9" id="L4d-di-7FG"/>
+                            <constraint firstAttribute="bottom" secondItem="UKO-3h-gQS" secondAttribute="bottom" constant="11" id="LLA-Bf-Bkg"/>
+                            <constraint firstItem="HuS-T1-sc0" firstAttribute="leading" secondItem="WVn-xb-BjY" secondAttribute="leading" id="LSD-Ro-cJ7"/>
+                            <constraint firstItem="HuS-T1-sc0" firstAttribute="top" secondItem="WVn-xb-BjY" secondAttribute="top" id="Mba-o9-TyE"/>
+                            <constraint firstAttribute="trailing" secondItem="HuS-T1-sc0" secondAttribute="trailing" id="XNU-gQ-uJs"/>
+                            <constraint firstAttribute="centerX" secondItem="UKO-3h-gQS" secondAttribute="centerX" id="bjw-ud-9Uy"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="calendarPicker" destination="HuS-T1-sc0" id="PNK-V0-y64"/>
+                    </connections>
+                </viewController>
+                <customObject id="rZZ-YD-qUz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1526" y="1275.5"/>
         </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="EFB-Ab-fxh">
@@ -1421,12 +1500,14 @@
         <image name="addCard" width="24" height="24"/>
         <image name="backLogo" width="66" height="66"/>
         <image name="crown-ultrasmall-tint" width="15" height="15"/>
+        <image name="dueButton" width="16" height="16"/>
         <image name="group" width="26" height="19"/>
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16.5"/>
         <image name="note" width="8" height="10"/>
         <image name="onboard" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
+        <image name="save" width="24" height="24"/>
         <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>

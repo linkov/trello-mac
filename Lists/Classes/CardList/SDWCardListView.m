@@ -19,7 +19,7 @@
 
      [super drawRect:dirtyRect];
 
-    if (self.shouldDrawSideLine) {
+    if (self.shouldDrawSideLine || self.shouldDrawSideLineAmber) {
 
         CGFloat rectangleCornerRadius = 1.5;
         NSRect rectangleRect = NSMakeRect(0, 0, 1.5, self.bounds.size.height);
@@ -30,7 +30,14 @@
         [rectanglePath lineToPoint: NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
         [rectanglePath appendBezierPathWithArcWithCenter: NSMakePoint(NSMinX(rectangleInnerRect), NSMaxY(rectangleInnerRect)) radius: rectangleCornerRadius startAngle: 90 endAngle: 180];
         [rectanglePath closePath];
-        [[NSColor orangeColor] setFill];
+        
+        if (self.shouldDrawSideLineAmber) {
+            [[NSColor colorWithHexColorString:@"FAB243"] setFill];
+        } else {
+            [[NSColor colorWithHexColorString:@"FA2A00"] setFill];
+
+        }
+
         [rectanglePath fill];
     }
 
@@ -60,6 +67,12 @@
 
 - (void)setShouldDrawSideLine:(BOOL)shouldDrawSideLine {
     _shouldDrawSideLine = shouldDrawSideLine;
+    [self setNeedsDisplay:YES];
+}
+
+
+- (void)setShouldDrawSideLineAmber:(BOOL)shouldDrawSideLineAmber {
+    _shouldDrawSideLineAmber = shouldDrawSideLineAmber;
     [self setNeedsDisplay:YES];
 }
 

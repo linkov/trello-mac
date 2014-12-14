@@ -15,6 +15,7 @@
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
 @property (nonatomic,assign) BOOL hasDescription;
 @property (nonatomic,assign) BOOL shouldDrawSideLine;
+@property (nonatomic,assign) BOOL shouldDrawSideLineAmber;
 
 @property (strong) NSArray *constr;
 

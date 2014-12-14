@@ -17,6 +17,7 @@ extern NSString * const SDWListsDidChangeCardDetailsStatusNotification;
 extern NSString * const SDWListsDidRemoveCardNotification;
 extern NSString * const SDWListsShouldFilterNotification;
 extern NSString * const SDWListsShouldCreateCardNotification;
+extern NSString * const SDWListsDidUpdateDueNotification;
 
 extern NSString * const SDWListsShouldReloadListNotification;
 extern NSString * const SDWListsShouldReloadBoardsNotification;

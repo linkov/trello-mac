@@ -40,6 +40,9 @@
 - (void)markDue {
     NSDate *due = [self.representedObject valueForKey:@"dueDate"];
 
+    NSInteger time = [due timeIntervalSinceNow];
+
+    NSLog(@"time interval for %@ is %li",[self.representedObject valueForKey:@"name"],(long)time);
 
     if (due != nil && [due timeIntervalSinceNow] < 0.0) {
 
@@ -50,7 +53,17 @@
                 [(SDWCardListView *)view setShouldDrawSideLine:YES];
             }
         }
+    } else if (due != nil && ([due timeIntervalSinceNow] > 0.0 && [due timeIntervalSinceNow] < 100000 ) ) {
+
+        for (id view in [self view].subviews) {
+
+            if ([view isKindOfClass:[SDWCardListView class]]) {
+
+                [(SDWCardListView *)view setShouldDrawSideLineAmber:YES];
+            }
+        }
     }
+
 }
 
 - (void)markDescription {
@@ -198,6 +211,8 @@
 
 - (void)viewDidLayout {
     [super viewDidLayout];
+    //[self markDescription];
+    //[self markDue];
 }
 
 - (NSString *)memberNameFromID:(NSString *)userID {

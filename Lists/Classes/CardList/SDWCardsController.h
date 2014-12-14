@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-@class SDWBoard;
+@class SDWBoard,SDWCard;
 #import <Cocoa/Cocoa.h>
 
 @interface SDWCardsController : NSViewController
@@ -15,5 +15,7 @@
 - (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList;
 - (void)reloadCards;
 - (void)clearCards;
+
+- (void)updateCardDetails:(SDWCard *)card;
 
 @end
