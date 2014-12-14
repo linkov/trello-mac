@@ -1202,7 +1202,7 @@
                                                                             <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                             <size key="minSize" width="262" height="88"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
-                                                                            <color key="insertionPointColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                                            <color key="insertionPointColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                             <size key="minSize" width="262" height="88"/>
                                                                             <size key="maxSize" width="463" height="10000000"/>
                                                                         </textView>
@@ -1325,7 +1325,7 @@
                                     <constraint firstAttribute="height" constant="24" id="04b-9C-Qnk"/>
                                     <constraint firstAttribute="width" constant="24" id="Tzm-ao-zDs"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="save" imagePosition="only" alignment="center" inset="2" id="o0d-5Y-ZRA">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="saveAlt2" imagePosition="only" alignment="center" inset="2" id="o0d-5Y-ZRA">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -1528,7 +1528,7 @@
         <image name="note" width="8" height="10"/>
         <image name="onboad" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
-        <image name="save" width="24" height="24"/>
+        <image name="saveAlt2" width="24" height="24"/>
         <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>
