@@ -10,4 +10,6 @@
 
 @interface SDWCardCalendarVC : NSViewController
 
+@property (strong) NSDate *currentDue;
+
 @end

@@ -13,6 +13,7 @@
 
 #import "SDWCardsController.h"
 #import "SDWMainSplitController.h"
+#import "SDWCardCalendarVC.h"
 
 @interface SDWCardViewController ()
 @property (strong) IBOutlet NSScrollView *scrollView;
@@ -136,6 +137,16 @@
     self.card.name = self.cardNameTextView.string;
     self.card.cardDescription = self.cardDescriptionTextView.string;
     [[self cardsVC] updateCardDetails:self.card];
+}
+
+
+
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+    if ([segue.identifier isEqualToString:@"ShowCalendar"]) {
+        SDWCardCalendarVC *calVC = segue.destinationController;
+        calVC.currentDue = self.card.dueDate;
+        // ????
+    }
 }
 
 @end

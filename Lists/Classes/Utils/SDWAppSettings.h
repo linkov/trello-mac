@@ -28,6 +28,9 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 + (instancetype)sharedSettings;
 
 @property BOOL shouldFilter;
+@property BOOL shouldFilterDueAccending;
+@property BOOL shouldFilterDueDecending;
+
 @property (strong) NSString *userID;
 @property (strong) NSString *userToken;
 @property (strong,nonatomic) NSString *appToken;

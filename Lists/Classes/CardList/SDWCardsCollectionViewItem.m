@@ -42,7 +42,7 @@
 
     NSInteger time = [due timeIntervalSinceNow];
 
-    NSLog(@"time interval for %@ is %li",[self.representedObject valueForKey:@"name"],(long)time);
+   // NSLog(@"time interval for %@ is %li",[self.representedObject valueForKey:@"name"],(long)time);
 
     if (due != nil && [due timeIntervalSinceNow] < 0.0) {
 
@@ -207,6 +207,7 @@
         self.textField.editable = NO;
         [NSApplication.sharedApplication sendAction:@selector(collectionItemViewClick:) to:nil from:self];
     }
+
 }
 
 - (void)viewDidLayout {

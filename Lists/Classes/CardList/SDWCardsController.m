@@ -99,8 +99,13 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
+        [[self cardDetailsVC] setCard:nil];
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+        
+        if ([self isValidIndex:self.cardsArrayController.selectionIndex]) {
+            [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+
+        }
         self.cardsArrayController.content = arr;
     }];
 
@@ -402,12 +407,29 @@
 - (void)reloadCollection:(NSArray *)objects {
 
     [self.addCardButton setHidden:NO];
-    NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+
+
+    NSSortDescriptor *sortBy;
+
+
+    if (SharedSettings.shouldFilterDueAccending) {
+
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:YES];
+
+    } else if (SharedSettings.shouldFilterDueDecending) {
+
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:NO];
+
+    } else {
+
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+    }
+
 
     if (SharedSettings.shouldFilter) {
-        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortByPos]]];
+        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortBy]]];
     } else {
-        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortByPos]];
+        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
     }
 
 }
@@ -478,6 +500,7 @@
 
         dragOp = NSDragOperationMove;
 
+
     } else if (*proposedDropOperation == NSCollectionViewDropOn ) {
 
         NSUInteger inx = *proposedDropIndex;
@@ -530,8 +553,6 @@
     selected.delegate = self;
 
     SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-  //  NSLog(@"selected: %@",selectedCard.name);
-
     [[self cardDetailsVC] setCard:selectedCard];
 }
 

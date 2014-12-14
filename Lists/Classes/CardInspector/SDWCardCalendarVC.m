@@ -10,6 +10,7 @@
 
 @interface SDWCardCalendarVC () <NSDatePickerCellDelegate>
 @property (strong) IBOutlet NSDatePicker *calendarPicker;
+@property (strong) IBOutlet NSButton *removeDueButton;
 
 @end
 
@@ -18,8 +19,12 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.calendarPicker setDateValue:[NSDate date]];
+    [self.calendarPicker setDateValue:self.currentDue ?: [NSDate date]];
     self.calendarPicker.delegate = self;
+
+    if (!self.currentDue) {
+        [self.removeDueButton removeFromSuperview];
+    }
 
 }
 

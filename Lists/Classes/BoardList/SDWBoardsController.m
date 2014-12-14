@@ -47,6 +47,7 @@
 @property (strong) IBOutlet SDWProgressIndicator *loadingProgress;
 
 @property BOOL isAccessingExpandViaDataReload;
+@property (strong) IBOutlet NSButton *dueSortButton;
 
 @end
 
@@ -62,9 +63,38 @@
     self.reloadButton.hidden = YES;
     self.outlineView.menuDelegate = self;
 
+    self.dueSortButton.image = [NSImage imageNamed:@"dueSortOff"];
+
 }
 
 #pragma mark - Utils
+- (IBAction)sortByDue:(NSButton *)sender {
+
+    if (!SharedSettings.shouldFilterDueAccending && !SharedSettings.shouldFilterDueDecending) {
+
+        SharedSettings.shouldFilterDueAccending = YES;
+        self.dueSortButton.image = [NSImage imageNamed:@"dueSort"];
+
+    } else if (SharedSettings.shouldFilterDueAccending) {
+
+        SharedSettings.shouldFilterDueDecending = YES;
+        SharedSettings.shouldFilterDueAccending = NO;
+        self.dueSortButton.image = [NSImage imageNamed:@"dueSortDes"];
+
+    } else if (SharedSettings.shouldFilterDueDecending) {
+
+        SharedSettings.shouldFilterDueDecending = NO;
+        SharedSettings.shouldFilterDueAccending = NO;
+        self.dueSortButton.image = [NSImage imageNamed:@"dueSortOff"];
+
+    }
+
+    SDWBoard *board = self.lastSelectedItem.representedObject;
+    SDWBoard *parentBoard =self.lastSelectedItem.parentNode.representedObject;
+
+    [[self cardsVC] setupCardsForList:board parentList:parentBoard];
+
+}
 
 - (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
 
@@ -232,7 +262,8 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject)
     {
 
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
