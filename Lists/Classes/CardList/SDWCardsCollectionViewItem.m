@@ -34,6 +34,23 @@
 - (void)viewDidAppear {
      [self loadCardUsers];
     [self markDescription];
+    [self markDue];
+}
+
+- (void)markDue {
+    NSDate *due = [self.representedObject valueForKey:@"dueDate"];
+
+
+    if (due != nil && [due timeIntervalSinceNow] < 0.0) {
+
+        for (id view in [self view].subviews) {
+
+            if ([view isKindOfClass:[SDWCardListView class]]) {
+
+                [(SDWCardListView *)view setShouldDrawSideLine:YES];
+            }
+        }
+    }
 }
 
 - (void)markDescription {
@@ -105,7 +122,13 @@
 }
 
 - (void)setSelected:(BOOL)selected {
+
+    if (self.selected && !selected) {
+        [self.delegate cardViewShouldDeselectCard:self];
+    }
+
     [super setSelected:selected];
+
 
     if (selected) {
         self.textColor = [NSColor blackColor];

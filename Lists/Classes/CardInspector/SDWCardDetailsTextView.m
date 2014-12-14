@@ -10,17 +10,19 @@
 
 @implementation SDWCardDetailsTextView
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
-}
-
 - (void)awakeFromNib {
+
+  //  self.wantsLayer = YES;
     self.textColor = [NSColor whiteColor];
-    self.backgroundColor = [SharedSettings appBackgroundColor];
-    self.textContainerInset = CGSizeMake(4, 10);
-    self.layer.cornerRadius = 2;
+    self.backgroundColor = [NSColor clearColor];
+ //   self.textContainerInset = CGSizeMake(4, 4);
+  //  self.layer.cornerRadius = 1.5;
+
+//    NSShadow* shadow = [[NSShadow alloc] init];
+//   self.layer.shadowRadius = 2; //set how many pixels the shadow has
+//    self.layer.shadowOffset = NSMakeSize(2, -2); //the distance from the text the shadow is dropped
+//    self.layer.shadowColor = [NSColor whiteColor].CGColor;
+   // self.layer.sh shadow = shadow;
 
 }
 

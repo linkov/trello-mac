@@ -14,6 +14,7 @@
 @property (strong) IBOutlet NSColor *IBfillColor;
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
 @property (nonatomic,assign) BOOL hasDescription;
+@property (nonatomic,assign) BOOL shouldDrawSideLine;
 
 @property (strong) NSArray *constr;
 

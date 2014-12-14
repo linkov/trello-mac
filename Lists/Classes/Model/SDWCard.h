@@ -20,6 +20,7 @@
 @property (strong) NSDate *lastUpdate;
 @property NSUInteger position;
 @property (strong) NSString *cardDescription;
+@property (strong) NSDate *dueDate;
 
 @property BOOL isSynced;
 

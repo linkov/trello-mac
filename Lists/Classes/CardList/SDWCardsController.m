@@ -481,6 +481,9 @@
 
 - (void)collectionItemViewClick:(NSCollectionViewItem *)sender {
 
+    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    selected.delegate = self;
+
     SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
   //  NSLog(@"selected: %@",selectedCard.name);
 
@@ -516,6 +519,11 @@
 
 
 #pragma mark - SDWCardViewDelegate
+
+- (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView {
+
+    [[self cardDetailsVC] setCard:nil];
+}
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 

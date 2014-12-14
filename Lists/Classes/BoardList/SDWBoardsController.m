@@ -21,6 +21,7 @@
 #import "WSCBoardsOutlineView.h"
 #import "SDWBoardsCellView.h"
 #import "SDWProgressIndicator.h"
+#import "SDWCardViewController.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
 @property (strong) NSArray *boards;
@@ -128,6 +129,8 @@
 
 - (void)loadBoards {
 
+    [[self cardDetailsVC] setCard:nil];
+
 	if (SharedSettings.userToken) {
 
         [self.loadingProgress startAnimation];
@@ -204,6 +207,12 @@
 
 
 #pragma mark - Card operations
+
+- (SDWCardViewController *)cardDetailsVC {
+
+    SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
+    return main.cardDetailsVC;
+}
 
 - (SDWCardsController *)cardsVC {
 
@@ -312,6 +321,8 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
+
+    [[self cardDetailsVC] setCard:nil];
 
 	SDWBoard *board = item.representedObject;
 
