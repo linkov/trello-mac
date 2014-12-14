@@ -27,6 +27,7 @@
 @property (strong) IBOutlet SDWCardDetailBox *descBox;
 
 @property (strong) IBOutlet NSButton *saveButton;
+@property (strong) IBOutlet NSCollectionView *activityCollectionView;
 
 
 @end
@@ -46,6 +47,10 @@
 
     [self hideViews:YES];
     [self animateLogoIn:YES];
+
+    self.activityCollectionView.wantsLayer = YES;
+    self.activityCollectionView.layer.cornerRadius = 1.5;
+    self.activityCollectionView.backgroundColors = @[ [SharedSettings appBackgroundColor] ];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidUpdateDueNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
@@ -85,6 +90,8 @@
 
 - (void)updateDueDateViewWithDate:(NSDate *)date {
 
+    NSLog(@"updateDueDateViewWithDate, date - %@",date);
+
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -95,6 +102,8 @@
     } else {
         self.dueDateTextView.string = @"";
     }
+
+    [self.dueDateTextView setNeedsDisplay:YES];
 }
 
 - (void)animateLogoIn:(BOOL)fadeIn {
@@ -116,7 +125,7 @@
 
 - (void)hideViews:(BOOL)shouldHide {
 
-        self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
+    self.activityCollectionView.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
