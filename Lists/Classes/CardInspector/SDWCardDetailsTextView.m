@@ -16,6 +16,7 @@
   //  self.wantsLayer = YES;
     self.textColor = [NSColor colorWithHexColorString:@"E8E8E8"];
     self.backgroundColor = [NSColor clearColor];
+    self.font = [NSFont systemFontOfSize:12];
  //   self.textContainerInset = CGSizeMake(4, 4);
   //  self.layer.cornerRadius = 1.5;
 

@@ -16,6 +16,7 @@
 #import "SDWCardCalendarVC.h"
 #import "SDWActivity.h"
 #import "JWCTableView.h"
+#import "SDWActivityTableCellView.h"
 
 @interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
@@ -32,6 +33,7 @@
 
 @property (strong) IBOutlet JWCTableView *activityTable;
 @property (strong) NSArray *activityItems;
+@property (strong) IBOutlet NSScrollView *activityTableScroll;
 
 @end
 
@@ -44,7 +46,14 @@
     self.view.layer.backgroundColor = [SharedSettings appBackgroundColorDark].CGColor;
 
     self.activityItems = [NSArray array];
-    self.activityTable.backgroundColor = [NSColor clearColor];
+    self.activityTable.backgroundColor = [SharedSettings appBackgroundColor];
+    self.activityTable.wantsLayer = YES;
+    //self.activityTable.layer.cornerRadius = 1.5;
+    //self.activityTable.layer.masksToBounds = YES;
+    //self.activityTable.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
+
+    self.activityTableScroll.wantsLayer = YES;
+    self.activityTableScroll.layer.cornerRadius = 1.5;
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
@@ -215,18 +224,29 @@
 
     SDWActivity *activity = self.activityItems[[indexPath row]];
 
-    CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:13]}];
+    CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
 
-    return rec.size.height+12;
+    return rec.size.height+12+(17+4);
 }
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
     SDWActivity *activity = self.activityItems[[indexPath row]];
 
-    NSTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
+    SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
     resultView.textField.stringValue = activity.content;
-    resultView.textField.textColor = [NSColor whiteColor];
+    resultView.textField.textColor = [NSColor colorWithHexColorString:@"E8E8E8"];
+    resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
+    resultView.initialsLabel.stringValue = activity.memberInitials;
+    resultView.timeLabel.stringValue = activity.timeString;
+
+    resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
+
+    if ([indexPath row] == self.activityItems.count - 1) {
+        resultView.separatorLine.hidden = YES;
+    } else {
+        resultView.separatorLine.hidden = NO;
+    }
     
     return resultView;
 }

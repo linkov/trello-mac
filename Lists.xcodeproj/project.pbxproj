@@ -62,6 +62,7 @@
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
 		F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAA1A3F819900CD22CE /* JWCTableView.m */; };
+		F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
 		F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */; };
 		F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */; };
@@ -178,6 +179,8 @@
 		F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivity.m; sourceTree = "<group>"; };
 		F1918AA91A3F819900CD22CE /* JWCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWCTableView.h; sourceTree = "<group>"; };
 		F1918AAA1A3F819900CD22CE /* JWCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCTableView.m; sourceTree = "<group>"; };
+		F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivityTableCellView.h; sourceTree = "<group>"; };
+		F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivityTableCellView.m; sourceTree = "<group>"; };
 		F1B3AB841A04E9A400927CB9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainWindow.h; sourceTree = "<group>"; };
 		F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainWindow.m; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				F10AA9F31A12AFD800FD4E85 /* SDWCardViewController.m */,
 				F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */,
 				F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */,
+				F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */,
+				F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */,
 			);
 			path = CardInspector;
 			sourceTree = "<group>";
@@ -568,6 +573,7 @@
 				F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
 				F10AAA4F1A12AFD800FD4E85 /* SDWBoardsListRow.m in Sources */,
+				F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */,
 				F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */,
 				F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */,
 				F10AAA571A12AFD800FD4E85 /* SDWMenuItemImageView.m in Sources */,
