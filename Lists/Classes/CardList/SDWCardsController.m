@@ -183,8 +183,6 @@
 
     [self showCardSavingIndicator:YES];
 
-
-
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
                                                                  @"name":card.name,
@@ -196,12 +194,25 @@
 
         [self showCardSavingIndicator:NO];
 
+        SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
+        [[self cardDetailsVC] setCard:updatedCard];
+
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
+        [arr insertObject:updatedCard atIndex:[self.collectionView.content indexOfObject:card]];
+        [self reloadCollection:arr];
+
 
 //        self.lastSelectedItem.selected = NO;
 //        self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
 //        [self.lastSelectedItem updateIndicators];
 
-        [self reloadCards];
+
+//        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+//        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
+//        [selectedCard updateIndicators];
+
+       //r [self reloadCards];
 
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
