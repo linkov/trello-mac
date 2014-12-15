@@ -103,11 +103,9 @@
 
         [[self cardDetailsVC] setCard:nil];
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        
-        if ([self isValidIndex:self.cardsArrayController.selectionIndex]) {
-            [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
+        SDWCard *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",note.userInfo[@"cardID"]]].firstObject;
+        [arr removeObject:cardToRemove];
 
-        }
         self.cardsArrayController.content = arr;
     }];
 
