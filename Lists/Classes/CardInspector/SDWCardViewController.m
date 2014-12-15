@@ -141,7 +141,7 @@
 }
 
 
-- (IBAction)saveCard:(id)sender {
+- (IBAction)saveCard:(NSButton *)sender {
 
     self.card.name = self.cardNameTextView.string;
     self.card.cardDescription = self.cardDescriptionTextView.string;

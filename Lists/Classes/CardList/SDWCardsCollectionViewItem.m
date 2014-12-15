@@ -40,7 +40,7 @@
 - (void)markDue {
     NSDate *due = [self.representedObject valueForKey:@"dueDate"];
 
-    NSInteger time = [due timeIntervalSinceNow];
+   // NSInteger time = [due timeIntervalSinceNow];
 
    // NSLog(@"time interval for %@ is %li",[self.representedObject valueForKey:@"name"],(long)time);
 
@@ -210,10 +210,13 @@
 
 }
 
+- (void)updateIndicators {
+    [self markDescription];
+    [self markDue];
+}
+
 - (void)viewDidLayout {
     [super viewDidLayout];
-    //[self markDescription];
-    //[self markDue];
 }
 
 - (NSString *)memberNameFromID:(NSString *)userID {

@@ -34,6 +34,8 @@
 @property (strong) IBOutlet NSTextField *listNameLabel;
 @property (strong) IBOutlet NSButton *reloadButton;
 
+@property (strong) SDWCardsCollectionViewItem *lastSelectedItem;
+
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
 @property (strong) IBOutlet SDWProgressIndicator *cardActionIndicator;
@@ -195,19 +197,9 @@
         [self showCardSavingIndicator:NO];
 
 
-        //TODO: update one card, not all list
-        
-//        SDWCard *card = [[SDWCard alloc]initWithAttributes:responseObject];
-//
-//       SDWCard *oldCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//
-//        oldCard = card;
-
-
-//        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//        selectedCard.selected = NO;
-//        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
-//        [selectedCard.view setNeedsDisplay:YES];
+//        self.lastSelectedItem.selected = NO;
+//        self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
+//        [self.lastSelectedItem updateIndicators];
 
         [self reloadCards];
 
@@ -220,17 +212,16 @@
 }
 
 - (void)updateCard:(SDWCard *)card {
-
     [self showCardSavingIndicator:YES];
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"name":card.name} success:^(NSURLSessionDataTask *task, id responseObject) {
 
         [self showCardSavingIndicator:NO];
-        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-        selectedCard.selected = NO;
-        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
-        [selectedCard.view setNeedsDisplay:YES];
+
+        self.lastSelectedItem.selected = NO;
+        self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
+        [self.lastSelectedItem.view setNeedsDisplay:YES];
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showCardSavingIndicator:NO];
@@ -594,6 +585,7 @@
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 
     self.addCardButton.enabled = YES;
+    self.lastSelectedItem = cardView;
 
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
     card.name = cardView.textField.stringValue;
