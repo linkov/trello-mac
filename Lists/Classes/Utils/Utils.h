@@ -11,5 +11,7 @@
 @interface Utils : NSObject
 
 + (NSString *)twoLetterIDFromName:(NSString *)name;
++ (NSDate *)stringToDate:(NSString *)string;
++ (NSString *)dateToString:(NSDate *)date;
 
 @end

@@ -14,6 +14,7 @@
 #import "SDWCardsController.h"
 #import "SDWMainSplitController.h"
 #import "SDWCardCalendarVC.h"
+#import "SDWActivity.h"
 
 @interface SDWCardViewController ()
 @property (strong) IBOutlet NSScrollView *scrollView;
@@ -27,7 +28,6 @@
 @property (strong) IBOutlet SDWCardDetailBox *descBox;
 
 @property (strong) IBOutlet NSButton *saveButton;
-@property (strong) IBOutlet NSCollectionView *activityCollectionView;
 
 
 @end
@@ -47,10 +47,6 @@
 
     [self hideViews:YES];
     [self animateLogoIn:YES];
-
-    self.activityCollectionView.wantsLayer = YES;
-    self.activityCollectionView.layer.cornerRadius = 1.5;
-    self.activityCollectionView.backgroundColors = @[ [SharedSettings appBackgroundColor] ];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidUpdateDueNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
@@ -86,6 +82,34 @@
 
     [self updateDueDateViewWithDate:self.card.dueDate];
 
+    [self fetchActivities];
+
+}
+
+- (void)fetchActivities {
+
+    NSString *URL = [NSString stringWithFormat:@"cards/%@/actions?filter=commentCard", self.card.cardID];
+    [[AFRecordPathManager manager]
+     setAFRecordMethod:@"findAll"
+     forModel:[SDWActivity class]
+	    toConcretePath:URL];
+
+    [SDWActivity findAll:^(NSArray *response, NSError *err) {
+
+        if (!err) {
+
+//            [self.activityCollectionView setContent:response];
+
+            for (SDWActivity *act in response) {
+
+                NSLog(@"%@",act.content);
+            }
+
+        }
+
+
+
+    }];
 }
 
 - (void)updateDueDateViewWithDate:(NSDate *)date {
@@ -125,7 +149,7 @@
 
 - (void)hideViews:(BOOL)shouldHide {
 
-    self.activityCollectionView.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
+   self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
 }
 
 - (void)setRepresentedObject:(id)representedObject {

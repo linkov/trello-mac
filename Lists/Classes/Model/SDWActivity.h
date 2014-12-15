@@ -10,4 +10,10 @@
 
 @interface SDWActivity : AFRecordModel
 
+@property (nonatomic, strong) NSString *activityID;
+@property (nonatomic, strong) NSString *content;
+@property NSString *memberInitials;
+@property NSDate *time;
+@property (nonatomic) NSString *timeString;
+
 @end

@@ -7,6 +7,7 @@
 //
 #import "SDWLabel.h"
 #import "SDWCard.h"
+#import "Utils.h"
 
 @implementation SDWCard
 
@@ -26,21 +27,8 @@
     self.lastUpdate = [attributes valueForKeyPath:@"dateLastActivity"];
     self.cardDescription = attributes[@"desc"];
 
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
-    [dateFormat setLocale:[NSLocale currentLocale]];
 
-    NSString *dateStr = attributes[@"badges"][@"due"];
-    NSDate *date;
-    id dateIsNull = dateStr;
-
-    if (dateIsNull == [NSNull null]) {
-        date = nil;
-    } else {
-        date = [dateFormat dateFromString:dateStr];
-    }
-
-    self.dueDate = date;
+    self.dueDate = [Utils stringToDate:attributes[@"badges"][@"due"]];
     self.isSynced = YES;
 
     NSMutableArray *mutableArray = [NSMutableArray new];

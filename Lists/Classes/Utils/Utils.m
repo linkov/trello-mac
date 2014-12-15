@@ -52,4 +52,29 @@
     return [finalString uppercaseString];
 }
 
++ (NSDate *)stringToDate:(NSString *)string {
+
+    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
+    [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
+    [dateFormat setLocale:[NSLocale currentLocale]];
+
+    id dateIsNull = string;
+
+    if (dateIsNull != [NSNull null]) {
+        return [dateFormat dateFromString:string];
+    }
+    
+    return nil;
+
+
+}
++ (NSString *)dateToString:(NSDate *)date {
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
+    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
+    [dateFormatter setLocale:[NSLocale currentLocale]];
+    [dateFormatter setDoesRelativeDateFormatting:YES];
+    return [dateFormatter stringFromDate:date];
+}
+
 @end
