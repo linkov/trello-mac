@@ -15,8 +15,9 @@
 #import "SDWMainSplitController.h"
 #import "SDWCardCalendarVC.h"
 #import "SDWActivity.h"
+#import "JWCTableView.h"
 
-@interface SDWCardViewController ()
+@interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
 @property (strong) IBOutlet NSTextView *cardNameTextView;
@@ -29,6 +30,8 @@
 
 @property (strong) IBOutlet NSButton *saveButton;
 
+@property (strong) IBOutlet JWCTableView *activityTable;
+@property (strong) NSArray *activityItems;
 
 @end
 
@@ -39,6 +42,9 @@
 
     self.view.wantsLayer = YES;
     self.view.layer.backgroundColor = [SharedSettings appBackgroundColorDark].CGColor;
+
+    self.activityItems = [NSArray array];
+    self.activityTable.backgroundColor = [NSColor clearColor];
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
@@ -98,13 +104,8 @@
 
         if (!err) {
 
-//            [self.activityCollectionView setContent:response];
-
-            for (SDWActivity *act in response) {
-
-                NSLog(@"%@",act.content);
-            }
-
+            self.activityItems = response;
+            [self.activityTable reloadData];
         }
 
 
@@ -178,8 +179,56 @@
     if ([segue.identifier isEqualToString:@"ShowCalendar"]) {
         SDWCardCalendarVC *calVC = segue.destinationController;
         calVC.currentDue = self.card.dueDate;
-        // ????
     }
+}
+
+
+
+#pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
+
+
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return YES;
+}
+
+
+//Number of rows in section
+-(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return self.activityItems.count;
+
+}
+
+//Number of sections
+-(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
+    return 1;
+}
+
+//Has a header view for a section
+-(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
+    return NO;
+}
+
+//Height related
+-(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    SDWActivity *activity = self.activityItems[[indexPath row]];
+
+    CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:13]}];
+
+    return rec.size.height+12;
+}
+
+-(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
+
+    SDWActivity *activity = self.activityItems[[indexPath row]];
+
+    NSTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
+    resultView.textField.stringValue = activity.content;
+    resultView.textField.textColor = [NSColor whiteColor];
+    
+    return resultView;
 }
 
 @end
