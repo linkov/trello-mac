@@ -588,7 +588,12 @@
 
 - (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView {
 
-    [[self cardDetailsVC] setCard:nil];
+    NSLog(@"self.cardsArrayController.selectionIndex - %lu",(unsigned long)self.cardsArrayController.selectionIndex);
+
+    if (![self isValidIndex:self.cardsArrayController.selectionIndex]) {
+
+        [[self cardDetailsVC] setCard:nil];
+    }
 }
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {

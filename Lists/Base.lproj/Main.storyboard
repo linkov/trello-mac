@@ -1142,7 +1142,10 @@
                                                                 </connections>
                                                             </button>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="JB1-mO-vk0">
-                                                                <rect key="frame" x="216" y="4" width="25" height="14"/>
+                                                                <rect key="frame" x="220" y="5" width="25" height="12"/>
+                                                                <constraints>
+                                                                    <constraint firstAttribute="height" constant="12" id="46j-KT-8O7"/>
+                                                                </constraints>
                                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="right" title="Due" usesSingleLineMode="YES" id="AnC-gf-i0o">
                                                                     <font key="font" metaFont="smallSystem"/>
                                                                     <color key="textColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
@@ -1153,7 +1156,7 @@
                                                     </view>
                                                     <constraints>
                                                         <constraint firstAttribute="centerY" secondItem="pEq-IP-k4A" secondAttribute="centerY" id="6eg-uy-0gt"/>
-                                                        <constraint firstItem="pEq-IP-k4A" firstAttribute="leading" secondItem="JB1-mO-vk0" secondAttribute="trailing" constant="10" id="Jfr-6c-Vgm"/>
+                                                        <constraint firstItem="pEq-IP-k4A" firstAttribute="leading" secondItem="JB1-mO-vk0" secondAttribute="trailing" constant="6" id="Jfr-6c-Vgm"/>
                                                         <constraint firstAttribute="height" constant="24" id="YBL-q3-Jhd"/>
                                                         <constraint firstAttribute="width" constant="270" id="bGJ-aU-nRj"/>
                                                         <constraint firstItem="JB1-mO-vk0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="hBZ-s6-qwb" secondAttribute="leading" constant="20" id="jO0-Rc-9iL"/>

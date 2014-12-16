@@ -69,6 +69,7 @@
 
 
     [self hideViews:YES];
+    [self hideComments:YES];
     [self animateLogoIn:YES];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidUpdateDueNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -84,6 +85,7 @@
     if (!card) {
         [self animateLogoIn:YES];
         [self hideViews:YES];
+        [self hideComments:YES];
         return;
     }
 
@@ -96,7 +98,7 @@
         cardName = self.card.name;
     }
     [self animateLogoIn:NO];
-
+    [self hideComments:YES];
     [self hideViews:NO];
 
     self.cardNameTextView.string = cardName;
@@ -108,6 +110,8 @@
     [self fetchActivities];
 
 }
+
+
 
 - (void)fetchActivities {
 
@@ -121,8 +125,13 @@
 
         if (!err) {
 
-            self.activityItems = response;
-            [self.activityTable reloadData];
+            if(response.count != 0) {
+
+                [self hideComments:NO];
+                self.activityItems = response;
+                [self.activityTable reloadData];
+            }
+
         }
 
 
@@ -150,23 +159,16 @@
 - (void)animateLogoIn:(BOOL)fadeIn {
 
     self.logoImageView.hidden = !fadeIn;
+}
 
-//    CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-//    animation.fromValue = [NSNumber numberWithInt:fadeIn ? 0.0 : 1.0];
-//    animation.toValue = [NSNumber numberWithInt:fadeIn ? 1.0 : 0.0];
-//    animation.duration = 0.4;
-//    animation.autoreverses = YES;
-//    animation.repeatCount = HUGE_VAL;
-//
-//    [self.logoImageView.layer addAnimation:animation forKey:@"opa"];
+- (void)hideComments:(BOOL)shouldHide {
 
-    // implicit animation code that worked before 10.8
-    //[self.logoImageView.layer setTransform:transform];
+    self.activityTableScroll.hidden = self.commentsLabel.hidden = shouldHide;
 }
 
 - (void)hideViews:(BOOL)shouldHide {
 
-   self.activityTable.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
+  self.titleDescLabel.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
