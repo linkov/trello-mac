@@ -41,7 +41,7 @@
         [rectanglePath fill];
     }
 
-    if(self.hasDescription) {
+    if(self.hasDot) {
 
         NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(3.5, self.bounds.size.height/2-4/2, 4, 4)];
 
@@ -76,8 +76,8 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)setHasDescription:(BOOL)hasDescription {
-    _hasDescription = hasDescription;
+- (void)setHasDot:(BOOL)hasDot {
+    _hasDot = hasDot;
 
     [self setNeedsDisplay:YES];
 }

@@ -33,7 +33,7 @@
 
 - (void)viewDidAppear {
      [self loadCardUsers];
-    [self markDescription];
+    [self markDot];
     [self markDue];
 }
 
@@ -66,22 +66,57 @@
 
 }
 
-- (void)markDescription {
+- (void)markDot {
 
-    NSString *descString = [self.representedObject valueForKey:@"cardDescription"];
-  //  NSLog(@"desc - %@",descString);
+    switch (SharedSettings.dotOption) {
+            
+        case SDWDotOptionHasDescription: {
 
-    if (descString.length > 0) {
+            NSString *descString = [self.representedObject valueForKey:@"cardDescription"];
+            //  NSLog(@"desc - %@",descString);
 
-        for (id view in [self view].subviews) {
+            if (descString.length > 0) {
 
-            if ([view isKindOfClass:[SDWCardListView class]]) {
+                for (id view in [self view].subviews) {
 
-                [(SDWCardListView *)view setHasDescription:YES];
+                    if ([view isKindOfClass:[SDWCardListView class]]) {
+
+                        [(SDWCardListView *)view setHasDot:YES];
+                    }
+                }
+            }
+
+        }
+
+            break;
+        case SDWDotOptionNoDue: {
+
+            NSDate *due = [self.representedObject valueForKey:@"dueDate"];
+           //   NSLog(@"due - %@",due);
+
+            if (due == nil) {
+
+                for (id view in [self view].subviews) {
+
+                    if ([view isKindOfClass:[SDWCardListView class]]) {
+
+                        [(SDWCardListView *)view setHasDot:YES];
+                    }
+                }
             }
         }
-    }
 
+            break;
+
+        case SDWDotOptionOff: {
+            
+        }
+
+            break;
+
+        default:
+            break;
+    }
 
 }
 
@@ -211,7 +246,7 @@
 }
 
 - (void)updateIndicators {
-    [self markDescription];
+    [self markDot];
     [self markDue];
 }
 

@@ -26,6 +26,7 @@
     self.members = [attributes valueForKeyPath:@"idMembers"];
     self.lastUpdate = [attributes valueForKeyPath:@"dateLastActivity"];
     self.cardDescription = attributes[@"desc"];
+    self.commentsCount = [attributes[@"badges"][@"comments"] integerValue];
 
 
     self.dueDate = [Utils stringToDate:attributes[@"badges"][@"due"]];

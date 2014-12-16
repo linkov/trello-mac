@@ -21,6 +21,7 @@
 @property NSUInteger position;
 @property (strong) NSString *cardDescription;
 @property (strong) NSDate *dueDate;
+@property  NSUInteger commentsCount;
 
 @property BOOL isSynced;
 

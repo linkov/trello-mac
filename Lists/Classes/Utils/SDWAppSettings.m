@@ -27,6 +27,7 @@
 NSString * const SDWListsDidReceiveUserTokenNotification  =  @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
 NSString * const SDWListsDidChangeCardDetailsStatusNotification  =  @"com.sdwr.trello-mac.didChangeCardDetailsStatusNotification";
+NSString * const SDWListsDidChangeDotOptionNotification =  @"com.sdwr.trello-mac.didChangeDotOptionNotification";
 
 NSString * const SDWListsDidRemoveCardNotification = @"com.sdwr.trello-mac.didRemoveCardNotification";
 NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.shouldFilterNotification";
@@ -73,6 +74,17 @@ static SDWAppSettings *sharedInstance = nil;
 
 - (NSString *)userToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.token"];
+}
+
+
+- (void)setDotOption:(SDWDotOption)dotOption {
+    [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:dotOption] forKey:@"com.sdwr.trello-mac.dotOption"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (SDWDotOption)dotOption {
+    NSNumber *dotOption = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.dotOption"];
+    return [dotOption intValue];
 }
 
 

@@ -120,6 +120,13 @@
 
     }];
 
+
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeDotOptionNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self loadCardsForListID:self.currentListID];
+
+    }];
+
 }
 
 

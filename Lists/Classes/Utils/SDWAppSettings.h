@@ -10,9 +10,17 @@
 #import <Foundation/Foundation.h>
 #import <Crashlytics/Crashlytics.h>
 
+typedef enum {
+    SDWDotOptionNoDue = 0,
+    SDWDotOptionHasDescription,
+    SDWDotOptionOff
+} SDWDotOption;
+
+
 extern NSString * const SDWListsDidReceiveUserTokenNotification;
 extern NSString * const SDWListsDidChangeSidebarStatusNotification;
 extern NSString * const SDWListsDidChangeCardDetailsStatusNotification;
+extern NSString * const SDWListsDidChangeDotOptionNotification;
 
 extern NSString * const SDWListsDidRemoveCardNotification;
 extern NSString * const SDWListsShouldFilterNotification;
@@ -36,6 +44,8 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 @property (strong,nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;
 @property (strong) NSString *lastSelectedList;
+
+@property SDWDotOption dotOption;
 
 @property (strong) NSSet *collapsedBoardsIDs;
 

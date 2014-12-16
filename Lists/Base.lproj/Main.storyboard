@@ -600,6 +600,38 @@
                                                 <action selector="hideCardDetails:" target="Voe-Tx-rLC" id="Vgg-Mh-Yjf"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Show Dot When..." id="y5F-S1-WBI">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <menu key="submenu" title="Show Dot When..." id="6Ii-i0-p0S">
+                                                <items>
+                                                    <menuItem title="Card has description" tag="10" id="xOY-wd-jM7">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeDotOption:" target="Voe-Tx-rLC" id="3CE-Kn-CYf"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Card doesn't have a due date" tag="20" id="QhI-4z-JJf">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeDotOption:" target="Voe-Tx-rLC" id="Yq1-l4-YgP"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem title="Disable dot indicator" tag="30" id="dqE-9m-YL8">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeDotOption:" target="Voe-Tx-rLC" id="v4p-rq-OZX"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                    <menuItem isSeparatorItem="YES" id="c6b-LO-xRq"/>
+                                                    <menuItem title="Tell us what you want" id="O3J-JB-RDQ">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="dotOptionFeedback:" target="Voe-Tx-rLC" id="1dk-9p-rVu"/>
+                                                        </connections>
+                                                    </menuItem>
+                                                </items>
+                                            </menu>
+                                        </menuItem>
                                         <menuItem title="Customize Toolbar…" id="1UK-8n-QPP">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -652,7 +684,13 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
+                    <connections>
+                        <outlet property="dotMenu10" destination="xOY-wd-jM7" id="if8-xV-lPc"/>
+                        <outlet property="dotMenu20" destination="QhI-4z-JJf" id="0lb-b4-xtM"/>
+                        <outlet property="dotMenu30" destination="dqE-9m-YL8" id="PMZ-ba-LAX"/>
+                    </connections>
+                </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="0.0"/>
@@ -1094,6 +1132,7 @@
                         <string>members</string>
                         <string>cardDescription</string>
                         <string>dueDate</string>
+                        <string>commentsCount</string>
                     </declaredKeys>
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
