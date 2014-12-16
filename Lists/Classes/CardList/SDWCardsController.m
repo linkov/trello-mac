@@ -409,15 +409,15 @@
 
     if (SharedSettings.shouldFilterDueAccending) {
 
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:YES];
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:YES selector:@selector(compare:)];
 
     } else if (SharedSettings.shouldFilterDueDecending) {
 
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:NO];
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:NO selector:@selector(compare:)];
 
     } else {
 
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
     }
 
 
@@ -425,6 +425,7 @@
         [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortBy]]];
     } else {
         self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
+
     }
 
 }
