@@ -23,7 +23,7 @@
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
 @property (strong) IBOutlet NSTextView *cardNameTextView;
 @property (strong) IBOutlet NSImageView *logoImageView;
-@property (strong) IBOutlet NSTextView *dueDateTextView;
+@property (strong) IBOutlet NSTextField *dueDateLabel;
 
 @property (strong) IBOutlet SDWCardDetailBox *dueBox;
 @property (strong) IBOutlet SDWCardDetailBox *nameBox;
@@ -34,6 +34,9 @@
 @property (strong) IBOutlet JWCTableView *activityTable;
 @property (strong) NSArray *activityItems;
 @property (strong) IBOutlet NSScrollView *activityTableScroll;
+@property (strong) IBOutlet NSTextField *titleDescLabel;
+@property (strong) IBOutlet NSTextField *commentsLabel;
+@property (strong) IBOutlet NSButton *dueButton;
 
 @end
 
@@ -48,17 +51,22 @@
     self.activityItems = [NSArray array];
     self.activityTable.backgroundColor = [SharedSettings appBackgroundColor];
     self.activityTable.wantsLayer = YES;
-    //self.activityTable.layer.cornerRadius = 1.5;
-    //self.activityTable.layer.masksToBounds = YES;
-    //self.activityTable.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
 
     self.activityTableScroll.wantsLayer = YES;
     self.activityTableScroll.layer.cornerRadius = 1.5;
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
-
     self.logoImageView.layer.opacity = 0.2;
+
+    self.dueDateLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.9];
+    self.titleDescLabel.textColor = self.commentsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
+
+    CIFilter *invert = [CIFilter filterWithName: @"CIColorInvert"];
+    [invert setDefaults];
+
+    self.dueButton.layer.filters = @[invert];
+
 
     [self hideViews:YES];
     [self animateLogoIn:YES];
@@ -132,12 +140,11 @@
     [dateFormatter setDoesRelativeDateFormatting:YES];
     NSString *dateString = [dateFormatter stringFromDate:date];
     if (dateString) {
-        self.dueDateTextView.string = dateString;
+        self.dueDateLabel.stringValue = dateString;
     } else {
-        self.dueDateTextView.string = @"";
+        self.dueDateLabel.stringValue = @"Remind me";
     }
-
-    [self.dueDateTextView setNeedsDisplay:YES];
+    [self.dueDateLabel setNeedsDisplay:YES];
 }
 
 - (void)animateLogoIn:(BOOL)fadeIn {
@@ -159,7 +166,7 @@
 
 - (void)hideViews:(BOOL)shouldHide {
 
-   self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
+   self.activityTable.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
 }
 
 - (void)setRepresentedObject:(id)representedObject {
