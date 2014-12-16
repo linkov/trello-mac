@@ -198,7 +198,7 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return YES;
+    return NO;
 }
 
 
@@ -226,7 +226,7 @@
 
     CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
 
-    return rec.size.height+12+(17+4);
+    return rec.size.height+16+(17+4);
 }
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
@@ -247,6 +247,11 @@
     } else {
         resultView.separatorLine.hidden = NO;
     }
+
+    resultView.initialsLabel.wantsLayer = YES;
+    resultView.initialsLabel.layer.cornerRadius = 1.5;
+    resultView.initialsLabel.layer.borderWidth = 1;
+    resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
     
     return resultView;
 }

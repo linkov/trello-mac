@@ -1118,7 +1118,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="477"/>
                                             <subviews>
                                                 <box autoresizesSubviews="NO" wantsLayer="YES" title="Due" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="hBZ-s6-qwb" customClass="SDWCardDetailBox">
-                                                    <rect key="frame" x="15" y="281" width="270" height="24"/>
+                                                    <rect key="frame" x="15" y="283" width="270" height="24"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="268" height="22"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1184,7 +1184,7 @@
                                                     <color key="fillColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                                 </box>
                                                 <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="zkM-aD-O2j" customClass="SDWCardDetailBox">
-                                                    <rect key="frame" x="15" y="307" width="270" height="100"/>
+                                                    <rect key="frame" x="15" y="308" width="270" height="100"/>
                                                     <view key="contentView">
                                                         <rect key="frame" x="1" y="1" width="268" height="98"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1277,20 +1277,20 @@
                                                     <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                     <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                 </box>
-                                                <scrollView autoresizesSubviews="NO" borderType="none" autohidesScrollers="YES" horizontalLineScroll="49" horizontalPageScroll="10" verticalLineScroll="49" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vay-0k-P6E">
-                                                    <rect key="frame" x="15" y="20" width="270" height="245"/>
+                                                <scrollView autoresizesSubviews="NO" borderType="none" autohidesScrollers="YES" horizontalLineScroll="46" horizontalPageScroll="10" verticalLineScroll="46" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vay-0k-P6E">
+                                                    <rect key="frame" x="15" y="20" width="270" height="247"/>
                                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="BVL-KL-0v5">
                                                         <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
-                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="47" rowSizeStyle="automatic" viewBased="YES" id="r4F-SQ-vKL" customClass="JWCTableView">
+                                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" viewBased="YES" id="r4F-SQ-vKL" customClass="JWCTableView">
                                                                 <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                                 <tableColumns>
-                                                                    <tableColumn width="267" minWidth="40" maxWidth="1000" id="GWz-aQ-Qbb">
+                                                                    <tableColumn editable="NO" width="267" minWidth="40" maxWidth="1000" id="GWz-aQ-Qbb">
                                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                                             <font key="font" metaFont="smallSystem"/>
                                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1304,17 +1304,23 @@
                                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                                         <prototypeCellViews>
                                                                             <tableCellView identifier="cellView" id="j99-Cz-CHG" customClass="SDWActivityTableCellView">
-                                                                                <rect key="frame" x="1" y="1" width="267" height="47"/>
+                                                                                <rect key="frame" x="1" y="1" width="267" height="44"/>
                                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                                 <subviews>
                                                                                     <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" translatesAutoresizingMaskIntoConstraints="NO" id="N2X-GC-WJI">
                                                                                         <rect key="frame" x="0.0" y="-2" width="267" height="5"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="width" constant="267" id="fT5-6d-ohL"/>
+                                                                                        </constraints>
                                                                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                                         <font key="titleFont" metaFont="system"/>
                                                                                     </box>
                                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gfE-lf-RYG">
-                                                                                        <rect key="frame" x="234" y="4" width="29" height="17"/>
+                                                                                        <rect key="frame" x="232" y="8" width="29" height="12"/>
+                                                                                        <constraints>
+                                                                                            <constraint firstAttribute="height" constant="12" id="Ru5-sn-fyG"/>
+                                                                                        </constraints>
                                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="aja-KV-Y87">
                                                                                             <font key="font" metaFont="miniSystem"/>
                                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1322,18 +1328,19 @@
                                                                                         </textFieldCell>
                                                                                     </textField>
                                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EGS-Sn-npP">
-                                                                                        <rect key="frame" x="4" y="4" width="148" height="17"/>
+                                                                                        <rect key="frame" x="8" y="8" width="16" height="12"/>
                                                                                         <constraints>
-                                                                                            <constraint firstAttribute="height" constant="17" id="GbT-zn-a8c"/>
+                                                                                            <constraint firstAttribute="height" constant="12" id="GbT-zn-a8c"/>
+                                                                                            <constraint firstAttribute="width" constant="12" id="dS8-bj-gJL"/>
                                                                                         </constraints>
-                                                                                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="j1H-kk-O7b">
+                                                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="j1H-kk-O7b">
                                                                                             <font key="font" metaFont="miniSystem"/>
                                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>
                                                                                     </textField>
                                                                                     <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uZ7-Zn-m7z">
-                                                                                        <rect key="frame" x="4" y="27" width="259" height="14"/>
+                                                                                        <rect key="frame" x="5" y="24" width="259" height="14"/>
                                                                                         <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Table View Cell" id="DfB-KZ-bW1">
                                                                                             <font key="font" metaFont="smallSystem"/>
                                                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -1342,20 +1349,19 @@
                                                                                     </textField>
                                                                                 </subviews>
                                                                                 <constraints>
-                                                                                    <constraint firstAttribute="bottom" secondItem="EGS-Sn-npP" secondAttribute="bottom" constant="4" id="3Ho-oc-G0K"/>
-                                                                                    <constraint firstItem="EGS-Sn-npP" firstAttribute="top" secondItem="uZ7-Zn-m7z" secondAttribute="bottom" constant="6" id="81a-BH-vV5"/>
-                                                                                    <constraint firstAttribute="bottom" secondItem="gfE-lf-RYG" secondAttribute="bottom" constant="4" id="BW2-fD-Iux"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="EGS-Sn-npP" secondAttribute="bottom" constant="8" id="3Ho-oc-G0K"/>
+                                                                                    <constraint firstItem="EGS-Sn-npP" firstAttribute="top" secondItem="uZ7-Zn-m7z" secondAttribute="bottom" constant="4" id="81a-BH-vV5"/>
+                                                                                    <constraint firstAttribute="bottom" secondItem="gfE-lf-RYG" secondAttribute="bottom" constant="8" id="BW2-fD-Iux"/>
                                                                                     <constraint firstItem="uZ7-Zn-m7z" firstAttribute="top" secondItem="j99-Cz-CHG" secondAttribute="top" constant="6" id="DIg-Mr-L2c"/>
                                                                                     <constraint firstItem="gfE-lf-RYG" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="EGS-Sn-npP" secondAttribute="trailing" constant="10" id="Mnl-GC-yeM"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="uZ7-Zn-m7z" secondAttribute="trailing" constant="6" id="Uqa-qx-35b"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="uZ7-Zn-m7z" secondAttribute="trailing" constant="5" id="Uqa-qx-35b"/>
                                                                                     <constraint firstItem="N2X-GC-WJI" firstAttribute="leading" secondItem="j99-Cz-CHG" secondAttribute="leading" id="X08-an-6F7"/>
-                                                                                    <constraint firstItem="EGS-Sn-npP" firstAttribute="leading" secondItem="j99-Cz-CHG" secondAttribute="leading" constant="6" id="Xca-1K-4yV"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="gfE-lf-RYG" secondAttribute="trailing" constant="6" id="hdY-le-v5n"/>
+                                                                                    <constraint firstItem="EGS-Sn-npP" firstAttribute="leading" secondItem="j99-Cz-CHG" secondAttribute="leading" constant="10" id="Xca-1K-4yV"/>
+                                                                                    <constraint firstAttribute="trailing" secondItem="gfE-lf-RYG" secondAttribute="trailing" constant="8" id="hdY-le-v5n"/>
                                                                                     <constraint firstAttribute="bottom" secondItem="N2X-GC-WJI" secondAttribute="bottom" id="ljF-80-oAQ"/>
                                                                                     <constraint firstAttribute="trailing" secondItem="N2X-GC-WJI" secondAttribute="trailing" id="pIy-ac-twp"/>
-                                                                                    <constraint firstItem="uZ7-Zn-m7z" firstAttribute="leading" secondItem="j99-Cz-CHG" secondAttribute="leading" constant="6" id="sVn-4t-zfm"/>
-                                                                                    <constraint firstItem="gfE-lf-RYG" firstAttribute="top" secondItem="uZ7-Zn-m7z" secondAttribute="bottom" constant="6" id="usb-Md-w2T"/>
-                                                                                    <constraint firstAttribute="trailing" secondItem="EGS-Sn-npP" secondAttribute="trailing" constant="117" id="wvK-we-ens"/>
+                                                                                    <constraint firstItem="uZ7-Zn-m7z" firstAttribute="leading" secondItem="j99-Cz-CHG" secondAttribute="leading" constant="7" id="sVn-4t-zfm"/>
+                                                                                    <constraint firstItem="gfE-lf-RYG" firstAttribute="top" secondItem="uZ7-Zn-m7z" secondAttribute="bottom" constant="4" id="usb-Md-w2T"/>
                                                                                 </constraints>
                                                                                 <connections>
                                                                                     <outlet property="initialsLabel" destination="EGS-Sn-npP" id="a0r-pu-cGC"/>
@@ -1392,9 +1398,9 @@
                                                 <constraint firstItem="vfH-Ff-uV9" firstAttribute="top" secondItem="JhT-wW-IRh" secondAttribute="top" constant="10" id="7AT-VW-GBv"/>
                                                 <constraint firstAttribute="bottom" secondItem="Vay-0k-P6E" secondAttribute="bottom" constant="20" id="CNf-Vg-O8q"/>
                                                 <constraint firstItem="vfH-Ff-uV9" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="ED4-cY-yKy"/>
-                                                <constraint firstItem="hBZ-s6-qwb" firstAttribute="top" secondItem="zkM-aD-O2j" secondAttribute="bottom" constant="2" id="Hr4-W8-dRN"/>
+                                                <constraint firstItem="hBZ-s6-qwb" firstAttribute="top" secondItem="zkM-aD-O2j" secondAttribute="bottom" constant="1" id="Hr4-W8-dRN"/>
                                                 <constraint firstItem="Vay-0k-P6E" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="QnG-mw-7PV"/>
-                                                <constraint firstItem="zkM-aD-O2j" firstAttribute="top" secondItem="vfH-Ff-uV9" secondAttribute="bottom" constant="2" id="UhE-8N-KUm"/>
+                                                <constraint firstItem="zkM-aD-O2j" firstAttribute="top" secondItem="vfH-Ff-uV9" secondAttribute="bottom" constant="1" id="UhE-8N-KUm"/>
                                                 <constraint firstItem="hBZ-s6-qwb" firstAttribute="leading" secondItem="JhT-wW-IRh" secondAttribute="leading" priority="750" constant="15" id="Vkh-ei-n7B"/>
                                                 <constraint firstAttribute="trailing" secondItem="vfH-Ff-uV9" secondAttribute="trailing" priority="750" constant="15" id="YnT-e2-xhU"/>
                                                 <constraint firstAttribute="trailing" secondItem="hBZ-s6-qwb" secondAttribute="trailing" priority="750" constant="15" id="c3u-Rt-bxa"/>
