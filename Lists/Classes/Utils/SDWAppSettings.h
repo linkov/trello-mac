@@ -39,6 +39,7 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 
 @property (strong) NSSet *collapsedBoardsIDs;
 
+- (NSColor *)appBleakWhiteColor;
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;
 - (NSColor *)appHighlightColor;

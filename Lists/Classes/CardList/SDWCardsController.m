@@ -201,18 +201,6 @@
         [self reloadCollection:arr];
 
 
-//        self.lastSelectedItem.selected = NO;
-//        self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
-//        [self.lastSelectedItem updateIndicators];
-
-
-//        SDWCardsCollectionViewItem *selectedCard = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//        selectedCard.textField.toolTip = selectedCard.textField.stringValue;
-//        [selectedCard updateIndicators];
-
-       //r [self reloadCards];
-
-
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         [self showCardSavingIndicator:NO];
 
@@ -588,10 +576,7 @@
 
 - (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView {
 
-    NSLog(@"self.cardsArrayController.selectionIndex - %lu",(unsigned long)self.cardsArrayController.selectionIndex);
-
     if (![self isValidIndex:self.cardsArrayController.selectionIndex]) {
-
         [[self cardDetailsVC] setCard:nil];
     }
 }

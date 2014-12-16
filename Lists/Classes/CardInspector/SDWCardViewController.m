@@ -132,16 +132,14 @@
                 [self.activityTable reloadData];
             }
 
+        } else {
+            CLSLog(@"fetchActivities error %@",err.localizedDescription);
         }
-
-
 
     }];
 }
 
 - (void)updateDueDateViewWithDate:(NSDate *)date {
-
-    NSLog(@"updateDueDateViewWithDate, date - %@",date);
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
@@ -171,12 +169,6 @@
   self.titleDescLabel.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = shouldHide;
 }
 
-- (void)setRepresentedObject:(id)representedObject {
-    [super setRepresentedObject:representedObject];
-
-    // Update the view, if already loaded.
-}
-
 - (SDWCardsController *)cardsVC {
 
     SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
@@ -200,22 +192,16 @@
     }
 }
 
-
-
 #pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
 
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-
     return NO;
 }
 
-
 //Number of rows in section
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
     return self.activityItems.count;
-
 }
 
 //Number of sections
@@ -244,7 +230,7 @@
 
     SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
     resultView.textField.stringValue = activity.content;
-    resultView.textField.textColor = [NSColor colorWithHexColorString:@"E8E8E8"];
+    resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
     resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
     resultView.initialsLabel.stringValue = activity.memberInitials;
     resultView.timeLabel.stringValue = activity.timeString;
