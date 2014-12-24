@@ -18,9 +18,24 @@
 
 @implementation AppDelegate
 
+//- (NSString *)getSystemUUID {
+//    io_service_t platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault,IOServiceMatching("IOPlatformExpertDevice"));
+//    if (!platformExpert)
+//        return nil;
+//
+//    CFTypeRef serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),kCFAllocatorDefault, 0);
+//    IOObjectRelease(platformExpert);
+//    if (!serialNumberAsCFString)
+//        return nil;
+//
+//    return (__bridge NSString *)(serialNumberAsCFString);;
+//}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
     [self setupDotOption];
+
+//    NSLog(@"mac serial - %@",[self getSystemUUID]);
 
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }

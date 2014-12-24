@@ -29,12 +29,49 @@
     self.mainBox.cornerRadius = 1.5;
     self.textField.editable = NO;
     self.textField.delegate = self;
+
+    NSLog(@" viewDidLoad mainBox - %@",self.mainBox);
+}
+
+//TODO:refactor
+- (void)restoreStack {
+
+    for (id theview in [self view].subviews) {
+
+        for (id view1 in [(NSView *)theview subviews]) {
+
+            for (id view2 in [(NSView *)view1 subviews]) {
+
+                if ([view2 isKindOfClass:[NSStackView class]]) {
+
+                    self.stackView = (NSStackView *)view2;
+                }
+            }
+            
+        }
+    }
+}
+
+- (void)restoreMainbox {
+
+    for (id view in [self view].subviews) {
+
+        if ([view isKindOfClass:[SDWCardListView class]]) {
+
+            self.mainBox = view;
+        }
+    }
 }
 
 - (void)viewDidAppear {
-     [self loadCardUsers];
+    [self restoreMainbox];
+    [self restoreStack];
+
+    [self loadCardUsers];
     [self markDot];
     [self markDue];
+
+    NSLog(@" viewDidAppear mainBox - %@", self.mainBox);
 }
 
 - (void)markDue {
@@ -46,22 +83,11 @@
 
     if (due != nil && [due timeIntervalSinceNow] < 0.0) {
 
-        for (id view in [self view].subviews) {
+        [self.mainBox setShouldDrawSideLine:YES];
 
-            if ([view isKindOfClass:[SDWCardListView class]]) {
-
-                [(SDWCardListView *)view setShouldDrawSideLine:YES];
-            }
-        }
     } else if (due != nil && ([due timeIntervalSinceNow] > 0.0 && [due timeIntervalSinceNow] < 100000 ) ) {
 
-        for (id view in [self view].subviews) {
-
-            if ([view isKindOfClass:[SDWCardListView class]]) {
-
-                [(SDWCardListView *)view setShouldDrawSideLineAmber:YES];
-            }
-        }
+        [self.mainBox setShouldDrawSideLineAmber:YES];
     }
 
 }
@@ -77,13 +103,7 @@
 
             if (descString.length > 0) {
 
-                for (id view in [self view].subviews) {
-
-                    if ([view isKindOfClass:[SDWCardListView class]]) {
-
-                        [(SDWCardListView *)view setHasDot:YES];
-                    }
-                }
+                [self.mainBox setHasDot:YES];
             }
 
         }
@@ -96,13 +116,7 @@
 
             if (due == nil) {
 
-                for (id view in [self view].subviews) {
-
-                    if ([view isKindOfClass:[SDWCardListView class]]) {
-
-                        [(SDWCardListView *)view setHasDot:YES];
-                    }
-                }
+                [self.mainBox setHasDot:YES];
             }
         }
 
@@ -124,25 +138,7 @@
 
     self.shouldUseInitials = YES;
 
-    //TODO: why here everything from XIB is nil if accessed directly ?
-    NSStackView *stack;
-
-    for (id theview in [self view].subviews) {
-
-        for (id view1 in [(NSView *)theview subviews]) {
-
-            for (id view2 in [(NSView *)view1 subviews]) {
-
-                if ([view2 isKindOfClass:[NSStackView class]]) {
-
-                    stack = (NSStackView *)view2;
-                }
-            }
-
-        }
-    }
-
-    [stack.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    [self.stackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
     NSArray *members = [self.representedObject valueForKey:@"members"];
 
@@ -163,7 +159,7 @@
         text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
 
         if (text.stringValue.length >0) {
-            [stack addView:text inGravity:NSStackViewGravityTrailing];
+            [self.stackView addView:text inGravity:NSStackViewGravityTrailing];
         }
     }
 
