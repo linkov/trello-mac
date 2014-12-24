@@ -76,6 +76,16 @@ static SDWAppSettings *sharedInstance = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.token"];
 }
 
+- (void)setShouldShowCardLabels:(BOOL)shouldShowCardLabels {
+
+    [[NSUserDefaults standardUserDefaults] setBool:shouldShowCardLabels forKey:@"com.sdwr.trello-mac.showLabels"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+- (BOOL)shouldShowCardLabels {
+
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"com.sdwr.trello-mac.showLabels"];
+}
 
 - (void)setDotOption:(SDWDotOption)dotOption {
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:dotOption] forKey:@"com.sdwr.trello-mac.dotOption"];
@@ -149,8 +159,12 @@ static SDWAppSettings *sharedInstance = nil;
 
 
 #pragma mark - Helpers
+- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color {
 
-- (NSColor *)colorForTrelloCollor:(NSString *)colorString {
+    return [color colorWithAlphaComponent:0.4];
+}
+
+- (NSColor *)colorForTrelloColor:(NSString *)colorString {
 
     NSColor *color;
 
@@ -168,7 +182,7 @@ static SDWAppSettings *sharedInstance = nil;
 
     } else if ([colorString isEqualToString:@"red"]) {
 
-        color = [NSColor colorWithHexColorString:@"BA2640"];
+        color = [NSColor redColor];
 
     } else if ([colorString isEqualToString:@"blue"]) {
 
@@ -180,7 +194,7 @@ static SDWAppSettings *sharedInstance = nil;
     }
 
 
-    return color;
+    return [color colorWithAlphaComponent:0.6];
 }
 
 - (void)saveCustomObject:(id)object forKey:(NSString *)key {

@@ -35,6 +35,10 @@
 
     [self setupDotOption];
 
+    if (!SharedSettings.shouldShowCardLabels) {
+        SharedSettings.shouldShowCardLabels = YES;
+    }
+
 //    NSLog(@"mac serial - %@",[self getSystemUUID]);
 
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
@@ -78,6 +82,17 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeCardDetailsStatusNotification object:nil];
 }
 
+- (IBAction)toggleCardLabels:(id)sender {
+
+    if (SharedSettings.shouldShowCardLabels == NO) {
+        SharedSettings.shouldShowCardLabels = YES;
+    } else {
+        SharedSettings.shouldShowCardLabels = NO;
+    }
+
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
+
+}
 
 
 

@@ -584,10 +584,10 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Show Toolbar" keyEquivalent="t" id="snW-S8-Cw5">
-                                            <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                        <menuItem title="Toggle Card Labels" id="mAm-jf-iwY">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES"/>
                                             <connections>
-                                                <action selector="toggleToolbarShown:" target="Ady-hI-5gd" id="BXY-wc-z0C"/>
+                                                <action selector="toggleCardLabels:" target="Voe-Tx-rLC" id="P8R-Og-No1"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Toggle Sidebar" keyEquivalent="1" id="DgX-Zk-iYg">

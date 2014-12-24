@@ -12,6 +12,7 @@
 
 - (IBAction)hideSideBar:(id)sender;
 - (IBAction)hideCardDetails:(id)sender;
+- (IBAction)toggleCardLabels:(id)sender;
 
 @end
 

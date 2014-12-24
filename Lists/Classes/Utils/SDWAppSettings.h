@@ -39,6 +39,8 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 @property BOOL shouldFilterDueAccending;
 @property BOOL shouldFilterDueDecending;
 
+@property BOOL shouldShowCardLabels;
+
 @property (strong) NSString *userID;
 @property (strong) NSString *userToken;
 @property (strong,nonatomic) NSString *appToken;
@@ -57,7 +59,8 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 - (NSColor *)appSelectionColor;
 - (NSColor *)appUIColor;
 
-- (NSColor *)colorForTrelloCollor:(NSString *)colorString;
+- (NSColor *)colorForTrelloColor:(NSString *)colorString;
+- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color;
 
 
 @end

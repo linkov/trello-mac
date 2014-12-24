@@ -77,7 +77,11 @@
 
 - (void)markLabels {
 
-    self.mainBox.labels = [self.representedObject valueForKey:@"labels"];
+    if (SharedSettings.shouldShowCardLabels == YES) {
+        self.mainBox.labels = [self.representedObject valueForKey:@"labels"];
+    } else {
+        self.mainBox.labels = @[];
+    }
 }
 
 - (void)markDue {

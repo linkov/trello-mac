@@ -5,6 +5,8 @@
 //  Created by alex on 10/31/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
+#define kCardLabelPad 8
+
 #import "PulseView.h"
 #import "SDWAppSettings.h"
 #import "SDWCardListView.h"
@@ -55,13 +57,14 @@
     for (SDWLabel *label in self.labels) {
         NSLog(@"label - %@",label.color);
 
-        CGFloat xPos = self.bounds.size.width/2-3/2 - self.labels.count*10/2 + ([self.labels indexOfObject:label]*10);
+        CGFloat xPos = self.bounds.size.width - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
 
         NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xPos, 3, 3, 3)];
 
-        [[SharedSettings colorForTrelloCollor:label.color] setFill];
-     //   [[SharedSettings appBackgroundColorDark] setStroke];
-        [ovalPath fill];
+        [[SharedSettings colorForTrelloColor:label.color] setStroke];
+       //[[SharedSettings appBackgroundColorDark] setStroke];
+        [ovalPath stroke];
+     //   [ovalPath fill];
     }
 
 }
