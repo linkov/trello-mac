@@ -66,6 +66,7 @@
     [invert setDefaults];
 
     self.dueButton.layer.filters = @[invert];
+    self.dueButton.layer.opacity = 0.8;
 
 
     [self hideViews:YES];
