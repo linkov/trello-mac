@@ -70,8 +70,14 @@
     [self loadCardUsers];
     [self markDot];
     [self markDue];
+    [self markLabels];
 
     NSLog(@" viewDidAppear mainBox - %@", self.mainBox);
+}
+
+- (void)markLabels {
+
+    self.mainBox.labels = [self.representedObject valueForKey:@"labels"];
 }
 
 - (void)markDue {

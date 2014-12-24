@@ -150,6 +150,39 @@ static SDWAppSettings *sharedInstance = nil;
 
 #pragma mark - Helpers
 
+- (NSColor *)colorForTrelloCollor:(NSString *)colorString {
+
+    NSColor *color;
+
+    if ([colorString isEqualToString:@"green"]) {
+
+        color = [NSColor greenColor];
+
+    } else if ([colorString isEqualToString:@"yellow"]) {
+
+        color = [NSColor colorWithHexColorString:@"F8CA00"];
+
+    } else if ([colorString isEqualToString:@"orange"]) {
+
+        color = [NSColor colorWithHexColorString:@"EC5E0C"];
+
+    } else if ([colorString isEqualToString:@"red"]) {
+
+        color = [NSColor colorWithHexColorString:@"BA2640"];
+
+    } else if ([colorString isEqualToString:@"blue"]) {
+
+        color = [NSColor blueColor];
+
+    } else if ([colorString isEqualToString:@"purple"]) {
+
+        color = [NSColor purpleColor];
+    }
+
+
+    return color;
+}
+
 - (void)saveCustomObject:(id)object forKey:(NSString *)key {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
     setObjectForKeyAndSave(data, key);

@@ -16,6 +16,7 @@
 @property (nonatomic,assign) BOOL hasDot;
 @property (nonatomic,assign) BOOL shouldDrawSideLine;
 @property (nonatomic,assign) BOOL shouldDrawSideLineAmber;
+@property (nonatomic,strong) NSArray *labels;
 
 @property (strong) NSArray *constr;
 
