@@ -170,7 +170,7 @@ static SDWAppSettings *sharedInstance = nil;
 
     if ([colorString isEqualToString:@"green"]) {
 
-        color = [NSColor greenColor];
+        color = [NSColor colorWithHexColorString:@"417505"];
 
     } else if ([colorString isEqualToString:@"yellow"]) {
 
@@ -178,7 +178,7 @@ static SDWAppSettings *sharedInstance = nil;
 
     } else if ([colorString isEqualToString:@"orange"]) {
 
-        color = [NSColor colorWithHexColorString:@"EC5E0C"];
+        color = [NSColor orangeColor];
 
     } else if ([colorString isEqualToString:@"red"]) {
 

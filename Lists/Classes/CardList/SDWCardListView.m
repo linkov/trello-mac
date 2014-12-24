@@ -51,7 +51,6 @@
         [[SharedSettings appBackgroundColorDark] setFill];
         [[SharedSettings appBackgroundColorDark] setStroke];
         [ovalPath fill];
-       // [ovalPath stroke];
     }
 
     for (SDWLabel *label in self.labels) {
@@ -59,12 +58,10 @@
 
         CGFloat xPos = self.bounds.size.width - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
 
-        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xPos, 3, 3, 3)];
+        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xPos, 4, 3, 3)];
 
         [[SharedSettings colorForTrelloColor:label.color] setStroke];
-       //[[SharedSettings appBackgroundColorDark] setStroke];
         [ovalPath stroke];
-     //   [ovalPath fill];
     }
 
 }
