@@ -67,11 +67,10 @@
 - (void)viewDidAppear {
     [self restoreMainbox];
     [self restoreStack];
-
-    [self loadCardUsers];
     [self markDot];
     [self markDue];
     [self markLabels];
+    [self loadCardUsers];
 
     NSLog(@" viewDidAppear mainBox - %@", self.mainBox);
 }
@@ -170,6 +169,18 @@
         text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
 
         if (text.stringValue.length >0) {
+
+            if (self.mainBox.labels.count == 0) {
+
+                //TODO: remove this hack
+                for (NSLayoutConstraint *co in self.mainBox.constraints) {
+                    if (co.constant == 5 && co.priority == 750) {
+                        co.constant = 8;
+                    }
+                }
+            }
+
+
             [self.stackView addView:text inGravity:NSStackViewGravityTrailing];
         }
     }
