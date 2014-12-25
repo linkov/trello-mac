@@ -192,12 +192,14 @@ static SDWAppSettings *sharedInstance = nil;
 
         color = [NSColor purpleColor];
 
-    } else if ([colorString isEqualToString:@"black"]) {
-
-        color = [NSColor blackColor];
     }
 
 
+
+    else if ([colorString isEqualToString:@"black"]) {
+
+        color = [NSColor colorWithHexColorString:@"4d4d4d"];
+    }
 
     else if ([colorString isEqualToString:@"lime"]) {
 

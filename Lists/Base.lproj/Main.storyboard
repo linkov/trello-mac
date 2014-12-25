@@ -584,8 +584,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Toggle Card Labels" id="mAm-jf-iwY">
-                                            <modifierMask key="keyEquivalentModifierMask" control="YES"/>
+                                        <menuItem title="Toggle Card Labels" keyEquivalent="l" id="mAm-jf-iwY">
                                             <connections>
                                                 <action selector="toggleCardLabels:" target="Voe-Tx-rLC" id="P8R-Og-No1"/>
                                             </connections>
