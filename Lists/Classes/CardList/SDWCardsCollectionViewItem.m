@@ -311,6 +311,7 @@
     }
 
     self.mainBox.labels = modifiedLabels;
+    [self loadCardUsers];
 
 }
 
