@@ -144,6 +144,21 @@
     NSMenuItem *orangeLabel = [Utils itemForCardLabelsMenuWithColorString:@"orange"];
     [menu addItem:orangeLabel];
 
+    NSMenuItem *separator = [NSMenuItem separatorItem];
+    [menu addItem:separator];
+
+    NSMenuItem *blackLabel = [Utils itemForCardLabelsMenuWithColorString:@"black"];
+    [menu addItem:blackLabel];
+
+    NSMenuItem *limeLabel = [Utils itemForCardLabelsMenuWithColorString:@"lime"];
+    [menu addItem:limeLabel];
+
+    NSMenuItem *skyLabel = [Utils itemForCardLabelsMenuWithColorString:@"sky"];
+    [menu addItem:skyLabel];
+
+    NSMenuItem *pinkLabel = [Utils itemForCardLabelsMenuWithColorString:@"pink"];
+    [menu addItem:pinkLabel];
+
     return menu;
 }
 

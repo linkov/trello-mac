@@ -191,7 +191,31 @@ static SDWAppSettings *sharedInstance = nil;
     } else if ([colorString isEqualToString:@"purple"]) {
 
         color = [NSColor purpleColor];
+
+    } else if ([colorString isEqualToString:@"black"]) {
+
+        color = [NSColor blackColor];
     }
+
+
+
+    else if ([colorString isEqualToString:@"lime"]) {
+
+        color = [NSColor colorWithHexColorString:@"7aecae"];
+    }
+
+
+    else if ([colorString isEqualToString:@"pink"]) {
+
+        color = [NSColor colorWithHexColorString:@"fd7bca"];
+    }
+
+
+    else if ([colorString isEqualToString:@"sky"]) {
+
+        color = [NSColor colorWithHexColorString:@"20c2de"];
+    }
+
 
 
     return [color colorWithAlphaComponent:0.6];
