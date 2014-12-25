@@ -305,9 +305,7 @@
     
     BOOL rowIsSectionHeader = NO;
     
-    NSInteger section = [self tableView:self
-                      getSectionFromRow:row
-                              isSection:&rowIsSectionHeader];
+    [self tableView:self getSectionFromRow:row isSection:&rowIsSectionHeader];
     
     if (rowIsSectionHeader == YES)
     {

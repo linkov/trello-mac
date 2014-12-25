@@ -18,9 +18,6 @@
 
 @property (weak) id <SDWCardViewDelegate> delegate;
 
-
-- (void)updateIndicators;
-
 @end
 
 @protocol SDWCardViewDelegate
