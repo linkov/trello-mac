@@ -8,6 +8,7 @@
 
 #import "Utils.h"
 
+
 @implementation Utils
 
 + (NSString *)twoLetterIDFromName:(NSString *)name {
@@ -75,6 +76,75 @@
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setDoesRelativeDateFormatting:YES];
     return [dateFormatter stringFromDate:date];
+}
+
+
+//if ([colorString isEqualToString:@"green"]) {
+//
+//    color = [NSColor colorWithHexColorString:@"417505"];
+//
+//} else if ([colorString isEqualToString:@"yellow"]) {
+//
+//    color = [NSColor colorWithHexColorString:@"F8CA00"];
+//
+//} else if ([colorString isEqualToString:@"orange"]) {
+//
+//    color = [NSColor orangeColor];
+//
+//} else if ([colorString isEqualToString:@"red"]) {
+//
+//    color = [NSColor redColor];
+//
+//} else if ([colorString isEqualToString:@"blue"]) {
+//
+//    color = [NSColor blueColor];
+//
+//} else if ([colorString isEqualToString:@"purple"]) {
+//
+//    color = [NSColor purpleColor];
+
++ (NSBezierPath *)cardLabelPathWithXPos:(CGFloat)xpos {
+
+    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xpos, 4, 3, 3)];
+
+    return ovalPath;
+
+}
+
++ (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color {
+
+    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(2, 5, 5, 5)];
+
+    NSMenuItem *item = [[NSMenuItem alloc]init];
+    item.title = color;
+    item.image = [NSImage imageFromBezierPath:ovalPath color:[SharedSettings colorForTrelloColor:color]];
+    return item;
+}
+
++ (NSMenu *)labelsMenu {
+
+    NSMenu *menu = [[NSMenu alloc]init];
+    menu.minimumWidth = 250.0;
+
+    NSMenuItem *greenLabel = [Utils itemForCardLabelsMenuWithColorString:@"green"];
+    [menu addItem:greenLabel];
+
+    NSMenuItem *redLabel = [Utils itemForCardLabelsMenuWithColorString:@"red"];
+    [menu addItem:redLabel];
+
+    NSMenuItem *yellowLabel = [Utils itemForCardLabelsMenuWithColorString:@"yellow"];
+    [menu addItem:yellowLabel];
+
+    NSMenuItem *blueLabel = [Utils itemForCardLabelsMenuWithColorString:@"blue"];
+    [menu addItem:blueLabel];
+
+    NSMenuItem *purpleLabel = [Utils itemForCardLabelsMenuWithColorString:@"purple"];
+    [menu addItem:purpleLabel];
+
+    NSMenuItem *orangeLabel = [Utils itemForCardLabelsMenuWithColorString:@"orange"];
+    [menu addItem:orangeLabel];
+
+    return menu;
 }
 
 @end

@@ -19,6 +19,7 @@
 #import "SDWCardViewController.h"
 #import "SDWMainSplitController.h"
 
+
 @interface SDWCardsController () <NSCollectionViewDelegate,SDWMenuItemDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 @property (strong) IBOutlet NSCollectionView *collectionView;
@@ -35,6 +36,7 @@
 @property (strong) IBOutlet NSButton *reloadButton;
 
 @property (strong) SDWCardsCollectionViewItem *lastSelectedItem;
+@property (strong) SDWCard *lastSelectedCard;
 
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
@@ -60,7 +62,8 @@
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
     self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
 
-	self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];
+    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
+
     [self.collectionView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
@@ -78,6 +81,7 @@
 
 
 }
+
 
 #pragma mark - Utils
 
@@ -537,21 +541,6 @@
     return YES;
 }
 
-- (void)collectionItemViewDoubleClick:(NSCollectionViewItem *)sender {
-
-    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    selected.delegate = self;
-}
-
-- (void)collectionItemViewClick:(NSCollectionViewItem *)sender {
-
-    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    selected.delegate = self;
-
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    [[self cardDetailsVC] setCard:selectedCard];
-}
-
 
 - (IBAction)addCard:(id)sender {
 
@@ -581,6 +570,48 @@
 
 
 #pragma mark - SDWCardViewDelegate
+
+- (void)cardViewDidSelectCard:(SDWCardsCollectionViewItem *)cardView {
+
+    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+    selected.delegate = self;
+
+    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+
+    self.lastSelectedCard = selectedCard;
+
+    [[self cardDetailsVC] setCard:selectedCard];
+    
+}
+
+- (void)cardViewShouldContainLabelColors:(NSString *)colors {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",self.lastSelectedCard.cardID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":colors} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self showCardSavingIndicator:NO];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showCardSavingIndicator:NO];
+        CLS_LOG(@"err - %@",error.localizedDescription);
+    }];
+}
+
+- (void)cardViewShouldRemoveLabelOfColor:(NSString *)color {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels/%@?",self.lastSelectedCard.cardID,color];
+
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        [self showCardSavingIndicator:NO];
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        [self showCardSavingIndicator:NO];
+        CLS_LOG(@"err - %@",error.localizedDescription);
+    }];
+}
+
 
 - (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView {
 

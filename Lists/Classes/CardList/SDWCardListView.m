@@ -12,7 +12,7 @@
 #import "SDWCardListView.h"
 #import "NSColor+Util.h"
 #import "SDWLabel.h"
-
+#import "Utils.h"
 
 @implementation SDWCardListView
 
@@ -54,13 +54,13 @@
     }
 
     for (SDWLabel *label in self.labels) {
-        NSLog(@"label - %@",label.color);
+//        NSLog(@"label - %@",label.color);
 
         CGFloat xPos = self.bounds.size.width - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
 
-        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xPos, 4, 3, 3)];
-
+        NSBezierPath* ovalPath = [Utils cardLabelPathWithXPos:xPos];
         [[SharedSettings colorForTrelloColor:label.color] setStroke];
+
         [ovalPath stroke];
     }
 

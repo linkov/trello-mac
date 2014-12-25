@@ -7,11 +7,16 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Cocoa/Cocoa.h>
+#import "NSImage+Util.h"
+#import "SDWAppSettings.h"
 
 @interface Utils : NSObject
 
 + (NSString *)twoLetterIDFromName:(NSString *)name;
 + (NSDate *)stringToDate:(NSString *)string;
 + (NSString *)dateToString:(NSDate *)date;
++ (NSBezierPath *)cardLabelPathWithXPos:(CGFloat)xpos;
++ (NSMenu *)labelsMenu;
 
 @end

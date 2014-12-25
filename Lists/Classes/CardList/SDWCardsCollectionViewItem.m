@@ -12,6 +12,7 @@
 #import "SDWCardListView.h"
 #import "SDWCardsCollectionViewItem.h"
 #import "Utils.h"
+#import "SDWLabel.h"
 
 @interface SDWCardsCollectionViewItem () <NSTextFieldDelegate>
 
@@ -186,6 +187,8 @@
 
     if (selected) {
         self.textColor = [NSColor blackColor];
+        [self.delegate cardViewDidSelectCard:self];
+
     }
     else {
         self.textColor = [NSColor blackColor];
@@ -236,25 +239,70 @@
     return YES;
 }
 
+- (void)rightMouseDown:(NSEvent *)theEvent {
+
+    if (SharedSettings.shouldShowCardLabels == NO) {
+        return;
+    }
+
+    self.selected = YES;
+
+    NSMenu *labelsMenu = [Utils labelsMenu];
+
+    for (NSMenuItem *item in labelsMenu.itemArray) {
+
+        [item setTarget:self];
+        [item setAction:@selector(changeCardLabel:)];
+        item.state = [self isActiveLabelWithTitle:item.title] ? 1 : 0;
+
+    }
+
+    [NSMenu popUpContextMenu:labelsMenu withEvent:theEvent forView:self.view];
+
+}
+
+- (BOOL)isActiveLabelWithTitle:(NSString *)title {
+
+   NSUInteger count =  [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",title]] count];
+
+   return count > 0;
+}
+
+
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
 
     if (theEvent.clickCount >= 2) {
         self.textField.editable = YES;
         [self.textField becomeFirstResponder];
-        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewDoubleClick:) to:nil from:self];
        // [self.delegate cardViewDidReceiveDoubleClick:self];
     } else if (theEvent.clickCount == 1) {
         self.textField.editable = NO;
-        [NSApplication.sharedApplication sendAction:@selector(collectionItemViewClick:) to:nil from:self];
     }
 
 }
 
-- (void)updateIndicators {
-    [self markDot];
-    [self markDue];
+- (void)changeCardLabel:(NSMenuItem *)sender {
+
+    NSMutableArray *modifiedLabels = [NSMutableArray arrayWithArray:self.mainBox.labels];
+    SDWLabel *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",sender.title]] firstObject];
+    SDWLabel *newLabel = [SDWLabel new];
+    newLabel.color = sender.title;
+    
+
+    if ([self isActiveLabelWithTitle:sender.title]) {
+
+        [modifiedLabels removeObject:selectedLabel];
+        [self.delegate cardViewShouldRemoveLabelOfColor:sender.title];
+    } else {
+        [modifiedLabels addObject:newLabel];
+        [self.delegate cardViewShouldContainLabelColors:[[modifiedLabels valueForKeyPath:@"color"] componentsJoinedByString:@","]];
+    }
+
+    self.mainBox.labels = modifiedLabels;
+
 }
+
 
 - (void)viewDidLayout {
     [super viewDidLayout];

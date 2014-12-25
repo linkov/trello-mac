@@ -27,9 +27,12 @@
 
 @optional
 
+- (void)cardViewShouldContainLabelColors:(NSString *)colors;
+- (void)cardViewShouldRemoveLabelOfColor:(NSString *)color;
 - (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView;
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView;
 - (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView;
+- (void)cardViewDidSelectCard:(SDWCardsCollectionViewItem *)cardView;
 
 
 @end

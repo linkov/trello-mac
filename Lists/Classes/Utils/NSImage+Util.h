@@ -10,6 +10,7 @@
 
 @interface NSImage (Util)
 
++ (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color;
 + (NSImage *)imageWithCIImage:(CIImage *)i;
 - (NSImage *)imageRotatedByDegrees:(CGFloat)degrees;
 - (NSImage *)imageTintedWithColor:(NSColor *)tint;

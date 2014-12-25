@@ -95,6 +95,23 @@
     return tintedImage;
 }
 
++ (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color {
+
+
+    NSImage *image = [[NSImage alloc] initWithSize:CGSizeMake(18, 18)];
+    [image lockFocus];
+
+//    NSRect aRect=NSMakeRect(0.0,0.0,20.0,20.0);
+//    NSBezierPath *thePath=[NSBezierPath bezierPathWithRect:aRect];
+    [color set];
+    [path stroke];
+
+    [image unlockFocus];
+
+    return image;
+
+}
+
 + (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r
 {
     NSImage *image;

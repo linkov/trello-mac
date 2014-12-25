@@ -8,7 +8,7 @@
 #import "SDWShortcutsManager.h"
 #import "SDWAppSettings.h"
 #import "SDWCardsCollectionView.h"
-
+#import "SDWCardsCollectionViewItem.h"
 @implementation SDWCardsCollectionView
 
 
@@ -17,5 +17,16 @@
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 
 }
+
+
+- (NSCollectionViewItem *)newItemForRepresentedObject:(id)object {
+
+    SDWCardsCollectionViewItem *item =  (SDWCardsCollectionViewItem *)[super newItemForRepresentedObject:object];
+    item.delegate = (id)self.delegate;
+
+    return item;
+
+}
+
 
 @end
