@@ -78,39 +78,6 @@
     return [dateFormatter stringFromDate:date];
 }
 
-
-//if ([colorString isEqualToString:@"green"]) {
-//
-//    color = [NSColor colorWithHexColorString:@"417505"];
-//
-//} else if ([colorString isEqualToString:@"yellow"]) {
-//
-//    color = [NSColor colorWithHexColorString:@"F8CA00"];
-//
-//} else if ([colorString isEqualToString:@"orange"]) {
-//
-//    color = [NSColor orangeColor];
-//
-//} else if ([colorString isEqualToString:@"red"]) {
-//
-//    color = [NSColor redColor];
-//
-//} else if ([colorString isEqualToString:@"blue"]) {
-//
-//    color = [NSColor blueColor];
-//
-//} else if ([colorString isEqualToString:@"purple"]) {
-//
-//    color = [NSColor purpleColor];
-
-+ (NSBezierPath *)cardLabelPathWithXPos:(CGFloat)xpos {
-
-    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xpos, 4, 3, 3)];
-
-    return ovalPath;
-
-}
-
 + (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color {
 
     NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(2, 5, 5, 5)];

@@ -16,7 +16,6 @@
 + (NSString *)twoLetterIDFromName:(NSString *)name;
 + (NSDate *)stringToDate:(NSString *)string;
 + (NSString *)dateToString:(NSDate *)date;
-+ (NSBezierPath *)cardLabelPathWithXPos:(CGFloat)xpos;
 + (NSMenu *)labelsMenu;
 
 @end

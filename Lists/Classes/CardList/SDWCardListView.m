@@ -56,9 +56,9 @@
     for (SDWLabel *label in self.labels) {
 //        NSLog(@"label - %@",label.color);
 
-        CGFloat xPos = self.bounds.size.width - 3 - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
+        CGFloat xPos = self.bounds.size.width - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
 
-        NSBezierPath* ovalPath = [Utils cardLabelPathWithXPos:xPos];
+        NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(xPos, 4, 3, 3)];
         [[SharedSettings colorForTrelloColor:label.color] setStroke];
 
         [ovalPath stroke];

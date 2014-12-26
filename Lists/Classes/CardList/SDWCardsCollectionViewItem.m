@@ -170,12 +170,19 @@
 
         if (text.stringValue.length >0) {
 
+            //TODO: remove this hack
             if (self.mainBox.labels.count == 0) {
 
-                //TODO: remove this hack
                 for (NSLayoutConstraint *co in self.mainBox.constraints) {
-                    if (co.constant == 5 && co.priority == 750) {
+                    if (co.constant == 4 && co.priority == 750) {
                         co.constant = 8;
+                    }
+                }
+            } else {
+
+                for (NSLayoutConstraint *co in self.mainBox.constraints) {
+                    if (co.priority == 750) {
+                        co.constant = 4;
                     }
                 }
             }
