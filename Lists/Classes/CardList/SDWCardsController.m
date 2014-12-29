@@ -206,6 +206,13 @@
         SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:responseObject];
         [[self cardDetailsVC] setCard:updatedCard];
 
+        //TODO: refactor this
+        if (![self isValidIndex:[self.collectionView.content indexOfObject:card]]) {
+            
+            [self reloadCards];
+            return;
+        }
+
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
         [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
         [arr insertObject:updatedCard atIndex:[self.collectionView.content indexOfObject:card]];
