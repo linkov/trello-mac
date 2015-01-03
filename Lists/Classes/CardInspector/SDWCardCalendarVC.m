@@ -36,9 +36,7 @@
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setDoesRelativeDateFormatting:YES];
-    NSString *dateString = [dateFormatter stringFromDate:dd];
 
-    NSLog(@"date = %@",dateString);
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date":dd}];
     [self dismissController:nil];
 

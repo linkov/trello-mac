@@ -77,6 +77,8 @@
 
         self.card.dueDate = note.userInfo[@"date"];
         [self updateDueDateViewWithDate:self.card.dueDate];
+        [[self cardsVC] updateCardDetails:self.card];
+        
     }];
 }
 

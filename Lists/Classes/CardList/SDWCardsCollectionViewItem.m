@@ -30,8 +30,6 @@
     self.mainBox.cornerRadius = 1.5;
     self.textField.editable = NO;
     self.textField.delegate = self;
-
-    NSLog(@" viewDidLoad mainBox - %@",self.mainBox);
 }
 
 //TODO:refactor
@@ -71,8 +69,6 @@
     [self markDue];
     [self markLabels];
     [self loadCardUsers];
-
-    NSLog(@" viewDidAppear mainBox - %@", self.mainBox);
 }
 
 - (void)markLabels {
@@ -293,7 +289,7 @@
     if (theEvent.clickCount >= 2) {
         self.textField.editable = YES;
         [self.textField becomeFirstResponder];
-       // [self.delegate cardViewDidReceiveDoubleClick:self];
+        
     } else if (theEvent.clickCount == 1) {
         self.textField.editable = NO;
     }
