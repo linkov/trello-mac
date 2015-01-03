@@ -898,16 +898,16 @@
             <objects>
                 <viewController id="gSz-Ss-KrC" customClass="SDWCardViewController" sceneMemberID="viewController">
                     <view key="view" id="rEk-UL-o5s">
-                        <rect key="frame" x="0.0" y="0.0" width="300" height="527"/>
+                        <rect key="frame" x="0.0" y="0.0" width="555" height="527"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TyL-MY-5MR">
-                                <rect key="frame" x="0.0" y="0.0" width="300" height="477"/>
+                                <rect key="frame" x="255" y="0.0" width="300" height="477"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="dRF-FP-Oqz">
                                     <rect key="frame" x="1" y="1" width="181" height="94"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <view misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JhT-wW-IRh">
+                                        <view translatesAutoresizingMaskIntoConstraints="NO" id="JhT-wW-IRh">
                                             <rect key="frame" x="0.0" y="0.0" width="300" height="477"/>
                                             <subviews>
                                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="r9B-VH-aK5">
@@ -1219,8 +1219,8 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="azM-yC-ZOz">
-                                <rect key="frame" x="117" y="230" width="66" height="66"/>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="azM-yC-ZOz">
+                                <rect key="frame" x="276" y="230" width="66" height="66"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="66" id="EXF-TC-JUx"/>
                                     <constraint firstAttribute="width" constant="66" id="znJ-lv-BIF"/>
@@ -1241,15 +1241,48 @@
                                     <action selector="saveCard:" target="gSz-Ss-KrC" id="ZvG-b7-BzW"/>
                                 </connections>
                             </button>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="WBO-Id-MRb" customClass="ITSwitch">
+                                <rect key="frame" x="130" y="479" width="35" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="r0v-bv-9WC"/>
+                                    <constraint firstAttribute="width" constant="35" id="s0C-eW-jb6"/>
+                                </constraints>
+                                <connections>
+                                    <action selector="switchDidChange:" target="gSz-Ss-KrC" id="SF0-X7-F4U"/>
+                                </connections>
+                            </customView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="IGM-ya-6Ji">
+                                <rect key="frame" x="110" y="481" width="18" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="Osx-xx-qaU"/>
+                                    <constraint firstAttribute="height" constant="16" id="aEX-LM-SsI"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="card" id="s6a-Jp-LZ2"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NCV-an-GGO">
+                                <rect key="frame" x="168" y="480" width="18" height="16"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="18" id="1Ll-Te-5pL"/>
+                                    <constraint firstAttribute="height" constant="16" id="Q9J-7o-1PD"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="todolist" id="bTy-9O-AVm"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="NCV-an-GGO" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="31" id="0fk-FL-eKg"/>
+                            <constraint firstItem="WBO-Id-MRb" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="130" id="4ss-YS-e8P"/>
                             <constraint firstAttribute="centerX" secondItem="azM-yC-ZOz" secondAttribute="centerX" priority="750" id="6PD-OA-Oes"/>
                             <constraint firstItem="IWY-HC-Ix1" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" priority="750" constant="26" id="7p6-wc-iZo"/>
+                            <constraint firstItem="WBO-Id-MRb" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="28" id="8I4-h7-3rP"/>
                             <constraint firstAttribute="trailing" secondItem="TyL-MY-5MR" secondAttribute="trailing" id="9Jk-ca-3Zx"/>
                             <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="262" id="Fje-Lm-YFy"/>
                             <constraint firstItem="TyL-MY-5MR" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="50" id="Krw-5w-JHV"/>
+                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WBO-Id-MRb" secondAttribute="trailing" priority="750" constant="39" id="c9P-HP-1nq"/>
                             <constraint firstAttribute="bottom" secondItem="TyL-MY-5MR" secondAttribute="bottom" id="dcl-PE-mMi"/>
-                            <constraint firstItem="TyL-MY-5MR" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" id="jsU-qa-eac"/>
+                            <constraint firstItem="TyL-MY-5MR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" id="jsU-qa-eac"/>
+                            <constraint firstItem="NCV-an-GGO" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="168" id="lLt-qM-eYP"/>
+                            <constraint firstItem="IGM-ya-6Ji" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="30" id="lj3-l2-hHH"/>
+                            <constraint firstItem="IGM-ya-6Ji" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="110" id="lwy-dP-hpv"/>
                             <constraint firstAttribute="centerY" secondItem="azM-yC-ZOz" secondAttribute="centerY" priority="750" id="wjI-ml-Aer"/>
                         </constraints>
                     </view>
@@ -1273,7 +1306,7 @@
                 </viewController>
                 <customObject id="Gtm-aa-RcQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1069" y="1288.5"/>
+            <point key="canvasLocation" x="1192.5" y="1288.5"/>
         </scene>
         <!--Card CalendarVC-->
         <scene sceneID="dJW-OH-SRG">
@@ -1322,7 +1355,7 @@
                 </viewController>
                 <customObject id="rZZ-YD-qUz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1526" y="1275.5"/>
+            <point key="canvasLocation" x="1679" y="1289"/>
         </scene>
         <!--Cards Collection View Item-->
         <scene sceneID="EFB-Ab-fxh">
@@ -1433,6 +1466,7 @@
     <resources>
         <image name="addCard" width="24" height="24"/>
         <image name="backLogo" width="66" height="66"/>
+        <image name="card" width="18" height="16"/>
         <image name="crown-ultrasmall-tint" width="15" height="15"/>
         <image name="dueButton" width="16" height="16"/>
         <image name="dueSort" width="23" height="26"/>
@@ -1443,6 +1477,7 @@
         <image name="onboard" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
         <image name="saveAlt2" width="24" height="24"/>
+        <image name="todolist" width="18" height="16"/>
         <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>

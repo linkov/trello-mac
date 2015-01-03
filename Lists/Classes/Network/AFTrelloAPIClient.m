@@ -37,6 +37,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
 
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@",SharedSettings.appToken,SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
+    CLS_LOG(@"GET = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
 
     return [super GET:paramsStr parameters:parameters success:success failure:failure];
 }
@@ -45,7 +46,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
 
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@",SharedSettings.appToken,SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
-    CLS_LOG(@"fullURL = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
+    CLS_LOG(@"PUT = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
 
     return [super PUT:paramsStr parameters:parameters success:success failure:failure];
 }
@@ -54,7 +55,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
 
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@",SharedSettings.appToken,SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
-    CLS_LOG(@"fullURL = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
+    CLS_LOG(@"POST = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
 
     return [super POST:paramsStr parameters:parameters success:success failure:failure];
 }
@@ -63,7 +64,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
 
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@",SharedSettings.appToken,SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
-    CLS_LOG(@"fullURL = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
+    CLS_LOG(@"DELETE = %@%@",AFAppTrelloAPIBaseURLString,paramsStr);
 
     return [super DELETE:paramsStr parameters:parameters success:success failure:failure];
 }

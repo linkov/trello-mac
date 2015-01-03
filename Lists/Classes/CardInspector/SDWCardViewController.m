@@ -18,6 +18,8 @@
 #import "JWCTableView.h"
 #import "SDWActivityTableCellView.h"
 
+#import "ITSwitch.h"
+
 @interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
@@ -252,6 +254,19 @@
     resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
     
     return resultView;
+}
+
+- (IBAction)switchDidChange:(ITSwitch *)sender {
+
+    CGFloat pos = self.scrollView.frame.origin.x == 500 ? -500 : 500;
+
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+        context.duration = 0.3;
+        //context.timingFunction = kCAMediaTimingFunctionEaseIn;
+        self.scrollView.animator.frame = CGRectOffset(self.scrollView.frame, pos, 0);
+        self.saveButton.image =  self.scrollView.frame.origin.x != 0 ? [NSImage imageNamed:@"addCard"] : [NSImage imageNamed:@"saveAlt2"];
+    } completionHandler:nil];
+    
 }
 
 @end
