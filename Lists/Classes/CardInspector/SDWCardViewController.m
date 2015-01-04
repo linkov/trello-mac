@@ -52,6 +52,7 @@
 
 @property (nonatomic, retain) NSMutableArray *todoSectionKeys;
 @property (nonatomic, retain) NSMutableDictionary *todoSectionContents;
+@property (strong) NSMutableArray *flatContent;
 
 @property BOOL isInTODOMode;
 
@@ -61,6 +62,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+
+    self.flatContent = [NSMutableArray array];
 
     self.checkListsScrollView.wantsLayer = YES;
     self.scrollView.wantsLayer = YES;
@@ -77,6 +81,7 @@
     self.activityTableScroll.layer.cornerRadius = 1.5;
 
     [self.checkListsTable setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
+    [self.checkListsTable registerForDraggedTypes:@[@"com.sdwr.filewatch.drag"]];
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
@@ -181,6 +186,9 @@
             NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
 
             for (SDWChecklist *checkList in object) {
+
+                [self.flatContent addObject:checkList];
+                [self.flatContent addObjectsFromArray:checkList.items];
 
                 [contents setObject:checkList.items forKey:checkList.name];
                 [keys addObject:checkList.name];
@@ -300,6 +308,7 @@
     if (tableView == self.activityTable) {
 
         return 1;
+
     } else {
 
        return  [[self todoSectionKeys] count];
@@ -483,6 +492,56 @@
 //
 //    }];
 
+}
+
+
+
+#pragma mark - Drag Drop
+
+- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+
+    if (tv == self.activityTable) {
+        return NO;
+    }
+
+    BOOL rowIsSectionHeader = NO;
+    NSInteger section = [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
+
+    if (rowIsSectionHeader == YES) {
+        return NO;
+    }
+//
+//    NSIndexPath *inx = [NSIndexPath indexPathForRow:rowIndexes.firstIndex inSection:section];
+//
+//    NSString *key = [[self todoSectionKeys] objectAtIndex:section];
+//    NSArray *contents = [[self todoSectionContents] objectForKey:key];
+//    SDWChecklistItem *recipe = [contents objectAtIndex:inx.row];
+//
+
+
+    SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
+
+
+
+
+
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{@"name":item.name}];
+    [pboard setData:data forType:@"com.sdwr.filewatch.drag"];
+
+    return YES;
+
+    //    if (rowIsSectionHeader == YES)
+    //    {
+    //        view = [self.jwcTableViewDataSource tableView:tableView
+    //                               viewForHeaderInSection:section];
+    //    }
+    //    else
+    //    {
+    //        NSIndexPath *indexPath = [self.tableView tableView:self.tableView
+    //                                 indexPathForRow:row];
+    //
+    //        view = [self.jwcTableViewDataSource tableView:tableView viewForIndexPath:indexPath];
+    //    }
 }
 
 #pragma mark - SDWCheckItemDelegate

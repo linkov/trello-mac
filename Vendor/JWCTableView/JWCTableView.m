@@ -48,16 +48,16 @@
     return [_jwcTableViewDelegate _jwcTableView:tv writeRowsWithIndexes:rowIndexes toPasteboard:pboard];
 }
 
-//- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
-//
-//    return NSDragOperationNone;
-//}
+- (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
 
-//- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
-//              row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
-//
-//    return NO;
-//}
+    return NSDragOperationMove;
+}
+
+- (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
+              row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
+
+    return YES;
+}
 
 
 
