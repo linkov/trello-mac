@@ -15,6 +15,7 @@
 @optional
 
 - (void)checkItemDidCheck:(SDWCheckItemTableCellView *)item;
+- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)item;
 
 @end
 

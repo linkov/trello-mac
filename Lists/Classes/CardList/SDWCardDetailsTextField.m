@@ -52,7 +52,7 @@
 
 //- (void)textDidEndEditing:(NSNotification *)notification {
 //
-////    self.font = self.origFont;
+//    [super textDidEndEditing:notification];
 //}
 
 @end

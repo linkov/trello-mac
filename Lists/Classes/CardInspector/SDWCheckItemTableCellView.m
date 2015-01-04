@@ -7,6 +7,11 @@
 //
 #import "SDWAppSettings.h"
 #import "SDWCheckItemTableCellView.h"
+#import "SDWChecklistItem.h"
+
+@interface SDWCheckItemTableCellView () <NSTextFieldDelegate>
+
+@end
 
 @implementation SDWCheckItemTableCellView
 
@@ -19,12 +24,19 @@
 - (void)awakeFromNib {
 
     self.wantsLayer = YES;
+    self.textField.delegate = self;
   //  self.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
 }
 - (IBAction)checkBoxClicked:(AAPLCheckBox *)sender {
 
     self.textField.enabled = !sender.checked;
     [self.delegate checkItemDidCheck:self];
+}
+
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
+
+    self.trelloCheckItem.name = self.textField.stringValue;
+    [self.delegate checkItemDidChangeName:self];
 }
 
 @end

@@ -496,4 +496,11 @@
    }];
 }
 
+- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)item {
+
+    [[SDWTrelloStore store] updateCheckItem:item.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+    }];
+}
+
 @end
