@@ -56,6 +56,9 @@
 		F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */; };
 		F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF91A58EAB400353914 /* SDWChecklist.m */; };
 		F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */; };
+		F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */; };
+		F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C031A591B5900353914 /* AAPLCheckBox.m */; };
+		F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -173,6 +176,12 @@
 		F11E3BF91A58EAB400353914 /* SDWChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklist.m; sourceTree = "<group>"; };
 		F11E3BFB1A58EAC400353914 /* SDWChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItem.h; sourceTree = "<group>"; };
 		F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItem.m; sourceTree = "<group>"; };
+		F11E3BFE1A5908B700353914 /* SDWCheckItemTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCheckItemTableCellView.h; sourceTree = "<group>"; };
+		F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCheckItemTableCellView.m; sourceTree = "<group>"; };
+		F11E3C021A591B5900353914 /* AAPLCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCheckBox.h; sourceTree = "<group>"; };
+		F11E3C031A591B5900353914 /* AAPLCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCheckBox.m; sourceTree = "<group>"; };
+		F11E3C041A591B5900353914 /* AAPLCheckBoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCheckBoxLayer.h; sourceTree = "<group>"; };
+		F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCheckBoxLayer.m; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -283,6 +292,8 @@
 				F10AA9F31A12AFD800FD4E85 /* SDWCardViewController.m */,
 				F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */,
 				F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */,
+				F11E3BFE1A5908B700353914 /* SDWCheckItemTableCellView.h */,
+				F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */,
 				F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */,
 				F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */,
 			);
@@ -387,6 +398,7 @@
 		F10AAA301A12AFD800FD4E85 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F11E3C011A591B5900353914 /* AAPLCheckBox */,
 				F1918AA81A3F819900CD22CE /* JWCTableView */,
 				F10AAA311A12AFD800FD4E85 /* AFNetworking */,
 				F10AAA451A12AFD800FD4E85 /* ITSwitch */,
@@ -457,6 +469,17 @@
 				F119AE7419FD4CFC0061D7DF /* Lists.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		F11E3C011A591B5900353914 /* AAPLCheckBox */ = {
+			isa = PBXGroup;
+			children = (
+				F11E3C021A591B5900353914 /* AAPLCheckBox.h */,
+				F11E3C031A591B5900353914 /* AAPLCheckBox.m */,
+				F11E3C041A591B5900353914 /* AAPLCheckBoxLayer.h */,
+				F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */,
+			);
+			path = AAPLCheckBox;
 			sourceTree = "<group>";
 		};
 		F1918AA81A3F819900CD22CE /* JWCTableView */ = {
@@ -597,7 +620,9 @@
 				F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */,
 				F10AAA501A12AFD800FD4E85 /* WSCBoardsOutlineView.m in Sources */,
 				F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */,
+				F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */,
 				F10AAA5F1A12AFD800FD4E85 /* SDWSourceListModel.m in Sources */,
+				F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */,
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
@@ -609,6 +634,7 @@
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
 				F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */,
+				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
 				F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */,

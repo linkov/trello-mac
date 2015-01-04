@@ -31,6 +31,12 @@
 //    return (__bridge NSString *)(serialNumberAsCFString);;
 //}
 
+- (void)showFonts {
+
+    NSLog(@"%@",[[[NSFontManager sharedFontManager] availableFontFamilies] description]);
+
+}
+
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
     [self setupDotOption];
@@ -38,6 +44,8 @@
     if (!SharedSettings.shouldShowCardLabels) {
         SharedSettings.shouldShowCardLabels = YES;
     }
+
+   // [self showFonts];
 
 //    NSLog(@"mac serial - %@",[self getSystemUUID]);
 

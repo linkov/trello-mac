@@ -20,6 +20,9 @@
 
 #import "ITSwitch.h"
 #import "SDWTrelloStore.h"
+#import "SDWChecklist.h"
+#import "SDWChecklistItem.h"
+#import "SDWCheckItemTableCellView.h"
 
 @interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
@@ -40,6 +43,15 @@
 @property (strong) IBOutlet NSTextField *titleDescLabel;
 @property (strong) IBOutlet NSTextField *commentsLabel;
 @property (strong) IBOutlet NSButton *dueButton;
+@property (strong) IBOutlet NSScrollView *checkListsScrollView;
+@property (strong) IBOutlet NSLayoutConstraint *checkListsScrollLeadingSpace;
+@property (strong) IBOutlet NSLayoutConstraint *cardInfoScrollLeading;
+@property (strong) IBOutlet NSLayoutConstraint *cardInfoTrailingSpace;
+@property (strong) IBOutlet JWCTableView *checkListsTable;
+
+
+@property (nonatomic, retain) NSMutableArray *todoSectionKeys;
+@property (nonatomic, retain) NSMutableDictionary *todoSectionContents;
 
 @property BOOL isInTODOMode;
 
@@ -49,6 +61,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    self.checkListsScrollView.wantsLayer = YES;
+    self.scrollView.wantsLayer = YES;
 
     self.isInTODOMode = NO;
     self.view.wantsLayer = YES;
@@ -88,6 +103,11 @@
     }];
 }
 
+- (void)viewWillAppear {
+
+    self.checkListsScrollLeadingSpace.constant = -500;
+}
+
 
 - (void)setCard:(SDWCard *)card {
 
@@ -117,6 +137,7 @@
     [self updateDueDateViewWithDate:self.card.dueDate];
 
     [self fetchActivities];
+    [self fetchChecklists];
 
 }
 
@@ -146,6 +167,32 @@
         }
 
     }];
+}
+
+- (void)fetchChecklists {
+
+    [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
+
+        if (!error) {
+
+            NSMutableArray *keys = [[NSMutableArray alloc] init];
+            NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
+
+            for (SDWChecklist *checkList in object) {
+
+                [contents setObject:checkList.items forKey:checkList.name];
+                [keys addObject:checkList.name];
+            }
+
+            self.todoSectionContents = contents;
+            self.todoSectionKeys = keys;
+            [self.checkListsTable reloadData];
+
+
+        }
+    }];
+
+
 }
 
 - (void)updateDueDateViewWithDate:(NSDate *)date {
@@ -195,9 +242,8 @@
 
     } else {
 
-        [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
+        //[self fetchChecklists];
 
-        }];
     }
 }
 
@@ -214,89 +260,216 @@
 
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    if (tableView == self.activityTable) {
+        return NO;
+    }
+
     return NO;
 }
 
 //Number of rows in section
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.activityItems.count;
+
+    if (tableView == self.activityTable) {
+
+        return self.activityItems.count;
+
+    } else {
+
+        NSString *key = [[self todoSectionKeys] objectAtIndex:section];
+        NSArray *contents = [[self todoSectionContents] objectForKey:key];
+        NSInteger rows = [contents count];
+        return rows;
+    }
 }
 
 //Number of sections
 -(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
-    return 1;
+
+    if (tableView == self.activityTable) {
+
+        return 1;
+    } else {
+
+       return  [[self todoSectionKeys] count];
+    }
+
 }
 
 //Has a header view for a section
 -(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
-    return NO;
+
+    if (tableView == self.activityTable) {
+        return NO;
+    }
+    return YES;
 }
+
+-(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
+    return 30;
+}
+
+
+-(NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    if (tableView != self.activityTable) {
+
+        SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
+
+        resultView.textField.stringValue = [[self todoSectionKeys] objectAtIndex:section];
+        //resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+        //resultView.textField.font = [NSFont boldSystemFontOfSize:16];
+        [resultView.checkBox removeFromSuperview];
+        resultView.textField.textColor =[[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
+        resultView.centerYConstraint.constant = -8;
+        [resultView.superview setNeedsUpdateConstraints:YES];
+        [resultView.superview updateConstraintsForSubtreeIfNeeded];
+
+        return resultView;
+        
+    } else {
+
+        return nil;
+    }
+
+}
+
 
 //Height related
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SDWActivity *activity = self.activityItems[[indexPath row]];
+    if (tableView == self.activityTable) {
 
-    CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+        SDWActivity *activity = self.activityItems[[indexPath row]];
 
-    return rec.size.height+16+(17+4);
+        CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+
+        return rec.size.height+16+(17+4);
+    }
+
+    return 30;
+
 }
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
-    SDWActivity *activity = self.activityItems[[indexPath row]];
+    NSView *result;
 
-    SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
-    resultView.textField.stringValue = activity.content;
-    resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-    resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
-    resultView.initialsLabel.stringValue = activity.memberInitials;
-    resultView.timeLabel.stringValue = activity.timeString;
+    if (tableView == self.activityTable) {
 
-    resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
 
-    if ([indexPath row] == self.activityItems.count - 1) {
-        resultView.separatorLine.hidden = YES;
+        SDWActivity *activity = self.activityItems[[indexPath row]];
+
+        SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
+        resultView.textField.stringValue = activity.content;
+        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+        resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
+        resultView.initialsLabel.stringValue = activity.memberInitials;
+        resultView.timeLabel.stringValue = activity.timeString;
+
+        resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
+
+        if ([indexPath row] == self.activityItems.count - 1) {
+            resultView.separatorLine.hidden = YES;
+        } else {
+            resultView.separatorLine.hidden = NO;
+        }
+
+        resultView.initialsLabel.wantsLayer = YES;
+        resultView.initialsLabel.layer.cornerRadius = 1.5;
+        resultView.initialsLabel.layer.borderWidth = 1;
+        resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
+
+
+        
+        result = resultView;
+
     } else {
-        resultView.separatorLine.hidden = NO;
+
+        NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
+        NSArray *contents = [[self todoSectionContents] objectForKey:key];
+        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
+
+        SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
+        resultView.textField.stringValue = item.name;
+        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+        resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
+        [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
+        
+        resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
+        resultView.textField.font = [NSFont systemFontOfSize:12];
+
+        result = resultView;
     }
 
-    resultView.initialsLabel.wantsLayer = YES;
-    resultView.initialsLabel.layer.cornerRadius = 1.5;
-    resultView.initialsLabel.layer.borderWidth = 1;
-    resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
-    
-    return resultView;
+    return result;
+
 }
 
 - (IBAction)switchDidChange:(ITSwitch *)sender {
 
 
     CGFloat pos;
+    CGFloat checkListsPos;
     NSImage *checkMarkImage;
 
     if (self.isInTODOMode == NO) {
         pos = 500;
+        checkListsPos = 500;
         checkMarkImage = [NSImage imageNamed:@"addCard"];
+
+
+        self.checkListsScrollLeadingSpace.constant = 15;
+
+        //self.cardInfoTrailingSpace.priority = 1000;
+        self.cardInfoTrailingSpace.constant = -500;
+
+
         self.isInTODOMode = YES;
 
     } else {
         pos = -500;
+        checkListsPos = -500;
         checkMarkImage = [NSImage imageNamed:@"saveAlt2"];
+
+
+        self.checkListsScrollLeadingSpace.constant = -500;
+        self.cardInfoTrailingSpace.constant = 0;
+
+
         self.isInTODOMode = NO;
 
     }
 
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-        context.duration = 0.3;
-        //context.timingFunction = kCAMediaTimingFunctionEaseIn;
-        self.scrollView.animator.frame = CGRectOffset(self.scrollView.frame, pos, 0);
+//    [self.view setNeedsUpdateConstraints:YES];
+
+   // [self.view layoutSubtreeIfNeeded];
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
+        context.duration = 0.25; // you can leave this out if the default is acceptable
+        context.allowsImplicitAnimation = YES;
         self.saveButton.image =  checkMarkImage;
+        [self.view updateConstraintsForSubtreeIfNeeded];
+        [self.view layoutSubtreeIfNeeded];
 
     } completionHandler:^{
 
+
     }];
-    
+
+//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
+//        context.duration = 0.3;
+//        //context.timingFunction = kCAMediaTimingFunctionEaseIn;
+////        self.scrollView.animator.frame = CGRectOffset(self.scrollView.frame, pos, 0);
+////        self.checkListsScrollView.animator.frame = CGRectOffset(self.checkListsScrollView.frame, pos, 0);
+//
+//        [self.view updateConstraintsForSubtreeIfNeeded];
+//        self.saveButton.image =  checkMarkImage;
+//
+//    } completionHandler:^{
+//
+//    }];
+
 }
 
 @end

@@ -21,7 +21,7 @@
     if ([self.attributes valueForKeyPath:@"checkItems"]) {
 
         NSMutableArray *children = [NSMutableArray new];
-        for (NSDictionary *att in [self.attributes valueForKeyPath:@"lists"]) {
+        for (NSDictionary *att in [self.attributes valueForKeyPath:@"checkItems"]) {
             SDWChecklistItem *post = [[SDWChecklistItem alloc] initWithAttributes:att];
             [children addObject:post];
         }

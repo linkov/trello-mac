@@ -280,10 +280,11 @@
 
         if (!error) {
 
-            NSLog(@"checklist objects = %@",objects);
+            if(block) block(objects,nil);
 
         } else {
-
+            
+            if(block) block(nil,error);
             [self handleError:error];
         }
     }];
