@@ -19,6 +19,7 @@
 #import "SDWActivityTableCellView.h"
 
 #import "ITSwitch.h"
+#import "SDWTrelloStore.h"
 
 @interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
@@ -40,6 +41,8 @@
 @property (strong) IBOutlet NSTextField *commentsLabel;
 @property (strong) IBOutlet NSButton *dueButton;
 
+@property BOOL isInTODOMode;
+
 @end
 
 @implementation SDWCardViewController
@@ -47,6 +50,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.isInTODOMode = NO;
     self.view.wantsLayer = YES;
     self.view.layer.backgroundColor = [SharedSettings appBackgroundColorDark].CGColor;
 
@@ -183,9 +187,18 @@
 
 - (IBAction)saveCard:(NSButton *)sender {
 
-    self.card.name = self.cardNameTextView.string;
-    self.card.cardDescription = self.cardDescriptionTextView.string;
-    [[self cardsVC] updateCardDetails:self.card];
+    if (!self.isInTODOMode) {
+
+        self.card.name = self.cardNameTextView.string;
+        self.card.cardDescription = self.cardDescriptionTextView.string;
+        [[self cardsVC] updateCardDetails:self.card];
+
+    } else {
+
+        [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
+
+        }];
+    }
 }
 
 
@@ -258,14 +271,31 @@
 
 - (IBAction)switchDidChange:(ITSwitch *)sender {
 
-    CGFloat pos = self.scrollView.frame.origin.x == 500 ? -500 : 500;
+
+    CGFloat pos;
+    NSImage *checkMarkImage;
+
+    if (self.isInTODOMode == NO) {
+        pos = 500;
+        checkMarkImage = [NSImage imageNamed:@"addCard"];
+        self.isInTODOMode = YES;
+
+    } else {
+        pos = -500;
+        checkMarkImage = [NSImage imageNamed:@"saveAlt2"];
+        self.isInTODOMode = NO;
+
+    }
 
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.duration = 0.3;
         //context.timingFunction = kCAMediaTimingFunctionEaseIn;
         self.scrollView.animator.frame = CGRectOffset(self.scrollView.frame, pos, 0);
-        self.saveButton.image =  self.scrollView.frame.origin.x != 0 ? [NSImage imageNamed:@"addCard"] : [NSImage imageNamed:@"saveAlt2"];
-    } completionHandler:nil];
+        self.saveButton.image =  checkMarkImage;
+
+    } completionHandler:^{
+
+    }];
     
 }
 

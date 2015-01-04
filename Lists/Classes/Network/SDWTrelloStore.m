@@ -10,6 +10,7 @@
 #import "AFTrelloAPIClient.h"
 #import <Crashlytics/Crashlytics.h>
 #import "SDWAppSettings.h"
+#import "SDWChecklist.h"
 
 @implementation SDWTrelloStore
 
@@ -51,7 +52,7 @@
 }
 
 
-#pragma mark - Card ops
+#pragma mark - Cards ops
 
 - (void)createCardWithName:(NSString *)name
                     listID:(NSString *)listID
@@ -200,7 +201,7 @@
 
 }
 
-#pragma mark - List ops
+#pragma mark - Lists ops
 
 - (void)createListWithName:(NSString *)name
                    boardID:(NSString *)boardID
@@ -241,5 +242,52 @@
     }];
 }
 
+
+#pragma mark - Checklists ops
+
+
+- (void)createChecklistWithName:(NSString *)name
+                         cardID:(NSString *)cardID
+                     completion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklists?",cardID];
+
+    [[AFTrelloAPIClient sharedClient] POST:urlString
+                                parameters:@{@"name":name}
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         if(block) block(responseObject,nil);
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+         if(block) block(nil,error);
+         [self handleError:error];
+     }];
+}
+
+- (void)fetchChecklistsForCardID:(NSString *)cardID
+                      completion:(SDWTrelloStoreCompletionBlock)block {
+
+
+    [[AFRecordPathManager manager]
+     setAFRecordMethod:@"findAll"
+     forModel:[SDWChecklist class]
+     toConcretePath:[NSString stringWithFormat:@"cards/%@/checklists?",cardID]];
+
+
+    [SDWChecklist findAll:^(NSArray *objects, NSError *error) {
+
+        if (!error) {
+
+            NSLog(@"checklist objects = %@",objects);
+
+        } else {
+
+            [self handleError:error];
+        }
+    }];
+
+}
 
 @end

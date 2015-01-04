@@ -21,7 +21,7 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 /* General */
 - (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block;
 
-/* Card ops */
+/* Cards ops */
 - (void)createCardWithName:(NSString *)name
                     listID:(NSString *)listID
             withCompletion:(SDWTrelloStoreCompletionBlock)block;
@@ -60,5 +60,12 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 
+/* Checklists ops */
+- (void)createChecklistWithName:(NSString *)name
+                         cardID:(NSString *)cardID
+                     completion:(SDWTrelloStoreCompletionBlock)block;
+
+- (void)fetchChecklistsForCardID:(NSString *)cardID
+                      completion:(SDWTrelloStoreCompletionBlock)block;
 
 @end

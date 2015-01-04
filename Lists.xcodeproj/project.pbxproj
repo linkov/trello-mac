@@ -54,6 +54,8 @@
 		F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA471A12AFD800FD4E85 /* ITSwitch.m */; };
 		F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */; };
 		F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */; };
+		F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF91A58EAB400353914 /* SDWChecklist.m */; };
+		F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -167,6 +169,10 @@
 		F119AE7419FD4CFC0061D7DF /* Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11E3BF51A58AA3900353914 /* SDWTrelloStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTrelloStore.h; sourceTree = "<group>"; };
 		F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWTrelloStore.m; sourceTree = "<group>"; };
+		F11E3BF81A58EAB400353914 /* SDWChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklist.h; sourceTree = "<group>"; };
+		F11E3BF91A58EAB400353914 /* SDWChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklist.m; sourceTree = "<group>"; };
+		F11E3BFB1A58EAC400353914 /* SDWChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItem.h; sourceTree = "<group>"; };
+		F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItem.m; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -322,6 +328,10 @@
 				F10AAA0A1A12AFD800FD4E85 /* AFRecordPathManager.m */,
 				F10AAA0B1A12AFD800FD4E85 /* SDWBoard.h */,
 				F10AAA0C1A12AFD800FD4E85 /* SDWBoard.m */,
+				F11E3BFB1A58EAC400353914 /* SDWChecklistItem.h */,
+				F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */,
+				F11E3BF81A58EAB400353914 /* SDWChecklist.h */,
+				F11E3BF91A58EAB400353914 /* SDWChecklist.m */,
 				F1918A9C1A3DCE9A00CD22CE /* SDWActivity.h */,
 				F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */,
 				F10AAA0D1A12AFD800FD4E85 /* SDWCard.h */,
@@ -574,6 +584,7 @@
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,
 				F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */,
 				F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */,
+				F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */,
 				F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */,
 				F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
@@ -608,6 +619,7 @@
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
 				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
+				F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
