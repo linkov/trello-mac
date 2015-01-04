@@ -13,5 +13,6 @@
 @property (strong) NSString *state;
 @property (strong) NSString *itemID;
 @property (strong) NSString *name;
+@property (strong) NSString *listID;
 
 @end

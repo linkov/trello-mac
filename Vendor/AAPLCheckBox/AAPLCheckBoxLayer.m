@@ -9,6 +9,7 @@
 */
 #import <Cocoa/Cocoa.h>
 #import "AAPLCheckBoxLayer.h"
+#import "SDWAppSettings.h"
 
 @implementation AAPLCheckBoxLayer
 @synthesize tintColor = _tintColor;
@@ -67,7 +68,15 @@
     // Make the desired width of the outer box.
     CGContextSetLineWidth(context, strokeWidth);
     // Set the tint color of the outer box.
-    CGContextSetStrokeColorWithColor(context, [NSColor whiteColor].CGColor);
+
+
+    if (self.isChecked) {
+        CGContextSetStrokeColorWithColor(context, [SharedSettings.appBleakWhiteColor colorWithAlphaComponent:0.5].CGColor);
+
+    } else {
+
+        CGContextSetStrokeColorWithColor(context, SharedSettings.appBleakWhiteColor.CGColor);
+    }
     
     // Draw the outer box.
     CGContextStrokeRect(context, checkBoxRect);
@@ -75,23 +84,23 @@
     // Draw the inner box if it's checked.
     if (self.isChecked) {
         const CGFloat markInset = self.markInsetFactor * size;
-//
-//        NSBezierPath* bezierPath = NSBezierPath.bezierPath;
-//        [bezierPath moveToPoint: NSMakePoint(7.5, 6.5)];
-//        [bezierPath curveToPoint: NSMakePoint(11.5, 9.5) controlPoint1: NSMakePoint(7.5, 0.5) controlPoint2: NSMakePoint(11.5, 9.5)];
-//        [NSColor.blackColor setStroke];
-//        [bezierPath setLineWidth: 1];
-//        [bezierPath stroke];
 
         const CGFloat markDimension = size - 2.0 * markInset;
         CGRect markRect = CGRectMake(markInset, markInset, markDimension, markDimension);
         markRect = CGRectApplyAffineTransform(markRect, transform);
 
+        CGContextTranslateCTM(context, 0.0f, markDimension);
+        CGContextScaleCTM(context, 1.0f, -1.0f);
 
-//        CGContextFillPath(context);
+        CGContextMoveToPoint(context,9.5, -3.62);
+        CGContextAddLineToPoint(context,11.21, -5.5);
+        CGContextAddLineToPoint(context,13.5, -0.5);
+        CGContextSetStrokeColorWithColor(context, [SharedSettings.appBleakWhiteColor colorWithAlphaComponent:0.5].CGColor);
 
-        CGContextSetFillColorWithColor(context, [NSColor whiteColor].CGColor);
-        CGContextFillRect(context, markRect);
+        CGContextStrokePath(context);
+
+        //CGContextSetFillColorWithColor(context, SharedSettings.appBleakWhiteColor.CGColor);
+        //CGContextFillRect(context, markRect);
     }
 }
 

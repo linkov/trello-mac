@@ -21,5 +21,10 @@
     self.wantsLayer = YES;
   //  self.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
 }
+- (IBAction)checkBoxClicked:(AAPLCheckBox *)sender {
+
+    self.textField.enabled = !sender.checked;
+    [self.delegate checkItemDidCheck:self];
+}
 
 @end

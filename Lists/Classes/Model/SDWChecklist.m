@@ -23,6 +23,7 @@
         NSMutableArray *children = [NSMutableArray new];
         for (NSDictionary *att in [self.attributes valueForKeyPath:@"checkItems"]) {
             SDWChecklistItem *post = [[SDWChecklistItem alloc] initWithAttributes:att];
+            post.listID = self.listID;
             [children addObject:post];
         }
 

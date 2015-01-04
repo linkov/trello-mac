@@ -24,7 +24,7 @@
 #import "SDWChecklistItem.h"
 #import "SDWCheckItemTableCellView.h"
 
-@interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate>
+@interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate,SDWCheckItemDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
 @property (strong) IBOutlet NSTextView *cardNameTextView;
@@ -75,6 +75,8 @@
 
     self.activityTableScroll.wantsLayer = YES;
     self.activityTableScroll.layer.cornerRadius = 1.5;
+
+    [self.checkListsTable setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
@@ -258,6 +260,14 @@
 
 #pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
 
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section {
+
+    if (tableView == self.activityTable) {
+        return NO;
+    }
+
+    return YES;
+}
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
@@ -265,7 +275,7 @@
         return NO;
     }
 
-    return NO;
+    return YES;
 }
 
 //Number of rows in section
@@ -307,7 +317,7 @@
 }
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
-    return 30;
+    return 40;
 }
 
 
@@ -322,7 +332,7 @@
         //resultView.textField.font = [NSFont boldSystemFontOfSize:16];
         [resultView.checkBox removeFromSuperview];
         resultView.textField.textColor =[[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
-        resultView.centerYConstraint.constant = -8;
+        resultView.centerYConstraint.constant = -12;
         [resultView.superview setNeedsUpdateConstraints:YES];
         [resultView.superview updateConstraintsForSubtreeIfNeeded];
 
@@ -396,9 +406,12 @@
         resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
         resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
         [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
-        
+        resultView.textField.enabled = !resultView.checkBox.checked;
+
         resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
+        resultView.delegate = self;
+        resultView.trelloCheckItem = item;
 
         result = resultView;
     }
@@ -470,6 +483,17 @@
 //
 //    }];
 
+}
+
+#pragma mark - SDWCheckItemDelegate
+
+- (void)checkItemDidCheck:(SDWCheckItemTableCellView *)item {
+
+    item.trelloCheckItem.state = item.checkBox.checked == YES ? @"complete" : @"incomplete";
+
+   [[SDWTrelloStore store] updateCheckItem:item.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+   }];
 }
 
 @end

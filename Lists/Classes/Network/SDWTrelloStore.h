@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "SDWCard.h"
+#import "SDWChecklistItem.h"
 
 typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
@@ -67,5 +68,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
 - (void)fetchChecklistsForCardID:(NSString *)cardID
                       completion:(SDWTrelloStoreCompletionBlock)block;
+
+- (void)updateCheckItem:(SDWChecklistItem *)item
+                 cardID:(NSString *)cardID
+         withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 @end

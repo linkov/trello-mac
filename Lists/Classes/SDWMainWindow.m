@@ -20,5 +20,4 @@
 - (void)quickLookWithEvent:(NSEvent *)event {}
 
 
-
 @end
