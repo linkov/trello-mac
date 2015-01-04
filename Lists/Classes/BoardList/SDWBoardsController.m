@@ -23,6 +23,8 @@
 #import "SDWProgressIndicator.h"
 #import "SDWCardViewController.h"
 
+#import "SDWTrelloStore.h"
+
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;
@@ -217,19 +219,16 @@
 
 - (void)loadBoardsIDsWithUserCards {
 
-    [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[SDWTrelloStore store] fetchAllAssigneesWithCompletion:^(NSDictionary *object, NSError *error) {
 
-        SharedSettings.userID = responseObject[@"id"];
-        NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
-        NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
-        self.boards = [self filteredBoardsForIDs:crownBoardIDs listIDs:crownListIDs];
-        [self reloadDataSource];
+        if (!error) {
 
+            self.boards = [self filteredBoardsForIDs:object[@"crownBoardIDs"] listIDs:object[@"crownListIDs"]];
+            [self reloadDataSource];
+        } else {
+            [self.crownSwitch setOn:NO];
+        }
 
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        [self.crownSwitch setOn:NO];
-        CLS_LOG(@"err - %@",error.localizedDescription);
     }];
 }
 
@@ -252,68 +251,13 @@
 
 - (void)moveCard:(NSDictionary *)cardData {
 
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardData[@"cardID"]];
-    
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
-                                                                 @"idList":self.boardWithDrop.boardID,
-                                                                 @"idBoard":self.boardWithDropParent.boardID,
-                                                                 @"pos":@0
-                                                                 }
-                                  success:^(NSURLSessionDataTask *task, id responseObject)
-    {
-
-
-        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        CLS_LOG(@"err - %@",error.localizedDescription);
-    }];
-
+    [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
+                              toListID:self.boardWithDrop.boardID
+                               boardID:self.boardWithDropParent.boardID];
 }
 
 
-#pragma mark - List operations
 
-- (void)createList {
-
-    [[AFTrelloAPIClient sharedClient] POST:@"lists?"
-                                parameters:@{
-                                             @"name":self.editedListName,
-                                             @"idBoard":self.parentBoardForEditedList.boardID,
-                                             @"pos":[NSNumber numberWithInteger:self.editedListPositon-1]
-                                             }
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
-    {
-
-        SDWBoardsCellView *cellView = [self.outlineView viewAtColumn:0 row:self.editedRow makeIfNecessary:YES];
-
-        cellView.textLabel.editable = NO;
-        [cellView.textLabel resignFirstResponder];
-        [self reloadBoards:nil];
-        [[self cardsVC] clearCards];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        CLS_LOG(@"err - %@",error.localizedDescription);
-    }];
-}
-
-- (void)deleteList:(SDWBoard *)list {
-
-    NSString *urlString = [NSString stringWithFormat:@"lists/%@?",list.boardID];
-
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
-
-        [self reloadBoards:nil];
-        [[self cardsVC] clearCards];
-
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-        CLS_LOG(@"err - %@",error.localizedDescription);
-    }];
-
-}
 
 #pragma mark - SDWBoardsListRowDelegate
 
@@ -322,9 +266,9 @@
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
-
-    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
-    [self deleteList:board];
+//
+//    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
+//    [self deleteList:board];
 }
 
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {}

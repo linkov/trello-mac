@@ -53,6 +53,7 @@
 		F10AAA771A12AFD800FD4E85 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA441A12AFD800FD4E85 /* AFURLSessionManager.m */; };
 		F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA471A12AFD800FD4E85 /* ITSwitch.m */; };
 		F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */; };
+		F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -164,6 +165,8 @@
 		F10AAA491A12AFD800FD4E85 /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
 		F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 		F119AE7419FD4CFC0061D7DF /* Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lists.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F11E3BF51A58AA3900353914 /* SDWTrelloStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTrelloStore.h; sourceTree = "<group>"; };
+		F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWTrelloStore.m; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -336,6 +339,8 @@
 		F10AAA151A12AFD800FD4E85 /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				F11E3BF51A58AA3900353914 /* SDWTrelloStore.h */,
+				F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */,
 				F10AAA161A12AFD800FD4E85 /* AFTrelloAPIClient.h */,
 				F10AAA171A12AFD800FD4E85 /* AFTrelloAPIClient.m */,
 			);
@@ -580,6 +585,7 @@
 				F10AAA671A12AFD800FD4E85 /* NSImage+Util.m in Sources */,
 				F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */,
 				F10AAA501A12AFD800FD4E85 /* WSCBoardsOutlineView.m in Sources */,
+				F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */,
 				F10AAA5F1A12AFD800FD4E85 /* SDWSourceListModel.m in Sources */,
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
