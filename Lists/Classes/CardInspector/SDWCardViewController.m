@@ -203,7 +203,7 @@
 
     for (SDWChecklist *checkList in dataArray) {
 
-        [self.flatContent addObject:checkList];
+        [self.flatContent addObject:checkList.name];
         [self.flatContent addObjectsFromArray:checkList.items];
 
         [contents setObject:checkList.items forKey:checkList.name];
@@ -355,6 +355,9 @@
         [resultView.superview setNeedsUpdateConstraints:YES];
         [resultView.superview updateConstraintsForSubtreeIfNeeded];
         resultView.layer.backgroundColor = [NSColor clearColor].CGColor;
+        resultView.textField.enabled = YES;
+
+        resultView.textField.font = [NSFont fontWithName:@"TektonPro-BoldObl" size:14];
 
         return resultView;
         
@@ -547,9 +550,19 @@
     }
 
 
-    if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklist class]]) {
+    NSLog(@"proposed row - %li",(long)row);
+
+
+    if (row > self.flatContent.count-1) {
         return NSDragOperationNone;
     }
+
+    if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
+
+      //  self.dropSectionKey = [self.flatContent objectAtIndex:row];
+        return NSDragOperationNone;
+    }
+
 
 
     NSPasteboard *pBoard = [info draggingPasteboard];
@@ -577,6 +590,8 @@
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
         NSString *sectionKey = item.listName;
 
+        NSLog(@"item.name = %@",item.name);
+        NSLog(@"sectionKey = %@",item.listName);
 
         if (![sectionKeyOriginal isEqualToString:sectionKey]) {
 
@@ -619,10 +634,12 @@
     SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
 
 
+    NSLog(@"flat array BEFORE - %@",self.flatContent);
+
     if ([sectionKey isEqualToString:self.dropSectionKey]) {
 
         [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]] forKey:self.dropSectionKey];
-        
+
     } else {
 
 
@@ -632,8 +649,25 @@
 
         mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[self.dropSectionKey]];
         [mutableItems addObject:originalItem];
+        originalItem.listName = self.dropSectionKey;
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
     }
+
+    NSMutableArray *newFlatContent = [NSMutableArray array];
+
+    for (NSString *key in self.todoSectionContents) {
+
+        [newFlatContent addObject:key];
+
+        for (SDWChecklistItem *item in self.todoSectionContents[key]) {
+
+            [newFlatContent addObject:item];
+        }
+    }
+
+    self.flatContent = newFlatContent;
+
+    NSLog(@"flat array AFTER - %@",self.flatContent);
 
 
     [self.checkListsTable reloadData];
