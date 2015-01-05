@@ -55,6 +55,7 @@
 @property (strong) NSMutableArray *flatContent;
 
 
+@property (strong) NSString *dropSectionKey;
 @property NSUInteger dropIndex;
 @property BOOL isInTODOMode;
 
@@ -347,13 +348,13 @@
         SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
 
         resultView.textField.stringValue = [[self todoSectionKeys] objectAtIndex:section];
-        //resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-        //resultView.textField.font = [NSFont boldSystemFontOfSize:16];
-        [resultView.checkBox removeFromSuperview];
+
+        resultView.checkBoxWidth.constant = 0;
         resultView.textField.textColor =[[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
         resultView.centerYConstraint.constant = -12;
         [resultView.superview setNeedsUpdateConstraints:YES];
         [resultView.superview updateConstraintsForSubtreeIfNeeded];
+        resultView.layer.backgroundColor = [NSColor clearColor].CGColor;
 
         return resultView;
         
@@ -409,8 +410,6 @@
         resultView.initialsLabel.layer.cornerRadius = 1.5;
         resultView.initialsLabel.layer.borderWidth = 1;
         resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
-
-
         
         result = resultView;
 
@@ -431,6 +430,8 @@
         resultView.textField.font = [NSFont systemFontOfSize:12];
         resultView.delegate = self;
         resultView.trelloCheckItem = item;
+        resultView.centerYConstraint.constant = 0;
+        resultView.checkBoxWidth.constant = 23;
 
         result = resultView;
     }
@@ -545,6 +546,22 @@
         return NSDragOperationNone;
     }
 
+
+    if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklist class]]) {
+        return NSDragOperationNone;
+    }
+
+
+    NSPasteboard *pBoard = [info draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"com.sdwr.lists.checklists.drag"];
+
+    NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+    NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
+//    NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
+//    SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
+
+
+
     NSDragOperation dragOp;
 
     if (op == NSCollectionViewDropBefore ) {
@@ -558,6 +575,25 @@
         SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
         NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+        NSString *sectionKey = item.listName;
+
+
+        if (![sectionKeyOriginal isEqualToString:sectionKey]) {
+
+//            NSMutableArray *mutableItems =[NSMutableArray arrayWithArray:self.todoSectionContents[sectionKeyOriginal]];
+//            [mutableItems removeObject:originalItem];
+//            [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKeyOriginal];
+//
+//            mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[sectionKey]];
+//            [mutableItems addObject:originalItem];
+//            [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKey];
+
+            self.dropSectionKey = sectionKey;
+
+        } else {
+
+            self.dropSectionKey = sectionKeyOriginal;
+        }
 
       //  if ([self isValidIndex:inx]) {
             self.dropIndex = itemIndexInSection;
@@ -579,8 +615,27 @@
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
     NSString *sectionKey = cardDict[@"sectionKey"];
+    NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
+    SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
 
-    [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[sectionKey]] forKey:sectionKey];
+
+    if ([sectionKey isEqualToString:self.dropSectionKey]) {
+
+        [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]] forKey:self.dropSectionKey];
+        
+    } else {
+
+
+        NSMutableArray *mutableItems =[NSMutableArray arrayWithArray:self.todoSectionContents[sectionKey]];
+        [mutableItems removeObject:originalItem];
+        [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKey];
+
+        mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[self.dropSectionKey]];
+        [mutableItems addObject:originalItem];
+        [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
+    }
+
+
     [self.checkListsTable reloadData];
 
     return YES;
@@ -609,7 +664,8 @@
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
                                                                  @"name":item.name,
                                                                  @"sectionKey":item.listName,
-                                                                 @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection]
+                                                                 @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection],
+                                                                 @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
                                                                  }];
 
     [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];

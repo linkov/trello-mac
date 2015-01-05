@@ -1336,6 +1336,7 @@
                                                             <connections>
                                                                 <outlet property="centerYConstraint" destination="nqP-cz-vHE" id="euL-Ii-7wr"/>
                                                                 <outlet property="checkBox" destination="gm5-8O-Lga" id="KMU-kH-fEq"/>
+                                                                <outlet property="checkBoxWidth" destination="mwV-aa-aYc" id="tbp-Bj-7As"/>
                                                                 <outlet property="textField" destination="RGI-EH-GUM" id="0NN-Ps-nsw"/>
                                                             </connections>
                                                         </tableCellView>
