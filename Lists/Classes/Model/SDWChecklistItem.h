@@ -14,5 +14,7 @@
 @property (strong) NSString *itemID;
 @property (strong) NSString *name;
 @property (strong) NSString *listID;
+@property (strong) NSString *listName;
+@property NSUInteger position;
 
 @end

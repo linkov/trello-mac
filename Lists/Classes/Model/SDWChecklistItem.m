@@ -16,6 +16,9 @@
     self.itemID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];
 
+    NSNumber *pos = self.attributes[@"pos"];
+    self.position = pos.integerValue;
+
 }
 
 @end

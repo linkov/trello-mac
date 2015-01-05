@@ -50,13 +50,13 @@
 
 - (NSDragOperation)tableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
 
-    return NSDragOperationMove;
+    return [_jwcTableViewDelegate _jwcTableView:tv validateDrop:info proposedRow:row proposedDropOperation:op];
 }
 
 - (BOOL)tableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
               row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
 
-    return YES;
+    return [_jwcTableViewDelegate _jwcTableView:aTableView acceptDrop:info row:row dropOperation:operation];
 }
 
 

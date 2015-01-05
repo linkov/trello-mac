@@ -18,12 +18,16 @@
     self.listID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];
 
+    NSNumber *pos = self.attributes[@"pos"];
+    self.position = pos.integerValue;
+
     if ([self.attributes valueForKeyPath:@"checkItems"]) {
 
         NSMutableArray *children = [NSMutableArray new];
         for (NSDictionary *att in [self.attributes valueForKeyPath:@"checkItems"]) {
             SDWChecklistItem *post = [[SDWChecklistItem alloc] initWithAttributes:att];
             post.listID = self.listID;
+            post.listName = self.name;
             [children addObject:post];
         }
 

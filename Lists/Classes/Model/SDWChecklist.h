@@ -14,7 +14,7 @@
 @property (strong) NSString *listCardID;
 @property (strong) NSString *listID;
 @property (strong) NSString *name;
-
+@property NSUInteger position;
 @property (strong) NSArray *items;
 
 @end

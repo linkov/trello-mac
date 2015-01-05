@@ -54,6 +54,8 @@
 @property (nonatomic, retain) NSMutableDictionary *todoSectionContents;
 @property (strong) NSMutableArray *flatContent;
 
+
+@property NSUInteger dropIndex;
 @property BOOL isInTODOMode;
 
 @end
@@ -81,7 +83,8 @@
     self.activityTableScroll.layer.cornerRadius = 1.5;
 
     [self.checkListsTable setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
-    [self.checkListsTable registerForDraggedTypes:@[@"com.sdwr.filewatch.drag"]];
+    [self.checkListsTable registerForDraggedTypes:@[@"com.sdwr.lists.checklists.drag"]];
+    [self.checkListsTable setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleGap];
 
     self.logoImageView.hidden = YES;
     self.logoImageView.wantsLayer = YES;
@@ -182,26 +185,33 @@
 
         if (!error) {
 
-            NSMutableArray *keys = [[NSMutableArray alloc] init];
-            NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
-
-            for (SDWChecklist *checkList in object) {
-
-                [self.flatContent addObject:checkList];
-                [self.flatContent addObjectsFromArray:checkList.items];
-
-                [contents setObject:checkList.items forKey:checkList.name];
-                [keys addObject:checkList.name];
-            }
-
-            self.todoSectionContents = contents;
-            self.todoSectionKeys = keys;
-            [self.checkListsTable reloadData];
-
+            [self loadRowsAndSectionsFromFlatData:object];
 
         }
     }];
 
+
+}
+
+
+- (void)loadRowsAndSectionsFromFlatData:(NSArray *)data {
+
+    NSMutableArray *keys = [[NSMutableArray alloc] init];
+    NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
+    NSArray *dataArray = [data copy];
+
+    for (SDWChecklist *checkList in dataArray) {
+
+        [self.flatContent addObject:checkList];
+        [self.flatContent addObjectsFromArray:checkList.items];
+
+        [contents setObject:checkList.items forKey:checkList.name];
+        [keys addObject:checkList.name];
+    }
+
+    self.todoSectionContents = contents;
+    self.todoSectionKeys = keys;
+    [self.checkListsTable reloadData];
 
 }
 
@@ -498,6 +508,85 @@
 
 #pragma mark - Drag Drop
 
+- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
+
+    NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
+
+    // 1. swap 2 elements
+    SDWChecklistItem *movedItem = [mutableArray objectAtIndex:fromIndex];
+    SDWChecklistItem *newSiblingItem = [mutableArray objectAtIndex:toIndex];
+
+    NSUInteger movedCardPos = movedItem.position;
+    NSUInteger newSiblingCardPos = newSiblingItem.position;
+
+    movedItem.position = newSiblingCardPos;
+    newSiblingItem.position = movedCardPos;
+
+    [mutableArray removeObject:movedItem];
+    [mutableArray insertObject:movedItem atIndex:toIndex];
+
+    // 2. set positions to all cards equal to cards' indexes in array
+    for (int i = 0; i<mutableArray.count; i++) {
+        SDWChecklistItem *item = mutableArray[i];
+        item.position = i;
+    }
+
+
+    NSSortDescriptor *sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
+    mutableArray = [NSMutableArray arrayWithArray:[mutableArray sortedArrayUsingDescriptors:@[sortBy]]];
+
+    return mutableArray;
+    
+}
+
+- (NSDragOperation)_jwcTableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
+
+    if ([self.flatContent count] == 1) {
+        return NSDragOperationNone;
+    }
+
+    NSDragOperation dragOp;
+
+    if (op == NSCollectionViewDropBefore ) {
+
+        dragOp = NSDragOperationMove;
+
+
+    } else if (op == NSCollectionViewDropOn ) {
+
+      //  NSUInteger inx = row;
+        SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
+        NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+
+      //  if ([self isValidIndex:inx]) {
+            self.dropIndex = itemIndexInSection;
+      //  NSLog(@"self.dropIndex =%lu",(unsigned long)self.dropIndex);
+      //  }
+        dragOp = NSDragOperationNone;
+        
+    }
+    
+    return dragOp;
+
+}
+- (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
+                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
+
+    NSPasteboard *pBoard = [info draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"com.sdwr.lists.checklists.drag"];
+
+    NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+    NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
+    NSString *sectionKey = cardDict[@"sectionKey"];
+
+    [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[sectionKey]] forKey:sectionKey];
+    [self.checkListsTable reloadData];
+
+    return YES;
+
+}
+
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
 
     if (tv == self.activityTable) {
@@ -505,43 +594,28 @@
     }
 
     BOOL rowIsSectionHeader = NO;
-    NSInteger section = [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
+    /* get rowIsSectionHeader */
+    [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
 
     if (rowIsSectionHeader == YES) {
         return NO;
     }
-//
-//    NSIndexPath *inx = [NSIndexPath indexPathForRow:rowIndexes.firstIndex inSection:section];
-//
-//    NSString *key = [[self todoSectionKeys] objectAtIndex:section];
-//    NSArray *contents = [[self todoSectionContents] objectForKey:key];
-//    SDWChecklistItem *recipe = [contents objectAtIndex:inx.row];
-//
 
 
     SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
+    NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
+    NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
 
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
+                                                                 @"name":item.name,
+                                                                 @"sectionKey":item.listName,
+                                                                 @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection]
+                                                                 }];
 
-
-
-
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{@"name":item.name}];
-    [pboard setData:data forType:@"com.sdwr.filewatch.drag"];
+    [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
 
     return YES;
 
-    //    if (rowIsSectionHeader == YES)
-    //    {
-    //        view = [self.jwcTableViewDataSource tableView:tableView
-    //                               viewForHeaderInSection:section];
-    //    }
-    //    else
-    //    {
-    //        NSIndexPath *indexPath = [self.tableView tableView:self.tableView
-    //                                 indexPathForRow:row];
-    //
-    //        view = [self.jwcTableViewDataSource tableView:tableView viewForIndexPath:indexPath];
-    //    }
 }
 
 #pragma mark - SDWCheckItemDelegate

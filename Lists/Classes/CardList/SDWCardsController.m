@@ -167,7 +167,7 @@
 
     // 1. swap 2 elements
     SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
-    SDWCard *newSiblingCard = [mutableArray objectAtIndex:self.dropIndex];
+    SDWCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
 
     NSUInteger movedCardPos = movedCard.position;
     NSUInteger newSiblingCardPos = newSiblingCard.position;
@@ -176,7 +176,7 @@
     newSiblingCard.position = movedCardPos;
 
     [mutableArray removeObject:movedCard];
-    [mutableArray insertObject:movedCard atIndex:self.dropIndex];
+    [mutableArray insertObject:movedCard atIndex:toIndex];
 
     // 2. set positions to all cards equal to cards' indexes in array
     for (int i = 0; i<mutableArray.count; i++) {
@@ -453,6 +453,7 @@
 
    // [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
 
+    //TODO: refactor
     if (indexData && self.dropIndex < 100000) {
 
         NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
