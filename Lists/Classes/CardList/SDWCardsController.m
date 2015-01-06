@@ -627,12 +627,11 @@
 
 #pragma mark - SDWMenuItemDelegate
 
-- (void)controlShouldValidateDropWithAction:(NSControlInteractionDropAction)action objectID:(NSString *)objectID {
+- (void)controlShouldValidateDropWithPasteBoard:(NSPasteboard *)pasteboard {
 
-    if (action == NSControlInteractionDropActionDelete) {
-
-        [self deleteCardWithID:objectID];
-    }
+    NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
+    NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    [self deleteCardWithID:dataDict[@"cardID"]];
 }
 
 - (void)deleteCardWithID:(NSString *)cardID {

@@ -22,6 +22,9 @@ static NSString const * canPerformActionKey = @"canPerformActionKey";
 
 @implementation NSControl (DragInteraction)
 
+
+#pragma mark - NSDragging
+
 - (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
 
     self.canPerformAction = YES;
@@ -38,21 +41,13 @@ static NSString const * canPerformActionKey = @"canPerformActionKey";
 
     if (self.canPerformAction) {
 
-        NSPasteboard *pBoard = [sender draggingPasteboard];
-        NSData *indexData = [pBoard dataForType:@"TRASH_DRAG_TYPE"];
-
-        NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-        [self performActionForObjectID:cardDict[@"itemID"]];
+        if ( [(NSObject *)self.interactionDelegate respondsToSelector:@selector(controlShouldValidateDropWithPasteBoard:)]) {
+            [self.interactionDelegate controlShouldValidateDropWithPasteBoard:[sender draggingPasteboard]];
+        }
 
         self.layer.filters = @[];
-
     }
 
-}
-
-- (void)performActionForObjectID:(NSString *)objectID {
-
-    [self.interactionDelegate controlShouldValidateDropWithAction:NSControlInteractionDropActionDelete objectID:objectID];
 }
 
 - (void)draggingExited:(id<NSDraggingInfo>)sender {
@@ -61,6 +56,11 @@ static NSString const * canPerformActionKey = @"canPerformActionKey";
     self.canPerformAction = NO;
 }
 
+
+- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
+
+    return YES;
+}
 
 
 #pragma mark - Associated objects
@@ -75,7 +75,6 @@ static NSString const * canPerformActionKey = @"canPerformActionKey";
     NSNumber *canPerform = objc_getAssociatedObject(self, (__bridge const void *)(canPerformActionKey));
     return canPerform.boolValue;
 }
-
 
 - (void)setInteractionDelegate:(id<NSControlInteractionDelegate>)interactionDelegate {
     objc_setAssociatedObject(self,(__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);

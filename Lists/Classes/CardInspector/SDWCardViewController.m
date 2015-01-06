@@ -722,11 +722,13 @@
 
 #pragma mark - NSControlInteractionDelegate
 
-- (void)controlShouldValidateDropWithAction:(NSControlInteractionDropAction)action objectID:(NSString *)objectID {
+- (void)controlShouldValidateDropWithPasteBoard:(NSPasteboard *)pasteboard {
 
-    NSLog(@"objectID - %@",objectID);
+    NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
+    NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+    NSLog(@"dataDict - %@",dataDict);
+
 }
-
 
 #pragma mark - SDWCheckItemDelegate
 

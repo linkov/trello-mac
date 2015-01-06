@@ -8,17 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
-typedef enum {
-
-    NSControlInteractionDropActionNone = 0,
-    NSControlInteractionDropActionDelete,
-} NSControlInteractionDropAction;
 
 @protocol NSControlInteractionDelegate
 
 @optional
 
-- (void)controlShouldValidateDropWithAction:(NSControlInteractionDropAction)action objectID:(NSString *)objectID;
+- (void)controlShouldValidateDropWithPasteBoard:(NSPasteboard *)pasteboard;
 
 @end
 
