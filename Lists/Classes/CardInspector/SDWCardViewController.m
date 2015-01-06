@@ -501,9 +501,6 @@
 
     }
 
-//    [self.view setNeedsUpdateConstraints:YES];
-
-   // [self.view layoutSubtreeIfNeeded];
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
         context.duration = 0.3; // you can leave this out if the default is acceptable
         context.allowsImplicitAnimation = YES;
@@ -516,25 +513,13 @@
 
     }];
 
-//    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
-//        context.duration = 0.3;
-//        //context.timingFunction = kCAMediaTimingFunctionEaseIn;
-////        self.scrollView.animator.frame = CGRectOffset(self.scrollView.frame, pos, 0);
-////        self.checkListsScrollView.animator.frame = CGRectOffset(self.checkListsScrollView.frame, pos, 0);
-//
-//        [self.view updateConstraintsForSubtreeIfNeeded];
-//        self.saveButton.image =  checkMarkImage;
-//
-//    } completionHandler:^{
-//
-//    }];
-
 }
 
 
 
 #pragma mark - Drag Drop
 
+//TODO: move to Utils
 - (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
 
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
@@ -575,7 +560,7 @@
     }
 
 
-    NSLog(@"proposed row - %li",(long)row);
+    //NSLog(@"proposed row - %li",(long)row);
 
 
     if (row > self.flatContent.count-1) {
@@ -584,7 +569,6 @@
 
     if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
 
-      //  self.dropSectionKey = [self.flatContent objectAtIndex:row];
         return NSDragOperationNone;
     }
 
@@ -595,10 +579,6 @@
 
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
-//    NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
-//    SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
-
-
 
     NSDragOperation dragOp;
 
@@ -609,7 +589,7 @@
 
     } else if (op == NSCollectionViewDropOn ) {
 
-      //  NSUInteger inx = row;
+
         SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
         NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
@@ -620,14 +600,6 @@
 
         if (![sectionKeyOriginal isEqualToString:sectionKey]) {
 
-//            NSMutableArray *mutableItems =[NSMutableArray arrayWithArray:self.todoSectionContents[sectionKeyOriginal]];
-//            [mutableItems removeObject:originalItem];
-//            [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKeyOriginal];
-//
-//            mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[sectionKey]];
-//            [mutableItems addObject:originalItem];
-//            [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKey];
-
             self.dropSectionKey = sectionKey;
 
         } else {
@@ -635,10 +607,7 @@
             self.dropSectionKey = sectionKeyOriginal;
         }
 
-      //  if ([self isValidIndex:inx]) {
-            self.dropIndex = itemIndexInSection;
-      //  NSLog(@"self.dropIndex =%lu",(unsigned long)self.dropIndex);
-      //  }
+        self.dropIndex = itemIndexInSection;
         dragOp = NSDragOperationNone;
         
     }

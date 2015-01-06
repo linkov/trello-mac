@@ -27,8 +27,6 @@
     self.wantsLayer = YES;
     self.textField.delegate = self;
     self.addCheckItemButton.hidden = YES;
-  //  self.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
-
     self.addCheckItemButton.wantsLayer = YES;
 
     int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
