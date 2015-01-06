@@ -312,4 +312,47 @@
     }];
 }
 
+- (void)createCheckItem:(SDWChecklistItem *)item
+                 cardID:(NSString *)cardID
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem?",cardID,item.listID];
+
+    [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{
+                                                                 @"name":item.name
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
+
+}
+
+- (void)deleteCheckItem:(SDWChecklistItem *)item
+                 cardID:(NSString *)cardID
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,item.listID,item.itemID];
+
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:@{
+                                                                 @"state":item.state,
+                                                                 @"name":item.name
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
+
+}
+
 @end

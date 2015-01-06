@@ -14,8 +14,9 @@
 
 @optional
 
-- (void)checkItemDidCheck:(SDWCheckItemTableCellView *)item;
-- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)item;
+- (void)checkItemShouldAddItem:(SDWCheckItemTableCellView *)itemView;
+- (void)checkItemDidCheck:(SDWCheckItemTableCellView *)itemView;
+- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)itemView;
 
 @end
 
@@ -26,5 +27,7 @@
 @property (weak) id<SDWCheckItemDelegate> delegate;
 @property (strong) SDWChecklistItem *trelloCheckItem;
 @property (strong) IBOutlet NSLayoutConstraint *checkBoxWidth;
+@property (strong) IBOutlet NSLayoutConstraint *addCheckItemWidth;
+@property (strong) IBOutlet NSLayoutConstraint *addCheckItemCenterY;
 
 @end

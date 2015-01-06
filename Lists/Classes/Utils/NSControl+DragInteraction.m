@@ -11,8 +11,8 @@
 
 #import "NSControl+DragInteraction.h"
 
-static NSString const * interactionDelegateKey = @"interactionDelegateKey";
-static NSString const * canPerformActionKey = @"canPerformActionKey";
+static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDelegateKey";
+static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKey";
 
 @interface NSControl ()
 
@@ -25,65 +25,59 @@ static NSString const * canPerformActionKey = @"canPerformActionKey";
 
 #pragma mark - NSDragging
 
-- (NSDragOperation)draggingEntered:(id<NSDraggingInfo>)sender {
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
 
-    self.canPerformAction = YES;
+	self.canPerformAction = YES;
 
-    CIFilter *invert = [CIFilter filterWithName: @"CIColorInvert"];
-    [invert setDefaults];
+	CIFilter *invert = [CIFilter filterWithName:@"CIColorInvert"];
+	[invert setDefaults];
 
-    self.layer.filters = @[invert];
-    return NSDragOperationMove;
+	self.layer.filters = @[invert];
+	return NSDragOperationMove;
 }
 
+- (void)draggingEnded:(id <NSDraggingInfo> )sender {
 
-- (void)draggingEnded:(id<NSDraggingInfo>)sender {
+	if (self.canPerformAction) {
 
-    if (self.canPerformAction) {
+		if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(controlShouldValidateDropWithPasteBoard:)]) {
+			[self.interactionDelegate controlShouldValidateDropWithPasteBoard:[sender draggingPasteboard]];
+		}
 
-        if ( [(NSObject *)self.interactionDelegate respondsToSelector:@selector(controlShouldValidateDropWithPasteBoard:)]) {
-            [self.interactionDelegate controlShouldValidateDropWithPasteBoard:[sender draggingPasteboard]];
-        }
-
-        self.layer.filters = @[];
-    }
-
+		self.layer.filters = @[];
+	}
 }
 
-- (void)draggingExited:(id<NSDraggingInfo>)sender {
-    
-    self.layer.filters = @[];
-    self.canPerformAction = NO;
+- (void)draggingExited:(id <NSDraggingInfo> )sender {
+
+	self.layer.filters = @[];
+	self.canPerformAction = NO;
 }
 
+- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo>)sender {
-
-    return YES;
+	return YES;
 }
-
 
 #pragma mark - Associated objects
 
 - (void)setCanPerformAction:(BOOL)canPerformAction {
 
-    objc_setAssociatedObject(self,(__bridge const void *)(canPerformActionKey), [NSNumber numberWithBool:canPerformAction], OBJC_ASSOCIATION_ASSIGN);
+	objc_setAssociatedObject(self, (__bridge const void *)(canPerformActionKey), [NSNumber numberWithBool:canPerformAction], OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (BOOL)canPerformAction {
 
-    NSNumber *canPerform = objc_getAssociatedObject(self, (__bridge const void *)(canPerformActionKey));
-    return canPerform.boolValue;
+	NSNumber *canPerform = objc_getAssociatedObject(self, (__bridge const void *)(canPerformActionKey));
+	return canPerform.boolValue;
 }
 
-- (void)setInteractionDelegate:(id<NSControlInteractionDelegate>)interactionDelegate {
-    objc_setAssociatedObject(self,(__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
+- (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate {
+	objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id<NSControlInteractionDelegate>)interactionDelegate {
-    return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
+- (id <NSControlInteractionDelegate> )interactionDelegate {
+	return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
 }
-
 
 @end
-

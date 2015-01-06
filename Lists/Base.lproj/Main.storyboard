@@ -1219,7 +1219,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="backLogo" id="pJP-ls-RGh"/>
                             </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IWY-HC-Ix1">
-                                <rect key="frame" x="262" y="476" width="24" height="24"/>
+                                <rect key="frame" x="258" y="476" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="04b-9C-Qnk"/>
                                     <constraint firstAttribute="width" constant="24" id="Tzm-ao-zDs"/>
@@ -1259,7 +1259,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="todolist" id="bTy-9O-AVm"/>
                             </imageView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6m-SO-Q4j">
-                                <rect key="frame" x="15" y="20" width="270" height="455"/>
+                                <rect key="frame" x="16" y="20" width="280" height="455"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gr5-d9-DWu">
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1270,7 +1270,7 @@
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                             <tableColumns>
-                                                <tableColumn width="270" minWidth="40" maxWidth="1000" id="vlc-S1-ZV7">
+                                                <tableColumn width="265" minWidth="40" maxWidth="1000" id="vlc-S1-ZV7">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                         <font key="font" metaFont="smallSystem"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -1283,7 +1283,7 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="checkListCellView" id="QO2-d2-B7X" customClass="SDWCheckItemTableCellView">
-                                                            <rect key="frame" x="1" y="0.0" width="270" height="17"/>
+                                                            <rect key="frame" x="1" y="0.0" width="265" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="gm5-8O-Lga" customClass="AAPLCheckBox">
@@ -1300,8 +1300,8 @@
                                                                         <action selector="checkBoxClicked:" target="QO2-d2-B7X" id="6J5-IT-u0V"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
-                                                                    <rect key="frame" x="36" y="1" width="227" height="17"/>
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
+                                                                    <rect key="frame" x="36" y="1" width="194" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="YqG-V1-3aO"/>
                                                                     </constraints>
@@ -1311,17 +1311,37 @@
                                                                         <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </textFieldCell>
                                                                 </textField>
+                                                                <button translatesAutoresizingMaskIntoConstraints="NO" id="mGp-ZF-cVm">
+                                                                    <rect key="frame" x="245" y="-7" width="15" height="15"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="15" id="6mk-Fg-DZV"/>
+                                                                        <constraint firstAttribute="height" constant="15" id="vBK-rd-6GM"/>
+                                                                    </constraints>
+                                                                    <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="addCheckItem" imagePosition="overlaps" alignment="center" state="on" inset="2" id="MeG-gt-9dS">
+                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                                        <font key="font" metaFont="system"/>
+                                                                    </buttonCell>
+                                                                    <connections>
+                                                                        <action selector="addItemButtonClicked:" target="QO2-d2-B7X" id="ckY-gg-KJs"/>
+                                                                    </connections>
+                                                                </button>
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="gm5-8O-Lga" secondAttribute="bottom" priority="750" id="259-j3-XFw"/>
-                                                                <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" priority="750" constant="9" id="8F8-2b-4kT"/>
-                                                                <constraint firstAttribute="trailing" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="4" id="FPn-oX-X9r"/>
+                                                                <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" priority="750" id="8F8-2b-4kT"/>
+                                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="4" id="FPn-oX-X9r"/>
+                                                                <constraint firstAttribute="centerY" secondItem="mGp-ZF-cVm" secondAttribute="centerY" constant="-8" id="J8Y-Pb-cS2"/>
                                                                 <constraint firstItem="gm5-8O-Lga" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" constant="9" id="KAM-iC-g8y"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gm5-8O-Lga" secondAttribute="centerY" id="MRT-pU-d7i"/>
+                                                                <constraint firstAttribute="trailing" secondItem="mGp-ZF-cVm" secondAttribute="trailing" constant="5" id="UTT-LD-KAh"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="gm5-8O-Lga" secondAttribute="trailing" constant="4" id="hH2-Eq-Rea"/>
                                                                 <constraint firstAttribute="centerY" secondItem="RGI-EH-GUM" secondAttribute="centerY" constant="1" id="nqP-cz-vHE"/>
+                                                                <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="15" id="t3R-o9-1rd"/>
                                                             </constraints>
                                                             <connections>
+                                                                <outlet property="addCheckItemButton" destination="mGp-ZF-cVm" id="8ov-pL-dfW"/>
+                                                                <outlet property="addCheckItemCenterY" destination="J8Y-Pb-cS2" id="FFj-Cq-yWU"/>
+                                                                <outlet property="addCheckItemWidth" destination="6mk-Fg-DZV" id="kDL-2O-y0s"/>
                                                                 <outlet property="centerYConstraint" destination="nqP-cz-vHE" id="euL-Ii-7wr"/>
                                                                 <outlet property="checkBox" destination="gm5-8O-Lga" id="KMU-kH-fEq"/>
                                                                 <outlet property="checkBoxWidth" destination="mwV-aa-aYc" id="tbp-Bj-7As"/>
@@ -1340,7 +1360,7 @@
                                     <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </clipView>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="270" id="SUX-iy-zEE"/>
+                                    <constraint firstAttribute="width" constant="280" id="SUX-iy-zEE"/>
                                 </constraints>
                                 <scroller key="horizontalScroller" hidden="YES" verticalHuggingPriority="750" horizontal="YES" id="CPb-p9-kId">
                                     <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -1359,12 +1379,12 @@
                             <constraint firstItem="IWY-HC-Ix1" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" priority="750" constant="27" id="7p6-wc-iZo"/>
                             <constraint firstItem="WBO-Id-MRb" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="28" id="8I4-h7-3rP"/>
                             <constraint firstAttribute="trailing" secondItem="TyL-MY-5MR" secondAttribute="trailing" id="9Jk-ca-3Zx"/>
-                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="262" id="Fje-Lm-YFy"/>
+                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="258" id="Fje-Lm-YFy"/>
                             <constraint firstItem="TyL-MY-5MR" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="50" id="Krw-5w-JHV"/>
                             <constraint firstItem="e6m-SO-Q4j" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="52" id="Mvm-PR-IKB"/>
                             <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WBO-Id-MRb" secondAttribute="trailing" priority="750" constant="39" id="c9P-HP-1nq"/>
                             <constraint firstAttribute="bottom" secondItem="TyL-MY-5MR" secondAttribute="bottom" id="dcl-PE-mMi"/>
-                            <constraint firstItem="e6m-SO-Q4j" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" constant="15" id="f3m-1D-qdV"/>
+                            <constraint firstItem="e6m-SO-Q4j" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" constant="16" id="f3m-1D-qdV"/>
                             <constraint firstAttribute="bottom" secondItem="e6m-SO-Q4j" secondAttribute="bottom" constant="20" id="hay-gt-ayo"/>
                             <constraint firstItem="TyL-MY-5MR" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" id="jsU-qa-eac"/>
                             <constraint firstItem="NCV-an-GGO" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="168" id="lLt-qM-eYP"/>
@@ -1377,9 +1397,11 @@
                         <outlet property="activityTable" destination="r4F-SQ-vKL" id="Akv-Qp-xYG"/>
                         <outlet property="activityTableScroll" destination="Vay-0k-P6E" id="syb-u2-dBH"/>
                         <outlet property="cardDescriptionTextView" destination="yE5-ep-IIX" id="xDM-oB-b6a"/>
+                        <outlet property="cardIcon" destination="IGM-ya-6Ji" id="Isq-lf-41G"/>
                         <outlet property="cardInfoScrollLeading" destination="jsU-qa-eac" id="MOI-aO-Wob"/>
                         <outlet property="cardInfoTrailingSpace" destination="9Jk-ca-3Zx" id="yfu-TQ-IuA"/>
                         <outlet property="cardNameTextView" destination="XdP-RA-rhu" id="CSU-Of-CKs"/>
+                        <outlet property="checkListSwitch" destination="WBO-Id-MRb" id="h8u-n7-qfY"/>
                         <outlet property="checkListsScrollLeadingSpace" destination="f3m-1D-qdV" id="lOo-q6-hwZ"/>
                         <outlet property="checkListsScrollView" destination="e6m-SO-Q4j" id="k37-nS-ScR"/>
                         <outlet property="checkListsTable" destination="EDN-qs-34J" id="bL0-fM-wKh"/>
@@ -1389,6 +1411,7 @@
                         <outlet property="dueButton" destination="pEq-IP-k4A" id="bZd-g8-c8d"/>
                         <outlet property="dueDateLabel" destination="JB1-mO-vk0" id="dCS-xC-Qvy"/>
                         <outlet property="dueImageView" destination="pEq-IP-k4A" id="arm-BN-Ttg"/>
+                        <outlet property="listIcon" destination="NCV-an-GGO" id="5va-cw-PSN"/>
                         <outlet property="logoImageView" destination="azM-yC-ZOz" id="PwP-Gp-AfN"/>
                         <outlet property="nameBox" destination="vfH-Ff-uV9" id="JP6-6s-EDa"/>
                         <outlet property="saveButton" destination="IWY-HC-Ix1" id="cIc-9e-uLh"/>
@@ -1557,6 +1580,7 @@
     </scenes>
     <resources>
         <image name="addCard" width="24" height="24"/>
+        <image name="addCheckItem" width="15" height="15"/>
         <image name="backLogo" width="66" height="66"/>
         <image name="card" width="18" height="16"/>
         <image name="crown-ultrasmall-tint" width="15" height="15"/>
