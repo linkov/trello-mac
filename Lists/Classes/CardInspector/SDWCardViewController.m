@@ -131,6 +131,12 @@
         [self animateLogoIn:YES];
         [self hideViews:YES];
         [self hideComments:YES];
+
+        [self.todoSectionContents removeAllObjects];
+        [self.todoSectionKeys removeAllObjects];
+        [self.flatContent removeAllObjects];
+        [self.checkListsTable reloadData];
+
         return;
     }
 
@@ -755,13 +761,14 @@
     newItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
 
 
+
     [[SDWTrelloStore store] createCheckItem:newItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
 
         if (!error) {
 
             SDWChecklistItem *createdItem = [[SDWChecklistItem alloc] initWithAttributes:object];
-            createdItem.listID = newItem.listID;
             createdItem.listName = itemView.textField.stringValue;
+            createdItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
 
             [sectionContent addObject:createdItem];
             [self.todoSectionContents setObject:sectionContent forKey:itemView.textField.stringValue];
