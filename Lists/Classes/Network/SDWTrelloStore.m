@@ -312,6 +312,25 @@
     }];
 }
 
+- (void)updateCheckItemPosition:(SDWChecklistItem *)item
+                         cardID:(NSString *)cardID
+                 withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?",cardID,item.listID,item.itemID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":[NSNumber numberWithInteger:item.position]}
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
+
+}
+
 - (void)createCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {

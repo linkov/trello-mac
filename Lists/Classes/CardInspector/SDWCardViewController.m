@@ -213,6 +213,9 @@
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
     NSArray *dataArray = [data copy];
 
+    NSSortDescriptor *sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
+    dataArray = [NSMutableArray arrayWithArray:[dataArray sortedArrayUsingDescriptors:@[sortBy]]];
+
     for (SDWChecklist *checkList in dataArray) {
 
         [self.flatContent addObject:checkList.name];
@@ -353,7 +356,7 @@
 -(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
 
     if (section == 0) {
-        return 25;
+        return 18;
     }
     return 40;
 }
@@ -372,8 +375,8 @@
 
         if (section == 0) {
 
-            resultView.centerYConstraint.constant = -4;
-            resultView.addCheckItemCenterY.constant = -2;
+            resultView.centerYConstraint.constant = 0;
+            resultView.addCheckItemCenterY.constant = 4;
         } else {
             resultView.centerYConstraint.constant = -12;
             resultView.addCheckItemCenterY.constant = -8;
@@ -651,6 +654,8 @@
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
     }
 
+    [self changePositionForCheckItem:originalItem];
+
     [self updateFlatContent];
 
     [self.checkListsTable reloadData];
@@ -778,6 +783,17 @@
 
     }];
 
+}
+
+- (void)changePositionForCheckItem:(SDWChecklistItem *)item {
+
+    [[SDWTrelloStore store] updateCheckItemPosition:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+        if (!error) {
+
+
+        }
+    }];
 }
 
 - (void)checkItemDidCheck:(SDWCheckItemTableCellView *)itemView {

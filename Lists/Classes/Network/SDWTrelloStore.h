@@ -82,4 +82,8 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+- (void)updateCheckItemPosition:(SDWChecklistItem *)item
+                         cardID:(NSString *)cardID
+                 withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
 @end
