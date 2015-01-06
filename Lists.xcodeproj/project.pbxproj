@@ -19,7 +19,6 @@
 		F10AAA541A12AFD800FD4E85 /* SDWCardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */; };
 		F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */; };
 		F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */; };
-		F10AAA571A12AFD800FD4E85 /* SDWMenuItemImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA001A12AFD800FD4E85 /* SDWMenuItemImageView.m */; };
 		F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */; };
 		F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA061A12AFD800FD4E85 /* AFRecord.m */; };
 		F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA081A12AFD800FD4E85 /* AFRecordModel.m */; };
@@ -59,6 +58,7 @@
 		F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */; };
 		F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C031A591B5900353914 /* AAPLCheckBox.m */; };
 		F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */; };
+		F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -101,8 +101,6 @@
 		F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionViewItem.m; sourceTree = "<group>"; };
 		F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsController.h; sourceTree = "<group>"; };
 		F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsController.m; sourceTree = "<group>"; };
-		F10AA9FF1A12AFD800FD4E85 /* SDWMenuItemImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMenuItemImageView.h; sourceTree = "<group>"; };
-		F10AAA001A12AFD800FD4E85 /* SDWMenuItemImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMenuItemImageView.m; sourceTree = "<group>"; };
 		F10AAA021A12AFD800FD4E85 /* SDWLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLoginVC.h; sourceTree = "<group>"; };
 		F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLoginVC.m; sourceTree = "<group>"; };
 		F10AAA051A12AFD800FD4E85 /* AFRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecord.h; sourceTree = "<group>"; };
@@ -182,6 +180,8 @@
 		F11E3C031A591B5900353914 /* AAPLCheckBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCheckBox.m; sourceTree = "<group>"; };
 		F11E3C041A591B5900353914 /* AAPLCheckBoxLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCheckBoxLayer.h; sourceTree = "<group>"; };
 		F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCheckBoxLayer.m; sourceTree = "<group>"; };
+		F11E3C081A5B4E0300353914 /* NSControl+DragInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSControl+DragInteraction.h"; sourceTree = "<group>"; };
+		F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSControl+DragInteraction.m"; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -313,8 +313,6 @@
 				F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */,
 				F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */,
 				F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */,
-				F10AA9FF1A12AFD800FD4E85 /* SDWMenuItemImageView.h */,
-				F10AAA001A12AFD800FD4E85 /* SDWMenuItemImageView.m */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -391,6 +389,8 @@
 				F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */,
 				F1C4549E1A23ED0A002FFAF6 /* SDWShortcutsManager.h */,
 				F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */,
+				F11E3C081A5B4E0300353914 /* NSControl+DragInteraction.h */,
+				F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -615,7 +615,7 @@
 				F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */,
 				F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */,
 				F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */,
-				F10AAA571A12AFD800FD4E85 /* SDWMenuItemImageView.m in Sources */,
+				F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */,
 				F10AAA671A12AFD800FD4E85 /* NSImage+Util.m in Sources */,
 				F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */,
 				F10AAA501A12AFD800FD4E85 /* WSCBoardsOutlineView.m in Sources */,

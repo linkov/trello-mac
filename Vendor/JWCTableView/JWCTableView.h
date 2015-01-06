@@ -20,6 +20,9 @@
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
               row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation;
 
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes;
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation;
+
 @end
 
 @protocol JWCTableViewDataSource <NSTableViewDataSource>

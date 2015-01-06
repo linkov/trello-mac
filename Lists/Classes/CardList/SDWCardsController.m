@@ -13,16 +13,15 @@
 #import "SDWCardsController.h"
 #import "SDWCardsCollectionViewItem.h"
 #import "SDWAppSettings.h"
-#import "SDWMenuItemImageView.h"
 #import "PulseView.h"
 #import "SDWProgressIndicator.h"
 #import "SDWCardViewController.h"
 #import "SDWMainSplitController.h"
 
 #import "SDWTrelloStore.h"
+#import "NSControl+DragInteraction.h"
 
-
-@interface SDWCardsController () <NSCollectionViewDelegate,SDWMenuItemDelegate,SDWCardViewDelegate>
+@interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 @property (strong) IBOutlet NSCollectionView *collectionView;
 
@@ -32,7 +31,6 @@
 @property (strong) NSString *parentListID;
 @property (strong) NSString *listName;
 @property (strong) IBOutlet NSBox *mainBox;
-@property (strong) IBOutlet SDWMenuItemImageView *trashImageView;
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
 @property (strong) IBOutlet NSButton *reloadButton;
@@ -70,10 +68,8 @@
     NSSize minSize = NSMakeSize(200,30);
     [self.collectionView setMaxItemSize:minSize];
 
-    [self.trashImageView registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
-    [self.trashImageView setHidden:YES];
-    self.trashImageView.delegate = self;
-
+    [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
+    self.addCardButton.interactionDelegate = self;
     [self subscribeToEvents];
 
     if (![self isShowingListCards]) {
@@ -436,8 +432,7 @@
 
 - (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
 
-    [self.trashImageView setHidden:YES];
-    [self.addCardButton setHidden:NO];
+    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
 
 
 }
@@ -472,8 +467,8 @@
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
 
-    [self.trashImageView setHidden:NO];
-    [self.addCardButton setHidden:YES];
+    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+
     return YES;
 }
 
@@ -519,6 +514,7 @@
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
     NSDictionary *cardDict = @{
                                @"cardID":card.cardID,
+                               @"itemID":card.cardID,
                                @"boardID":card.boardID,
                                @"itemIndex":[NSNumber numberWithInteger:indexes.firstIndex]
                                };
@@ -631,11 +627,9 @@
 
 #pragma mark - SDWMenuItemDelegate
 
-- (void)menuItemShouldValidateDropWithAction:(SDWMenuItemDropAction)action objectID:(NSString *)objectID {
+- (void)controlShouldValidateDropWithAction:(NSControlInteractionDropAction)action objectID:(NSString *)objectID {
 
-    if (action == SDWMenuItemDropActionDelete) {
-
-        [self showCardSavingIndicator:YES];
+    if (action == NSControlInteractionDropActionDelete) {
 
         [self deleteCardWithID:objectID];
     }

@@ -23,8 +23,9 @@
 #import "SDWChecklist.h"
 #import "SDWChecklistItem.h"
 #import "SDWCheckItemTableCellView.h"
+#import "NSControl+DragInteraction.h"
 
-@interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate,SDWCheckItemDelegate>
+@interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate,SDWCheckItemDelegate,NSControlInteractionDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
 @property (strong) IBOutlet NSTextView *cardNameTextView;
@@ -67,6 +68,7 @@
     [super viewDidLoad];
 
 
+    self.saveButton.interactionDelegate = self;
     self.flatContent = [NSMutableArray array];
 
     self.checkListsScrollView.wantsLayer = YES;
@@ -457,10 +459,9 @@
 
 
         self.checkListsScrollLeadingSpace.constant = 15;
-
-        //self.cardInfoTrailingSpace.priority = 1000;
         self.cardInfoTrailingSpace.constant = -500;
 
+        [self.saveButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
 
         self.isInTODOMode = YES;
 
@@ -473,6 +474,7 @@
         self.checkListsScrollLeadingSpace.constant = -500;
         self.cardInfoTrailingSpace.constant = 0;
 
+        [self.saveButton unregisterDraggedTypes];
 
         self.isInTODOMode = NO;
 
@@ -489,7 +491,6 @@
         [self.view layoutSubtreeIfNeeded];
 
     } completionHandler:^{
-
 
     }];
 
@@ -544,6 +545,8 @@
 }
 
 - (NSDragOperation)_jwcTableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
+
+
 
     if ([self.flatContent count] == 1) {
         return NSDragOperationNone;
@@ -634,8 +637,6 @@
     SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
 
 
-    NSLog(@"flat array BEFORE - %@",self.flatContent);
-
     if ([sectionKey isEqualToString:self.dropSectionKey]) {
 
         [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]] forKey:self.dropSectionKey];
@@ -667,9 +668,6 @@
 
     self.flatContent = newFlatContent;
 
-    NSLog(@"flat array AFTER - %@",self.flatContent);
-
-
     [self.checkListsTable reloadData];
 
     return YES;
@@ -691,11 +689,13 @@
     }
 
 
+
     SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
     NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
     NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
 
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
+                                                                 @"itemID":item.itemID,
                                                                  @"name":item.name,
                                                                  @"sectionKey":item.listName,
                                                                  @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection],
@@ -703,10 +703,30 @@
                                                                  }];
 
     [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
+    [pboard setData:data forType:@"TRASH_DRAG_TYPE"];
 
     return YES;
 
 }
+
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
+
+    self.saveButton.image = [NSImage imageNamed:@"trashSM"];
+
+}
+
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+
+    self.saveButton.image = [NSImage imageNamed:@"addCard"];
+}
+
+#pragma mark - NSControlInteractionDelegate
+
+- (void)controlShouldValidateDropWithAction:(NSControlInteractionDropAction)action objectID:(NSString *)objectID {
+
+    NSLog(@"objectID - %@",objectID);
+}
+
 
 #pragma mark - SDWCheckItemDelegate
 

@@ -781,14 +781,6 @@
                                         <autoresizingMask key="autoresizingMask"/>
                                     </scroller>
                                 </scrollView>
-                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qx4-eN-ucQ" userLabel="trashcan delete area" customClass="SDWMenuItemImageView">
-                                    <rect key="frame" x="387" y="454" width="29" height="29"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="29" id="0A0-kJ-6kS"/>
-                                        <constraint firstAttribute="width" constant="29" id="GD7-At-D58"/>
-                                    </constraints>
-                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="trash-ultrasmall" id="611-PE-spF"/>
-                                </imageView>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="sUr-Tl-WD0" userLabel="add card button">
                                     <rect key="frame" x="387" y="458" width="32" height="23"/>
                                     <constraints>
@@ -852,12 +844,9 @@
                             <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="fVJ-0W-O31" secondAttribute="bottom" constant="17" id="Uhp-Fs-lS2"/>
                             <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="VZV-1H-Ftd"/>
                             <constraint firstAttribute="centerY" secondItem="mUn-cv-PjH" secondAttribute="centerY" id="VeJ-CK-V3G"/>
-                            <constraint firstItem="qx4-eN-ucQ" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="26" id="Vfy-xg-tKJ"/>
                             <constraint firstItem="fVJ-0W-O31" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="39" id="W7m-VH-0Xk"/>
-                            <constraint firstItem="qx4-eN-ucQ" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="49o-Ud-LWD" secondAttribute="trailing" constant="10" id="Wm9-bS-FQx"/>
                             <constraint firstItem="sUr-Tl-WD0" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="28" id="X3N-j1-5uE"/>
                             <constraint firstItem="chB-T3-pMn" firstAttribute="top" secondItem="06c-xL-hpn" secondAttribute="top" constant="30" id="Z2S-aA-SfG"/>
-                            <constraint firstAttribute="trailing" secondItem="qx4-eN-ucQ" secondAttribute="trailing" constant="14" id="dQ1-SX-xIa"/>
                             <constraint firstAttribute="trailing" secondItem="sUr-Tl-WD0" secondAttribute="trailing" constant="11" id="ewQ-oU-9Oc"/>
                             <constraint firstItem="sUr-Tl-WD0" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="chB-T3-pMn" secondAttribute="trailing" constant="10" id="h0x-h3-VH5"/>
                             <constraint firstItem="2nG-Pk-jcn" firstAttribute="leading" secondItem="06c-xL-hpn" secondAttribute="leading" constant="15" id="jKe-Xw-tis"/>
@@ -879,7 +868,6 @@
                         <outlet property="mainProgressIndicator" destination="mUn-cv-PjH" id="0Xs-Jt-EYZ"/>
                         <outlet property="onboardingImage" destination="fVJ-0W-O31" id="UyI-Ci-6ed"/>
                         <outlet property="reloadButton" destination="tiT-U4-K4T" id="4ec-qf-ptf"/>
-                        <outlet property="trashImageView" destination="qx4-eN-ucQ" id="gNV-fc-vKI"/>
                     </connections>
                 </viewController>
                 <customObject id="3Kj-1I-WP3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1231,7 +1219,7 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="backLogo" id="pJP-ls-RGh"/>
                             </imageView>
                             <button translatesAutoresizingMaskIntoConstraints="NO" id="IWY-HC-Ix1">
-                                <rect key="frame" x="262" y="477" width="24" height="24"/>
+                                <rect key="frame" x="262" y="476" width="24" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="04b-9C-Qnk"/>
                                     <constraint firstAttribute="width" constant="24" id="Tzm-ao-zDs"/>
@@ -1368,7 +1356,7 @@
                             <constraint firstItem="NCV-an-GGO" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="31" id="0fk-FL-eKg"/>
                             <constraint firstItem="WBO-Id-MRb" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="130" id="4ss-YS-e8P"/>
                             <constraint firstAttribute="centerX" secondItem="azM-yC-ZOz" secondAttribute="centerX" priority="750" id="6PD-OA-Oes"/>
-                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" priority="750" constant="26" id="7p6-wc-iZo"/>
+                            <constraint firstItem="IWY-HC-Ix1" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" priority="750" constant="27" id="7p6-wc-iZo"/>
                             <constraint firstItem="WBO-Id-MRb" firstAttribute="top" secondItem="rEk-UL-o5s" secondAttribute="top" constant="28" id="8I4-h7-3rP"/>
                             <constraint firstAttribute="trailing" secondItem="TyL-MY-5MR" secondAttribute="trailing" id="9Jk-ca-3Zx"/>
                             <constraint firstItem="IWY-HC-Ix1" firstAttribute="leading" secondItem="rEk-UL-o5s" secondAttribute="leading" priority="750" constant="262" id="Fje-Lm-YFy"/>
@@ -1582,6 +1570,5 @@
         <image name="reload" width="50" height="50"/>
         <image name="saveAlt2" width="24" height="24"/>
         <image name="todolist" width="18" height="16"/>
-        <image name="trash-ultrasmall" width="15" height="17"/>
     </resources>
 </document>

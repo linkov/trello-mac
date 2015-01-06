@@ -42,6 +42,17 @@
 //    return NO;
 //}
 
+- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
+
+     [_jwcTableViewDelegate _jwcTableView:tableView draggingSession:session willBeginAtPoint:screenPoint forRowIndexes:rowIndexes];
+}
+
+- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation  {
+
+    [_jwcTableViewDelegate _jwcTableView:tableView draggingSession:session endedAtPoint:screenPoint operation:operation];
+}
+
+
 - (BOOL)tableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard
 {
 
