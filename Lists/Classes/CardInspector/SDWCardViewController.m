@@ -217,11 +217,11 @@
     dataArray = [NSMutableArray arrayWithArray:[dataArray sortedArrayUsingDescriptors:@[sortBy]]];
 
     for (SDWChecklist *checkList in dataArray) {
-
+        
         [self.flatContent addObject:checkList.name];
-        [self.flatContent addObjectsFromArray:checkList.items];
+        [self.flatContent addObjectsFromArray:[checkList.items sortedArrayUsingDescriptors:@[sortBy]]];
 
-        [contents setObject:checkList.items forKey:checkList.name];
+        [contents setObject:[checkList.items sortedArrayUsingDescriptors:@[sortBy]] forKey:checkList.name];
         [keys addObject:checkList.name];
     }
 
