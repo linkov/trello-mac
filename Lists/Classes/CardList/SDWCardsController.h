@@ -17,5 +17,6 @@
 - (void)clearCards;
 
 - (void)updateCardDetails:(SDWCard *)card;
+- (void)showCardSavingIndicator:(BOOL)show;
 
 @end
