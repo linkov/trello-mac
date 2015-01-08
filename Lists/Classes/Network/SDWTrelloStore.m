@@ -392,4 +392,22 @@
     
 }
 
+- (void)addCheckListForCardID:(NSString *)cardID
+               withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    [[AFTrelloAPIClient sharedClient] POST:@"checklists?" parameters:@{
+                                                                    @"idCard":cardID,
+                                                                    }
+                                     success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                         if(block) block(responseObject,nil);
+
+                                     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+                                         if(block) block(nil,error);
+                                         [self handleError:error];
+                                     }];
+
+}
+
 @end

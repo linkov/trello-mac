@@ -291,7 +291,7 @@
 
     } else {
 
-        //[self fetchChecklists];
+        [self addChecklist];
 
     }
 }
@@ -822,8 +822,14 @@
     newItem.state = @"incomplete";
 
     NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[itemView.textField.stringValue]];
-    newItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
 
+    if (!sectionContent.firstObject) {
+        newItem.listID = [self.rawcheckLists.lastObject valueForKey:@"listID"];
+    } else {
+        newItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
+
+    }
+    
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
@@ -835,7 +841,13 @@
 
             SDWChecklistItem *createdItem = [[SDWChecklistItem alloc] initWithAttributes:object];
             createdItem.listName = itemView.textField.stringValue;
-            createdItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
+
+            if ([sectionContent.firstObject isKindOfClass:[NSString class]]) {
+                createdItem.listID = [[self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@",self.todoSectionKeys.lastObject]].firstObject valueForKey:@"listID"];
+            } else {
+                createdItem.listID = [(SDWChecklistItem *)sectionContent.firstObject listID];
+                
+            }
 
             [sectionContent addObject:createdItem];
             [self.todoSectionContents setObject:sectionContent forKey:itemView.textField.stringValue];
@@ -892,6 +904,21 @@
     }
 
 
+}
+
+- (void)addChecklist {
+
+    [[self cardsVC] showCardSavingIndicator:YES];
+
+    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+        [[self cardsVC] showCardSavingIndicator:NO];
+
+        if (!error) {
+            [self fetchChecklists];
+        }
+
+    }];
 }
 
 @end
