@@ -374,4 +374,22 @@
 
 }
 
+- (void)deleteCheckList:(SDWChecklist *)checkList
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"checklists/%@?",checkList.listID];
+
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil
+                                     success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                         if(block) block(responseObject,nil);
+
+                                     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+                                         if(block) block(nil,error);
+                                         [self handleError:error];
+                                     }];
+    
+}
+
 @end

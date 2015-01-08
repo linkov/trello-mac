@@ -62,6 +62,7 @@
 @property (strong) IBOutlet NSImageView *cardIcon;
 @property (strong) IBOutlet NSImageView *listIcon;
 @property (strong) IBOutlet ITSwitch *checkListSwitch;
+@property (strong) NSArray *rawcheckLists;
 
 @end
 
@@ -73,6 +74,7 @@
 
     self.saveButton.interactionDelegate = self;
     self.flatContent = [NSMutableArray array];
+    self.rawcheckLists = [NSMutableArray array];
 
     self.checkListsScrollView.wantsLayer = YES;
     self.scrollView.wantsLayer = YES;
@@ -198,10 +200,15 @@
 
 - (void)fetchChecklists {
 
+    [[self cardsVC] showCardSavingIndicator:YES];
+
     [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
+
+        [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!error) {
 
+            self.rawcheckLists = object;
             [self loadRowsAndSectionsFromFlatData:object];
 
         }
@@ -463,6 +470,8 @@
         resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
         [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
         resultView.textField.enabled = !resultView.checkBox.checked;
+        resultView.toolTip = resultView.textField.stringValue;
+
 
         resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
@@ -695,26 +704,45 @@
     /* get rowIsSectionHeader */
     [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
 
-    if (rowIsSectionHeader == YES) {
-        return NO;
+//    if (rowIsSectionHeader == YES) {
+//        return NO;
+//    }
+
+
+    if (rowIsSectionHeader) {
+
+        NSString *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
+
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
+                                                                     @"isSection":@YES,
+                                                                     @"sectionKey":item,
+                                                                     @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
+                                                                     }];
+
+       // [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
+        [pboard setData:data forType:@"TRASH_DRAG_TYPE"];
+
+    } else {
+
+        SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
+        NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+
+        NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
+                                                                     @"isSection":@NO,
+                                                                     @"itemID":item.itemID,
+                                                                     @"name":item.name,
+                                                                     @"sectionKey":item.listName,
+                                                                     @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection],
+                                                                     @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
+                                                                     }];
+
+        [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
+        [pboard setData:data forType:@"TRASH_DRAG_TYPE"];
     }
 
 
 
-    SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
-    NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
-    NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
-
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
-                                                                 @"itemID":item.itemID,
-                                                                 @"name":item.name,
-                                                                 @"sectionKey":item.listName,
-                                                                 @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection],
-                                                                 @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
-                                                                 }];
-
-    [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
-    [pboard setData:data forType:@"TRASH_DRAG_TYPE"];
 
     return YES;
 
@@ -737,28 +765,52 @@
 
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    NSLog(@"dataDict - %@",dataDict);
 
-    NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[dataDict[@"sectionKey"]]];
-    SDWChecklistItem *item = [sectionContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"itemID == %@",dataDict[@"itemID"]]].firstObject;
+    BOOL isSection = [dataDict[@"isSection"] boolValue];
 
-    [[self cardsVC] showCardSavingIndicator:YES];
+    if (isSection) {
 
-    [[SDWTrelloStore store] deleteCheckItem:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+        SDWChecklist *checkList = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name = %@",dataDict[@"sectionKey"]]].firstObject;
 
-        [[self cardsVC] showCardSavingIndicator:NO];
+        [[SDWTrelloStore store] deleteCheckList:checkList withCompletion:^(id object, NSError *error) {
 
-        if (!error) {
+            if (!error) {
+                NSMutableArray *arr = [NSMutableArray arrayWithArray:self.rawcheckLists];
+                [arr removeObject:checkList];
+                self.rawcheckLists = arr;
 
-            [sectionContent removeObject:item];
-            self.todoSectionContents[dataDict[@"sectionKey"]] = sectionContent;
-            [self.checkListsTable reloadData];
-            [self updateFlatContent];
+                [self.todoSectionKeys removeObject:dataDict[@"sectionKey"]];
+                [self.todoSectionContents removeObjectForKey:dataDict[@"sectionKey"]];
+                [self.checkListsTable reloadData];
+                [self updateFlatContent];
+            }
+
+        }];
 
 
+    } else {
 
-        }
-    }];
+        NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[dataDict[@"sectionKey"]]];
+        SDWChecklistItem *item = [sectionContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"itemID == %@",dataDict[@"itemID"]]].firstObject;
+
+        [[self cardsVC] showCardSavingIndicator:YES];
+
+        [[SDWTrelloStore store] deleteCheckItem:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+            [[self cardsVC] showCardSavingIndicator:NO];
+
+            if (!error) {
+
+                [sectionContent removeObject:item];
+                self.todoSectionContents[dataDict[@"sectionKey"]] = sectionContent;
+                [self.checkListsTable reloadData];
+                [self updateFlatContent];
+                
+                
+                
+            }
+        }];
+    }
 }
 
 #pragma mark - SDWCheckItemDelegate

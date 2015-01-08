@@ -19,10 +19,6 @@
 - (void)awakeFromNib {
 
     self.wantsLayer = YES;
-    self.layer.cornerRadius = 2;
-    self.layer.borderColor = [NSColor lightGrayColor].CGColor;
-
-    self.layer.backgroundColor = [NSColor redColor].CGColor;
     self.backgroundColor = [NSColor clearColor];
 }
 
