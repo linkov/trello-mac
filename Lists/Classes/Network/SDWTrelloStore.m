@@ -418,7 +418,7 @@
     NSString *urlString = [NSString stringWithFormat:@"checklists/%@/name?",listID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
-                                                                 @"name":newName
+                                                                 @"value":newName
                                                                  }
                                   success:^(NSURLSessionDataTask *task, id responseObject) {
 

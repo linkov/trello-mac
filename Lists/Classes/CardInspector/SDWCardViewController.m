@@ -403,6 +403,7 @@
         resultView.textField.font = [NSFont fontWithName:@"TektonPro-BoldObl" size:14];
         resultView.delegate = self;
         resultView.trelloCheckListID = [[self todoSectionKeys] objectAtIndex:section];
+        resultView.trelloCheckItem = nil;
 
         return resultView;
         
@@ -496,7 +497,10 @@
         resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
         resultView.delegate = self;
+
         resultView.trelloCheckItem = item;
+        resultView.trelloCheckListID = nil;
+
 //        resultView.centerYConstraint.constant = 0;
         resultView.checkBoxWidth.constant = 23;
         resultView.addCheckItemWidth.constant = 0;
@@ -634,12 +638,12 @@
 
 
         SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
-        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listName];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
-        NSString *sectionKey = item.listName;
+        NSString *sectionKey = item.listID;
 
         NSLog(@"item.name = %@",item.name);
-        NSLog(@"sectionKey = %@",item.listName);
+        NSLog(@"sectionKey = %@",item.listID);
 
         if (![sectionKeyOriginal isEqualToString:sectionKey]) {
 
@@ -720,12 +724,12 @@
     if (tv == self.activityTable) {
         return NO;
     }
+//
+//    BOOL rowIsSectionHeader = NO;
+//    /* get rowIsSectionHeader by ref */
+//    [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
 
-    BOOL rowIsSectionHeader = NO;
-    /* get rowIsSectionHeader by ref */
-    [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
-
-    if (rowIsSectionHeader) {
+    if (![[self.flatContent objectAtIndex:rowIndexes.firstIndex] isKindOfClass:[SDWChecklistItem class]]) {
 
         NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexes.firstIndex makeIfNecessary:YES];
         SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
@@ -915,20 +919,27 @@
 
     if (itemView.trelloCheckItem && [itemView.trelloCheckItem isKindOfClass:[SDWChecklistItem class]]) {
 
-        [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+        [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem
+                                         cardID:self.card.cardID
+                                 withCompletion:^(id object, NSError *error) {
 
             [[self cardsVC] showCardSavingIndicator:NO];
+
         }];
 
     } else {
 
-//        NSString *checkListID = self.rawcheckLists
-//
-//        [[SDWTrelloStore store] updateChecklistName:itemView.textField.stringValue forListID:@"listID" withCompletion:^(id object, NSError *error) {
-//
-//            [[self cardsVC] showCardSavingIndicator:NO];
-//
-//        }];
+        [[SDWTrelloStore store] updateChecklistName:itemView.textField.stringValue
+                                          forListID:itemView.trelloCheckListID
+                                     withCompletion:^(id object, NSError *error)
+        {
+
+            [[self cardsVC] showCardSavingIndicator:NO];
+            
+            //TODO: don't reload all to change name - refactor this
+            [self fetchChecklists];
+
+        }];
 
     }
 
