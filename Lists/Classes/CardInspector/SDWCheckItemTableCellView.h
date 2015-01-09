@@ -26,6 +26,7 @@
 @property (strong) IBOutlet NSLayoutConstraint *centerYConstraint;
 @property (weak) id<SDWCheckItemDelegate> delegate;
 @property (strong) SDWChecklistItem *trelloCheckItem;
+@property (strong) NSString *trelloCheckListID;
 @property (strong) IBOutlet NSLayoutConstraint *checkBoxWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemCenterY;

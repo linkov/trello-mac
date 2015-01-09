@@ -93,5 +93,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)addCheckListForCardID:(NSString *)cardID
                withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+- (void)updateChecklistName:(NSString *)newName
+                  forListID:(NSString *)listID
+             withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
 
 @end

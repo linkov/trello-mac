@@ -410,4 +410,26 @@
 
 }
 
+
+- (void)updateChecklistName:(NSString *)newName
+                  forListID:(NSString *)listID
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"checklists/%@/name?",listID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
+                                                                 @"name":newName
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
+}
+
+
 @end
