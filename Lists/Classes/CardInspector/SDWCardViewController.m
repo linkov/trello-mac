@@ -793,6 +793,11 @@
         NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[dataDict[@"sectionKey"]]];
         SDWChecklistItem *item = [sectionContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"itemID == %@",dataDict[@"itemID"]]].firstObject;
 
+                [sectionContent removeObject:item];
+                self.todoSectionContents[dataDict[@"sectionKey"]] = sectionContent;
+                [self.checkListsTable reloadData];
+                [self updateFlatContent];
+        
         [[self cardsVC] showCardSavingIndicator:YES];
 
         [[SDWTrelloStore store] deleteCheckItem:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
@@ -801,10 +806,7 @@
 
             if (!error) {
 
-                [sectionContent removeObject:item];
-                self.todoSectionContents[dataDict[@"sectionKey"]] = sectionContent;
-                [self.checkListsTable reloadData];
-                [self updateFlatContent];
+
                 
                 
                 
