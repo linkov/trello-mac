@@ -29,5 +29,6 @@
 @property (strong) IBOutlet NSLayoutConstraint *checkBoxWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemCenterY;
+@property (strong) IBOutlet NSLayoutConstraint *checkItemTopSpace;
 
 @end

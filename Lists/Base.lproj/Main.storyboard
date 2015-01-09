@@ -1265,13 +1265,13 @@
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="todolist" id="bTy-9O-AVm"/>
                             </imageView>
-                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="18" horizontalPageScroll="10" verticalLineScroll="18" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6m-SO-Q4j">
+                            <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="30" horizontalPageScroll="10" verticalLineScroll="30" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="none" translatesAutoresizingMaskIntoConstraints="NO" id="e6m-SO-Q4j">
                                 <rect key="frame" x="16" y="20" width="280" height="449"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="gr5-d9-DWu">
                                     <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="EDN-qs-34J" customClass="JWCTableView">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="29" rowSizeStyle="automatic" viewBased="YES" id="EDN-qs-34J" customClass="JWCTableView">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="1"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -1290,11 +1290,11 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="checkListCellView" id="QO2-d2-B7X" customClass="SDWCheckItemTableCellView">
-                                                            <rect key="frame" x="1" y="0.0" width="265" height="17"/>
+                                                            <rect key="frame" x="1" y="0.0" width="265" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="gm5-8O-Lga" customClass="AAPLCheckBox">
-                                                                    <rect key="frame" x="9" y="0.0" width="23" height="17"/>
+                                                                    <rect key="frame" x="9" y="6" width="23" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="23" id="mwV-aa-aYc"/>
                                                                         <constraint firstAttribute="height" constant="17" id="rYg-iz-Uwm"/>
@@ -1307,19 +1307,20 @@
                                                                         <action selector="checkBoxClicked:" target="QO2-d2-B7X" id="6J5-IT-u0V"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
-                                                                    <rect key="frame" x="36" y="1" width="194" height="17"/>
+                                                                <textField focusRingType="none" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
+                                                                    <rect key="frame" x="36" y="7" width="194" height="17"/>
                                                                     <constraints>
-                                                                        <constraint firstAttribute="height" constant="17" id="YqG-V1-3aO"/>
+                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="YqG-V1-3aO"/>
+                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="194" id="flj-FD-xJm"/>
                                                                     </constraints>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Table View Cell" drawsBackground="YES" id="yTH-B3-xqO">
+                                                                    <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Table View Cell" drawsBackground="YES" id="yTH-B3-xqO">
                                                                         <font key="font" size="14" name="TektonPro-BoldObl"/>
                                                                         <color key="textColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mGp-ZF-cVm">
-                                                                    <rect key="frame" x="245" y="-7" width="15" height="15"/>
+                                                                    <rect key="frame" x="245" y="-1" width="15" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="15" id="6mk-Fg-DZV"/>
                                                                         <constraint firstAttribute="height" constant="15" id="vBK-rd-6GM"/>
@@ -1335,23 +1336,24 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstAttribute="bottom" secondItem="gm5-8O-Lga" secondAttribute="bottom" priority="750" id="259-j3-XFw"/>
+                                                                <constraint firstAttribute="bottom" secondItem="RGI-EH-GUM" secondAttribute="bottom" priority="750" constant="7" id="4Yk-Hj-qaa"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" priority="750" id="8F8-2b-4kT"/>
+                                                                <constraint firstItem="RGI-EH-GUM" firstAttribute="top" secondItem="QO2-d2-B7X" secondAttribute="top" constant="5" id="Dd1-lS-UNi"/>
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="4" id="FPn-oX-X9r"/>
                                                                 <constraint firstAttribute="centerY" secondItem="mGp-ZF-cVm" secondAttribute="centerY" constant="-8" id="J8Y-Pb-cS2"/>
                                                                 <constraint firstItem="gm5-8O-Lga" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" constant="9" id="KAM-iC-g8y"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gm5-8O-Lga" secondAttribute="centerY" id="MRT-pU-d7i"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mGp-ZF-cVm" secondAttribute="trailing" constant="5" id="UTT-LD-KAh"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="gm5-8O-Lga" secondAttribute="trailing" constant="4" id="hH2-Eq-Rea"/>
-                                                                <constraint firstAttribute="centerY" secondItem="RGI-EH-GUM" secondAttribute="centerY" constant="1" id="nqP-cz-vHE"/>
                                                                 <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="15" id="t3R-o9-1rd"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="addCheckItemButton" destination="mGp-ZF-cVm" id="8ov-pL-dfW"/>
                                                                 <outlet property="addCheckItemCenterY" destination="J8Y-Pb-cS2" id="FFj-Cq-yWU"/>
                                                                 <outlet property="addCheckItemWidth" destination="6mk-Fg-DZV" id="kDL-2O-y0s"/>
-                                                                <outlet property="centerYConstraint" destination="nqP-cz-vHE" id="euL-Ii-7wr"/>
                                                                 <outlet property="checkBox" destination="gm5-8O-Lga" id="KMU-kH-fEq"/>
                                                                 <outlet property="checkBoxWidth" destination="mwV-aa-aYc" id="tbp-Bj-7As"/>
+                                                                <outlet property="checkItemTopSpace" destination="Dd1-lS-UNi" id="sc9-bG-1HT"/>
                                                                 <outlet property="textField" destination="RGI-EH-GUM" id="0NN-Ps-nsw"/>
                                                             </connections>
                                                         </tableCellView>

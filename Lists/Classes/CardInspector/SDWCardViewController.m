@@ -386,11 +386,13 @@
 
         if (section == 0) {
 
-            resultView.centerYConstraint.constant = 0;
+//            resultView.centerYConstraint.constant = 0;
             resultView.addCheckItemCenterY.constant = 4;
+            resultView.checkItemTopSpace.constant = 1;
         } else {
-            resultView.centerYConstraint.constant = -12;
+  //          resultView.centerYConstraint.constant = -12;
             resultView.addCheckItemCenterY.constant = -8;
+            resultView.checkItemTopSpace.constant = 24;
         }
 
         [resultView.superview setNeedsUpdateConstraints:YES];
@@ -421,6 +423,23 @@
         CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
 
         return rec.size.height+16+(17+4);
+
+    } else {
+        
+
+        NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
+        NSArray *contents = [[self todoSectionContents] objectForKey:key];
+        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
+
+        if (item.name.length <= 40) {
+            return 30;
+        }
+
+        CGRect rec = [item.name boundingRectWithSize:CGSizeMake(194, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
+
+        NSLog(@"%@ - %f, text length - %lu",item.name,rec.size.height+12,(unsigned long)item.name.length);
+        return rec.size.height+12;
+
     }
 
     return 30;
@@ -470,16 +489,17 @@
         resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
         [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
         resultView.textField.enabled = !resultView.checkBox.checked;
-        resultView.toolTip = resultView.textField.stringValue;
+        //resultView.toolTip = resultView.textField.stringValue;
 
 
         resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
         resultView.delegate = self;
         resultView.trelloCheckItem = item;
-        resultView.centerYConstraint.constant = 0;
+//        resultView.centerYConstraint.constant = 0;
         resultView.checkBoxWidth.constant = 23;
         resultView.addCheckItemWidth.constant = 0;
+        resultView.checkItemTopSpace.constant = 5;
 
         result = resultView;
     }
@@ -862,9 +882,9 @@
 
             NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexInFlat makeIfNecessary:YES];
             SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
-            cellView.textField.toolTip = cellView.textField.stringValue;
+            //cellView.textField.toolTip = cellView.textField.stringValue;
             [cellView.textField becomeFirstResponder];
-
+            
 
         }
 
@@ -896,6 +916,9 @@
 - (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)itemView {
 
     [[self cardsVC] showCardSavingIndicator:YES];
+
+    /* invalidate heightForRow - in case user typed multiline text we need to change cell height */
+    [self.checkListsTable reloadData];
 
     if (itemView.trelloCheckItem && [itemView.trelloCheckItem isKindOfClass:[SDWChecklistItem class]]) {
 
