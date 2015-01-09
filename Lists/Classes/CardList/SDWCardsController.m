@@ -186,7 +186,17 @@
 
 #pragma mark - Card actions
 
-- (void)updateCardDetails:(SDWCard *)card {
+- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
+
+    if (local) {
+
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
+        [arr insertObject:card atIndex:[self.collectionView.content indexOfObject:card]];
+        [self reloadCollection:arr];
+        return;
+
+    }
 
     [self showCardSavingIndicator:YES];
 

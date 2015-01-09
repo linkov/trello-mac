@@ -16,7 +16,7 @@
 - (void)reloadCards;
 - (void)clearCards;
 
-- (void)updateCardDetails:(SDWCard *)card;
+- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local;
 - (void)showCardSavingIndicator:(BOOL)show;
 
 @end

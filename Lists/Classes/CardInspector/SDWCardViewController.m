@@ -116,7 +116,7 @@
 
         self.card.dueDate = note.userInfo[@"date"];
         [self updateDueDateViewWithDate:self.card.dueDate];
-        [[self cardsVC] updateCardDetails:self.card];
+        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
         
     }];
 }
@@ -287,7 +287,7 @@
 
         self.card.name = self.cardNameTextView.string;
         self.card.cardDescription = self.cardDescriptionTextView.string;
-        [[self cardsVC] updateCardDetails:self.card];
+        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
 
     } else {
 
@@ -722,13 +722,8 @@
     }
 
     BOOL rowIsSectionHeader = NO;
-    /* get rowIsSectionHeader */
+    /* get rowIsSectionHeader by ref */
     [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
-
-//    if (rowIsSectionHeader == YES) {
-//        return NO;
-//    }
-
 
     if (rowIsSectionHeader) {
 
@@ -805,6 +800,11 @@
                 [self.todoSectionContents removeObjectForKey:dataDict[@"sectionKey"]];
                 [self.checkListsTable reloadData];
                 [self updateFlatContent];
+
+                if (  self.todoSectionKeys.count == 0) {
+                    self.card.hasOpenTodos = NO;
+                    [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+                }
             }
 
         }];
@@ -873,7 +873,11 @@
             NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexInFlat makeIfNecessary:YES];
             SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
             [cellView.textField becomeFirstResponder];
-            
+
+            if ( (int)[self.todoSectionContents[itemView.trelloCheckListID] count] == 1 && self.todoSectionKeys.count == 1) {
+                self.card.hasOpenTodos = YES;
+                [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+            }
 
         }
 
