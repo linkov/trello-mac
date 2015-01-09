@@ -1299,7 +1299,7 @@
                                                                         <action selector="checkBoxClicked:" target="QO2-d2-B7X" id="6J5-IT-u0V"/>
                                                                     </connections>
                                                                 </button>
-                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" allowsExpansionToolTips="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
                                                                     <rect key="frame" x="36" y="1" width="194" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="YqG-V1-3aO"/>

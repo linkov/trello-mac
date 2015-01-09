@@ -62,7 +62,7 @@
 
     NSPoint clickPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
 
-    if ( (clickPoint.x > 250 || clickPoint.x < 0) || (clickPoint.y > 17 || clickPoint.y < 0)) {
+    if ( (clickPoint.x > self.frame.size.width || clickPoint.x < 0) || (clickPoint.y > self.frame.size.height || clickPoint.y < 0)) {
 
         [self animateAddButtonOpacityIn:NO];
     }
