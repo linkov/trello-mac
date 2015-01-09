@@ -1311,7 +1311,7 @@
                                                                     <rect key="frame" x="36" y="7" width="194" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="YqG-V1-3aO"/>
-                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="194" id="flj-FD-xJm"/>
+                                                                        <constraint firstAttribute="width" constant="194" id="flj-FD-xJm"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Table View Cell" drawsBackground="YES" id="yTH-B3-xqO">
                                                                         <font key="font" size="14" name="TektonPro-BoldObl"/>
@@ -1345,7 +1345,7 @@
                                                                 <constraint firstAttribute="centerY" secondItem="gm5-8O-Lga" secondAttribute="centerY" id="MRT-pU-d7i"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mGp-ZF-cVm" secondAttribute="trailing" constant="5" id="UTT-LD-KAh"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="gm5-8O-Lga" secondAttribute="trailing" constant="4" id="hH2-Eq-Rea"/>
-                                                                <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="15" id="t3R-o9-1rd"/>
+                                                                <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="15" id="t3R-o9-1rd"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="addCheckItemButton" destination="mGp-ZF-cVm" id="8ov-pL-dfW"/>

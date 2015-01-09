@@ -25,6 +25,8 @@
 #import "SDWCheckItemTableCellView.h"
 #import "NSControl+DragInteraction.h"
 
+#define kLIST_ITEM_TOP_BOTTOM_PAD 12 // hotfix for wrong height
+
 @interface SDWCardViewController () <JWCTableViewDataSource, JWCTableViewDelegate,SDWCheckItemDelegate,NSControlInteractionDelegate>
 @property (strong) IBOutlet NSScrollView *scrollView;
 @property (strong) IBOutlet NSTextView *cardDescriptionTextView;
@@ -427,20 +429,14 @@
         return rec.size.height+16+(17+4);
 
     } else {
-        
 
         NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
         NSArray *contents = [[self todoSectionContents] objectForKey:key];
         SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
 
-        if (item.name.length <= 40) {
-            return 30;
-        }
-
         CGRect rec = [item.name boundingRectWithSize:CGSizeMake(194, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
 
-        NSLog(@"%@ - %f, text length - %lu",item.name,rec.size.height+12,(unsigned long)item.name.length);
-        return rec.size.height+12;
+        return floor(rec.size.height+kLIST_ITEM_TOP_BOTTOM_PAD);
 
     }
 
