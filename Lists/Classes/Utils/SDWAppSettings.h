@@ -13,6 +13,7 @@
 typedef enum {
     SDWDotOptionNoDue = 0,
     SDWDotOptionHasDescription,
+    SDWDotOptionHasOpenTodos,
     SDWDotOptionOff
 } SDWDotOption;
 

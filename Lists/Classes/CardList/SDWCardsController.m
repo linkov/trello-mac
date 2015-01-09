@@ -363,7 +363,7 @@
 - (void)loadCardsForListID:(NSString *)listID {
 
     NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
-    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open&card_fields=name,pos,idMembers,labels"];
+    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
 
     NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
 

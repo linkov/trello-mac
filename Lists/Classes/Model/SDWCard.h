@@ -19,6 +19,7 @@
 @property (strong) NSString *boardID;
 @property (strong) NSDate *lastUpdate;
 @property NSUInteger position;
+@property BOOL hasOpenTodos;
 @property (strong) NSString *cardDescription;
 @property (strong) NSDate *dueDate;
 @property  NSUInteger commentsCount;

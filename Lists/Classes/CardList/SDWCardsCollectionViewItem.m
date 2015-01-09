@@ -113,7 +113,6 @@
             }
 
         }
-
             break;
         case SDWDotOptionNoDue: {
 
@@ -126,6 +125,19 @@
             }
         }
 
+            break;
+
+        case SDWDotOptionHasOpenTodos: {
+
+            BOOL hasOpenTodos = [[self.representedObject valueForKey:@"hasOpenTodos"] boolValue];
+            //   NSLog(@"due - %@",due);
+
+            if (hasOpenTodos) {
+
+                [self.mainBox setHasDot:YES];
+            }
+        }
+            
             break;
 
         case SDWDotOptionOff: {

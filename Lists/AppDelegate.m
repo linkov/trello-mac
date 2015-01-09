@@ -13,29 +13,11 @@
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
 @property (weak) IBOutlet NSMenuItem *dotMenu30;
+@property (weak) IBOutlet NSMenuItem *dotMenu40;
 
 @end
 
 @implementation AppDelegate
-
-//- (NSString *)getSystemUUID {
-//    io_service_t platformExpert = IOServiceGetMatchingService(kIOMasterPortDefault,IOServiceMatching("IOPlatformExpertDevice"));
-//    if (!platformExpert)
-//        return nil;
-//
-//    CFTypeRef serialNumberAsCFString = IORegistryEntryCreateCFProperty(platformExpert,CFSTR(kIOPlatformUUIDKey),kCFAllocatorDefault, 0);
-//    IOObjectRelease(platformExpert);
-//    if (!serialNumberAsCFString)
-//        return nil;
-//
-//    return (__bridge NSString *)(serialNumberAsCFString);;
-//}
-
-- (void)showFonts {
-
-    NSLog(@"%@",[[[NSFontManager sharedFontManager] availableFontFamilies] description]);
-
-}
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
@@ -44,10 +26,6 @@
     if (!SharedSettings.shouldShowCardLabels) {
         SharedSettings.shouldShowCardLabels = YES;
     }
-
-   // [self showFonts];
-
-//    NSLog(@"mac serial - %@",[self getSystemUUID]);
 
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
@@ -125,44 +103,51 @@
     switch (sender.tag) {
         case 10:
             SharedSettings.dotOption = SDWDotOptionHasDescription;
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
-            [self.dotMenu10 setState:1]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0];
+            [self.dotMenu10 setState:1]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:0];
             break;
         case 20:
             SharedSettings.dotOption = SDWDotOptionNoDue;
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
-            [self.dotMenu10 setState:0]; [self.dotMenu20 setState:1]; [self.dotMenu30 setState:0];
+            [self.dotMenu10 setState:0]; [self.dotMenu20 setState:1]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:0];
             break;
         case 30:
             SharedSettings.dotOption = SDWDotOptionOff;
-            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
-            [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:1];
+            [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:1]; [self.dotMenu40 setState:0];
+            break;
+        case 40:
+            SharedSettings.dotOption = SDWDotOptionHasOpenTodos;
+            [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:1];
             break;
 
         default:
             break;
     }
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
+
+
 }
 
 - (void)setupDotOption {
 
     if (!SharedSettings.dotOption) {
-        SharedSettings.dotOption = SDWDotOptionHasDescription;
+        SharedSettings.dotOption = SDWDotOptionHasOpenTodos;
         [self.dotMenu10 setState:1];
     } else {
 
         switch (SharedSettings.dotOption) {
 
             case SDWDotOptionHasDescription:
-                [self.dotMenu10 setState:1]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0];
+                [self.dotMenu10 setState:1]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:0];
                 break;
             case SDWDotOptionNoDue:
-                [self.dotMenu10 setState:0]; [self.dotMenu20 setState:1]; [self.dotMenu30 setState:0];
+                [self.dotMenu10 setState:0]; [self.dotMenu20 setState:1]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:0];
                 break;
 
             case SDWDotOptionOff:
-                [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:1];
+                [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:1]; [self.dotMenu40 setState:0];
+                break;
+            case SDWDotOptionHasOpenTodos:
+                [self.dotMenu10 setState:0]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:1];
                 break;
 
             default:

@@ -376,6 +376,12 @@
                                                             <action selector="changeDotOption:" target="Voe-Tx-rLC" id="Yq1-l4-YgP"/>
                                                         </connections>
                                                     </menuItem>
+                                                    <menuItem title="Card has open todo items" tag="40" id="bIE-9x-WSN">
+                                                        <modifierMask key="keyEquivalentModifierMask"/>
+                                                        <connections>
+                                                            <action selector="changeDotOption:" target="Voe-Tx-rLC" id="pNu-25-QMp"/>
+                                                        </connections>
+                                                    </menuItem>
                                                     <menuItem title="Disable dot indicator" tag="30" id="dqE-9m-YL8">
                                                         <modifierMask key="keyEquivalentModifierMask"/>
                                                         <connections>
@@ -443,6 +449,7 @@
                         <outlet property="dotMenu10" destination="xOY-wd-jM7" id="if8-xV-lPc"/>
                         <outlet property="dotMenu20" destination="QhI-4z-JJf" id="0lb-b4-xtM"/>
                         <outlet property="dotMenu30" destination="dqE-9m-YL8" id="PMZ-ba-LAX"/>
+                        <outlet property="dotMenu40" destination="bIE-9x-WSN" id="ayr-0e-89h"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -877,6 +884,7 @@
                         <string>cardDescription</string>
                         <string>dueDate</string>
                         <string>commentsCount</string>
+                        <string>hasOpenTodos</string>
                     </declaredKeys>
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>

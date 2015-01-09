@@ -862,7 +862,7 @@
 
             NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexInFlat makeIfNecessary:YES];
             SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
-
+            cellView.textField.toolTip = cellView.textField.stringValue;
             [cellView.textField becomeFirstResponder];
 
 
