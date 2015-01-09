@@ -406,6 +406,8 @@
         resultView.delegate = self;
         resultView.trelloCheckListID = [[self todoSectionKeys] objectAtIndex:section];
         resultView.trelloCheckItem = nil;
+        resultView.addCheckLeading.constant = resultView.addCheckTrailing.constant = 5;
+        resultView.checkItemWidth.constant = 200;
 
         return resultView;
         
@@ -434,7 +436,7 @@
         NSArray *contents = [[self todoSectionContents] objectForKey:key];
         SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
 
-        CGRect rec = [item.name boundingRectWithSize:CGSizeMake(194, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
+        CGRect rec = [item.name boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
 
         return floor(rec.size.height+kLIST_ITEM_TOP_BOTTOM_PAD);
 
@@ -499,8 +501,9 @@
 
 //        resultView.centerYConstraint.constant = 0;
         resultView.checkBoxWidth.constant = 23;
-        resultView.addCheckItemWidth.constant = 0;
+        resultView.addCheckItemWidth.constant = resultView.addCheckLeading.constant = resultView.addCheckTrailing.constant = 0;
         resultView.checkItemTopSpace.constant = 5;
+        resultView.checkItemWidth.constant = 220;
 
         result = resultView;
     }

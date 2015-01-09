@@ -31,5 +31,9 @@
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemCenterY;
 @property (strong) IBOutlet NSLayoutConstraint *checkItemTopSpace;
+@property (strong) IBOutlet NSLayoutConstraint *checkItemWidth;
+@property (strong) IBOutlet NSLayoutConstraint *addCheckTrailing;
+@property (strong) IBOutlet NSLayoutConstraint *addCheckLeading;
+
 
 @end

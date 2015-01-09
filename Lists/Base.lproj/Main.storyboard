@@ -1290,7 +1290,7 @@
                                                     </textFieldCell>
                                                     <prototypeCellViews>
                                                         <tableCellView identifier="checkListCellView" id="QO2-d2-B7X" customClass="SDWCheckItemTableCellView">
-                                                            <rect key="frame" x="1" y="0.0" width="265" height="29"/>
+                                                            <rect key="frame" x="1" y="0.0" width="281" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="gm5-8O-Lga" customClass="AAPLCheckBox">
@@ -1308,10 +1308,10 @@
                                                                     </connections>
                                                                 </button>
                                                                 <textField focusRingType="none" horizontalCompressionResistancePriority="250" verticalCompressionResistancePriority="1000" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RGI-EH-GUM" customClass="SDWCardDetailsTextField">
-                                                                    <rect key="frame" x="36" y="7" width="194" height="17"/>
+                                                                    <rect key="frame" x="36" y="7" width="200" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="YqG-V1-3aO"/>
-                                                                        <constraint firstAttribute="width" constant="194" id="flj-FD-xJm"/>
+                                                                        <constraint firstAttribute="width" constant="200" id="flj-FD-xJm"/>
                                                                     </constraints>
                                                                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" focusRingType="none" title="Table View Cell" drawsBackground="YES" id="yTH-B3-xqO">
                                                                         <font key="font" size="14" name="TektonPro-BoldObl"/>
@@ -1320,7 +1320,7 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="mGp-ZF-cVm">
-                                                                    <rect key="frame" x="245" y="-1" width="15" height="15"/>
+                                                                    <rect key="frame" x="261" y="-1" width="15" height="15"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="width" constant="15" id="6mk-Fg-DZV"/>
                                                                         <constraint firstAttribute="height" constant="15" id="vBK-rd-6GM"/>
@@ -1345,15 +1345,18 @@
                                                                 <constraint firstAttribute="centerY" secondItem="gm5-8O-Lga" secondAttribute="centerY" id="MRT-pU-d7i"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mGp-ZF-cVm" secondAttribute="trailing" constant="5" id="UTT-LD-KAh"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="gm5-8O-Lga" secondAttribute="trailing" constant="4" id="hH2-Eq-Rea"/>
-                                                                <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="15" id="t3R-o9-1rd"/>
+                                                                <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="5" id="t3R-o9-1rd"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="addCheckItemButton" destination="mGp-ZF-cVm" id="8ov-pL-dfW"/>
                                                                 <outlet property="addCheckItemCenterY" destination="J8Y-Pb-cS2" id="FFj-Cq-yWU"/>
                                                                 <outlet property="addCheckItemWidth" destination="6mk-Fg-DZV" id="kDL-2O-y0s"/>
+                                                                <outlet property="addCheckLeading" destination="t3R-o9-1rd" id="hGJ-Nu-NJt"/>
+                                                                <outlet property="addCheckTrailing" destination="UTT-LD-KAh" id="0QV-j5-eNy"/>
                                                                 <outlet property="checkBox" destination="gm5-8O-Lga" id="KMU-kH-fEq"/>
                                                                 <outlet property="checkBoxWidth" destination="mwV-aa-aYc" id="tbp-Bj-7As"/>
                                                                 <outlet property="checkItemTopSpace" destination="Dd1-lS-UNi" id="sc9-bG-1HT"/>
+                                                                <outlet property="checkItemWidth" destination="flj-FD-xJm" id="tau-QQ-K9E"/>
                                                                 <outlet property="textField" destination="RGI-EH-GUM" id="0NN-Ps-nsw"/>
                                                             </connections>
                                                         </tableCellView>
