@@ -609,35 +609,51 @@
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
 
+    NSDragOperation dragOp = NSDragOperationNone;
 
-    if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
+    if (op == NSCollectionViewDropBefore ) {
 
-        NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
-        SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
+        dragOp = NSDragOperationMove;
 
-        self.dropSectionKey = cellView.trelloCheckListID;
-        return NSDragOperationMove;
+
+    } else if (op == NSCollectionViewDropOn ) {
+
+
+
+
+        if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
+
+            NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
+            SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
+
+            self.dropSectionKey = cellView.trelloCheckListID;
+            return NSDragOperationMove;
+        }
+
+
+        SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
+        NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+        NSString *sectionKey = item.listID;
+
+        if (![sectionKeyOriginal isEqualToString:sectionKey]) {
+
+            self.dropSectionKey = sectionKey;
+
+        } else {
+            
+            self.dropSectionKey = sectionKeyOriginal;
+        }
+        
+        self.dropIndex = itemIndexInSection;
+
+        dragOp = NSDragOperationNone;
+        
     }
+    
+    return dragOp;
 
 
-    SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
-    NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
-    NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
-    NSString *sectionKey = item.listID;
-
-    if (![sectionKeyOriginal isEqualToString:sectionKey]) {
-
-        self.dropSectionKey = sectionKey;
-
-    } else {
-
-        self.dropSectionKey = sectionKeyOriginal;
-    }
-
-    self.dropIndex = itemIndexInSection;
-
-
-    return NSDragOperationMove;
 
 }
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
