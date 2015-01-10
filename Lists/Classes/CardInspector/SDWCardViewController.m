@@ -603,9 +603,6 @@
         return NSDragOperationNone;
     }
 
-
-
-
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"com.sdwr.lists.checklists.drag"];
 
@@ -627,9 +624,6 @@
     NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
     NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
     NSString *sectionKey = item.listID;
-
-    NSLog(@"item.name = %@",item.name);
-    NSLog(@"sectionKey = %@",item.listID);
 
     if (![sectionKeyOriginal isEqualToString:sectionKey]) {
 
@@ -666,12 +660,16 @@
 
     } else {
 
-
         NSMutableArray *mutableItems =[NSMutableArray arrayWithArray:self.todoSectionContents[sectionKey]];
         [mutableItems removeObject:originalItem];
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKey];
 
         mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[self.dropSectionKey]];
+
+        if (mutableItems.count == 0) {
+            self.dropIndex = 0;
+        }
+
         [mutableItems insertObject:originalItem atIndex:self.dropIndex];
 
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
