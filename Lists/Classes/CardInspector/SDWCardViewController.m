@@ -387,12 +387,10 @@
         resultView.textField.textColor =[[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
 
         if (section == 0) {
-
-//            resultView.centerYConstraint.constant = 0;
             resultView.addCheckItemCenterY.constant = 4;
             resultView.checkItemTopSpace.constant = 1;
         } else {
-  //          resultView.centerYConstraint.constant = -12;
+
             resultView.addCheckItemCenterY.constant = -8;
             resultView.checkItemTopSpace.constant = 24;
         }
@@ -626,7 +624,7 @@
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
 
-    NSDragOperation dragOp;
+    NSDragOperation dragOp = NSDragOperationNone;
 
     if (op == NSCollectionViewDropBefore ) {
 
@@ -723,10 +721,6 @@
     if (tv == self.activityTable) {
         return NO;
     }
-//
-//    BOOL rowIsSectionHeader = NO;
-//    /* get rowIsSectionHeader by ref */
-//    [self.checkListsTable tableView:self.checkListsTable getSectionFromRow:rowIndexes.firstIndex isSection:&rowIsSectionHeader];
 
     if (![[self.flatContent objectAtIndex:rowIndexes.firstIndex] isKindOfClass:[SDWChecklistItem class]]) {
 
@@ -739,7 +733,6 @@
                                                                      @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
                                                                      }];
 
-       // [pboard setData:data forType:@"com.sdwr.lists.checklists.drag"];
         [pboard setData:data forType:@"TRASH_DRAG_TYPE"];
 
     } else {
@@ -906,6 +899,11 @@
    [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
 
        [[self cardsVC] showCardSavingIndicator:NO];
+
+       if ( (int)[self.todoSectionContents[itemView.trelloCheckItem.listID] count] == 1 && self.todoSectionKeys.count == 1) {
+           self.card.hasOpenTodos = NO;
+           [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+       }
    }];
 }
 

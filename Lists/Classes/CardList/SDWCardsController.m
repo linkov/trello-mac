@@ -488,7 +488,7 @@
         return NSDragOperationNone;
     }
 
-    NSDragOperation dragOp;
+    NSDragOperation dragOp = NSDragOperationNone;
 
     if (*proposedDropOperation == NSCollectionViewDropBefore ) {
 
