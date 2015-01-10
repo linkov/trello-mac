@@ -599,22 +599,10 @@
 
 
 
-    if ([self.flatContent count] == 1) {
+    if ([self.flatContent count] == 1 || row > self.flatContent.count-1) {
         return NSDragOperationNone;
     }
 
-
-    //NSLog(@"proposed row - %li",(long)row);
-
-
-    if (row > self.flatContent.count-1) {
-        return NSDragOperationNone;
-    }
-
-    if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
-
-        return NSDragOperationNone;
-    }
 
 
 
@@ -624,39 +612,38 @@
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
 
-    NSDragOperation dragOp = NSDragOperationNone;
 
-    if (op == NSCollectionViewDropBefore ) {
+    if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
 
-        dragOp = NSDragOperationMove;
+        NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
+        SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
 
-
-    } else if (op == NSCollectionViewDropOn ) {
-
-
-        SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
-        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
-        NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
-        NSString *sectionKey = item.listID;
-
-        NSLog(@"item.name = %@",item.name);
-        NSLog(@"sectionKey = %@",item.listID);
-
-        if (![sectionKeyOriginal isEqualToString:sectionKey]) {
-
-            self.dropSectionKey = sectionKey;
-
-        } else {
-
-            self.dropSectionKey = sectionKeyOriginal;
-        }
-
-        self.dropIndex = itemIndexInSection;
-        dragOp = NSDragOperationNone;
-        
+        self.dropSectionKey = cellView.trelloCheckListID;
+        return NSDragOperationMove;
     }
-    
-    return dragOp;
+
+
+    SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
+    NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
+    NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+    NSString *sectionKey = item.listID;
+
+    NSLog(@"item.name = %@",item.name);
+    NSLog(@"sectionKey = %@",item.listID);
+
+    if (![sectionKeyOriginal isEqualToString:sectionKey]) {
+
+        self.dropSectionKey = sectionKey;
+
+    } else {
+
+        self.dropSectionKey = sectionKeyOriginal;
+    }
+
+    self.dropIndex = itemIndexInSection;
+
+
+    return NSDragOperationMove;
 
 }
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
@@ -670,11 +657,12 @@
     NSString *sectionKey = cardDict[@"sectionKey"];
     NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
     SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
-
+    originalItem.listID = self.dropSectionKey;
 
     if ([sectionKey isEqualToString:self.dropSectionKey]) {
 
-        [self.todoSectionContents setValue:[self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]] forKey:self.dropSectionKey];
+        NSArray *reorderedArray = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]];
+        [self.todoSectionContents setValue:reorderedArray forKey:self.dropSectionKey];
 
     } else {
 
@@ -684,8 +672,8 @@
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:sectionKey];
 
         mutableItems = [NSMutableArray arrayWithArray:self.todoSectionContents[self.dropSectionKey]];
-        [mutableItems addObject:originalItem];
-        originalItem.listName = self.dropSectionKey;
+        [mutableItems insertObject:originalItem atIndex:self.dropIndex];
+
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
     }
 
@@ -796,11 +784,7 @@
                 [self.todoSectionContents removeObjectForKey:dataDict[@"sectionKey"]];
                 [self.checkListsTable reloadData];
                 [self updateFlatContent];
-
-                if (  self.todoSectionKeys.count == 0) {
-                    self.card.hasOpenTodos = NO;
-                    [[self cardsVC] updateCardDetails:self.card localOnly:NO];
-                }
+                [self updateCardTodosStatus];
             }
 
         }];
@@ -824,9 +808,7 @@
 
             if (!error) {
 
-
-                
-                
+                [self updateCardTodosStatus];
                 
             }
         }];
@@ -870,11 +852,6 @@
             SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
             [cellView.textField becomeFirstResponder];
 
-            if ( (int)[self.todoSectionContents[itemView.trelloCheckListID] count] == 1 && self.todoSectionKeys.count == 1) {
-                self.card.hasOpenTodos = YES;
-                [[self cardsVC] updateCardDetails:self.card localOnly:NO];
-            }
-
         }
 
     }];
@@ -899,11 +876,8 @@
    [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
 
        [[self cardsVC] showCardSavingIndicator:NO];
+       [self updateCardTodosStatus];
 
-       if ( (int)[self.todoSectionContents[itemView.trelloCheckItem.listID] count] == 1 && self.todoSectionKeys.count == 1) {
-           self.card.hasOpenTodos = NO;
-           [[self cardsVC] updateCardDetails:self.card localOnly:NO];
-       }
    }];
 }
 
@@ -921,6 +895,7 @@
                                  withCompletion:^(id object, NSError *error) {
 
             [[self cardsVC] showCardSavingIndicator:NO];
+            [self updateCardTodosStatus];
 
         }];
 
@@ -935,6 +910,7 @@
             
             //TODO: don't reload all to change name - refactor this
             [self fetchChecklists];
+            [self updateCardTodosStatus];
 
         }];
 
@@ -960,6 +936,20 @@
 
 
 #pragma mark - Utils
+
+- (void)updateCardTodosStatus {
+
+    NSArray *items = self.todoSectionContents.allValues;
+    NSUInteger countOfOpenItems = [[items valueForKeyPath:@"@distinctUnionOfArrays.state"]
+                                   filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",@"incomplete"]].count;
+    BOOL hasOpenTodos = (BOOL)(countOfOpenItems > 0);
+
+    if (hasOpenTodos != self.card.hasOpenTodos) {
+        self.card.hasOpenTodos = hasOpenTodos;
+        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+    }
+
+}
 
 - (NSString *)checkListNameFromID:(NSString *)checkListID {
 
