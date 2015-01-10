@@ -222,6 +222,8 @@
 
 - (void)loadRowsAndSectionsFromFlatData:(NSArray *)data {
 
+    [self.flatContent removeAllObjects];
+
     NSMutableArray *keys = [[NSMutableArray alloc] init];
     NSMutableDictionary *contents = [[NSMutableDictionary alloc] init];
     NSArray *dataArray = [data copy];
@@ -495,7 +497,7 @@
         resultView.delegate = self;
 
         resultView.trelloCheckItem = item;
-        resultView.trelloCheckListID = nil;
+        resultView.trelloCheckListID = item.listID;
 
 //        resultView.centerYConstraint.constant = 0;
         resultView.checkBoxWidth.constant = 23;
@@ -603,59 +605,82 @@
         return NSDragOperationNone;
     }
 
+    NSUInteger itemMovedFromIndex = 0;
+    NSUInteger itemIndexInSection = 0;
+    NSString *sectionKeyNew;
+
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"com.sdwr.lists.checklists.drag"];
 
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
     NSString *sectionKeyOriginal = cardDict[@"sectionKey"];
-
-    NSDragOperation dragOp = NSDragOperationNone;
-
-    if (op == NSCollectionViewDropBefore ) {
-
-        dragOp = NSDragOperationMove;
+    itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
 
 
-    } else if (op == NSCollectionViewDropOn ) {
+    NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
+    SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
 
 
 
-
-        if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
-
-            NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
-            SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
-
-            self.dropSectionKey = cellView.trelloCheckListID;
-            return NSDragOperationMove;
-        }
-
+    if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
 
         SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
         NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
-        NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
-        NSString *sectionKey = item.listID;
+        itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+        self.dropSectionKey = cellView.trelloCheckListID;
+        sectionKeyNew = item.listID;
+    } else {
 
-        if (![sectionKeyOriginal isEqualToString:sectionKey]) {
+        NSLog(@"[self.flatContent objectAtIndex:row] is Section");
+    }
 
-            self.dropSectionKey = sectionKey;
 
-        } else {
-            
-            self.dropSectionKey = sectionKeyOriginal;
+
+    NSDragOperation dragOp = NSDragOperationNone;
+
+
+    if (op == NSTableViewDropAbove) {
+
+        if (itemMovedFromIndex < itemIndexInSection && [sectionKeyOriginal isEqualToString:self.dropSectionKey]) {
+
+            /* fix for when dragging down index hops over 1 item always */
+            itemIndexInSection -= 1;
         }
-        
+
+        NSLog(@"NSTableViewDropAbove");
+        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
+        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
+        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
+        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
+        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
+        NSLog(@"----- * ------");
+
         self.dropIndex = itemIndexInSection;
+        dragOp = NSDragOperationMove;
+
+
+    } else if (op == NSTableViewDropOn) {
+
+        NSLog(@"NSTableViewDropOn");
+        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
+        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
+        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
+        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
+        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
+        NSLog(@"----- * ------");
+//        if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
+//            self.dropSectionKey = sectionKeyNew;
+//        }
 
         dragOp = NSDragOperationNone;
-        
+
+
     }
-    
+
     return dragOp;
-
-
-
 }
+
+
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
                   row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
 
@@ -667,12 +692,18 @@
     NSString *sectionKey = cardDict[@"sectionKey"];
     NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
     SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
+
+
     originalItem.listID = self.dropSectionKey;
+    originalItem.position = self.dropIndex;
+
 
     if ([sectionKey isEqualToString:self.dropSectionKey]) {
 
         NSArray *reorderedArray = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.todoSectionContents[self.dropSectionKey]];
         [self.todoSectionContents setValue:reorderedArray forKey:self.dropSectionKey];
+        [self changePositionForCheckItem:originalItem];
+
 
     } else {
 
@@ -689,9 +720,9 @@
         [mutableItems insertObject:originalItem atIndex:self.dropIndex];
 
         [self.todoSectionContents setObject:[NSArray arrayWithArray:mutableItems] forKey:self.dropSectionKey];
-    }
 
-    [self changePositionForCheckItem:originalItem];
+        [self moveCheckItem:originalItem fromListID:sectionKey];
+    }
 
     [self updateFlatContent];
 
@@ -742,6 +773,16 @@
         SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
         NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
+
+        NSLog(@"writeRowsWithIndexes - itemIndexInSection %lu",(unsigned long)itemIndexInSection);
+
+
+        if (itemIndexInSection > 10000) {
+
+            return NO;
+        }
+
+
 
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
                                                                      @"isSection":@NO,
@@ -870,6 +911,20 @@
 
     }];
 
+}
+
+
+
+#pragma mark - Trello API
+
+- (void)moveCheckItem:(SDWChecklistItem *)item fromListID:(NSString *)listID {
+
+    [[self cardsVC] showCardSavingIndicator:YES];
+
+    [[SDWTrelloStore store] moveCheckItem:item fromList:listID cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+
+        [[self cardsVC] showCardSavingIndicator:NO];
+    }];
 }
 
 - (void)changePositionForCheckItem:(SDWChecklistItem *)item {

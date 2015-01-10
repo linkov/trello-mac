@@ -291,6 +291,25 @@
 
 }
 
+- (void)moveCheckItem:(SDWChecklistItem *)item
+             fromList:(NSString *)initialListID
+               cardID:(NSString *)cardID
+       withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,initialListID,item.itemID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idChecklist":item.listID}
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
+}
+
 - (void)updateCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
@@ -299,7 +318,7 @@
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
                                                                  @"state":item.state,
-                                                                 @"name":item.name
+                                                                 @"name":item.name,
                                                                  }
                                   success:^(NSURLSessionDataTask *task, id responseObject) {
 
