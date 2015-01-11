@@ -391,9 +391,11 @@
         if (section == 0) {
             resultView.addCheckItemCenterY.constant = 4;
             resultView.checkItemTopSpace.constant = 1;
+            resultView.handleCenterY.constant = 2;
         } else {
 
             resultView.addCheckItemCenterY.constant = -8;
+            resultView.handleCenterY.constant = -10;
             resultView.checkItemTopSpace.constant = 24;
         }
 
@@ -504,6 +506,7 @@
         resultView.addCheckItemWidth.constant = resultView.addCheckLeading.constant = resultView.addCheckTrailing.constant = 0;
         resultView.checkItemTopSpace.constant = 5;
         resultView.checkItemWidth.constant = 220;
+        resultView.handleCenterY.constant = 0;
 
         result = resultView;
     }
@@ -619,8 +622,7 @@
 
     NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:row makeIfNecessary:YES];
     SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
-
-
+    [cellView animateControlsOpacityIn:NO];
 
     if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
 
@@ -647,34 +649,19 @@
             itemIndexInSection -= 1;
         }
 
-        NSLog(@"NSTableViewDropAbove");
-        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
-        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
-        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
-        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
-        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
-        NSLog(@"----- * ------");
+//        NSLog(@"NSTableViewDropAbove");
+//        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
+//        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
+//        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
+//        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
+//        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
+//        NSLog(@"----- * ------");
 
         self.dropIndex = itemIndexInSection;
         dragOp = NSDragOperationMove;
 
-
     } else if (op == NSTableViewDropOn) {
-
-        NSLog(@"NSTableViewDropOn");
-        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
-        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
-        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
-        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
-        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
-        NSLog(@"----- * ------");
-//        if (![[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
-//            self.dropSectionKey = sectionKeyNew;
-//        }
-
         dragOp = NSDragOperationNone;
-
-
     }
 
     return dragOp;
@@ -992,12 +979,20 @@
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(SDWChecklist *checklist, NSError *error) {
 
         [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!error) {
-            [self fetchChecklists];
+            NSMutableArray *newRaw = [NSMutableArray arrayWithArray:self.rawcheckLists];
+            [newRaw addObject:checklist];
+            self.rawcheckLists = [NSArray arrayWithArray:newRaw];
+
+            [self.flatContent addObject:checklist.name];
+            [self.todoSectionKeys addObject:checklist.listID];
+            [self.checkListsTable reloadData];
+
+            [self.checkListsTable scrollRowToVisible:self.flatContent.count-1];
         }
 
     }];

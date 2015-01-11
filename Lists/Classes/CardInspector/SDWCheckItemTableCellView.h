@@ -34,6 +34,8 @@
 @property (strong) IBOutlet NSLayoutConstraint *checkItemWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckTrailing;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckLeading;
+@property (strong) IBOutlet NSLayoutConstraint *handleCenterY;
 
+- (void)animateControlsOpacityIn:(BOOL)shouldShow;
 
 @end

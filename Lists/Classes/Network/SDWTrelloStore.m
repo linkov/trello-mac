@@ -419,7 +419,8 @@
                                                                     }
                                      success:^(NSURLSessionDataTask *task, id responseObject) {
 
-                                         if(block) block(responseObject,nil);
+                                         SDWChecklist *newCheckList = [[SDWChecklist alloc]initWithAttributes:responseObject];
+                                         if(block) block(newCheckList,nil);
 
                                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 

@@ -11,6 +11,7 @@
 
 @interface SDWCheckItemTableCellView () <NSTextFieldDelegate>
 @property (strong) IBOutlet NSButton *addCheckItemButton;
+@property (strong) IBOutlet NSImageView *handleImage;
 
 @end
 
@@ -26,8 +27,8 @@
 
     self.wantsLayer = YES;
     self.textField.delegate = self;
-    self.addCheckItemButton.hidden = YES;
-    self.addCheckItemButton.wantsLayer = YES;
+    self.addCheckItemButton.hidden = self.handleImage.hidden = YES;
+    self.addCheckItemButton.wantsLayer = self.handleImage.wantsLayer = YES;
 
     int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
    NSTrackingArea *trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
@@ -55,27 +56,27 @@
 
 - (void)mouseEntered:(NSEvent *)theEvent {
 
-    [self animateAddButtonOpacityIn:YES];
+    [self animateControlsOpacityIn:YES];
 }
 
 - (void)mouseExited:(NSEvent *)theEvent {
 
     NSPoint clickPoint = [self convertPoint:[theEvent locationInWindow] fromView:nil];
 
-    if ( (clickPoint.x > self.frame.size.width || clickPoint.x < 0) || (clickPoint.y > self.frame.size.height || clickPoint.y < 0)) {
+    if ( (clickPoint.x > self.frame.size.width || clickPoint.x < 0) || (clickPoint.y > self.checkBox.frame.size.height || clickPoint.y < 0)) {
 
-        [self animateAddButtonOpacityIn:NO];
+        [self animateControlsOpacityIn:NO];
     }
 
 
 }
 
-- (void)animateAddButtonOpacityIn:(BOOL)shouldShow {
+- (void)animateControlsOpacityIn:(BOOL)shouldShow {
 
     [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
         context.duration = 0.35;
         context.allowsImplicitAnimation = YES;
-        self.addCheckItemButton.animator.hidden = !shouldShow;
+        self.addCheckItemButton.animator.hidden = self.handleImage.animator.hidden = !shouldShow;
 
     } completionHandler:^{
 

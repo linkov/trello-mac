@@ -1293,6 +1293,10 @@
                                                             <rect key="frame" x="1" y="0.0" width="281" height="29"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="698-nr-lz0">
+                                                                    <rect key="frame" x="3" y="10" width="5" height="9"/>
+                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" image="handle3" id="Zma-zr-F7m"/>
+                                                                </imageView>
                                                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="gm5-8O-Lga" customClass="AAPLCheckBox">
                                                                     <rect key="frame" x="9" y="6" width="23" height="17"/>
                                                                     <constraints>
@@ -1342,7 +1346,9 @@
                                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="4" id="FPn-oX-X9r"/>
                                                                 <constraint firstAttribute="centerY" secondItem="mGp-ZF-cVm" secondAttribute="centerY" constant="-8" id="J8Y-Pb-cS2"/>
                                                                 <constraint firstItem="gm5-8O-Lga" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" constant="9" id="KAM-iC-g8y"/>
+                                                                <constraint firstAttribute="centerY" secondItem="698-nr-lz0" secondAttribute="centerY" id="MPQ-Hm-x6t"/>
                                                                 <constraint firstAttribute="centerY" secondItem="gm5-8O-Lga" secondAttribute="centerY" id="MRT-pU-d7i"/>
+                                                                <constraint firstItem="698-nr-lz0" firstAttribute="leading" secondItem="QO2-d2-B7X" secondAttribute="leading" constant="3" id="Ocs-Uh-DLM"/>
                                                                 <constraint firstAttribute="trailing" secondItem="mGp-ZF-cVm" secondAttribute="trailing" constant="5" id="UTT-LD-KAh"/>
                                                                 <constraint firstItem="RGI-EH-GUM" firstAttribute="leading" secondItem="gm5-8O-Lga" secondAttribute="trailing" constant="4" id="hH2-Eq-Rea"/>
                                                                 <constraint firstItem="mGp-ZF-cVm" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="RGI-EH-GUM" secondAttribute="trailing" constant="5" id="t3R-o9-1rd"/>
@@ -1357,6 +1363,8 @@
                                                                 <outlet property="checkBoxWidth" destination="mwV-aa-aYc" id="tbp-Bj-7As"/>
                                                                 <outlet property="checkItemTopSpace" destination="Dd1-lS-UNi" id="sc9-bG-1HT"/>
                                                                 <outlet property="checkItemWidth" destination="flj-FD-xJm" id="tau-QQ-K9E"/>
+                                                                <outlet property="handleCenterY" destination="MPQ-Hm-x6t" id="tyw-qa-EJt"/>
+                                                                <outlet property="handleImage" destination="698-nr-lz0" id="0qf-ad-6aP"/>
                                                                 <outlet property="textField" destination="RGI-EH-GUM" id="0NN-Ps-nsw"/>
                                                             </connections>
                                                         </tableCellView>
@@ -1599,6 +1607,7 @@
         <image name="dueButton" width="16" height="16"/>
         <image name="dueSort" width="23" height="26"/>
         <image name="group" width="26" height="19"/>
+        <image name="handle3" width="5" height="9"/>
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16.5"/>
         <image name="note" width="8" height="10"/>
