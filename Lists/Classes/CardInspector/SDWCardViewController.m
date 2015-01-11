@@ -129,7 +129,7 @@
 
 - (void)viewWillAppear {
 
-    self.checkListsScrollLeadingSpace.constant = -500;
+    self.checkListsScrollLeadingSpace.constant = self.addChecklistOnboardLeading.constant = -500;
 }
 
 
@@ -1008,6 +1008,11 @@
             [self.checkListsTable reloadData];
 
             [self.checkListsTable scrollRowToVisible:self.flatContent.count-1];
+
+            NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:self.flatContent.count-1 makeIfNecessary:YES];
+            SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
+            [cellView animateControlsOpacityIn:YES];
+
             self.addChecklistOnboard.hidden = YES;
         }
 

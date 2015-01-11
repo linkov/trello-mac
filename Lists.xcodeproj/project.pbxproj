@@ -745,7 +745,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
+				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -755,7 +755,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "3c782c6a-6619-47d0-87d4-a9f7ca1e3b78";
+				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
 			};
 			name = Debug;
 		};
@@ -764,7 +764,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
+				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +773,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "3c782c6a-6619-47d0-87d4-a9f7ca1e3b78";
+				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
 			};
 			name = Release;
 		};
