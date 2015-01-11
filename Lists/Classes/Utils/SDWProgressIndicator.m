@@ -31,13 +31,23 @@ typedef enum {
     [self.thirdLine removeAllAnimations];
     [self.firstLine removeAllAnimations];
 
+//    [self.firstLine removeFromSuperlayer];
+//    [self.secondLine removeFromSuperlayer];
+//    [self.thirdLine removeFromSuperlayer];
+
     self.hidden = YES;
 
 }
+
+- (void)awakeFromNib {
+
+    [self _setupLayers];
+}
+
 - (void)startAnimation {
 
     self.hidden = NO;
-    [self _setupLayers];
+    //[self _setupLayers];
 
     if (self.bounds.size.width == 100) {
         [self _setupPositionAndSizeForIndicatorType:SDWIndicatorTypeRegular];

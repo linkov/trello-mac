@@ -65,6 +65,8 @@
 @property (strong) IBOutlet NSImageView *listIcon;
 @property (strong) IBOutlet ITSwitch *checkListSwitch;
 @property (strong) NSArray *rawcheckLists;
+@property (strong) IBOutlet NSImageView *addChecklistOnboard;
+@property (strong) IBOutlet NSLayoutConstraint *addChecklistOnboardLeading;
 
 @end
 
@@ -121,6 +123,8 @@
         [[self cardsVC] updateCardDetails:self.card localOnly:NO];
         
     }];
+
+    self.addChecklistOnboard.hidden = YES;
 }
 
 - (void)viewWillAppear {
@@ -212,6 +216,13 @@
 
             self.rawcheckLists = object;
             [self loadRowsAndSectionsFromFlatData:object];
+
+
+            if (self.todoSectionKeys.count == 0) {
+                self.addChecklistOnboard.hidden = NO;
+            } else {
+                self.addChecklistOnboard.hidden = YES;
+            }
 
         }
     }];
@@ -517,7 +528,6 @@
 
 - (IBAction)switchDidChange:(ITSwitch *)sender {
 
-
     CGFloat pos;
     CGFloat checkListsPos;
     NSImage *checkMarkImage;
@@ -529,6 +539,7 @@
 
 
         self.checkListsScrollLeadingSpace.constant = 16;
+        self.addChecklistOnboardLeading.constant = 4;
         self.cardInfoTrailingSpace.constant = -500;
 
         [self.saveButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
@@ -541,7 +552,7 @@
         checkMarkImage = [NSImage imageNamed:@"saveAlt2"];
 
 
-        self.checkListsScrollLeadingSpace.constant = -500;
+        self.checkListsScrollLeadingSpace.constant = self.addChecklistOnboardLeading.constant = -500;
         self.cardInfoTrailingSpace.constant = 0;
 
         [self.saveButton unregisterDraggedTypes];
@@ -822,6 +833,10 @@
                 [arr removeObject:checkList];
                 self.rawcheckLists = arr;
 
+                if (self.rawcheckLists.count == 0) {
+                    self.addChecklistOnboard.hidden = NO;
+                }
+
                 [self.todoSectionKeys removeObject:dataDict[@"sectionKey"]];
                 [self.todoSectionContents removeObjectForKey:dataDict[@"sectionKey"]];
                 [self.checkListsTable reloadData];
@@ -993,6 +1008,7 @@
             [self.checkListsTable reloadData];
 
             [self.checkListsTable scrollRowToVisible:self.flatContent.count-1];
+            self.addChecklistOnboard.hidden = YES;
         }
 
     }];
