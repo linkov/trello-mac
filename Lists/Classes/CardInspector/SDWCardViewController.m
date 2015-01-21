@@ -815,7 +815,7 @@
 
 #pragma mark - NSControlInteractionDelegate
 
-- (void)controlShouldValidateDropWithPasteBoard:(NSPasteboard *)pasteboard {
+- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard {
 
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];

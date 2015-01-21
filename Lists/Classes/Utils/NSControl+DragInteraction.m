@@ -40,8 +40,8 @@ static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKe
 
 	if (self.canPerformAction) {
 
-		if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(controlShouldValidateDropWithPasteBoard:)]) {
-			[self.interactionDelegate controlShouldValidateDropWithPasteBoard:[sender draggingPasteboard]];
+        if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(control:didAcceptDropWithPasteBoard:)]) {
+			[self.interactionDelegate control:self didAcceptDropWithPasteBoard:[sender draggingPasteboard]];
 		}
 
 		self.layer.filters = @[];

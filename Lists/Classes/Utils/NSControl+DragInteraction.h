@@ -12,7 +12,7 @@
 
 @optional
 
-- (void)controlShouldValidateDropWithPasteBoard:(NSPasteboard *)pasteboard;
+- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard;
 
 @end
 
