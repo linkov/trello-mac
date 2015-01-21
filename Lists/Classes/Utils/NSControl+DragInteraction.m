@@ -12,7 +12,6 @@
 #import "NSControl+DragInteraction.h"
 
 static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDelegateKey";
-static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKey";
 
 @interface NSControl ()
 
@@ -27,8 +26,6 @@ static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKe
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
 
-	self.canPerformAction = YES;
-
 	CIFilter *invert = [CIFilter filterWithName:@"CIColorInvert"];
 	[invert setDefaults];
 
@@ -38,20 +35,23 @@ static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKe
 
 - (void)draggingEnded:(id <NSDraggingInfo> )sender {
 
-	if (self.canPerformAction) {
+    NSPoint clickPoint = [self convertPoint:sender.draggingLocation fromView:nil];
+
+    if (CGRectContainsPoint(self.bounds, clickPoint)) {
 
         if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(control:didAcceptDropWithPasteBoard:)]) {
-			[self.interactionDelegate control:self didAcceptDropWithPasteBoard:[sender draggingPasteboard]];
-		}
+            [self.interactionDelegate control:self didAcceptDropWithPasteBoard:[sender draggingPasteboard]];
+        }
 
-		self.layer.filters = @[];
-	}
+    }
+
+    self.layer.filters = @[];
 }
+
 
 - (void)draggingExited:(id <NSDraggingInfo> )sender {
 
 	self.layer.filters = @[];
-	self.canPerformAction = NO;
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
@@ -60,17 +60,6 @@ static NSString const *canPerformActionKey = @"com.sdwr.utils.canPerformActionKe
 }
 
 #pragma mark - Associated objects
-
-- (void)setCanPerformAction:(BOOL)canPerformAction {
-
-	objc_setAssociatedObject(self, (__bridge const void *)(canPerformActionKey), [NSNumber numberWithBool:canPerformAction], OBJC_ASSOCIATION_ASSIGN);
-}
-
-- (BOOL)canPerformAction {
-
-	NSNumber *canPerform = objc_getAssociatedObject(self, (__bridge const void *)(canPerformActionKey));
-	return canPerform.boolValue;
-}
 
 - (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate {
 	objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
