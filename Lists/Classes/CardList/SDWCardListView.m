@@ -67,20 +67,17 @@
 }
 
 - (void)setSelected:(BOOL)selected {
+	if (selected) {
+		self.fillColor = [SharedSettings appSelectionColor];
+	} else {
 
-    if (selected) {
-
-        self.fillColor = [SharedSettings appSelectionColor];
-    }
-    else {
-
-        self.fillColor = [NSColor whiteColor];
-    }
+		self.fillColor = [NSColor whiteColor];
+	}
 }
 
 - (void)setShouldDrawSideLine:(BOOL)shouldDrawSideLine {
-    _shouldDrawSideLine = shouldDrawSideLine;
-    [self setNeedsDisplay:YES];
+	_shouldDrawSideLine = shouldDrawSideLine;
+	[self setNeedsDisplay:YES];
 }
 
 
