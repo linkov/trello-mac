@@ -805,13 +805,13 @@
                                     </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="onboard" id="Pp8-sx-3Ie"/>
                                 </imageView>
-                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQK-mH-vOP">
+                                <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQK-mH-vOP">
                                     <rect key="frame" x="15" y="0.0" width="405" height="444"/>
                                     <clipView key="contentView" id="cGQ-Pd-6cj">
                                         <rect key="frame" x="1" y="0.0" width="238" height="134"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" id="teg-4I-hCA" customClass="JWCTableView">
+                                            <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" rowSizeStyle="automatic" viewBased="YES" id="teg-4I-hCA" customClass="JWCTableView">
                                                 <rect key="frame" x="0.0" y="0.0" width="238" height="134"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
@@ -832,25 +832,44 @@
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
                                                             <tableCellView id="UhZ-aE-0ve" customClass="SDWSingleCardTableCellView">
-                                                                <rect key="frame" x="1" y="1" width="402" height="17"/>
+                                                                <rect key="frame" x="1" y="1" width="401" height="30"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <box autoresizesSubviews="NO" title="Box" boxType="custom" borderType="line" translatesAutoresizingMaskIntoConstraints="NO" id="M81-XC-LPW" customClass="SDWCardListView">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="397" height="17"/>
+                                                                        <rect key="frame" x="0.0" y="0.0" width="396" height="30"/>
                                                                         <view key="contentView">
-                                                                            <rect key="frame" x="1" y="1" width="395" height="15"/>
+                                                                            <rect key="frame" x="1" y="1" width="394" height="28"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
-                                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BQM-wR-uEl">
-                                                                                    <rect key="frame" x="-9" y="-34" width="100" height="17"/>
-                                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="ZSg-FB-GqG">
+                                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="AED-o0-Mbf">
+                                                                                    <rect key="frame" x="173" y="-4" width="48" height="48"/>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="ALN-SK-k4g"/>
+                                                                                </imageView>
+                                                                                <textField verticalHuggingPriority="750" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gng-eQ-Hld">
+                                                                                    <rect key="frame" x="0.0" y="9" width="200" height="22"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="200" id="AJj-mr-6qE"/>
+                                                                                    </constraints>
+                                                                                    <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="JNL-qQ-9J9">
                                                                                         <font key="font" metaFont="system"/>
-                                                                                        <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                        <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
+                                                                                <stackView orientation="horizontal" alignment="top" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="sCM-Np-Xy8">
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="100" id="qY4-Km-GfA"/>
+                                                                                    </constraints>
+                                                                                </stackView>
                                                                             </subviews>
                                                                         </view>
+                                                                        <constraints>
+                                                                            <constraint firstItem="gng-eQ-Hld" firstAttribute="top" secondItem="M81-XC-LPW" secondAttribute="top" constant="-2" id="Aw8-QJ-YV0"/>
+                                                                            <constraint firstAttribute="bottom" secondItem="gng-eQ-Hld" secondAttribute="bottom" constant="10" id="HHv-36-9JQ"/>
+                                                                            <constraint firstItem="sCM-Np-Xy8" firstAttribute="top" secondItem="gng-eQ-Hld" secondAttribute="bottom" constant="-4" id="XNQ-9P-DHP"/>
+                                                                            <constraint firstItem="gng-eQ-Hld" firstAttribute="leading" secondItem="AED-o0-Mbf" secondAttribute="trailing" constant="-72" id="arZ-P9-dYb"/>
+                                                                            <constraint firstAttribute="trailing" secondItem="sCM-Np-Xy8" secondAttribute="trailing" constant="2" id="iHw-ls-Jn2"/>
+                                                                        </constraints>
                                                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                                         <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                                                     </box>
@@ -861,9 +880,6 @@
                                                                     <constraint firstAttribute="trailing" secondItem="M81-XC-LPW" secondAttribute="trailing" constant="5" id="QEz-bl-eLm"/>
                                                                     <constraint firstAttribute="bottom" secondItem="M81-XC-LPW" secondAttribute="bottom" id="afK-VB-IhN"/>
                                                                 </constraints>
-                                                                <connections>
-                                                                    <outlet property="textField" destination="BQM-wR-uEl" id="jxw-Jl-KMR"/>
-                                                                </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>
                                                     </tableColumn>
