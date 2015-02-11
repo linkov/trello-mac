@@ -21,9 +21,10 @@
 #import "SDWTrelloStore.h"
 #import "NSControl+DragInteraction.h"
 
+#import "JWCTableView.h"
+
 @interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
-@property (strong) IBOutlet NSCollectionView *collectionView;
 
 @property (strong) NSArray *storedUsers;
 @property (strong) NSString *currentListID;
@@ -41,6 +42,7 @@
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
 @property (strong) IBOutlet SDWProgressIndicator *cardActionIndicator;
+@property (strong) IBOutlet JWCTableView *tableView;
 
 
 @end
@@ -60,7 +62,9 @@
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
-    self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
+//    self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
+    self.tableView.backgroundColor = [SharedSettings appBackgroundColorDark];
+
 
     self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
 
@@ -665,5 +669,126 @@
     }];
 
 }
+
+
+
+
+// TableView implementation
+
+#pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
+
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section {
+
+    return NO;
+}
+
+-(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return YES;
+}
+
+-(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return [self.cardsArrayController.arrangedObject count];
+}
+
+
+-(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
+
+    return 1;
+}
+
+-(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
+
+    return NO;
+}
+
+-(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
+
+    return 0;
+}
+
+
+-(NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
+    return nil;
+}
+
+-(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return 30;
+
+}
+
+-(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
+
+    NSView *result;
+
+//    if (tableView == self.activityTable) {
+//
+//
+//        SDWActivity *activity = self.activityItems[[indexPath row]];
+//
+//        SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
+//        resultView.textField.stringValue = activity.content;
+//        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+//        resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
+//        resultView.initialsLabel.stringValue = activity.memberInitials;
+//        resultView.timeLabel.stringValue = activity.timeString;
+//
+//        resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
+//
+//        if ([indexPath row] == self.activityItems.count - 1) {
+//            resultView.separatorLine.hidden = YES;
+//        } else {
+//            resultView.separatorLine.hidden = NO;
+//        }
+//
+//        resultView.initialsLabel.wantsLayer = YES;
+//        resultView.initialsLabel.layer.cornerRadius = 1.5;
+//        resultView.initialsLabel.layer.borderWidth = 1;
+//        resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
+//
+//        result = resultView;
+//
+//    } else {
+//
+//        NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
+//        NSArray *contents = [[self todoSectionContents] objectForKey:key];
+//        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
+//
+//        SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
+//        resultView.textField.stringValue = item.name;
+//        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+//        resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
+//        [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
+//        resultView.textField.enabled = !resultView.checkBox.checked;
+//        //resultView.toolTip = resultView.textField.stringValue;
+//
+//
+//        resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
+//        resultView.textField.font = [NSFont systemFontOfSize:12];
+//        resultView.delegate = self;
+//
+//        resultView.trelloCheckItem = item;
+//        resultView.trelloCheckListID = item.listID;
+//
+//        //        resultView.centerYConstraint.constant = 0;
+//        resultView.checkBoxWidth.constant = 23;
+//        resultView.addCheckItemWidth.constant = resultView.addCheckLeading.constant = resultView.addCheckTrailing.constant = 0;
+//        resultView.checkItemTopSpace.constant = 5;
+//        resultView.checkItemWidth.constant = 220;
+//        resultView.handleCenterY.constant = 0;
+//        
+//        result = resultView;
+//    }
+
+    return result;
+    
+}
+
+
+
+
 
 @end
