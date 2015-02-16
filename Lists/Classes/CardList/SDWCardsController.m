@@ -22,6 +22,7 @@
 #import "NSControl+DragInteraction.h"
 
 #import "JWCTableView.h"
+#import "SDWSingleCardTableCellView.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -722,7 +723,11 @@
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
-    NSView *result;
+    SDWCard *card = self.cardsArrayController[indexPath.row];
+    SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
+    view.textField.stringValue = card.name;
+
+    return view;
 
 //    if (tableView == self.activityTable) {
 //
@@ -783,7 +788,7 @@
 //        result = resultView;
 //    }
 
-    return result;
+   // return result;
     
 }
 
