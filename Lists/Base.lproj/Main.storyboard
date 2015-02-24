@@ -890,6 +890,10 @@
                                                         </prototypeCellViews>
                                                     </tableColumn>
                                                 </tableColumns>
+                                                <connections>
+                                                    <outlet property="jwcTableViewDataSource" destination="s73-N2-doq" id="rxv-DX-q5c"/>
+                                                    <outlet property="jwcTableViewDelegate" destination="s73-N2-doq" id="cvE-E1-Ceu"/>
+                                                </connections>
                                             </tableView>
                                         </subviews>
                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1212,6 +1216,8 @@
                                                                     </tableColumn>
                                                                 </tableColumns>
                                                                 <connections>
+                                                                    <outlet property="dataSource" destination="gSz-Ss-KrC" id="ue6-fU-HZw"/>
+                                                                    <outlet property="delegate" destination="gSz-Ss-KrC" id="C5q-Na-iVe"/>
                                                                     <outlet property="jwcTableViewDataSource" destination="gSz-Ss-KrC" id="EKT-eW-ZXM"/>
                                                                     <outlet property="jwcTableViewDelegate" destination="gSz-Ss-KrC" id="a2G-O7-Nlk"/>
                                                                 </connections>

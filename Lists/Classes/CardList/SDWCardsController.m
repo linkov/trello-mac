@@ -24,7 +24,7 @@
 #import "JWCTableView.h"
 #import "SDWSingleCardTableCellView.h"
 
-@interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate>
+@interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 
 @property (strong) NSArray *storedUsers;
@@ -67,14 +67,14 @@
     self.tableView.backgroundColor = [SharedSettings appBackgroundColorDark];
 
 
-    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
-
-    [self.collectionView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
-    NSSize minSize = NSMakeSize(200,30);
-    [self.collectionView setMaxItemSize:minSize];
-
-    [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
-    self.addCardButton.interactionDelegate = self;
+//    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
+//
+//    [self.collectionView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
+//    NSSize minSize = NSMakeSize(200,30);
+//    [self.collectionView setMaxItemSize:minSize];
+//
+//    [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
+//    self.addCardButton.interactionDelegate = self;
     [self subscribeToEvents];
 
     if (![self isShowingListCards]) {
@@ -193,41 +193,41 @@
 
 - (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
 
-    if (local) {
-
-        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
-        [arr insertObject:card atIndex:[self.collectionView.content indexOfObject:card]];
-        [self reloadCollection:arr];
-        return;
-
-    }
-
-    [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
-
-        [self showCardSavingIndicator:NO];
-
-        if (!error) {
-
-            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
-            [[self cardDetailsVC] setCard:updatedCard];
-
-            //TODO: refactor this
-            if (![self isValidIndex:[self.collectionView.content indexOfObject:card]]) {
-
-                [self reloadCards];
-                return;
-            }
-
-            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-            [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
-            [arr insertObject:updatedCard atIndex:[self.collectionView.content indexOfObject:card]];
-            [self reloadCollection:arr];
-
-        }
-    }];
+//    if (local) {
+//
+//        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+//        [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
+//        [arr insertObject:card atIndex:[self.collectionView.content indexOfObject:card]];
+//        [self reloadCollection:arr];
+//        return;
+//
+//    }
+//
+//    [self showCardSavingIndicator:YES];
+//
+//    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+//
+//        [self showCardSavingIndicator:NO];
+//
+//        if (!error) {
+//
+//            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
+//            [[self cardDetailsVC] setCard:updatedCard];
+//
+//            //TODO: refactor this
+//            if (![self isValidIndex:[self.collectionView.content indexOfObject:card]]) {
+//
+//                [self reloadCards];
+//                return;
+//            }
+//
+//            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+//            [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
+//            [arr insertObject:updatedCard atIndex:[self.collectionView.content indexOfObject:card]];
+//            [self reloadCollection:arr];
+//
+//        }
+//    }];
 
 }
 
@@ -431,6 +431,10 @@
 
     }
 
+
+    // tableView implementation
+    [self.tableView reloadData];
+
 }
 
 - (void)updateCardsPositions {
@@ -544,27 +548,27 @@
 
 - (IBAction)addCard:(id)sender {
 
-    if (![self isShowingListCards]) {
-        return;
-    }
-
-    SDWCard *newCard = [SDWCard new];
-    newCard.boardID = self.parentListID;
-    newCard.name = @"";
-    newCard.isSynced = NO;
-
-    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr insertObject:newCard atIndex:arr.count];
-
-    self.cardsArrayController.content = arr;
-
-    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:[self bottomObjectIndex:arr]];
-    newRow.delegate = self;
-    newRow.selected = YES;
-    newRow.textField.editable = YES;
-    [newRow.textField becomeFirstResponder];
-
-    self.addCardButton.enabled = NO;
+//    if (![self isShowingListCards]) {
+//        return;
+//    }
+//
+//    SDWCard *newCard = [SDWCard new];
+//    newCard.boardID = self.parentListID;
+//    newCard.name = @"";
+//    newCard.isSynced = NO;
+//
+//    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+//    [arr insertObject:newCard atIndex:arr.count];
+//
+//    self.cardsArrayController.content = arr;
+//
+//    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:[self bottomObjectIndex:arr]];
+//    newRow.delegate = self;
+//    newRow.selected = YES;
+//    newRow.textField.editable = YES;
+//    [newRow.textField becomeFirstResponder];
+//
+//    self.addCardButton.enabled = NO;
 
 }
 
@@ -573,15 +577,15 @@
 
 - (void)cardViewDidSelectCard:(SDWCardsCollectionViewItem *)cardView {
 
-    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    selected.delegate = self;
+//    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
+//    selected.delegate = self;
+//
+//    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+//
+//    self.lastSelectedCard = selectedCard;
+//
+//    [[self cardDetailsVC] setCard:selectedCard];
 
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-
-    self.lastSelectedCard = selectedCard;
-
-    [[self cardDetailsVC] setCard:selectedCard];
-    
 }
 
 - (void)cardViewShouldContainLabelColors:(NSString *)colors {
@@ -618,21 +622,21 @@
 
 - (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
 
-    self.addCardButton.enabled = YES;
-    self.lastSelectedItem = cardView;
-
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-    card.name = cardView.textField.stringValue;
-
-    [[self cardDetailsVC] setCard:card];
-
-    if (card.isSynced) {
-
-        [self updateCard:card];
-    }
-    else {
-        [self createCard:card];
-    }
+//    self.addCardButton.enabled = YES;
+//    self.lastSelectedItem = cardView;
+//
+//    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
+//    card.name = cardView.textField.stringValue;
+//
+//    [[self cardDetailsVC] setCard:card];
+//
+//    if (card.isSynced) {
+//
+//        [self updateCard:card];
+//    }
+//    else {
+//        [self createCard:card];
+//    }
 }
 
 - (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
@@ -690,7 +694,7 @@
 
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return [self.cardsArrayController.arrangedObject count];
+    return [self.cardsArrayController.arrangedObjects count];
 }
 
 
@@ -723,7 +727,7 @@
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
-    SDWCard *card = self.cardsArrayController[indexPath.row];
+    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.textField.stringValue = card.name;
 
