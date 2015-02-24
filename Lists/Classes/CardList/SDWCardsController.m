@@ -721,7 +721,12 @@
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return 30;
+    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+
+
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(282, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+
+    return rec.size.height+2+2+4;
 
 }
 

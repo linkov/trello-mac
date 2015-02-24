@@ -18,6 +18,16 @@
 
 #pragma mark - Properties
 
+- (void)awakeFromNib {
+
+    [self setTranslatesAutoresizingMaskIntoConstraints:NO];
+
+    self.fillColor =  [NSColor whiteColor];
+    self.cornerRadius = 1.5;
+    self.borderColor = [NSColor clearColor];
+    self.borderWidth = 0;
+}
+
 - (void)drawRect:(NSRect)dirtyRect {
 
      [super drawRect:dirtyRect];
@@ -97,13 +107,8 @@
     [self setNeedsDisplay:YES];
 }
 
-- (void)awakeFromNib {
 
-  [self setTranslatesAutoresizingMaskIntoConstraints:NO];
-
-}
-
--(IBAction)setCRRR:(id)sender {}
+- (IBAction)setCRRR:(id)sender {}
 - (void)expand {}
 
 @end
