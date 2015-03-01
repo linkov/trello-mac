@@ -18,10 +18,4 @@
 @property (nonatomic,assign) BOOL shouldDrawSideLineAmber;
 @property (nonatomic,strong) NSArray *labels;
 
-@property (strong) NSArray *constr;
-
-- (IBAction)setCRRR:(id)sender;
-
-- (void)expand;
-
 @end

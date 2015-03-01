@@ -23,6 +23,8 @@
 
 #import "JWCTableView.h"
 #import "SDWSingleCardTableCellView.h"
+#import "Utils.h"
+#import "SDWCardListView.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -723,10 +725,18 @@
 
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
+    CGFloat width = card.members.count ? 297 : 397;
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    CGFloat height = rec.size.height;
 
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(282, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    if (height > 14) {
 
-    return rec.size.height+2+2+4;
+        return height+7+7;
+    }
+
+    return 27;
+
+
 
 }
 
@@ -735,6 +745,122 @@
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.textField.stringValue = card.name;
+    view.textField.backgroundColor = [NSColor redColor];
+
+
+    /* mark labels */
+    if (SharedSettings.shouldShowCardLabels == YES) {
+        view.mainBox.labels = card.labels;
+    } else {
+        view.mainBox.labels = @[];
+    }
+
+    /* mark due */
+    NSDate *due = card.dueDate;
+    if (due != nil && [due timeIntervalSinceNow] < 0.0) {
+        [view.mainBox setShouldDrawSideLine:YES];
+
+    } else if (due != nil && ([due timeIntervalSinceNow] > 0.0 && [due timeIntervalSinceNow] < 100000 ) ) {
+        [view.mainBox setShouldDrawSideLineAmber:YES];
+
+    }
+
+    /* mark dot */
+    switch (SharedSettings.dotOption) {
+
+        case SDWDotOptionHasDescription: {
+
+            NSString *descString = card.cardDescription;
+            //  NSLog(@"desc - %@",descString);
+
+            if (descString.length > 0) {
+
+                [view.mainBox setHasDot:YES];
+            }
+
+        }
+            break;
+        case SDWDotOptionNoDue: {
+
+            NSDate *due = card.dueDate;
+
+            if (due == nil) {
+                [view.mainBox setHasDot:YES];
+            }
+        }
+
+            break;
+
+        case SDWDotOptionHasOpenTodos: {
+
+            BOOL hasOpenTodos = [[self.representedObject valueForKey:@"hasOpenTodos"] boolValue];
+
+            if (hasOpenTodos) {
+                [view.mainBox setHasDot:YES];
+            }
+        }
+            
+            break;
+            
+        case SDWDotOptionOff: {
+            
+        }
+            
+            break;
+            
+        default:
+            break;
+    }
+
+    /* load card users */
+    [view.stackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
+
+    NSArray *members = card.members;
+
+//    NSMutableArray *testMembers = [NSMutableArray arrayWithArray:members];
+//    [testMembers addObject:@"DL"];
+//    [testMembers addObject:@"MK"];
+
+    for (NSString *memberID in members) {
+
+        NSTextField *text = [[NSTextField alloc]init];
+
+        [text setWantsLayer:YES];
+        [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+        [text setFont:[NSFont systemFontOfSize:9]];
+        [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
+        [text setStringValue:[self memberNameFromID:memberID] ];
+        [text setEditable:NO];
+        text.alignment = NSCenterTextAlignment;
+
+        text.layer.cornerRadius = 1.5;
+        text.layer.borderWidth = 1;
+        text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
+
+        if (text.stringValue.length >0) {
+
+            //TODO: remove this hack
+            if (card.labels.count == 0) {
+
+                for (NSLayoutConstraint *co in view.mainBox.constraints) {
+                    if (co.priority == 750) {
+                        co.constant = view.mainBox.bounds.size.height/2-11/2;
+                    }
+                }
+            } else {
+
+                for (NSLayoutConstraint *co in view.mainBox.constraints) {
+                    if (co.priority == 750) {
+                        co.constant = 3;
+                    }
+                }
+            }
+
+
+            [view.stackView addView:text inGravity:NSStackViewGravityTrailing];
+        }
+    }
+
 
     return view;
 
@@ -801,7 +927,21 @@
     
 }
 
+#pragma mark - Utils
 
+- (NSString *)memberNameFromID:(NSString *)userID {
+
+    for (SDWUser *user in SharedSettings.selectedListUsers) {
+
+        if ([user.userID isEqualToString:userID]) {
+
+            NSString *str = [Utils twoLetterIDFromName:user.name];
+
+            return str;
+        }
+    }
+    return @"NA";
+}
 
 
 

@@ -107,8 +107,4 @@
     [self setNeedsDisplay:YES];
 }
 
-
-- (IBAction)setCRRR:(id)sender {}
-- (void)expand {}
-
 @end

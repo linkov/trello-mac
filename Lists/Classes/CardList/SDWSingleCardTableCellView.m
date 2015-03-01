@@ -7,13 +7,18 @@
 //
 
 #import "SDWSingleCardTableCellView.h"
+#import "SDWCardListView.h"
+
+@interface SDWSingleCardTableCellView () <NSTextFieldDelegate>
+
+@end
 
 @implementation SDWSingleCardTableCellView
 
-- (void)drawRect:(NSRect)dirtyRect {
-    [super drawRect:dirtyRect];
-    
-    // Drawing code here.
+- (void)awakeFromNib {
+
+    self.textField.editable = NO;
+    self.textField.delegate = self;
 }
 
 @end
