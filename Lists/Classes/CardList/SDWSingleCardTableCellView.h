@@ -9,10 +9,29 @@
 
 #import <Cocoa/Cocoa.h>
 
+@protocol SDWSingleCardViewDelegate;
+
 @interface SDWSingleCardTableCellView : NSTableCellView
 @property (weak) IBOutlet NSTextField *textField;
 @property (strong) IBOutlet NSStackView *stackView;
 @property (strong) IBOutlet NSLayoutConstraint *widthConstraint;
 @property (strong) IBOutlet SDWCardListView *mainBox;
+
+@property (weak) id <SDWSingleCardViewDelegate> delegate;
+
+@end
+
+
+@protocol SDWSingleCardViewDelegate
+
+@optional
+
+- (void)cardViewShouldContainLabelColors:(NSString *)colors;
+- (void)cardViewShouldRemoveLabelOfColor:(NSString *)color;
+- (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView;
+- (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView;
+- (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView;
+- (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView;
+
 
 @end

@@ -26,7 +26,7 @@
 #import "Utils.h"
 #import "SDWCardListView.h"
 
-@interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
+@interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
 
 @property (strong) NSArray *storedUsers;
@@ -39,7 +39,7 @@
 @property (strong) IBOutlet NSTextField *listNameLabel;
 @property (strong) IBOutlet NSButton *reloadButton;
 
-@property (strong) SDWCardsCollectionViewItem *lastSelectedItem;
+@property (strong) SDWSingleCardTableCellView *lastSelectedItem;
 @property (strong) SDWCard *lastSelectedCard;
 
 @property NSUInteger dropIndex;
@@ -57,7 +57,7 @@
 
 - (void)awakeFromNib {
 
-    [self.addCardButton setHidden:YES];
+
 }
 
 - (void)viewDidLoad {
@@ -71,16 +71,17 @@
 
 //    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
 //
-//    [self.collectionView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
+    [self.tableView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
 //    NSSize minSize = NSMakeSize(200,30);
 //    [self.collectionView setMaxItemSize:minSize];
-//
-//    [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
-//    self.addCardButton.interactionDelegate = self;
+
+    [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
+    self.addCardButton.interactionDelegate = self;
     [self subscribeToEvents];
 
     if (![self isShowingListCards]) {
 
+        [self.addCardButton setHidden:YES];
         self.onboardingImage.hidden = NO;
     }
 
@@ -243,9 +244,9 @@
 
         if (!error) {
 
-            self.lastSelectedItem.selected = NO;
+            self.lastSelectedItem.mainBox.selected = NO;
             self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
-            [self.lastSelectedItem.view setNeedsDisplay:YES];
+            [self.lastSelectedItem setNeedsDisplay:YES];
 
         }
     }];
@@ -550,34 +551,37 @@
 
 - (IBAction)addCard:(id)sender {
 
-//    if (![self isShowingListCards]) {
-//        return;
-//    }
-//
-//    SDWCard *newCard = [SDWCard new];
-//    newCard.boardID = self.parentListID;
-//    newCard.name = @"";
-//    newCard.isSynced = NO;
-//
-//    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-//    [arr insertObject:newCard atIndex:arr.count];
-//
-//    self.cardsArrayController.content = arr;
-//
-//    SDWCardsCollectionViewItem *newRow = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:[self bottomObjectIndex:arr]];
-//    newRow.delegate = self;
-//    newRow.selected = YES;
-//    newRow.textField.editable = YES;
-//    [newRow.textField becomeFirstResponder];
-//
-//    self.addCardButton.enabled = NO;
+    if (![self isShowingListCards]) {
+        return;
+    }
+
+    SDWCard *newCard = [SDWCard new];
+    newCard.boardID = self.parentListID;
+    newCard.name = @"";
+    newCard.isSynced = NO;
+
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr insertObject:newCard atIndex:arr.count];
+
+    self.cardsArrayController.content = arr;
+
+    NSUInteger lastIndex = arr.count-1;
+    [self.tableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex] withAnimation:NSTableViewAnimationSlideDown];
+
+    SDWSingleCardTableCellView *newRow = (SDWSingleCardTableCellView *)[self.tableView viewAtColumn:0 row:lastIndex makeIfNecessary:NO];
+    newRow.delegate = self;
+    newRow.mainBox.selected = YES;
+    newRow.textField.editable = YES;
+    [newRow.textField becomeFirstResponder];
+
+    self.addCardButton.enabled = NO;
 
 }
 
 
-#pragma mark - SDWCardViewDelegate
+#pragma mark - SDWSingleCardViewDelegate
 
-- (void)cardViewDidSelectCard:(SDWCardsCollectionViewItem *)cardView {
+- (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
 
 //    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
 //    selected.delegate = self;
@@ -615,33 +619,33 @@
 }
 
 
-- (void)cardViewShouldDeselectCard:(SDWCardsCollectionViewItem *)cardView {
+- (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView {
 
     if (![self isValidIndex:self.cardsArrayController.selectionIndex]) {
         [[self cardDetailsVC] setCard:nil];
     }
 }
 
-- (void)cardViewShouldSaveCard:(SDWCardsCollectionViewItem *)cardView {
+- (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView {
 
-//    self.addCardButton.enabled = YES;
-//    self.lastSelectedItem = cardView;
-//
-//    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//    card.name = cardView.textField.stringValue;
-//
-//    [[self cardDetailsVC] setCard:card];
-//
-//    if (card.isSynced) {
-//
-//        [self updateCard:card];
-//    }
-//    else {
-//        [self createCard:card];
-//    }
+    self.addCardButton.enabled = YES;
+    self.lastSelectedItem = cardView;
+
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.tableView.selectedRow];
+    card.name = cardView.textField.stringValue;
+
+    [[self cardDetailsVC] setCard:card];
+
+    if (card.isSynced) {
+
+        [self updateCard:card];
+    }
+    else {
+        [self createCard:card];
+    }
 }
 
-- (void)cardViewShouldDismissCard:(SDWCardsCollectionViewItem *)cardView {
+- (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView {
 
     [self dismissNewEditedCard];
 }
@@ -691,7 +695,10 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    return YES;
+    SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
+    [cell.mainBox setSelected:YES];
+
+    return NO;
 }
 
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -744,8 +751,8 @@
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.textField.stringValue = card.name;
-    view.textField.backgroundColor = [NSColor redColor];
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
+    view.textField.backgroundColor = [NSColor clearColor];
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
@@ -866,67 +873,6 @@
 
     return view;
 
-//    if (tableView == self.activityTable) {
-//
-//
-//        SDWActivity *activity = self.activityItems[[indexPath row]];
-//
-//        SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
-//        resultView.textField.stringValue = activity.content;
-//        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-//        resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
-//        resultView.initialsLabel.stringValue = activity.memberInitials;
-//        resultView.timeLabel.stringValue = activity.timeString;
-//
-//        resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
-//
-//        if ([indexPath row] == self.activityItems.count - 1) {
-//            resultView.separatorLine.hidden = YES;
-//        } else {
-//            resultView.separatorLine.hidden = NO;
-//        }
-//
-//        resultView.initialsLabel.wantsLayer = YES;
-//        resultView.initialsLabel.layer.cornerRadius = 1.5;
-//        resultView.initialsLabel.layer.borderWidth = 1;
-//        resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
-//
-//        result = resultView;
-//
-//    } else {
-//
-//        NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
-//        NSArray *contents = [[self todoSectionContents] objectForKey:key];
-//        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
-//
-//        SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
-//        resultView.textField.stringValue = item.name;
-//        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-//        resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
-//        [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO : YES];
-//        resultView.textField.enabled = !resultView.checkBox.checked;
-//        //resultView.toolTip = resultView.textField.stringValue;
-//
-//
-//        resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
-//        resultView.textField.font = [NSFont systemFontOfSize:12];
-//        resultView.delegate = self;
-//
-//        resultView.trelloCheckItem = item;
-//        resultView.trelloCheckListID = item.listID;
-//
-//        //        resultView.centerYConstraint.constant = 0;
-//        resultView.checkBoxWidth.constant = 23;
-//        resultView.addCheckItemWidth.constant = resultView.addCheckLeading.constant = resultView.addCheckTrailing.constant = 0;
-//        resultView.checkItemTopSpace.constant = 5;
-//        resultView.checkItemWidth.constant = 220;
-//        resultView.handleCenterY.constant = 0;
-//        
-//        result = resultView;
-//    }
-
-   // return result;
-    
 }
 
 #pragma mark - Utils
