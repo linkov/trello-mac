@@ -843,7 +843,7 @@
                                                                                 <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gng-eQ-Hld">
                                                                                     <rect key="frame" x="11" y="15" width="297" height="14"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="297" id="AJj-mr-6qE"/>
+                                                                                        <constraint firstAttribute="width" constant="297" id="AJj-mr-6qE"/>
                                                                                     </constraints>
                                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="JNL-qQ-9J9">
                                                                                         <font key="font" metaFont="smallSystem"/>
@@ -882,6 +882,7 @@
                                                                     <outlet property="mainBox" destination="M81-XC-LPW" id="ZxC-uY-1at"/>
                                                                     <outlet property="stackView" destination="sCM-Np-Xy8" id="O6y-Hm-E4T"/>
                                                                     <outlet property="textField" destination="gng-eQ-Hld" id="pp6-8h-NNP"/>
+                                                                    <outlet property="widthConstraint" destination="AJj-mr-6qE" id="UwU-c7-VVA"/>
                                                                 </connections>
                                                             </tableCellView>
                                                         </prototypeCellViews>

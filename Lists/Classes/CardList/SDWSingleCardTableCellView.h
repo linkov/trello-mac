@@ -12,6 +12,7 @@
 @interface SDWSingleCardTableCellView : NSTableCellView
 @property (weak) IBOutlet NSTextField *textField;
 @property (strong) IBOutlet NSStackView *stackView;
+@property (strong) IBOutlet NSLayoutConstraint *widthConstraint;
 @property (strong) IBOutlet SDWCardListView *mainBox;
 
 @end

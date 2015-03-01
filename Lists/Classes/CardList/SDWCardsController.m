@@ -725,9 +725,8 @@
 
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
-    CGFloat width = card.members.count ? 297 : 397;
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(width, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
-    CGFloat height = rec.size.height;
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    CGFloat height = ceilf(rec.size.height);
 
     if (height > 14) {
 
@@ -746,7 +745,7 @@
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.textField.stringValue = card.name;
     view.textField.backgroundColor = [NSColor redColor];
-
+    view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
@@ -763,6 +762,9 @@
     } else if (due != nil && ([due timeIntervalSinceNow] > 0.0 && [due timeIntervalSinceNow] < 100000 ) ) {
         [view.mainBox setShouldDrawSideLineAmber:YES];
 
+    } else {
+        [view.mainBox setShouldDrawSideLine:NO];
+        [view.mainBox setShouldDrawSideLineAmber:NO];
     }
 
     /* mark dot */
@@ -844,7 +846,7 @@
 
                 for (NSLayoutConstraint *co in view.mainBox.constraints) {
                     if (co.priority == 750) {
-                        co.constant = view.mainBox.bounds.size.height/2-11/2;
+                        co.constant = 7;
                     }
                 }
             } else {
@@ -943,6 +945,24 @@
     return @"NA";
 }
 
+- (CGFloat)widthForMembersCount:(NSUInteger)count {
+
+    CGFloat width;
+    if (count == 0) {
+
+        width = 375;
+
+    } else if (count == 1) {
+
+        width = 347;
+
+    } else if (count > 2) {
+        
+        width = 297;
+    }
+
+    return width;
+}
 
 
 @end
