@@ -114,6 +114,7 @@
         [arr removeObject:cardToRemove];
 
         self.cardsArrayController.content = arr;
+        [self.tableView reloadData];
     }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldCreateCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -434,6 +435,7 @@
 
     // tableView implementation
     [self.tableView reloadData];
+    [self.tableView deselectAll:nil];
 
 }
 
