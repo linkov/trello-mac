@@ -65,15 +65,12 @@
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
-//    self.collectionView.backgroundColors = @[[SharedSettings appBackgroundColorDark]];
     self.tableView.backgroundColor = [SharedSettings appBackgroundColorDark];
 
 
-//    self.collectionView.itemPrototype = [self.storyboard instantiateControllerWithIdentifier:@"collectionProto"];;
-//
     [self.tableView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
-//    NSSize minSize = NSMakeSize(200,30);
-//    [self.collectionView setMaxItemSize:minSize];
+    [self.tableView setSelectionHighlightStyle:NSTableViewSelectionHighlightStyleNone];
+    [self.tableView setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleGap];
 
     [self.addCardButton registerForDraggedTypes:@[@"TRASH_DRAG_TYPE"]];
     self.addCardButton.interactionDelegate = self;
@@ -780,12 +777,12 @@
 #pragma mark - NSCollectionViewDelegate,NSCollectionViewDatasource ( Drag / Drop )
 
 
-- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
-
-    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
-
-
-}
+//- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+//
+//    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
+//
+//
+//}
 
 - (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
 
@@ -815,12 +812,12 @@
     return YES;
 }
 
-- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
-
-    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
-
-    return YES;
-}
+//- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+//
+//    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+//
+//    return YES;
+//}
 
 -(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
 
@@ -905,6 +902,15 @@
                   row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
 
     return YES;
+}
+
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
+
+    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+}
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+
+    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
 }
 
 #pragma mark - Utils
