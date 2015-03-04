@@ -449,104 +449,6 @@
     }
 }
 
-#pragma mark - NSCollectionViewDelegate,NSCollectionViewDatasource
-
-
-- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
-
-    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
-
-
-}
-
-- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
-
-    if (index > [self.cardsArrayController.arrangedObjects count]) {
-        return NO;
-    }
-
-    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
-    NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
-
-   // [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
-
-    //TODO: refactor
-    if (indexData && self.dropIndex < 100000) {
-
-        NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
-        NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
-
-        self.cardsArrayController.content = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.cardsArrayController.content];
-    }
-
-    [self reloadCollection:self.cardsArrayController.content];
-
-   // [self _dbgArrayElementsWithTitle:@"acceptDrop_after"];
-
-    [self updateCardsPositions];
-    return YES;
-}
-
-- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
-
-    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
-
-    return YES;
-}
-
--(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
-
-    if ([self.cardsArrayController.arrangedObjects count] == 1) {
-        return NSDragOperationNone;
-    }
-
-    NSDragOperation dragOp = NSDragOperationNone;
-
-    if (*proposedDropOperation == NSCollectionViewDropBefore ) {
-
-        dragOp = NSDragOperationMove;
-
-
-    } else if (*proposedDropOperation == NSCollectionViewDropOn ) {
-
-        NSUInteger inx = *proposedDropIndex;
-
-        if ([self isValidIndex:inx]) {
-            self.dropIndex = inx;
-        }
-        dragOp = NSDragOperationNone;
-
-    }
-
-    return dragOp;
-}
-
-- (void)_dbgArrayElementsWithTitle:(NSString *)title {
-
-    CLS_LOG(@"--------------%@-------------\n",title);
-
-    for (SDWCard *card in self.cardsArrayController.content) {
-
-        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
-    }
-}
-
--(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
-
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
-    NSDictionary *cardDict = @{
-                               @"cardID":card.cardID,
-                               @"itemID":card.cardID,
-                               @"boardID":card.boardID,
-                               @"itemIndex":[NSNumber numberWithInteger:indexes.firstIndex]
-                               };
-
-    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
-    [pasteboard setData:indexData forType:@"TRASH_DRAG_TYPE"];
-    [pasteboard setData:indexData forType:@"REORDER_DRAG_TYPE"];
-
-    return YES;
-}
 
 
 - (IBAction)addCard:(id)sender {
@@ -873,6 +775,136 @@
 
     return view;
 
+}
+
+#pragma mark - NSCollectionViewDelegate,NSCollectionViewDatasource ( Drag / Drop )
+
+
+- (void)collectionView:(NSCollectionView *)collectionView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint dragOperation:(NSDragOperation)operation {
+
+    self.addCardButton.image = [NSImage imageNamed:@"addCard"];
+
+
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView acceptDrop:(id<NSDraggingInfo>)draggingInfo index:(NSInteger)index dropOperation:(NSCollectionViewDropOperation)dropOperation {
+
+    if (index > [self.cardsArrayController.arrangedObjects count]) {
+        return NO;
+    }
+
+    NSPasteboard *pBoard = [draggingInfo draggingPasteboard];
+    NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
+
+    // [self _dbgArrayElementsWithTitle:@"acceptDrop_before"];
+
+    //TODO: refactor
+    if (indexData && self.dropIndex < 100000) {
+
+        NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
+        NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
+
+        self.cardsArrayController.content = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.cardsArrayController.content];
+    }
+
+    [self reloadCollection:self.cardsArrayController.content];
+
+    // [self _dbgArrayElementsWithTitle:@"acceptDrop_after"];
+
+    [self updateCardsPositions];
+    return YES;
+}
+
+- (BOOL)collectionView:(NSCollectionView *)collectionView canDragItemsAtIndexes:(NSIndexSet *)indexes withEvent:(NSEvent *)event {
+
+    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+
+    return YES;
+}
+
+-(NSDragOperation)collectionView:(NSCollectionView *)collectionView validateDrop:(id<NSDraggingInfo>)draggingInfo proposedIndex:(NSInteger *)proposedDropIndex dropOperation:(NSCollectionViewDropOperation *)proposedDropOperation {
+
+    if ([self.cardsArrayController.arrangedObjects count] == 1) {
+        return NSDragOperationNone;
+    }
+
+    NSDragOperation dragOp = NSDragOperationNone;
+
+    if (*proposedDropOperation == NSCollectionViewDropBefore ) {
+
+        dragOp = NSDragOperationMove;
+
+
+    } else if (*proposedDropOperation == NSCollectionViewDropOn ) {
+
+        NSUInteger inx = *proposedDropIndex;
+
+        if ([self isValidIndex:inx]) {
+            self.dropIndex = inx;
+        }
+        dragOp = NSDragOperationNone;
+
+    }
+
+    return dragOp;
+}
+
+- (void)_dbgArrayElementsWithTitle:(NSString *)title {
+
+    CLS_LOG(@"--------------%@-------------\n",title);
+
+    for (SDWCard *card in self.cardsArrayController.content) {
+
+        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
+    }
+}
+
+//-(BOOL)collectionView:(NSCollectionView *)collectionView writeItemsAtIndexes:(NSIndexSet *)indexes toPasteboard:(NSPasteboard *)pasteboard {
+//
+//    SDWCard *card = [self.cardsArrayController.content objectAtIndex:indexes.firstIndex];
+//    NSDictionary *cardDict = @{
+//                               @"cardID":card.cardID,
+//                               @"itemID":card.cardID,
+//                               @"boardID":card.boardID,
+//                               @"itemIndex":[NSNumber numberWithInteger:indexes.firstIndex]
+//                               };
+//
+//    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
+//    [pasteboard setData:indexData forType:@"TRASH_DRAG_TYPE"];
+//    [pasteboard setData:indexData forType:@"REORDER_DRAG_TYPE"];
+//    
+//    return YES;
+//}
+
+
+
+
+#pragma mark - JWCTableViewDelegate ( Drag / Drop )
+
+- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard {
+
+    SDWCard *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
+    NSDictionary *cardDict = @{
+                               @"cardID":card.cardID,
+                               @"itemID":card.cardID,
+                               @"boardID":card.boardID,
+                               @"itemIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
+                               };
+
+    NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:cardDict];
+    [pboard setData:indexData forType:@"TRASH_DRAG_TYPE"];
+    [pboard setData:indexData forType:@"REORDER_DRAG_TYPE"];
+
+    return YES;
+}
+- (NSDragOperation)_jwcTableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
+
+    return NSDragOperationMove;
+}
+- (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
+                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
+
+    return YES;
 }
 
 #pragma mark - Utils
