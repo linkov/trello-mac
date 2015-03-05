@@ -65,7 +65,7 @@
 
     self.reloadButton.hidden = YES;
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
-    self.tableView.backgroundColor = [SharedSettings appBackgroundColorDark];
+    self.tableView.backgroundColor = [NSColor clearColor];
 
 
     [self.tableView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
@@ -596,8 +596,23 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    //TODO: refactor
+    for (int i = 0; i<[self.cardsArrayController.content count]; i++) {
+
+        SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:i makeIfNecessary:NO];
+        [cell.mainBox setSelected:NO];
+
+    }
+
     SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
     [cell.mainBox setSelected:YES];
+
+    cell.delegate = self;
+
+    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
+    self.lastSelectedCard = selectedCard;
+    [[self cardDetailsVC] setCard:selectedCard];
+
 
     return NO;
 }
@@ -648,6 +663,10 @@
 }
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
+
+    if ([self.cardsArrayController.arrangedObjects count] == 0) {
+        return nil;
+    }
 
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
