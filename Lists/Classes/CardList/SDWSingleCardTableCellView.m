@@ -25,6 +25,19 @@
     self.textField.delegate = self;
 }
 
+- (void)mouseDown:(NSEvent *)theEvent {
+    [super mouseDown:theEvent];
+
+    if (theEvent.clickCount >= 2) {
+        self.textField.editable = YES;
+        [self.textField becomeFirstResponder];
+
+    } else if (theEvent.clickCount == 1) {
+        self.textField.editable = NO;
+    }
+    
+}
+
 #pragma mark - NSTextFieldDelegate
 
 - (NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {

@@ -596,25 +596,27 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 
+    SDWSingleCardTableCellView *selectedCell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
+    [selectedCell.mainBox setSelected:YES];
+    selectedCell.delegate = self;
+
     //TODO: refactor
     for (int i = 0; i<[self.cardsArrayController.content count]; i++) {
 
         SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:i makeIfNecessary:NO];
-        [cell.mainBox setSelected:NO];
+
+        if(cell != selectedCell) {
+            [cell.mainBox setSelected:NO];
+        }
 
     }
-
-    SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
-    [cell.mainBox setSelected:YES];
-
-    cell.delegate = self;
 
     SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
     self.lastSelectedCard = selectedCard;
     [[self cardDetailsVC] setCard:selectedCard];
 
 
-    return NO;
+    return YES;
 }
 
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
