@@ -11,7 +11,7 @@
 @interface SDWCardListView : NSBox
 
 @property (strong) IBOutlet NSTextField *textField;
-@property (strong) IBOutlet NSColor *IBfillColor;
+
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
 @property (nonatomic,assign) BOOL hasDot;
 @property (nonatomic,assign) BOOL shouldDrawSideLine;

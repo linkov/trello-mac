@@ -11,7 +11,6 @@
 #import "SDWcard.h"
 #import "AFRecordPathManager.h"
 #import "SDWCardsController.h"
-#import "SDWCardsCollectionViewItem.h"
 #import "SDWAppSettings.h"
 #import "PulseView.h"
 #import "SDWProgressIndicator.h"
@@ -25,6 +24,8 @@
 #import "SDWSingleCardTableCellView.h"
 #import "Utils.h"
 #import "SDWCardListView.h"
+
+#import "Xtrace.h"
 
 @interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -194,41 +195,41 @@
 
 - (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
 
-//    if (local) {
-//
-//        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-//        [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
-//        [arr insertObject:card atIndex:[self.collectionView.content indexOfObject:card]];
-//        [self reloadCollection:arr];
-//        return;
-//
-//    }
-//
-//    [self showCardSavingIndicator:YES];
-//
-//    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
-//
-//        [self showCardSavingIndicator:NO];
-//
-//        if (!error) {
-//
-//            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
-//            [[self cardDetailsVC] setCard:updatedCard];
-//
-//            //TODO: refactor this
-//            if (![self isValidIndex:[self.collectionView.content indexOfObject:card]]) {
-//
-//                [self reloadCards];
-//                return;
-//            }
-//
-//            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-//            [arr removeObjectAtIndex:[self.collectionView.content indexOfObject:card] ];
-//            [arr insertObject:updatedCard atIndex:[self.collectionView.content indexOfObject:card]];
-//            [self reloadCollection:arr];
-//
-//        }
-//    }];
+    if (local) {
+
+        NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+        [arr removeObjectAtIndex:[self.cardsArrayController.content indexOfObject:card] ];
+        [arr insertObject:card atIndex:[self.cardsArrayController.content indexOfObject:card]];
+        [self reloadCollection:arr];
+        return;
+
+    }
+
+    [self showCardSavingIndicator:YES];
+
+    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+
+        [self showCardSavingIndicator:NO];
+
+        if (!error) {
+
+            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
+            [[self cardDetailsVC] setCard:updatedCard];
+
+            //TODO: refactor this
+            if (![self isValidIndex:[self.cardsArrayController.content indexOfObject:card]]) {
+
+                [self reloadCards];
+                return;
+            }
+
+            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+            [arr removeObjectAtIndex:[self.cardsArrayController.content indexOfObject:card] ];
+            [arr insertObject:updatedCard atIndex:[self.cardsArrayController.content indexOfObject:card]];
+            [self reloadCollection:arr];
+
+        }
+    }];
 
 }
 
@@ -243,7 +244,7 @@
         if (!error) {
 
             self.lastSelectedItem.mainBox.selected = NO;
-            self.lastSelectedItem.textField.toolTip = self.lastSelectedItem.textField.stringValue;
+            self.lastSelectedItem.mainBox.textField.toolTip = self.lastSelectedItem.textField.stringValue;
             [self.lastSelectedItem setNeedsDisplay:YES];
 
         }
@@ -285,8 +286,8 @@
             [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
             [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
             [self reloadCollection:arr];
-            [[self cardDetailsVC] setCard:nil];
-        }
+            [[self cardDetailsVC] setCard:updatedCard];
+        } 
 
     }];
 
@@ -298,6 +299,7 @@
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
     self.cardsArrayController.content = arr;
+    [self.tableView reloadData];
 }
 
 - (void)clearCards {
@@ -336,7 +338,7 @@
 
 
     /*
-     clean previous cards before loading new onces
+     clean previous cards before loading new ones
      so that loading indicator is not on top of cards
      */
     self.cardsArrayController.content = nil;
@@ -469,19 +471,22 @@
     newCard.name = @"";
     newCard.isSynced = NO;
 
+    self.lastSelectedCard = newCard;
+
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-    [arr insertObject:newCard atIndex:arr.count];
+    [arr addObject:newCard];
 
     self.cardsArrayController.content = arr;
 
     NSUInteger lastIndex = arr.count-1;
-    [self.tableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex] withAnimation:NSTableViewAnimationSlideDown];
+    [self.tableView insertRowsAtIndexes:[NSIndexSet indexSetWithIndex:lastIndex] withAnimation:NSTableViewAnimationEffectNone];
 
     SDWSingleCardTableCellView *newRow = (SDWSingleCardTableCellView *)[self.tableView viewAtColumn:0 row:lastIndex makeIfNecessary:NO];
     newRow.delegate = self;
+    newRow.mainBox.textField.delegate = newRow;
     newRow.mainBox.selected = YES;
-    newRow.textField.editable = YES;
-    [newRow.textField becomeFirstResponder];
+    newRow.mainBox.textField.editable = YES;
+    [newRow.mainBox.textField becomeFirstResponder];
 
     self.addCardButton.enabled = NO;
 
@@ -539,9 +544,11 @@
 
     self.addCardButton.enabled = YES;
     self.lastSelectedItem = cardView;
+    self.lastSelectedItem.mainBox.selected = NO;
 
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:self.tableView.selectedRow];
-    card.name = cardView.textField.stringValue;
+    SDWCard *card = self.lastSelectedCard;
+
+    card.name = cardView.mainBox.textField.stringValue;
 
     [[self cardDetailsVC] setCard:card];
 
@@ -550,6 +557,7 @@
         [self updateCard:card];
     }
     else {
+
         [self createCard:card];
     }
 }
@@ -572,18 +580,21 @@
 
     [self showCardSavingIndicator:YES];
 
+    [[self cardDetailsVC] setCard:nil];
+
+    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr removeObject:cardToDelete];
+    self.cardsArrayController.content = arr;
+    [self.tableView reloadData];
+
     [[SDWTrelloStore store] deleteCardID:cardID withCompletion:^(id object, NSError *error) {
 
         [self showCardSavingIndicator:NO];
 
         if (!error) {
 
-            [[self cardDetailsVC] setCard:nil];
 
-            //TODO: don't rely on selectionIndex in the future
-            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-            [arr removeObjectAtIndex:self.cardsArrayController.selectionIndex];
-            self.cardsArrayController.content = arr;
         }
 
     }];
@@ -607,6 +618,7 @@
     SDWSingleCardTableCellView *selectedCell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
     [selectedCell.mainBox setSelected:YES];
     selectedCell.delegate = self;
+    selectedCell.mainBox.textField.delegate = selectedCell;
 
     //TODO: refactor
     for (int i = 0; i<[self.cardsArrayController.content count]; i++) {
@@ -710,11 +722,14 @@
         case SDWDotOptionHasDescription: {
 
             NSString *descString = card.cardDescription;
-            //  NSLog(@"desc - %@",descString);
 
             if (descString.length > 0) {
 
                 [view.mainBox setHasDot:YES];
+
+            } else {
+
+                [view.mainBox setHasDot:NO];
             }
 
         }

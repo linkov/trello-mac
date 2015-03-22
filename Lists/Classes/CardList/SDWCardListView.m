@@ -14,6 +14,12 @@
 #import "SDWLabel.h"
 #import "Utils.h"
 
+@interface SDWCardListView ()
+
+
+
+@end
+
 @implementation SDWCardListView {
 
     NSBezierPath* sideLinePath;
@@ -29,6 +35,10 @@
     self.cornerRadius = 1.5;
     self.borderColor = [NSColor clearColor];
     self.borderWidth = 0;
+
+
+    self.textField.editable = NO;
+   // self.textField.delegate = self;
 }
 
 - (void)drawRect:(NSRect)dirtyRect {
@@ -68,8 +78,8 @@
         [[SharedSettings appBackgroundColorDark] setFill];
         [[SharedSettings appBackgroundColorDark] setStroke];
         [ovalPath fill];
+
     }
-    
 
     for (SDWLabel *label in self.labels) {
 //        NSLog(@"label - %@",label.color);
@@ -83,6 +93,45 @@
     }
 
 }
+
+//#pragma mark - NSTextFieldDelegate
+//
+//- (NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
+//
+//    return nil;
+//}
+//
+//- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
+//
+//    NSTextField* tf = (NSTextField*)control;
+//
+//    self.originalText = tf.stringValue;
+//    return YES;
+//}
+//
+//- (void)controlTextDidChange:(NSNotification *)obj {}
+//
+//
+//- (void)controlTextDidEndEditing:(NSNotification *)obj {
+//
+//    self.textField.editable = NO;
+//
+//    if (self.textField.stringValue.length == 0) {
+//           // [self.delegate cardViewShouldDismissCard:self];
+//    }
+//
+//}
+//
+//- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+//
+//    if (![self.originalText isEqualToString:self.textField.stringValue]) {
+////        [self.delegate cardViewShouldSaveCard:self];
+//        [self.textField resignFirstResponder];
+//        self.textField.editable = NO;
+//    }
+//    
+//    return YES;
+//}
 
 - (void)setSelected:(BOOL)selected {
 	if (selected) {

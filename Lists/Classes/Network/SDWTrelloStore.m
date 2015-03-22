@@ -94,7 +94,6 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject)
      {
 
-         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardID}];
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 

@@ -167,8 +167,12 @@
 
     [self updateDueDateViewWithDate:self.card.dueDate];
 
-    [self fetchActivities];
-    [self fetchChecklists];
+    if (card.cardID) {
+        
+        [self fetchActivities];
+        [self fetchChecklists];
+    }
+
 
 }
 

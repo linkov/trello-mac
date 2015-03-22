@@ -11,7 +11,7 @@
 #import "Utils.h"
 #import "SDWLabel.h"
 
-@interface SDWSingleCardTableCellView () <NSTextFieldDelegate>
+@interface SDWSingleCardTableCellView ()
 
 @property (strong) NSString *originalText;
 
@@ -19,22 +19,42 @@
 
 @implementation SDWSingleCardTableCellView
 
-- (void)awakeFromNib {
 
-    self.textField.editable = NO;
-    self.textField.delegate = self;
-}
+#pragma mark - Mouse
 
 - (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
 
     if (theEvent.clickCount >= 2) {
-        self.textField.editable = YES;
-        [self.textField becomeFirstResponder];
+
+        self.mainBox.textField.editable = YES;
+        [self.mainBox.textField becomeFirstResponder];
 
     } else if (theEvent.clickCount == 1) {
-        self.textField.editable = NO;
+        self.mainBox.textField.editable = NO;
     }
+    
+}
+
+- (void)rightMouseDown:(NSEvent *)theEvent {
+
+    if (SharedSettings.shouldShowCardLabels == NO) {
+        return;
+    }
+
+    //self.selected = YES;
+
+    NSMenu *labelsMenu = [Utils labelsMenu];
+
+    for (NSMenuItem *item in labelsMenu.itemArray) {
+
+        [item setTarget:self];
+        [item setAction:@selector(changeCardLabel:)];
+        item.state = [self isActiveLabelWithTitle:item.title] ? 1 : 0;
+
+    }
+
+    [NSMenu popUpContextMenu:labelsMenu withEvent:theEvent forView:self];
     
 }
 
@@ -58,47 +78,27 @@
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
 
-    self.textField.editable = NO;
+    self.mainBox.textField.editable = NO;
 
-    if (self.textField.stringValue.length == 0) {
-        [self.delegate cardViewShouldDismissCard:self];
+    if (self.mainBox.textField.stringValue.length == 0) {
+         [self.delegate cardViewShouldDismissCard:self];
     }
+
 }
 
 - (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
 
     if (![self.originalText isEqualToString:self.textField.stringValue]) {
+
         [self.delegate cardViewShouldSaveCard:self];
-        [self.textField resignFirstResponder];
-        self.textField.editable = NO;
+        [self.mainBox.textField resignFirstResponder];
+        self.mainBox.textField.editable = NO;
     }
     
     return YES;
 }
 
-#pragma mark - Labels
-
-- (void)rightMouseDown:(NSEvent *)theEvent {
-
-    if (SharedSettings.shouldShowCardLabels == NO) {
-        return;
-    }
-
-    //self.selected = YES;
-
-    NSMenu *labelsMenu = [Utils labelsMenu];
-
-    for (NSMenuItem *item in labelsMenu.itemArray) {
-
-        [item setTarget:self];
-        [item setAction:@selector(changeCardLabel:)];
-        item.state = [self isActiveLabelWithTitle:item.title] ? 1 : 0;
-
-    }
-
-    [NSMenu popUpContextMenu:labelsMenu withEvent:theEvent forView:self];
-    
-}
+#pragma mark - Card labels
 
 - (void)changeCardLabel:(NSMenuItem *)sender {
 

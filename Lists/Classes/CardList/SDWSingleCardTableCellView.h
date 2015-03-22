@@ -11,8 +11,8 @@
 
 @protocol SDWSingleCardViewDelegate;
 
-@interface SDWSingleCardTableCellView : NSTableCellView
-@property (weak) IBOutlet NSTextField *textField;
+@interface SDWSingleCardTableCellView : NSTableCellView <NSTextFieldDelegate>
+
 @property (strong) IBOutlet NSStackView *stackView;
 @property (strong) IBOutlet NSLayoutConstraint *widthConstraint;
 @property (strong) IBOutlet SDWCardListView *mainBox;

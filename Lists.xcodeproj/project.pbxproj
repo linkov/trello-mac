@@ -16,8 +16,6 @@
 		F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F31A12AFD800FD4E85 /* SDWCardViewController.m */; };
 		F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F61A12AFD800FD4E85 /* SDWCardDetailsTextField.m */; };
 		F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */; };
-		F10AAA541A12AFD800FD4E85 /* SDWCardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */; };
-		F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */; };
 		F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */; };
 		F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */; };
 		F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA061A12AFD800FD4E85 /* AFRecord.m */; };
@@ -96,10 +94,6 @@
 		F10AA9F61A12AFD800FD4E85 /* SDWCardDetailsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWCardDetailsTextField.m; path = ../CardList/SDWCardDetailsTextField.m; sourceTree = "<group>"; };
 		F10AA9F71A12AFD800FD4E85 /* SDWCardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardListView.h; sourceTree = "<group>"; };
 		F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardListView.m; sourceTree = "<group>"; };
-		F10AA9F91A12AFD800FD4E85 /* SDWCardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionView.h; sourceTree = "<group>"; };
-		F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionView.m; sourceTree = "<group>"; };
-		F10AA9FB1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionViewItem.h; sourceTree = "<group>"; };
-		F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionViewItem.m; sourceTree = "<group>"; };
 		F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsController.h; sourceTree = "<group>"; };
 		F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsController.m; sourceTree = "<group>"; };
 		F10AAA021A12AFD800FD4E85 /* SDWLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLoginVC.h; sourceTree = "<group>"; };
@@ -310,10 +304,6 @@
 				F14B36141A145ADF00AFD5C9 /* PulseView.m */,
 				F10AA9F71A12AFD800FD4E85 /* SDWCardListView.h */,
 				F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */,
-				F10AA9F91A12AFD800FD4E85 /* SDWCardsCollectionView.h */,
-				F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */,
-				F10AA9FB1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.h */,
-				F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */,
 				F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */,
 				F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */,
 				F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */,
@@ -633,13 +623,11 @@
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
-				F10AAA541A12AFD800FD4E85 /* SDWCardsCollectionView.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
-				F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,

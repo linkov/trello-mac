@@ -251,6 +251,8 @@
 
 - (void)moveCard:(NSDictionary *)cardData {
 
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+
     [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
                               toListID:self.boardWithDrop.boardID
                                boardID:self.boardWithDropParent.boardID];

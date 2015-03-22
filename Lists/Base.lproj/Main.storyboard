@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="6254"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="6751"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -841,6 +841,9 @@
                                                                         </constraints>
                                                                         <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                                                         <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                        <connections>
+                                                                            <outlet property="textField" destination="gng-eQ-Hld" id="ivk-A7-HpB"/>
+                                                                        </connections>
                                                                     </box>
                                                                 </subviews>
                                                                 <constraints>
@@ -1576,78 +1579,6 @@
             </objects>
             <point key="canvasLocation" x="1679" y="1289"/>
         </scene>
-        <!--Cards Collection View Item-->
-        <scene sceneID="EFB-Ab-fxh">
-            <objects>
-                <collectionViewItem storyboardIdentifier="collectionProto" id="kM3-gL-jCX" customClass="SDWCardsCollectionViewItem" sceneMemberID="viewController">
-                    <view key="view" wantsLayer="YES" horizontalCompressionResistancePriority="250" id="fK7-b6-0nR">
-                        <rect key="frame" x="0.0" y="0.0" width="405" height="32"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <box autoresizesSubviews="NO" wantsLayer="YES" title="Box" boxType="custom" borderType="none" translatesAutoresizingMaskIntoConstraints="NO" id="H6c-DE-Hst" customClass="SDWCardListView">
-                                <rect key="frame" x="0.0" y="1" width="400" height="30"/>
-                                <view key="contentView">
-                                    <rect key="frame" x="0.0" y="0.0" width="400" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <imageView hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q6R-h4-F19">
-                                            <rect key="frame" x="0.0" y="-9" width="48" height="48"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageAlignment="left" imageScaling="proportionallyDown" image="note" id="88p-t9-DQi"/>
-                                        </imageView>
-                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="h8j-pa-1d3">
-                                            <rect key="frame" x="10" y="6" width="282" height="17"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="17" id="kdp-8n-cfK"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" allowsEditingTextAttributes="YES" usesSingleLineMode="YES" id="vbY-RR-7CR">
-                                                <font key="font" metaFont="smallSystem"/>
-                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
-                                            </textFieldCell>
-                                            <connections>
-                                                <binding destination="kM3-gL-jCX" name="toolTip" keyPath="representedObject.name" id="FG1-Qu-Vt3"/>
-                                                <binding destination="kM3-gL-jCX" name="value" keyPath="representedObject.name" id="sde-RJ-0Jc"/>
-                                            </connections>
-                                        </textField>
-                                        <stackView orientation="horizontal" alignment="top" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="3uD-8Q-qvy">
-                                            <rect key="frame" x="296" y="0.0" width="100" height="26"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="100" placeholder="YES" id="ZPu-MV-hZe"/>
-                                            </constraints>
-                                        </stackView>
-                                    </subviews>
-                                </view>
-                                <constraints>
-                                    <constraint firstItem="3uD-8Q-qvy" firstAttribute="leading" secondItem="h8j-pa-1d3" secondAttribute="trailing" constant="4" id="EMD-kp-82f"/>
-                                    <constraint firstItem="h8j-pa-1d3" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" constant="7" id="Eut-09-jna"/>
-                                    <constraint firstAttribute="bottom" secondItem="3uD-8Q-qvy" secondAttribute="bottom" id="bLb-lo-9NO"/>
-                                    <constraint firstItem="3uD-8Q-qvy" firstAttribute="top" secondItem="H6c-DE-Hst" secondAttribute="top" priority="750" constant="4" id="hxb-pV-dcw"/>
-                                    <constraint firstItem="h8j-pa-1d3" firstAttribute="leading" secondItem="H6c-DE-Hst" secondAttribute="leading" constant="10" id="rrn-K7-CSc"/>
-                                    <constraint firstAttribute="trailing" secondItem="3uD-8Q-qvy" secondAttribute="trailing" constant="4" id="z7S-SN-8Q9"/>
-                                </constraints>
-                                <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                            </box>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="H6c-DE-Hst" firstAttribute="leading" secondItem="fK7-b6-0nR" secondAttribute="leading" id="BwA-F4-0bc"/>
-                            <constraint firstAttribute="trailing" secondItem="H6c-DE-Hst" secondAttribute="trailing" constant="5" id="IqD-2n-IQJ"/>
-                            <constraint firstItem="H6c-DE-Hst" firstAttribute="top" secondItem="fK7-b6-0nR" secondAttribute="top" constant="1" id="M9E-B0-GMY"/>
-                            <constraint firstAttribute="bottom" secondItem="H6c-DE-Hst" secondAttribute="bottom" constant="1" id="z0F-HE-nHm"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="mainBox" destination="H6c-DE-Hst" id="KK6-Jw-V0z"/>
-                        <outlet property="stackView" destination="3uD-8Q-qvy" id="GyU-hx-vKW"/>
-                        <outlet property="textField" destination="h8j-pa-1d3" id="ibB-cG-lme"/>
-                    </connections>
-                </collectionViewItem>
-                <customObject id="3Hk-wB-0fz" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <userDefaultsController id="RH9-QD-5Z2"/>
-                <userDefaultsController id="nK8-cf-FCk"/>
-            </objects>
-            <point key="canvasLocation" x="685.5" y="1652"/>
-        </scene>
         <!--Sign in to Trello-->
         <scene sceneID="cAf-kc-wfB">
             <objects>
@@ -1695,7 +1626,6 @@
         <image name="handle3" width="5" height="9"/>
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16.5"/>
-        <image name="note" width="8" height="10"/>
         <image name="onboard" width="424" height="453"/>
         <image name="reload" width="50" height="50"/>
         <image name="saveAlt2" width="24" height="24"/>
