@@ -333,7 +333,15 @@
     }
 
     SharedSettings.selectedListUsers = nil;
+
+
+    /*
+     clean previous cards before loading new onces
+     so that loading indicator is not on top of cards
+     */
     self.cardsArrayController.content = nil;
+    [self.tableView reloadData];
+
     [self loadMembers:self.parentListID];
 
 }
