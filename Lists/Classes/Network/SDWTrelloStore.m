@@ -165,8 +165,7 @@
 
 - (void)updateLabelsForCardID:(NSString *)cardID
                        colors:(NSString *)colors
-                   completion:(SDWTrelloStoreCompletionBlock)block
-{
+                   completion:(SDWTrelloStoreCompletionBlock)block {
 
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",cardID];

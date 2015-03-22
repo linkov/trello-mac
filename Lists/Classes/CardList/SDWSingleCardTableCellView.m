@@ -42,7 +42,7 @@
         return;
     }
 
-    //self.selected = YES;
+    [self.delegate cardViewDidSelectCard:self];
 
     NSMenu *labelsMenu = [Utils labelsMenu];
 

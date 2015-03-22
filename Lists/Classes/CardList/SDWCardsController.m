@@ -497,15 +497,8 @@
 
 - (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
 
-//    SDWCardsCollectionViewItem *selected = (SDWCardsCollectionViewItem *)[self.collectionView itemAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//    selected.delegate = self;
-//
-//    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:self.collectionView.selectionIndexes.firstIndex];
-//
-//    self.lastSelectedCard = selectedCard;
-//
-//    [[self cardDetailsVC] setCard:selectedCard];
-
+    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
+    self.lastSelectedCard = selectedCard;
 }
 
 - (void)cardViewShouldContainLabelColors:(NSString *)colors {
@@ -692,9 +685,10 @@
 
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
-    view.textField.stringValue = card.name;
+    view.mainBox.textField.stringValue = card.name;
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
     view.textField.backgroundColor = [NSColor clearColor];
+    view.delegate = self;
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
