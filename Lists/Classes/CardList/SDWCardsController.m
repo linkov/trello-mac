@@ -689,6 +689,7 @@
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
     view.textField.backgroundColor = [NSColor clearColor];
     view.delegate = self;
+    view.mainBox.selected = NO;
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
