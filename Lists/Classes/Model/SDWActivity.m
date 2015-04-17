@@ -17,23 +17,6 @@
     self.memberInitials = self.attributes[@"memberCreator"][@"initials"];
     self.time = [Utils stringToDate:self.attributes[@"date"]];
 
-
-//    if ([self.attributes valueForKeyPath:@"lists"]) {
-//
-//        NSMutableArray *children = [NSMutableArray new];
-//        for (NSDictionary *att in [self.attributes valueForKeyPath:@"lists"]) {
-//            SDWBoard *post = [[SDWBoard alloc] initWithAttributes:att];
-//            [children addObject:post];
-//        }
-//
-//        self.children = children;
-//        self.isLeaf = NO;
-//        self.fontSize = 14;
-//    }
-//    else {
-//        self.isLeaf = YES;
-//        self.fontSize = 11;
-//    }
 }
 
 - (NSString *)timeString {

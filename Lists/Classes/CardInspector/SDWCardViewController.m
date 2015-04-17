@@ -167,8 +167,12 @@
 
     [self updateDueDateViewWithDate:self.card.dueDate];
 
-    [self fetchActivities];
-    [self fetchChecklists];
+    if (card.cardID) {
+        
+        [self fetchActivities];
+        [self fetchChecklists];
+    }
+
 
 }
 
@@ -642,6 +646,7 @@
         itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
         self.dropSectionKey = cellView.trelloCheckListID;
         sectionKeyNew = item.listID;
+
     } else {
 
         NSLog(@"[self.flatContent objectAtIndex:row] is Section");
@@ -659,14 +664,6 @@
             /* fix for when dragging down index hops over 1 item always */
             itemIndexInSection -= 1;
         }
-
-//        NSLog(@"NSTableViewDropAbove");
-//        NSLog(@"itemMovedFromIndex %lu",(unsigned long)itemMovedFromIndex);
-//        NSLog(@"itemIndexInSection %lu",(unsigned long)itemIndexInSection);
-//        NSLog(@"sectionKeyOriginal %@",sectionKeyOriginal);
-//        NSLog(@"sectionKeyNew %@",sectionKeyNew ?: @"is nil");
-//        NSLog(@"self.dropSectionKey %@",self.dropSectionKey);
-//        NSLog(@"----- * ------");
 
         self.dropIndex = itemIndexInSection;
         dragOp = NSDragOperationMove;

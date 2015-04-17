@@ -16,8 +16,6 @@
 		F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F31A12AFD800FD4E85 /* SDWCardViewController.m */; };
 		F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F61A12AFD800FD4E85 /* SDWCardDetailsTextField.m */; };
 		F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */; };
-		F10AAA541A12AFD800FD4E85 /* SDWCardsCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */; };
-		F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */; };
 		F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */; };
 		F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */; };
 		F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA061A12AFD800FD4E85 /* AFRecord.m */; };
@@ -62,6 +60,7 @@
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
+		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
 		F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1665A661A22847700A1519D /* Crashlytics.framework */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
@@ -95,10 +94,6 @@
 		F10AA9F61A12AFD800FD4E85 /* SDWCardDetailsTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDWCardDetailsTextField.m; path = ../CardList/SDWCardDetailsTextField.m; sourceTree = "<group>"; };
 		F10AA9F71A12AFD800FD4E85 /* SDWCardListView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardListView.h; sourceTree = "<group>"; };
 		F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardListView.m; sourceTree = "<group>"; };
-		F10AA9F91A12AFD800FD4E85 /* SDWCardsCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionView.h; sourceTree = "<group>"; };
-		F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionView.m; sourceTree = "<group>"; };
-		F10AA9FB1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsCollectionViewItem.h; sourceTree = "<group>"; };
-		F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsCollectionViewItem.m; sourceTree = "<group>"; };
 		F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsController.h; sourceTree = "<group>"; };
 		F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsController.m; sourceTree = "<group>"; };
 		F10AAA021A12AFD800FD4E85 /* SDWLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLoginVC.h; sourceTree = "<group>"; };
@@ -187,6 +182,8 @@
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
 		F14B36131A145ADF00AFD5C9 /* PulseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseView.h; sourceTree = "<group>"; };
 		F14B36141A145ADF00AFD5C9 /* PulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseView.m; sourceTree = "<group>"; };
+		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
+		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
 		F1665A661A22847700A1519D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F18089B91A280B7000A701B7 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
@@ -307,12 +304,10 @@
 				F14B36141A145ADF00AFD5C9 /* PulseView.m */,
 				F10AA9F71A12AFD800FD4E85 /* SDWCardListView.h */,
 				F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */,
-				F10AA9F91A12AFD800FD4E85 /* SDWCardsCollectionView.h */,
-				F10AA9FA1A12AFD800FD4E85 /* SDWCardsCollectionView.m */,
-				F10AA9FB1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.h */,
-				F10AA9FC1A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m */,
 				F10AA9FD1A12AFD800FD4E85 /* SDWCardsController.h */,
 				F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */,
+				F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */,
+				F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */,
 			);
 			path = CardList;
 			sourceTree = "<group>";
@@ -602,6 +597,7 @@
 				F10AAA751A12AFD800FD4E85 /* AFURLRequestSerialization.m in Sources */,
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
 				F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */,
+				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
 				F10AAA731A12AFD800FD4E85 /* AFSecurityPolicy.m in Sources */,
 				F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */,
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,
@@ -627,13 +623,11 @@
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
-				F10AAA541A12AFD800FD4E85 /* SDWCardsCollectionView.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
-				F10AAA551A12AFD800FD4E85 /* SDWCardsCollectionViewItem.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
@@ -745,7 +739,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -755,7 +750,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -764,7 +759,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer: Alexey Linkov (2G9CV2C6CJ)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -773,7 +769,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "992b1b9c-a4e2-49d6-b438-171bda28b77e";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

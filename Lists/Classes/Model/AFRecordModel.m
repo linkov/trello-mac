@@ -57,8 +57,6 @@
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
         for (NSDictionary *attributes in postsFromResponse) {
 
-
-
             Class cl = [self class];
             AFRecordModel *model = [[cl alloc] initWithAttributes:attributes];
             [mutablePosts addObject:model];

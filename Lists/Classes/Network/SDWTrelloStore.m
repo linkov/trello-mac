@@ -94,7 +94,6 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject)
      {
 
-         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardID}];
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -166,8 +165,7 @@
 
 - (void)updateLabelsForCardID:(NSString *)cardID
                        colors:(NSString *)colors
-                   completion:(SDWTrelloStoreCompletionBlock)block
-{
+                   completion:(SDWTrelloStoreCompletionBlock)block {
 
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",cardID];
