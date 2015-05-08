@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="SDWBoardManaged" representedClassName="SDWBoardManaged" syncable="YES">
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SDWCardManaged" representedClassName="SDWCardManaged" syncable="YES">
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SDWChecklistItemManaged" representedClassName="SDWChecklistItemManaged" syncable="YES">
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SDWChecklistManaged" representedClassName="SDWChecklistManaged" syncable="YES">
+        <attribute name="ilstsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SDWLabelManaged" representedClassName="SDWLabelManaged" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="SDWUserManaged" syncable="YES">
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SDWCardManaged" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="SDWBoardManaged" positionX="-54" positionY="9" width="128" height="75"/>
+        <element name="SDWLabelManaged" positionX="-36" positionY="27" width="128" height="90"/>
+        <element name="SDWUserManaged" positionX="-18" positionY="54" width="128" height="75"/>
+        <element name="SDWChecklistManaged" positionX="0" positionY="72" width="128" height="75"/>
+        <element name="SDWChecklistItemManaged" positionX="18" positionY="90" width="128" height="75"/>
+    </elements>
+</model>

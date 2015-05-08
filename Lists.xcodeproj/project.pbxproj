@@ -6,7 +6,32 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F106AB111AFD487300BA3C9C /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F106AB141AFD487300BA3C9C /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				F106AB151AFD488000BA3C9C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		F106AB181AFD499100BA3C9C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F106AB161AFD499100BA3C9C /* Model.xcdatamodeld */; };
+		F106AB2F1AFD4F7D00BA3C9C /* _SDWBoardManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB1C1AFD4F7D00BA3C9C /* _SDWBoardManaged.m */; };
+		F106AB301AFD4F7D00BA3C9C /* _SDWCardManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB1E1AFD4F7D00BA3C9C /* _SDWCardManaged.m */; };
+		F106AB311AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB201AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m */; };
+		F106AB321AFD4F7D00BA3C9C /* _SDWChecklistManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB221AFD4F7D00BA3C9C /* _SDWChecklistManaged.m */; };
+		F106AB331AFD4F7D00BA3C9C /* _SDWLabelManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB241AFD4F7D00BA3C9C /* _SDWLabelManaged.m */; };
+		F106AB341AFD4F7D00BA3C9C /* SDWBoardManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB261AFD4F7D00BA3C9C /* SDWBoardManaged.m */; };
+		F106AB351AFD4F7D00BA3C9C /* SDWCardManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB281AFD4F7D00BA3C9C /* SDWCardManaged.m */; };
+		F106AB361AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB2A1AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m */; };
+		F106AB371AFD4F7D00BA3C9C /* SDWChecklistManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB2C1AFD4F7D00BA3C9C /* SDWChecklistManaged.m */; };
+		F106AB381AFD4F7D00BA3C9C /* SDWLabelManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F106AB2E1AFD4F7D00BA3C9C /* SDWLabelManaged.m */; };
 		F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */; };
 		F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10AA9E51A12AFD800FD4E85 /* Main.storyboard */; };
 		F10AAA4D1A12AFD800FD4E85 /* SDWBoardsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9EA1A12AFD800FD4E85 /* SDWBoardsCellView.m */; };
@@ -77,6 +102,27 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F106AB171AFD499100BA3C9C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		F106AB1B1AFD4F7D00BA3C9C /* _SDWBoardManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWBoardManaged.h; sourceTree = "<group>"; };
+		F106AB1C1AFD4F7D00BA3C9C /* _SDWBoardManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWBoardManaged.m; sourceTree = "<group>"; };
+		F106AB1D1AFD4F7D00BA3C9C /* _SDWCardManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWCardManaged.h; sourceTree = "<group>"; };
+		F106AB1E1AFD4F7D00BA3C9C /* _SDWCardManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWCardManaged.m; sourceTree = "<group>"; };
+		F106AB1F1AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWChecklistItemManaged.h; sourceTree = "<group>"; };
+		F106AB201AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWChecklistItemManaged.m; sourceTree = "<group>"; };
+		F106AB211AFD4F7D00BA3C9C /* _SDWChecklistManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWChecklistManaged.h; sourceTree = "<group>"; };
+		F106AB221AFD4F7D00BA3C9C /* _SDWChecklistManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWChecklistManaged.m; sourceTree = "<group>"; };
+		F106AB231AFD4F7D00BA3C9C /* _SDWLabelManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWLabelManaged.h; sourceTree = "<group>"; };
+		F106AB241AFD4F7D00BA3C9C /* _SDWLabelManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWLabelManaged.m; sourceTree = "<group>"; };
+		F106AB251AFD4F7D00BA3C9C /* SDWBoardManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardManaged.h; sourceTree = "<group>"; };
+		F106AB261AFD4F7D00BA3C9C /* SDWBoardManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardManaged.m; sourceTree = "<group>"; };
+		F106AB271AFD4F7D00BA3C9C /* SDWCardManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardManaged.h; sourceTree = "<group>"; };
+		F106AB281AFD4F7D00BA3C9C /* SDWCardManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardManaged.m; sourceTree = "<group>"; };
+		F106AB291AFD4F7D00BA3C9C /* SDWChecklistItemManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemManaged.h; sourceTree = "<group>"; };
+		F106AB2A1AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemManaged.m; sourceTree = "<group>"; };
+		F106AB2B1AFD4F7D00BA3C9C /* SDWChecklistManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistManaged.h; sourceTree = "<group>"; };
+		F106AB2C1AFD4F7D00BA3C9C /* SDWChecklistManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistManaged.m; sourceTree = "<group>"; };
+		F106AB2D1AFD4F7D00BA3C9C /* SDWLabelManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabelManaged.h; sourceTree = "<group>"; };
+		F106AB2E1AFD4F7D00BA3C9C /* SDWLabelManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabelManaged.m; sourceTree = "<group>"; };
 		F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F10AA9E61A12AFD800FD4E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -222,6 +268,41 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F106AB191AFD4F7D00BA3C9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F106AB1A1AFD4F7D00BA3C9C /* Model */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F106AB1A1AFD4F7D00BA3C9C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				F106AB1B1AFD4F7D00BA3C9C /* _SDWBoardManaged.h */,
+				F106AB1C1AFD4F7D00BA3C9C /* _SDWBoardManaged.m */,
+				F106AB1D1AFD4F7D00BA3C9C /* _SDWCardManaged.h */,
+				F106AB1E1AFD4F7D00BA3C9C /* _SDWCardManaged.m */,
+				F106AB1F1AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.h */,
+				F106AB201AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m */,
+				F106AB211AFD4F7D00BA3C9C /* _SDWChecklistManaged.h */,
+				F106AB221AFD4F7D00BA3C9C /* _SDWChecklistManaged.m */,
+				F106AB231AFD4F7D00BA3C9C /* _SDWLabelManaged.h */,
+				F106AB241AFD4F7D00BA3C9C /* _SDWLabelManaged.m */,
+				F106AB251AFD4F7D00BA3C9C /* SDWBoardManaged.h */,
+				F106AB261AFD4F7D00BA3C9C /* SDWBoardManaged.m */,
+				F106AB271AFD4F7D00BA3C9C /* SDWCardManaged.h */,
+				F106AB281AFD4F7D00BA3C9C /* SDWCardManaged.m */,
+				F106AB291AFD4F7D00BA3C9C /* SDWChecklistItemManaged.h */,
+				F106AB2A1AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m */,
+				F106AB2B1AFD4F7D00BA3C9C /* SDWChecklistManaged.h */,
+				F106AB2C1AFD4F7D00BA3C9C /* SDWChecklistManaged.m */,
+				F106AB2D1AFD4F7D00BA3C9C /* SDWLabelManaged.h */,
+				F106AB2E1AFD4F7D00BA3C9C /* SDWLabelManaged.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		F10AA9E21A12AFD800FD4E85 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
@@ -229,7 +310,9 @@
 				F1665A661A22847700A1519D /* Crashlytics.framework */,
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
+				F106AB161AFD499100BA3C9C /* Model.xcdatamodeld */,
 				F10AA9E51A12AFD800FD4E85 /* Main.storyboard */,
+				F106AB191AFD4F7D00BA3C9C /* Model */,
 				F10AA9E71A12AFD800FD4E85 /* Classes */,
 				F10AAA2D1A12AFD800FD4E85 /* Images.xcassets */,
 				F10AAA2E1A12AFD800FD4E85 /* Info.plist */,
@@ -516,6 +599,9 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = SDWR;
 				TargetAttributes = {
+					F106AB111AFD487300BA3C9C = {
+						CreatedOnToolsVersion = 6.3.1;
+					};
 					F119AE7319FD4CFC0061D7DF = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 43R88X5B35;
@@ -541,6 +627,7 @@
 			projectRoot = "";
 			targets = (
 				F119AE7319FD4CFC0061D7DF /* Lists */,
+				F106AB111AFD487300BA3C9C /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -561,6 +648,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		F106AB151AFD488000BA3C9C /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/mogenerator -m Lists/Model.xcdatamodeld -O Lists/Model/Model --template-var arc=true";
+		};
 		F1665A651A22840700A1519D /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,9 +688,14 @@
 				F10AAA651A12AFD800FD4E85 /* NSColor+Util.m in Sources */,
 				F10AAA771A12AFD800FD4E85 /* AFURLSessionManager.m in Sources */,
 				F10AAA711A12AFD800FD4E85 /* AFHTTPSessionManager.m in Sources */,
+				F106AB381AFD4F7D00BA3C9C /* SDWLabelManaged.m in Sources */,
+				F106AB2F1AFD4F7D00BA3C9C /* _SDWBoardManaged.m in Sources */,
 				F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */,
+				F106AB331AFD4F7D00BA3C9C /* _SDWLabelManaged.m in Sources */,
 				F10AAA621A12AFD800FD4E85 /* SDWMainSplitController.m in Sources */,
 				F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */,
+				F106AB361AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m in Sources */,
+				F106AB341AFD4F7D00BA3C9C /* SDWBoardManaged.m in Sources */,
 				F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */,
 				F10AAA4D1A12AFD800FD4E85 /* SDWBoardsCellView.m in Sources */,
 				F10AAA691A12AFD800FD4E85 /* SDWAppSettings.m in Sources */,
@@ -600,14 +705,17 @@
 				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
 				F10AAA731A12AFD800FD4E85 /* AFSecurityPolicy.m in Sources */,
 				F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */,
+				F106AB321AFD4F7D00BA3C9C /* _SDWChecklistManaged.m in Sources */,
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,
 				F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */,
 				F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */,
 				F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */,
+				F106AB311AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m in Sources */,
 				F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */,
 				F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
 				F10AAA4F1A12AFD800FD4E85 /* SDWBoardsListRow.m in Sources */,
+				F106AB351AFD4F7D00BA3C9C /* SDWCardManaged.m in Sources */,
 				F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */,
 				F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */,
 				F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */,
@@ -627,6 +735,7 @@
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
+				F106AB181AFD499100BA3C9C /* Model.xcdatamodeld in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
@@ -636,10 +745,12 @@
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
 				F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */,
 				F10AAA701A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m in Sources */,
+				F106AB371AFD4F7D00BA3C9C /* SDWChecklistManaged.m in Sources */,
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
 				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
 				F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */,
+				F106AB301AFD4F7D00BA3C9C /* _SDWCardManaged.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -658,6 +769,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F106AB121AFD487300BA3C9C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F106AB131AFD487300BA3C9C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F119AE9219FD4CFC0061D7DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -776,6 +901,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F106AB141AFD487300BA3C9C /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F106AB121AFD487300BA3C9C /* Debug */,
+				F106AB131AFD487300BA3C9C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		F119AE6F19FD4CFC0061D7DF /* Build configuration list for PBXProject "Lists" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -795,6 +928,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F106AB161AFD499100BA3C9C /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F106AB171AFD499100BA3C9C /* Model.xcdatamodel */,
+			);
+			currentVersion = F106AB171AFD499100BA3C9C /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F119AE6C19FD4CFC0061D7DF /* Project object */;
 }
