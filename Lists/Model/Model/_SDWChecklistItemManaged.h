@@ -6,6 +6,8 @@
 extern const struct SDWChecklistItemManagedAttributes {
 	__unsafe_unretained NSString *listsID;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *position;
+	__unsafe_unretained NSString *state;
 } SDWChecklistItemManagedAttributes;
 
 @interface SDWChecklistItemManagedID : NSManagedObjectID {}
@@ -25,6 +27,18 @@ extern const struct SDWChecklistItemManagedAttributes {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* position;
+
+@property (atomic) int16_t positionValue;
+- (int16_t)positionValue;
+- (void)setPositionValue:(int16_t)value_;
+
+//- (BOOL)validatePosition:(id*)value_ error:(NSError**)error_;
+
+@property (nonatomic, strong) NSString* state;
+
+//- (BOOL)validateState:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _SDWChecklistItemManaged (CoreDataGeneratedPrimitiveAccessors)
@@ -34,5 +48,14 @@ extern const struct SDWChecklistItemManagedAttributes {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSNumber*)primitivePosition;
+- (void)setPrimitivePosition:(NSNumber*)value;
+
+- (int16_t)primitivePositionValue;
+- (void)setPrimitivePositionValue:(int16_t)value_;
+
+- (NSString*)primitiveState;
+- (void)setPrimitiveState:(NSString*)value;
 
 @end

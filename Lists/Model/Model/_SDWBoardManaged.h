@@ -6,6 +6,7 @@
 extern const struct SDWBoardManagedAttributes {
 	__unsafe_unretained NSString *listsID;
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *position;
 } SDWBoardManagedAttributes;
 
 @interface SDWBoardManagedID : NSManagedObjectID {}
@@ -25,6 +26,14 @@ extern const struct SDWBoardManagedAttributes {
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
+@property (nonatomic, strong) NSNumber* position;
+
+@property (atomic) int16_t positionValue;
+- (int16_t)positionValue;
+- (void)setPositionValue:(int16_t)value_;
+
+//- (BOOL)validatePosition:(id*)value_ error:(NSError**)error_;
+
 @end
 
 @interface _SDWBoardManaged (CoreDataGeneratedPrimitiveAccessors)
@@ -34,5 +43,11 @@ extern const struct SDWBoardManagedAttributes {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+- (NSNumber*)primitivePosition;
+- (void)setPrimitivePosition:(NSNumber*)value;
+
+- (int16_t)primitivePositionValue;
+- (void)setPrimitivePositionValue:(int16_t)value_;
 
 @end
