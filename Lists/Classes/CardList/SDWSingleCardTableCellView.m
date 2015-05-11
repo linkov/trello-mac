@@ -21,8 +21,7 @@
 
 #pragma mark - Mouse
 
-- (void)mouseDown:(NSEvent *)theEvent
-{
+- (void)mouseDown:(NSEvent *)theEvent {
     [super mouseDown:theEvent];
 
     if (theEvent.clickCount >= 2) {
@@ -33,8 +32,7 @@
     }
 }
 
-- (void)rightMouseDown:(NSEvent *)theEvent
-{
+- (void)rightMouseDown:(NSEvent *)theEvent {
     if (SharedSettings.shouldShowCardLabels == NO) {
         return;
     }
@@ -54,25 +52,21 @@
 
 #pragma mark - NSTextFieldDelegate
 
-- (NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index
-{
+- (NSArray *)control:(NSControl *)control textView:(NSTextView *)textView completions:(NSArray *)words forPartialWordRange:(NSRange)charRange indexOfSelectedItem:(NSInteger *)index {
     return nil;
 }
 
-- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor
-{
+- (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
     NSTextField *tf = (NSTextField *)control;
 
     self.originalText = tf.stringValue;
     return YES;
 }
 
-- (void)controlTextDidChange:(NSNotification *)obj
-{
+- (void)controlTextDidChange:(NSNotification *)obj {
 }
 
-- (void)controlTextDidEndEditing:(NSNotification *)obj
-{
+- (void)controlTextDidEndEditing:(NSNotification *)obj {
     self.mainBox.textField.editable = NO;
 
     if (self.mainBox.textField.stringValue.length == 0) {
@@ -80,8 +74,7 @@
     }
 }
 
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor
-{
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
     if (![self.originalText isEqualToString:self.textField.stringValue]) {
         [self.delegate cardViewShouldSaveCard:self];
         [self.mainBox.textField resignFirstResponder];
@@ -93,8 +86,7 @@
 
 #pragma mark - Card labels
 
-- (void)changeCardLabel:(NSMenuItem *)sender
-{
+- (void)changeCardLabel:(NSMenuItem *)sender {
     NSMutableArray *modifiedLabels = [NSMutableArray arrayWithArray:self.mainBox.labels];
     SDWLabel *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@", sender.title]] firstObject];
     SDWLabel *newLabel = [SDWLabel new];
@@ -112,8 +104,7 @@
     //[self loadCardUsers];
 }
 
-- (BOOL)isActiveLabelWithTitle:(NSString *)title
-{
+- (BOOL)isActiveLabelWithTitle:(NSString *)title {
     NSUInteger count = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@", title]] count];
 
     return count > 0;

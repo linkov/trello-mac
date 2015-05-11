@@ -24,8 +24,7 @@ typedef enum {
 
 @implementation SDWProgressIndicator
 
-- (void)stopAnimation
-{
+- (void)stopAnimation {
     [self.secondLine removeAllAnimations];
     [self.thirdLine removeAllAnimations];
     [self.firstLine removeAllAnimations];
@@ -33,13 +32,11 @@ typedef enum {
     self.hidden = YES;
 }
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     [self _setupLayers];
 }
 
-- (void)startAnimation
-{
+- (void)startAnimation {
     self.hidden = NO;
 
     if (self.bounds.size.width == 100) {
@@ -51,8 +48,7 @@ typedef enum {
     [self _runAnimation];
 }
 
-- (void)_setupLayers
-{
+- (void)_setupLayers {
     self.wantsLayer = YES;
 
     CGColorRef lineColor = [SharedSettings appBackgroundColor].CGColor;
@@ -69,8 +65,7 @@ typedef enum {
     self.firstLine.fillColor = self.thirdLine.fillColor = self.secondLine.fillColor = lineColor;
 }
 
-- (void)_setupPositionAndSizeForIndicatorType:(SDWIndicatorType)type
-{
+- (void)_setupPositionAndSizeForIndicatorType:(SDWIndicatorType)type {
     if (type == SDWIndicatorTypeSmall) {
         self.firstLine.position = CGPointMake(1, 10);
         self.firstLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 14, 3), .5, .5, &CGAffineTransformIdentity);
@@ -92,8 +87,7 @@ typedef enum {
     }
 }
 
-- (void)_runAnimation
-{
+- (void)_runAnimation {
     self.secondLine.opacity = self.thirdLine.opacity = self.firstLine.opacity = 0;
 
     [self.firstLine addAnimation:[self opacityAnimationWithBeginTime:0.1] forKey:@"op1"];
@@ -103,8 +97,7 @@ typedef enum {
 
 #pragma mark - Utils
 
-- (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time
-{
+- (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
     animation.fromValue = [NSNumber numberWithInt:0.0];
     animation.toValue = [NSNumber numberWithInt:1];

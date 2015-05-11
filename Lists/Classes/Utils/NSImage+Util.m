@@ -10,8 +10,7 @@
 
 @implementation NSImage (Util)
 
-- (NSImage *)imageRotatedByDegrees:(CGFloat)degrees
-{
+- (NSImage *)imageRotatedByDegrees:(CGFloat)degrees {
     // Calculate the bounds for the rotated image
     // We do this by affine-transforming the bounds rectangle
     NSRect imageBounds = {
@@ -53,8 +52,7 @@
     return rotatedImage;
 }
 
-- (NSImage *)imageTintedWithColor:(NSColor *)tint
-{
+- (NSImage *)imageTintedWithColor:(NSColor *)tint {
     NSImage *image = [self copy];
     if (tint) {
         [image lockFocus];
@@ -71,8 +69,7 @@
 - (NSImage *)grayscaleImageWithAlphaValue:(CGFloat)alphaValue
                           saturationValue:(CGFloat)saturationValue
                           brightnessValue:(CGFloat)brightnessValue
-                            contrastValue:(CGFloat)contrastValue
-{
+                            contrastValue:(CGFloat)contrastValue {
     NSSize size = [self size];
     NSRect bounds = {
         NSZeroPoint, size
@@ -104,8 +101,7 @@
     return tintedImage;
 }
 
-+ (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color
-{
++ (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color {
     NSImage *image = [[NSImage alloc] initWithSize:CGSizeMake(18, 18)];
     [image lockFocus];
 
@@ -119,8 +115,7 @@
     return image;
 }
 
-+ (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r
-{
++ (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r {
     NSImage *image;
     NSCIImageRep *ir;
 
@@ -132,8 +127,7 @@
     return image;
 }
 
-+ (NSImage *)imageWithCIImage:(CIImage *)i
-{
++ (NSImage *)imageWithCIImage:(CIImage *)i {
     return [self imageWithCIImage:i fromRect:[i extent]];
 }
 

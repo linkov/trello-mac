@@ -23,8 +23,7 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
 
 #pragma mark - NSDragging
 
-- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender
-{
+- (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
     CIFilter *invert = [CIFilter filterWithName:@"CIColorInvert"];
     [invert setDefaults];
 
@@ -32,8 +31,7 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
     return NSDragOperationMove;
 }
 
-- (void)draggingEnded:(id <NSDraggingInfo> )sender
-{
+- (void)draggingEnded:(id <NSDraggingInfo> )sender {
     NSPoint clickPoint = [self convertPoint:sender.draggingLocation fromView:nil];
 
     if (CGRectContainsPoint(self.bounds, clickPoint)) {
@@ -45,25 +43,21 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
     self.layer.filters = @[];
 }
 
-- (void)draggingExited:(id <NSDraggingInfo> )sender
-{
+- (void)draggingExited:(id <NSDraggingInfo> )sender {
     self.layer.filters = @[];
 }
 
-- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender
-{
+- (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
     return YES;
 }
 
 #pragma mark - Associated objects
 
-- (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate
-{
+- (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate {
     objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
-- (id <NSControlInteractionDelegate> )interactionDelegate
-{
+- (id <NSControlInteractionDelegate> )interactionDelegate {
     return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
 }
 

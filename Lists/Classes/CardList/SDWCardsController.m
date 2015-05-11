@@ -54,12 +54,10 @@
 
 #pragma mark - Lifecycle
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     self.reloadButton.hidden = YES;
@@ -82,14 +80,12 @@
 
 #pragma mark - Utils
 
-- (SDWCardViewController *)cardDetailsVC
-{
+- (SDWCardViewController *)cardDetailsVC {
     SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
     return main.cardDetailsVC;
 }
 
-- (void)showCardSavingIndicator:(BOOL)show
-{
+- (void)showCardSavingIndicator:(BOOL)show {
     if (show) {
         [self.cardActionIndicator startAnimation];
     } else {
@@ -97,8 +93,7 @@
     }
 }
 
-- (void)subscribeToEvents
-{
+- (void)subscribeToEvents {
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [[self cardDetailsVC] setCard:nil];
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
@@ -122,8 +117,7 @@
     }];
 }
 
-- (BOOL)isShowingListCards
-{
+- (BOOL)isShowingListCards {
     if (self.currentListID.length) {
         return YES;
     }
@@ -132,8 +126,7 @@
 }
 
 //TODO: refactor
-- (BOOL)isValidIndex:(NSUInteger)index
-{
+- (BOOL)isValidIndex:(NSUInteger)index {
     if (index > 10000) {
         return NO;
     }
@@ -141,13 +134,11 @@
 }
 
 //TODO: refactor
-- (NSUInteger)bottomObjectIndex:(NSArray *)arr
-{
+- (NSUInteger)bottomObjectIndex:(NSArray *)arr {
     return arr.count == 0 ? 0 : arr.count - 1;
 }
 
-- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr
-{
+- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
 
     // 1. swap 2 elements
@@ -174,8 +165,7 @@
 
 #pragma mark - Card actions
 
-- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local
-{
+- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
     if (local) {
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
         [arr removeObjectAtIndex:[self.cardsArrayController.content indexOfObject:card] ];
@@ -207,8 +197,7 @@
     }];
 }
 
-- (void)updateCard:(SDWCard *)card
-{
+- (void)updateCard:(SDWCard *)card {
     [self showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
@@ -222,8 +211,7 @@
     }];
 }
 
-- (void)updateCardPosition:(SDWCard *)card
-{
+- (void)updateCardPosition:(SDWCard *)card {
     [self showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] moveCardID:card.cardID
@@ -234,8 +222,7 @@
     }];
 }
 
-- (void)createCard:(SDWCard *)card
-{
+- (void)createCard:(SDWCard *)card {
     [self showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] createCardWithName:card.name
@@ -256,8 +243,7 @@
     }];
 }
 
-- (void)dismissNewEditedCard
-{
+- (void)dismissNewEditedCard {
     self.addCardButton.enabled = YES;
     NSMutableArray *arr = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
@@ -265,14 +251,12 @@
     [self.tableView reloadData];
 }
 
-- (void)clearCards
-{
+- (void)clearCards {
     self.cardsArrayController.content = @[];
     self.listNameLabel.hidden = YES;
 }
 
-- (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList
-{
+- (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
@@ -284,14 +268,12 @@
     [self reloadCards];
 }
 
-- (IBAction)reloadCardsAfterFail:(id)sender
-{
+- (IBAction)reloadCardsAfterFail:(id)sender {
     self.reloadButton.hidden = YES;
     [self reloadCards];
 }
 
-- (void)reloadCards
-{
+- (void)reloadCards {
     [[self cardDetailsVC] setCard:nil];
 
     if (![self isShowingListCards]) {
@@ -310,8 +292,7 @@
     [self loadMembers:self.parentListID];
 }
 
-- (void)reloadCardsAndFilter:(NSArray *)content
-{
+- (void)reloadCardsAndFilter:(NSArray *)content {
     NSMutableArray *filteredCards = [NSMutableArray array];
     for (SDWCard *card in content) {
         NSString *idM = [card.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self==%@", SharedSettings.userID]].firstObject;
@@ -324,8 +305,7 @@
     self.cardsArrayController.content = filteredCards;
 }
 
-- (void)loadMembers:(NSString *)listID
-{
+- (void)loadMembers:(NSString *)listID {
     NSString *URL = [NSString stringWithFormat:@"boards/%@/members?", listID];
     [[AFRecordPathManager manager]
      setAFRecordMethod:@"findAll"
@@ -346,8 +326,7 @@
     }];
 }
 
-- (void)loadCardsForListID:(NSString *)listID
-{
+- (void)loadCardsForListID:(NSString *)listID {
     NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
     NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
 
@@ -372,8 +351,7 @@
     }];
 }
 
-- (void)reloadCollection:(NSArray *)objects
-{
+- (void)reloadCollection:(NSArray *)objects {
     [self.addCardButton setHidden:NO];
 
     NSSortDescriptor *sortBy;
@@ -397,16 +375,14 @@
     [self.tableView deselectAll:nil];
 }
 
-- (void)updateCardsPositions
-{
+- (void)updateCardsPositions {
     for (SDWCard *card in self.cardsArrayController.content) {
         [self updateCardPosition:card];
         CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
     }
 }
 
-- (IBAction)addCard:(id)sender
-{
+- (IBAction)addCard:(id)sender {
     if (![self isShowingListCards]) {
         return;
     }
@@ -438,14 +414,12 @@
 
 #pragma mark - SDWSingleCardViewDelegate
 
-- (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView
-{
+- (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
     SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
     self.lastSelectedCard = selectedCard;
 }
 
-- (void)cardViewShouldContainLabelColors:(NSString *)colors
-{
+- (void)cardViewShouldContainLabelColors:(NSString *)colors {
     [self showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] updateLabelsForCardID:self.lastSelectedCard.cardID
@@ -456,8 +430,7 @@
     }];
 }
 
-- (void)cardViewShouldRemoveLabelOfColor:(NSString *)color
-{
+- (void)cardViewShouldRemoveLabelOfColor:(NSString *)color {
     [self showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.cardID
@@ -468,15 +441,13 @@
     }];
 }
 
-- (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView
-{
+- (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView {
     if (![self isValidIndex:self.cardsArrayController.selectionIndex]) {
         [[self cardDetailsVC] setCard:nil];
     }
 }
 
-- (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView
-{
+- (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView {
     self.addCardButton.enabled = YES;
     self.lastSelectedItem = cardView;
     self.lastSelectedItem.mainBox.selected = NO;
@@ -494,22 +465,19 @@
     }
 }
 
-- (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView
-{
+- (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView {
     [self dismissNewEditedCard];
 }
 
 #pragma mark - SDWMenuItemDelegate
 
-- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard
-{
+- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard {
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     [self deleteCardWithID:dataDict[@"cardID"]];
 }
 
-- (void)deleteCardWithID:(NSString *)cardID
-{
+- (void)deleteCardWithID:(NSString *)cardID {
     [self showCardSavingIndicator:YES];
 
     [[self cardDetailsVC] setCard:nil];
@@ -532,13 +500,11 @@
 
 #pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
 
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section
-{
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section {
     return NO;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     SDWSingleCardTableCellView *selectedCell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
     [selectedCell.mainBox setSelected:YES];
     selectedCell.delegate = self;
@@ -560,33 +526,27 @@
     return YES;
 }
 
-- (NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
+- (NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.cardsArrayController.arrangedObjects count];
 }
 
-- (NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView
-{
+- (NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
     return 1;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section
-{
+- (BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
     return NO;
 }
 
-- (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section
-{
+- (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
     return 0;
 }
 
-- (NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section
-{
+- (NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
     return nil;
 }
 
-- (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
-{
+- (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
     CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count] - 2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
@@ -599,8 +559,7 @@
     return 27;
 }
 
-- (NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath
-{
+- (NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
     if ([self.cardsArrayController.arrangedObjects count] == 0) {
         return nil;
     }
@@ -719,8 +678,7 @@
     return view;
 }
 
-- (void)_dbgArrayElementsWithTitle:(NSString *)title
-{
+- (void)_dbgArrayElementsWithTitle:(NSString *)title {
     CLS_LOG(@"--------------%@-------------\n", title);
 
     for (SDWCard *card in self.cardsArrayController.content) {
@@ -730,8 +688,7 @@
 
 #pragma mark - JWCTableViewDelegate ( Drag / Drop )
 
-- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
-{
+- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
     SDWCard *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
     NSDictionary *cardDict = @{
         @"cardID": card.cardID,
@@ -747,8 +704,7 @@
     return YES;
 }
 
-- (NSDragOperation)_jwcTableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op
-{
+- (NSDragOperation)_jwcTableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
     if ([self.cardsArrayController.arrangedObjects count] == 1) {
         return NSDragOperationNone;
     }
@@ -770,8 +726,7 @@
 }
 
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
-                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
-{
+                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
     if (self.dropIndex > [self.cardsArrayController.arrangedObjects count]) {
         return NO;
     }
@@ -797,20 +752,17 @@
     return YES;
 }
 
-- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes
-{
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
     self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
 }
 
-- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation
-{
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
     self.addCardButton.image = [NSImage imageNamed:@"addCard"];
 }
 
 #pragma mark - Utils
 
-- (NSString *)memberNameFromID:(NSString *)userID
-{
+- (NSString *)memberNameFromID:(NSString *)userID {
     for (SDWUser *user in SharedSettings.selectedListUsers) {
         if ([user.userID isEqualToString:userID]) {
             NSString *str = [Utils twoLetterIDFromName:user.name];
@@ -821,8 +773,7 @@
     return @"NA";
 }
 
-- (CGFloat)widthForMembersCount:(NSUInteger)count
-{
+- (CGFloat)widthForMembersCount:(NSUInteger)count {
     CGFloat width;
     if (count == 0) {
         width = 375;

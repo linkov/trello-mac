@@ -10,8 +10,7 @@
 
 @implementation SDWBoard
 
-- (void)mapAttributesToProperties
-{
+- (void)mapAttributesToProperties {
     self.boardID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];
     NSNumber *starred = self.attributes[@"starred"];

@@ -14,8 +14,7 @@
 
 @implementation SDWTrelloStore
 
-+ (instancetype)store
-{
++ (instancetype)store {
     static dispatch_once_t pred;
     static SDWTrelloStore *store = nil;
     dispatch_once(&pred, ^{
@@ -24,17 +23,14 @@
     return store;
 }
 
-- (void)handleError:(NSError *)error
-{
+- (void)handleError:(NSError *)error {
     CLS_LOG(@"err - %@", error.localizedDescription);
 }
 
-- (void)handleError:(NSError *)error withReason:(id)reason
-{
+- (void)handleError:(NSError *)error withReason:(id)reason {
 }
 
-- (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+- (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block {
     [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         SharedSettings.userID = responseObject[@"id"];
         NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
@@ -55,8 +51,7 @@
 
 - (void)createCardWithName:(NSString *)name
                     listID:(NSString *)listID
-            withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+            withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSDictionary *params = @{
         @"name": name,
         @"due": @"",
@@ -81,8 +76,7 @@
 
 - (void)moveCardID:(NSString *)cardID
           toListID:(NSString *)listID
-           boardID:(NSString *)boardID
-{
+           boardID:(NSString *)boardID {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?", cardID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
@@ -99,8 +93,7 @@
 
 - (void)moveCardID:(NSString *)cardID
         toPosition:(NSNumber *)pos
-        completion:(SDWTrelloStoreCompletionBlock)block
-{
+        completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?", cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": pos}
                                   success:^(NSURLSessionDataTask *task, id responseObject)
@@ -119,8 +112,7 @@
 }
 
 - (void)updateCard:(SDWCard *)card
-    withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+    withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?", card.cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
          @"name": card.name,
@@ -141,8 +133,7 @@
 }
 
 - (void)deleteCardID:(NSString *)cardID
-      withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+      withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?", cardID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -159,8 +150,7 @@
 
 - (void)updateLabelsForCardID:(NSString *)cardID
                        colors:(NSString *)colors
-                   completion:(SDWTrelloStoreCompletionBlock)block
-{
+                   completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?", cardID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": colors} success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -177,8 +167,7 @@
 
 - (void)removeLabelForCardID:(NSString *)cardID
                        color:(NSString *)color
-                  completion:(SDWTrelloStoreCompletionBlock)block
-{
+                  completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels/%@?", cardID, color];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -198,8 +187,7 @@
 - (void)createListWithName:(NSString *)name
                    boardID:(NSString *)boardID
                   position:(NSNumber *)pos
-                completion:(SDWTrelloStoreCompletionBlock)block
-{
+                completion:(SDWTrelloStoreCompletionBlock)block {
     [[AFTrelloAPIClient sharedClient] POST:@"lists?"
                                 parameters:@{
          @"name": name,
@@ -219,8 +207,7 @@
     }];
 }
 
-- (void)deleteListID:(NSString *)listID withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+- (void)deleteListID:(NSString *)listID withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"lists/%@?", listID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed": @"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
@@ -239,8 +226,7 @@
 
 - (void)createChecklistWithName:(NSString *)name
                          cardID:(NSString *)cardID
-                     completion:(SDWTrelloStoreCompletionBlock)block
-{
+                     completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklists?", cardID];
 
     [[AFTrelloAPIClient sharedClient] POST:urlString
@@ -259,8 +245,7 @@
 }
 
 - (void)fetchChecklistsForCardID:(NSString *)cardID
-                      completion:(SDWTrelloStoreCompletionBlock)block
-{
+                      completion:(SDWTrelloStoreCompletionBlock)block {
     [[AFRecordPathManager manager]
      setAFRecordMethod:@"findAll"
               forModel:[SDWChecklist class]
@@ -283,8 +268,7 @@
 - (void)moveCheckItem:(SDWChecklistItem *)item
              fromList:(NSString *)initialListID
                cardID:(NSString *)cardID
-       withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+       withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?", cardID, initialListID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idChecklist": item.listID}
@@ -302,8 +286,7 @@
 
 - (void)updateCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
-         withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?", cardID, item.listID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
@@ -324,8 +307,7 @@
 
 - (void)updateCheckItemPosition:(SDWChecklistItem *)item
                          cardID:(NSString *)cardID
-                 withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+                 withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?", cardID, item.listID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": [NSNumber numberWithInteger:item.position]}
@@ -343,8 +325,7 @@
 
 - (void)createCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
-         withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem?", cardID, item.listID];
 
     [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{
@@ -364,8 +345,7 @@
 
 - (void)deleteCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
-         withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?", cardID, item.listID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:@{
@@ -385,8 +365,7 @@
 }
 
 - (void)deleteCheckList:(SDWChecklist *)checkList
-         withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+         withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"checklists/%@?", checkList.listID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil
@@ -403,8 +382,7 @@
 }
 
 - (void)addCheckListForCardID:(NSString *)cardID
-               withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+               withCompletion:(SDWTrelloStoreCompletionBlock)block {
     [[AFTrelloAPIClient sharedClient] POST:@"checklists?" parameters:@{
          @"idCard": cardID,
      }
@@ -423,8 +401,7 @@
 
 - (void)updateChecklistName:(NSString *)newName
                   forListID:(NSString *)listID
-             withCompletion:(SDWTrelloStoreCompletionBlock)block
-{
+             withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"checklists/%@/name?", listID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{

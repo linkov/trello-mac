@@ -20,15 +20,13 @@
 @implementation PulseView
 
 #pragma mark Custom Code
-- (CALayer *)makeBackingLayer
-{
+- (CALayer *)makeBackingLayer {
     return [CAShapeLayer new];
 }
 
 // The system sends layoutSubviews to your view whenever it changes size (including when it first appears). We override layoutSubviews to set up the shape and animate it:
 
-- (void)layout
-{
+- (void)layout {
     [super layout];
     [self setLayerProperties];
     [self attachAnimations];
@@ -41,8 +39,7 @@
 
 // Here's how we set the layer's path (which determines its shape) and the fill color for the shape:
 
-- (void)setLayerProperties
-{
+- (void)setLayerProperties {
     CAShapeLayer *layer = (CAShapeLayer *)self.layer;
 
     CGPathRef ref = (__bridge CGPathRef)([NSBezierPath bezierPathWithOvalInRect:self.bounds]);
@@ -53,16 +50,14 @@
 
 // We need to attach two animations to the layer - one for the path and one for the fill color:
 
-- (void)attachAnimations
-{
+- (void)attachAnimations {
     [self attachPathAnimation];
     [self attachColorAnimation];
 }
 
 // Here's how we animate the layer's path:
 
-- (void)attachPathAnimation
-{
+- (void)attachPathAnimation {
     CABasicAnimation *animation = [self animationWithKeyPath:@"path"];
     animation.toValue = (__bridge id)((__bridge CGPathRef)[NSBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 4, 4)]);
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
@@ -71,8 +66,7 @@
 
 // Here's how we animate the layer's fill color:
 
-- (void)attachColorAnimation
-{
+- (void)attachColorAnimation {
     CABasicAnimation *animation = [self animationWithKeyPath:@"fillColor"];
     animation.fromValue = (__bridge id)[NSColor colorWithHue:0 saturation:.9 brightness:.9 alpha:1].CGColor;
     [self.layer addAnimation:animation forKey:animation.keyPath];
@@ -80,8 +74,7 @@
 
 // Both of the attach*Animation methods use a helper method that creates a basic animation and sets it up to repeat indefinitely with autoreverse and a one second duration:
 
-- (CABasicAnimation *)animationWithKeyPath:(NSString *)keyPath
-{
+- (CABasicAnimation *)animationWithKeyPath:(NSString *)keyPath {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:keyPath];
     animation.autoreverses = YES;
     animation.repeatCount = HUGE_VALF;
@@ -91,8 +84,7 @@
 
 #pragma mark init code
 
-- (id)initWithFrame:(NSRect)frameRect
-{
+- (id)initWithFrame:(NSRect)frameRect {
     self = [super initWithFrame:frameRect];
     if (self) {
     }

@@ -10,16 +10,14 @@
 
 @implementation SDWActivity
 
-- (void)mapAttributesToProperties
-{
+- (void)mapAttributesToProperties {
     self.activityID = self.attributes[@"id"];
     self.content = self.attributes[@"data"][@"text"];
     self.memberInitials = self.attributes[@"memberCreator"][@"initials"];
     self.time = [Utils stringToDate:self.attributes[@"date"]];
 }
 
-- (NSString *)timeString
-{
+- (NSString *)timeString {
     return [Utils dateToString:self.time];
 }
 

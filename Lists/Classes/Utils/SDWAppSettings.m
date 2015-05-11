@@ -45,8 +45,7 @@ NSString *const SDWListsShouldReloadBoardsNotification = @"com.sdwr.trello-mac.s
 
 static SDWAppSettings *sharedInstance = nil;
 
-+ (instancetype)sharedSettings
-{
++ (instancetype)sharedSettings {
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         sharedInstance = [SDWAppSettings new];
@@ -54,101 +53,83 @@ static SDWAppSettings *sharedInstance = nil;
     return sharedInstance;
 }
 
-- (NSString *)appToken
-{
+- (NSString *)appToken {
     return @"6825229a76db5b6a5737eb97e9c4a923";
 }
 
-- (void)setUserToken:(NSString *)userToken
-{
+- (void)setUserToken:(NSString *)userToken {
     self.lastSelectedList = nil;
 
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"com.sdwr.trello-mac.token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSString *)userToken
-{
+- (NSString *)userToken {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.token"];
 }
 
-- (void)setShouldShowCardLabels:(BOOL)shouldShowCardLabels
-{
+- (void)setShouldShowCardLabels:(BOOL)shouldShowCardLabels {
     [[NSUserDefaults standardUserDefaults] setBool:shouldShowCardLabels forKey:@"com.sdwr.trello-mac.showLabels"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (BOOL)shouldShowCardLabels
-{
+- (BOOL)shouldShowCardLabels {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"com.sdwr.trello-mac.showLabels"];
 }
 
-- (void)setDotOption:(SDWDotOption)dotOption
-{
+- (void)setDotOption:(SDWDotOption)dotOption {
     [[NSUserDefaults standardUserDefaults] setObject:[NSNumber numberWithInt:dotOption] forKey:@"com.sdwr.trello-mac.dotOption"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (SDWDotOption)dotOption
-{
+- (SDWDotOption)dotOption {
     NSNumber *dotOption = [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.dotOption"];
     return [dotOption intValue];
 }
 
-- (void)setUserID:(NSString *)userID
-{
+- (void)setUserID:(NSString *)userID {
     [[NSUserDefaults standardUserDefaults] setObject:userID forKey:@"com.sdwr.trello-mac.userID"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSString *)userID
-{
+- (NSString *)userID {
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.userID"];
 }
 
-- (NSColor *)appBackgroundColor
-{
+- (NSColor *)appBackgroundColor {
     return [NSColor colorWithHexColorString:@"1E5676"];
 }
 
-- (NSColor *)appSelectionColor
-{
+- (NSColor *)appSelectionColor {
     return [NSColor colorWithHexColorString:@"deeef4"];
 }
 
-- (NSColor *)appHighlightGreenColor
-{
+- (NSColor *)appHighlightGreenColor {
     return [NSColor colorWithHexColorString:@"1D8722"];
 }
 
-- (NSColor *)appUIColor
-{
+- (NSColor *)appUIColor {
     return [NSColor colorWithHexColorString:@"4F778A"];
 }
 
-- (NSColor *)appBleakWhiteColor
-{
+- (NSColor *)appBleakWhiteColor {
     return [NSColor colorWithHexColorString:@"E8E8E8"];
 }
 
-- (NSColor *)appHighlightColor
-{
+- (NSColor *)appHighlightColor {
     return [NSColor colorWithHexColorString:@"3E6378"];
 }
 
-- (NSColor *)appBackgroundColorDark
-{
+- (NSColor *)appBackgroundColorDark {
     return [NSColor colorWithCalibratedRed:0.096 green:0.265 blue:0.387 alpha:1.000];
 }
 
-- (void)setCollapsedBoardsIDs:(NSSet *)collapsedBoardsIDs
-{
+- (void)setCollapsedBoardsIDs:(NSSet *)collapsedBoardsIDs {
     _collapsedBoardsIDs = collapsedBoardsIDs;
     [self saveCustomObject:collapsedBoardsIDs forKey:@"collapsedBoards"];
 }
 
-- (NSSet *)collapsedBoardsIDs
-{
+- (NSSet *)collapsedBoardsIDs {
     if (!_collapsedBoardsIDs) {
         _collapsedBoardsIDs = [self customObjectForKey:@"collapsedBoards"];
     }
@@ -156,13 +137,11 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 #pragma mark - Helpers
-- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color
-{
+- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color {
     return [color colorWithAlphaComponent:0.4];
 }
 
-- (NSColor *)colorForTrelloColor:(NSString *)colorString
-{
+- (NSColor *)colorForTrelloColor:(NSString *)colorString {
     NSColor *color;
 
     if ([colorString isEqualToString:@"green"]) {
@@ -190,14 +169,12 @@ static SDWAppSettings *sharedInstance = nil;
     return [color colorWithAlphaComponent:0.6];
 }
 
-- (void)saveCustomObject:(id)object forKey:(NSString *)key
-{
+- (void)saveCustomObject:(id)object forKey:(NSString *)key {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
     setObjectForKeyAndSave(data, key);
 }
 
-- (id)customObjectForKey:(NSString *)key
-{
+- (id)customObjectForKey:(NSString *)key {
     NSData *data = objectForKey(key);
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }

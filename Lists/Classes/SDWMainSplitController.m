@@ -28,8 +28,7 @@
 
 @implementation SDWMainSplitController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     SharedSettings.shouldFilter = NO;
@@ -74,8 +73,7 @@
     }];
 }
 
-- (void)toggleCardDetails
-{
+- (void)toggleCardDetails {
     if (self.cardDetailsWidth.constant != 0) {
         self.cardDetailsWidth.constant = 0;
     } else {
@@ -83,8 +81,7 @@
     }
 }
 
-- (void)toggleSideBar
-{
+- (void)toggleSideBar {
     if (self.sideBarWidth.constant != 0) {
         self.sideBarWidth.constant = 0;
     } else {
@@ -92,21 +89,18 @@
     }
 }
 
-- (void)dismissLogin
-{
+- (void)dismissLogin {
     [self dismissViewController:self.loginVC];
 }
 
-- (void)logout
-{
+- (void)logout {
     if (!SharedSettings.userToken) {
         self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
         [self presentViewControllerAsSheet:self.loginVC];
     }
 }
 
-- (void)viewDidAppear
-{
+- (void)viewDidAppear {
     [self logout];
 }
 

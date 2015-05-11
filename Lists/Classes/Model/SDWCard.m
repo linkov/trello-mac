@@ -11,8 +11,7 @@
 
 @implementation SDWCard
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes
-{
+- (instancetype)initWithAttributes:(NSDictionary *)attributes {
     self = [super init];
     if (!self) {
         return nil;

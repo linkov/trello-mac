@@ -15,30 +15,25 @@ const struct SDWChecklistItemManagedAttributes SDWChecklistItemManagedAttributes
 
 @implementation _SDWChecklistItemManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_
-{
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
     NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWChecklistItemManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName
-{
++ (NSString *)entityName {
     return @"SDWChecklistItemManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_
-{
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
     NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWChecklistItemManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWChecklistItemManagedID *)objectID
-{
+- (SDWChecklistItemManagedID *)objectID {
     return (SDWChecklistItemManagedID *)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
-{
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
     NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
     if ([key isEqualToString:@"positionValue"]) {
@@ -56,25 +51,21 @@ const struct SDWChecklistItemManagedAttributes SDWChecklistItemManagedAttributes
 
 @dynamic position;
 
-- (int16_t)positionValue
-{
+- (int16_t)positionValue {
     NSNumber *result = [self position];
     return [result shortValue];
 }
 
-- (void)setPositionValue:(int16_t)value_
-{
+- (void)setPositionValue:(int16_t)value_ {
     [self setPosition:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitivePositionValue
-{
+- (int16_t)primitivePositionValue {
     NSNumber *result = [self primitivePosition];
     return [result shortValue];
 }
 
-- (void)setPrimitivePositionValue:(int16_t)value_
-{
+- (void)setPrimitivePositionValue:(int16_t)value_ {
     [self setPrimitivePosition:[NSNumber numberWithShort:value_]];
 }
 

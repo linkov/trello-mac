@@ -21,8 +21,7 @@
 
 @implementation AFRecordPathManager
 
-+ (instancetype)manager
-{
++ (instancetype)manager {
     static AFRecordPathManager *_manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -34,8 +33,7 @@
 }
 
 // findAll for class SDWBoard is /fdkslfkd/fsfds
-- (void)setAFRecordMethod:(NSString *)method forModel:(id)model toConcretePath:(NSString *)httpPath
-{
+- (void)setAFRecordMethod:(NSString *)method forModel:(id)model toConcretePath:(NSString *)httpPath {
     ModelPath *newObjectMapping = [ModelPath new];
     newObjectMapping.modelClass = NSStringFromClass([model class]);
     newObjectMapping.recordMethod_modelPath = @{
@@ -45,8 +43,7 @@
     [self.models addObject:newObjectMapping];
 }
 
-- (NSString *)concretePathForPathType:(NSString *)pathType forModel:(id)model
-{
+- (NSString *)concretePathForPathType:(NSString *)pathType forModel:(id)model {
     NSString *classString = NSStringFromClass([model class]);
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"modelClass == %@", classString];
     ModelPath *objectMapping = [self.models filteredArrayUsingPredicate:predicate].lastObject;

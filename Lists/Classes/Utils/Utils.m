@@ -10,8 +10,7 @@
 
 @implementation Utils
 
-+ (NSString *)twoLetterIDFromName:(NSString *)name
-{
++ (NSString *)twoLetterIDFromName:(NSString *)name {
     NSArray *nameArr = [name componentsSeparatedByString:@" "];
     NSString *finalString;
 
@@ -48,8 +47,7 @@
     return [finalString uppercaseString];
 }
 
-+ (NSDate *)stringToDate:(NSString *)string
-{
++ (NSDate *)stringToDate:(NSString *)string {
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     [dateFormat setLocale:[NSLocale currentLocale]];
@@ -63,8 +61,7 @@
     return nil;
 }
 
-+ (NSString *)dateToString:(NSDate *)date
-{
++ (NSString *)dateToString:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -72,8 +69,7 @@
     return [dateFormatter stringFromDate:date];
 }
 
-+ (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color
-{
++ (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color {
     NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(2, 5, 5, 5)];
 
     NSMenuItem *item = [[NSMenuItem alloc]init];
@@ -82,8 +78,7 @@
     return item;
 }
 
-+ (NSMenu *)labelsMenu
-{
++ (NSMenu *)labelsMenu {
     NSMenu *menu = [[NSMenu alloc]init];
     menu.minimumWidth = 250.0;
 

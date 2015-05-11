@@ -10,8 +10,7 @@
 
 @implementation SDWShortcutsManager
 
-+ (instancetype)sharedManager
-{
++ (instancetype)sharedManager {
     static SDWShortcutsManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -21,8 +20,7 @@
     return _sharedManager;
 }
 
-- (void)handlekeyDown:(NSEvent *)theEvent
-{
+- (void)handlekeyDown:(NSEvent *)theEvent {
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
 

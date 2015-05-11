@@ -16,8 +16,7 @@
 
 @implementation SDWCardDetailsTextField
 
-- (void)awakeFromNib
-{
+- (void)awakeFromNib {
     self.wantsLayer = YES;
     self.backgroundColor = [NSColor clearColor];
 }
@@ -32,8 +31,7 @@
 //
 //}
 
-- (void)mouseDown:(NSEvent *)theEvent
-{
+- (void)mouseDown:(NSEvent *)theEvent {
     NSTextField *textField = self;
     NSColor *insertionPointColor = [NSColor whiteColor];
 

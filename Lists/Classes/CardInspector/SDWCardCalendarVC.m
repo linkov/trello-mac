@@ -16,8 +16,7 @@
 
 @implementation SDWCardCalendarVC
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
 
     [self.calendarPicker setDateValue:self.currentDue ? :[NSDate date]];
@@ -28,8 +27,7 @@
     }
 }
 
-- (void)datePickerCell:(NSDatePickerCell *)aDatePickerCell validateProposedDateValue:(NSDate *__autoreleasing *)proposedDateValue timeInterval:(NSTimeInterval *)proposedTimeInterval
-{
+- (void)datePickerCell:(NSDatePickerCell *)aDatePickerCell validateProposedDateValue:(NSDate *__autoreleasing *)proposedDateValue timeInterval:(NSTimeInterval *)proposedTimeInterval {
     NSDate *dd = *proposedDateValue;
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -41,8 +39,7 @@
     [self dismissController:nil];
 }
 
-- (IBAction)removeDue:(id)sender
-{
+- (IBAction)removeDue:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date": [NSNull null]}];
     [self dismissController:nil];
 }
