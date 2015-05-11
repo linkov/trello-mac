@@ -36,63 +36,58 @@
 
 #import <QuartzCore/QuartzCore.h>
 
-
 @implementation NSImage (HHTint)
 
-- (NSImage *)hh_imageTintedWithColor:(NSColor *)tint
-{
-	if (tint != nil) {
-		CIFilter *colorGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
-		CIColor *color = HH_AUTORELEASE([[CIColor alloc] initWithColor:tint]);
+- (NSImage *)hh_imageTintedWithColor:(NSColor *)tint {
+    if (tint != nil) {
+        CIFilter *colorGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
+        CIColor *color = HH_AUTORELEASE([[CIColor alloc] initWithColor:tint]);
 
-		[colorGenerator setValue:color forKey:kCIInputColorKey];
+        [colorGenerator setValue:color forKey:kCIInputColorKey];
 
-		CIFilter *colorFilter = [CIFilter filterWithName:@"CIColorControls"];
+        CIFilter *colorFilter = [CIFilter filterWithName:@"CIColorControls"];
 
-		[colorFilter setValue:[colorGenerator valueForKey:kCIOutputImageKey] forKey:kCIInputImageKey];
-		[colorFilter setValue:[NSNumber numberWithFloat:3.0] forKey:kCIInputSaturationKey];
-		[colorFilter setValue:[NSNumber numberWithFloat:0.35] forKey:kCIInputBrightnessKey];
-		[colorFilter setValue:[NSNumber numberWithFloat:1.0] forKey:kCIInputContrastKey];
+        [colorFilter setValue:[colorGenerator valueForKey:kCIOutputImageKey] forKey:kCIInputImageKey];
+        [colorFilter setValue:[NSNumber numberWithFloat:3.0] forKey:kCIInputSaturationKey];
+        [colorFilter setValue:[NSNumber numberWithFloat:0.35] forKey:kCIInputBrightnessKey];
+        [colorFilter setValue:[NSNumber numberWithFloat:1.0] forKey:kCIInputContrastKey];
 
-		CIFilter *monochromeFilter = [CIFilter filterWithName:@"CIColorMonochrome"];
-		CIImage *baseImage = [CIImage imageWithData:[self TIFFRepresentation]];
+        CIFilter *monochromeFilter = [CIFilter filterWithName:@"CIColorMonochrome"];
+        CIImage *baseImage = [CIImage imageWithData:[self TIFFRepresentation]];
 
-		[monochromeFilter setValue:baseImage forKey:kCIInputImageKey];
-		[monochromeFilter setValue:[CIColor colorWithRed:0.75 green:0.75 blue:0.75] forKey:kCIInputColorKey];
-		[monochromeFilter setValue:[NSNumber numberWithFloat:1.0] forKey:kCIInputIntensityKey];
+        [monochromeFilter setValue:baseImage forKey:kCIInputImageKey];
+        [monochromeFilter setValue:[CIColor colorWithRed:0.75 green:0.75 blue:0.75] forKey:kCIInputColorKey];
+        [monochromeFilter setValue:[NSNumber numberWithFloat:1.0] forKey:kCIInputIntensityKey];
 
-		CIFilter *compositingFilter = [CIFilter filterWithName:@"CIMultiplyCompositing"];
+        CIFilter *compositingFilter = [CIFilter filterWithName:@"CIMultiplyCompositing"];
 
-		[compositingFilter setValue:[colorFilter valueForKey:kCIOutputImageKey] forKey:kCIInputImageKey];
-		[compositingFilter setValue:[monochromeFilter valueForKey:kCIOutputImageKey] forKey:kCIInputBackgroundImageKey];
+        [compositingFilter setValue:[colorFilter valueForKey:kCIOutputImageKey] forKey:kCIInputImageKey];
+        [compositingFilter setValue:[monochromeFilter valueForKey:kCIOutputImageKey] forKey:kCIInputBackgroundImageKey];
 
-		CIImage *outputImage = [compositingFilter valueForKey:kCIOutputImageKey];
+        CIImage *outputImage = [compositingFilter valueForKey:kCIOutputImageKey];
 
-		CGRect extend = [outputImage extent];
+        CGRect extend = [outputImage extent];
         CGSize size = self.size;
-		NSImage *tintedImage = HH_AUTORELEASE([[NSImage alloc] initWithSize: size]);
+        NSImage *tintedImage = HH_AUTORELEASE([[NSImage alloc] initWithSize:size]);
 
-		[tintedImage lockFocus];
-		{
-			CGContextRef contextRef = [[NSGraphicsContext currentContext] graphicsPort];
-			CIContext *ciContext = [CIContext contextWithCGContext:contextRef
-														   options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
-																							   forKey:kCIContextUseSoftwareRenderer]];
+        [tintedImage lockFocus];
+        {
+            CGContextRef contextRef = [[NSGraphicsContext currentContext] graphicsPort];
+            CIContext *ciContext = [CIContext contextWithCGContext:contextRef
+                                                           options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
+                                                                                               forKey:kCIContextUseSoftwareRenderer]];
             CGRect rect = CGRectMake(0, 0, size.width, size.height);
             [ciContext drawImage:outputImage inRect:rect fromRect:extend];
-		}
-		[tintedImage unlockFocus];
+        }
+        [tintedImage unlockFocus];
 
-
-		return tintedImage;
-	}
-	else {
-		return HH_AUTORELEASE([self copy]);
-	}
+        return tintedImage;
+    } else {
+        return HH_AUTORELEASE([self copy]);
+    }
 }
 
-- (NSImage *)imageTintedWithColor:(NSColor *)tint
-{
+- (NSImage *)imageTintedWithColor:(NSColor *)tint {
     if (tint != nil) {
         NSSize size = [self size];
         NSRect bounds = { NSZeroPoint, size };
@@ -116,8 +111,7 @@
                         fraction:1.0];
         [tintedImage unlockFocus];
         return tintedImage;
-    }
-    else {
+    } else {
         return [self copy];
     }
 }

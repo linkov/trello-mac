@@ -1,7 +1,7 @@
 #! /bin/bash
 
 PROJECT_DIR="."
-XCWORKSPACE_FN="$PROJECT_DIR/ios-merchant.xcodeproj"
+XCWORKSPACE_FN="$PROJECT_DIR/Lists.xcodeproj"
 SCRIPTS_ROOT="$PROJECT_DIR/scripts"
 UNCRUSTIFY_SCRIPTS="$SCRIPTS_ROOT"
 UNCRUSTIFY_CONFIG="$PROJECT_DIR/uncrustify.cfg"

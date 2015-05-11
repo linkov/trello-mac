@@ -21,52 +21,44 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
 
 @implementation NSControl (DragInteraction)
 
-
 #pragma mark - NSDragging
 
 - (NSDragOperation)draggingEntered:(id <NSDraggingInfo> )sender {
+    CIFilter *invert = [CIFilter filterWithName:@"CIColorInvert"];
+    [invert setDefaults];
 
-	CIFilter *invert = [CIFilter filterWithName:@"CIColorInvert"];
-	[invert setDefaults];
-
-	self.layer.filters = @[invert];
-	return NSDragOperationMove;
+    self.layer.filters = @[invert];
+    return NSDragOperationMove;
 }
 
 - (void)draggingEnded:(id <NSDraggingInfo> )sender {
-
     NSPoint clickPoint = [self convertPoint:sender.draggingLocation fromView:nil];
 
     if (CGRectContainsPoint(self.bounds, clickPoint)) {
-
         if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(control:didAcceptDropWithPasteBoard:)]) {
             [self.interactionDelegate control:self didAcceptDropWithPasteBoard:[sender draggingPasteboard]];
         }
-
     }
 
     self.layer.filters = @[];
 }
 
-
 - (void)draggingExited:(id <NSDraggingInfo> )sender {
-
-	self.layer.filters = @[];
+    self.layer.filters = @[];
 }
 
 - (BOOL)performDragOperation:(id <NSDraggingInfo> )sender {
-
-	return YES;
+    return YES;
 }
 
 #pragma mark - Associated objects
 
 - (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate {
-	objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
+    objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (id <NSControlInteractionDelegate> )interactionDelegate {
-	return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
+    return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
 }
 
 @end

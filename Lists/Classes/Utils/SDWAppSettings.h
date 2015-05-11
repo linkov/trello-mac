@@ -17,20 +17,18 @@ typedef enum {
     SDWDotOptionOff
 } SDWDotOption;
 
+extern NSString *const SDWListsDidReceiveUserTokenNotification;
+extern NSString *const SDWListsDidChangeSidebarStatusNotification;
+extern NSString *const SDWListsDidChangeCardDetailsStatusNotification;
+extern NSString *const SDWListsDidChangeDotOptionNotification;
 
-extern NSString * const SDWListsDidReceiveUserTokenNotification;
-extern NSString * const SDWListsDidChangeSidebarStatusNotification;
-extern NSString * const SDWListsDidChangeCardDetailsStatusNotification;
-extern NSString * const SDWListsDidChangeDotOptionNotification;
+extern NSString *const SDWListsDidRemoveCardNotification;
+extern NSString *const SDWListsShouldFilterNotification;
+extern NSString *const SDWListsShouldCreateCardNotification;
+extern NSString *const SDWListsDidUpdateDueNotification;
 
-extern NSString * const SDWListsDidRemoveCardNotification;
-extern NSString * const SDWListsShouldFilterNotification;
-extern NSString * const SDWListsShouldCreateCardNotification;
-extern NSString * const SDWListsDidUpdateDueNotification;
-
-extern NSString * const SDWListsShouldReloadListNotification;
-extern NSString * const SDWListsShouldReloadBoardsNotification;
-
+extern NSString *const SDWListsShouldReloadListNotification;
+extern NSString *const SDWListsShouldReloadBoardsNotification;
 
 @interface SDWAppSettings : NSObject
 
@@ -44,7 +42,7 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 
 @property (strong) NSString *userID;
 @property (strong) NSString *userToken;
-@property (strong,nonatomic) NSString *appToken;
+@property (strong, nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;
 @property (strong) NSString *lastSelectedList;
 
@@ -62,6 +60,5 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 
 - (NSColor *)colorForTrelloColor:(NSString *)colorString;
 - (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color;
-
 
 @end

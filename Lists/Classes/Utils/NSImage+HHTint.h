@@ -28,7 +28,6 @@
 
 #import <Cocoa/Cocoa.h>
 
-
 @interface NSImage (HHTint)
 
 - (NSImage *)hh_imageTintedWithColor:(NSColor *)tint;

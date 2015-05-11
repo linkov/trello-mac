@@ -10,9 +10,9 @@
 
 @interface SDWBoardsController : NSViewController
 
-@property (strong,nonatomic) NSColor *textColor;
+@property (strong, nonatomic) NSColor *textColor;
 
-- (void)loadBoards;
+- (void)    loadBoards;
 - (IBAction)reloadBoards:(id)sender;
 
 @end

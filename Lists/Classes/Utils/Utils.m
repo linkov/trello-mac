@@ -8,53 +8,46 @@
 
 #import "Utils.h"
 
-
 @implementation Utils
 
 + (NSString *)twoLetterIDFromName:(NSString *)name {
-
     NSArray *nameArr = [name componentsSeparatedByString:@" "];
     NSString *finalString;
 
     NSString *firstName = nameArr[0];
 
-    if (nameArr.count>1) {
-
+    if (nameArr.count > 1) {
         NSString *lastName = nameArr[1];
 
         NSMutableArray *firstNameArr = [NSMutableArray new];
 
-        [firstName enumerateSubstringsInRange: NSMakeRange(0,firstName.length)
-                                      options: NSStringEnumerationByComposedCharacterSequences
-                                   usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
+        [firstName enumerateSubstringsInRange:NSMakeRange(0, firstName.length)
+                                      options:NSStringEnumerationByComposedCharacterSequences
+                                   usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
+            [firstNameArr addObject:substring];
+        }
 
-                                       [firstNameArr addObject: substring];
-                                   }
-         ];
+        ];
 
         NSMutableArray *lastNameArr = [NSMutableArray new];
 
-        [lastName enumerateSubstringsInRange: NSMakeRange(0,lastName.length)
-                                     options: NSStringEnumerationByComposedCharacterSequences
-                                  usingBlock: ^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
+        [lastName enumerateSubstringsInRange:NSMakeRange(0, lastName.length)
+                                     options:NSStringEnumerationByComposedCharacterSequences
+                                  usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
+            [lastNameArr addObject:substring];
+        }
 
-                                      [lastNameArr addObject: substring];
-                                  }
-         ];
+        ];
 
-        finalString = [NSString stringWithFormat:@"%@%@",firstNameArr[0],lastNameArr[0]];
-    }
-    else {
-
+        finalString = [NSString stringWithFormat:@"%@%@", firstNameArr[0], lastNameArr[0]];
+    } else {
         finalString = @"";
     }
-    
-    
+
     return [finalString uppercaseString];
 }
 
 + (NSDate *)stringToDate:(NSString *)string {
-
     NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
     [dateFormat setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"];
     [dateFormat setLocale:[NSLocale currentLocale]];
@@ -64,13 +57,11 @@
     if (dateIsNull != [NSNull null]) {
         return [dateFormat dateFromString:string];
     }
-    
+
     return nil;
-
-
 }
-+ (NSString *)dateToString:(NSDate *)date {
 
++ (NSString *)dateToString:(NSDate *)date {
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -79,8 +70,7 @@
 }
 
 + (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color {
-
-    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(2, 5, 5, 5)];
+    NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(2, 5, 5, 5)];
 
     NSMenuItem *item = [[NSMenuItem alloc]init];
     item.title = color;
@@ -89,7 +79,6 @@
 }
 
 + (NSMenu *)labelsMenu {
-
     NSMenu *menu = [[NSMenu alloc]init];
     menu.minimumWidth = 250.0;
 

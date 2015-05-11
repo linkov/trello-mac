@@ -19,7 +19,6 @@
     self.color = [attributes valueForKeyPath:@"color"];
     self.name = [attributes valueForKeyPath:@"name"];
 
-
     return self;
 }
 

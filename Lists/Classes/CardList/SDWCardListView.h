@@ -13,9 +13,9 @@
 @property (strong) IBOutlet NSTextField *textField;
 
 @property (nonatomic, assign, getter = isSelected) BOOL selected;
-@property (nonatomic,assign) BOOL hasDot;
-@property (nonatomic,assign) BOOL shouldDrawSideLine;
-@property (nonatomic,assign) BOOL shouldDrawSideLineAmber;
-@property (nonatomic,strong) NSArray *labels;
+@property (nonatomic, assign) BOOL hasDot;
+@property (nonatomic, assign) BOOL shouldDrawSideLine;
+@property (nonatomic, assign) BOOL shouldDrawSideLineAmber;
+@property (nonatomic, strong) NSArray *labels;
 
 @end

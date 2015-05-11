@@ -7,7 +7,6 @@
 //
 #import <Cocoa/Cocoa.h>
 
-
 @protocol NSControlInteractionDelegate
 
 @optional

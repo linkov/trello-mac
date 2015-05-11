@@ -10,13 +10,11 @@
 
 @implementation NSView (Utils)
 
--(instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode
-{
-    Class vibrantClass=NSClassFromString(@"NSVisualEffectView");
-    if (vibrantClass)
-    {
-        NSVisualEffectView *vibrant=[[vibrantClass alloc] initWithFrame:self.bounds];
-        [vibrant setAutoresizingMask:NSViewWidthSizable|NSViewHeightSizable];
+- (instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode {
+    Class vibrantClass = NSClassFromString(@"NSVisualEffectView");
+    if (vibrantClass) {
+        NSVisualEffectView *vibrant = [[vibrantClass alloc] initWithFrame:self.bounds];
+        [vibrant setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];
         [vibrant setBlendingMode:mode];
         [self addSubview:vibrant positioned:NSWindowBelow relativeTo:nil];
 

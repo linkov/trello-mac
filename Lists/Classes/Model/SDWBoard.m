@@ -11,16 +11,14 @@
 @implementation SDWBoard
 
 - (void)mapAttributesToProperties {
-
     self.boardID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];
     NSNumber *starred = self.attributes[@"starred"];
     self.position = starred.integerValue;
 
     if ([self.attributes valueForKeyPath:@"lists"]) {
-
         NSMutableArray *children = [NSMutableArray new];
-        for (NSDictionary *att in [self.attributes valueForKeyPath:@"lists"]) {
+        for (NSDictionary *att in [self.attributes valueForKeyPath : @"lists"]) {
             SDWBoard *post = [[SDWBoard alloc] initWithAttributes:att];
             [children addObject:post];
         }
@@ -28,12 +26,10 @@
         self.children = children;
         self.isLeaf = NO;
         self.fontSize = 14;
-    }
-    else {
+    } else {
         self.isLeaf = YES;
         self.fontSize = 11;
     }
 }
-
 
 @end

@@ -4,9 +4,9 @@
 #import "_SDWChecklistManaged.h"
 
 const struct SDWChecklistManagedAttributes SDWChecklistManagedAttributes = {
-	.ilstsID = @"ilstsID",
-	.name = @"name",
-	.position = @"position",
+    .ilstsID = @"ilstsID",
+    .name = @"name",
+    .position = @"position",
 };
 
 @implementation SDWChecklistManagedID
@@ -14,34 +14,34 @@ const struct SDWChecklistManagedAttributes SDWChecklistManagedAttributes = {
 
 @implementation _SDWChecklistManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
-	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"SDWChecklistManaged" inManagedObjectContext:moc_];
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
+    NSParameterAssert(moc_);
+    return [NSEntityDescription insertNewObjectForEntityForName:@"SDWChecklistManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString*)entityName {
-	return @"SDWChecklistManaged";
++ (NSString *)entityName {
+    return @"SDWChecklistManaged";
 }
 
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
-	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"SDWChecklistManaged" inManagedObjectContext:moc_];
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
+    NSParameterAssert(moc_);
+    return [NSEntityDescription entityForName:@"SDWChecklistManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWChecklistManagedID*)objectID {
-	return (SDWChecklistManagedID*)[super objectID];
+- (SDWChecklistManagedID *)objectID {
+    return (SDWChecklistManagedID *)[super objectID];
 }
 
-+ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
-	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
+    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-	if ([key isEqualToString:@"positionValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"position"];
-		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-		return keyPaths;
-	}
+    if ([key isEqualToString:@"positionValue"]) {
+        NSSet *affectingKey = [NSSet setWithObject:@"position"];
+        keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+        return keyPaths;
+    }
 
-	return keyPaths;
+    return keyPaths;
 }
 
 @dynamic ilstsID;
@@ -51,21 +51,21 @@ const struct SDWChecklistManagedAttributes SDWChecklistManagedAttributes = {
 @dynamic position;
 
 - (int16_t)positionValue {
-	NSNumber *result = [self position];
-	return [result shortValue];
+    NSNumber *result = [self position];
+    return [result shortValue];
 }
 
 - (void)setPositionValue:(int16_t)value_ {
-	[self setPosition:[NSNumber numberWithShort:value_]];
+    [self setPosition:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitivePositionValue {
-	NSNumber *result = [self primitivePosition];
-	return [result shortValue];
+    NSNumber *result = [self primitivePosition];
+    return [result shortValue];
 }
 
 - (void)setPrimitivePositionValue:(int16_t)value_ {
-	[self setPrimitivePosition:[NSNumber numberWithShort:value_]];
+    [self setPrimitivePosition:[NSNumber numberWithShort:value_]];
 }
 
 @end

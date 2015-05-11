@@ -16,6 +16,6 @@
 + (NSString *)twoLetterIDFromName:(NSString *)name;
 + (NSDate *)stringToDate:(NSString *)string;
 + (NSString *)dateToString:(NSDate *)date;
-+ (NSMenu *)labelsMenu;
++ (NSMenu *)  labelsMenu;
 
 @end

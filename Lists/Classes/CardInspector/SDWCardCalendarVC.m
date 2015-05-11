@@ -19,17 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.calendarPicker setDateValue:self.currentDue ?: [NSDate date]];
+    [self.calendarPicker setDateValue:self.currentDue ? :[NSDate date]];
     self.calendarPicker.delegate = self;
 
     if (!self.currentDue) {
         [self.removeDueButton removeFromSuperview];
     }
-
 }
 
 - (void)datePickerCell:(NSDatePickerCell *)aDatePickerCell validateProposedDateValue:(NSDate *__autoreleasing *)proposedDateValue timeInterval:(NSTimeInterval *)proposedTimeInterval {
-
     NSDate *dd = *proposedDateValue;
 
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
@@ -37,15 +35,13 @@
     [dateFormatter setLocale:[NSLocale currentLocale]];
     [dateFormatter setDoesRelativeDateFormatting:YES];
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date":dd}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date" : dd}];
     [self dismissController:nil];
-
 }
+
 - (IBAction)removeDue:(id)sender {
-
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date":[NSNull null]}];
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidUpdateDueNotification object:nil userInfo:@{@"date": [NSNull null]}];
     [self dismissController:nil];
-
 }
 
 @end

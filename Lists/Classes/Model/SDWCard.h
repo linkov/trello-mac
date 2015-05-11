@@ -14,7 +14,7 @@
 @property (nonatomic, strong) NSString *name;
 @property NSArray *members;
 @property NSArray *users;
-@property (nonatomic,strong) NSString *owner;
+@property (nonatomic, strong) NSString *owner;
 @property (strong) NSArray *labels;
 @property (strong) NSString *boardID;
 @property (strong) NSDate *lastUpdate;
@@ -25,6 +25,5 @@
 @property  NSUInteger commentsCount;
 
 @property BOOL isSynced;
-
 
 @end

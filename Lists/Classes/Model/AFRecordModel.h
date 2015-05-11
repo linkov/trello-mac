@@ -20,7 +20,6 @@ typedef void (^AFRecordCallback)(id, NSError *);
 //+ (void)attribute:(NSString *)attribute withValue:(id)searchValue findAll:(AFRecordCallback)block;
 //+ (void)attribute:(NSString *)attribute withValue:(id)searchValue findFirst:(AFRecordCallback)block;
 
-
 - (id)initWithAttributes:(NSDictionary *)attributes;
 - (void)mapAttributesToProperties;
 

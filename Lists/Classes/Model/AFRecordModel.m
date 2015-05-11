@@ -12,10 +12,8 @@
 @implementation AFRecordModel
 
 - (instancetype)initWithAttributes:(NSDictionary *)attributes {
-
     self = [super init];
     if (self) {
-
         self.attributes = attributes;
         [self mapAttributesToProperties];
     }
@@ -23,16 +21,12 @@
 }
 
 + (void)path:(NSString *)path findAll:(AFRecordCallback)block {
-
     NSString *p = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
-    [[AFTrelloAPIClient sharedClient] GET:p parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    [[AFTrelloAPIClient sharedClient] GET:p parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
         NSArray *postsFromResponse = JSON[path];
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
-        for (NSDictionary *attributes in postsFromResponse) {
-
-
-
+        for (NSDictionary * attributes in postsFromResponse) {
             Class cl = [self class];
             AFRecordModel *model = [[cl alloc] initWithAttributes:attributes];
             [mutablePosts addObject:model];
@@ -49,14 +43,12 @@
 }
 
 + (void)findAll:(AFRecordCallback)block {
-
     NSString *path = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
-    [[AFTrelloAPIClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask * __unused task, id JSON) {
+    [[AFTrelloAPIClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
         NSArray *postsFromResponse = JSON;
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
-        for (NSDictionary *attributes in postsFromResponse) {
-
+        for (NSDictionary * attributes in postsFromResponse) {
             Class cl = [self class];
             AFRecordModel *model = [[cl alloc] initWithAttributes:attributes];
             [mutablePosts addObject:model];
@@ -70,9 +62,9 @@
             block([NSArray array], error);
         }
     }];
-
 }
 
-- (void)mapAttributesToProperties {}
+- (void)mapAttributesToProperties {
+}
 
 @end

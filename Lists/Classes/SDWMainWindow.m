@@ -10,14 +10,12 @@
 
 @implementation SDWMainWindow
 
-
 - (void)keyDown:(NSEvent *)theEvent {
-
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 }
 
 /* trash quicklook event b/c it causes crash  */
-- (void)quickLookWithEvent:(NSEvent *)event {}
-
+- (void)quickLookWithEvent:(NSEvent *)event {
+}
 
 @end

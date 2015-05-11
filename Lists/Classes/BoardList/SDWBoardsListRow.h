@@ -14,15 +14,12 @@
 
 @property (weak) id <SDWBoardsListRowDelegate> delegate;
 
-
 @end
-
 
 @protocol SDWBoardsListRowDelegate
 
 @optional
 
 - (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow;
-
 
 @end

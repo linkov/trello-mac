@@ -10,7 +10,6 @@
 
 @implementation SDWScroller
 
-
 //- (instancetype)initWithCoder:(NSCoder *)coder {
 //    self = [super initWithCoder:coder];
 //    if (self) {

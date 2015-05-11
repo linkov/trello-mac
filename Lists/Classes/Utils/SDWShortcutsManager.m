@@ -15,14 +15,12 @@
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _sharedManager = [SDWShortcutsManager new];
-
     });
 
     return _sharedManager;
 }
 
 - (void)handlekeyDown:(NSEvent *)theEvent {
-
     NSUInteger modifier = [theEvent modifierFlags];
     NSUInteger key = [theEvent keyCode];
 
@@ -38,6 +36,5 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldCreateCardNotification object:nil];
     }
 }
-
 
 @end

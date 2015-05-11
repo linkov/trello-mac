@@ -4,33 +4,33 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SDWBoardManagedAttributes {
-	__unsafe_unretained NSString *listsID;
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *position;
+    __unsafe_unretained NSString *listsID;
+    __unsafe_unretained NSString *name;
+    __unsafe_unretained NSString *position;
 } SDWBoardManagedAttributes;
 
 @interface SDWBoardManagedID : NSManagedObjectID {}
 @end
 
 @interface _SDWBoardManaged : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
-+ (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) SDWBoardManagedID* objectID;
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
++ (NSString *)           entityName;
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_;
+@property (nonatomic, readonly, strong) SDWBoardManagedID *objectID;
 
-@property (nonatomic, strong) NSString* listsID;
+@property (nonatomic, strong) NSString *listsID;
 
 //- (BOOL)validateListsID:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* position;
+@property (nonatomic, strong) NSNumber *position;
 
 @property (atomic) int16_t positionValue;
 - (int16_t)positionValue;
-- (void)setPositionValue:(int16_t)value_;
+- (void)   setPositionValue:(int16_t)value_;
 
 //- (BOOL)validatePosition:(id*)value_ error:(NSError**)error_;
 
@@ -38,16 +38,16 @@ extern const struct SDWBoardManagedAttributes {
 
 @interface _SDWBoardManaged (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveListsID;
-- (void)setPrimitiveListsID:(NSString*)value;
+- (NSString *)primitiveListsID;
+- (void)      setPrimitiveListsID:(NSString *)value;
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSString *)primitiveName;
+- (void)      setPrimitiveName:(NSString *)value;
 
-- (NSNumber*)primitivePosition;
-- (void)setPrimitivePosition:(NSNumber*)value;
+- (NSNumber *)primitivePosition;
+- (void)      setPrimitivePosition:(NSNumber *)value;
 
 - (int16_t)primitivePositionValue;
-- (void)setPrimitivePositionValue:(int16_t)value_;
+- (void)   setPrimitivePositionValue:(int16_t)value_;
 
 @end

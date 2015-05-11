@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-@class SDWBoard,SDWCard;
+@class SDWBoard, SDWCard;
 #import <Cocoa/Cocoa.h>
 
 @interface SDWCardsController : NSViewController

@@ -6,8 +6,6 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-
-
 #import <Foundation/Foundation.h>
 
 typedef void (^SDWUpdateManagerCompletion)(NSArray *syncedData);

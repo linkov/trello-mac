@@ -10,16 +10,16 @@
 
 @implementation NSImage (Util)
 
-- (NSImage*)imageRotatedByDegrees:(CGFloat)degrees {
+- (NSImage *)imageRotatedByDegrees:(CGFloat)degrees {
     // Calculate the bounds for the rotated image
     // We do this by affine-transforming the bounds rectangle
     NSRect imageBounds = {NSZeroPoint, [self size]};
-    NSBezierPath* boundsPath = [NSBezierPath bezierPathWithRect:imageBounds];
-    NSAffineTransform* transform = [NSAffineTransform transform];
+    NSBezierPath *boundsPath = [NSBezierPath bezierPathWithRect:imageBounds];
+    NSAffineTransform *transform = [NSAffineTransform transform];
     [transform rotateByDegrees:degrees];
     [boundsPath transformUsingAffineTransform:transform];
     NSRect rotatedBounds = {NSZeroPoint, [boundsPath bounds].size};
-    NSImage* rotatedImage = [[NSImage alloc] initWithSize:rotatedBounds.size] ;
+    NSImage *rotatedImage = [[NSImage alloc] initWithSize:rotatedBounds.size];
 
     // Center the image within the rotated bounds
     imageBounds.origin.x = NSMidX(rotatedBounds) - (NSWidth(imageBounds) / 2);
@@ -42,14 +42,13 @@
     // Note: This "drawing" is done off-screen.
     [rotatedImage lockFocus];
     [transform concat];
-    [self drawInRect:imageBounds fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0] ;
+    [self drawInRect:imageBounds fromRect:NSZeroRect operation:NSCompositeCopy fraction:1.0];
     [rotatedImage unlockFocus];
-    
+
     return rotatedImage;
 }
 
-- (NSImage *)imageTintedWithColor:(NSColor *)tint
-{
+- (NSImage *)imageTintedWithColor:(NSColor *)tint {
     NSImage *image = [self copy];
     if (tint) {
         [image lockFocus];
@@ -64,8 +63,7 @@
 - (NSImage *)grayscaleImageWithAlphaValue:(CGFloat)alphaValue
                           saturationValue:(CGFloat)saturationValue
                           brightnessValue:(CGFloat)brightnessValue
-                            contrastValue:(CGFloat)contrastValue
-{
+                            contrastValue:(CGFloat)contrastValue {
     NSSize size = [self size];
     NSRect bounds = { NSZeroPoint, size };
     NSImage *tintedImage = [[NSImage alloc] initWithSize:size];
@@ -96,8 +94,6 @@
 }
 
 + (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color {
-
-
     NSImage *image = [[NSImage alloc] initWithSize:CGSizeMake(18, 18)];
     [image lockFocus];
 
@@ -109,24 +105,21 @@
     [image unlockFocus];
 
     return image;
-
 }
 
-+ (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r
-{
++ (NSImage *)imageWithCIImage:(CIImage *)i fromRect:(CGRect)r {
     NSImage *image;
     NSCIImageRep *ir;
 
     ir = [NSCIImageRep imageRepWithCIImage:i];
     image = [[NSImage alloc] initWithSize:
-              NSMakeSize(r.size.width, r.size.height)]
-             ;
+             NSMakeSize(r.size.width, r.size.height)]
+    ;
     [image addRepresentation:ir];
     return image;
 }
 
-+ (NSImage *)imageWithCIImage:(CIImage *)i
-{
++ (NSImage *)imageWithCIImage:(CIImage *)i {
     return [self imageWithCIImage:i fromRect:[i extent]];
 }
 

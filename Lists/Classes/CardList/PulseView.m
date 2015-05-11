@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-
 //
 //  DOBRPulseView.m
 //  test2
@@ -25,15 +24,12 @@
     return [CAShapeLayer new];
 }
 
-
 // The system sends layoutSubviews to your view whenever it changes size (including when it first appears). We override layoutSubviews to set up the shape and animate it:
 
 - (void)layout {
-
     [super layout];
     [self setLayerProperties];
     [self attachAnimations];
-
 }
 
 //- (void)layoutSubviews {
@@ -46,12 +42,11 @@
 - (void)setLayerProperties {
     CAShapeLayer *layer = (CAShapeLayer *)self.layer;
 
-    CGPathRef ref =  (__bridge CGPathRef)([NSBezierPath bezierPathWithOvalInRect:self.bounds]);
+    CGPathRef ref = (__bridge CGPathRef)([NSBezierPath bezierPathWithOvalInRect:self.bounds]);
 
     layer.path = ref;
     layer.fillColor = [NSColor colorWithHue:0 saturation:1 brightness:.8 alpha:1].CGColor;
 }
-
 
 // We need to attach two animations to the layer - one for the path and one for the fill color:
 
@@ -87,26 +82,22 @@
     return animation;
 }
 
-
-
 #pragma mark init code
 
 - (id)initWithFrame:(NSRect)frameRect {
-
     self = [super initWithFrame:frameRect];
     if (self) {
     }
     return self;
 }
 
-
 /*
- // Only override drawRect: if you perform custom drawing.
- // An empty implementation adversely affects performance during animation.
- - (void)drawRect:(CGRect)rect
- {
- // Drawing code
- }
+   // Only override drawRect: if you perform custom drawing.
+   // An empty implementation adversely affects performance during animation.
+   - (void)drawRect:(CGRect)rect
+   {
+   // Drawing code
+   }
  */
 
 @end

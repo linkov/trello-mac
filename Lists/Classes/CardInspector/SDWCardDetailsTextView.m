@@ -11,11 +11,9 @@
 @implementation SDWCardDetailsTextView
 
 - (void)awakeFromNib {
-
     self.textColor = [SharedSettings appBleakWhiteColor];
     self.backgroundColor = [NSColor clearColor];
     self.font = [NSFont systemFontOfSize:12];
-
 }
 
 @end

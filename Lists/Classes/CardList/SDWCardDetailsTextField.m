@@ -17,11 +17,9 @@
 @implementation SDWCardDetailsTextField
 
 - (void)awakeFromNib {
-
     self.wantsLayer = YES;
     self.backgroundColor = [NSColor clearColor];
 }
-
 
 //- (void)selectLine:(id)sender {
 //
@@ -34,12 +32,11 @@
 //}
 
 - (void)mouseDown:(NSEvent *)theEvent {
-
     NSTextField *textField = self;
     NSColor *insertionPointColor = [NSColor whiteColor];
 
-    NSTextView *fieldEditor = (NSTextView*)[textField.window fieldEditor:YES
-                                                               forObject:textField];
+    NSTextView *fieldEditor = (NSTextView *)[textField.window fieldEditor:YES
+                                                                forObject:textField];
     fieldEditor.insertionPointColor = insertionPointColor;
 
 //    self.origFont = self.font;

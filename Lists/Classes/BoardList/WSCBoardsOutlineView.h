@@ -6,7 +6,6 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-
 #import <Cocoa/Cocoa.h>
 
 @protocol SDWBoardsListOutlineViewDelegate
@@ -15,7 +14,6 @@
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow;
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow;
-
 
 @end
 

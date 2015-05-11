@@ -10,8 +10,7 @@
 
 @interface SDWCardViewController : NSViewController
 
-
-@property (strong,nonatomic) SDWCard *card;
+@property (strong, nonatomic) SDWCard *card;
 
 @end
 

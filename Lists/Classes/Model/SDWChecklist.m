@@ -12,7 +12,6 @@
 @implementation SDWChecklist
 
 - (void)mapAttributesToProperties {
-
     self.listBoardID = self.attributes[@"idBoard"];
     self.listCardID = self.attributes[@"idCard"];
     self.listID = self.attributes[@"id"];
@@ -22,9 +21,8 @@
     self.position = pos.integerValue;
 
     if ([self.attributes valueForKeyPath:@"checkItems"]) {
-
         NSMutableArray *children = [NSMutableArray new];
-        for (NSDictionary *att in [self.attributes valueForKeyPath:@"checkItems"]) {
+        for (NSDictionary *att in [self.attributes valueForKeyPath : @"checkItems"]) {
             SDWChecklistItem *post = [[SDWChecklistItem alloc] initWithAttributes:att];
             post.listID = self.listID;
             post.listName = self.name;

@@ -10,7 +10,6 @@
 
 @interface NSView (Utils)
 
--(instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode;
-
+- (instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode;
 
 @end

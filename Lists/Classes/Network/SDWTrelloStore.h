@@ -36,7 +36,6 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
         toPosition:(NSNumber *)pos
         completion:(SDWTrelloStoreCompletionBlock)block;
 
-
 - (void)updateCard:(SDWCard *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
@@ -51,7 +50,6 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                        color:(NSString *)color
                   completion:(SDWTrelloStoreCompletionBlock)block;
 
-
 /* Lists ops */
 - (void)createListWithName:(NSString *)name
                    boardID:(NSString *)boardID
@@ -60,7 +58,6 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
 - (void)deleteListID:(NSString *)listID
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
-
 
 /* Checklists ops */
 - (void)createChecklistWithName:(NSString *)name
@@ -77,7 +74,6 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)createCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block;
-
 
 - (void)deleteCheckItem:(SDWChecklistItem *)item
                  cardID:(NSString *)cardID

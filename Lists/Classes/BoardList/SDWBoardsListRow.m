@@ -14,25 +14,21 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
 
-    NSRect separatorLine = NSRectFromCGRect(CGRectMake(0, self.bounds.size.height-0.5, self.bounds.size.width, 0.5));
+    NSRect separatorLine = NSRectFromCGRect(CGRectMake(0, self.bounds.size.height - 0.5, self.bounds.size.width, 0.5));
     [[SharedSettings appBackgroundColorDark] set];
     [NSBezierPath fillRect:separatorLine];
-
 }
 
 - (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect {
-
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
     [[SharedSettings appHighlightGreenColor] set];
     [NSBezierPath fillRect:drawRect];
 }
 
 - (void)drawSelectionInRect:(NSRect)dirtyRect {
-
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
     [[SharedSettings appHighlightColor] set];
     [NSBezierPath fillRect:drawRect];
-
 }
 
 - (void)mouseDown:(NSEvent *)theEvent {
@@ -40,18 +36,16 @@
 
     if (theEvent.clickCount >= 2) {
         [self.delegate boardRowDidDoubleClick:self];
-
     }
 }
 
--(void)didAddSubview:(NSView *)subview {
+- (void)didAddSubview:(NSView *)subview {
     [super didAddSubview:subview];
 
-    if ( [subview isKindOfClass:[NSButton class]] ) {
-        [(NSButton *)subview setImage:[NSImage imageNamed:@"trian-closed"]];
-        [(NSButton *)subview setAlternateImage:[NSImage imageNamed:@"trian-open"]];
+    if ([subview isKindOfClass:[NSButton class]]) {
+        [(NSButton *)subview setImage :[NSImage imageNamed:@"trian-closed"]];
+        [(NSButton *)subview setAlternateImage :[NSImage imageNamed:@"trian-open"]];
     }
 }
-
 
 @end

@@ -41,15 +41,13 @@
     self.isSynced = YES;
 
     NSMutableArray *mutableArray = [NSMutableArray new];
-    for (NSDictionary *labelDict in [attributes valueForKeyPath:@"labels"]) {
-
+    for (NSDictionary *labelDict in [attributes valueForKeyPath : @"labels"]) {
         SDWLabel *label = [[SDWLabel alloc]initWithAttributes:labelDict];
         [mutableArray addObject:label];
     }
 
     self.labels = mutableArray;
-    
-    
+
     return self;
 }
 

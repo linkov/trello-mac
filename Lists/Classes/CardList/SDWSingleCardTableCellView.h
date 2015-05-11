@@ -21,7 +21,6 @@
 
 @end
 
-
 @protocol SDWSingleCardViewDelegate
 
 @optional
@@ -32,6 +31,5 @@
 - (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView;
 - (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView;
 - (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView;
-
 
 @end

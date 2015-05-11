@@ -20,7 +20,6 @@
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-
     [self setupDotOption];
 
     if (!SharedSettings.shouldShowCardLabels) {
@@ -34,42 +33,34 @@
     // Insert code here to tear down your application
 }
 
--(void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor*)reply
-{
-
+- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
     NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"lists://authorize#token=" withString:@""];
 
     if (token.length > 0) {
         SharedSettings.userToken = token;
-
     }
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
-                                                        object:nil userInfo:@{@"token":token}];
-
+                                                        object:nil userInfo:@{@"token": token}];
 }
 
--(void)applicationWillFinishLaunching:(NSNotification *)aNotification
-{
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
     // Register ourselves as a URL handler for this URL
     [[NSAppleEventManager sharedAppleEventManager]
      setEventHandler:self
-     andSelector:@selector(getUrl:withReplyEvent:)
-     forEventClass:kInternetEventClass
-     andEventID:kAEGetURL];
+         andSelector:@selector(getUrl:withReplyEvent:)
+       forEventClass:kInternetEventClass
+          andEventID:kAEGetURL];
 }
 
 - (IBAction)hideSideBar:(id)sender {
-
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
 }
 
 - (IBAction)hideCardDetails:(id)sender {
-
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeCardDetailsStatusNotification object:nil];
 }
 
 - (IBAction)toggleCardLabels:(id)sender {
-
     if (SharedSettings.shouldShowCardLabels == NO) {
         SharedSettings.shouldShowCardLabels = YES;
     } else {
@@ -77,29 +68,22 @@
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
-
 }
-
-
 
 #pragma mark - Dot Option
 
 - (IBAction)dotOptionFeedback:(id)sender {
-
-
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
 
-    NSString *urlString =[NSString stringWithFormat:@"mailto:lists4trello@gmail.com"
-                          "?subject=Lists%%20for%%20Trello%%20%@%%20-%%20Dot%%20behavior%%20feedback"
-                          "&body=Hey,",version];
+    NSString *urlString = [NSString stringWithFormat:@"mailto:lists4trello@gmail.com"
+                           "?subject=Lists%%20for%%20Trello%%20%@%%20-%%20Dot%%20behavior%%20feedback"
+                           "&body=Hey,", version];
 
-    (void) [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
-
+    (void)[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
 - (IBAction)changeDotOption:(NSMenuItem *)sender {
-
     switch (sender.tag) {
         case 10:
             SharedSettings.dotOption = SDWDotOptionHasDescription;
@@ -123,19 +107,14 @@
     }
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
-
-
 }
 
 - (void)setupDotOption {
-
     if (!SharedSettings.dotOption) {
         SharedSettings.dotOption = SDWDotOptionHasOpenTodos;
         [self.dotMenu10 setState:1];
     } else {
-
         switch (SharedSettings.dotOption) {
-
             case SDWDotOptionHasDescription:
                 [self.dotMenu10 setState:1]; [self.dotMenu20 setState:0]; [self.dotMenu30 setState:0]; [self.dotMenu40 setState:0];
                 break;
@@ -155,6 +134,5 @@
         }
     }
 }
-
 
 @end
