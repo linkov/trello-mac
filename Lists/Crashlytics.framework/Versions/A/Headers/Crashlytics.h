@@ -26,9 +26,9 @@
  *
  **/
 #ifdef DEBUG
-#define CLS_LOG(__FORMAT__, ...) CLSNSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__)
+#define CLS_LOG( __FORMAT__, ...) CLSNSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__ )
 #else
-#define CLS_LOG(__FORMAT__, ...) CLSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__)
+#define CLS_LOG( __FORMAT__, ...) CLSLog((@"%s line %d $ " __FORMAT__), __PRETTY_FUNCTION__, __LINE__, ## __VA_ARGS__ )
 #endif
 
 /**
@@ -37,8 +37,8 @@
  * and will only be visible in your Crashlytics dashboard.
  *
  **/
-OBJC_EXTERN void CLSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1, 2);
-OBJC_EXTERN void CLSLogv(NSString *format, va_list args) NS_FORMAT_FUNCTION(1, 0);
+OBJC_EXTERN void CLSLog( NSString *format, ...) NS_FORMAT_FUNCTION( 1, 2 );
+OBJC_EXTERN void CLSLogv( NSString *format, va_list args ) NS_FORMAT_FUNCTION( 1, 0 );
 
 /**
  *
@@ -46,8 +46,8 @@ OBJC_EXTERN void CLSLogv(NSString *format, va_list args) NS_FORMAT_FUNCTION(1, 0
  * and your Crashlytics dashboard. It is not recommended for Release builds.
  *
  **/
-OBJC_EXTERN void CLSNSLog(NSString *format, ...) NS_FORMAT_FUNCTION(1, 2);
-OBJC_EXTERN void CLSNSLogv(NSString *format, va_list args) NS_FORMAT_FUNCTION(1, 0);
+OBJC_EXTERN void CLSNSLog( NSString *format, ...) NS_FORMAT_FUNCTION( 1, 2 );
+OBJC_EXTERN void CLSNSLogv( NSString *format, va_list args ) NS_FORMAT_FUNCTION( 1, 0 );
 
 @protocol CrashlyticsDelegate;
 

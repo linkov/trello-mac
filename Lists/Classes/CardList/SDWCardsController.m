@@ -94,7 +94,7 @@
 }
 
 - (void)subscribeToEvents {
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
         [[self cardDetailsVC] setCard:nil];
         NSMutableArray *arr = [NSMutableArray arrayWithArray:self.cardsArrayController.content];
         SDWCard *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@", note.userInfo[@"cardID"]]].firstObject;
@@ -104,15 +104,15 @@
         [self.tableView reloadData];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldCreateCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldCreateCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
         [self addCard:nil];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
         [self loadCardsForListID:self.currentListID];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeDotOptionNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeDotOptionNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
         [self loadCardsForListID:self.currentListID];
     }];
 }
@@ -176,7 +176,7 @@
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] updateCard:card withCompletion:^( id object, NSError *error ) {
         [self showCardSavingIndicator:NO];
 
         if (!error) {
@@ -200,7 +200,7 @@
 - (void)updateCard:(SDWCard *)card {
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] updateCard:card withCompletion:^( id object, NSError *error ) {
         [self showCardSavingIndicator:NO];
 
         if (!error) {
@@ -216,7 +216,7 @@
 
     [[SDWTrelloStore store] moveCardID:card.cardID
                             toPosition:[NSNumber numberWithInteger:card.position]
-                            completion:^(id object, NSError *error)
+                            completion:^( id object, NSError *error )
     {
         [self showCardSavingIndicator:NO];
     }];
@@ -227,7 +227,7 @@
 
     [[SDWTrelloStore store] createCardWithName:card.name
                                         listID:self.currentListID
-                                withCompletion:^(id object, NSError *error)
+                                withCompletion:^( id object, NSError *error )
     {
         [self showCardSavingIndicator:NO];
 
@@ -314,14 +314,14 @@
 
     [self.mainProgressIndicator startAnimation];
 
-    [SDWUser findAll:^(NSArray *objs, NSError *err) {
+    [SDWUser findAll:^( NSArray *objs, NSError *err ) {
         if (!err) {
             SharedSettings.selectedListUsers = objs;
             [self loadCardsForListID:self.currentListID];
         } else {
             self.reloadButton.hidden = NO;
             [self.mainProgressIndicator stopAnimation];
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            CLS_LOG( @"err = %@", err.localizedDescription );
         }
     }];
 }
@@ -337,7 +337,7 @@
               forModel:[SDWCard class]
         toConcretePath:URLF];
 
-    [SDWCard findAll:^(NSArray *objs, NSError *err) {
+    [SDWCard findAll:^( NSArray *objs, NSError *err ) {
         //[self.loadingIndicator stopAnimation:nil];
         [self.mainProgressIndicator stopAnimation];
 
@@ -346,7 +346,7 @@
             [self reloadCollection:objs];
         } else {
             self.reloadButton.hidden = NO;
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            CLS_LOG( @"err = %@", err.localizedDescription );
         }
     }];
 }
@@ -378,7 +378,7 @@
 - (void)updateCardsPositions {
     for (SDWCard *card in self.cardsArrayController.content) {
         [self updateCardPosition:card];
-        CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
+        CLS_LOG( @"%@ - %lu", card.name, (unsigned long)card.position );
     }
 }
 
@@ -424,7 +424,7 @@
 
     [[SDWTrelloStore store] updateLabelsForCardID:self.lastSelectedCard.cardID
                                            colors:colors
-                                       completion:^(id object, NSError *error)
+                                       completion:^( id object, NSError *error )
     {
         [self showCardSavingIndicator:NO];
     }];
@@ -435,7 +435,7 @@
 
     [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.cardID
                                            color:color
-                                      completion:^(id object, NSError *error)
+                                      completion:^( id object, NSError *error )
     {
         [self showCardSavingIndicator:NO];
     }];
@@ -488,7 +488,7 @@
     self.cardsArrayController.content = arr;
     [self.tableView reloadData];
 
-    [[SDWTrelloStore store] deleteCardID:cardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] deleteCardID:cardID withCompletion:^( id object, NSError *error ) {
         [self showCardSavingIndicator:NO];
 
         if (!error) {
@@ -549,8 +549,8 @@
 - (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count] - 2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
-    CGFloat height = ceilf(rec.size.height);
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake( [self widthForMembersCount:card.members.count] - 2, MAXFLOAT ) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    CGFloat height = ceilf( rec.size.height );
 
     if (height > 14) {
         return height + 7 + 7;
@@ -679,10 +679,10 @@
 }
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
-    CLS_LOG(@"--------------%@-------------\n", title);
+    CLS_LOG( @"--------------%@-------------\n", title );
 
     for (SDWCard *card in self.cardsArrayController.content) {
-        CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
+        CLS_LOG( @"%@ - %lu", card.name, (unsigned long)card.position );
     }
 }
 

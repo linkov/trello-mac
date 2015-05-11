@@ -11,7 +11,7 @@
 @implementation NSView (Utils)
 
 - (instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode {
-    Class vibrantClass = NSClassFromString(@"NSVisualEffectView");
+    Class vibrantClass = NSClassFromString( @"NSVisualEffectView" );
     if (vibrantClass) {
         NSVisualEffectView *vibrant = [[vibrantClass alloc] initWithFrame:self.bounds];
         [vibrant setAutoresizingMask:NSViewWidthSizable | NSViewHeightSizable];

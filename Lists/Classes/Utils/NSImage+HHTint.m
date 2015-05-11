@@ -28,10 +28,10 @@
 
 #import "NSImage+HHTint.h"
 
-#if __has_feature(objc_arc)
-#define HH_AUTORELEASE(x) x
+#if __has_feature( objc_arc )
+#define HH_AUTORELEASE( x ) x
 #else
-#define HH_AUTORELEASE(x) [x autorelease];
+#define HH_AUTORELEASE( x ) [x autorelease];
 #endif
 
 #import <QuartzCore/QuartzCore.h>
@@ -41,7 +41,7 @@
 - (NSImage *)hh_imageTintedWithColor:(NSColor *)tint {
     if (tint != nil) {
         CIFilter *colorGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
-        CIColor *color = HH_AUTORELEASE([[CIColor alloc] initWithColor:tint]);
+        CIColor *color = HH_AUTORELEASE( [[CIColor alloc] initWithColor:tint] );
 
         [colorGenerator setValue:color forKey:kCIInputColorKey];
 
@@ -68,7 +68,7 @@
 
         CGRect extend = [outputImage extent];
         CGSize size = self.size;
-        NSImage *tintedImage = HH_AUTORELEASE([[NSImage alloc] initWithSize:size]);
+        NSImage *tintedImage = HH_AUTORELEASE( [[NSImage alloc] initWithSize:size] );
 
         [tintedImage lockFocus];
         {
@@ -76,14 +76,14 @@
             CIContext *ciContext = [CIContext contextWithCGContext:contextRef
                                                            options:[NSDictionary dictionaryWithObject:[NSNumber numberWithBool:YES]
                                                                                                forKey:kCIContextUseSoftwareRenderer]];
-            CGRect rect = CGRectMake(0, 0, size.width, size.height);
+            CGRect rect = CGRectMake( 0, 0, size.width, size.height );
             [ciContext drawImage:outputImage inRect:rect fromRect:extend];
         }
         [tintedImage unlockFocus];
 
         return tintedImage;
     } else {
-        return HH_AUTORELEASE([self copy]);
+        return HH_AUTORELEASE( [self copy] );
     }
 }
 

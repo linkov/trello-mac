@@ -21,9 +21,9 @@
 + (instancetype)sharedManager {
     static SDWLiveUpdateManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    dispatch_once( &onceToken, ^{
         _sharedManager = [SDWLiveUpdateManager new];
-    });
+    } );
 
     return _sharedManager;
 }
@@ -36,14 +36,14 @@
     NSString *datePlaceholder = @"";
     NSString *urlString = [NSString stringWithFormat:@"lists/%@/actions?since=%@", self.activeListID, datePlaceholder];
     [[AFTrelloAPIClient sharedClient] GET:urlString parameters:nil
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                  success:^( NSURLSessionDataTask *task, id responseObject ) {
         NSArray *updates = responseObject;
         if (updates.count) {
             [[NSNotificationCenter defaultCenter] postNotificationName:@"syncUpdates" object:nil];
         }
         [self performSelector:@selector(fetchUpdates) withObject:nil afterDelay:10];
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CLS_LOG(@"err ask updates - %@", error.localizedDescription);
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
+        CLS_LOG( @"err ask updates - %@", error.localizedDescription );
     }];
 }
 

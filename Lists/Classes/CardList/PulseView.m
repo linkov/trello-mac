@@ -59,7 +59,7 @@
 
 - (void)attachPathAnimation {
     CABasicAnimation *animation = [self animationWithKeyPath:@"path"];
-    animation.toValue = (__bridge id)((__bridge CGPathRef)[NSBezierPath bezierPathWithOvalInRect:CGRectInset(self.bounds, 4, 4)]);
+    animation.toValue = (__bridge id)((__bridge CGPathRef)[NSBezierPath bezierPathWithOvalInRect:CGRectInset( self.bounds, 4, 4 )]);
     animation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
     [self.layer addAnimation:animation forKey:animation.keyPath];
 }

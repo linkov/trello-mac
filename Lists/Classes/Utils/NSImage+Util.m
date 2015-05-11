@@ -22,21 +22,21 @@
     NSImage *rotatedImage = [[NSImage alloc] initWithSize:rotatedBounds.size];
 
     // Center the image within the rotated bounds
-    imageBounds.origin.x = NSMidX(rotatedBounds) - (NSWidth(imageBounds) / 2);
-    imageBounds.origin.y = NSMidY(rotatedBounds) - (NSHeight(imageBounds) / 2);
+    imageBounds.origin.x = NSMidX( rotatedBounds ) - (NSWidth( imageBounds ) / 2);
+    imageBounds.origin.y = NSMidY( rotatedBounds ) - (NSHeight( imageBounds ) / 2);
 
     // Start a new transform, to transform the image
     transform = [NSAffineTransform transform];
 
     // Move coordinate system to the center
     // (since we want to rotate around the center)
-    [transform translateXBy:+(NSWidth(rotatedBounds) / 2)
-                        yBy:+(NSHeight(rotatedBounds) / 2)];
+    [transform translateXBy:+(NSWidth( rotatedBounds ) / 2)
+                        yBy:+(NSHeight( rotatedBounds ) / 2)];
     // Do the rotation
     [transform rotateByDegrees:degrees];
     // Move coordinate system back to normal (bottom, left)
-    [transform translateXBy:-(NSWidth(rotatedBounds) / 2)
-                        yBy:-(NSHeight(rotatedBounds) / 2)];
+    [transform translateXBy:-(NSWidth( rotatedBounds ) / 2)
+                        yBy:-(NSHeight( rotatedBounds ) / 2)];
 
     // Draw the original image, rotated, into the new image
     // Note: This "drawing" is done off-screen.
@@ -54,7 +54,7 @@
         [image lockFocus];
         [tint set];
         NSRect imageRect = {NSZeroPoint, [image size]};
-        NSRectFillUsingOperation(imageRect, NSCompositeSourceAtop);
+        NSRectFillUsingOperation( imageRect, NSCompositeSourceAtop );
         [image unlockFocus];
     }
     return image;
@@ -94,7 +94,7 @@
 }
 
 + (NSImage *)imageFromBezierPath:(NSBezierPath *)path color:(NSColor *)color {
-    NSImage *image = [[NSImage alloc] initWithSize:CGSizeMake(18, 18)];
+    NSImage *image = [[NSImage alloc] initWithSize:CGSizeMake( 18, 18 )];
     [image lockFocus];
 
 //    NSRect aRect=NSMakeRect(0.0,0.0,20.0,20.0);
@@ -113,7 +113,7 @@
 
     ir = [NSCIImageRep imageRepWithCIImage:i];
     image = [[NSImage alloc] initWithSize:
-             NSMakeSize(r.size.width, r.size.height)]
+             NSMakeSize( r.size.width, r.size.height )]
     ;
     [image addRepresentation:ir];
     return image;

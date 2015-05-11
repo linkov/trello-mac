@@ -18,7 +18,7 @@ const struct SDWCardManagedAttributes SDWCardManagedAttributes = {
 @implementation _SDWCardManaged
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
+    NSParameterAssert( moc_ );
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 
@@ -27,7 +27,7 @@ const struct SDWCardManagedAttributes SDWCardManagedAttributes = {
 }
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
+    NSParameterAssert( moc_ );
     return [NSEntityDescription entityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 

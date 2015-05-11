@@ -17,32 +17,32 @@
 + (instancetype)store {
     static dispatch_once_t pred;
     static SDWTrelloStore *store = nil;
-    dispatch_once(&pred, ^{
+    dispatch_once( &pred, ^{
         store = [SDWTrelloStore new];
-    });
+    } );
     return store;
 }
 
 - (void)handleError:(NSError *)error {
-    CLS_LOG(@"err - %@", error.localizedDescription);
+    CLS_LOG( @"err - %@", error.localizedDescription );
 }
 
 - (void)handleError:(NSError *)error withReason:(id)reason {
 }
 
 - (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block {
-    [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^( NSURLSessionDataTask *task, id responseObject ) {
         SharedSettings.userID = responseObject[@"id"];
         NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
         NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
 
         if (block) {
-            block(@{@"crownBoardIDs": crownBoardIDs, @"crownListIDs": crownListIDs}, nil);
+            block( @{@"crownBoardIDs": crownBoardIDs, @"crownListIDs": crownListIDs}, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         [self handleError:error];
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
     }];
 }
@@ -61,14 +61,14 @@
 
     [[AFTrelloAPIClient sharedClient] POST:@"cards?"
                                 parameters:params
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
+                                   success:^( NSURLSessionDataTask *task, id responseObject )
     {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    }                              failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }                              failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -84,9 +84,9 @@
          @"idBoard": boardID,
          @"pos": @0
      }
-                                  success:^(NSURLSessionDataTask *task, id responseObject)
+                                  success:^( NSURLSessionDataTask *task, id responseObject )
     {
-    }                             failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }                             failure:^( NSURLSessionDataTask *task, NSError *error ) {
         [self handleError:error];
     }];
 }
@@ -96,16 +96,16 @@
         completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/pos?", cardID];
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": pos}
-                                  success:^(NSURLSessionDataTask *task, id responseObject)
+                                  success:^( NSURLSessionDataTask *task, id responseObject )
     {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    }                             failure:^(NSURLSessionDataTask *task, NSError *error)
+    }                             failure:^( NSURLSessionDataTask *task, NSError *error )
 
     {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -119,14 +119,14 @@
          @"desc": card.cardDescription ? : @"",
          @"due": (card.dueDate && (id)card.dueDate != [NSNull null]) ? [NSNumber numberWithLongLong:[card.dueDate timeIntervalSince1970] * 1000] : @""
      }
-                                  success:^(NSURLSessionDataTask *task, id responseObject)
+                                  success:^( NSURLSessionDataTask *task, id responseObject )
     {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    }                             failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }                             failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -136,13 +136,13 @@
       withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?", cardID];
 
-    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -153,13 +153,13 @@
                    completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?", cardID];
 
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": colors} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": colors} success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -170,13 +170,13 @@
                   completion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels/%@?", cardID, color];
 
-    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -194,14 +194,14 @@
          @"idBoard": boardID,
          @"pos": pos
      }
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
+                                   success:^( NSURLSessionDataTask *task, id responseObject )
     {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    }                              failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }                              failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -210,13 +210,13 @@
 - (void)deleteListID:(NSString *)listID withCompletion:(SDWTrelloStoreCompletionBlock)block {
     NSString *urlString = [NSString stringWithFormat:@"lists/%@?", listID];
 
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed": @"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed": @"true"} success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -231,14 +231,14 @@
 
     [[AFTrelloAPIClient sharedClient] POST:urlString
                                 parameters:@{@"name": name}
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
+                                   success:^( NSURLSessionDataTask *task, id responseObject )
     {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    }                              failure:^(NSURLSessionDataTask *task, NSError *error) {
+    }                              failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -251,14 +251,14 @@
               forModel:[SDWChecklist class]
         toConcretePath:[NSString stringWithFormat:@"cards/%@/checklists?", cardID]];
 
-    [SDWChecklist findAll:^(NSArray *objects, NSError *error) {
+    [SDWChecklist findAll:^( NSArray *objects, NSError *error ) {
         if (!error) {
             if (block) {
-                block(objects, nil);
+                block( objects, nil );
             }
         } else {
             if (block) {
-                block(nil, error);
+                block( nil, error );
             }
             [self handleError:error];
         }
@@ -272,13 +272,13 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?", cardID, initialListID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idChecklist": item.listID}
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                  success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -293,13 +293,13 @@
          @"state": item.state,
          @"name": item.name,
      }
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                  success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -311,13 +311,13 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?", cardID, item.listID, item.itemID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value": [NSNumber numberWithInteger:item.position]}
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                  success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -331,13 +331,13 @@
     [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{
          @"name": item.name
      }
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                   success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -352,13 +352,13 @@
          @"state": item.state,
          @"name": item.name
      }
-                                     success:^(NSURLSessionDataTask *task, id responseObject) {
+                                     success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -369,13 +369,13 @@
     NSString *urlString = [NSString stringWithFormat:@"checklists/%@?", checkList.listID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil
-                                     success:^(NSURLSessionDataTask *task, id responseObject) {
+                                     success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -386,14 +386,14 @@
     [[AFTrelloAPIClient sharedClient] POST:@"checklists?" parameters:@{
          @"idCard": cardID,
      }
-                                   success:^(NSURLSessionDataTask *task, id responseObject) {
+                                   success:^( NSURLSessionDataTask *task, id responseObject ) {
         SDWChecklist *newCheckList = [[SDWChecklist alloc]initWithAttributes:responseObject];
         if (block) {
-            block(newCheckList, nil);
+            block( newCheckList, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];
@@ -407,13 +407,13 @@
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{
          @"value": newName
      }
-                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                  success:^( NSURLSessionDataTask *task, id responseObject ) {
         if (block) {
-            block(responseObject, nil);
+            block( responseObject, nil );
         }
-    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+    } failure:^( NSURLSessionDataTask *task, NSError *error ) {
         if (block) {
-            block(nil, error);
+            block( nil, error );
         }
         [self handleError:error];
     }];

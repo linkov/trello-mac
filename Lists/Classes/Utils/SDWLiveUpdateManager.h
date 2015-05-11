@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^SDWUpdateManagerCompletion)(NSArray *syncedData);
+typedef void (^SDWUpdateManagerCompletion)( NSArray *syncedData );
 
 @interface SDWLiveUpdateManager : NSObject
 

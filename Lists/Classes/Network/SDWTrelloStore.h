@@ -11,7 +11,7 @@
 #import "SDWChecklistItem.h"
 #import "SDWChecklist.h"
 
-typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
+typedef void (^SDWTrelloStoreCompletionBlock)( id object, NSError *error );
 
 @interface SDWTrelloStore : NSObject
 
