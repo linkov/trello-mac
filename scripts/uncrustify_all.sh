@@ -14,7 +14,7 @@ if ! ls $XCWORKSPACE_FN > /dev/null; then
   exit 1
 fi
 
-if ! uncrustify > /dev/null; then
+if ! /usr/local/bin/uncrustify > /dev/null; then
   echo "The uncrustify binary is not available on your path. You can install it using 'brew install uncrustify'."
   exit 2
 fi
@@ -23,7 +23,7 @@ find $UNCRUSTIFY_SRCDIR -iname "*.[hm]" > $UNCRUSTIFY_FILELIST
 
 NO_FILES_NEEDED_UNCRUSTIFY=0
 while read fn; do
-  uncrustify -c $UNCRUSTIFY_CONFIG -lOC -f "$fn" -o "$fn.new" -q
+  /usr/local/bin/uncrustify -c $UNCRUSTIFY_CONFIG -lOC -f "$fn" -o "$fn.new" -q
   if ! diff "$fn" "$fn.new" > /dev/null; then
     NO_FILES_NEEDED_UNCRUSTIFY=1
     echo "UNCRUSTIFIED: $fn"
