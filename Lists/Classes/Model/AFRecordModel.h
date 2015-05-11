@@ -9,7 +9,7 @@
 #import "AFTrelloAPIClient.h"
 #import <Foundation/Foundation.h>
 
-typedef void (^AFRecordCallback)( id, NSError * );
+typedef void (^AFRecordCallback)(id, NSError *);
 
 @interface AFRecordModel : NSObject
 

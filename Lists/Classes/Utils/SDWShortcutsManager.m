@@ -13,9 +13,9 @@
 + (instancetype)sharedManager {
     static SDWShortcutsManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
-    dispatch_once( &onceToken, ^{
+    dispatch_once(&onceToken, ^{
         _sharedManager = [SDWShortcutsManager new];
-    } );
+    });
 
     return _sharedManager;
 }

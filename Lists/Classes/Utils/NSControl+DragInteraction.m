@@ -34,7 +34,7 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
 - (void)draggingEnded:(id <NSDraggingInfo> )sender {
     NSPoint clickPoint = [self convertPoint:sender.draggingLocation fromView:nil];
 
-    if (CGRectContainsPoint( self.bounds, clickPoint )) {
+    if (CGRectContainsPoint(self.bounds, clickPoint)) {
         if ([(NSObject *)self.interactionDelegate respondsToSelector : @selector(control:didAcceptDropWithPasteBoard:)]) {
             [self.interactionDelegate control:self didAcceptDropWithPasteBoard:[sender draggingPasteboard]];
         }
@@ -54,11 +54,11 @@ static NSString const *interactionDelegateKey = @"com.sdwr.utils.interactionDele
 #pragma mark - Associated objects
 
 - (void)setInteractionDelegate:(id <NSControlInteractionDelegate> )interactionDelegate {
-    objc_setAssociatedObject( self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN );
+    objc_setAssociatedObject(self, (__bridge const void *)(interactionDelegateKey), interactionDelegate, OBJC_ASSOCIATION_ASSIGN);
 }
 
 - (id <NSControlInteractionDelegate> )interactionDelegate {
-    return objc_getAssociatedObject( self, (__bridge const void *)(interactionDelegateKey));
+    return objc_getAssociatedObject(self, (__bridge const void *)(interactionDelegateKey));
 }
 
 @end

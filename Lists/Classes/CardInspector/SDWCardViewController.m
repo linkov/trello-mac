@@ -112,7 +112,7 @@
     [self hideComments:YES];
     [self animateLogoIn:YES];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidUpdateDueNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidUpdateDueNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         self.card.dueDate = note.userInfo[@"date"];
         [self updateDueDateViewWithDate:self.card.dueDate];
         [[self cardsVC] updateCardDetails:self.card localOnly:NO];
@@ -172,7 +172,7 @@
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [SDWActivity findAll:^( NSArray *response, NSError *err ) {
+    [SDWActivity findAll:^(NSArray *response, NSError *err) {
         [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!err) {
@@ -182,7 +182,7 @@
                 [self.activityTable reloadData];
             }
         } else {
-            CLSLog( @"fetchActivities error %@", err.localizedDescription );
+            CLSLog(@"fetchActivities error %@", err.localizedDescription);
         }
     }];
 }
@@ -190,7 +190,7 @@
 - (void)fetchChecklists {
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^( id object, NSError *error ) {
+    [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!error) {
@@ -375,7 +375,7 @@
     if (tableView == self.activityTable) {
         SDWActivity *activity = self.activityItems[[indexPath row]];
 
-        CGRect rec = [activity.content boundingRectWithSize:CGSizeMake( 255, MAXFLOAT ) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+        CGRect rec = [activity.content boundingRectWithSize:CGSizeMake(255, MAXFLOAT) options:NSLineBreakByWordWrapping | NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
 
         return rec.size.height + 16 + (17 + 4);
     } else {
@@ -383,9 +383,9 @@
         NSArray *contents = [[self todoSectionContents] objectForKey:key];
         SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
 
-        CGRect rec = [item.name boundingRectWithSize:CGSizeMake( 220, MAXFLOAT ) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
+        CGRect rec = [item.name boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
 
-        return floor( rec.size.height + kLIST_ITEM_TOP_BOTTOM_PAD );
+        return floor(rec.size.height + kLIST_ITEM_TOP_BOTTOM_PAD);
     }
 
     return 30;
@@ -481,7 +481,7 @@
         self.isInTODOMode = NO;
     }
 
-    [NSAnimationContext runAnimationGroup:^( NSAnimationContext *context ){
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
         context.duration = 0.3; // you can leave this out if the default is acceptable
         context.allowsImplicitAnimation = YES;
         context.timingFunction = [CAMediaTimingFunction functionWithControlPoints:0.25:0.10:0.25:1.00];
@@ -550,7 +550,7 @@
         self.dropSectionKey = cellView.trelloCheckListID;
         sectionKeyNew = item.listID;
     } else {
-        NSLog( @"[self.flatContent objectAtIndex:row] is Section" );
+        NSLog(@"[self.flatContent objectAtIndex:row] is Section");
     }
 
     NSDragOperation dragOp = NSDragOperationNone;
@@ -648,7 +648,7 @@
         NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
 
-        NSLog( @"writeRowsWithIndexes - itemIndexInSection %lu", (unsigned long)itemIndexInSection );
+        NSLog(@"writeRowsWithIndexes - itemIndexInSection %lu", (unsigned long)itemIndexInSection);
 
         if (itemIndexInSection > 10000) {
             return NO;
@@ -689,7 +689,7 @@
     if (isSection) {
         SDWChecklist *checkList = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"listID = %@", dataDict[@"sectionKey"]]].firstObject;
 
-        [[SDWTrelloStore store] deleteCheckList:checkList withCompletion:^( id object, NSError *error ) {
+        [[SDWTrelloStore store] deleteCheckList:checkList withCompletion:^(id object, NSError *error) {
             if (!error) {
                 NSMutableArray *arr = [NSMutableArray arrayWithArray:self.rawcheckLists];
                 [arr removeObject:checkList];
@@ -717,7 +717,7 @@
 
         [[self cardsVC] showCardSavingIndicator:YES];
 
-        [[SDWTrelloStore store] deleteCheckItem:item cardID:self.card.cardID withCompletion:^( id object, NSError *error ) {
+        [[SDWTrelloStore store] deleteCheckItem:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
             [[self cardsVC] showCardSavingIndicator:NO];
 
             if (!error) {
@@ -739,7 +739,7 @@
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] createCheckItem:newItem cardID:self.card.cardID withCompletion:^( id object, NSError *error ) {
+    [[SDWTrelloStore store] createCheckItem:newItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!error) {
@@ -769,7 +769,7 @@
 - (void)moveCheckItem:(SDWChecklistItem *)item fromListID:(NSString *)listID {
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] moveCheckItem:item fromList:listID cardID:self.card.cardID withCompletion:^( id object, NSError *error ) {
+    [[SDWTrelloStore store] moveCheckItem:item fromList:listID cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
     }];
 }
@@ -777,7 +777,7 @@
 - (void)changePositionForCheckItem:(SDWChecklistItem *)item {
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCheckItemPosition:item cardID:self.card.cardID withCompletion:^( id object, NSError *error ) {
+    [[SDWTrelloStore store] updateCheckItemPosition:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
     }];
 }
@@ -786,7 +786,7 @@
     itemView.trelloCheckItem.state = itemView.checkBox.checked == YES ? @"complete" : @"incomplete";
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem cardID:self.card.cardID withCompletion:^( id object, NSError *error ) {
+    [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
         [self updateCardTodosStatus];
     }];
@@ -801,14 +801,14 @@
     if (itemView.trelloCheckItem && [itemView.trelloCheckItem isKindOfClass:[SDWChecklistItem class]]) {
         [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem
                                          cardID:self.card.cardID
-                                 withCompletion:^( id object, NSError *error ) {
+                                 withCompletion:^(id object, NSError *error) {
             [[self cardsVC] showCardSavingIndicator:NO];
             [self updateCardTodosStatus];
         }];
     } else {
         [[SDWTrelloStore store] updateChecklistName:itemView.textField.stringValue
                                           forListID:itemView.trelloCheckListID
-                                     withCompletion:^( id object, NSError *error )
+                                     withCompletion:^(id object, NSError *error)
         {
             [[self cardsVC] showCardSavingIndicator:NO];
 
@@ -822,7 +822,7 @@
 - (void)addChecklist {
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^( SDWChecklist *checklist, NSError *error ) {
+    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(SDWChecklist *checklist, NSError *error) {
         [[self cardsVC] showCardSavingIndicator:NO];
 
         if (!error) {

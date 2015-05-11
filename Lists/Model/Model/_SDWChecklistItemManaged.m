@@ -16,7 +16,7 @@ const struct SDWChecklistItemManagedAttributes SDWChecklistItemManagedAttributes
 @implementation _SDWChecklistItemManaged
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWChecklistItemManaged" inManagedObjectContext:moc_];
 }
 
@@ -25,7 +25,7 @@ const struct SDWChecklistItemManagedAttributes SDWChecklistItemManagedAttributes
 }
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWChecklistItemManaged" inManagedObjectContext:moc_];
 }
 

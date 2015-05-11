@@ -18,7 +18,7 @@
 @implementation WSCBoardsOutlineView
 
 - (void)awakeFromNib {
-    self.intercellSpacing = CGSizeMake( 0, 5 );
+    self.intercellSpacing = CGSizeMake(0, 5);
 }
 
 - (NSMenu *)menuForEvent:(NSEvent *)evt {

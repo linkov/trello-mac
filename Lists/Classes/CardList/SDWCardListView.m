@@ -41,13 +41,13 @@
 
     if (self.shouldDrawSideLine || self.shouldDrawSideLineAmber) {
         CGFloat rectangleCornerRadius = 1.5;
-        NSRect rectangleRect = NSMakeRect( 0, 0, 1.5, self.bounds.size.height );
-        NSRect rectangleInnerRect = NSInsetRect( rectangleRect, rectangleCornerRadius, rectangleCornerRadius );
+        NSRect rectangleRect = NSMakeRect(0, 0, 1.5, self.bounds.size.height);
+        NSRect rectangleInnerRect = NSInsetRect(rectangleRect, rectangleCornerRadius, rectangleCornerRadius);
         sideLinePath = NSBezierPath.bezierPath;
-        [sideLinePath appendBezierPathWithArcWithCenter:NSMakePoint( NSMinX( rectangleInnerRect ), NSMinY( rectangleInnerRect )) radius:rectangleCornerRadius startAngle:180 endAngle:270];
-        [sideLinePath lineToPoint:NSMakePoint( NSMaxX( rectangleRect ), NSMinY( rectangleRect ))];
-        [sideLinePath lineToPoint:NSMakePoint( NSMaxX( rectangleRect ), NSMaxY( rectangleRect ))];
-        [sideLinePath appendBezierPathWithArcWithCenter:NSMakePoint( NSMinX( rectangleInnerRect ), NSMaxY( rectangleInnerRect )) radius:rectangleCornerRadius startAngle:90 endAngle:180];
+        [sideLinePath appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rectangleInnerRect), NSMinY(rectangleInnerRect)) radius:rectangleCornerRadius startAngle:180 endAngle:270];
+        [sideLinePath lineToPoint:NSMakePoint(NSMaxX(rectangleRect), NSMinY(rectangleRect))];
+        [sideLinePath lineToPoint:NSMakePoint(NSMaxX(rectangleRect), NSMaxY(rectangleRect))];
+        [sideLinePath appendBezierPathWithArcWithCenter:NSMakePoint(NSMinX(rectangleInnerRect), NSMaxY(rectangleInnerRect)) radius:rectangleCornerRadius startAngle:90 endAngle:180];
         [sideLinePath closePath];
 
         if (self.shouldDrawSideLineAmber) {
@@ -58,11 +58,11 @@
 
         [sideLinePath fill];
     } else {
-        sideLinePath = CFBridgingRelease( CGPathCreateWithRect( CGRectZero, nil ));
+        sideLinePath = CFBridgingRelease(CGPathCreateWithRect(CGRectZero, nil));
     }
 
     if (self.hasDot) {
-        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( 3.5, self.bounds.size.height / 2 - 4 / 2, 4, 4 )];
+        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(3.5, self.bounds.size.height / 2 - 4 / 2, 4, 4)];
 
         [[SharedSettings appBackgroundColorDark] setFill];
         [[SharedSettings appBackgroundColorDark] setStroke];
@@ -72,7 +72,7 @@
     for (SDWLabel *label in self.labels) {
         CGFloat xPos = self.bounds.size.width - self.labels.count * kCardLabelPad + ([self.labels indexOfObject:label] * kCardLabelPad);
 
-        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( xPos, 4, 3, 3 )];
+        NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(xPos, 4, 3, 3)];
         [[SharedSettings colorForTrelloColor:label.color] setStroke];
 
         [ovalPath stroke];

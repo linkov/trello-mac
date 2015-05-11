@@ -67,23 +67,23 @@ typedef enum {
 
 - (void)_setupPositionAndSizeForIndicatorType:(SDWIndicatorType)type {
     if (type == SDWIndicatorTypeSmall) {
-        self.firstLine.position = CGPointMake( 1, 10 );
-        self.firstLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 0, 2, 14, 3 ), .5, .5, &CGAffineTransformIdentity );
+        self.firstLine.position = CGPointMake(1, 10);
+        self.firstLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 14, 3), .5, .5, &CGAffineTransformIdentity);
 
-        self.secondLine.position = CGPointMake( 1, 5 );
-        self.secondLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 0, 2, 10, 3 ), .5, .5, &CGAffineTransformIdentity );
+        self.secondLine.position = CGPointMake(1, 5);
+        self.secondLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 10, 3), .5, .5, &CGAffineTransformIdentity);
 
-        self.thirdLine.position = CGPointMake( 1, 0 );
-        self.thirdLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 0, 2, 6, 3 ), .5, .5, &CGAffineTransformIdentity );
+        self.thirdLine.position = CGPointMake(1, 0);
+        self.thirdLine.path = CGPathCreateWithRoundedRect(NSMakeRect(0, 2, 6, 3), .5, .5, &CGAffineTransformIdentity);
     } else {
-        self.firstLine.position = CGPointMake( 15, 40 );
-        self.firstLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 4, 20, 60, 15 ), 2, 2, &CGAffineTransformIdentity );
+        self.firstLine.position = CGPointMake(15, 40);
+        self.firstLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 60, 15), 2, 2, &CGAffineTransformIdentity);
 
-        self.secondLine.position = CGPointMake( 15, 20 );
-        self.secondLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 4, 20, 45, 15 ), 2, 2, &CGAffineTransformIdentity );
+        self.secondLine.position = CGPointMake(15, 20);
+        self.secondLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 45, 15), 2, 2, &CGAffineTransformIdentity);
 
-        self.thirdLine.position = CGPointMake( 15, 0 );
-        self.thirdLine.path = CGPathCreateWithRoundedRect( NSMakeRect( 4, 20, 30, 15 ), 2, 2, &CGAffineTransformIdentity );
+        self.thirdLine.position = CGPointMake(15, 0);
+        self.thirdLine.path = CGPathCreateWithRoundedRect(NSMakeRect(4, 20, 30, 15), 2, 2, &CGAffineTransformIdentity);
     }
 }
 

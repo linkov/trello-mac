@@ -21,9 +21,9 @@
 
         NSMutableArray *firstNameArr = [NSMutableArray new];
 
-        [firstName enumerateSubstringsInRange:NSMakeRange( 0, firstName.length )
+        [firstName enumerateSubstringsInRange:NSMakeRange(0, firstName.length)
                                       options:NSStringEnumerationByComposedCharacterSequences
-                                   usingBlock:^( NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop ){
+                                   usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
             [firstNameArr addObject:substring];
         }
 
@@ -31,9 +31,9 @@
 
         NSMutableArray *lastNameArr = [NSMutableArray new];
 
-        [lastName enumerateSubstringsInRange:NSMakeRange( 0, lastName.length )
+        [lastName enumerateSubstringsInRange:NSMakeRange(0, lastName.length)
                                      options:NSStringEnumerationByComposedCharacterSequences
-                                  usingBlock:^( NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop ){
+                                  usingBlock:^(NSString *substring, NSRange substringRange, NSRange enclosingRange, BOOL *stop){
             [lastNameArr addObject:substring];
         }
 
@@ -70,7 +70,7 @@
 }
 
 + (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color {
-    NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect( 2, 5, 5, 5 )];
+    NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(2, 5, 5, 5)];
 
     NSMenuItem *item = [[NSMenuItem alloc]init];
     item.title = color;

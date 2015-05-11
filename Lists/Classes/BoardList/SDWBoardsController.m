@@ -153,7 +153,7 @@
                   forModel:[SDWBoard class]
             toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
 
-        [SDWBoard findAll:^( NSArray *objects, NSError *error ) {
+        [SDWBoard findAll:^(NSArray *objects, NSError *error) {
             [self.loadingProgress stopAnimation];
 
             if (!error) {
@@ -170,7 +170,7 @@
                 }
             } else {
                 self.reloadButton.hidden = NO;
-                CLS_LOG( @"err = %@", error.localizedDescription );
+                CLS_LOG(@"err = %@", error.localizedDescription);
             }
         }];
     } else {
@@ -189,7 +189,7 @@
 }
 
 - (void)loadBoardsIDsWithUserCards {
-    [[SDWTrelloStore store] fetchAllAssigneesWithCompletion:^( NSDictionary *object, NSError *error ) {
+    [[SDWTrelloStore store] fetchAllAssigneesWithCompletion:^(NSDictionary *object, NSError *error) {
         if (!error) {
             self.boards = [self filteredBoardsForIDs:object[@"crownBoardIDs"] listIDs:object[@"crownListIDs"]];
             [self reloadDataSource];

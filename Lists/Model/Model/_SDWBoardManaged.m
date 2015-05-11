@@ -15,7 +15,7 @@ const struct SDWBoardManagedAttributes SDWBoardManagedAttributes = {
 @implementation _SDWBoardManaged
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWBoardManaged" inManagedObjectContext:moc_];
 }
 
@@ -24,7 +24,7 @@ const struct SDWBoardManagedAttributes SDWBoardManagedAttributes = {
 }
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWBoardManaged" inManagedObjectContext:moc_];
 }
 

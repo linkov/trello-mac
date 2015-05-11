@@ -12,16 +12,16 @@
 #define defaults                                [NSUserDefaults standardUserDefaults]
 #define saveDefaults()                          [defaults synchronize]
 
-#define setBoolForKey( value, key )               [defaults setBool : value forKey : key]
-#define setObjectForKey( object, key )            [defaults setObject : object forKey : key]
+#define setBoolForKey(value, key)               [defaults setBool : value forKey : key]
+#define setObjectForKey(object, key)            [defaults setObject : object forKey : key]
 
-#define setBoolForKeyAndSave( value, key )        setBoolForKey( value, key ); saveDefaults()
-#define setObjectForKeyAndSave( object, key )     setObjectForKey( object, key );  saveDefaults()
+#define setBoolForKeyAndSave(value, key)        setBoolForKey(value, key); saveDefaults()
+#define setObjectForKeyAndSave(object, key)     setObjectForKey(object, key);  saveDefaults()
 
-#define objectForKey( key )                       [defaults objectForKey : key]
-#define boolForKey( key )                         [defaults boolForKey : key]
+#define objectForKey(key)                       [defaults objectForKey : key]
+#define boolForKey(key)                         [defaults boolForKey : key]
 
-#define valueForKeyExists( key )                  objectForKey( key ) != nil
+#define valueForKeyExists(key)                  objectForKey(key) != nil
 
 NSString *const SDWListsDidReceiveUserTokenNotification = @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString *const SDWListsDidChangeSidebarStatusNotification = @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
@@ -47,9 +47,9 @@ static SDWAppSettings *sharedInstance = nil;
 
 + (instancetype)sharedSettings {
     static dispatch_once_t onceToken;
-    dispatch_once( &onceToken, ^{
+    dispatch_once(&onceToken, ^{
         sharedInstance = [SDWAppSettings new];
-    } );
+    });
     return sharedInstance;
 }
 
@@ -171,11 +171,11 @@ static SDWAppSettings *sharedInstance = nil;
 
 - (void)saveCustomObject:(id)object forKey:(NSString *)key {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
-    setObjectForKeyAndSave( data, key );
+    setObjectForKeyAndSave(data, key);
 }
 
 - (id)customObjectForKey:(NSString *)key {
-    NSData *data = objectForKey( key );
+    NSData *data = objectForKey(key);
     return [NSKeyedUnarchiver unarchiveObjectWithData:data];
 }
 

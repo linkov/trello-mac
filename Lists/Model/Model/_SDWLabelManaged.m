@@ -15,7 +15,7 @@ const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
 @implementation _SDWLabelManaged
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 
@@ -24,7 +24,7 @@ const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
 }
 
 + (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert( moc_ );
+    NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 

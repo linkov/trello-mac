@@ -23,7 +23,7 @@
 + (void)path:(NSString *)path findAll:(AFRecordCallback)block {
     NSString *p = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
-    [[AFTrelloAPIClient sharedClient] GET:p parameters:nil success:^( NSURLSessionDataTask *__unused task, id JSON ) {
+    [[AFTrelloAPIClient sharedClient] GET:p parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
         NSArray *postsFromResponse = JSON[path];
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
         for (NSDictionary * attributes in postsFromResponse) {
@@ -33,11 +33,11 @@
         }
 
         if (block) {
-            block( [NSArray arrayWithArray:mutablePosts], nil );
+            block([NSArray arrayWithArray:mutablePosts], nil);
         }
-    } failure:^( NSURLSessionDataTask *__unused task, NSError *error ) {
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block( [NSArray array], error );
+            block([NSArray array], error);
         }
     }];
 }
@@ -45,7 +45,7 @@
 + (void)findAll:(AFRecordCallback)block {
     NSString *path = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
-    [[AFTrelloAPIClient sharedClient] GET:path parameters:nil success:^( NSURLSessionDataTask *__unused task, id JSON ) {
+    [[AFTrelloAPIClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
         NSArray *postsFromResponse = JSON;
         NSMutableArray *mutablePosts = [NSMutableArray arrayWithCapacity:[postsFromResponse count]];
         for (NSDictionary * attributes in postsFromResponse) {
@@ -55,11 +55,11 @@
         }
 
         if (block) {
-            block( [NSArray arrayWithArray:mutablePosts], nil );
+            block([NSArray arrayWithArray:mutablePosts], nil);
         }
-    } failure:^( NSURLSessionDataTask *__unused task, NSError *error ) {
+    } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
         if (block) {
-            block( [NSArray array], error );
+            block([NSArray array], error);
         }
     }];
 }

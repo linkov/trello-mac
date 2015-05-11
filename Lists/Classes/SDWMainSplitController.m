@@ -48,26 +48,26 @@
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveUserTokenNotification
                                                       object:nil
                                                        queue:[NSOperationQueue mainQueue]
-                                                  usingBlock:^( NSNotification *note )
+                                                  usingBlock:^(NSNotification *note)
     {
         [self dismissLogin];
         [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
         self.cardsVC.onboardingImage.hidden = NO;
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeSidebarStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeSidebarStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self toggleSideBar];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeCardDetailsStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeCardDetailsStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self toggleCardDetails];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadListNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadListNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self.cardsVC reloadCards];
     }];
 
-    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadBoardsNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^( NSNotification *note ) {
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldReloadBoardsNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self.cardsVC clearCards];
         [self.boardsVC reloadBoards:nil];
     }];

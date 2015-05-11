@@ -65,7 +65,7 @@
 }
 
 - (void)animateControlsOpacityIn:(BOOL)shouldShow {
-    [NSAnimationContext runAnimationGroup:^( NSAnimationContext *context ){
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
         context.duration = 0.35;
         context.allowsImplicitAnimation = YES;
         self.addCheckItemButton.animator.hidden = self.handleImage.animator.hidden = !shouldShow;
