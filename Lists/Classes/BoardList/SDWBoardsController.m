@@ -149,9 +149,9 @@
         self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
 
         [[AFRecordPathManager manager]
-                 setAFRecordMethod:@"findAll"
-                          forModel:[SDWBoard class]
-                    toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
+         setAFRecordMethod:@"findAll"
+                  forModel:[SDWBoard class]
+            toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
 
         [SDWBoard findAll:^(NSArray *objects, NSError *error) {
             [self.loadingProgress stopAnimation];
