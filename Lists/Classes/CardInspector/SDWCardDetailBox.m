@@ -10,13 +10,15 @@
 
 @implementation SDWCardDetailBox
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 
     // Drawing code here.
 }
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.fillColor = [SharedSettings appBackgroundColor];
     self.cornerRadius = 1.5;
     self.borderColor = [SharedSettings appHighlightColor];

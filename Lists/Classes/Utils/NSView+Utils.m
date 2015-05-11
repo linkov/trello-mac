@@ -10,7 +10,8 @@
 
 @implementation NSView (Utils)
 
-- (instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode {
+- (instancetype)insertVibrancyViewBlendingMode:(NSVisualEffectBlendingMode)mode
+{
     Class vibrantClass = NSClassFromString(@"NSVisualEffectView");
     if (vibrantClass) {
         NSVisualEffectView *vibrant = [[vibrantClass alloc] initWithFrame:self.bounds];

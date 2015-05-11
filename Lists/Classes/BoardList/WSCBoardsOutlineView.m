@@ -17,11 +17,13 @@
 
 @implementation WSCBoardsOutlineView
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     self.intercellSpacing = CGSizeMake(0, 5);
 }
 
-- (NSMenu *)menuForEvent:(NSEvent *)evt {
+- (NSMenu *)menuForEvent:(NSEvent *)evt
+{
     NSPoint pt = [self convertPoint:[evt locationInWindow] fromView:nil];
     NSUInteger row = [self rowAtPoint:pt];
 
@@ -32,7 +34,8 @@
     return nil;
 }
 
-- (NSMenu *)defaultMenuForRow:(NSUInteger)row {
+- (NSMenu *)defaultMenuForRow:(NSUInteger)row
+{
     NSMenu *theMenu = [[NSMenu alloc] initWithTitle:@"List menu"];
 
     [theMenu insertItemWithTitle:@"Delete"
@@ -45,11 +48,13 @@
     return theMenu;
 }
 
-- (void)removeList {
+- (void)removeList
+{
     [self.menuDelegate outlineviewShouldDeleteListAtRow:self.contextRow];
 }
 
-- (void)addList {
+- (void)addList
+{
     [self.menuDelegate outlineviewShouldAddListBelowRow:self.contextRow];
 }
 

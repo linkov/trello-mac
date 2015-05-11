@@ -11,7 +11,8 @@
 
 @implementation SDWChecklist
 
-- (void)mapAttributesToProperties {
+- (void)mapAttributesToProperties
+{
     self.listBoardID = self.attributes[@"idBoard"];
     self.listCardID = self.attributes[@"idCard"];
     self.listID = self.attributes[@"id"];

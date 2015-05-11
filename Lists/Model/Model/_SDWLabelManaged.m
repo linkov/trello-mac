@@ -14,25 +14,30 @@ const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
 
 @implementation _SDWLabelManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_
+{
     NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
++ (NSString *)entityName
+{
     return @"SDWLabelManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_
+{
     NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWLabelManagedID *)objectID {
+- (SDWLabelManagedID *)objectID
+{
     return (SDWLabelManagedID *)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
     NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
     return keyPaths;

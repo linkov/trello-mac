@@ -10,7 +10,8 @@
 
 @implementation SDWChecklistItem
 
-- (void)mapAttributesToProperties {
+- (void)mapAttributesToProperties
+{
     self.state = self.attributes[@"state"];
     self.itemID = self.attributes[@"id"];
     self.name = self.attributes[@"name"];

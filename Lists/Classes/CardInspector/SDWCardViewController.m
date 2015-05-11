@@ -70,7 +70,8 @@
 
 @implementation SDWCardViewController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
 
     self.saveButton.interactionDelegate = self;
@@ -121,11 +122,13 @@
     self.addChecklistOnboard.hidden = YES;
 }
 
-- (void)viewWillAppear {
+- (void)viewWillAppear
+{
     self.checkListsScrollLeadingSpace.constant = self.addChecklistOnboardLeading.constant = -500;
 }
 
-- (void)setCard:(SDWCard *)card {
+- (void)setCard:(SDWCard *)card
+{
     if (!card) {
         [self animateLogoIn:YES];
         [self hideViews:YES];
@@ -163,7 +166,8 @@
     }
 }
 
-- (void)fetchActivities {
+- (void)fetchActivities
+{
     NSString *URL = [NSString stringWithFormat:@"cards/%@/actions?filter=commentCard", self.card.cardID];
     [[AFRecordPathManager manager]
      setAFRecordMethod:@"findAll"
@@ -187,7 +191,8 @@
     }];
 }
 
-- (void)fetchChecklists {
+- (void)fetchChecklists
+{
     [[self cardsVC] showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
@@ -206,7 +211,8 @@
     }];
 }
 
-- (void)loadRowsAndSectionsFromFlatData:(NSArray *)data {
+- (void)loadRowsAndSectionsFromFlatData:(NSArray *)data
+{
     [self.flatContent removeAllObjects];
 
     NSMutableArray *keys = [[NSMutableArray alloc] init];
@@ -229,7 +235,8 @@
     [self.checkListsTable reloadData];
 }
 
-- (void)updateDueDateViewWithDate:(NSDate *)date {
+- (void)updateDueDateViewWithDate:(NSDate *)date
+{
     NSDateFormatter *dateFormatter = [[NSDateFormatter alloc]init];
     [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     [dateFormatter setLocale:[NSLocale currentLocale]];
@@ -243,26 +250,31 @@
     [self.dueDateLabel setNeedsDisplay:YES];
 }
 
-- (void)animateLogoIn:(BOOL)fadeIn {
+- (void)animateLogoIn:(BOOL)fadeIn
+{
     self.logoImageView.hidden = !fadeIn;
 }
 
-- (void)hideComments:(BOOL)shouldHide {
+- (void)hideComments:(BOOL)shouldHide
+{
     self.activityTableScroll.hidden = self.commentsLabel.hidden = shouldHide;
 }
 
-- (void)hideViews:(BOOL)shouldHide {
+- (void)hideViews:(BOOL)shouldHide
+{
     self.titleDescLabel.hidden = self.saveButton.hidden = self.dueBox.hidden = self.nameBox.hidden = self.descBox.hidden = self.saveButton.hidden = self.cardIcon.hidden =
                                                                                                                                                         self.listIcon.hidden = self.checkListsScrollView.hidden = self.checkListSwitch.hidden =
                                                                                                                                                                                                                       shouldHide;
 }
 
-- (SDWCardsController *)cardsVC {
+- (SDWCardsController *)cardsVC
+{
     SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
     return main.cardsVC;
 }
 
-- (IBAction)saveCard:(NSButton *)sender {
+- (IBAction)saveCard:(NSButton *)sender
+{
     if (!self.isInTODOMode) {
         self.card.name = self.cardNameTextView.string;
         self.card.cardDescription = self.cardDescriptionTextView.string;
@@ -272,7 +284,8 @@
     }
 }
 
-- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender {
+- (void)prepareForSegue:(NSStoryboardSegue *)segue sender:(id)sender
+{
     if ([segue.identifier isEqualToString:@"ShowCalendar"]) {
         SDWCardCalendarVC *calVC = segue.destinationController;
         calVC.currentDue = self.card.dueDate;
@@ -281,7 +294,8 @@
 
 #pragma mark - JWCTableViewDataSource, JWCTableViewDelegate
 
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section {
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section
+{
     if (tableView == self.activityTable) {
         return NO;
     }
@@ -289,7 +303,8 @@
     return YES;
 }
 
-- (BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+- (BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == self.activityTable) {
         return NO;
     }
@@ -298,7 +313,8 @@
 }
 
 //Number of rows in section
-- (NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
+- (NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
     if (tableView == self.activityTable) {
         return self.activityItems.count;
     } else {
@@ -310,7 +326,8 @@
 }
 
 //Number of sections
-- (NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
+- (NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView
+{
     if (tableView == self.activityTable) {
         return 1;
     } else {
@@ -319,21 +336,24 @@
 }
 
 //Has a header view for a section
-- (BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
+- (BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section
+{
     if (tableView == self.activityTable) {
         return NO;
     }
     return YES;
 }
 
-- (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
+- (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section
+{
     if (section == 0) {
         return 18;
     }
     return 40;
 }
 
-- (NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
+- (NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
     if (tableView != self.activityTable) {
         SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
 
@@ -371,7 +391,8 @@
 }
 
 //Height related
-- (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+- (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
     if (tableView == self.activityTable) {
         SDWActivity *activity = self.activityItems[[indexPath row]];
 
@@ -391,7 +412,8 @@
     return 30;
 }
 
-- (NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
+- (NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath
+{
     NSView *result;
 
     if (tableView == self.activityTable) {
@@ -451,7 +473,8 @@
     return result;
 }
 
-- (IBAction)switchDidChange:(ITSwitch *)sender {
+- (IBAction)switchDidChange:(ITSwitch *)sender
+{
     CGFloat pos;
     CGFloat checkListsPos;
     NSImage *checkMarkImage;
@@ -495,7 +518,8 @@
 #pragma mark - Drag Drop
 
 //TODO: move to Shared Utils
-- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr {
+- (NSArray *)reorderFromIndex:(NSUInteger)fromIndex toIndex:(NSUInteger)toIndex inArray:(NSArray *)arr
+{
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
 
     // 1. swap 2 elements
@@ -523,7 +547,8 @@
     return mutableArray;
 }
 
-- (NSDragOperation)_jwcTableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
+- (NSDragOperation)_jwcTableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op
+{
     if ([self.flatContent count] == 1 || row > self.flatContent.count - 1) {
         return NSDragOperationNone;
     }
@@ -571,7 +596,8 @@
 }
 
 - (BOOL)_jwcTableView:(NSTableView *)aTableView acceptDrop:(id <NSDraggingInfo>)info
-                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation {
+                  row:(NSInteger)row dropOperation:(NSTableViewDropOperation)operation
+{
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"com.sdwr.lists.checklists.drag"];
 
@@ -613,7 +639,8 @@
     return YES;
 }
 
-- (void)updateFlatContent  {
+- (void)updateFlatContent
+{
     NSMutableArray *newFlatContent = [NSMutableArray array];
 
     for (NSString *key in self.todoSectionKeys) {
@@ -627,7 +654,8 @@
     self.flatContent = newFlatContent;
 }
 
-- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
+- (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard
+{
     if (tv == self.activityTable) {
         return NO;
     }
@@ -670,17 +698,20 @@
     return YES;
 }
 
-- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes
+{
     self.saveButton.image = [NSImage imageNamed:@"trashSM"];
 }
 
-- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+- (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation
+{
     self.saveButton.image = [NSImage imageNamed:@"addCard"];
 }
 
 #pragma mark - NSControlInteractionDelegate
 
-- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard {
+- (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard
+{
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
 
@@ -729,7 +760,8 @@
 
 #pragma mark - SDWCheckItemDelegate
 
-- (void)checkItemShouldAddItem:(SDWCheckItemTableCellView *)itemView {
+- (void)checkItemShouldAddItem:(SDWCheckItemTableCellView *)itemView
+{
     SDWChecklistItem *newItem = [SDWChecklistItem new];
     newItem.name = @"new item";
     newItem.state = @"incomplete";
@@ -766,7 +798,8 @@
 
 #pragma mark - Trello API
 
-- (void)moveCheckItem:(SDWChecklistItem *)item fromListID:(NSString *)listID {
+- (void)moveCheckItem:(SDWChecklistItem *)item fromListID:(NSString *)listID
+{
     [[self cardsVC] showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] moveCheckItem:item fromList:listID cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
@@ -774,7 +807,8 @@
     }];
 }
 
-- (void)changePositionForCheckItem:(SDWChecklistItem *)item {
+- (void)changePositionForCheckItem:(SDWChecklistItem *)item
+{
     [[self cardsVC] showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] updateCheckItemPosition:item cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
@@ -782,7 +816,8 @@
     }];
 }
 
-- (void)checkItemDidCheck:(SDWCheckItemTableCellView *)itemView {
+- (void)checkItemDidCheck:(SDWCheckItemTableCellView *)itemView
+{
     itemView.trelloCheckItem.state = itemView.checkBox.checked == YES ? @"complete" : @"incomplete";
     [[self cardsVC] showCardSavingIndicator:YES];
 
@@ -792,7 +827,8 @@
     }];
 }
 
-- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)itemView {
+- (void)checkItemDidChangeName:(SDWCheckItemTableCellView *)itemView
+{
     [[self cardsVC] showCardSavingIndicator:YES];
 
     /* invalidate heightForRow - in case user typed multiline text we need to change cell height */
@@ -819,7 +855,8 @@
     }
 }
 
-- (void)addChecklist {
+- (void)addChecklist
+{
     [[self cardsVC] showCardSavingIndicator:YES];
 
     [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(SDWChecklist *checklist, NSError *error) {
@@ -847,7 +884,8 @@
 
 #pragma mark - Utils
 
-- (void)updateCardTodosStatus {
+- (void)updateCardTodosStatus
+{
     NSArray *items = self.todoSectionContents.allValues;
     NSUInteger countOfOpenItems = [[items valueForKeyPath:@"@distinctUnionOfArrays.state"]
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@", @"incomplete"]].count;
@@ -859,7 +897,8 @@
     }
 }
 
-- (NSString *)checkListNameFromID:(NSString *)checkListID {
+- (NSString *)checkListNameFromID:(NSString *)checkListID
+{
     SDWChecklist *list = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"listID == %@", checkListID]].firstObject;
     return list.name;
 }

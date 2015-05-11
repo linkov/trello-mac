@@ -11,7 +11,8 @@
 
 @implementation SDWBoardsListRow
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 
     NSRect separatorLine = NSRectFromCGRect(CGRectMake(0, self.bounds.size.height - 0.5, self.bounds.size.width, 0.5));
@@ -19,19 +20,22 @@
     [NSBezierPath fillRect:separatorLine];
 }
 
-- (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect {
+- (void)drawDraggingDestinationFeedbackInRect:(NSRect)dirtyRect
+{
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
     [[SharedSettings appHighlightGreenColor] set];
     [NSBezierPath fillRect:drawRect];
 }
 
-- (void)drawSelectionInRect:(NSRect)dirtyRect {
+- (void)drawSelectionInRect:(NSRect)dirtyRect
+{
     NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
     [[SharedSettings appHighlightColor] set];
     [NSBezierPath fillRect:drawRect];
 }
 
-- (void)mouseDown:(NSEvent *)theEvent {
+- (void)mouseDown:(NSEvent *)theEvent
+{
     [super mouseDown:theEvent];
 
     if (theEvent.clickCount >= 2) {
@@ -39,7 +43,8 @@
     }
 }
 
-- (void)didAddSubview:(NSView *)subview {
+- (void)didAddSubview:(NSView *)subview
+{
     [super didAddSubview:subview];
 
     if ([subview isKindOfClass:[NSButton class]]) {

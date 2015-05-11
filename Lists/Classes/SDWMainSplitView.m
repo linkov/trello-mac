@@ -11,17 +11,20 @@
 
 @implementation SDWMainSplitView
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 
     // Drawing code here.
 }
 
-- (NSColor *)dividerColor {
+- (NSColor *)dividerColor
+{
     return [SharedSettings appBackgroundColor];
 }
 
-- (void)keyDown:(NSEvent *)theEvent {
+- (void)keyDown:(NSEvent *)theEvent
+{
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 }
 

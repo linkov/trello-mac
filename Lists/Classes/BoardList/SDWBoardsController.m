@@ -55,7 +55,8 @@
 
 @implementation SDWBoardsController
 
-- (void)viewDidLoad {
+- (void)viewDidLoad
+{
     [super viewDidLoad];
     [self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
@@ -69,7 +70,8 @@
 }
 
 #pragma mark - Utils
-- (IBAction)sortByDue:(NSButton *)sender {
+- (IBAction)sortByDue:(NSButton *)sender
+{
     if (!SharedSettings.shouldFilterDueAccending && !SharedSettings.shouldFilterDueDecending) {
         SharedSettings.shouldFilterDueAccending = YES;
         self.dueSortButton.image = [NSImage imageNamed:@"dueSort"];
@@ -89,7 +91,8 @@
     [[self cardsVC] setupCardsForList:board parentList:parentBoard];
 }
 
-- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
+- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids
+{
     NSMutableArray *boards = [NSMutableArray array];
 
     for (SDWBoard *board in self.unfilteredBoards) {
@@ -111,11 +114,13 @@
     return boards;
 }
 
-- (NSColor *)textColor {
+- (NSColor *)textColor
+{
     return [NSColor blackColor];
 }
 
-- (IBAction)logout:(id)sender {
+- (IBAction)logout:(id)sender
+{
     SharedSettings.userToken = nil;
     [(SDWMainSplitController *)self.parentViewController logout];
     self.boards = @[];
@@ -124,7 +129,8 @@
     [[self cardsVC] clearCards];
 }
 
-- (IBAction)crownSwitchDidChange:(ITSwitch *)sender {
+- (IBAction)crownSwitchDidChange:(ITSwitch *)sender
+{
     SharedSettings.shouldFilter = sender.on;
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter": [NSNumber numberWithBool:sender.on]}];
     self.boards = nil;
@@ -133,14 +139,16 @@
 
 #pragma mark - Board operations
 
-- (IBAction)reloadBoards:(id)sender {
+- (IBAction)reloadBoards:(id)sender
+{
     self.boards = @[];
     [self.outlineView reloadData];
     self.reloadButton.hidden = YES;
     [self loadBoards];
 }
 
-- (void)loadBoards {
+- (void)loadBoards
+{
     [[self cardDetailsVC] setCard:nil];
 
     if (SharedSettings.userToken) {
@@ -178,7 +186,8 @@
     }
 }
 
-- (void)reloadDataSource {
+- (void)reloadDataSource
+{
     self.isAccessingExpandViaDataReload = YES;
 
     [self.outlineView deselectAll:nil];
@@ -188,7 +197,8 @@
     self.isAccessingExpandViaDataReload = NO;
 }
 
-- (void)loadBoardsIDsWithUserCards {
+- (void)loadBoardsIDsWithUserCards
+{
     [[SDWTrelloStore store] fetchAllAssigneesWithCompletion:^(NSDictionary *object, NSError *error) {
         if (!error) {
             self.boards = [self filteredBoardsForIDs:object[@"crownBoardIDs"] listIDs:object[@"crownListIDs"]];
@@ -201,17 +211,20 @@
 
 #pragma mark - Card operations
 
-- (SDWCardViewController *)cardDetailsVC {
+- (SDWCardViewController *)cardDetailsVC
+{
     SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
     return main.cardDetailsVC;
 }
 
-- (SDWCardsController *)cardsVC {
+- (SDWCardsController *)cardsVC
+{
     SDWMainSplitController *main = (SDWMainSplitController *)self.parentViewController;
     return main.cardsVC;
 }
 
-- (void)moveCard:(NSDictionary *)cardData {
+- (void)moveCard:(NSDictionary *)cardData
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID": cardData[@"cardID"]}];
 
     [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
@@ -221,28 +234,33 @@
 
 #pragma mark - SDWBoardsListRowDelegate
 
-- (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow {
+- (void)boardRowDidDoubleClick:(SDWBoardsListRow *)boardRow
+{
 }
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
-- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
+- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow
+{
 //
 //    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
 //    [self deleteList:board];
 }
 
-- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {
+- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow
+{
 }
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
-- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
+- (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item
+{
     SDWBoardsListRow *row = [SDWBoardsListRow new];
     return row;
 }
 
-- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
+- (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row
+{
     SDWBoard *board = [[self.outlineView itemAtRow:row] representedObject];
     SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
     boardNameRow.delegate = self;
@@ -253,7 +271,8 @@
     }
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item
+{
     [[self cardDetailsVC] setCard:nil];
 
     SDWBoard *board = item.representedObject;
@@ -271,7 +290,8 @@
     return NO;
 }
 
-- (void)outlineViewSelectionDidChange:(NSNotification *)notification {
+- (void)outlineViewSelectionDidChange:(NSNotification *)notification
+{
     if (self.outlineView.selectedRow == -1) {
         return;
     }
@@ -286,7 +306,8 @@
     self.prevSelectedRow = selectedRow;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item {
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item
+{
     SDWBoard *board = [item representedObject];
 
     if (self.isAccessingExpandViaDataReload) {
@@ -304,7 +325,8 @@
     return YES;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView shouldCollapseItem:(NSTreeNode *)item {
+- (BOOL)outlineView:(NSOutlineView *)outlineView shouldCollapseItem:(NSTreeNode *)item
+{
     if ([item.childNodes containsObject:self.lastSelectedItem]) {
         [[self cardsVC] clearCards];
     }
@@ -320,7 +342,8 @@
 }
 
 // handle drop
-- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(NSTreeNode *)item proposedChildIndex:(NSInteger)index {
+- (NSDragOperation)outlineView:(NSOutlineView *)outlineView validateDrop:(id <NSDraggingInfo>)info proposedItem:(NSTreeNode *)item proposedChildIndex:(NSInteger)index
+{
     if (item.isLeaf) {
         self.boardWithDropParent = item.parentNode.representedObject;
         self.boardWithDrop = item.representedObject;
@@ -329,7 +352,8 @@
     return NSDragOperationNone;
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index
+{
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
 

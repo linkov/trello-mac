@@ -10,7 +10,8 @@
 
 @implementation SDWActivityTableCellView
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 }
 

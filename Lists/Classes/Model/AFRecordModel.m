@@ -11,7 +11,8 @@
 
 @implementation AFRecordModel
 
-- (instancetype)initWithAttributes:(NSDictionary *)attributes {
+- (instancetype)initWithAttributes:(NSDictionary *)attributes
+{
     self = [super init];
     if (self) {
         self.attributes = attributes;
@@ -20,7 +21,8 @@
     return self;
 }
 
-+ (void)path:(NSString *)path findAll:(AFRecordCallback)block {
++ (void)path:(NSString *)path findAll:(AFRecordCallback)block
+{
     NSString *p = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
     [[AFTrelloAPIClient sharedClient] GET:p parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
@@ -42,7 +44,8 @@
     }];
 }
 
-+ (void)findAll:(AFRecordCallback)block {
++ (void)findAll:(AFRecordCallback)block
+{
     NSString *path = [[AFRecordPathManager manager] concretePathForPathType:@"findAll" forModel:[self class]];
 
     [[AFTrelloAPIClient sharedClient] GET:path parameters:nil success:^(NSURLSessionDataTask *__unused task, id JSON) {
@@ -64,7 +67,8 @@
     }];
 }
 
-- (void)mapAttributesToProperties {
+- (void)mapAttributesToProperties
+{
 }
 
 @end

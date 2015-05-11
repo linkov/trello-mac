@@ -38,7 +38,8 @@
 
 @implementation NSImage (HHTint)
 
-- (NSImage *)hh_imageTintedWithColor:(NSColor *)tint {
+- (NSImage *)hh_imageTintedWithColor:(NSColor *)tint
+{
     if (tint != nil) {
         CIFilter *colorGenerator = [CIFilter filterWithName:@"CIConstantColorGenerator"];
         CIColor *color = HH_AUTORELEASE([[CIColor alloc] initWithColor:tint]);
@@ -87,7 +88,8 @@
     }
 }
 
-- (NSImage *)imageTintedWithColor:(NSColor *)tint {
+- (NSImage *)imageTintedWithColor:(NSColor *)tint
+{
     if (tint != nil) {
         NSSize size = [self size];
         NSRect bounds = {

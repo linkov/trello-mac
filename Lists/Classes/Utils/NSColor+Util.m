@@ -10,7 +10,8 @@
 
 @implementation NSColor (Util)
 
-+ (NSColor *)colorWithHexColorString:(NSString *)inColorString {
++ (NSColor *)colorWithHexColorString:(NSString *)inColorString
+{
     NSColor *result = nil;
     unsigned colorCode = 0;
     unsigned char redByte, greenByte, blueByte;

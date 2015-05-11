@@ -14,7 +14,8 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
 
 @implementation AFTrelloAPIClient
 
-+ (instancetype)sharedClient {
++ (instancetype)sharedClient
+{
     static AFTrelloAPIClient *_sharedClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -32,7 +33,8 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters
                       success:(void (^)(NSURLSessionDataTask *task, id responseObject))success
-                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
+                      failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure
+{
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
@@ -47,7 +49,8 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     return [super GET:paramsStr parameters:parameters success:success failure:failure];
 }
 
-- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)PUT:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
+{
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
@@ -61,7 +64,8 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     return [super PUT:paramsStr parameters:parameters success:success failure:failure];
 }
 
-- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)POST:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
+{
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
@@ -75,7 +79,8 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     return [super POST:paramsStr parameters:parameters success:success failure:failure];
 }
 
-- (NSURLSessionDataTask *)DELETE:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
+- (NSURLSessionDataTask *)DELETE:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure
+{
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 

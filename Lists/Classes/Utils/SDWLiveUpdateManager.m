@@ -18,7 +18,8 @@
 
 @implementation SDWLiveUpdateManager
 
-+ (instancetype)sharedManager {
++ (instancetype)sharedManager
+{
     static SDWLiveUpdateManager *_sharedManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
@@ -28,7 +29,8 @@
     return _sharedManager;
 }
 
-- (void)fetchUpdates {
+- (void)fetchUpdates
+{
     if (!self.shouldContinueUpdates) {
         return;
     }
@@ -47,13 +49,15 @@
     }];
 }
 
-- (void)startUpdatingListID:(NSString *)listID {
+- (void)startUpdatingListID:(NSString *)listID
+{
     self.shouldContinueUpdates = YES;
     self.activeListID = listID;
     [self performSelector:@selector(fetchUpdates) withObject:nil afterDelay:10];
 }
 
-- (void)stopUpdating {
+- (void)stopUpdating
+{
     self.shouldContinueUpdates = NO;
 }
 

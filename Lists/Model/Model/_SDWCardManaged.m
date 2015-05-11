@@ -17,25 +17,30 @@ const struct SDWCardManagedAttributes SDWCardManagedAttributes = {
 
 @implementation _SDWCardManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_
+{
     NSParameterAssert(moc_);
     return [NSEntityDescription insertNewObjectForEntityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
++ (NSString *)entityName
+{
     return @"SDWCardManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_
+{
     NSParameterAssert(moc_);
     return [NSEntityDescription entityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWCardManagedID *)objectID {
+- (SDWCardManagedID *)objectID
+{
     return (SDWCardManagedID *)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
++ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key
+{
     NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
     if ([key isEqualToString:@"positionValue"]) {
@@ -57,21 +62,25 @@ const struct SDWCardManagedAttributes SDWCardManagedAttributes = {
 
 @dynamic position;
 
-- (int16_t)positionValue {
+- (int16_t)positionValue
+{
     NSNumber *result = [self position];
     return [result shortValue];
 }
 
-- (void)setPositionValue:(int16_t)value_ {
+- (void)setPositionValue:(int16_t)value_
+{
     [self setPosition:[NSNumber numberWithShort:value_]];
 }
 
-- (int16_t)primitivePositionValue {
+- (int16_t)primitivePositionValue
+{
     NSNumber *result = [self primitivePosition];
     return [result shortValue];
 }
 
-- (void)setPrimitivePositionValue:(int16_t)value_ {
+- (void)setPrimitivePositionValue:(int16_t)value_
+{
     [self setPrimitivePosition:[NSNumber numberWithShort:value_]];
 }
 

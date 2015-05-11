@@ -19,7 +19,8 @@
 
 @implementation AppDelegate
 
-- (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationDidFinishLaunching:(NSNotification *)aNotification
+{
     [self setupDotOption];
 
     if (!SharedSettings.shouldShowCardLabels) {
@@ -29,11 +30,13 @@
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
+- (void)applicationWillTerminate:(NSNotification *)aNotification
+{
     // Insert code here to tear down your application
 }
 
-- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
+- (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply
+{
     NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"lists://authorize#token=" withString:@""];
 
     if (token.length > 0) {
@@ -43,7 +46,8 @@
                                                         object:nil userInfo:@{@"token": token}];
 }
 
-- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification
+{
     // Register ourselves as a URL handler for this URL
     [[NSAppleEventManager sharedAppleEventManager]
      setEventHandler:self
@@ -52,15 +56,18 @@
           andEventID:kAEGetURL];
 }
 
-- (IBAction)hideSideBar:(id)sender {
+- (IBAction)hideSideBar:(id)sender
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
 }
 
-- (IBAction)hideCardDetails:(id)sender {
+- (IBAction)hideCardDetails:(id)sender
+{
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeCardDetailsStatusNotification object:nil];
 }
 
-- (IBAction)toggleCardLabels:(id)sender {
+- (IBAction)toggleCardLabels:(id)sender
+{
     if (SharedSettings.shouldShowCardLabels == NO) {
         SharedSettings.shouldShowCardLabels = YES;
     } else {
@@ -72,7 +79,8 @@
 
 #pragma mark - Dot Option
 
-- (IBAction)dotOptionFeedback:(id)sender {
+- (IBAction)dotOptionFeedback:(id)sender
+{
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];
     NSString *version = [info objectForKey:@"CFBundleShortVersionString"];
 
@@ -83,7 +91,8 @@
     (void)[[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:urlString]];
 }
 
-- (IBAction)changeDotOption:(NSMenuItem *)sender {
+- (IBAction)changeDotOption:(NSMenuItem *)sender
+{
     switch (sender.tag) {
         case 10:
             SharedSettings.dotOption = SDWDotOptionHasDescription;
@@ -109,7 +118,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeDotOptionNotification object:nil];
 }
 
-- (void)setupDotOption {
+- (void)setupDotOption
+{
     if (!SharedSettings.dotOption) {
         SharedSettings.dotOption = SDWDotOptionHasOpenTodos;
         [self.dotMenu10 setState:1];

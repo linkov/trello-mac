@@ -24,7 +24,8 @@
 
 #pragma mark - Properties
 
-- (void)awakeFromNib {
+- (void)awakeFromNib
+{
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
     self.fillColor = [NSColor whiteColor];
@@ -36,7 +37,8 @@
     // self.textField.delegate = self;
 }
 
-- (void)drawRect:(NSRect)dirtyRect {
+- (void)drawRect:(NSRect)dirtyRect
+{
     [super drawRect:dirtyRect];
 
     if (self.shouldDrawSideLine || self.shouldDrawSideLineAmber) {
@@ -79,7 +81,8 @@
     }
 }
 
-- (void)setSelected:(BOOL)selected {
+- (void)setSelected:(BOOL)selected
+{
     if (selected) {
         self.fillColor = [SharedSettings appSelectionColor];
     } else {
@@ -87,22 +90,26 @@
     }
 }
 
-- (void)setShouldDrawSideLine:(BOOL)shouldDrawSideLine {
+- (void)setShouldDrawSideLine:(BOOL)shouldDrawSideLine
+{
     _shouldDrawSideLine = shouldDrawSideLine;
     [self setNeedsDisplay:YES];
 }
 
-- (void)setShouldDrawSideLineAmber:(BOOL)shouldDrawSideLineAmber {
+- (void)setShouldDrawSideLineAmber:(BOOL)shouldDrawSideLineAmber
+{
     _shouldDrawSideLineAmber = shouldDrawSideLineAmber;
     [self setNeedsDisplay:YES];
 }
 
-- (void)setLabels:(NSArray *)labels {
+- (void)setLabels:(NSArray *)labels
+{
     _labels = labels;
     [self setNeedsDisplay:YES];
 }
 
-- (void)setHasDot:(BOOL)hasDot {
+- (void)setHasDot:(BOOL)hasDot
+{
     _hasDot = hasDot;
 
     [self setNeedsDisplay:YES];
