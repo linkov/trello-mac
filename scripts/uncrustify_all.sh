@@ -1,13 +1,13 @@
 #! /bin/bash
 
 PROJECT_DIR="."
-XCWORKSPACE_FN="$PROJECT_DIR/ios-merchant.xcworkspace"
+XCWORKSPACE_FN="$PROJECT_DIR/ios-merchant.xcodeproj"
 SCRIPTS_ROOT="$PROJECT_DIR/scripts"
 UNCRUSTIFY_SCRIPTS="$SCRIPTS_ROOT"
 UNCRUSTIFY_CONFIG="$PROJECT_DIR/uncrustify.cfg"
 UNCRUSTIFY_FILELIST="$PROJECT_DIR/to_uncrustify.txt"
 UNCRUSTIFY_DEBUGLOG="$PROJECT_DIR/uncrustify_debug.log"
-UNCRUSTIFY_SRCDIR="$PROJECT_DIR/ios-merchant"
+UNCRUSTIFY_SRCDIR="$PROJECT_DIR/Lists"
 
 if ! ls $XCWORKSPACE_FN > /dev/null; then
   echo "You must be in the root project directory to run this."
