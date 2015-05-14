@@ -4,14 +4,14 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SDWBoardManagedAttributes {
-	__unsafe_unretained NSString *listsID;
-	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *position;
+    __unsafe_unretained NSString *listsID;
+    __unsafe_unretained NSString *name;
+    __unsafe_unretained NSString *position;
 } SDWBoardManagedAttributes;
 
 extern const struct SDWBoardManagedRelationships {
-	__unsafe_unretained NSString *cards;
-	__unsafe_unretained NSString *user;
+    __unsafe_unretained NSString *cards;
+    __unsafe_unretained NSString *user;
 } SDWBoardManagedRelationships;
 
 @class SDWCardManaged;
@@ -21,30 +21,30 @@ extern const struct SDWBoardManagedRelationships {
 @end
 
 @interface _SDWBoardManaged : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
-+ (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) SDWBoardManagedID* objectID;
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
++ (NSString *)           entityName;
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_;
+@property (nonatomic, readonly, strong) SDWBoardManagedID *objectID;
 
-@property (nonatomic, strong) NSString* listsID;
+@property (nonatomic, strong) NSString *listsID;
 
 //- (BOOL)validateListsID:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSNumber* position;
+@property (nonatomic, strong) NSNumber *position;
 
 @property (atomic) int16_t positionValue;
 - (int16_t)positionValue;
-- (void)setPositionValue:(int16_t)value_;
+- (void)   setPositionValue:(int16_t)value_;
 
 //- (BOOL)validatePosition:(id*)value_ error:(NSError**)error_;
 
 @property (nonatomic, strong) NSSet *cards;
 
-- (NSMutableSet*)cardsSet;
+- (NSMutableSet *)cardsSet;
 
 @property (nonatomic, strong) NSManagedObject *user;
 
@@ -53,31 +53,31 @@ extern const struct SDWBoardManagedRelationships {
 @end
 
 @interface _SDWBoardManaged (CardsCoreDataGeneratedAccessors)
-- (void)addCards:(NSSet*)value_;
-- (void)removeCards:(NSSet*)value_;
-- (void)addCardsObject:(SDWCardManaged*)value_;
-- (void)removeCardsObject:(SDWCardManaged*)value_;
+- (void)addCards:(NSSet *)value_;
+- (void)removeCards:(NSSet *)value_;
+- (void)addCardsObject:(SDWCardManaged *)value_;
+- (void)removeCardsObject:(SDWCardManaged *)value_;
 
 @end
 
 @interface _SDWBoardManaged (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSString*)primitiveListsID;
-- (void)setPrimitiveListsID:(NSString*)value;
+- (NSString *)primitiveListsID;
+- (void)      setPrimitiveListsID:(NSString *)value;
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSString *)primitiveName;
+- (void)      setPrimitiveName:(NSString *)value;
 
-- (NSNumber*)primitivePosition;
-- (void)setPrimitivePosition:(NSNumber*)value;
+- (NSNumber *)primitivePosition;
+- (void)      setPrimitivePosition:(NSNumber *)value;
 
 - (int16_t)primitivePositionValue;
-- (void)setPrimitivePositionValue:(int16_t)value_;
+- (void)   setPrimitivePositionValue:(int16_t)value_;
 
-- (NSMutableSet*)primitiveCards;
-- (void)setPrimitiveCards:(NSMutableSet*)value;
+- (NSMutableSet *)primitiveCards;
+- (void)          setPrimitiveCards:(NSMutableSet *)value;
 
-- (NSManagedObject*)primitiveUser;
-- (void)setPrimitiveUser:(NSManagedObject*)value;
+- (NSManagedObject *)primitiveUser;
+- (void)             setPrimitiveUser:(NSManagedObject *)value;
 
 @end

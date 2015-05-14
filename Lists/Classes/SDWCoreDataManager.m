@@ -20,10 +20,8 @@
 
 @implementation SDWCoreDataManager
 
-
 static SDWCoreDataManager *manager;
 + (instancetype)manager {
-
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [SDWCoreDataManager new];

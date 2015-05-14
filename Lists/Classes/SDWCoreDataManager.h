@@ -11,7 +11,6 @@
 
 @interface SDWCoreDataManager : NSObject
 
-
 @property (strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 + (instancetype)manager;
