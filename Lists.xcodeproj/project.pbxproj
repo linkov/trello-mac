@@ -85,6 +85,7 @@
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
+		F151E8F41B0542CB006E5198 /* SDWCoreDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F151E8F31B0542CB006E5198 /* SDWCoreDataManager.m */; };
 		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
 		F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1665A661A22847700A1519D /* Crashlytics.framework */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
@@ -228,6 +229,8 @@
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
 		F14B36131A145ADF00AFD5C9 /* PulseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseView.h; sourceTree = "<group>"; };
 		F14B36141A145ADF00AFD5C9 /* PulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseView.m; sourceTree = "<group>"; };
+		F151E8F21B0542CB006E5198 /* SDWCoreDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCoreDataManager.h; sourceTree = "<group>"; };
+		F151E8F31B0542CB006E5198 /* SDWCoreDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCoreDataManager.m; sourceTree = "<group>"; };
 		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
 		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
 		F1665A661A22847700A1519D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
@@ -339,6 +342,8 @@
 				F10AAA1D1A12AFD800FD4E85 /* SDWMainWindowController.m */,
 				F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */,
 				F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */,
+				F151E8F21B0542CB006E5198 /* SDWCoreDataManager.h */,
+				F151E8F31B0542CB006E5198 /* SDWCoreDataManager.m */,
 				F10AAA1E1A12AFD800FD4E85 /* Utils */,
 			);
 			path = Classes;
@@ -732,6 +737,7 @@
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
+				F151E8F41B0542CB006E5198 /* SDWCoreDataManager.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
@@ -908,6 +914,7 @@
 				F106AB131AFD487300BA3C9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F119AE6F19FD4CFC0061D7DF /* Build configuration list for PBXProject "Lists" */ = {
 			isa = XCConfigurationList;

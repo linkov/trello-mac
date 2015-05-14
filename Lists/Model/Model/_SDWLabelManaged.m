@@ -4,9 +4,13 @@
 #import "_SDWLabelManaged.h"
 
 const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
-    .color = @"color",
-    .listsID = @"listsID",
-    .name = @"name",
+	.color = @"color",
+	.listsID = @"listsID",
+	.name = @"name",
+};
+
+const struct SDWLabelManagedRelationships SDWLabelManagedRelationships = {
+	.cards = @"cards",
 };
 
 @implementation SDWLabelManagedID
@@ -14,28 +18,28 @@ const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
 
 @implementation _SDWLabelManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription insertNewObjectForEntityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
++ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription insertNewObjectForEntityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
-    return @"SDWLabelManaged";
++ (NSString*)entityName {
+	return @"SDWLabelManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription entityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription entityForName:@"SDWLabelManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWLabelManagedID *)objectID {
-    return (SDWLabelManagedID *)[super objectID];
+- (SDWLabelManagedID*)objectID {
+	return (SDWLabelManagedID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-    return keyPaths;
+	return keyPaths;
 }
 
 @dynamic color;
@@ -43,6 +47,17 @@ const struct SDWLabelManagedAttributes SDWLabelManagedAttributes = {
 @dynamic listsID;
 
 @dynamic name;
+
+@dynamic cards;
+
+- (NSMutableSet*)cardsSet {
+	[self willAccessValueForKey:@"cards"];
+
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"cards"];
+
+	[self didAccessValueForKey:@"cards"];
+	return result;
+}
 
 @end
 
