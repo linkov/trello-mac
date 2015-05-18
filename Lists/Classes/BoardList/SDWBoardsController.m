@@ -36,8 +36,6 @@
 /*-------Models-------*/
 #import "SDWBoard.h"
 
-
-
 @interface SDWBoardsController () <NSOutlineViewDelegate, NSOutlineViewDataSource, SDWBoardsListRowDelegate, SDWBoardsListOutlineViewDelegate, NSTextFieldDelegate>
 @property (strong) NSArray *boards;
 //@property (strong) NSArray *crownBoards;

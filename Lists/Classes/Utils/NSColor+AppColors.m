@@ -38,5 +38,4 @@
     return [NSColor colorWithCalibratedRed:0.096 green:0.265 blue:0.387 alpha:1.000];
 }
 
-
 @end

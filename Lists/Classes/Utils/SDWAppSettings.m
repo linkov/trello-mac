@@ -94,7 +94,6 @@ static SDWAppSettings *sharedInstance = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.userID"];
 }
 
-
 - (void)setCollapsedBoardsIDs:(NSSet *)collapsedBoardsIDs {
     _collapsedBoardsIDs = collapsedBoardsIDs;
     [self saveCustomObject:collapsedBoardsIDs forKey:@"collapsedBoards"];

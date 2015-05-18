@@ -22,7 +22,6 @@ NSString *const SDWListsShouldCreateCardNotification = @"com.sdwr.trello-mac.sho
 NSString *const SDWListsShouldReloadListNotification = @"com.sdwr.trello-mac.shouldReloadListNotification";
 NSString *const SDWListsShouldReloadBoardsNotification = @"com.sdwr.trello-mac.shouldReloadBoardsNotification";
 
-
 /* defaults */
 NSString *const SDWListsShouldCrownFilterKey = @"com.sdwr.trello-mac.SDWListsShouldCrownFilterKey";
 NSString *const SDWListsShouldFilterDueAccendingKey = @"com.sdwr.trello-mac.SDWListsShouldFilterDueAccendingKey";

@@ -9,7 +9,6 @@
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 
-
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
@@ -30,20 +29,14 @@
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 
     [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
-
     }];
-
-
-
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-
     [self.persistenceManager save];
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
-
     [[NSAppleEventManager sharedAppleEventManager]
      setEventHandler:self
          andSelector:@selector(getUrl:withReplyEvent:)

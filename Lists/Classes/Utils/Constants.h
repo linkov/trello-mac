@@ -23,14 +23,12 @@ extern NSString *const SDWListsDidUpdateDueNotification;
 extern NSString *const SDWListsShouldReloadListNotification;
 extern NSString *const SDWListsShouldReloadBoardsNotification;
 
-
 /* defaults */
 extern NSString *const SDWListsShouldCrownFilterKey;
 extern NSString *const SDWListsShouldFilterDueAccendingKey;
 extern NSString *const SDWListsShouldFilterDueDecendingKey;
 extern NSString *const SDWListsShouldShowCardLabelsKey;
 extern NSString *const SDWListsTrelloApiAppTokenKey;
-
 
 @interface Constants : NSObject
 

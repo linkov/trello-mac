@@ -19,7 +19,6 @@ static SDWLogger *sharedLogger;
     return sharedLogger;
 }
 
-
 - (void)logError:(NSString *)format, ...NS_FORMAT_FUNCTION(1, 2) {
     va_list args;
     va_start(args, format);

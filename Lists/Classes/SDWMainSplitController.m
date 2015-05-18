@@ -37,13 +37,11 @@
     self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
     self.cardDetailsVC = (SDWCardViewController *)self.cardDetailSplitItem.viewController;
 
-
     [self setupUI];
     [self handleNotifications];
 }
 
 - (void)setupUI {
-
     self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
 
     [self.boardsVC.view addConstraint:self.sideBarWidth];
@@ -54,17 +52,15 @@
 }
 
 - (void)handleNotifications {
-
-
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveUserTokenNotification
                                                       object:nil
                                                        queue:[NSOperationQueue mainQueue]
                                                   usingBlock:^(NSNotification *note)
-     {
-         [self dismissLogin];
-         [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
-         self.cardsVC.onboardingImage.hidden = NO;
-     }];
+    {
+        [self dismissLogin];
+        [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
+        self.cardsVC.onboardingImage.hidden = NO;
+    }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeSidebarStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
         [self toggleSideBar];
@@ -82,7 +78,6 @@
         [self.cardsVC clearCards];
         [self.boardsVC reloadBoards:nil];
     }];
-
 }
 
 - (void)toggleCardDetails {
@@ -106,13 +101,11 @@
 }
 
 - (void)logout {
-
     SharedSettings.userToken = nil;
     [self showLoginUI];
 }
 
 - (void)showLoginUI {
-
     self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
     [self presentViewControllerAsSheet:self.loginVC];
 }

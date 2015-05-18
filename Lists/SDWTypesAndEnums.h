@@ -8,7 +8,6 @@
 
 /** Contains Typedefs and enums */
 
-
 #pragma mark - Blocks
 
 typedef void (^SDWEmptyBlock)();

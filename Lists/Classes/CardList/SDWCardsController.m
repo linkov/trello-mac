@@ -6,9 +6,7 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-
 #import "SDWCardsController.h"
-
 
 /*-------View Controllers-------*/
 #import "SDWCardViewController.h"
@@ -37,7 +35,6 @@
 #import "SDWBoard.h"
 #import "SDWUser.h"
 #import "SDWcard.h"
-
 
 @interface SDWCardsController () <NSCollectionViewDelegate, NSControlInteractionDelegate, SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;

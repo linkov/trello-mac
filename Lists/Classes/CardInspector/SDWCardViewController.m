@@ -8,7 +8,6 @@
 
 #import "SDWCardViewController.h"
 
-
 /*-------View Controllers-------*/
 #import "SDWCardsController.h"
 #import "SDWMainSplitController.h"
@@ -31,11 +30,9 @@
 #import "NSControl+DragInteraction.h"
 #import "NSColor+AppColors.h"
 
-
 /*-------Models-------*/
 #import "SDWChecklist.h"
 #import "SDWChecklistItem.h"
-
 
 #define kLIST_ITEM_TOP_BOTTOM_PAD 12 // hotfix for wrong height
 

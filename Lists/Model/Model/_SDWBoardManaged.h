@@ -4,12 +4,12 @@
 #import <CoreData/CoreData.h>
 
 extern const struct SDWBoardManagedAttributes {
-	__unsafe_unretained NSString *listsID;
-	__unsafe_unretained NSString *name;
+    __unsafe_unretained NSString *listsID;
+    __unsafe_unretained NSString *name;
 } SDWBoardManagedAttributes;
 
 extern const struct SDWBoardManagedRelationships {
-	__unsafe_unretained NSString *lists;
+    __unsafe_unretained NSString *lists;
 } SDWBoardManagedRelationships;
 
 @class SDWListManaged;
@@ -18,20 +18,20 @@ extern const struct SDWBoardManagedRelationships {
 @end
 
 @interface _SDWBoardManaged : NSManagedObject {}
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
-+ (NSString*)entityName;
-+ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-@property (nonatomic, readonly, strong) SDWBoardManagedID* objectID;
++ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_;
++ (NSString *)           entityName;
++ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_;
+@property (nonatomic, readonly, strong) SDWBoardManagedID *objectID;
 
-@property (nonatomic, strong) NSNumber* listsID;
+@property (nonatomic, strong) NSNumber *listsID;
 
 @property (atomic) int16_t listsIDValue;
 - (int16_t)listsIDValue;
-- (void)setListsIDValue:(int16_t)value_;
+- (void)   setListsIDValue:(int16_t)value_;
 
 //- (BOOL)validateListsID:(id*)value_ error:(NSError**)error_;
 
-@property (nonatomic, strong) NSString* name;
+@property (nonatomic, strong) NSString *name;
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
 
@@ -43,16 +43,16 @@ extern const struct SDWBoardManagedRelationships {
 
 @interface _SDWBoardManaged (CoreDataGeneratedPrimitiveAccessors)
 
-- (NSNumber*)primitiveListsID;
-- (void)setPrimitiveListsID:(NSNumber*)value;
+- (NSNumber *)primitiveListsID;
+- (void)      setPrimitiveListsID:(NSNumber *)value;
 
 - (int16_t)primitiveListsIDValue;
-- (void)setPrimitiveListsIDValue:(int16_t)value_;
+- (void)   setPrimitiveListsIDValue:(int16_t)value_;
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
+- (NSString *)primitiveName;
+- (void)      setPrimitiveName:(NSString *)value;
 
-- (SDWListManaged*)primitiveLists;
-- (void)setPrimitiveLists:(SDWListManaged*)value;
+- (SDWListManaged *)primitiveLists;
+- (void)            setPrimitiveLists:(SDWListManaged *)value;
 
 @end

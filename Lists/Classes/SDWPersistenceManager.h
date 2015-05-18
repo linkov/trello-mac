@@ -16,8 +16,8 @@
 @property (strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 + (instancetype)manager;
-- (id)setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
-- (void)save;
+- (id)          setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
+- (void)        save;
 
 - (id)fetchEntityName:(NSString *)entityName withListsID:(NSString *)listsID;
 

@@ -6,13 +6,11 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
-
 #import "SDWPersistenceManager.h"
 #import "KZAsserts.h"
 #import "SDWLogger.h"
 
 NSString *const SDWPersistenceManagerClassLogIdentifier = @"com.sdwr.trello-mac.SDWPersistenceManager";
-
 
 @interface SDWPersistenceManager ()
 
@@ -37,15 +35,11 @@ NSString *const SDWPersistenceManagerClassLogIdentifier = @"com.sdwr.trello-mac.
     return manager;
 }
 
-
 - (id)setupCoreDataWithCompletion:(SDWEmptyBlock)completion {
-
     [self initializeCoreData];
-
 }
 
 - (void)initializeCoreData {
-
     if ([self managedObjectContext]) {
         return;
     }
@@ -64,13 +58,11 @@ NSString *const SDWPersistenceManagerClassLogIdentifier = @"com.sdwr.trello-mac.
     self.managedObjectContext.parentContext = self.privateContext;
 
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-
-
         NSPersistentStoreCoordinator *psc = [[self privateContext] persistentStoreCoordinator];
         NSMutableDictionary *options = [NSMutableDictionary dictionary];
         options[NSMigratePersistentStoresAutomaticallyOption] = @YES;
         options[NSInferMappingModelAutomaticallyOption] = @YES;
-        options[NSSQLitePragmasOption] = @{ @"journal_mode":@"DELETE" };
+        options[NSSQLitePragmasOption] = @{ @"journal_mode": @"DELETE" };
 
         NSFileManager *fileManager = [NSFileManager defaultManager];
         NSURL *documentsURL = [[fileManager URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];
@@ -79,43 +71,32 @@ NSString *const SDWPersistenceManagerClassLogIdentifier = @"com.sdwr.trello-mac.
         NSError *error = nil;
         ZAssert([psc addPersistentStoreWithType:NSSQLiteStoreType configuration:nil URL:storeURL options:options error:&error], @"Error initializing PSC: %@\n%@", [error localizedDescription], [error userInfo]);
 
-
         if (!self.setupCompletion) {
-
             return;
         }
 
         dispatch_sync(dispatch_get_main_queue(), ^{
-
-            self.setupCompletion();
-        });
-
+                self.setupCompletion();
+            });
     });
-
 }
 
 - (void)save {
-
     if (![[self privateContext] hasChanges] && ![[self managedObjectContext] hasChanges]) {
-
         return;
     }
 
     [[self managedObjectContext] performBlockAndWait:^{
-
         NSError *error = nil;
 
         ZAssert([[self managedObjectContext] save:&error], @"Failed to save main context: %@\n%@", [error localizedDescription], [error userInfo]);
 
         [[self privateContext] performBlock:^{
-            
-            NSError *privateError = nil;
-            ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
-        }];
+                NSError *privateError = nil;
+                ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
+            }];
     }];
 }
-
-
 
 - (id)fetchEntityName:(NSString *)entityName withListsID:(NSString *)listsID {
     if (!entityName || !listsID) {

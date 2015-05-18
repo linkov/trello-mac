@@ -19,5 +19,4 @@
 + (NSColor *)appSelectionColor;
 + (NSColor *)appUIColor;
 
-
 @end
