@@ -8,6 +8,7 @@
 #import "SDWAppSettings.h"
 #import <QuartzCore/QuartzCore.h>
 #import "SDWProgressIndicator.h"
+#import "NSColor+AppColors.h"
 
 typedef enum {
     SDWIndicatorTypeRegular = 0,
@@ -51,7 +52,7 @@ typedef enum {
 - (void)_setupLayers {
     self.wantsLayer = YES;
 
-    CGColorRef lineColor = [SharedSettings appBackgroundColor].CGColor;
+    CGColorRef lineColor = [NSColor appBackgroundColor].CGColor;
 
     self.firstLine = [[CAShapeLayer alloc]init];
     [self.layer addSublayer:self.firstLine];

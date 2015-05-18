@@ -8,7 +8,7 @@
 #define kCardLabelPad 8
 
 #import "PulseView.h"
-#import "SDWAppSettings.h"
+#import "NSColor+AppColors.h"
 #import "SDWCardListView.h"
 #import "NSColor+Util.h"
 #import "SDWLabel.h"
@@ -64,8 +64,8 @@
     if (self.hasDot) {
         NSBezierPath *ovalPath = [NSBezierPath bezierPathWithOvalInRect:NSMakeRect(3.5, self.bounds.size.height / 2 - 4 / 2, 4, 4)];
 
-        [[SharedSettings appBackgroundColorDark] setFill];
-        [[SharedSettings appBackgroundColorDark] setStroke];
+        [[NSColor appBackgroundColorDark] setFill];
+        [[NSColor appBackgroundColorDark] setStroke];
         [ovalPath fill];
     }
 
@@ -81,7 +81,7 @@
 
 - (void)setSelected:(BOOL)selected {
     if (selected) {
-        self.fillColor = [SharedSettings appSelectionColor];
+        self.fillColor = [NSColor appSelectionColor];
     } else {
         self.fillColor = [NSColor whiteColor];
     }

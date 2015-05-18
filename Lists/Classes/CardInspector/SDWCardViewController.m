@@ -5,25 +5,37 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "SDWCardDetailBox.h"
-#import "NSColor+Util.h"
-#import "SDWAppSettings.h"
-#import "SDWCardViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
+#import "SDWCardViewController.h"
+
+
+/*-------View Controllers-------*/
 #import "SDWCardsController.h"
 #import "SDWMainSplitController.h"
 #import "SDWCardCalendarVC.h"
+
+/*-------Frameworks-------*/
+#import <QuartzCore/QuartzCore.h>
+
+/*-------Views-------*/
 #import "SDWActivity.h"
 #import "JWCTableView.h"
 #import "SDWActivityTableCellView.h"
-
 #import "ITSwitch.h"
+#import "SDWCheckItemTableCellView.h"
+#import "SDWCardDetailBox.h"
+
+/*-------Helpers & Managers-------*/
+#import "NSColor+Util.h"
 #import "SDWTrelloStore.h"
+#import "NSControl+DragInteraction.h"
+#import "NSColor+AppColors.h"
+
+
+/*-------Models-------*/
 #import "SDWChecklist.h"
 #import "SDWChecklistItem.h"
-#import "SDWCheckItemTableCellView.h"
-#import "NSControl+DragInteraction.h"
+
 
 #define kLIST_ITEM_TOP_BOTTOM_PAD 12 // hotfix for wrong height
 
@@ -82,10 +94,10 @@
 
     self.isInTODOMode = NO;
     self.view.wantsLayer = YES;
-    self.view.layer.backgroundColor = [SharedSettings appBackgroundColorDark].CGColor;
+    self.view.layer.backgroundColor = [NSColor appBackgroundColorDark].CGColor;
 
     self.activityItems = [NSArray array];
-    self.activityTable.backgroundColor = [SharedSettings appBackgroundColor];
+    self.activityTable.backgroundColor = [NSColor appBackgroundColor];
     self.activityTable.wantsLayer = YES;
 
     self.activityTableScroll.wantsLayer = YES;
@@ -399,12 +411,12 @@
 
         SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
         resultView.textField.stringValue = activity.content;
-        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+        resultView.textField.textColor = [NSColor appBleakWhiteColor];
         resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
         resultView.initialsLabel.stringValue = activity.memberInitials;
         resultView.timeLabel.stringValue = activity.timeString;
 
-        resultView.separatorLine.fillColor = [SharedSettings appBackgroundColorDark];
+        resultView.separatorLine.fillColor = [NSColor appBackgroundColorDark];
 
         if ([indexPath row] == self.activityItems.count - 1) {
             resultView.separatorLine.hidden = YES;
@@ -425,13 +437,13 @@
 
         SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
         resultView.textField.stringValue = item.name;
-        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-        resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
+        resultView.textField.textColor = [NSColor appBleakWhiteColor];
+        resultView.checkBox.tintColor = [NSColor appBleakWhiteColor];
         [resultView.checkBox setChecked:[item.state isEqualToString:@"incomplete"] == YES ? NO:YES];
         resultView.textField.enabled = !resultView.checkBox.checked;
         //resultView.toolTip = resultView.textField.stringValue;
 
-        resultView.layer.backgroundColor = [SharedSettings appBackgroundColor].CGColor;
+        resultView.layer.backgroundColor = [NSColorse appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
         resultView.delegate = self;
 

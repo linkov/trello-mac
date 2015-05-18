@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 
+
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
@@ -27,10 +28,27 @@
     }
 
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
+
+    [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
+
+    }];
+
+
+
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+
+    [self.persistenceManager save];
+}
+
+- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+
+    [[NSAppleEventManager sharedAppleEventManager]
+     setEventHandler:self
+         andSelector:@selector(getUrl:withReplyEvent:)
+       forEventClass:kInternetEventClass
+          andEventID:kAEGetURL];
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
@@ -43,14 +61,7 @@
                                                         object:nil userInfo:@{@"token": token}];
 }
 
-- (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
-    // Register ourselves as a URL handler for this URL
-    [[NSAppleEventManager sharedAppleEventManager]
-     setEventHandler:self
-         andSelector:@selector(getUrl:withReplyEvent:)
-       forEventClass:kInternetEventClass
-          andEventID:kAEGetURL];
-}
+#pragma mark - UI
 
 - (IBAction)hideSideBar:(id)sender {
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
@@ -69,8 +80,6 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
 }
-
-#pragma mark - Dot Option
 
 - (IBAction)dotOptionFeedback:(id)sender {
     NSDictionary *info = [[NSBundle mainBundle] infoDictionary];

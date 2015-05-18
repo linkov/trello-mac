@@ -58,8 +58,6 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 - (void)setUserToken:(NSString *)userToken {
-    self.lastSelectedList = nil;
-
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"com.sdwr.trello-mac.token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
@@ -96,33 +94,6 @@ static SDWAppSettings *sharedInstance = nil;
     return [[NSUserDefaults standardUserDefaults] objectForKey:@"com.sdwr.trello-mac.userID"];
 }
 
-- (NSColor *)appBackgroundColor {
-    return [NSColor colorWithHexColorString:@"1E5676"];
-}
-
-- (NSColor *)appSelectionColor {
-    return [NSColor colorWithHexColorString:@"deeef4"];
-}
-
-- (NSColor *)appHighlightGreenColor {
-    return [NSColor colorWithHexColorString:@"1D8722"];
-}
-
-- (NSColor *)appUIColor {
-    return [NSColor colorWithHexColorString:@"4F778A"];
-}
-
-- (NSColor *)appBleakWhiteColor {
-    return [NSColor colorWithHexColorString:@"E8E8E8"];
-}
-
-- (NSColor *)appHighlightColor {
-    return [NSColor colorWithHexColorString:@"3E6378"];
-}
-
-- (NSColor *)appBackgroundColorDark {
-    return [NSColor colorWithCalibratedRed:0.096 green:0.265 blue:0.387 alpha:1.000];
-}
 
 - (void)setCollapsedBoardsIDs:(NSSet *)collapsedBoardsIDs {
     _collapsedBoardsIDs = collapsedBoardsIDs;
@@ -137,9 +108,6 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 #pragma mark - Helpers
-- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color {
-    return [color colorWithAlphaComponent:0.4];
-}
 
 - (NSColor *)colorForTrelloColor:(NSString *)colorString {
     NSColor *color;

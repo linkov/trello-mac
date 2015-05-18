@@ -7,6 +7,7 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SDWPersistenceManager.h"
 
 @interface AppDelegate : NSObject <NSApplicationDelegate>
 

@@ -5,27 +5,39 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSColor+Util.h"
-#import "SDWBoard.h"
-#import "SDWUser.h"
-#import "SDWcard.h"
-#import "AFRecordPathManager.h"
+
+
 #import "SDWCardsController.h"
-#import "SDWAppSettings.h"
-#import "PulseView.h"
-#import "SDWProgressIndicator.h"
+
+
+/*-------View Controllers-------*/
 #import "SDWCardViewController.h"
 #import "SDWMainSplitController.h"
 
-#import "SDWTrelloStore.h"
-#import "NSControl+DragInteraction.h"
+/*-------Frameworks-------*/
 
+/*-------Views-------*/
 #import "JWCTableView.h"
 #import "SDWSingleCardTableCellView.h"
-#import "Utils.h"
+#import "PulseView.h"
+#import "SDWProgressIndicator.h"
 #import "SDWCardListView.h"
 
+/*-------Helpers & Managers-------*/
+#import "NSControl+DragInteraction.h"
+#import "AFRecordPathManager.h"
+#import "SDWAppSettings.h"
+#import "NSColor+Util.h"
+#import "SDWTrelloStore.h"
+#import "Utils.h"
 #import "Xtrace.h"
+#import "NSColor+AppColors.h"
+
+/*-------Models-------*/
+#import "SDWBoard.h"
+#import "SDWUser.h"
+#import "SDWcard.h"
+
 
 @interface SDWCardsController () <NSCollectionViewDelegate, NSControlInteractionDelegate, SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -61,7 +73,7 @@
     [super viewDidLoad];
 
     self.reloadButton.hidden = YES;
-    self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
+    self.mainBox.fillColor = [NSColor appBackgroundColorDark];
     self.tableView.backgroundColor = [NSColor clearColor];
 
     [self.tableView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];

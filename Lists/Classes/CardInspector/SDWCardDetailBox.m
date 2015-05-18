@@ -5,7 +5,7 @@
 //  Created by alex on 12/14/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "SDWAppSettings.h"
+#import "NSColor+AppColors.h"
 #import "SDWCardDetailBox.h"
 
 @implementation SDWCardDetailBox
@@ -17,9 +17,9 @@
 }
 
 - (void)awakeFromNib {
-    self.fillColor = [SharedSettings appBackgroundColor];
+    self.fillColor = [NSColor appBackgroundColor];
     self.cornerRadius = 1.5;
-    self.borderColor = [SharedSettings appHighlightColor];
+    self.borderColor = [NSColor appHighlightColor];
     self.borderWidth = 0;
 }
 

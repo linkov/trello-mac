@@ -5,25 +5,38 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSImage+Util.h"
-#import "NSImage+HHTint.h"
-#import "NSColor+Util.h"
-#import "SDWAppSettings.h"
-#import "SDWMainSplitController.h"
-#import "SDWBoard.h"
+
 #import "SDWBoardsController.h"
+
+/*-------View Controllers-------*/
+#import "SDWMainSplitController.h"
 #import "SDWCardsController.h"
-#import "SDWBoardsListRow.h"
-#import "AFTrelloAPIClient.h"
+#import "SDWCardViewController.h"
 #import "SDWLoginVC.h"
+
+/*-------Frameworks-------*/
 #import <QuartzCore/QuartzCore.h>
+
+/*-------Views-------*/
+#import "SDWBoardsListRow.h"
 #import "ITSwitch.h"
 #import "WSCBoardsOutlineView.h"
 #import "SDWBoardsCellView.h"
 #import "SDWProgressIndicator.h"
-#import "SDWCardViewController.h"
 
+/*-------Helpers & Managers-------*/
+#import "NSImage+Util.h"
+#import "NSImage+HHTint.h"
+#import "NSColor+Util.h"
+#import "SDWAppSettings.h"
+#import "AFTrelloAPIClient.h"
 #import "SDWTrelloStore.h"
+#import "NSColor+AppColors.h"
+
+/*-------Models-------*/
+#import "SDWBoard.h"
+
+
 
 @interface SDWBoardsController () <NSOutlineViewDelegate, NSOutlineViewDataSource, SDWBoardsListRowDelegate, SDWBoardsListOutlineViewDelegate, NSTextFieldDelegate>
 @property (strong) NSArray *boards;
@@ -58,8 +71,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self loadBoards];
-    self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
-    self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
+    self.mainBox.fillColor = [NSColor appBackgroundColorDark];
+    self.outlineView.backgroundColor = [NSColor appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
     self.reloadButton.hidden = YES;
@@ -116,7 +129,6 @@
 }
 
 - (IBAction)logout:(id)sender {
-    SharedSettings.userToken = nil;
     [(SDWMainSplitController *)self.parentViewController logout];
     self.boards = @[];
     [self loadBoards];
@@ -248,7 +260,7 @@
     boardNameRow.delegate = self;
 
     if (!board.isLeaf) {
-        boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
+        boardNameRow.backgroundColor = [NSColor appBackgroundColor];
         [boardNameRow setNeedsDisplay:YES];
     }
 }
@@ -259,7 +271,6 @@
     SDWBoard *board = item.representedObject;
 
     if (board.isLeaf) {
-        SharedSettings.lastSelectedList = board.boardID;
         self.lastSelectedItem = item;
         SDWBoard *parentBoard = item.parentNode.representedObject;
 

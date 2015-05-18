@@ -6,15 +6,19 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
+#import "SDWTypesAndEnums.h"
+
 @import Foundation;
 @import CoreData;
 
-@interface SDWCoreDataManager : NSObject
+@interface SDWPersistenceManager : NSObject
 
 @property (strong, readonly) NSManagedObjectContext *managedObjectContext;
 
 + (instancetype)manager;
-//- (id)initWithCallback:(InitCallbackBlock)callback;
-//- (void)save;
+- (id)setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
+- (void)save;
+
+- (id)fetchEntityName:(NSString *)entityName withListsID:(NSString *)listsID;
 
 @end

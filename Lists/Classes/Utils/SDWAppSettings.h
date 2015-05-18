@@ -37,28 +37,17 @@ extern NSString *const SDWListsShouldReloadBoardsNotification;
 @property BOOL shouldFilter;
 @property BOOL shouldFilterDueAccending;
 @property BOOL shouldFilterDueDecending;
-
 @property BOOL shouldShowCardLabels;
 
 @property (strong) NSString *userID;
 @property (strong) NSString *userToken;
 @property (strong, nonatomic) NSString *appToken;
 @property (strong) NSArray *selectedListUsers;
-@property (strong) NSString *lastSelectedList;
 
 @property SDWDotOption dotOption;
 
 @property (strong) NSSet *collapsedBoardsIDs;
 
-- (NSColor *)appBleakWhiteColor;
-- (NSColor *)appBackgroundColorDark;
-- (NSColor *)appBackgroundColor;
-- (NSColor *)appHighlightColor;
-- (NSColor *)appHighlightGreenColor;
-- (NSColor *)appSelectionColor;
-- (NSColor *)appUIColor;
-
 - (NSColor *)colorForTrelloColor:(NSString *)colorString;
-- (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color;
 
 @end
