@@ -4,17 +4,17 @@
 #import "_SDWListManaged.h"
 
 const struct SDWListManagedAttributes SDWListManagedAttributes = {
-    .isCollapsed = @"isCollapsed",
-    .listsID = @"listsID",
-    .name = @"name",
-    .position = @"position",
+	.isCollapsed = @"isCollapsed",
+	.listsID = @"listsID",
+	.name = @"name",
+	.position = @"position",
 };
 
 const struct SDWListManagedRelationships SDWListManagedRelationships = {
-    .board = @"board",
-    .cards = @"cards",
-    .members = @"members",
-    .user = @"user",
+	.board = @"board",
+	.cards = @"cards",
+	.members = @"members",
+	.user = @"user",
 };
 
 @implementation SDWListManagedID
@@ -22,59 +22,59 @@ const struct SDWListManagedRelationships SDWListManagedRelationships = {
 
 @implementation _SDWListManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription insertNewObjectForEntityForName:@"SDWListManaged" inManagedObjectContext:moc_];
++ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription insertNewObjectForEntityForName:@"SDWListManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
-    return @"SDWListManaged";
++ (NSString*)entityName {
+	return @"SDWListManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription entityForName:@"SDWListManaged" inManagedObjectContext:moc_];
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription entityForName:@"SDWListManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWListManagedID *)objectID {
-    return (SDWListManagedID *)[super objectID];
+- (SDWListManagedID*)objectID {
+	return (SDWListManagedID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-    if ([key isEqualToString:@"isCollapsedValue"]) {
-        NSSet *affectingKey = [NSSet setWithObject:@"isCollapsed"];
-        keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-        return keyPaths;
-    }
-    if ([key isEqualToString:@"positionValue"]) {
-        NSSet *affectingKey = [NSSet setWithObject:@"position"];
-        keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-        return keyPaths;
-    }
+	if ([key isEqualToString:@"isCollapsedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isCollapsed"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"positionValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"position"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
-    return keyPaths;
+	return keyPaths;
 }
 
 @dynamic isCollapsed;
 
 - (BOOL)isCollapsedValue {
-    NSNumber *result = [self isCollapsed];
-    return [result boolValue];
+	NSNumber *result = [self isCollapsed];
+	return [result boolValue];
 }
 
 - (void)setIsCollapsedValue:(BOOL)value_ {
-    [self setIsCollapsed:[NSNumber numberWithBool:value_]];
+	[self setIsCollapsed:[NSNumber numberWithBool:value_]];
 }
 
 - (BOOL)primitiveIsCollapsedValue {
-    NSNumber *result = [self primitiveIsCollapsed];
-    return [result boolValue];
+	NSNumber *result = [self primitiveIsCollapsed];
+	return [result boolValue];
 }
 
 - (void)setPrimitiveIsCollapsedValue:(BOOL)value_ {
-    [self setPrimitiveIsCollapsed:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsCollapsed:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic listsID;
@@ -84,45 +84,45 @@ const struct SDWListManagedRelationships SDWListManagedRelationships = {
 @dynamic position;
 
 - (int16_t)positionValue {
-    NSNumber *result = [self position];
-    return [result shortValue];
+	NSNumber *result = [self position];
+	return [result shortValue];
 }
 
 - (void)setPositionValue:(int16_t)value_ {
-    [self setPosition:[NSNumber numberWithShort:value_]];
+	[self setPosition:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitivePositionValue {
-    NSNumber *result = [self primitivePosition];
-    return [result shortValue];
+	NSNumber *result = [self primitivePosition];
+	return [result shortValue];
 }
 
 - (void)setPrimitivePositionValue:(int16_t)value_ {
-    [self setPrimitivePosition:[NSNumber numberWithShort:value_]];
+	[self setPrimitivePosition:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic board;
 
 @dynamic cards;
 
-- (NSMutableSet *)cardsSet {
-    [self willAccessValueForKey:@"cards"];
+- (NSMutableSet*)cardsSet {
+	[self willAccessValueForKey:@"cards"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"cards"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"cards"];
 
-    [self didAccessValueForKey:@"cards"];
-    return result;
+	[self didAccessValueForKey:@"cards"];
+	return result;
 }
 
 @dynamic members;
 
-- (NSMutableSet *)membersSet {
-    [self willAccessValueForKey:@"members"];
+- (NSMutableSet*)membersSet {
+	[self willAccessValueForKey:@"members"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"members"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"members"];
 
-    [self didAccessValueForKey:@"members"];
-    return result;
+	[self didAccessValueForKey:@"members"];
+	return result;
 }
 
 @dynamic user;

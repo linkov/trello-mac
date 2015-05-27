@@ -8,12 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
-#define SDWLogError(frmt, ...) [[SDWLogger sharedLogger] logError : (frmt), ## __VA_ARGS__];
+#define SDWLog [SDWLogger sharedLogger]
 
 @interface SDWLogger : NSObject
 
 + (instancetype)sharedLogger;
 
-- (void)logError:(NSString *)format, ...NS_FORMAT_FUNCTION(1, 2);
+- (void)logError:(NSString *)error;
 
 @end

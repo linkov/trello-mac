@@ -9,6 +9,7 @@
 #import "AFTrelloAPIClient.h"
 #import "AFURLRequestSerialization.h"
 #import "SDWAppSettings.h"
+#import "SDWMacros.h"
 
 static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/";
 
@@ -28,6 +29,58 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
 
     return _sharedClient;
 }
+
+
+
+
+- (void)fetchBoardsAndListsWithCompletion:(SDWDataErrorBlock)block {
+
+    [[AFTrelloAPIClient sharedClient] GET:@"members/me/boards?filter=open&fields=name,starred&lists=open"
+                               parameters:nil
+                                  success:^(NSURLSessionDataTask *__unused task, id JSON) {
+
+                                      if (![JSON isKindOfClass:[NSArray class]]) {
+                                          NSLog(@"JSON is not array");
+                                          // handle error
+                                          return;
+                                      }
+
+                                      SDWPerformBlock(block,[NSArray arrayWithArray:JSON], nil);
+
+                                  } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+
+                                      SDWPerformBlock(block,nil,error);
+
+                                  }];
+}
+
+- (void)fetchCardsForListID:(NSString *)listID WithCompletion:(SDWDataErrorBlock)block {
+
+    NSString *URLPart1 = [NSString stringWithFormat:@"lists/%@/cards", listID];
+    NSString *URLPart2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
+    NSString *URL = [NSString stringWithFormat:@"%@%@", URLPart1, URLPart2];
+
+    [[AFTrelloAPIClient sharedClient] GET:URL
+                               parameters:nil
+                                  success:^(NSURLSessionDataTask *__unused task, id JSON) {
+
+                                      if (![JSON isKindOfClass:[NSArray class]]) {
+                                          NSLog(@"JSON is not array");
+                                          // handle error
+                                          return;
+                                      }
+
+                                      SDWPerformBlock(block,[NSArray arrayWithArray:JSON], nil);
+
+                                  } failure:^(NSURLSessionDataTask *__unused task, NSError *error) {
+
+                                      SDWPerformBlock(block,nil,error);
+                                      
+                                  }];
+}
+
+
+// remove
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
                    parameters:(id)parameters

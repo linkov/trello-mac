@@ -19,14 +19,10 @@ static SDWLogger *sharedLogger;
     return sharedLogger;
 }
 
-- (void)logError:(NSString *)format, ...NS_FORMAT_FUNCTION(1, 2) {
-    va_list args;
-    va_start(args, format);
+- (void)logError:(NSString *)error {
 
-    NSString *message = [[NSString alloc] initWithFormat:format arguments:args];
-    NSLog(@"\n[ERROR] %@\n", message);
+    NSLog(@"\n[ERROR] %@\n", error);
 
-    va_end(args);
 }
 
 @end

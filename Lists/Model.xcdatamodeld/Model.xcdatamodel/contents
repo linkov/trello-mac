@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7549" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SDWBoardManaged" representedClassName="SDWBoardManaged" syncable="YES">
         <attribute name="isStarred" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="listsID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="lists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="board" inverseEntity="SDWListManaged" syncable="YES"/>
+        <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="board" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
     <entity name="SDWCardManaged" representedClassName="SDWCardManaged" syncable="YES">
         <attribute name="dueDate" optional="YES" attributeType="Date" syncable="YES"/>
@@ -63,12 +63,12 @@
         <relationship name="listsMemberships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="members" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SDWListManaged" positionX="-54" positionY="9" width="128" height="165"/>
+        <element name="SDWBoardManaged" positionX="-27" positionY="99" width="128" height="105"/>
         <element name="SDWCardManaged" positionX="-63" positionY="-18" width="128" height="210"/>
         <element name="SDWChecklistItemManaged" positionX="18" positionY="90" width="128" height="120"/>
         <element name="SDWChecklistManaged" positionX="0" positionY="72" width="128" height="120"/>
         <element name="SDWLabelManaged" positionX="-36" positionY="27" width="128" height="105"/>
+        <element name="SDWListManaged" positionX="-54" positionY="9" width="128" height="165"/>
         <element name="SDWUserManaged" positionX="-18" positionY="54" width="128" height="210"/>
-        <element name="SDWBoardManaged" positionX="-27" positionY="99" width="128" height="105"/>
     </elements>
 </model>

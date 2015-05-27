@@ -6,14 +6,21 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 @class SDWBoardsController, SDWCardsController, SDWCardViewController;
-#import <Cocoa/Cocoa.h>
 
-@interface SDWMainSplitController : NSSplitViewController
+#import "SDWRootModuleInterface.h"
+#import "SDWRootUserInterface.h"
+
+@import Cocoa;
+
+
+@interface SDWMainSplitController : NSSplitViewController <SDWRootUserInterface>
 
 @property (strong) SDWCardsController *cardsVC;
 @property (strong) SDWBoardsController *boardsVC;
 @property (strong) SDWCardViewController *cardDetailsVC;
 
 - (void)logout;
+
+@property (nonatomic, strong) id<SDWRootModuleInterface> eventHandler;
 
 @end
