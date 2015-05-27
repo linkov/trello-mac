@@ -28,6 +28,8 @@
         NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
         NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
         [self.output foundAllBoards:sortedBoards];
+
+        //TODO: save?, set currentList for currentUser
     }];
 }
 

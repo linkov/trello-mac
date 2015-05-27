@@ -28,24 +28,29 @@
 @implementation SDWCardsListInteractor
 
 - (void)findAllCardsForCurrentListSortedBy:(SDWCardsListSortType)sortType {
-    SDWListManaged *currentList;
 
-    [[AFTrelloAPIClient sharedClient] fetchCardsForListID:currentList.listsID WithCompletion:^(id object, NSError *error) {
+    [[AFTrelloAPIClient sharedClient] fetchCardsForListID:[self currentList].listsID WithCompletion:^(id object, NSError *error) {
         if (error) {
             [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch cards for list, %@ ", self.classLogIdentifier, error.localizedDescription]];
             return;
         }
 
         NSArray *cardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWCardManaged class] fromJSON:object];
-        [currentList.cardsSet addObjectsFromArray:cardsFromJSONasCoreDataObjects];
+        [[self currentList].cardsSet addObjectsFromArray:cardsFromJSONasCoreDataObjects];
         // save ?
 
-        [self.output foundAllCards:[currentList.cards allObjects]];
+        [self.output foundAllCards:[[self currentList].cards allObjects]];
     }];
 }
 
 - (NSString *)currentListTitle {
-    return @"test title";
+    return [self currentList].name;
+}
+
+- (SDWListManaged *)currentList  {
+
+    //TODO:
+    return nil;
 }
 
 @end
