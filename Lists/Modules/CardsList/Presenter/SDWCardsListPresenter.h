@@ -14,7 +14,7 @@
 #import "SDWCardsListInteractorIO.h"
 #import "SDWCardsListModuleInterface.h"
 
-@interface SDWCardsListPresenter : NSObject <SDWCardsListModuleInterface,SDWCardsListInteractorOutput>
+@interface SDWCardsListPresenter : NSObject <SDWCardsListModuleInterface, SDWCardsListInteractorOutput>
 
 @property (nonatomic, strong) id <SDWCardsListInteractorInput>  listInteractor;
 @property (nonatomic, weak) NSViewController <SDWCardsListUserInterface> *userInterface;

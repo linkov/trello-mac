@@ -39,40 +39,29 @@
 - (void)setupUI {
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
-
 }
-
 
 #pragma mark - Actions
 
 - (IBAction)addCardDidClick:(id)sender {
-
-
 }
-
-
 
 #pragma mark - SDWCardsListUserInterface
 
 - (void)showListTitle:(NSString *)title {
-
     self.listNameLabel.stringValue = title;
 }
 
 - (void)showNoContentMessage {
-
-
 }
-- (void)showContentWithItems:(NSArray *)items {
 
+- (void)showContentWithItems:(NSArray *)items {
     self.tableView.dataSource = [[SDWCardsListDataSource alloc]initWithItems:items];
     self.tableView.delegate = [[SDWCardsListDelegate alloc]initWithItems:items];
     [self reloadEntries];
-
-
 }
-- (void)reloadEntries {
 
+- (void)reloadEntries {
     [self.tableView reloadData];
 }
 

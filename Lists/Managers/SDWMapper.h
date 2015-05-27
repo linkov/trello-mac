@@ -29,5 +29,4 @@
  */
 + (NSArray *)arrayOfObjectsOfClass:(Class<SDWJSONMapping>)objectClass fromJSON:(NSArray *)json;
 
-
 @end

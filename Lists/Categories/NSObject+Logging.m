@@ -11,8 +11,7 @@
 @implementation NSObject (Logging)
 
 - (NSString *)classLogIdentifier {
-
-    return [NSString stringWithFormat:@"com.sdwr.lists.%@",NSStringFromClass([self class])];
+    return [NSString stringWithFormat:@"com.sdwr.lists.%@", NSStringFromClass([self class])];
 }
 
 @end

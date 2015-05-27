@@ -17,24 +17,19 @@
 
 @implementation SDWSourceListDelegate
 
-
 - (instancetype)initWithItems:(NSArray *)items {
-
     self = [super init];
     if (self) {
-
         self.items = items;
     }
     return self;
 }
 
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id<SDWSourceListItem>)item {
-
     NSTableCellView *tableCellView = [outlineView makeViewWithIdentifier:@"BoardListCell" owner:self];
     tableCellView.textField.stringValue = [item itemName];
 
     return tableCellView;
 }
-
 
 @end

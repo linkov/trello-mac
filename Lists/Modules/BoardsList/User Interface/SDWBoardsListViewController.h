@@ -17,5 +17,4 @@
 @property (nonatomic, strong) id<SDWBoardsListModuleInterface> eventHandler;
 @property (nonatomic, weak) id<SDWBoardsListModuleDelegate> moduleDelegate;
 
-
 @end

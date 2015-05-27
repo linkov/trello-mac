@@ -8,7 +8,6 @@
 
 @import Foundation;
 
-
 @protocol SDWBoardsListModuleInterface <NSObject>
 
 - (void)updateUserInterface;

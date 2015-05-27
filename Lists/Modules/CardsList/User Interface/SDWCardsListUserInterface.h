@@ -8,7 +8,6 @@
 
 @import Foundation;
 
-
 @protocol SDWCardsListUserInterface <NSObject>
 
 - (void)showListTitle:(NSString *)title;

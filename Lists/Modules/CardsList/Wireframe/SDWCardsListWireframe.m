@@ -24,7 +24,6 @@
 @implementation SDWCardsListWireframe
 
 - (NSViewController *)cardsListUserInterfaceWithDelegate:(id<SDWCardsListModuleDelegate>)delegate {
-
     SDWCardsListViewController *cardsListViewController = [[SDWCardsListViewController alloc]initWithNibName:NSStringFromClass([SDWCardsListViewController class]) bundle:nil];
 
     SDWCardsListPresenter *presenter = [SDWCardsListPresenter new];

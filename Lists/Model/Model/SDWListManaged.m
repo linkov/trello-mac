@@ -14,26 +14,21 @@
 
 //*********************************************************************//
 
-
 @implementation SDWListManaged (SourceListTree)
 
 - (BOOL)isLeaf {
-
     return YES;
 }
 
 - (NSArray *)children {
-
     return nil;
 }
 
 - (id)childAtIndex:(NSUInteger)index {
-
     return nil;
 }
 
 - (NSString *)itemName {
-
     return self.name;
 }
 

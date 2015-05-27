@@ -8,7 +8,6 @@
 
 @import Foundation;
 
-
 @protocol SDWRootModuleInterface <NSObject>
 
 - (void)doLogout;

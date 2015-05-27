@@ -6,7 +6,6 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
-
 @import Foundation;
 @import AppKit;
 #import "SDWBoardsListUserInterface.h"
@@ -15,11 +14,10 @@
 
 @class SDWBoardsListWireframe;
 
-@interface SDWBoardsListPresenter : NSObject <SDWBoardsListModuleInterface,SDWBoardsListInteractorOutput>
+@interface SDWBoardsListPresenter : NSObject <SDWBoardsListModuleInterface, SDWBoardsListInteractorOutput>
 
 @property (nonatomic, strong) id <SDWBoardsListInteractorInput>  listInteractor;
 @property (nonatomic, weak) NSViewController <SDWBoardsListUserInterface> *userInterface;
 @property (nonatomic, strong) SDWBoardsListWireframe *wireframe;
-
 
 @end

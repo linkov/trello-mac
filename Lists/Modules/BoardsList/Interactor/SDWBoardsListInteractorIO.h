@@ -13,7 +13,6 @@
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType;
 @end
 
-
 @protocol SDWBoardsListInteractorOutput <NSObject>
 
 - (void)foundAllBoards:(NSArray *)allBoards;

@@ -11,23 +11,17 @@
 @implementation SDWBoardsListPresenter
 
 - (void)updateUserInterface {
-
     [self.listInteractor findAllBoardsSortedBy:SDWBoardsListSortTypeStarredFirst];
 }
-
 
 #pragma mark - SDWBoardsListInteractorOutput
 
 - (void)foundAllBoards:(NSArray *)allBoards {
-
     if ([allBoards count] == 0) {
         [self.userInterface showNoContentMessage];
-
     } else {
-        
         [self.userInterface showContentWithItems:allBoards];
     }
-
 }
 
 @end

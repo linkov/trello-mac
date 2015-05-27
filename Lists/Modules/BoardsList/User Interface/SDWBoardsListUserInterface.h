@@ -8,7 +8,6 @@
 
 @import Foundation;
 
-
 @protocol SDWBoardsListUserInterface <NSObject>
 
 - (void)showNoContentMessage;

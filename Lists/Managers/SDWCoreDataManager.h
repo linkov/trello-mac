@@ -6,10 +6,7 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 #define ALog(...) NSLog(@"%s(%p) %@", __PRETTY_FUNCTION__, self, [NSString stringWithFormat:__VA_ARGS__])
-#define ZAssert(condition, ...) do { if (!(condition)) { ALog(__VA_ARGS__); }} while(0)
-
-
-
+#define ZAssert(condition, ...) do { if (!(condition)) { ALog(__VA_ARGS__); }} while (0)
 
 @import CoreData;
 #import <Foundation/Foundation.h>
@@ -23,8 +20,7 @@ typedef void (^SDWEmptyBlock)();
 @property (copy) SDWEmptyBlock setupCompletion;
 
 + (instancetype)manager;
-- (void)setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
-
+- (void)        setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
 
 - (void)add;
 

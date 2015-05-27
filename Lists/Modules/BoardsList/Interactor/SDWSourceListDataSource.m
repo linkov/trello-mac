@@ -18,19 +18,14 @@
 @implementation SDWSourceListDataSource
 
 - (instancetype)initWithItems:(NSArray *)items {
-
     self = [super init];
     if (self) {
-
         self.items = items;
     }
     return self;
 }
 
-
 - (NSInteger)outlineView:(NSOutlineView *)outlineView numberOfChildrenOfItem:(id<SDWSourceListItem>)item {
-
-
     if (![item children]) {
         return self.items.count;
     }
@@ -39,20 +34,15 @@
 }
 
 - (id)outlineView:(NSOutlineView *)outlineView child:(NSInteger)index ofItem:(id<SDWSourceListItem>)item {
-
     if (![item children]) {
         return [self.items objectAtIndex:index];
     }
 
     return [item childAtIndex:index];
-
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView isItemExpandable:(id<SDWSourceListItem>)item {
-
     return ![item isLeaf];
-
 }
-
 
 @end

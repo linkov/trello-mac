@@ -43,30 +43,23 @@
 }
 
 - (void)setupUI {
-
     self.outlineView.intercellSpacing = CGSizeMake(0, 5);
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
 }
 
-
-
 #pragma mark - SDWBoardsListUserInterface
 
 - (void)showNoContentMessage {
-
 }
 
 - (void)showContentWithItems:(NSArray *)items {
-
-    self.outlineView.dataSource = (id)[[SDWSourceListDataSource alloc]initWithItems:items];
-    self.outlineView.delegate = (id)[[SDWSourceListDelegate alloc]initWithItems:items];
+    self.outlineView.dataSource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
+    self.outlineView.delegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items];
     [self reloadEntries];
-
 }
 
 - (void)reloadEntries {
-
     [self.outlineView reloadData];
 }
 

@@ -21,11 +21,9 @@
 
 /*-------Models-------*/
 
-
 @implementation SDWBoardsListWireframe
 
 - (NSViewController *)boardsListUserInterfaceWithDelegate:(id<SDWBoardsListModuleDelegate>)delegate {
-
     SDWBoardsListViewController *boardsListViewController = [[SDWBoardsListViewController alloc]initWithNibName:NSStringFromClass([SDWBoardsListViewController class]) bundle:nil];
 
     SDWBoardsListPresenter *presenter = [SDWBoardsListPresenter new];
@@ -39,7 +37,6 @@
     presenter.listInteractor = interactor;
 
     return boardsListViewController;
-
 }
 
 @end

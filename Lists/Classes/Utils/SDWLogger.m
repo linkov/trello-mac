@@ -20,9 +20,7 @@ static SDWLogger *sharedLogger;
 }
 
 - (void)logError:(NSString *)error {
-
     NSLog(@"\n[ERROR] %@\n", error);
-
 }
 
 @end

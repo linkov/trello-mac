@@ -17,10 +17,8 @@
 @implementation SDWCardsListDataSource
 
 - (instancetype)initWithItems:(NSArray *)items {
-
     self = [super init];
     if (self) {
-
         self.items = items;
     }
 
@@ -30,15 +28,8 @@
 #pragma mark - NSTableViewDataSource
 
 - (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
-
     return self.items.count;
 }
-
-
-
-
-
-
 
 #pragma mark - Dragging
 
@@ -46,35 +37,24 @@
     return nil;
 }
 
-
 - (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
-
-
 }
 
 - (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
-
 }
-
 
 - (void)tableView:(NSTableView *)tableView updateDraggingItemsForDrag:(id <NSDraggingInfo>)draggingInfo {
-
 }
-
 
 - (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
     return NO;
 }
 
-
 - (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
-
     return NSDragOperationNone;
 }
 
-
 - (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
-
     return NO;
 }
 

@@ -10,15 +10,9 @@
 
 @implementation SDWCardsListPresenter
 
-
-
-
-
-
 #pragma mark - SDWCardsListModuleInterface
 
 - (void)showCardsForCurrentList {
-
     NSString *listTitle = [[self.listInteractor currentListTitle] capitalizedString];
     [self.userInterface showListTitle:listTitle];
 
@@ -26,18 +20,14 @@
 }
 
 - (void)reloadCards {
-
 }
 
 #pragma mark - SDWCardsListInteractorOutput
 
 - (void)foundAllCards:(NSArray *)allCards {
-
     if ([allCards count] == 0) {
         [self.userInterface showNoContentMessage];
-
     } else {
-
         [self.userInterface showContentWithItems:allCards];
     }
 }

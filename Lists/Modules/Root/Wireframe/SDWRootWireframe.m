@@ -26,7 +26,6 @@
 @implementation SDWRootWireframe
 
 - (void)showRootUserInterfaceInWindow:(NSWindow *)window {
-
     SDWMainWindowController *windowController = [[SDWMainWindowController alloc]initWithWindow:window];
     SDWMainSplitController *splitViewController = [[SDWMainSplitController alloc]init];
 
@@ -41,7 +40,6 @@
 
     [windowController setContentViewController:splitViewController];
 
-    
 //    NSWindowController *mainController = [[NSWindowController alloc]initWithWindow:self.window];
 //
 //    MainSplitViewController *splitVC = [[MainSplitViewController alloc]init];
@@ -56,14 +54,12 @@
 //    [mainController setContentViewController:splitVC];
 }
 
-
 #pragma mark - Helpers
 
 - (NSViewController *)boardsListUserInterfaceWithModuleDelegate:(nullable id)delegate {
-        SDWBoardsListWireframe *wireframe = [[SDWBoardsListWireframe alloc] init];
-        return [wireframe boardsListUserInterfaceWithDelegate:delegate];
+    SDWBoardsListWireframe *wireframe = [[SDWBoardsListWireframe alloc] init];
+    return [wireframe boardsListUserInterfaceWithDelegate:delegate];
 }
-
 
 - (NSViewController *)cardsListUserInterfaceWithModuleDelegate:(nullable id)delegate {
 //    CNIGuestsListWireframe *wireframe = [[CNIGuestsListWireframe alloc] init];
@@ -74,6 +70,5 @@
 //    CNIGuestDetailsWireframe *wireframe = [[CNIGuestDetailsWireframe alloc] init];
 //    return [wireframe guestDetailsUserInterfaceWithGuest:guest moduleDelegate:delegate];
 }
-
 
 @end

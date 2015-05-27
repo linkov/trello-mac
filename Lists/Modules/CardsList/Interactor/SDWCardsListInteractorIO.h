@@ -14,7 +14,6 @@
 - (NSString *)currentListTitle;
 @end
 
-
 @protocol SDWCardsListInteractorOutput <NSObject>
 
 - (void)foundAllCards:(NSArray *)allCards;

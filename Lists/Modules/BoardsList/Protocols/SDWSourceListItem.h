@@ -8,12 +8,11 @@
 
 @import Foundation;
 
-
 @protocol SDWSourceListItem <NSObject>
 
-- (NSArray *)children;
+- (NSArray *) children;
 - (NSString *)itemName;
-- (id)childAtIndex:(NSUInteger)index;
-- (BOOL)isLeaf;
+- (id)        childAtIndex:(NSUInteger)index;
+- (BOOL)      isLeaf;
 
 @end

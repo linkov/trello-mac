@@ -49,5 +49,4 @@
 //    [SVProgressHUD setForegroundColor:[UIColor brandColor]];
 }
 
-
 @end

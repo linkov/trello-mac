@@ -11,7 +11,6 @@
 
 @protocol SDWBoardsListModuleDelegate;
 
-
 @interface SDWBoardsListWireframe : NSObject
 
 - (NSViewController *)boardsListUserInterfaceWithDelegate:(id<SDWBoardsListModuleDelegate>)delegate;
