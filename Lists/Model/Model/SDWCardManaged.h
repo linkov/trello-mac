@@ -6,7 +6,6 @@
 // Custom logic goes here.
 @end
 
-
 @interface SDWCardManaged (Mapping) <SDWJSONMapping>
 
 @end

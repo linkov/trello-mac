@@ -88,7 +88,6 @@
 }
 
 - (void)setupMockAdminUser {
-
     if ([self currentAdminUser]) {
         return;
     }

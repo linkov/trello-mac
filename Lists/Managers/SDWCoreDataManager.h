@@ -27,6 +27,6 @@
 - (void)deleteAllEntitiesWithName:(NSString *)entName;
 
 - (SDWUserManaged *)currentAdminUser;
-- (void)setupMockAdminUser;
+- (void)            setupMockAdminUser;
 
 @end

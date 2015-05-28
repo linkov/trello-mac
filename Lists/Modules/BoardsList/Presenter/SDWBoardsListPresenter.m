@@ -10,7 +10,6 @@
 
 @implementation SDWBoardsListPresenter
 
-
 #pragma mark - SDWBoardsListModuleInterface
 
 - (void)updateUserInterface {
@@ -18,7 +17,6 @@
 }
 
 - (void)selectList:(SDWListManaged *)list {
-
     [self.listInteractor selectList:list];
 }
 

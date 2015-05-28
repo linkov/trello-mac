@@ -35,8 +35,6 @@
 
 - (void)installRootViewControllerIntoWindow:(NSWindow *__nonnull)window {
     [[SDWCoreDataManager manager] setupCoreDataWithCompletion:^{
-
-
         [[SDWCoreDataManager manager] setupMockAdminUser];
         SDWRootWireframe *rootWireframe = [SDWRootWireframe new];
         [rootWireframe showRootUserInterfaceInWindow:window];

@@ -25,18 +25,14 @@
 
 @implementation SDWBoardsListInteractor
 
-
 - (void)selectList:(SDWListManaged *)list {
-
     /* check inputs */
     //??
 
     [SDWCoreDataManager manager].currentAdminUser.selectedList = list;
 
-
     /* check outputs */
     NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"should have list");
-
 
     //TODO: save?
 }

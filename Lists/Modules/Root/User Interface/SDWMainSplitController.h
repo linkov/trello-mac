@@ -14,7 +14,7 @@
 
 @import Cocoa;
 
-@interface SDWMainSplitController : NSSplitViewController <SDWRootUserInterface,SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate>
+@interface SDWMainSplitController : NSSplitViewController <SDWRootUserInterface, SDWBoardsListModuleDelegate, SDWCardsListModuleDelegate>
 
 @property (strong) SDWCardsController *cardsVC;
 @property (strong) SDWBoardsController *boardsVC;

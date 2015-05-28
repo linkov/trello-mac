@@ -21,7 +21,6 @@
 
 - (instancetype)initWithItems:(NSArray *)items
             cellDidClickBlock:(SDWDataBlock)block {
-
     self = [super init];
     if (self) {
         self.items = items;
@@ -38,9 +37,8 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(id<SDWSourceListItem>)item {
-
     if (item.isLeaf) {
-        SDWPerformBlock(self.didClickBlock,item);
+        SDWPerformBlock(self.didClickBlock, item);
         return YES;
     }
 
