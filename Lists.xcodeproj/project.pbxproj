@@ -105,6 +105,9 @@
 		F122654D1B1626890009D954 /* NSObject+Logging.m in Sources */ = {isa = PBXBuildFile; fileRef = F122654C1B1626890009D954 /* NSObject+Logging.m */; };
 		F12265501B162E170009D954 /* SDWCardsListDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = F122654F1B162E170009D954 /* SDWCardsListDataSource.m */; };
 		F12265531B162E270009D954 /* SDWCardsListDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F12265521B162E270009D954 /* SDWCardsListDelegate.m */; };
+		F12265581B1733AD0009D954 /* _SDWUserManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F12265551B1733AD0009D954 /* _SDWUserManaged.m */; };
+		F12265591B1733AD0009D954 /* SDWUserManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F12265571B1733AD0009D954 /* SDWUserManaged.m */; };
+		F122655B1B176D730009D954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F122655A1B176D730009D954 /* MainMenu.xib */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -256,7 +259,7 @@
 		F12264F91B1373AB0009D954 /* SDWRootModuleInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWRootModuleInterface.h; sourceTree = "<group>"; };
 		F12264FA1B1375740009D954 /* SDWRootPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWRootPresenter.h; sourceTree = "<group>"; };
 		F12264FB1B1375740009D954 /* SDWRootPresenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWRootPresenter.m; sourceTree = "<group>"; };
-		F12264FD1B138AD40009D954 /* CNIRootUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CNIRootUserInterface.h; sourceTree = "<group>"; };
+		F12264FD1B138AD40009D954 /* SDWRootUserInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWRootUserInterface.h; sourceTree = "<group>"; };
 		F12264FE1B139D6A0009D954 /* SDWBoardsListWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsListWireframe.h; sourceTree = "<group>"; };
 		F12264FF1B139D6A0009D954 /* SDWBoardsListWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardsListWireframe.m; sourceTree = "<group>"; };
 		F12265011B139E620009D954 /* SDWBoardsListModuleDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardsListModuleDelegate.h; sourceTree = "<group>"; };
@@ -308,6 +311,11 @@
 		F122654F1B162E170009D954 /* SDWCardsListDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsListDataSource.m; sourceTree = "<group>"; };
 		F12265511B162E270009D954 /* SDWCardsListDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsListDelegate.h; sourceTree = "<group>"; };
 		F12265521B162E270009D954 /* SDWCardsListDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsListDelegate.m; sourceTree = "<group>"; };
+		F12265541B1733AD0009D954 /* _SDWUserManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWUserManaged.h; sourceTree = "<group>"; };
+		F12265551B1733AD0009D954 /* _SDWUserManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWUserManaged.m; sourceTree = "<group>"; };
+		F12265561B1733AD0009D954 /* SDWUserManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUserManaged.h; sourceTree = "<group>"; };
+		F12265571B1733AD0009D954 /* SDWUserManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUserManaged.m; sourceTree = "<group>"; };
+		F122655A1B176D730009D954 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -372,6 +380,10 @@
 		F106AB1A1AFD4F7D00BA3C9C /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				F12265541B1733AD0009D954 /* _SDWUserManaged.h */,
+				F12265551B1733AD0009D954 /* _SDWUserManaged.m */,
+				F12265561B1733AD0009D954 /* SDWUserManaged.h */,
+				F12265571B1733AD0009D954 /* SDWUserManaged.m */,
 				F106AB1B1AFD4F7D00BA3C9C /* _SDWBoardManaged.h */,
 				F106AB1C1AFD4F7D00BA3C9C /* _SDWBoardManaged.m */,
 				F106AB1D1AFD4F7D00BA3C9C /* _SDWCardManaged.h */,
@@ -407,6 +419,7 @@
 				F1665A661A22847700A1519D /* Crashlytics.framework */,
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
+				F122655A1B176D730009D954 /* MainMenu.xib */,
 				F12264A31B123E770009D954 /* SDWApplicationLoader.h */,
 				F12264A41B123E770009D954 /* SDWApplicationLoader.m */,
 				F106AB161AFD499100BA3C9C /* Model.xcdatamodeld */,
@@ -791,7 +804,7 @@
 		F122649E1B123D020009D954 /* User Interface */ = {
 			isa = PBXGroup;
 			children = (
-				F12264FD1B138AD40009D954 /* CNIRootUserInterface.h */,
+				F12264FD1B138AD40009D954 /* SDWRootUserInterface.h */,
 				F12264ED1B136EE50009D954 /* SDWMainSplitController.h */,
 				F12264EE1B136EE50009D954 /* SDWMainSplitController.m */,
 				F12264EF1B136EE50009D954 /* SDWMainSplitView.h */,
@@ -1011,6 +1024,7 @@
 				F122650C1B145B510009D954 /* SDWBoardsListViewController.xib in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
 				F14B36101A1441C000AFD5C9 /* icon.icns in Resources */,
+				F122655B1B176D730009D954 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1067,6 +1081,7 @@
 				F106AB361AFD4F7D00BA3C9C /* SDWChecklistItemManaged.m in Sources */,
 				F12265401B160CBC0009D954 /* SDWCardsListViewController.m in Sources */,
 				F106AB341AFD4F7D00BA3C9C /* SDWBoardManaged.m in Sources */,
+				F12265591B1733AD0009D954 /* SDWUserManaged.m in Sources */,
 				F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */,
 				F10AAA691A12AFD800FD4E85 /* SDWAppSettings.m in Sources */,
 				F10AAA751A12AFD800FD4E85 /* AFURLRequestSerialization.m in Sources */,
@@ -1128,6 +1143,7 @@
 				F1BCF5161B07A57800793650 /* NSColor+AppColors.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
+				F12265581B1733AD0009D954 /* _SDWUserManaged.m in Sources */,
 				F12265491B1614A30009D954 /* SDWCardsListInteractor.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
 				F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */,

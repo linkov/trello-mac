@@ -4,20 +4,21 @@
 #import "_SDWCardManaged.h"
 
 const struct SDWCardManagedAttributes SDWCardManagedAttributes = {
-    .dueDate = @"dueDate",
-    .listsDescription = @"listsDescription",
-    .listsID = @"listsID",
-    .name = @"name",
-    .position = @"position",
-    .updatedAt = @"updatedAt",
+	.dueDate = @"dueDate",
+	.listsDescription = @"listsDescription",
+	.listsID = @"listsID",
+	.name = @"name",
+	.position = @"position",
+	.updatedAt = @"updatedAt",
 };
 
 const struct SDWCardManagedRelationships SDWCardManagedRelationships = {
-    .assignees = @"assignees",
-    .checkLists = @"checkLists",
-    .labels = @"labels",
-    .list = @"list",
-    .user = @"user",
+	.assignees = @"assignees",
+	.checkLists = @"checkLists",
+	.labels = @"labels",
+	.list = @"list",
+	.selectedByUser = @"selectedByUser",
+	.user = @"user",
 };
 
 @implementation SDWCardManagedID
@@ -25,34 +26,34 @@ const struct SDWCardManagedRelationships SDWCardManagedRelationships = {
 
 @implementation _SDWCardManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription insertNewObjectForEntityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
++ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription insertNewObjectForEntityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
-    return @"SDWCardManaged";
++ (NSString*)entityName {
+	return @"SDWCardManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription entityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription entityForName:@"SDWCardManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWCardManagedID *)objectID {
-    return (SDWCardManagedID *)[super objectID];
+- (SDWCardManagedID*)objectID {
+	return (SDWCardManagedID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-    if ([key isEqualToString:@"positionValue"]) {
-        NSSet *affectingKey = [NSSet setWithObject:@"position"];
-        keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-        return keyPaths;
-    }
+	if ([key isEqualToString:@"positionValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"position"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
-    return keyPaths;
+	return keyPaths;
 }
 
 @dynamic dueDate;
@@ -66,59 +67,61 @@ const struct SDWCardManagedRelationships SDWCardManagedRelationships = {
 @dynamic position;
 
 - (int16_t)positionValue {
-    NSNumber *result = [self position];
-    return [result shortValue];
+	NSNumber *result = [self position];
+	return [result shortValue];
 }
 
 - (void)setPositionValue:(int16_t)value_ {
-    [self setPosition:[NSNumber numberWithShort:value_]];
+	[self setPosition:[NSNumber numberWithShort:value_]];
 }
 
 - (int16_t)primitivePositionValue {
-    NSNumber *result = [self primitivePosition];
-    return [result shortValue];
+	NSNumber *result = [self primitivePosition];
+	return [result shortValue];
 }
 
 - (void)setPrimitivePositionValue:(int16_t)value_ {
-    [self setPrimitivePosition:[NSNumber numberWithShort:value_]];
+	[self setPrimitivePosition:[NSNumber numberWithShort:value_]];
 }
 
 @dynamic updatedAt;
 
 @dynamic assignees;
 
-- (NSMutableSet *)assigneesSet {
-    [self willAccessValueForKey:@"assignees"];
+- (NSMutableSet*)assigneesSet {
+	[self willAccessValueForKey:@"assignees"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"assignees"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"assignees"];
 
-    [self didAccessValueForKey:@"assignees"];
-    return result;
+	[self didAccessValueForKey:@"assignees"];
+	return result;
 }
 
 @dynamic checkLists;
 
-- (NSMutableSet *)checkListsSet {
-    [self willAccessValueForKey:@"checkLists"];
+- (NSMutableSet*)checkListsSet {
+	[self willAccessValueForKey:@"checkLists"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"checkLists"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"checkLists"];
 
-    [self didAccessValueForKey:@"checkLists"];
-    return result;
+	[self didAccessValueForKey:@"checkLists"];
+	return result;
 }
 
 @dynamic labels;
 
-- (NSMutableSet *)labelsSet {
-    [self willAccessValueForKey:@"labels"];
+- (NSMutableSet*)labelsSet {
+	[self willAccessValueForKey:@"labels"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"labels"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"labels"];
 
-    [self didAccessValueForKey:@"labels"];
-    return result;
+	[self didAccessValueForKey:@"labels"];
+	return result;
 }
 
 @dynamic list;
+
+@dynamic selectedByUser;
 
 @dynamic user;
 

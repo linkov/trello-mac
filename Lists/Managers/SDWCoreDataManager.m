@@ -7,6 +7,19 @@
 //
 
 #import "SDWCoreDataManager.h"
+
+
+/*-------View Controllers-------*/
+
+/*-------Frameworks-------*/
+
+/*-------Views-------*/
+
+/*-------Helpers & Managers-------*/
+#import "SDWLogger.h"
+#import "NSObject+Logging.h"
+
+/*-------Models-------*/
 #import "SDWListManaged.h"
 #import "SDWBoardManaged.h"
 
@@ -75,34 +88,16 @@
     });
 }
 
-- (void)save {
-    if (![[self privateContext] hasChanges] && ![[self managedObjectContext] hasChanges]) {
-        return;
-    }
 
-    [[self managedObjectContext] performBlockAndWait:^{ // the save as calling save without block but guarantees that it's run on the thread that the MOC is in
-        NSError *error = nil;
+- (SDWUserManaged *)currentAdminUser {
 
-        ZAssert([[self managedObjectContext] save:&error], @"Failed to save main context: %@\n%@", [error localizedDescription], [error userInfo]);
+    SDWUserManaged *admin = [self fetchEntityWithName:[SDWUserManaged entityName] andPredicate:[NSPredicate predicateWithFormat:@"isAdmin == %@", @(YES)]];
 
-        [[self privateContext] performBlock:^{
-                NSError *privateError = nil;
-                ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
-            }];
-    }];
+    return admin;
+
+
 }
 
-- (void)add {
-    SDWListManaged *list = [SDWListManaged insertInManagedObjectContext:self.managedObjectContext];
-    list.listsID = @"1";
-    list.name = @"List one";
-
-    SDWBoardManaged *board = [SDWBoardManaged insertInManagedObjectContext:self.managedObjectContext];
-    board.listsID = @"1";
-    board.name = @"Board one";
-    [board addListsObject:list];
-    //  [self save];
-}
 
 - (NSArray *)fetchAllEntitiesWithName:(NSString *)entityName {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -112,8 +107,8 @@
     NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        //        CNILogError(@"%@ Failed to fetch %@ with conichiID = %@ in context %@. %@", CNIDataModelManagerClassLogIdentifier, entityName, conichiID, context, [error localizedDescription]);
-        //return nil;
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch all entities with name %@, %@",self.classLogIdentifier,entityName,error]];
+        return nil;
     }
 
     return fetchedObjects;
@@ -130,8 +125,29 @@
     NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-//        CNILogError(@"%@ Failed to fetch %@ with conichiID = %@ in context %@. %@", CNIDataModelManagerClassLogIdentifier, entityName, conichiID, context, [error localizedDescription]);
-        //return nil;
+
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with ID %@, %@",self.classLogIdentifier,entityID,error]];
+
+        return nil;
+    }
+    return [fetchedObjects firstObject];
+}
+
+
+- (id)fetchEntityWithName:(NSString *)entityName andPredicate:(NSPredicate *)predicate {
+
+    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
+    fetchRequest.entity = entity;
+
+    fetchRequest.predicate = predicate;
+
+    NSError *error = nil;
+    NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+    if (error) {
+
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with predicate %@, %@",self.classLogIdentifier,predicate,error]];
+        return nil;
     }
     return [fetchedObjects firstObject];
 }
@@ -146,5 +162,23 @@
     }
     [self save];
 }
+
+- (void)save {
+    if (![[self privateContext] hasChanges] && ![[self managedObjectContext] hasChanges]) {
+        return;
+    }
+
+    [[self managedObjectContext] performBlockAndWait:^{ // the save as calling save without block but guarantees that it's run on the thread that the MOC is in
+        NSError *error = nil;
+
+        ZAssert([[self managedObjectContext] save:&error], @"Failed to save main context: %@\n%@", [error localizedDescription], [error userInfo]);
+
+        [[self privateContext] performBlock:^{
+            NSError *privateError = nil;
+            ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
+        }];
+    }];
+}
+
 
 @end

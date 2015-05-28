@@ -9,11 +9,12 @@
 @import Foundation;
 @import AppKit;
 
-#import "CNIRootUserInterface.h"
+#import "SDWRootUserInterface.h"
+#import "SDWRootWireframe.h"
 
 @interface SDWRootPresenter : NSObject
 
-@property (nonatomic, weak) NSViewController<CNIRootUserInterface> *userInterface;
+@property (nonatomic, weak) NSViewController<SDWRootUserInterface> *userInterface;
 @property (nonatomic, strong) SDWRootWireframe *wireframe;
 
 @end

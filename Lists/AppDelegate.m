@@ -8,8 +8,13 @@
 #import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
+#import "Constants.h"
+#import "SDWApplicationLoader.h"
 
 @interface AppDelegate ()
+
+@property (weak) IBOutlet NSWindow *window;
+
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
 @property (weak) IBOutlet NSMenuItem *dotMenu30;
@@ -28,12 +33,16 @@
 
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 
-    [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
-    }];
+    SDWApplicationLoader *appLoader = [[SDWApplicationLoader alloc]init];
+    [appLoader installRootViewControllerIntoWindow:self.window];
+
+
+  //  [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
+  //  }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-    [self.persistenceManager save];
+   // [self.persistenceManager save];
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {

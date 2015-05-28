@@ -1,5 +1,7 @@
 
 #import "SDWBoardManaged.h"
+#import "SDWMapper.h"
+#import "SDWListManaged.h"
 
 @interface SDWBoardManaged ()
 
@@ -31,6 +33,29 @@
 
 - (NSString *)itemName {
     return self.name;
+}
+
+@end
+
+
+//*********************************************************************//
+
+
+@implementation SDWBoardManaged (Mapping)
+
+
+- (instancetype)mappedObjectFromJSON:(NSDictionary *)json {
+
+    self.name = json[@"name"];
+    self.listsID = json[@"id"];
+
+    if (json[@"lists"]) {
+
+        NSArray *lists = [SDWMapper arrayOfObjectsOfClass:[SDWListManaged class] fromJSON:json[@"lists"]];
+        [self.listsSet addObjectsFromArray:lists];
+    }
+
+    return self;
 }
 
 @end

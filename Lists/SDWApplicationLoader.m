@@ -16,6 +16,7 @@
 
 /*-------Helpers & Managers-------*/
 #import "SDWRootWireframe.h"
+#import "SDWCoreDataManager.h"
 
 /*-------Models-------*/
 
@@ -33,8 +34,14 @@
 #pragma mark - Interface
 
 - (void)installRootViewControllerIntoWindow:(NSWindow *__nonnull)window {
-//    CNIDashboardWireframe *dashboardWireframe = [[CNIDashboardWireframe alloc] init];
-//    [dashboardWireframe showDashboardUserInterfaceInWindow:window];
+
+    [[SDWCoreDataManager manager] setupCoreDataWithCompletion:^{
+
+        SDWRootWireframe *rootWireframe = [SDWRootWireframe new];
+        [rootWireframe showRootUserInterfaceInWindow:window];
+    }];
+
+
 }
 
 #pragma mark - Helpers

@@ -6,6 +6,8 @@
 //  Copyright (c) 2013 Pixle. All rights reserved.
 //
 
+@import Foundation;
+
 #ifndef KZAssertsIncluded
 
 #define KZAssertsIncluded true

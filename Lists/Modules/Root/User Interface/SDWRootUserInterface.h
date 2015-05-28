@@ -8,6 +8,6 @@
 
 @import Foundation;
 
-@protocol CNIRootUserInterface <NSObject>
+@protocol SDWRootUserInterface <NSObject>
 
 @end

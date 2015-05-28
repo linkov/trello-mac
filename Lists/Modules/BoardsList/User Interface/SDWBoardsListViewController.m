@@ -26,6 +26,9 @@
 
 @property (strong) IBOutlet NSOutlineView *outlineView;
 
+@property SDWSourceListDataSource *outlineViewDatasource;
+@property SDWSourceListDelegate *outlineViewDelegate;
+
 @end
 
 @implementation SDWBoardsListViewController
@@ -54,8 +57,10 @@
 }
 
 - (void)showContentWithItems:(NSArray *)items {
-    self.outlineView.dataSource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
-    self.outlineView.delegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items];
+    self.outlineViewDatasource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
+    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items];
+    self.outlineView.dataSource = (id)self.outlineViewDatasource;
+    self.outlineView.delegate = (id)self.outlineViewDelegate;
     [self reloadEntries];
 }
 

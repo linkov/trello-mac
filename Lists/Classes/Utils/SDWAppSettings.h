@@ -17,18 +17,18 @@ typedef enum {
     SDWDotOptionOff
 } SDWDotOption;
 
-extern NSString *const SDWListsDidReceiveUserTokenNotification;
-extern NSString *const SDWListsDidChangeSidebarStatusNotification;
-extern NSString *const SDWListsDidChangeCardDetailsStatusNotification;
-extern NSString *const SDWListsDidChangeDotOptionNotification;
-
-extern NSString *const SDWListsDidRemoveCardNotification;
-extern NSString *const SDWListsShouldFilterNotification;
-extern NSString *const SDWListsShouldCreateCardNotification;
-extern NSString *const SDWListsDidUpdateDueNotification;
-
-extern NSString *const SDWListsShouldReloadListNotification;
-extern NSString *const SDWListsShouldReloadBoardsNotification;
+//extern NSString *const SDWListsDidReceiveUserTokenNotification;
+//extern NSString *const SDWListsDidChangeSidebarStatusNotification;
+//extern NSString *const SDWListsDidChangeCardDetailsStatusNotification;
+//extern NSString *const SDWListsDidChangeDotOptionNotification;
+//
+//extern NSString *const SDWListsDidRemoveCardNotification;
+//extern NSString *const SDWListsShouldFilterNotification;
+//extern NSString *const SDWListsShouldCreateCardNotification;
+//extern NSString *const SDWListsDidUpdateDueNotification;
+//
+//extern NSString *const SDWListsShouldReloadListNotification;
+//extern NSString *const SDWListsShouldReloadBoardsNotification;
 
 @interface SDWAppSettings : NSObject
 

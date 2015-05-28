@@ -11,6 +11,7 @@
 /*-------View Controllers-------*/
 #import "SDWMainSplitController.h"
 #import "SDWMainWindowController.h"
+#import "SDWCardsListWireframe.h"
 
 /*-------Frameworks-------*/
 
@@ -30,7 +31,7 @@
     SDWMainSplitController *splitViewController = [[SDWMainSplitController alloc]init];
 
     SDWRootPresenter *presenter = [[SDWRootPresenter alloc] init];
-    presenter.userInterface = dashboardViewController;
+    presenter.userInterface = splitViewController;
     splitViewController.eventHandler = presenter;
     presenter.wireframe = self;
 
@@ -62,13 +63,14 @@
 }
 
 - (NSViewController *)cardsListUserInterfaceWithModuleDelegate:(nullable id)delegate {
-//    CNIGuestsListWireframe *wireframe = [[CNIGuestsListWireframe alloc] init];
-//    return [wireframe guestsListUserInterfaceWithDelegate:delegate];
+    SDWCardsListWireframe *wireframe = [[SDWCardsListWireframe alloc]init];
+    return [wireframe cardsListUserInterfaceWithDelegate:delegate];
 }
 
 - (NSViewController *)cardDetailsUserInterfaceWithModuleDelegate:(nullable id)delegate {
 //    CNIGuestDetailsWireframe *wireframe = [[CNIGuestDetailsWireframe alloc] init];
 //    return [wireframe guestDetailsUserInterfaceWithGuest:guest moduleDelegate:delegate];
+    return nil;
 }
 
 @end

@@ -24,9 +24,9 @@
 //        return nil;
 //    }
 
-    id object = [[SDWCoreDataManager manager] fetchEntityWithName:NSStringFromClass(objectClass) andID:primaryJSONValue];
+    id object = [[SDWCoreDataManager manager] fetchEntityWithName:[objectClass entityName] andID:primaryJSONValue];
     if (!object) {
-        object = [NSEntityDescription insertNewObjectForEntityForName:NSStringFromClass(objectClass)
+        object = [NSEntityDescription insertNewObjectForEntityForName:[objectClass entityName]
                                                inManagedObjectContext:[SDWCoreDataManager manager].managedObjectContext];
     }
 

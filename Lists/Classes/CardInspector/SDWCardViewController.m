@@ -29,6 +29,7 @@
 #import "SDWTrelloStore.h"
 #import "NSControl+DragInteraction.h"
 #import "NSColor+AppColors.h"
+#import "Constants.h"
 
 /*-------Models-------*/
 #import "SDWChecklist.h"
@@ -191,7 +192,7 @@
                 [self.activityTable reloadData];
             }
         } else {
-            CLSLog(@"fetchActivities error %@", err.localizedDescription);
+            //CLSLog(@"fetchActivities error %@", err.localizedDescription);
         }
     }];
 }
@@ -440,7 +441,7 @@
         resultView.textField.enabled = !resultView.checkBox.checked;
         //resultView.toolTip = resultView.textField.stringValue;
 
-        resultView.layer.backgroundColor = [NSColorse appBackgroundColor].CGColor;
+        resultView.layer.backgroundColor = [NSColor appBackgroundColor].CGColor;
         resultView.textField.font = [NSFont systemFontOfSize:12];
         resultView.delegate = self;
 

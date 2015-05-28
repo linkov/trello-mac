@@ -10,8 +10,8 @@
 
 @import CoreData;
 #import <Foundation/Foundation.h>
-
-typedef void (^SDWEmptyBlock)();
+#import "SDWUserManaged.h"
+#import "SDWTypesAndEnums.h"
 
 @interface SDWCoreDataManager : NSObject
 
@@ -20,12 +20,12 @@ typedef void (^SDWEmptyBlock)();
 @property (copy) SDWEmptyBlock setupCompletion;
 
 + (instancetype)manager;
-- (void)        setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
 
-- (void)add;
-
+- (void)setupCoreDataWithCompletion:(SDWEmptyBlock)completion;
 - (NSArray *)fetchAllEntitiesWithName:(NSString *)entityName;
 - (id)fetchEntityWithName:(NSString *)entityName andID:(NSString *)entityID;
 - (void)deleteAllEntitiesWithName:(NSString *)entName;
+
+- (SDWUserManaged *)currentAdminUser;
 
 @end

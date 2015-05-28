@@ -28,6 +28,11 @@
 @implementation SDWCardsListInteractor
 
 - (void)findAllCardsForCurrentListSortedBy:(SDWCardsListSortType)sortType {
+
+    if (![self currentList]) {
+        return;
+    }
+
     [[AFTrelloAPIClient sharedClient] fetchCardsForListID:[self currentList].listsID WithCompletion:^(id object, NSError *error) {
         if (error) {
             [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch cards for list, %@ ", self.classLogIdentifier, error.localizedDescription]];
@@ -43,12 +48,12 @@
 }
 
 - (NSString *)currentListTitle {
-    return [self currentList].name;
+    return [self currentList].name ?: @"No selection";
 }
 
 - (SDWListManaged *)currentList  {
-    //TODO:
-    return nil;
+
+    return [SDWCoreDataManager manager].currentAdminUser.selectedList;
 }
 
 @end

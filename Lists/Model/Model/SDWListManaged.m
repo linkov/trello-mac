@@ -33,3 +33,21 @@
 }
 
 @end
+
+//*********************************************************************//
+
+
+@implementation SDWListManaged (Mapping)
+
+
+- (instancetype)mappedObjectFromJSON:(NSDictionary *)json {
+
+    self.name = json[@"name"];
+    self.listsID = json[@"id"];
+
+    return self;
+}
+
+@end
+
+

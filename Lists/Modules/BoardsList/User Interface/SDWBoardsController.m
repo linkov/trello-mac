@@ -32,6 +32,7 @@
 #import "AFTrelloAPIClient.h"
 #import "SDWTrelloStore.h"
 #import "NSColor+AppColors.h"
+#import "Constants.h"
 
 /*-------Models-------*/
 #import "SDWBoard.h"

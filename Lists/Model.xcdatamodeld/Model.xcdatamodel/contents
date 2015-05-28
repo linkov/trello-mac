@@ -2,7 +2,7 @@
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SDWBoardManaged" representedClassName="SDWBoardManaged" syncable="YES">
         <attribute name="isStarred" optional="YES" attributeType="Boolean" syncable="YES"/>
-        <attribute name="listsID" optional="YES" attributeType="Integer 16" defaultValueString="0" syncable="YES"/>
+        <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="board" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
@@ -17,6 +17,7 @@
         <relationship name="checkLists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWChecklistManaged" inverseName="card" inverseEntity="SDWChecklistManaged" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWLabelManaged" inverseName="cards" inverseEntity="SDWLabelManaged" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="cards" inverseEntity="SDWListManaged" syncable="YES"/>
+        <relationship name="selectedByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUserManaged" inverseName="selectedCard" inverseEntity="SDWUserManaged" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUserManaged" inverseName="cards" inverseEntity="SDWUserManaged" syncable="YES"/>
     </entity>
     <entity name="SDWChecklistItemManaged" representedClassName="SDWChecklistItemManaged" syncable="YES">
@@ -47,9 +48,10 @@
         <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWBoardManaged" inverseName="lists" inverseEntity="SDWBoardManaged" syncable="YES"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWCardManaged" inverseName="list" inverseEntity="SDWCardManaged" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWUserManaged" inverseName="listsMemberships" inverseEntity="SDWUserManaged" syncable="YES"/>
+        <relationship name="selectedByUser" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUserManaged" inverseName="selectedList" inverseEntity="SDWUserManaged" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWUserManaged" inverseName="lists" inverseEntity="SDWUserManaged" syncable="YES"/>
     </entity>
-    <entity name="SDWUserManaged" syncable="YES">
+    <entity name="SDWUserManaged" representedClassName="SDWUserManaged" syncable="YES">
         <attribute name="firstName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isAdmin" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="lastName" optional="YES" attributeType="String" syncable="YES"/>
@@ -61,14 +63,16 @@
         <relationship name="cards" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWCardManaged" inverseName="user" inverseEntity="SDWCardManaged" syncable="YES"/>
         <relationship name="lists" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="user" inverseEntity="SDWListManaged" syncable="YES"/>
         <relationship name="listsMemberships" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="members" inverseEntity="SDWListManaged" syncable="YES"/>
+        <relationship name="selectedCard" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWCardManaged" inverseName="selectedByUser" inverseEntity="SDWCardManaged" syncable="YES"/>
+        <relationship name="selectedList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="selectedByUser" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
     <elements>
         <element name="SDWBoardManaged" positionX="-27" positionY="99" width="128" height="105"/>
-        <element name="SDWCardManaged" positionX="-63" positionY="-18" width="128" height="210"/>
+        <element name="SDWCardManaged" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="SDWChecklistItemManaged" positionX="18" positionY="90" width="128" height="120"/>
         <element name="SDWChecklistManaged" positionX="0" positionY="72" width="128" height="120"/>
         <element name="SDWLabelManaged" positionX="-36" positionY="27" width="128" height="105"/>
-        <element name="SDWListManaged" positionX="-54" positionY="9" width="128" height="165"/>
-        <element name="SDWUserManaged" positionX="-18" positionY="54" width="128" height="210"/>
+        <element name="SDWListManaged" positionX="-54" positionY="9" width="128" height="180"/>
+        <element name="SDWUserManaged" positionX="-18" positionY="54" width="128" height="240"/>
     </elements>
 </model>
