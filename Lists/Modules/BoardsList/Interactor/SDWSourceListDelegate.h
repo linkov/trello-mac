@@ -6,11 +6,14 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
 @import AppKit;
+
+#import "SDWTypesAndEnums.h"
 
 @interface SDWSourceListDelegate : NSObject
 
-- (instancetype)initWithItems:(NSArray *)items;
+- (instancetype)initWithItems:(NSArray *)items
+            cellDidClickBlock:(SDWDataBlock)block;
 
 @end

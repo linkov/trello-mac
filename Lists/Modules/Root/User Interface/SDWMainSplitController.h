@@ -9,10 +9,12 @@
 
 #import "SDWRootModuleInterface.h"
 #import "SDWRootUserInterface.h"
+#import "SDWCardsListModuleDelegate.h"
+#import "SDWBoardsListModuleDelegate.h"
 
 @import Cocoa;
 
-@interface SDWMainSplitController : NSSplitViewController <SDWRootUserInterface>
+@interface SDWMainSplitController : NSSplitViewController <SDWRootUserInterface,SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate>
 
 @property (strong) SDWCardsController *cardsVC;
 @property (strong) SDWBoardsController *boardsVC;

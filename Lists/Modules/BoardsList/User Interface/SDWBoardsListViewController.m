@@ -19,6 +19,7 @@
 #import "NSColor+AppColors.h"
 #import "SDWSourceListDataSource.h"
 #import "SDWSourceListDelegate.h"
+#import "KZAsserts.h"
 
 /*-------Models-------*/
 
@@ -58,7 +59,19 @@
 
 - (void)showContentWithItems:(NSArray *)items {
     self.outlineViewDatasource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
-    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items];
+
+    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems:items
+                                                              cellDidClickBlock:^(id item)
+
+    {
+
+
+        [self.eventHandler selectList:item];
+        [self.moduleDelegate boardsListModuleDidSelectList:item];
+
+    }];
+
+
     self.outlineView.dataSource = (id)self.outlineViewDatasource;
     self.outlineView.delegate = (id)self.outlineViewDelegate;
     [self reloadEntries];

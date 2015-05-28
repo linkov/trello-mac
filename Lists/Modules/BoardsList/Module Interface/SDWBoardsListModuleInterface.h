@@ -8,8 +8,10 @@
 
 @import Foundation;
 
+@class SDWListManaged;
 @protocol SDWBoardsListModuleInterface <NSObject>
 
 - (void)updateUserInterface;
+- (void)selectList:(SDWListManaged *)list;
 
 @end

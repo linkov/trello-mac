@@ -8,9 +8,11 @@
 
 @import Foundation;
 #import "SDWTypesAndEnums.h"
+#import "SDWListManaged.h"
 
 @protocol SDWBoardsListInteractorInput <NSObject>
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType;
+- (void)selectList:(SDWListManaged *)list;
 @end
 
 @protocol SDWBoardsListInteractorOutput <NSObject>

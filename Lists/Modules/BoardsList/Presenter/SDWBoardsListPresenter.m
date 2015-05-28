@@ -10,8 +10,16 @@
 
 @implementation SDWBoardsListPresenter
 
+
+#pragma mark - SDWBoardsListModuleInterface
+
 - (void)updateUserInterface {
     [self.listInteractor findAllBoardsSortedBy:SDWBoardsListSortTypeStarredFirst];
+}
+
+- (void)selectList:(SDWListManaged *)list {
+
+    [self.listInteractor selectList:list];
 }
 
 #pragma mark - SDWBoardsListInteractorOutput

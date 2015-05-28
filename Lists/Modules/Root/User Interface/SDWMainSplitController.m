@@ -17,6 +17,18 @@
 #import "SDWMainSplitController.h"
 #import "SDWLoginVC.h"
 
+/*-------View Controllers-------*/
+#import "SDWCardsListViewController.h"
+
+/*-------Frameworks-------*/
+
+/*-------Views-------*/
+
+/*-------Helpers & Managers-------*/
+#import "SDWCardsListModuleInterface.h"
+
+/*-------Models-------*/
+
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
@@ -117,5 +129,33 @@
         [self showLoginUI];
     }
 }
+
+
+
+
+#pragma mark - DWBoardsListModuleDelegate,SDWCardsListModuleDelegate
+
+- (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
+
+    [[self cardsListModuleIterface] showCardsForCurrentList];
+}
+
+
+#pragma mark - Utils
+
+- (NSViewController *)boardsListUserIterface {
+
+    NSSplitViewItem *item = self.splitViewItems[0];
+    return item.viewController;
+}
+
+- (id <SDWCardsListModuleInterface>)cardsListModuleIterface {
+
+    NSSplitViewItem *item = self.splitViewItems[1];
+    SDWCardsListViewController *controller = (SDWCardsListViewController *)item.viewController;
+    return controller.eventHandler;
+}
+
+
 
 @end

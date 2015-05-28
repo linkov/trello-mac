@@ -87,6 +87,16 @@
     });
 }
 
+- (void)setupMockAdminUser {
+
+    if ([self currentAdminUser]) {
+        return;
+    }
+
+    SDWUserManaged *admin = [SDWUserManaged insertInManagedObjectContext:self.managedObjectContext];
+    admin.isAdmin = @(YES);
+}
+
 - (SDWUserManaged *)currentAdminUser {
     SDWUserManaged *admin = [self fetchEntityWithName:[SDWUserManaged entityName] andPredicate:[NSPredicate predicateWithFormat:@"isAdmin == %@", @(YES)]];
 

@@ -56,9 +56,11 @@
 }
 
 - (void)showContentWithItems:(NSArray *)items {
-    self.tableView.dataSource = [[SDWCardsListDataSource alloc]initWithItems:items];
-    self.tableView.delegate = [[SDWCardsListDelegate alloc]initWithItems:items];
-    [self reloadEntries];
+
+    NSLog(@"cards = %@",items);
+//    self.tableView.dataSource = [[SDWCardsListDataSource alloc]initWithItems:items];
+//    self.tableView.delegate = [[SDWCardsListDelegate alloc]initWithItems:items];
+//    [self reloadEntries];
 }
 
 - (void)reloadEntries {

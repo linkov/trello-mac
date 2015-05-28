@@ -8,6 +8,9 @@
 
 @import Foundation;
 
+@class SDWListManaged;
 @protocol SDWBoardsListModuleDelegate <NSObject>
+
+- (void)boardsListModuleDidSelectList:(SDWListManaged *)list;
 
 @end

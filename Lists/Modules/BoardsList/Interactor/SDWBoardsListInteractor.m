@@ -17,11 +17,29 @@
 /*-------Helpers & Managers-------*/
 #import "AFTrelloAPIClient.h"
 #import "SDWMapper.h"
+#import "SDWCoreDataManager.h"
+#import "KZAsserts.h"
 
 /*-------Models-------*/
 #import "SDWBoardManaged.h"
 
 @implementation SDWBoardsListInteractor
+
+
+- (void)selectList:(SDWListManaged *)list {
+
+    /* check inputs */
+    //??
+
+    [SDWCoreDataManager manager].currentAdminUser.selectedList = list;
+
+
+    /* check outputs */
+    NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"should have list");
+
+
+    //TODO: save?
+}
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
     [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsWithCompletion:^(id object, NSError *error) {
