@@ -36,12 +36,9 @@
 
 //*********************************************************************//
 
-
 @implementation SDWListManaged (Mapping)
 
-
 - (instancetype)mappedObjectFromJSON:(NSDictionary *)json {
-
     self.name = json[@"name"];
     self.listsID = json[@"id"];
 
@@ -49,5 +46,4 @@
 }
 
 @end
-
 

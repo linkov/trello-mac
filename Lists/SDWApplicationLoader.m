@@ -34,14 +34,10 @@
 #pragma mark - Interface
 
 - (void)installRootViewControllerIntoWindow:(NSWindow *__nonnull)window {
-
     [[SDWCoreDataManager manager] setupCoreDataWithCompletion:^{
-
         SDWRootWireframe *rootWireframe = [SDWRootWireframe new];
         [rootWireframe showRootUserInterfaceInWindow:window];
     }];
-
-
 }
 
 #pragma mark - Helpers

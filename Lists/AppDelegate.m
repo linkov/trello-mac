@@ -36,13 +36,12 @@
     SDWApplicationLoader *appLoader = [[SDWApplicationLoader alloc]init];
     [appLoader installRootViewControllerIntoWindow:self.window];
 
-
-  //  [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
-  //  }];
+    //  [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
+    //  }];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
-   // [self.persistenceManager save];
+    // [self.persistenceManager save];
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {

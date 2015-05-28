@@ -8,8 +8,6 @@
 #import "Constants.h"
 #import "SDWAppSettings.h" //remove this
 
-
-
 #import "SDWCardViewController.h"
 #import "SDWCardsController.h"
 #import "SDWBoardsController.h"

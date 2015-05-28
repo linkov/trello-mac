@@ -28,7 +28,6 @@
 @implementation SDWCardsListInteractor
 
 - (void)findAllCardsForCurrentListSortedBy:(SDWCardsListSortType)sortType {
-
     if (![self currentList]) {
         return;
     }
@@ -48,11 +47,10 @@
 }
 
 - (NSString *)currentListTitle {
-    return [self currentList].name ?: @"No selection";
+    return [self currentList].name ? : @"No selection";
 }
 
 - (SDWListManaged *)currentList  {
-
     return [SDWCoreDataManager manager].currentAdminUser.selectedList;
 }
 

@@ -8,7 +8,6 @@
 
 #import "SDWCoreDataManager.h"
 
-
 /*-------View Controllers-------*/
 
 /*-------Frameworks-------*/
@@ -88,16 +87,11 @@
     });
 }
 
-
 - (SDWUserManaged *)currentAdminUser {
-
     SDWUserManaged *admin = [self fetchEntityWithName:[SDWUserManaged entityName] andPredicate:[NSPredicate predicateWithFormat:@"isAdmin == %@", @(YES)]];
 
     return admin;
-
-
 }
-
 
 - (NSArray *)fetchAllEntitiesWithName:(NSString *)entityName {
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
@@ -107,7 +101,7 @@
     NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch all entities with name %@, %@",self.classLogIdentifier,entityName,error]];
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch all entities with name %@, %@", self.classLogIdentifier, entityName, error]];
         return nil;
     }
 
@@ -125,17 +119,14 @@
     NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-
-        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with ID %@, %@",self.classLogIdentifier,entityID,error]];
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with ID %@, %@", self.classLogIdentifier, entityID, error]];
 
         return nil;
     }
     return [fetchedObjects firstObject];
 }
 
-
 - (id)fetchEntityWithName:(NSString *)entityName andPredicate:(NSPredicate *)predicate {
-
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     NSEntityDescription *entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:self.managedObjectContext];
     fetchRequest.entity = entity;
@@ -145,8 +136,7 @@
     NSError *error = nil;
     NSArray *fetchedObjects = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
     if (error) {
-
-        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with predicate %@, %@",self.classLogIdentifier,predicate,error]];
+        [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch entity with predicate %@, %@", self.classLogIdentifier, predicate, error]];
         return nil;
     }
     return [fetchedObjects firstObject];
@@ -174,11 +164,10 @@
         ZAssert([[self managedObjectContext] save:&error], @"Failed to save main context: %@\n%@", [error localizedDescription], [error userInfo]);
 
         [[self privateContext] performBlock:^{
-            NSError *privateError = nil;
-            ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
-        }];
+                NSError *privateError = nil;
+                ZAssert([[self privateContext] save:&privateError], @"Error saving private context: %@\n%@", [privateError localizedDescription], [privateError userInfo]);
+            }];
     }];
 }
-
 
 @end
