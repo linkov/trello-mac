@@ -13,17 +13,24 @@
 /*-------Frameworks-------*/
 
 /*-------Views-------*/
+#import "SDWSingleCardTableCellView.h"
+#import "SDWCardListView.h"
 
 /*-------Helpers & Managers-------*/
 #import "NSColor+AppColors.h"
 #import "SDWCardsListDataSource.h"
 #import "SDWCardsListDelegate.h"
+#import "JWCTableView.h"
 
 /*-------Models-------*/
+#import "SDWCardManaged.h"
 
 @interface SDWCardsListViewController ()
-@property (strong) IBOutlet NSTableView *tableView;
+@property (strong) IBOutlet JWCTableView *tableView;
 @property (strong) IBOutlet NSTextField *listNameLabel;
+
+@property SDWCardsListDataSource *tableViewDataSource;
+@property SDWCardsListDelegate *tableViewDelegate;
 
 @end
 
@@ -57,9 +64,35 @@
 
 - (void)showContentWithItems:(NSArray *)items {
     NSLog(@"cards = %@", items);
-//    self.tableView.dataSource = [[SDWCardsListDataSource alloc]initWithItems:items];
-//    self.tableView.delegate = [[SDWCardsListDelegate alloc]initWithItems:items];
-//    [self reloadEntries];
+
+
+    self.tableViewDataSource = [[SDWCardsListDataSource alloc]initWithItems:items configureBlock:^id(id item) {
+
+        SDWCardManaged *card = item;
+        NSTableCellView *cell = [self.tableView makeViewWithIdentifier:@"cardCellView" owner:self];
+        cell.textField.stringValue = card.name;
+
+        return cell;
+
+    }];
+
+    self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items clickBlock:^(id cell, id item) {
+
+        //
+
+    } doubleClickBlock:^(id cell, id item) {
+
+        //
+
+    } rightClickBlock:^(id cell, id item) {
+
+        //
+    }];
+
+    self.tableView.jwcTableViewDataSource = (id)self.tableViewDataSource;
+    self.tableView.jwcTableViewDelegate = (id)self.tableViewDelegate;
+
+    [self reloadEntries];
 }
 
 - (void)reloadEntries {

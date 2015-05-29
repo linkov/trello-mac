@@ -8,9 +8,14 @@
 
 @import Foundation;
 @import AppKit;
+#import "JWCTableView.h"
+#import "SDWTypesAndEnums.h"
 
-@interface SDWCardsListDelegate : NSObject <NSTableViewDelegate>
+@interface SDWCardsListDelegate : NSObject <JWCTableViewDelegate>
 
-- (instancetype)initWithItems:(NSArray *)items;
+- (instancetype)initWithItems:(NSArray *)items
+                   clickBlock:(SDWCellItemBlock)clickBlock
+             doubleClickBlock:(SDWCellItemBlock)doubleClick
+              rightClickBlock:(SDWCellItemBlock)rightClick;
 
 @end

@@ -8,6 +8,7 @@
 
 #import "SDWMapper.h"
 #import "SDWCoreDataManager.h"
+#import "KZAsserts.h"
 
 @implementation SDWMapper
 
@@ -44,12 +45,11 @@
 }
 
 + (NSArray *__nonnull)arrayOfObjectsOfClass:(Class __nonnull)objectClass fromJSON:(NSArray *__nonnull)json {
-    if (![objectClass conformsToProtocol:@protocol(SDWJSONMapping)]) {
-        return nil;
-    }
-    if (!json) {
-        return nil;
-    }
+
+    AssertTrueOr([objectClass conformsToProtocol:@protocol(SDWJSONMapping)], return nil; );
+    AssertTrueOr(json, return nil; );
+    AssertTrueOr([json isKindOfClass:[NSArray class]], return nil; );
+
     NSMutableArray *result = [NSMutableArray array];
     for (NSDictionary *objectJSON in json) {
         id object = [self objectOfClass:objectClass fromJSON:objectJSON];

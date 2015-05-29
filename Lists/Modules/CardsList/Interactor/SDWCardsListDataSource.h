@@ -8,9 +8,11 @@
 
 @import Foundation;
 @import AppKit;
+#import "JWCTableView.h"
+#import "SDWTypesAndEnums.h"
 
-@interface SDWCardsListDataSource : NSObject <NSTableViewDataSource>
+@interface SDWCardsListDataSource : NSObject <JWCTableViewDataSource>
 
-- (instancetype)initWithItems:(NSArray *)items;
-
+- (instancetype)initWithItems:(NSArray *)items
+               configureBlock:(SDWCellConfigureBlock)configureBlock;
 @end

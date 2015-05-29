@@ -27,4 +27,6 @@ typedef NS_ENUM (NSInteger, SDWCardsListSortType) {
 typedef void (^SDWEmptyBlock)();
 typedef void (^SDWDataBlock)(id object);
 typedef void (^SDWDataErrorBlock)(id object, NSError *error);
-typedef void (^SDWOutlineViewCellConfigureBlock)(id cell, id item);
+typedef void (^SDWCellItemBlock)(id cell, id item);
+
+typedef id (^SDWCellConfigureBlock)(id item);

@@ -11,51 +11,70 @@
 @interface SDWCardsListDataSource ()
 
 @property NSArray *items;
+@property (copy) SDWCellConfigureBlock cellConfigureBlock;
 
 @end
 
 @implementation SDWCardsListDataSource
 
-- (instancetype)initWithItems:(NSArray *)items {
+- (instancetype)initWithItems:(NSArray *)items configureBlock:(SDWCellConfigureBlock)configureBlock {
     self = [super init];
     if (self) {
         self.items = items;
+        self.cellConfigureBlock = configureBlock;
     }
 
     return self;
 }
 
-#pragma mark - NSTableViewDataSource
 
-- (NSInteger)numberOfRowsInTableView:(NSTableView *)tableView {
+//Number of rows in section
+-(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
     return self.items.count;
 }
 
-#pragma mark - Dragging
 
-- (id <NSPasteboardWriting>)tableView:(NSTableView *)tableView pasteboardWriterForRow:(NSInteger)row NS_AVAILABLE_MAC(10_7) {
+//Number of sections
+-(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
+    return 1;
+}
+
+//Has a header view for a section
+-(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
+    return NO;
+}
+
+//Height related
+-(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+
+    return 40;
+}
+-(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
+
+    return 0;
+}
+
+//View related
+-(NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
+
     return nil;
 }
+-(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
-- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
+    id item = [self itemAtIndexPath:indexPath];
+    NSTableCellView *cell = self.cellConfigureBlock(item);
+
+    return cell;
+
 }
 
-- (void)tableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
+
+#pragma mark - Utils
+
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.items[(NSUInteger) indexPath.row];
 }
 
-- (void)tableView:(NSTableView *)tableView updateDraggingItemsForDrag:(id <NSDraggingInfo>)draggingInfo {
-}
-
-- (BOOL)tableView:(NSTableView *)tableView writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-    return NO;
-}
-
-- (NSDragOperation)tableView:(NSTableView *)tableView validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)dropOperation {
-    return NSDragOperationNone;
-}
-
-- (BOOL)tableView:(NSTableView *)tableView acceptDrop:(id <NSDraggingInfo>)info row:(NSInteger)row dropOperation:(NSTableViewDropOperation)dropOperation {
-    return NO;
-}
 
 @end
