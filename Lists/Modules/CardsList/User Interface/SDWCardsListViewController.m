@@ -65,27 +65,19 @@
 - (void)showContentWithItems:(NSArray *)items {
     NSLog(@"cards = %@", items);
 
-
-    self.tableViewDataSource = [[SDWCardsListDataSource alloc]initWithItems:items configureBlock:^id(id item) {
-
+    self.tableViewDataSource = [[SDWCardsListDataSource alloc]initWithItems:items configureBlock:^id (id item) {
         SDWCardManaged *card = item;
         NSTableCellView *cell = [self.tableView makeViewWithIdentifier:@"cardCellView" owner:self];
         cell.textField.stringValue = card.name;
 
         return cell;
-
     }];
 
     self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items clickBlock:^(id cell, id item) {
-
         //
-
     } doubleClickBlock:^(id cell, id item) {
-
         //
-
     } rightClickBlock:^(id cell, id item) {
-
         //
     }];
 

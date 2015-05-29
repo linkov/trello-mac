@@ -45,7 +45,6 @@
 }
 
 + (NSArray *__nonnull)arrayOfObjectsOfClass:(Class __nonnull)objectClass fromJSON:(NSArray *__nonnull)json {
-
     AssertTrueOr([objectClass conformsToProtocol:@protocol(SDWJSONMapping)], return nil; );
     AssertTrueOr(json, return nil; );
     AssertTrueOr([json isKindOfClass:[NSArray class]], return nil; );
