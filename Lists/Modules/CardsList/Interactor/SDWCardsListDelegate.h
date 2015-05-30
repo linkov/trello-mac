@@ -14,7 +14,7 @@
 @interface SDWCardsListDelegate : NSObject <JWCTableViewDelegate>
 
 - (instancetype)initWithItems:(NSArray *)items
-                   returnBlock:(SDWCellItemBlock)returnBlock
+                  returnBlock:(SDWCellItemBlock)returnBlock
               rightClickBlock:(SDWCellItemBlock)rightClick;
 
 @end

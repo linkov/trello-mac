@@ -60,7 +60,7 @@
 //}
 
 - (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-     SDWCardManaged *card = self.items[indexPath.row];
+    SDWCardManaged *card = self.items[indexPath.row];
 
     CGRect rec = [card.name boundingRectWithSize:CGSizeMake(380, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
     CGFloat height = ceilf(rec.size.height);
@@ -71,7 +71,6 @@
 
     return 28;
 }
-
 
 - (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
     return 0;

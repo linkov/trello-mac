@@ -75,11 +75,8 @@
     }];
 
     self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items returnBlock:^(id cell, id item) {
-
         //
-
     } rightClickBlock:^(id cell, id item) {
-
         //
     }];
 

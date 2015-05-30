@@ -10,15 +10,13 @@
 
 @implementation SDWCardsListCell
 
-
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
-    
+
     // Drawing code here.
 }
 
 - (void)setSelected:(BOOL)isSelected {
-
     if (isSelected) {
         [self.layer setBackgroundColor:[[NSColor grayColor] CGColor]];
     } else {
@@ -27,21 +25,16 @@
 }
 
 - (void)awakeFromNib {
-
     [self setWantsLayer:YES];
     [self.layer setBackgroundColor:[[NSColor whiteColor] CGColor]];
     self.layer.cornerRadius = 1.5;
     self.layer.masksToBounds = YES;
-
 }
 
 - (void)setBackgroundStyle:(NSBackgroundStyle)backgroundStyle {
-
-
 }
 
 - (void)setBackgroundFilters:(NSArray *)backgroundFilters {
-
 }
 
 #pragma mark - Utils

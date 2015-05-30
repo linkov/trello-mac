@@ -28,9 +28,7 @@
     return self;
 }
 
-
 - (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
-
     SDWCardsListRow *rowView = [SDWCardsListRow new];
 
     return rowView;
