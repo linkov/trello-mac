@@ -14,6 +14,7 @@
 //Selection
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath;
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section;
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row;
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard;
 - (NSDragOperation)_jwcTableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op;

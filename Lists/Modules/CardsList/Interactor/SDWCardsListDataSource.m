@@ -8,6 +8,19 @@
 
 #import "SDWCardsListDataSource.h"
 
+/*-------View Controllers-------*/
+
+/*-------Frameworks-------*/
+
+/*-------Views-------*/
+
+/*-------Helpers & Managers-------*/
+
+/*-------Models-------*/
+#import "SDWCardManaged.h"
+
+#define kMinimumCellHeight 28
+
 @interface SDWCardsListDataSource ()
 
 @property NSArray *items;
@@ -42,10 +55,23 @@
     return NO;
 }
 
-//Height related
+//- (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+//    return kMinimumCellHeight;
+//}
+
 - (CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 40;
+     SDWCardManaged *card = self.items[indexPath.row];
+
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(380, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    CGFloat height = ceilf(rec.size.height);
+
+    if (height > 14) {
+        return height + 7 + 7;
+    }
+
+    return 28;
 }
+
 
 - (CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
     return 0;

@@ -160,6 +160,16 @@
 
 #pragma mark NSTableViewDelegate methods
 
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
+
+    if ([self.jwcTableViewDelegate respondsToSelector:@selector(tableView:rowViewForRow:)]) {
+        return [self.jwcTableViewDelegate tableView:tableView rowViewForRow:row];
+    }
+
+    return nil;
+}
+
+
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRow:(NSInteger)row
 {
     BOOL shouldSelect = NO;

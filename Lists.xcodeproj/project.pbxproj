@@ -108,6 +108,8 @@
 		F12265581B1733AD0009D954 /* _SDWUserManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F12265551B1733AD0009D954 /* _SDWUserManaged.m */; };
 		F12265591B1733AD0009D954 /* SDWUserManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F12265571B1733AD0009D954 /* SDWUserManaged.m */; };
 		F122655B1B176D730009D954 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = F122655A1B176D730009D954 /* MainMenu.xib */; };
+		F122655F1B19F2E20009D954 /* SDWCardsListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F122655E1B19F2E20009D954 /* SDWCardsListCell.m */; };
+		F12265611B19F2F90009D954 /* SDWCardsListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F12265601B19F2F90009D954 /* SDWCardsListCell.xib */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -120,6 +122,7 @@
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
 		F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAA1A3F819900CD22CE /* JWCTableView.m */; };
 		F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */; };
+		F19E4AAC1B19FCC600F6E98D /* SDWCardsListRow.m in Sources */ = {isa = PBXBuildFile; fileRef = F19E4AAB1B19FCC600F6E98D /* SDWCardsListRow.m */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
 		F1BCF5161B07A57800793650 /* NSColor+AppColors.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BCF5151B07A57800793650 /* NSColor+AppColors.m */; };
 		F1BCF5191B07C8E900793650 /* SDWListManaged.m in Sources */ = {isa = PBXBuildFile; fileRef = F1BCF5181B07C8E900793650 /* SDWListManaged.m */; };
@@ -316,6 +319,9 @@
 		F12265561B1733AD0009D954 /* SDWUserManaged.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUserManaged.h; sourceTree = "<group>"; };
 		F12265571B1733AD0009D954 /* SDWUserManaged.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUserManaged.m; sourceTree = "<group>"; };
 		F122655A1B176D730009D954 /* MainMenu.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MainMenu.xib; sourceTree = "<group>"; };
+		F122655D1B19F2E20009D954 /* SDWCardsListCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsListCell.h; sourceTree = "<group>"; };
+		F122655E1B19F2E20009D954 /* SDWCardsListCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsListCell.m; sourceTree = "<group>"; };
+		F12265601B19F2F90009D954 /* SDWCardsListCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SDWCardsListCell.xib; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -337,6 +343,8 @@
 		F1918AAA1A3F819900CD22CE /* JWCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCTableView.m; sourceTree = "<group>"; };
 		F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivityTableCellView.h; sourceTree = "<group>"; };
 		F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivityTableCellView.m; sourceTree = "<group>"; };
+		F19E4AAA1B19FCC600F6E98D /* SDWCardsListRow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardsListRow.h; sourceTree = "<group>"; };
+		F19E4AAB1B19FCC600F6E98D /* SDWCardsListRow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsListRow.m; sourceTree = "<group>"; };
 		F1B3AB841A04E9A400927CB9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F1BCF5141B07A57800793650 /* NSColor+AppColors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSColor+AppColors.h"; sourceTree = "<group>"; };
 		F1BCF5151B07A57800793650 /* NSColor+AppColors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSColor+AppColors.m"; sourceTree = "<group>"; };
@@ -915,6 +923,11 @@
 				F12265451B160D840009D954 /* SDWCardsListUserInterface.h */,
 				F122653D1B160CBC0009D954 /* SDWCardsListViewController.h */,
 				F122653E1B160CBC0009D954 /* SDWCardsListViewController.m */,
+				F122655D1B19F2E20009D954 /* SDWCardsListCell.h */,
+				F19E4AAA1B19FCC600F6E98D /* SDWCardsListRow.h */,
+				F19E4AAB1B19FCC600F6E98D /* SDWCardsListRow.m */,
+				F122655E1B19F2E20009D954 /* SDWCardsListCell.m */,
+				F12265601B19F2F90009D954 /* SDWCardsListCell.xib */,
 				F122653F1B160CBC0009D954 /* SDWCardsListViewController.xib */,
 			);
 			name = "User Interface";
@@ -1018,6 +1031,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */,
+				F12265611B19F2F90009D954 /* SDWCardsListCell.xib in Resources */,
 				F12265411B160CBC0009D954 /* SDWCardsListViewController.xib in Resources */,
 				F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */,
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
@@ -1099,6 +1113,7 @@
 				F122651D1B1466330009D954 /* SDWSourceListDataSource.m in Sources */,
 				F12265501B162E170009D954 /* SDWCardsListDataSource.m in Sources */,
 				F12264F61B136EE50009D954 /* SDWMainSplitView.m in Sources */,
+				F19E4AAC1B19FCC600F6E98D /* SDWCardsListRow.m in Sources */,
 				F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */,
 				F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */,
 				F12265001B139D6A0009D954 /* SDWBoardsListWireframe.m in Sources */,
@@ -1106,6 +1121,7 @@
 				F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */,
 				F106AB311AFD4F7D00BA3C9C /* _SDWChecklistItemManaged.m in Sources */,
 				F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */,
+				F122655F1B19F2E20009D954 /* SDWCardsListCell.m in Sources */,
 				F12264AB1B1243130009D954 /* Constants.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
 				F12264FC1B1375740009D954 /* SDWRootPresenter.m in Sources */,

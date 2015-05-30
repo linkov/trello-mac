@@ -15,6 +15,7 @@
 /*-------Views-------*/
 #import "SDWSingleCardTableCellView.h"
 #import "SDWCardListView.h"
+#import "SDWCardsListCell.h"
 
 /*-------Helpers & Managers-------*/
 #import "NSColor+AppColors.h"
@@ -67,22 +68,24 @@
 
     self.tableViewDataSource = [[SDWCardsListDataSource alloc]initWithItems:items configureBlock:^id (id item) {
         SDWCardManaged *card = item;
-        NSTableCellView *cell = [self.tableView makeViewWithIdentifier:@"cardCellView" owner:self];
+        SDWCardsListCell *cell = [self.tableView makeViewWithIdentifier:@"cardCellView" owner:self];
         cell.textField.stringValue = card.name;
 
         return cell;
     }];
 
-    self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items clickBlock:^(id cell, id item) {
+    self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items returnBlock:^(id cell, id item) {
+
         //
-    } doubleClickBlock:^(id cell, id item) {
-        //
+
     } rightClickBlock:^(id cell, id item) {
+
         //
     }];
 
     self.tableView.jwcTableViewDataSource = (id)self.tableViewDataSource;
     self.tableView.jwcTableViewDelegate = (id)self.tableViewDelegate;
+    [self.tableView registerNib:[SDWCardsListCell nib] forIdentifier:@"cardCellView"];
 
     [self reloadEntries];
 }

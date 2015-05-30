@@ -7,6 +7,7 @@
 //
 
 #import "SDWCardsListDelegate.h"
+#import "SDWCardsListRow.h"
 
 @interface SDWCardsListDelegate ()
 
@@ -17,8 +18,7 @@
 @implementation SDWCardsListDelegate
 
 - (instancetype)initWithItems:(NSArray *)items
-                   clickBlock:(SDWCellItemBlock)clickBlock
-             doubleClickBlock:(SDWCellItemBlock)doubleClick
+                  returnBlock:(SDWCellItemBlock)returnBlock
               rightClickBlock:(SDWCellItemBlock)rightClick {
     self = [super init];
     if (self) {
@@ -28,8 +28,16 @@
     return self;
 }
 
+
+- (NSTableRowView *)tableView:(NSTableView *)tableView rowViewForRow:(NSInteger)row {
+
+    SDWCardsListRow *rowView = [SDWCardsListRow new];
+
+    return rowView;
+}
+
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    return NO;
+    return YES;
 }
 
 - (BOOL)tableView:(NSTableView *)tableView shouldSelectSection:(NSInteger)section {
