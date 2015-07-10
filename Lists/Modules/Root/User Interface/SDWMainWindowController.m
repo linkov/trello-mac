@@ -14,19 +14,15 @@
 
 @implementation SDWMainWindowController
 
-- (void)windowDidLoad {
-    [super windowDidLoad];
-    self.window.delegate = self;
 
-    // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
-}
+- (instancetype)initWithWindow:(NSWindow *)window {
 
-- (void)windowDidUpdate:(NSNotification *)notification {
-    NSWindow *win = notification.object;
-    win.titlebarAppearsTransparent = YES;
-    win.titleVisibility = NSWindowTitleHidden;
-    win.styleMask = win.styleMask | NSFullSizeContentViewWindowMask;
-    win.delegate = nil;
+    self = [super initWithWindow:window];
+    self.window.titlebarAppearsTransparent = YES;
+    self.window.titleVisibility = NSWindowTitleHidden;
+    self.window.styleMask = self.window.styleMask | NSFullSizeContentViewWindowMask;
+
+    return self;
 }
 
 @end

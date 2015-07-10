@@ -11,11 +11,12 @@
 
 @protocol SDWCardsListInteractorInput <NSObject>
 - (void)findAllCardsForCurrentListSortedBy:(SDWCardsListSortType)sortType;
+- (void)moveCardFromPosition:(NSUInteger)from toPosition:(NSUInteger)to;
 - (NSString *)currentListTitle;
 @end
 
 @protocol SDWCardsListInteractorOutput <NSObject>
 
 - (void)foundAllCards:(NSArray *)allCards;
-
+- (void)didMoveCard;
 @end

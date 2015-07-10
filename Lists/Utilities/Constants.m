@@ -8,6 +8,9 @@
 
 #import "Constants.h"
 
+/*misc*/
+NSString *const SDWListsCardsListDragedTypesReorder = @"REORDER_DRAG_TYPE";
+
 /* notifications */
 NSString *const SDWListsDidReceiveUserTokenNotification = @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString *const SDWListsDidChangeSidebarStatusNotification = @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";

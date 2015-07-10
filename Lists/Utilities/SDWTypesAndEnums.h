@@ -28,5 +28,6 @@ typedef void (^SDWEmptyBlock)();
 typedef void (^SDWDataBlock)(id object);
 typedef void (^SDWDataErrorBlock)(id object, NSError *error);
 typedef void (^SDWCellItemBlock)(id cell, id item);
+typedef void (^SDWCellReorderBlock)(NSUInteger fromIndex, NSUInteger toIndex, NSArray *items);
 
 typedef id (^SDWCellConfigureBlock)(id item);

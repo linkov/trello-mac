@@ -30,6 +30,15 @@
     return self;
 }
 
+- (BOOL)validateProposedFirstResponder:(NSResponder *)responder forEvent:(NSEvent *)event {
+
+//    if ([responder isKindOfClass:[NSTableCellView class]]) {
+//        return YES;
+//    }
+
+    return YES;
+}
+
 #pragma mark - Drag&Drop
 
 //- (NSString *)objectIDForRow:(NSUInteger)row {

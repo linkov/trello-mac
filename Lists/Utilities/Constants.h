@@ -8,6 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+/*misc*/
+
+extern NSString *const SDWListsCardsListDragedTypesReorder;
+
 /*notifications*/
 
 extern NSString *const SDWListsDidReceiveUserTokenNotification;
