@@ -14,9 +14,7 @@
 
 @implementation SDWMainWindowController
 
-
 - (instancetype)initWithWindow:(NSWindow *)window {
-
     self = [super initWithWindow:window];
     self.window.titlebarAppearsTransparent = YES;
     self.window.titleVisibility = NSWindowTitleHidden;

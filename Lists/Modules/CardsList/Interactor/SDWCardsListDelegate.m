@@ -8,7 +8,6 @@
 
 #import "SDWCardsListDelegate.h"
 
-
 /*-------View Controllers-------*/
 
 /*-------Frameworks-------*/
@@ -58,25 +57,22 @@
     return YES;
 }
 
-
 #pragma mark - Drag & Drop
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard *)pboard {
-
     SDWCardManaged *card = self.items[rowIndexes.firstIndex];
     NSDictionary *dataDict = @{
-                               @"cardID": card.listsID,
-                               @"itemIndex": [NSNumber numberWithInteger:rowIndexes.firstIndex]
-                               };
+        @"cardID": card.listsID,
+        @"itemIndex": [NSNumber numberWithInteger:rowIndexes.firstIndex]
+    };
 
     NSData *indexData = [NSKeyedArchiver archivedDataWithRootObject:dataDict];
     [pboard setData:indexData forType:SDWListsCardsListDragedTypesReorder];
-    
+
     return YES;
 }
 
 - (NSDragOperation)_jwcTableView:(NSTableView *)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
-
     if (self.items.count == 1) {
         return NSDragOperationNone;
     }
@@ -90,7 +86,6 @@
 
         NSUInteger inx = row;
         self.dropIndex = inx;
-
     }
 
     return dragOp;
@@ -112,7 +107,7 @@
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
     NSUInteger itemMovedFromIndex = [dataDict[@"itemIndex"] integerValue];
 
-    SDWPerformBlock(self.reorderBlock,itemMovedFromIndex,self.dropIndex,[NSArray arrayWithArray:self.items]);
+    SDWPerformBlock(self.reorderBlock, itemMovedFromIndex, self.dropIndex, [NSArray arrayWithArray:self.items]);
 
     return YES;
 }
@@ -122,6 +117,5 @@
 
 - (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
 }
-
 
 @end

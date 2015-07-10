@@ -12,7 +12,7 @@
 @interface SDWCardsListCell : NSTableCellView
 
 + (NSNib *)nib;
-- (void)setSelected:(BOOL)isSelected;
+- (void)   setSelected:(BOOL)isSelected;
 
 @property (copy) SDWEmptyBlock returnBlock;
 @property (copy) SDWEmptyBlock rightClickBlock;

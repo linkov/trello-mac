@@ -68,10 +68,7 @@
 }
 
 - (void)showContentWithItems:(NSArray *)items {
-
     self.tableViewDataSource = [[SDWCardsListDataSource alloc]initWithItems:items configureBlock:^id (id item) {
-
-        
         SDWCardManaged *card = item;
         SDWCardsListCell *cell = [self.tableView makeViewWithIdentifier:@"cardCellView" owner:self];
         cell.textField.stringValue = card.name;
@@ -79,25 +76,22 @@
         __weak SDWCardsListCell *weakCell = cell;
 
         cell.rightClickBlock = ^(){
-
             __strong SDWCardsListCell *strongWeakCell = weakCell;
 
-            NSLog(@"right clicked card %@ in view %@",card.name,strongWeakCell);
+            NSLog(@"right clicked card %@ in view %@", card.name, strongWeakCell);
         };
 
         cell.returnBlock = ^(){
-
             __strong SDWCardsListCell *strongWeakCell = weakCell;
 
-            NSLog(@"returned card %@ with change: %@",card.name,strongWeakCell.textField.stringValue);
+            NSLog(@"returned card %@ with change: %@", card.name, strongWeakCell.textField.stringValue);
         };
 
         return cell;
     }];
 
     self.tableViewDelegate = [[SDWCardsListDelegate alloc]initWithItems:items reorderBlock:^(NSUInteger fromIndex, NSUInteger toIndex, NSArray *itms) {
-
-       // NSArray *reorderedItems = [self reorderedArrayWithFromIndex:fromIndex toIndex:toIndex inArray:itms];
+        // NSArray *reorderedItems = [self reorderedArrayWithFromIndex:fromIndex toIndex:toIndex inArray:itms];
         //[self reloadEntries];
     }];
 
@@ -111,7 +105,6 @@
 - (void)reloadEntries {
     [self.tableView reloadData];
 }
-
 
 /* goes to interactor */
 
@@ -141,6 +134,5 @@
 //
 //    return mutableArray;
 //}
-
 
 @end

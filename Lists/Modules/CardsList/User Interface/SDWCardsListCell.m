@@ -53,9 +53,7 @@
 }
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
-
     SDWPerformBlock(self.rightClickBlock);
-
 }
 
 #pragma mark - NSTextFieldDelegate
@@ -78,7 +76,7 @@
     self.textField.editable = NO;
 
     if (self.textField.stringValue.length == 0) {
-       // [self.delegate cardViewShouldDismissCard:self];
+        // [self.delegate cardViewShouldDismissCard:self];
     }
 }
 
@@ -91,7 +89,6 @@
 
     return YES;
 }
-
 
 #pragma mark - Utils
 
