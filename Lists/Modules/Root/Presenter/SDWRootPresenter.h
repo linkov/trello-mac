@@ -11,8 +11,9 @@
 
 #import "SDWRootUserInterface.h"
 #import "SDWRootWireframe.h"
+#import "SDWRootModuleInterface.h"
 
-@interface SDWRootPresenter : NSObject
+@interface SDWRootPresenter : NSObject <SDWRootModuleInterface>
 
 @property (nonatomic, weak) NSViewController<SDWRootUserInterface> *userInterface;
 @property (nonatomic, strong) SDWRootWireframe *wireframe;

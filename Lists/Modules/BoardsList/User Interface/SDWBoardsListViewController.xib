@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -26,7 +26,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="228" height="0.0"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
-                                <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                <color key="backgroundColor" red="0.0" green="0.41176470588235292" blue="0.85098039215686272" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                 <tableColumns>
                                     <tableColumn width="225" minWidth="16" maxWidth="1000" id="qQp-I2-p4e">
@@ -99,7 +99,7 @@
                     <rect key="frame" x="0.0" y="491" width="230" height="64"/>
                     <subviews>
                         <button translatesAutoresizingMaskIntoConstraints="NO" id="VgJ-pv-42j">
-                            <rect key="frame" x="11" y="21" width="22" height="25"/>
+                            <rect key="frame" x="11" y="17" width="22" height="25"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="22" id="Jmv-lP-SH9"/>
                                 <constraint firstAttribute="height" constant="25" id="NF1-hx-ozu"/>
@@ -108,12 +108,71 @@
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <connections>
+                                <action selector="logoutDidClick:" target="-2" id="rtq-cJ-0Cz"/>
+                            </connections>
+                        </button>
+                        <customView translatesAutoresizingMaskIntoConstraints="NO" id="3zq-gA-AcZ" userLabel="crown switch container">
+                            <rect key="frame" x="66" y="8" width="100" height="40"/>
+                            <subviews>
+                                <customView translatesAutoresizingMaskIntoConstraints="NO" id="xQ2-6S-l95" customClass="ITSwitch">
+                                    <rect key="frame" x="33" y="10" width="35" height="20"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="35" id="Ih0-pd-z2P"/>
+                                        <constraint firstAttribute="height" constant="20" id="MgF-Hd-FJ2"/>
+                                    </constraints>
+                                    <connections>
+                                        <action selector="crownSwithDidChange:" target="-2" id="uej-Zq-MpN"/>
+                                    </connections>
+                                </customView>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Yff-Ru-Yoi" userLabel="group image">
+                                    <rect key="frame" x="6" y="13" width="20" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="15" id="b4R-od-bMq"/>
+                                        <constraint firstAttribute="width" constant="20" id="biW-fg-xD1"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="group" id="ayn-5Z-s6e"/>
+                                </imageView>
+                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HoW-5s-FKy" userLabel="crown image">
+                                    <rect key="frame" x="75" y="13" width="15" height="15"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="15" id="I2H-XZ-ecU"/>
+                                        <constraint firstAttribute="height" constant="15" id="fcZ-3N-b6j"/>
+                                    </constraints>
+                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="crown-ultrasmall-tint" id="x3c-A5-ILZ"/>
+                                </imageView>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="centerY" secondItem="Yff-Ru-Yoi" secondAttribute="centerY" id="1gc-9Y-453"/>
+                                <constraint firstAttribute="trailing" secondItem="HoW-5s-FKy" secondAttribute="trailing" constant="10" id="9B1-Q8-aQb"/>
+                                <constraint firstAttribute="centerX" secondItem="xQ2-6S-l95" secondAttribute="centerX" id="9Rt-H1-Wo7"/>
+                                <constraint firstAttribute="centerY" secondItem="xQ2-6S-l95" secondAttribute="centerY" id="AAi-ML-hJc"/>
+                                <constraint firstAttribute="centerY" secondItem="HoW-5s-FKy" secondAttribute="centerY" constant="0.5" id="EhH-pX-caQ"/>
+                                <constraint firstItem="Yff-Ru-Yoi" firstAttribute="leading" secondItem="3zq-gA-AcZ" secondAttribute="leading" constant="6" id="HfX-qQ-RSW"/>
+                                <constraint firstAttribute="width" constant="100" id="rVH-GG-7MD"/>
+                                <constraint firstAttribute="height" constant="40" id="xHk-NX-2iV"/>
+                            </constraints>
+                        </customView>
+                        <button translatesAutoresizingMaskIntoConstraints="NO" id="GZA-XA-7NY">
+                            <rect key="frame" x="189" y="20" width="22" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="EJf-5x-2pH"/>
+                                <constraint firstAttribute="width" constant="22" id="bMn-iq-7nL"/>
+                            </constraints>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="dueSort" imagePosition="overlaps" alignment="center" state="on" imageScaling="proportionallyDown" inset="2" id="sC3-iC-lJq">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
                         </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="VgJ-pv-42j" firstAttribute="leading" secondItem="QxU-e0-qSq" secondAttribute="leading" constant="11" id="7wM-iE-rw1"/>
-                        <constraint firstItem="VgJ-pv-42j" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="18" id="YVb-kK-ZjX"/>
+                        <constraint firstAttribute="centerX" secondItem="3zq-gA-AcZ" secondAttribute="centerX" constant="-0.5" id="CWD-Kx-7wZ"/>
+                        <constraint firstItem="VgJ-pv-42j" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="22" id="YVb-kK-ZjX"/>
+                        <constraint firstAttribute="trailing" secondItem="GZA-XA-7NY" secondAttribute="trailing" constant="19" id="g85-MQ-gx0"/>
+                        <constraint firstItem="GZA-XA-7NY" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="20" id="hum-bk-b6U"/>
                         <constraint firstAttribute="height" constant="64" id="xrL-N3-fGu"/>
+                        <constraint firstItem="3zq-gA-AcZ" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="16" id="yXy-Ng-9hn"/>
                     </constraints>
                 </customView>
             </subviews>
@@ -130,6 +189,9 @@
         </customView>
     </objects>
     <resources>
+        <image name="crown-ultrasmall-tint" width="15" height="15"/>
+        <image name="dueSort" width="23" height="26"/>
+        <image name="group" width="26" height="19"/>
         <image name="logout-small" width="20" height="16.5"/>
     </resources>
 </document>

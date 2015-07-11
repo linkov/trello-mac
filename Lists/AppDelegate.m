@@ -5,11 +5,10 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 #import "Constants.h"
-#import "SDWApplicationLoader.h"
+#import "SDWApplicationManager.h"
 
 @interface AppDelegate ()
 
@@ -19,6 +18,8 @@
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
 @property (weak) IBOutlet NSMenuItem *dotMenu30;
 @property (weak) IBOutlet NSMenuItem *dotMenu40;
+
+@property (strong) SDWApplicationManager *appManager;
 
 @end
 
@@ -31,10 +32,8 @@
         SharedSettings.shouldShowCardLabels = YES;
     }
 
-    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
-
-    SDWApplicationLoader *appLoader = [[SDWApplicationLoader alloc]init];
-    [appLoader installRootViewControllerIntoWindow:self.window];
+    self.appManager = [[SDWApplicationManager alloc]init];
+    [self.appManager installRootViewControllerIntoWindow:self.window];
 
     //  [[SDWPersistenceManager manager] setupCoreDataWithCompletion:^{
     //  }];
@@ -45,6 +44,7 @@
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
+
     [[NSAppleEventManager sharedAppleEventManager]
      setEventHandler:self
          andSelector:@selector(getUrl:withReplyEvent:)
@@ -53,13 +53,8 @@
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
-    NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"lists://authorize#token=" withString:@""];
 
-    if (token.length > 0) {
-        SharedSettings.userToken = token;
-    }
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
-                                                        object:nil userInfo:@{@"token": token}];
+    [self.appManager handleGetUrl:event withReplyEvent:reply];
 }
 
 #pragma mark - UI

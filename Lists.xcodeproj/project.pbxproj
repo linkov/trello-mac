@@ -76,7 +76,7 @@
 		F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */; };
 		F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */; };
 		F12264A21B123D6B0009D954 /* SDWRootWireframe.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264A11B123D6B0009D954 /* SDWRootWireframe.m */; };
-		F12264A51B123E770009D954 /* SDWApplicationLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264A41B123E770009D954 /* SDWApplicationLoader.m */; };
+		F12264A51B123E770009D954 /* SDWApplicationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264A41B123E770009D954 /* SDWApplicationManager.m */; };
 		F12264AB1B1243130009D954 /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264AA1B1243130009D954 /* Constants.m */; };
 		F12264AE1B1245EF0009D954 /* NSStoryboard+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264AD1B1245EF0009D954 /* NSStoryboard+Utilities.m */; };
 		F12264F51B136EE50009D954 /* SDWMainSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = F12264EE1B136EE50009D954 /* SDWMainSplitController.m */; };
@@ -244,8 +244,8 @@
 		F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSControl+DragInteraction.m"; sourceTree = "<group>"; };
 		F12264A01B123D6B0009D954 /* SDWRootWireframe.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWRootWireframe.h; sourceTree = "<group>"; };
 		F12264A11B123D6B0009D954 /* SDWRootWireframe.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWRootWireframe.m; sourceTree = "<group>"; };
-		F12264A31B123E770009D954 /* SDWApplicationLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWApplicationLoader.h; sourceTree = "<group>"; };
-		F12264A41B123E770009D954 /* SDWApplicationLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWApplicationLoader.m; sourceTree = "<group>"; };
+		F12264A31B123E770009D954 /* SDWApplicationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWApplicationManager.h; sourceTree = "<group>"; };
+		F12264A41B123E770009D954 /* SDWApplicationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWApplicationManager.m; sourceTree = "<group>"; };
 		F12264A81B1242E00009D954 /* SDWTypesAndEnums.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTypesAndEnums.h; sourceTree = "<group>"; };
 		F12264A91B1243130009D954 /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		F12264AA1B1243130009D954 /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
@@ -428,8 +428,8 @@
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
 				F122655A1B176D730009D954 /* MainMenu.xib */,
-				F12264A31B123E770009D954 /* SDWApplicationLoader.h */,
-				F12264A41B123E770009D954 /* SDWApplicationLoader.m */,
+				F12264A31B123E770009D954 /* SDWApplicationManager.h */,
+				F12264A41B123E770009D954 /* SDWApplicationManager.m */,
 				F106AB161AFD499100BA3C9C /* Model.xcdatamodeld */,
 				F10AA9E51A12AFD800FD4E85 /* Main.storyboard */,
 				F12265201B1474F80009D954 /* Managers */,
@@ -1106,7 +1106,7 @@
 				F12264F71B136EE50009D954 /* SDWMainWindow.m in Sources */,
 				F1BCF51F1B07D22600793650 /* SDWLogger.m in Sources */,
 				F10AAA731A12AFD800FD4E85 /* AFSecurityPolicy.m in Sources */,
-				F12264A51B123E770009D954 /* SDWApplicationLoader.m in Sources */,
+				F12264A51B123E770009D954 /* SDWApplicationManager.m in Sources */,
 				F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */,
 				F106AB321AFD4F7D00BA3C9C /* _SDWChecklistManaged.m in Sources */,
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,

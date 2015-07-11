@@ -5,17 +5,8 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "Constants.h"
-#import "SDWAppSettings.h" //remove this
 
-#import "SDWCardViewController.h"
-#import "SDWCardsController.h"
-#import "SDWBoardsController.h"
-#import "SDWBoard.h"
-#import "SDWCard.h"
-#import "AFRecordPathManager.h"
 #import "SDWMainSplitController.h"
-#import "SDWLoginVC.h"
 
 /*-------View Controllers-------*/
 #import "SDWCardsListViewController.h"
@@ -34,7 +25,6 @@
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardDetailSplitItem;
 
-@property (strong) SDWLoginVC *loginVC;
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
 
@@ -45,15 +35,22 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    SharedSettings.shouldFilter = NO;
+    //SharedSettings.shouldFilter = NO;
 
 //    self.cardsVC = (SDWCardsController *)self.cardsSplitItem.viewController;
 //    self.boardsVC = (SDWBoardsController *)self.boardsSplitItem.viewController;
 //    self.cardDetailsVC = (SDWCardViewController *)self.cardDetailSplitItem.viewController;
 
-    [self setupUI];
-    [self handleNotifications];
+    //[self setupUI];
+    //[self handleNotifications];
 }
+
+
+- (void)viewDidAppear {
+
+    [self.eventHandler updateUserInterface];
+}
+
 
 - (void)setupUI {
 //    self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
@@ -110,43 +107,23 @@
     }
 }
 
-- (void)dismissLogin {
-    [self dismissViewController:self.loginVC];
-}
+#pragma mark - SDWRootUserInterface
 
-- (void)logout {
-    SharedSettings.userToken = nil;
-    [self showLoginUI];
-}
 
-- (void)showLoginUI {
-    self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
-    [self presentViewControllerAsSheet:self.loginVC];
-}
-
-- (void)viewDidAppear {
-    if (!SharedSettings.userToken) {
-        [self showLoginUI];
-    }
-}
-
-#pragma mark - DWBoardsListModuleDelegate,SDWCardsListModuleDelegate
+#pragma mark - SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate
 
 - (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
-    [[self cardsListModuleIterface] showCardsForCurrentList];
+    
+    [self.eventHandler handleSelectList:list];
 }
 
-#pragma mark - Utils
-
-- (NSViewController *)boardsListUserIterface {
-    NSSplitViewItem *item = self.splitViewItems[0];
-    return item.viewController;
+- (void)boardsListModuleDidSwitchCrown:(BOOL)on {
+//
 }
 
-- (id <SDWCardsListModuleInterface>)cardsListModuleIterface {
-    NSSplitViewItem *item = self.splitViewItems[1];
-    SDWCardsListViewController *controller = (SDWCardsListViewController *)item.viewController;
-    return controller.eventHandler;
+- (void)boardsListModuleDidRequestLogout {
+
+    [self.eventHandler doLogout];
 }
 
 @end

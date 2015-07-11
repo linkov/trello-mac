@@ -19,6 +19,8 @@
 #import "SDWMapper.h"
 #import "SDWCoreDataManager.h"
 #import "KZAsserts.h"
+#import "SDWLogger.h"
+#import "NSObject+Logging.h"
 
 /*-------Models-------*/
 #import "SDWBoardManaged.h"
@@ -39,9 +41,16 @@
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
     [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsWithCompletion:^(id object, NSError *error) {
-        NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
-        NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
-        [self.output foundAllBoards:sortedBoards];
+        if (error) {
+
+            [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@",self.classLogIdentifier,error.localizedDescription]];
+
+        } else {
+
+            NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
+            NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
+            [self.output foundAllBoards:sortedBoards];
+        }
 
         //TODO: save?, set currentList for currentUser
     }];

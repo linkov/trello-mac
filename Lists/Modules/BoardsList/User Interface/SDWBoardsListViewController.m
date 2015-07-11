@@ -14,6 +14,7 @@
 
 /*-------Views-------*/
 #import "WSCBoardsOutlineView.h"
+#import "ITSwitch.h"
 
 /*-------Helpers & Managers-------*/
 #import "NSColor+AppColors.h"
@@ -75,6 +76,19 @@
 
 - (void)reloadEntries {
     [self.outlineView reloadData];
+}
+
+
+#pragma mark - Actions
+
+- (IBAction)crownSwithDidChange:(ITSwitch *)sender  {
+    [self.moduleDelegate boardsListModuleDidSwitchCrown:sender.isOn];
+
+}
+
+- (IBAction)logoutDidClick:(id)sender {
+
+    [self.moduleDelegate boardsListModuleDidRequestLogout];
 }
 
 @end

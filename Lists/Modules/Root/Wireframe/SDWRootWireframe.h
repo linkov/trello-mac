@@ -12,5 +12,10 @@
 @interface SDWRootWireframe : NSObject
 
 - (void)showRootUserInterfaceInWindow:(NSWindow *)window;
+- (void)showLoginUI;
+- (void)hideLoginUI;
+
+- (void)showBoardsForCurrentUser;
+- (void)showCardsForCurrentList;
 
 @end

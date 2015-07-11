@@ -9,12 +9,14 @@
 @import Foundation;
 @import AppKit;
 
-@interface SDWApplicationLoader : NSObject
+@interface SDWApplicationManager : NSObject
 
 /**
  * Set SDWMainSplitViewController as a root view controller for the given window
  * @param window - Application window
  */
 - (void)installRootViewControllerIntoWindow:(NSWindow *)window;
+
+- (void)handleGetUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply;
 
 @end

@@ -6,27 +6,31 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
-#import "SDWApplicationLoader.h"
+#import "SDWApplicationManager.h"
 
 /*-------View Controllers-------*/
 
 /*-------Frameworks-------*/
+#import <Crashlytics/Crashlytics.h>
 
 /*-------Views-------*/
 
 /*-------Helpers & Managers-------*/
 #import "SDWRootWireframe.h"
 #import "SDWCoreDataManager.h"
+#import "SDWAppSettings.h"
+#import "Constants.h"
 
 /*-------Models-------*/
 
-@implementation SDWApplicationLoader
+@implementation SDWApplicationManager
 
 - (instancetype)init {
     self = [super init];
     if (self) {
         [self configureUI];
         [self configureData];
+        [self configureAnalytics];
     }
     return self;
 }
@@ -41,7 +45,23 @@
     }];
 }
 
+- (void)handleGetUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
+
+    NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"lists://authorize#token=" withString:@""];
+
+    if (token.length > 0) {
+        SharedSettings.userToken = token;
+    }
+    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
+                                                        object:nil userInfo:@{@"token": token}];
+}
+
 #pragma mark - Helpers
+
+- (void)configureAnalytics {
+
+    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
+}
 
 - (void)configureData {
 //    [[CNIDataModelManager manager] deleteAllTrackinsWithCompletion:nil];

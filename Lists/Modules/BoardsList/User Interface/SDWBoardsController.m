@@ -128,7 +128,7 @@
 }
 
 - (IBAction)logout:(id)sender {
-    [(SDWMainSplitController *)self.parentViewController logout];
+  //  [(SDWMainSplitController *)self.parentViewController logout];
     self.boards = @[];
     [self loadBoards];
     [self.outlineView reloadData];

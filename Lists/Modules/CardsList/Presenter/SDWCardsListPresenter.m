@@ -15,7 +15,6 @@
 - (void)showCardsForCurrentList {
     NSString *listTitle = [[self.listInteractor currentListTitle] capitalizedString];
     [self.userInterface showListTitle:listTitle];
-
     [self.listInteractor findAllCardsForCurrentListSortedBy:SDWCardsListSortTypeNone];
 }
 

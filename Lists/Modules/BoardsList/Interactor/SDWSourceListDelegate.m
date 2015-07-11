@@ -7,8 +7,19 @@
 //
 
 #import "SDWSourceListDelegate.h"
-#import "SDWSourceListItem.h"
+
+/*-------View Controllers-------*/
+
+/*-------Frameworks-------*/
+
+/*-------Views-------*/
+
+/*-------Helpers & Managers-------*/
 #import "SDWMacros.h"
+#import "NSColor+AppColors.h"
+
+/*-------Models-------*/
+#import "SDWSourceListItem.h"
 
 @interface SDWSourceListDelegate () <NSOutlineViewDelegate>
 
@@ -32,6 +43,7 @@
 - (NSView *)outlineView:(NSOutlineView *)outlineView viewForTableColumn:(NSTableColumn *)tableColumn item:(id<SDWSourceListItem>)item {
     NSTableCellView *tableCellView = [outlineView makeViewWithIdentifier:@"BoardListCell" owner:self];
     tableCellView.textField.stringValue = [item itemName];
+    tableCellView.textField.textColor = [NSColor appBleakWhiteColor];
 
     return tableCellView;
 }

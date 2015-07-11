@@ -7,9 +7,13 @@
 //
 
 @import Foundation;
+@class SDWListManaged;
 
 @protocol SDWRootModuleInterface <NSObject>
 
+- (void)handleSelectList:(SDWListManaged *)list;
 - (void)doLogout;
+- (void)updateUserInterface;
+
 
 @end

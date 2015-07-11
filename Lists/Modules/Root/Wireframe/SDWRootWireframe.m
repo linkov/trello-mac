@@ -12,6 +12,7 @@
 #import "SDWMainSplitController.h"
 #import "SDWMainWindowController.h"
 #import "SDWCardsListWireframe.h"
+#import "SDWLoginVC.h"
 
 /*-------Frameworks-------*/
 
@@ -21,8 +22,24 @@
 #import "NSStoryboard+Utilities.h"
 #import "SDWRootPresenter.h"
 #import "SDWBoardsListWireframe.h"
+#import "NSStoryboard+Utilities.h"
+
+#import "SDWCardsListModuleInterface.h"
+#import "SDWCardsListUserInterface.h"
+#import "SDWCardsListViewController.h"
+
+#import "SDWBoardsListModuleInterface.h"
+#import "SDWBoardsListUserInterface.h"
+#import "SDWBoardsListViewController.h"
 
 /*-------Models-------*/
+
+@interface SDWRootWireframe ()
+
+@property (strong) SDWLoginVC *loginVC;
+@property SDWMainSplitController *userInterface;
+
+@end
 
 @implementation SDWRootWireframe
 
@@ -34,6 +51,8 @@
     presenter.userInterface = splitViewController;
     splitViewController.eventHandler = presenter;
     presenter.wireframe = self;
+
+    self.userInterface = splitViewController;
 
     [splitViewController addChildViewController:[self boardsListUserInterfaceWithModuleDelegate:splitViewController]];
     [splitViewController addChildViewController:[self cardsListUserInterfaceWithModuleDelegate:splitViewController]];
@@ -55,7 +74,34 @@
 //    [mainController setContentViewController:splitVC];
 }
 
+- (void)showBoardsForCurrentUser {
+
+    [[self boardsListModuleIterface] updateUserInterface];
+}
+
+- (void)showCardsForCurrentList {
+
+    [[self cardsListModuleIterface] showCardsForCurrentList];
+
+}
+
+- (void)hideLoginUI {
+    [self.userInterface dismissViewController:self.loginVC];
+}
+
+- (void)showLoginUI {
+    
+    self.loginVC = (SDWLoginVC *)[self loginUserInterface];
+    [self.userInterface presentViewControllerAsSheet:self.loginVC];
+}
+
+
 #pragma mark - Helpers
+
+- (NSViewController *)loginUserInterface {
+
+    return [[NSStoryboard mainStoryboard] instantiateControllerWithIdentifier:@"loginVC"];;
+}
 
 - (NSViewController *)boardsListUserInterfaceWithModuleDelegate:(nullable id)delegate {
     SDWBoardsListWireframe *wireframe = [[SDWBoardsListWireframe alloc] init];
@@ -71,6 +117,20 @@
 //    CNIGuestDetailsWireframe *wireframe = [[CNIGuestDetailsWireframe alloc] init];
 //    return [wireframe guestDetailsUserInterfaceWithGuest:guest moduleDelegate:delegate];
     return nil;
+}
+
+
+
+- (id <SDWCardsListModuleInterface>)cardsListModuleIterface {
+    NSSplitViewItem *item = self.userInterface.splitViewItems[1];
+    SDWCardsListViewController *controller = (SDWCardsListViewController *)item.viewController;
+    return controller.eventHandler;
+}
+
+- (id <SDWBoardsListModuleInterface>)boardsListModuleIterface {
+    NSSplitViewItem *item = self.userInterface.splitViewItems[0];
+    SDWBoardsListViewController *controller = (SDWBoardsListViewController *)item.viewController;
+    return controller.eventHandler;
 }
 
 @end

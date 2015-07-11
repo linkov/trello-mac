@@ -12,5 +12,7 @@
 @protocol SDWBoardsListModuleDelegate <NSObject>
 
 - (void)boardsListModuleDidSelectList:(SDWListManaged *)list;
+- (void)boardsListModuleDidSwitchCrown:(BOOL)on;
+- (void)boardsListModuleDidRequestLogout;
 
 @end
