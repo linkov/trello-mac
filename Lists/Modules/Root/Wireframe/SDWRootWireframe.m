@@ -75,14 +75,11 @@
 }
 
 - (void)showBoardsForCurrentUser {
-
     [[self boardsListModuleIterface] updateUserInterface];
 }
 
 - (void)showCardsForCurrentList {
-
     [[self cardsListModuleIterface] showCardsForCurrentList];
-
 }
 
 - (void)hideLoginUI {
@@ -90,16 +87,13 @@
 }
 
 - (void)showLoginUI {
-    
     self.loginVC = (SDWLoginVC *)[self loginUserInterface];
     [self.userInterface presentViewControllerAsSheet:self.loginVC];
 }
 
-
 #pragma mark - Helpers
 
 - (NSViewController *)loginUserInterface {
-
     return [[NSStoryboard mainStoryboard] instantiateControllerWithIdentifier:@"loginVC"];;
 }
 
@@ -118,8 +112,6 @@
 //    return [wireframe guestDetailsUserInterfaceWithGuest:guest moduleDelegate:delegate];
     return nil;
 }
-
-
 
 - (id <SDWCardsListModuleInterface>)cardsListModuleIterface {
     NSSplitViewItem *item = self.userInterface.splitViewItems[1];

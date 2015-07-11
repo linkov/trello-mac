@@ -42,11 +42,8 @@
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
     [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsWithCompletion:^(id object, NSError *error) {
         if (error) {
-
-            [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@",self.classLogIdentifier,error.localizedDescription]];
-
+            [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@", self.classLogIdentifier, error.localizedDescription]];
         } else {
-
             NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
             NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
             [self.output foundAllBoards:sortedBoards];

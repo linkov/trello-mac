@@ -15,5 +15,4 @@
 - (void)doLogout;
 - (void)updateUserInterface;
 
-
 @end

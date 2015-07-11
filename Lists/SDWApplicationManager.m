@@ -46,7 +46,6 @@
 }
 
 - (void)handleGetUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
-
     NSString *token = [[[event descriptorAtIndex:1] stringValue] stringByReplacingOccurrencesOfString:@"lists://authorize#token=" withString:@""];
 
     if (token.length > 0) {
@@ -59,7 +58,6 @@
 #pragma mark - Helpers
 
 - (void)configureAnalytics {
-
     [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
 

@@ -45,12 +45,9 @@
     //[self handleNotifications];
 }
 
-
 - (void)viewDidAppear {
-
     [self.eventHandler updateUserInterface];
 }
-
 
 - (void)setupUI {
 //    self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
@@ -109,11 +106,9 @@
 
 #pragma mark - SDWRootUserInterface
 
-
 #pragma mark - SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate
 
 - (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
-    
     [self.eventHandler handleSelectList:list];
 }
 
@@ -122,7 +117,6 @@
 }
 
 - (void)boardsListModuleDidRequestLogout {
-
     [self.eventHandler doLogout];
 }
 

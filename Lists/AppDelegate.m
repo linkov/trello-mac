@@ -44,7 +44,6 @@
 }
 
 - (void)applicationWillFinishLaunching:(NSNotification *)aNotification {
-
     [[NSAppleEventManager sharedAppleEventManager]
      setEventHandler:self
          andSelector:@selector(getUrl:withReplyEvent:)
@@ -53,7 +52,6 @@
 }
 
 - (void)getUrl:(NSAppleEventDescriptor *)event withReplyEvent:(NSAppleEventDescriptor *)reply {
-
     [self.appManager handleGetUrl:event withReplyEvent:reply];
 }
 
