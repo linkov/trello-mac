@@ -89,7 +89,7 @@ typedef enum {
 }
 
 - (void)_runAnimation {
-    self.secondLine.opacity = self.thirdLine.opacity = self.firstLine.opacity = 0;
+    self.secondLine.opacity = self.thirdLine.opacity = self.firstLine.opacity = 1.0;
 
     [self.firstLine addAnimation:[self opacityAnimationWithBeginTime:0.1] forKey:@"op1"];
     [self.secondLine addAnimation:[self opacityAnimationWithBeginTime:0.3] forKey:@"op2"];
@@ -100,8 +100,8 @@ typedef enum {
 
 - (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.fromValue = [NSNumber numberWithInt:0.0];
-    animation.toValue = [NSNumber numberWithInt:1];
+    animation.fromValue = [NSNumber numberWithFloat:1.0];
+    animation.toValue = [NSNumber numberWithFloat:0.0];
     animation.duration = 0.4;
     animation.autoreverses = YES;
     animation.repeatCount = HUGE_VAL;

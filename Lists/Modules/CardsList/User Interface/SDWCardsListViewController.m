@@ -51,6 +51,8 @@
 - (void)setupUI {
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
+
+    self.listNameLabel.textColor = [NSColor appBleakWhiteColor];
 }
 
 #pragma mark - Actions

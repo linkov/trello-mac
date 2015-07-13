@@ -34,7 +34,7 @@
     [SDWCoreDataManager manager].currentAdminUser.selectedList = list;
 
     /* check outputs */
-    NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"should have list");
+    NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"currentAdminUser.selectedList in nil");
 
     //TODO: save?
 }

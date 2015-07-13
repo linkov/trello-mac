@@ -14,6 +14,7 @@
 
 - (void)updateUserInterface {
     [self.listInteractor findAllBoardsSortedBy:SDWBoardsListSortTypeStarredFirst];
+    [self.userInterface showLoadingIndicator];
 }
 
 - (void)selectList:(SDWListManaged *)list {
@@ -23,6 +24,9 @@
 #pragma mark - SDWBoardsListInteractorOutput
 
 - (void)foundAllBoards:(NSArray *)allBoards {
+
+    [self.userInterface dismissLoadingIndicator];
+
     if ([allBoards count] == 0) {
         [self.userInterface showNoContentMessage];
     } else {

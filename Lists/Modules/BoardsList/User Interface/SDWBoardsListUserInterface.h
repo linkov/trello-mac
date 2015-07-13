@@ -10,6 +10,8 @@
 
 @protocol SDWBoardsListUserInterface <NSObject>
 
+- (void)showLoadingIndicator;
+- (void)dismissLoadingIndicator;
 - (void)showNoContentMessage;
 - (void)showContentWithItems:(NSArray *)items;
 - (void)reloadEntries;

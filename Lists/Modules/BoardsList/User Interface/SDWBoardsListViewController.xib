@@ -6,13 +6,14 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SDWBoardsListViewController">
             <connections>
+                <outlet property="loadingIndicator" destination="wG5-BB-PTY" id="cwl-hN-lFH"/>
                 <outlet property="outlineView" destination="XC9-bt-tFp" id="5w6-7P-QT4"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Qqk-as-ruo"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView id="c22-O7-iKe">
+        <customView wantsLayer="YES" id="c22-O7-iKe">
             <rect key="frame" x="0.0" y="0.0" width="230" height="555"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
@@ -175,15 +176,24 @@
                         <constraint firstItem="3zq-gA-AcZ" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="16" id="yXy-Ng-9hn"/>
                     </constraints>
                 </customView>
+                <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-BB-PTY" userLabel="loading indicator" customClass="SDWProgressIndicator">
+                    <rect key="frame" x="105" y="268" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Hll-KJ-p0T"/>
+                        <constraint firstAttribute="height" constant="20" id="hoc-cG-cFU"/>
+                    </constraints>
+                </customView>
             </subviews>
             <constraints>
                 <constraint firstItem="qKx-87-DHK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="0QT-KX-7ce"/>
                 <constraint firstItem="qKx-87-DHK" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="bottom" id="25s-PB-xac"/>
                 <constraint firstAttribute="trailing" secondItem="QxU-e0-qSq" secondAttribute="trailing" id="Bfz-QJ-xjY"/>
+                <constraint firstAttribute="centerX" secondItem="wG5-BB-PTY" secondAttribute="centerX" id="O6p-Hj-NKb"/>
                 <constraint firstAttribute="bottom" secondItem="qKx-87-DHK" secondAttribute="bottom" constant="20" id="QEU-eG-z8G"/>
                 <constraint firstItem="QxU-e0-qSq" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" id="eXx-Dv-yD0"/>
                 <constraint firstAttribute="trailing" secondItem="qKx-87-DHK" secondAttribute="trailing" id="f2O-YE-xdZ"/>
                 <constraint firstItem="QxU-e0-qSq" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" id="o98-kr-FGq"/>
+                <constraint firstAttribute="centerY" secondItem="wG5-BB-PTY" secondAttribute="centerY" id="z8M-Ef-rAL"/>
             </constraints>
             <point key="canvasLocation" x="306" y="296.5"/>
         </customView>

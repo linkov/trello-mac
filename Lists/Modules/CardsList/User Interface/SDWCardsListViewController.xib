@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
@@ -97,9 +97,9 @@
                             </connections>
                         </button>
                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pzf-MP-OPw">
-                            <rect key="frame" x="20" y="22" width="38" height="17"/>
+                            <rect key="frame" x="20" y="14" width="51" height="25"/>
                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Label" id="Jdo-gb-kHd">
-                                <font key="font" metaFont="system"/>
+                                <font key="font" size="24" name="TektonPro-BoldObl"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
@@ -108,6 +108,7 @@
                     <constraints>
                         <constraint firstItem="pzf-MP-OPw" firstAttribute="top" secondItem="9L4-a0-JKA" secondAttribute="top" constant="21" id="HBR-6J-14c"/>
                         <constraint firstAttribute="trailing" secondItem="8zH-83-WsL" secondAttribute="trailing" constant="20" id="LeK-Ms-9dQ"/>
+                        <constraint firstItem="8zH-83-WsL" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="pzf-MP-OPw" secondAttribute="trailing" constant="10" id="k7y-1D-6xU"/>
                         <constraint firstAttribute="height" constant="60" id="nUV-YL-Aa2"/>
                         <constraint firstItem="pzf-MP-OPw" firstAttribute="leading" secondItem="9L4-a0-JKA" secondAttribute="leading" constant="22" id="sSY-qV-6FI"/>
                         <constraint firstItem="8zH-83-WsL" firstAttribute="top" secondItem="9L4-a0-JKA" secondAttribute="top" constant="20" id="vg7-So-SNN"/>

@@ -15,6 +15,7 @@
 /*-------Views-------*/
 #import "WSCBoardsOutlineView.h"
 #import "ITSwitch.h"
+#import "SDWProgressIndicator.h"
 
 /*-------Helpers & Managers-------*/
 #import "NSColor+AppColors.h"
@@ -30,6 +31,7 @@
 
 @property SDWSourceListDataSource *outlineViewDatasource;
 @property SDWSourceListDelegate *outlineViewDelegate;
+@property (strong) IBOutlet SDWProgressIndicator *loadingIndicator;
 
 @end
 
@@ -38,8 +40,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self.eventHandler updateUserInterface];
+
     [self setupUI];
+    [self.eventHandler updateUserInterface];
+
 }
 
 - (void)viewWillAppear {
@@ -54,6 +58,14 @@
 }
 
 #pragma mark - SDWBoardsListUserInterface
+- (void)showLoadingIndicator {
+
+    [self.loadingIndicator startAnimation];
+}
+- (void)dismissLoadingIndicator {
+
+   // [self.loadingIndicator stopAnimation];
+}
 
 - (void)showNoContentMessage {
 }
