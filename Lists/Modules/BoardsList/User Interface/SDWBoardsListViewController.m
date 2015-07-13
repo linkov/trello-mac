@@ -40,10 +40,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-
     [self setupUI];
     [self.eventHandler updateUserInterface];
-
 }
 
 - (void)viewWillAppear {
@@ -59,12 +57,11 @@
 
 #pragma mark - SDWBoardsListUserInterface
 - (void)showLoadingIndicator {
-
     [self.loadingIndicator startAnimation];
 }
-- (void)dismissLoadingIndicator {
 
-   // [self.loadingIndicator stopAnimation];
+- (void)dismissLoadingIndicator {
+    // [self.loadingIndicator stopAnimation];
 }
 
 - (void)showNoContentMessage {
