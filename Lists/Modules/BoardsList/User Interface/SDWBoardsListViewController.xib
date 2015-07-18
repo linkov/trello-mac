@@ -176,7 +176,7 @@
                         <constraint firstItem="3zq-gA-AcZ" firstAttribute="top" secondItem="QxU-e0-qSq" secondAttribute="top" constant="16" id="yXy-Ng-9hn"/>
                     </constraints>
                 </customView>
-                <customView wantsLayer="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wG5-BB-PTY" userLabel="loading indicator" customClass="SDWProgressIndicator">
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="wG5-BB-PTY" userLabel="loading indicator" customClass="SDWProgressIndicator">
                     <rect key="frame" x="105" y="268" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="20" id="Hll-KJ-p0T"/>

@@ -14,6 +14,6 @@
 @interface SDWSourceListDelegate : NSObject
 
 - (instancetype)initWithItems:(NSArray *)items
+                  outlineView:(NSOutlineView *)outlineView
             cellDidClickBlock:(SDWDataBlock)block;
-
 @end

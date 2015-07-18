@@ -51,6 +51,8 @@
 
 - (void)setupUI {
     self.outlineView.intercellSpacing = CGSizeMake(0, 5);
+    self.outlineView.selectionHighlightStyle = NSTableViewSelectionHighlightStyleNone;
+    self.outlineView.backgroundColor = [NSColor appBackgroundColorDark];
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
 }
@@ -70,8 +72,9 @@
 - (void)showContentWithItems:(NSArray *)items {
     self.outlineViewDatasource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
 
-    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items
-                                    cellDidClickBlock :^(id item)
+    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems:items
+                                                                    outlineView:self.outlineView
+                                                             cellDidClickBlock :^(id item)
 
     {
         [self.eventHandler selectList:item];

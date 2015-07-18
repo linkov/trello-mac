@@ -100,8 +100,8 @@ typedef enum {
 
 - (CABasicAnimation *)opacityAnimationWithBeginTime:(CFTimeInterval)time {
     CABasicAnimation *animation = [CABasicAnimation animationWithKeyPath:@"opacity"];
-    animation.fromValue = [NSNumber numberWithFloat:1.0];
-    animation.toValue = [NSNumber numberWithFloat:0.0];
+    animation.fromValue = @(0.0);
+    animation.toValue = @(1.0);
     animation.duration = 0.4;
     animation.autoreverses = YES;
     animation.repeatCount = HUGE_VAL;
