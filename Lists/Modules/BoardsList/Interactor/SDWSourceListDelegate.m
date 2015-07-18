@@ -22,7 +22,7 @@
 /*-------Models-------*/
 #import "SDWSourceListItem.h"
 
-@interface SDWSourceListDelegate () <NSOutlineViewDelegate,NSTableViewDelegate>
+@interface SDWSourceListDelegate () <NSOutlineViewDelegate, NSTableViewDelegate>
 
 @property NSArray *items;
 @property (copy) SDWDataBlock didClickBlock;

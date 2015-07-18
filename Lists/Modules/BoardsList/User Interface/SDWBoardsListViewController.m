@@ -72,9 +72,9 @@
 - (void)showContentWithItems:(NSArray *)items {
     self.outlineViewDatasource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
 
-    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems:items
-                                                                    outlineView:self.outlineView
-                                                             cellDidClickBlock :^(id item)
+    self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items
+                                    outlineView : self.outlineView
+                                    cellDidClickBlock :^(id item)
 
     {
         [self.eventHandler selectList:item];
