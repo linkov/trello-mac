@@ -113,7 +113,6 @@
 }
 
 - (void)boardsListModuleDidSwitchCrown:(BOOL)on {
-
     [self.eventHandler switchCrown:on];
 }
 

@@ -49,7 +49,6 @@
 }
 
 - (void)switchCrown:(BOOL)on {
-
     [[NSUserDefaults standardUserDefaults] setBool:on forKey:SDWListsShouldUseCrownFilterKey];
 
     [self.wireframe showBoardsForCurrentUser];

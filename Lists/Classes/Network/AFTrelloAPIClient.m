@@ -68,7 +68,6 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
 }
 
 - (void)fetchBoardsAndListsIDsWithCardsAssignedToCurrentUserWithCompletion:(SDWDataErrorBlock)block {
-
     [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
         SharedSettings.userID = responseObject[@"id"];
         NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
@@ -76,11 +75,9 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
 
         AssertTrueOr(crownBoardIDs, SDWPerformBlock(block, nil, nil));
         AssertTrueOr(crownListIDs, SDWPerformBlock(block, nil, nil));
-        
+
         SDWPerformBlock(block, @{@"crownBoardIDs": crownBoardIDs, @"crownListIDs": crownListIDs}, nil);
-
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
         SDWPerformBlock(block, nil, error);
     }];
 }
@@ -93,7 +90,6 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
                       failure:(void (^)(NSURLSessionDataTask *task, NSError *error))failure {
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
-
 
     return [super GET:paramsStr parameters:parameters success:success failure:failure];
 }

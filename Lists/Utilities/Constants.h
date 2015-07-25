@@ -34,7 +34,6 @@ extern NSString *const SDWListsShouldFilterDueDecendingKey;
 extern NSString *const SDWListsShouldShowCardLabelsKey;
 extern NSString *const SDWListsTrelloApiAppTokenKey;
 
-
 @interface Constants : NSObject
 
 @end

@@ -69,7 +69,6 @@
 }
 
 - (NSArray *)boardsCrownFilteredFromBoards:(NSArray *)boards {
-
     return boards;
 }
 
