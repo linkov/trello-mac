@@ -29,7 +29,6 @@
 @implementation SDWBoardsListInteractor
 
 - (BOOL)crownState {
-
     return ([[NSUserDefaults standardUserDefaults] boolForKey:SDWListsShouldUseCrownFilterKey] == YES);
 }
 
@@ -46,41 +45,27 @@
 }
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
-
     [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsWithCompletion:^(id object, NSError *error) {
         if (error) {
             [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@", self.classLogIdentifier, error.localizedDescription]];
             [self.output failedTofindAllBoardsWithError:error];
-
         } else {
-
             NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
             NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
 
-
-            if ([[NSUserDefaults standardUserDefaults] boolForKey:SDWListsShouldUseCrownFilterKey] == YES ) {
-
+            if ([[NSUserDefaults standardUserDefaults] boolForKey:SDWListsShouldUseCrownFilterKey] == YES) {
                 [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsIDsWithCardsAssignedToCurrentUserWithCompletion:^(NSDictionary *objects, NSError *error) {
-
-                    if (error) {
-                        [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@", self.classLogIdentifier, error.localizedDescription]];
-                        [self.output failedTofindAllBoardsWithError:error];
-                    } else {
-
-
-                        NSArray *crownFilteredBoardsAndLists = [self crownfilteredBoardsIDs:objects[@"crownBoardIDs"] andListIDs:objects[@"crownListIDs"] fromBoards:sortedBoards];
-                        [self.output foundAllBoards:crownFilteredBoardsAndLists];
-
-                    }
-                    
-                }];
-
-
+                        if (error) {
+                            [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@", self.classLogIdentifier, error.localizedDescription]];
+                            [self.output failedTofindAllBoardsWithError:error];
+                        } else {
+                            NSArray *crownFilteredBoardsAndLists = [self crownfilteredBoardsIDs:objects[@"crownBoardIDs"] andListIDs:objects[@"crownListIDs"] fromBoards:sortedBoards];
+                            [self.output foundAllBoards:crownFilteredBoardsAndLists];
+                        }
+                    }];
             } else {
-
                 [self.output foundAllBoards:sortedBoards];
             }
-
         }
 
         //TODO: save?, set currentList for currentUser
@@ -102,7 +87,7 @@
                     [lists addObject:list];
                 }
             }
-            [board addLists: [NSSet setWithArray:lists]];
+            [board addLists:[NSSet setWithArray:lists]];
             [boards addObject:board];
         }
     }

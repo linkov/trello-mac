@@ -64,11 +64,10 @@
 }
 
 - (void)dismissLoadingIndicator {
-     [self.loadingIndicator stopAnimation];
+    [self.loadingIndicator stopAnimation];
 }
 
 - (void)setCrown:(BOOL)on {
-
     [self.crownSwitch setOn:on];
 }
 
@@ -76,7 +75,6 @@
 }
 
 - (void)showContentWithItems:(NSArray *)items {
-
     self.outlineView.dataSource = nil;
     self.outlineView.delegate = nil;
 

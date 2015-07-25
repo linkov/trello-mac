@@ -27,7 +27,6 @@
 #pragma mark - SDWBoardsListInteractorOutput
 
 - (void)failedTofindAllBoardsWithError:(NSError *)error {
-
     [self.userInterface showNoContentMessage];
 }
 

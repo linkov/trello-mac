@@ -21,7 +21,6 @@
 
 @protocol SDWBoardsListInteractorOutput <NSObject>
 
-
 - (void)foundAllBoards:(NSArray *)allBoards;
 - (void)failedTofindAllBoardsWithError:(NSError *)error;
 
