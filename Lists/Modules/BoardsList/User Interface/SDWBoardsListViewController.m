@@ -32,6 +32,7 @@
 @property SDWSourceListDataSource *outlineViewDatasource;
 @property SDWSourceListDelegate *outlineViewDelegate;
 @property (strong) IBOutlet SDWProgressIndicator *loadingIndicator;
+@property (strong) IBOutlet ITSwitch *crownSwitch;
 
 @end
 
@@ -63,13 +64,22 @@
 }
 
 - (void)dismissLoadingIndicator {
-    // [self.loadingIndicator stopAnimation];
+     [self.loadingIndicator stopAnimation];
+}
+
+- (void)setCrown:(BOOL)on {
+
+    [self.crownSwitch setOn:on];
 }
 
 - (void)showNoContentMessage {
 }
 
 - (void)showContentWithItems:(NSArray *)items {
+
+    self.outlineView.dataSource = nil;
+    self.outlineView.delegate = nil;
+
     self.outlineViewDatasource = (id)[[SDWSourceListDataSource alloc] initWithItems : items];
 
     self.outlineViewDelegate = (id)[[SDWSourceListDelegate alloc] initWithItems : items

@@ -13,6 +13,7 @@
 - (void)showLoadingIndicator;
 - (void)dismissLoadingIndicator;
 - (void)showNoContentMessage;
+- (void)setCrown:(BOOL)on;
 - (void)showContentWithItems:(NSArray *)items;
 - (void)reloadEntries;
 

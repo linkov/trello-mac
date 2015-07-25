@@ -6,6 +6,7 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SDWBoardsListViewController">
             <connections>
+                <outlet property="crownSwitch" destination="xQ2-6S-l95" id="1aJ-2g-ryS"/>
                 <outlet property="loadingIndicator" destination="wG5-BB-PTY" id="cwl-hN-lFH"/>
                 <outlet property="outlineView" destination="XC9-bt-tFp" id="5w6-7P-QT4"/>
                 <outlet property="view" destination="c22-O7-iKe" id="Qqk-as-ruo"/>

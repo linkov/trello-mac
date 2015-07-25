@@ -15,6 +15,9 @@
 - (void)updateUserInterface {
     [self.listInteractor findAllBoardsSortedBy:SDWBoardsListSortTypeStarredFirst];
     [self.userInterface showLoadingIndicator];
+    BOOL crownIsOn = [self.listInteractor crownState];
+
+    [self.userInterface setCrown:crownIsOn];
 }
 
 - (void)selectList:(SDWListManaged *)list {
@@ -22,6 +25,11 @@
 }
 
 #pragma mark - SDWBoardsListInteractorOutput
+
+- (void)failedTofindAllBoardsWithError:(NSError *)error {
+
+    [self.userInterface showNoContentMessage];
+}
 
 - (void)foundAllBoards:(NSArray *)allBoards {
     [self.userInterface dismissLoadingIndicator];

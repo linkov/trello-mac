@@ -11,12 +11,18 @@
 #import "SDWListManaged.h"
 
 @protocol SDWBoardsListInteractorInput <NSObject>
+
+- (BOOL)crownState;
+
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType;
 - (void)selectList:(SDWListManaged *)list;
+
 @end
 
 @protocol SDWBoardsListInteractorOutput <NSObject>
 
+
 - (void)foundAllBoards:(NSArray *)allBoards;
+- (void)failedTofindAllBoardsWithError:(NSError *)error;
 
 @end
