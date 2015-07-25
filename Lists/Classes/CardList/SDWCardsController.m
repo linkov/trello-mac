@@ -388,7 +388,7 @@
 - (void)updateCardsPositions {
     for (SDWCard *card in self.cardsArrayController.content) {
         [self updateCardPosition:card];
-       // CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
+        // CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
     }
 }
 

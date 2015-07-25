@@ -23,7 +23,7 @@
 }
 
 - (void)handleError:(NSError *)error {
-   // CLS_LOG(@"err - %@", error.localizedDescription);
+    // CLS_LOG(@"err - %@", error.localizedDescription);
 }
 
 - (void)handleError:(NSError *)error withReason:(id)reason {

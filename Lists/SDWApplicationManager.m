@@ -14,8 +14,6 @@
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 
-
-
 /*-------Views-------*/
 
 /*-------Helpers & Managers-------*/
@@ -61,7 +59,6 @@
 #pragma mark - Helpers
 
 - (void)configureAnalytics {
-
     [Fabric with:@[CrashlyticsKit]];
 
     //[Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
