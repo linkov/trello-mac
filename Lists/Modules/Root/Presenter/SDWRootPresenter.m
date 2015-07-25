@@ -44,7 +44,15 @@
     [self.wireframe showLoginUI];
 }
 
-- (void)handleSelectList:(SDWListManaged *)list {
+- (void)selectList:(SDWListManaged *)list {
+    [self.wireframe showCardsForCurrentList];
+}
+
+- (void)switchCrown:(BOOL)on {
+
+    [[NSUserDefaults standardUserDefaults] setBool:on forKey:SDWListsShouldUseCrownFilterKey];
+
+    [self.wireframe showBoardsForCurrentUser];
     [self.wireframe showCardsForCurrentList];
 }
 

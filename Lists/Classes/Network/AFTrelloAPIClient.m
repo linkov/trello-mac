@@ -10,6 +10,7 @@
 #import "AFURLRequestSerialization.h"
 #import "SDWAppSettings.h"
 #import "SDWMacros.h"
+#import "KZAsserts.h"
 
 static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/";
 
@@ -66,6 +67,24 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     }];
 }
 
+- (void)fetchBoardsAndListsIDsWithCardsAssignedToCurrentUserWithCompletion:(SDWDataErrorBlock)block {
+
+    [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        SharedSettings.userID = responseObject[@"id"];
+        NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
+        NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
+
+        AssertTrueOr(crownBoardIDs, SDWPerformBlock(block, nil, nil));
+        AssertTrueOr(crownListIDs, SDWPerformBlock(block, nil, nil));
+        
+        SDWPerformBlock(block, @{@"crownBoardIDs": crownBoardIDs, @"crownListIDs": crownListIDs}, nil);
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        SDWPerformBlock(block, nil, error);
+    }];
+}
+
 // remove
 
 - (NSURLSessionDataTask *)GET:(NSString *)URLString
@@ -75,13 +94,6 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
-    // logging
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-
-    CLS_LOG(@"%@ -%@ GET %@%@", [array objectAtIndex:3], [array objectAtIndex:4], AFAppTrelloAPIBaseURLString, paramsStr);
 
     return [super GET:paramsStr parameters:parameters success:success failure:failure];
 }
@@ -90,13 +102,6 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
-    // logging
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-    CLS_LOG(@"%@ -%@ PUT %@%@", [array objectAtIndex:3], [array objectAtIndex:4], AFAppTrelloAPIBaseURLString, paramsStr);
-
     return [super PUT:paramsStr parameters:parameters success:success failure:failure];
 }
 
@@ -104,26 +109,12 @@ static NSString *const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1/
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
 
-    // logging
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-    CLS_LOG(@"%@ -%@ POST %@%@", [array objectAtIndex:3], [array objectAtIndex:4], AFAppTrelloAPIBaseURLString, paramsStr);
-
     return [super POST:paramsStr parameters:parameters success:success failure:failure];
 }
 
 - (NSURLSessionDataTask *)DELETE:(NSString *)URLString parameters:(id)parameters success:(void (^)(NSURLSessionDataTask *, id))success failure:(void (^)(NSURLSessionDataTask *, NSError *))failure {
     NSString *params = [NSString stringWithFormat:@"&key=%@&token=%@", SharedSettings.appToken, SharedSettings.userToken];
     NSString *paramsStr = [URLString stringByAppendingString:params];
-
-    // logging
-    NSString *sourceString = [[NSThread callStackSymbols] objectAtIndex:1];
-    NSCharacterSet *separatorSet = [NSCharacterSet characterSetWithCharactersInString:@" -[]+?.,"];
-    NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString componentsSeparatedByCharactersInSet:separatorSet]];
-    [array removeObject:@""];
-    CLS_LOG(@"%@ -%@ DELETE %@%@", [array objectAtIndex:3], [array objectAtIndex:4], AFAppTrelloAPIBaseURLString, paramsStr);
 
     return [super DELETE:paramsStr parameters:parameters success:success failure:failure];
 }

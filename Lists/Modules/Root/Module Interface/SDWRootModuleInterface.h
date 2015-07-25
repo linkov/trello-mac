@@ -11,7 +11,8 @@
 
 @protocol SDWRootModuleInterface <NSObject>
 
-- (void)handleSelectList:(SDWListManaged *)list;
+- (void)switchCrown:(BOOL)on;
+- (void)selectList:(SDWListManaged *)list;
 - (void)doLogout;
 - (void)updateUserInterface;
 

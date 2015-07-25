@@ -109,11 +109,12 @@
 #pragma mark - SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate
 
 - (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
-    [self.eventHandler handleSelectList:list];
+    [self.eventHandler selectList:list];
 }
 
 - (void)boardsListModuleDidSwitchCrown:(BOOL)on {
-//
+
+    [self.eventHandler switchCrown:on];
 }
 
 - (void)boardsListModuleDidRequestLogout {

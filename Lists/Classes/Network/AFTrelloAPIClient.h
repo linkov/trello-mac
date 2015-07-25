@@ -12,6 +12,7 @@
 
 + (instancetype)sharedClient;
 
+- (void)fetchBoardsAndListsIDsWithCardsAssignedToCurrentUserWithCompletion:(SDWDataErrorBlock)block;
 - (void)fetchBoardsAndListsWithCompletion:(SDWDataErrorBlock)block;
 - (void)fetchCardsForListID:(NSString *)listID WithCompletion:(SDWDataErrorBlock)block;
 

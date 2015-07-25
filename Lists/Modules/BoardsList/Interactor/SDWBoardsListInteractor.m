@@ -68,4 +68,9 @@
     return sortedArray;
 }
 
+- (NSArray *)boardsCrownFilteredFromBoards:(NSArray *)boards {
+
+    return boards;
+}
+
 @end
