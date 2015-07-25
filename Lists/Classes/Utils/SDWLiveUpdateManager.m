@@ -43,7 +43,7 @@
         }
         [self performSelector:@selector(fetchUpdates) withObject:nil afterDelay:10];
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-        CLS_LOG(@"err ask updates - %@", error.localizedDescription);
+       // CLS_LOG(@"err ask updates - %@", error.localizedDescription);
     }];
 }
 

@@ -181,7 +181,7 @@
                 }
             } else {
                 self.reloadButton.hidden = NO;
-                CLS_LOG(@"err = %@", error.localizedDescription);
+                //CLS_LOG(@"err = %@", error.localizedDescription);
             }
         }];
     } else {

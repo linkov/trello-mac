@@ -33,15 +33,29 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>17</string>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>7afe2a1f919e83706ec88df871b173b4faf5c453</string>
+		<key>Kits</key>
+		<array>
+			<dict>
+				<key>KitInfo</key>
+				<dict/>
+				<key>KitName</key>
+				<string>Crashlytics</string>
+			</dict>
+		</array>
+	</dict>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2014 SDWR. All rights reserved.</string>
-	<key>NSPrincipalClass</key>
-	<string>NSApplication</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
+	<key>NSPrincipalClass</key>
+	<string>NSApplication</string>
 </dict>
 </plist>

@@ -331,7 +331,7 @@
         } else {
             self.reloadButton.hidden = NO;
             [self.mainProgressIndicator stopAnimation];
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            //CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
 }
@@ -356,7 +356,7 @@
             [self reloadCollection:objs];
         } else {
             self.reloadButton.hidden = NO;
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            //CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
 }
@@ -388,7 +388,7 @@
 - (void)updateCardsPositions {
     for (SDWCard *card in self.cardsArrayController.content) {
         [self updateCardPosition:card];
-        CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
+       // CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
     }
 }
 
@@ -689,10 +689,10 @@
 }
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
-    CLS_LOG(@"--------------%@-------------\n", title);
+    //CLS_LOG(@"--------------%@-------------\n", title);
 
     for (SDWCard *card in self.cardsArrayController.content) {
-        CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
+        //CLS_LOG(@"%@ - %lu", card.name, (unsigned long)card.position);
     }
 }
 

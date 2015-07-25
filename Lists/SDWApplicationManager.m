@@ -11,7 +11,10 @@
 /*-------View Controllers-------*/
 
 /*-------Frameworks-------*/
+#import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
+
+
 
 /*-------Views-------*/
 
@@ -58,7 +61,10 @@
 #pragma mark - Helpers
 
 - (void)configureAnalytics {
-    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
+
+    [Fabric with:@[CrashlyticsKit]];
+
+    //[Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
 
 - (void)configureData {

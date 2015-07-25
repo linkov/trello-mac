@@ -115,7 +115,8 @@
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
 		F151E8F91B0688E0006E5198 /* KZAsserts.m in Sources */ = {isa = PBXBuildFile; fileRef = F151E8F81B0688E0006E5198 /* KZAsserts.m */; };
 		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
-		F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1665A661A22847700A1519D /* Crashlytics.framework */; };
+		F16B70041B6438F5000B7815 /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16B70021B6438F5000B7815 /* Fabric.framework */; };
+		F16B70051B6438F5000B7815 /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F16B70031B6438F5000B7815 /* Crashlytics.framework */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
@@ -331,7 +332,8 @@
 		F151E8F81B0688E0006E5198 /* KZAsserts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KZAsserts.m; sourceTree = "<group>"; };
 		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
 		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
-		F1665A661A22847700A1519D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		F16B70021B6438F5000B7815 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		F16B70031B6438F5000B7815 /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = SOURCE_ROOT; };
 		F18089B91A280B7000A701B7 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
@@ -369,8 +371,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */,
 				F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */,
+				F16B70051B6438F5000B7815 /* Crashlytics.framework in Frameworks */,
+				F16B70041B6438F5000B7815 /* Fabric.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -424,9 +427,10 @@
 			isa = PBXGroup;
 			children = (
 				F12A38921A12B6C000611257 /* Lists.entitlements */,
-				F1665A661A22847700A1519D /* Crashlytics.framework */,
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
+				F16B70021B6438F5000B7815 /* Fabric.framework */,
+				F16B70031B6438F5000B7815 /* Crashlytics.framework */,
 				F122655A1B176D730009D954 /* MainMenu.xib */,
 				F12264A31B123E770009D954 /* SDWApplicationManager.h */,
 				F12264A41B123E770009D954 /* SDWApplicationManager.m */,
@@ -1069,7 +1073,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 7afe2a1f919e83706ec88df871b173b4faf5c453 3839a1107ea2065826d0f2cc6c1d95263dc301ca2f0209be3f35956a167721f1";
+			shellScript = "./Fabric.framework/run 7afe2a1f919e83706ec88df871b173b4faf5c453 3839a1107ea2065826d0f2cc6c1d95263dc301ca2f0209be3f35956a167721f1";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -1297,6 +1301,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lists",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
@@ -1316,6 +1321,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lists",
+					"$(PROJECT_DIR)",
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";

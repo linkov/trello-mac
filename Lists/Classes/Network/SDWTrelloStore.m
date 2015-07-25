@@ -8,7 +8,6 @@
 
 #import "SDWTrelloStore.h"
 #import "AFTrelloAPIClient.h"
-#import <Crashlytics/Crashlytics.h>
 #import "SDWAppSettings.h"
 #import "SDWChecklist.h"
 
@@ -24,7 +23,7 @@
 }
 
 - (void)handleError:(NSError *)error {
-    CLS_LOG(@"err - %@", error.localizedDescription);
+   // CLS_LOG(@"err - %@", error.localizedDescription);
 }
 
 - (void)handleError:(NSError *)error withReason:(id)reason {

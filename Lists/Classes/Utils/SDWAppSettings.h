@@ -8,7 +8,6 @@
 #define SharedSettings [SDWAppSettings sharedSettings]
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
-#import <Crashlytics/Crashlytics.h>
 
 typedef enum {
     SDWDotOptionNoDue = 0,

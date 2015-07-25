@@ -7,7 +7,6 @@
 //
 #import "AFRecordPathManager.h"
 #import "AFRecordModel.h"
-#import <Crashlytics/Crashlytics.h>
 
 @implementation AFRecordModel
 
