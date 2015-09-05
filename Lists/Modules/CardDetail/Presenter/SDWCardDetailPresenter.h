@@ -18,5 +18,4 @@
 @property (nonatomic, weak) NSViewController <SDWCardDetailUserInterface> *userInterface;
 @property (nonatomic, strong) SDWCardDetailWireframe *wireframe;
 
-
 @end

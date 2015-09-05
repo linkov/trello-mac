@@ -16,5 +16,4 @@
 @property (nonatomic, strong) id<SDWCardDetailModuleInterface> eventHandler;
 @property (nonatomic, weak) id<SDWCardDetailModuleDelegate> moduleDelegate;
 
-
 @end
