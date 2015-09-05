@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14D136" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
+<model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="7701" systemVersion="14E46" minimumToolsVersion="Xcode 4.3" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="SDWBoardManaged" representedClassName="SDWBoardManaged" syncable="YES">
         <attribute name="isStarred" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="listsID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="updatedAt" optional="YES" attributeType="Date" syncable="YES"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="board" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
     <entity name="SDWCardManaged" representedClassName="SDWCardManaged" syncable="YES">
@@ -67,7 +68,7 @@
         <relationship name="selectedList" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWListManaged" inverseName="selectedByUser" inverseEntity="SDWListManaged" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SDWBoardManaged" positionX="-27" positionY="99" width="128" height="105"/>
+        <element name="SDWBoardManaged" positionX="-27" positionY="99" width="128" height="120"/>
         <element name="SDWCardManaged" positionX="-63" positionY="-18" width="128" height="225"/>
         <element name="SDWChecklistItemManaged" positionX="18" positionY="90" width="128" height="120"/>
         <element name="SDWChecklistManaged" positionX="0" positionY="72" width="128" height="120"/>

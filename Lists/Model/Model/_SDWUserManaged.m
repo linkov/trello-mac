@@ -4,22 +4,22 @@
 #import "_SDWUserManaged.h"
 
 const struct SDWUserManagedAttributes SDWUserManagedAttributes = {
-    .firstName = @"firstName",
-    .isAdmin = @"isAdmin",
-    .lastName = @"lastName",
-    .listsID = @"listsID",
-    .name = @"name",
-    .shortName = @"shortName",
-    .token = @"token",
+	.firstName = @"firstName",
+	.isAdmin = @"isAdmin",
+	.lastName = @"lastName",
+	.listsID = @"listsID",
+	.name = @"name",
+	.shortName = @"shortName",
+	.token = @"token",
 };
 
 const struct SDWUserManagedRelationships SDWUserManagedRelationships = {
-    .assignedCards = @"assignedCards",
-    .cards = @"cards",
-    .lists = @"lists",
-    .listsMemberships = @"listsMemberships",
-    .selectedCard = @"selectedCard",
-    .selectedList = @"selectedList",
+	.assignedCards = @"assignedCards",
+	.cards = @"cards",
+	.lists = @"lists",
+	.listsMemberships = @"listsMemberships",
+	.selectedCard = @"selectedCard",
+	.selectedList = @"selectedList",
 };
 
 @implementation SDWUserManagedID
@@ -27,34 +27,34 @@ const struct SDWUserManagedRelationships SDWUserManagedRelationships = {
 
 @implementation _SDWUserManaged
 
-+ (id)insertInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription insertNewObjectForEntityForName:@"SDWUserManaged" inManagedObjectContext:moc_];
++ (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription insertNewObjectForEntityForName:@"SDWUserManaged" inManagedObjectContext:moc_];
 }
 
-+ (NSString *)entityName {
-    return @"SDWUserManaged";
++ (NSString*)entityName {
+	return @"SDWUserManaged";
 }
 
-+ (NSEntityDescription *)entityInManagedObjectContext:(NSManagedObjectContext *)moc_ {
-    NSParameterAssert(moc_);
-    return [NSEntityDescription entityForName:@"SDWUserManaged" inManagedObjectContext:moc_];
++ (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
+	NSParameterAssert(moc_);
+	return [NSEntityDescription entityForName:@"SDWUserManaged" inManagedObjectContext:moc_];
 }
 
-- (SDWUserManagedID *)objectID {
-    return (SDWUserManagedID *)[super objectID];
+- (SDWUserManagedID*)objectID {
+	return (SDWUserManagedID*)[super objectID];
 }
 
-+ (NSSet *)keyPathsForValuesAffectingValueForKey:(NSString *)key {
-    NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
++ (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
+	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
-    if ([key isEqualToString:@"isAdminValue"]) {
-        NSSet *affectingKey = [NSSet setWithObject:@"isAdmin"];
-        keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
-        return keyPaths;
-    }
+	if ([key isEqualToString:@"isAdminValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"isAdmin"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
-    return keyPaths;
+	return keyPaths;
 }
 
 @dynamic firstName;
@@ -62,21 +62,21 @@ const struct SDWUserManagedRelationships SDWUserManagedRelationships = {
 @dynamic isAdmin;
 
 - (BOOL)isAdminValue {
-    NSNumber *result = [self isAdmin];
-    return [result boolValue];
+	NSNumber *result = [self isAdmin];
+	return [result boolValue];
 }
 
 - (void)setIsAdminValue:(BOOL)value_ {
-    [self setIsAdmin:[NSNumber numberWithBool:value_]];
+	[self setIsAdmin:[NSNumber numberWithBool:value_]];
 }
 
 - (BOOL)primitiveIsAdminValue {
-    NSNumber *result = [self primitiveIsAdmin];
-    return [result boolValue];
+	NSNumber *result = [self primitiveIsAdmin];
+	return [result boolValue];
 }
 
 - (void)setPrimitiveIsAdminValue:(BOOL)value_ {
-    [self setPrimitiveIsAdmin:[NSNumber numberWithBool:value_]];
+	[self setPrimitiveIsAdmin:[NSNumber numberWithBool:value_]];
 }
 
 @dynamic lastName;
@@ -91,13 +91,13 @@ const struct SDWUserManagedRelationships SDWUserManagedRelationships = {
 
 @dynamic assignedCards;
 
-- (NSMutableSet *)assignedCardsSet {
-    [self willAccessValueForKey:@"assignedCards"];
+- (NSMutableSet*)assignedCardsSet {
+	[self willAccessValueForKey:@"assignedCards"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"assignedCards"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"assignedCards"];
 
-    [self didAccessValueForKey:@"assignedCards"];
-    return result;
+	[self didAccessValueForKey:@"assignedCards"];
+	return result;
 }
 
 @dynamic cards;
@@ -106,13 +106,13 @@ const struct SDWUserManagedRelationships SDWUserManagedRelationships = {
 
 @dynamic listsMemberships;
 
-- (NSMutableSet *)listsMembershipsSet {
-    [self willAccessValueForKey:@"listsMemberships"];
+- (NSMutableSet*)listsMembershipsSet {
+	[self willAccessValueForKey:@"listsMemberships"];
 
-    NSMutableSet *result = (NSMutableSet *)[self mutableSetValueForKey:@"listsMemberships"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"listsMemberships"];
 
-    [self didAccessValueForKey:@"listsMemberships"];
-    return result;
+	[self didAccessValueForKey:@"listsMemberships"];
+	return result;
 }
 
 @dynamic selectedCard;

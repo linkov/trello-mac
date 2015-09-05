@@ -22,6 +22,7 @@
 #import "SDWSourceListDataSource.h"
 #import "SDWSourceListDelegate.h"
 #import "KZAsserts.h"
+#import "SDWSourceListItem.h"
 
 /*-------Models-------*/
 
@@ -72,6 +73,12 @@
 }
 
 - (void)showNoContentMessage {
+}
+
+- (void)expandToSelectedList:(id<SDWSourceListItem>)listItem {
+
+    [self.outlineView expandItem:listItem expandChildren:YES];
+   // [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:3] byExtendingSelection:NO];
 }
 
 - (void)showContentWithItems:(NSArray *)items {

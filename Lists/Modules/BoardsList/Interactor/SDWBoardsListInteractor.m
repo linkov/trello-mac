@@ -18,6 +18,7 @@
 #import "AFTrelloAPIClient.h"
 #import "SDWMapper.h"
 #import "SDWCoreDataManager.h"
+#import "SDWCoreDataManager+Boards.h"
 #import "KZAsserts.h"
 #import "SDWLogger.h"
 #import "NSObject+Logging.h"
@@ -32,6 +33,16 @@
     return ([[NSUserDefaults standardUserDefaults] boolForKey:SDWListsShouldUseCrownFilterKey] == YES);
 }
 
+- (SDWBoardManaged *)selectedBoard {
+
+    return [SDWCoreDataManager manager].currentAdminUser.selectedList.board;
+}
+
+- (SDWListManaged *)selectedList {
+
+    return [SDWCoreDataManager manager].currentAdminUser.selectedList;
+}
+
 - (void)selectList:(SDWListManaged *)list {
     /* check inputs */
     //??
@@ -39,18 +50,30 @@
     [SDWCoreDataManager manager].currentAdminUser.selectedList = list;
 
     /* check outputs */
-    NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"currentAdminUser.selectedList in nil");
+    NSAssert([SDWCoreDataManager manager].currentAdminUser.selectedList, @"currentAdminUser.selectedList is nil");
 
     //TODO: save?
 }
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
+
+
+    /* provide local data if available */
+    NSArray *localBoards = [[SDWCoreDataManager manager] allBoards];
+    if (localBoards.count) {
+        NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:localBoards];
+        [self.output foundAllBoards:sortedBoards];
+    }
+
+    /* fetch remove data and update */
     [[AFTrelloAPIClient sharedClient] fetchBoardsAndListsWithCompletion:^(id object, NSError *error) {
         if (error) {
             [[SDWLogger sharedLogger] logError:[NSString stringWithFormat:@"%@: %@", self.classLogIdentifier, error.localizedDescription]];
             [self.output failedTofindAllBoardsWithError:error];
         } else {
             NSArray *boardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWBoardManaged class] fromJSON:object];
+            [[SDWCoreDataManager manager] save];
+
             NSArray *sortedBoards = [self boardsSortedByType:sortType fromBoards:boardsFromJSONasCoreDataObjects];
 
             if ([[NSUserDefaults standardUserDefaults] boolForKey:SDWListsShouldUseCrownFilterKey] == YES) {
@@ -67,8 +90,6 @@
                 [self.output foundAllBoards:sortedBoards];
             }
         }
-
-        //TODO: save?, set currentList for currentUser
     }];
 }
 
@@ -98,14 +119,16 @@
     NSSortDescriptor *sortDescriptor;
 
     if (sortType == SDWBoardsListSortTypeStarredFirst) {
-        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"starred" ascending:YES];
+        sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"isStarred" ascending:NO];
     } else if (sortType == SDWBoardsListSortTypeNone) {
         sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
     } else {
         sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
     }
 
-    NSArray *sortedArray = [boardsUnsortedByStarred sortedArrayUsingDescriptors:@[sortDescriptor]];
+
+    NSSortDescriptor *updatedAtSort = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
+    NSArray *sortedArray = [boardsUnsortedByStarred sortedArrayUsingDescriptors:@[sortDescriptor,updatedAtSort]];
     return sortedArray;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "SDWBoardsListPresenter.h"
+#import "SDWBoardManaged.h"
 
 @implementation SDWBoardsListPresenter
 
@@ -16,6 +17,12 @@
     [self.listInteractor findAllBoardsSortedBy:SDWBoardsListSortTypeStarredFirst];
     [self.userInterface showLoadingIndicator];
     BOOL crownIsOn = [self.listInteractor crownState];
+    id selectedBoard = (id<SDWSourceListItem>)[self.listInteractor selectedBoard];
+
+    if (selectedBoard) {
+
+        [self.userInterface expandToSelectedList:selectedBoard];
+    }
 
     [self.userInterface setCrown:crownIsOn];
 }
@@ -32,6 +39,10 @@
 
 - (void)foundAllBoards:(NSArray *)allBoards {
     [self.userInterface dismissLoadingIndicator];
+
+    for (SDWBoardManaged *board in allBoards) {
+        NSLog(@"%@ - starred: %i",board.name,[board.isStarred boolValue]);
+    }
 
     if ([allBoards count] == 0) {
         [self.userInterface showNoContentMessage];

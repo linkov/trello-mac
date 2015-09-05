@@ -7,6 +7,7 @@
 //
 
 @import Foundation;
+#import "SDWSourceListItem.h"
 
 @protocol SDWBoardsListUserInterface <NSObject>
 
@@ -15,6 +16,7 @@
 - (void)showNoContentMessage;
 - (void)setCrown:(BOOL)on;
 - (void)showContentWithItems:(NSArray *)items;
+- (void)expandToSelectedList:(id<SDWSourceListItem>)listItem;
 - (void)reloadEntries;
 
 @end

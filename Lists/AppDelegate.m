@@ -28,6 +28,9 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
     [self setupDotOption];
 
+    [[NSUserDefaults standardUserDefaults] setObject:@"test" forKey:@"com.sdwr.test"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+
     if (!SharedSettings.shouldShowCardLabels) {
         SharedSettings.shouldShowCardLabels = YES;
     }

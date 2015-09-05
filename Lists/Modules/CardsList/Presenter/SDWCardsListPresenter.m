@@ -23,6 +23,10 @@
 
 #pragma mark - SDWCardsListInteractorOutput
 
+- (void)didMoveCard {
+    
+}
+
 - (void)foundAllCards:(NSArray *)allCards {
     if ([allCards count] == 0) {
         [self.userInterface showNoContentMessage];

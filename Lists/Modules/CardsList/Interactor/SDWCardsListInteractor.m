@@ -32,6 +32,14 @@
         return;
     }
 
+    /* provide local data if available */
+    NSArray *localCards = [[self currentList].cards allObjects];
+    if (localCards.count) {
+
+        [self.output foundAllCards:localCards];
+    }
+
+    /* fetch remove data and update */
     [[AFTrelloAPIClient sharedClient] fetchCardsForListID:[self currentList].listsID WithCompletion:^(id object, NSError *error) {
         if (error) {
             [SDWLog logError:[NSString stringWithFormat:@"%@ Failed to fetch cards for list, %@ ", self.classLogIdentifier, error.localizedDescription]];
@@ -40,10 +48,16 @@
 
         NSArray *cardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWCardManaged class] fromJSON:object];
         [[self currentList].cardsSet addObjectsFromArray:cardsFromJSONasCoreDataObjects];
-        // save ?
+
+
+        [[SDWCoreDataManager manager] save];
 
         [self.output foundAllCards:[[self currentList].cards allObjects]];
     }];
+}
+
+- (void)moveCardFromPosition:(NSUInteger)from toPosition:(NSUInteger)to {
+
 }
 
 - (NSString *)currentListTitle {

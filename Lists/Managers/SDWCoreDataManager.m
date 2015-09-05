@@ -163,9 +163,6 @@
 }
 
 - (void)save {
-    if (![[self privateContext] hasChanges] && ![[self managedObjectContext] hasChanges]) {
-        return;
-    }
 
     [[self managedObjectContext] performBlockAndWait:^{ // the save as calling save without block but guarantees that it's run on the thread that the MOC is in
         NSError *error = nil;

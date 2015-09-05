@@ -51,9 +51,10 @@
 
     if (token.length > 0) {
         SharedSettings.userToken = token;
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
+                                                            object:nil userInfo:@{@"token": token}];
     }
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
-                                                        object:nil userInfo:@{@"token": token}];
+
 }
 
 #pragma mark - Helpers
