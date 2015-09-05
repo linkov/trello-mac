@@ -6,8 +6,11 @@
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+@import Foundation;
+#import "SDWCardDetailInteractorIO.h"
 
-@interface SDWCardDetailInteractor : NSObject
+@interface SDWCardDetailInteractor : NSObject <SDWCardDetailInteractorInput>
+
+@property (nonatomic, weak) id<SDWCardDetailInteractorOutput> output;
 
 @end

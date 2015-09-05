@@ -37,7 +37,7 @@
 
     SDWCardDetailInteractor *interactor = [SDWCardDetailInteractor new];
     interactor.output = presenter;
-    presenter.listInteractor = interactor;
+    presenter.interactor = interactor;
 
     return viewController;
 }
