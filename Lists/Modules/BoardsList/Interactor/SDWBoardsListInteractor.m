@@ -34,12 +34,10 @@
 }
 
 - (SDWBoardManaged *)selectedBoard {
-
     return [SDWCoreDataManager manager].currentAdminUser.selectedList.board;
 }
 
 - (SDWListManaged *)selectedList {
-
     return [SDWCoreDataManager manager].currentAdminUser.selectedList;
 }
 
@@ -56,8 +54,6 @@
 }
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType {
-
-
     /* provide local data if available */
     NSArray *localBoards = [[SDWCoreDataManager manager] allBoards];
     if (localBoards.count) {
@@ -126,9 +122,8 @@
         sortDescriptor = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
     }
 
-
     NSSortDescriptor *updatedAtSort = [NSSortDescriptor sortDescriptorWithKey:@"updatedAt" ascending:YES];
-    NSArray *sortedArray = [boardsUnsortedByStarred sortedArrayUsingDescriptors:@[sortDescriptor,updatedAtSort]];
+    NSArray *sortedArray = [boardsUnsortedByStarred sortedArrayUsingDescriptors:@[sortDescriptor, updatedAtSort]];
     return sortedArray;
 }
 

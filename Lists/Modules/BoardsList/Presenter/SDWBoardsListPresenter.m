@@ -20,7 +20,6 @@
     id selectedBoard = (id<SDWSourceListItem>)[self.listInteractor selectedBoard];
 
     if (selectedBoard) {
-
         [self.userInterface expandToSelectedList:selectedBoard];
     }
 
@@ -41,7 +40,7 @@
     [self.userInterface dismissLoadingIndicator];
 
     for (SDWBoardManaged *board in allBoards) {
-        NSLog(@"%@ - starred: %i",board.name,[board.isStarred boolValue]);
+        NSLog(@"%@ - starred: %i", board.name, [board.isStarred boolValue]);
     }
 
     if ([allBoards count] == 0) {

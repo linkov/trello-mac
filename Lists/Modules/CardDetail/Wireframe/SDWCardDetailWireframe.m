@@ -25,7 +25,6 @@
 @implementation SDWCardDetailWireframe
 
 - (NSViewController *)cardDetailUserInterfaceWithDelegate:(id<SDWCardDetailModuleDelegate>)delegate {
-
     SDWCardDetailViewController *viewController = [[SDWCardDetailViewController alloc]initWithNibName:NSStringFromClass([SDWCardDetailViewController class]) bundle:nil];
 
     SDWCardDetailPresenter *presenter = [SDWCardDetailPresenter new];

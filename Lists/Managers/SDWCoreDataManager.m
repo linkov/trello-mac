@@ -163,7 +163,6 @@
 }
 
 - (void)save {
-
     [[self managedObjectContext] performBlockAndWait:^{ // the save as calling save without block but guarantees that it's run on the thread that the MOC is in
         NSError *error = nil;
 

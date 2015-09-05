@@ -12,7 +12,6 @@
 
 @end
 
-
 @protocol SDWCardDetailInteractorOutput <NSObject>
 
 @end

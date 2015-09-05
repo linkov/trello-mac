@@ -54,7 +54,6 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveUserTokenNotification
                                                             object:nil userInfo:@{@"token": token}];
     }
-
 }
 
 #pragma mark - Helpers

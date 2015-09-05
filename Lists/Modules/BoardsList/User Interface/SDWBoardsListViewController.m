@@ -76,9 +76,8 @@
 }
 
 - (void)expandToSelectedList:(id<SDWSourceListItem>)listItem {
-
     [self.outlineView expandItem:listItem expandChildren:YES];
-   // [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:3] byExtendingSelection:NO];
+    // [self.outlineView selectRowIndexes:[NSIndexSet indexSetWithIndex:3] byExtendingSelection:NO];
 }
 
 - (void)showContentWithItems:(NSArray *)items {

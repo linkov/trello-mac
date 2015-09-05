@@ -12,8 +12,8 @@
 
 @protocol SDWBoardsListInteractorInput <NSObject>
 
-- (BOOL)crownState;
-- (SDWListManaged *)selectedList;
+- (BOOL)             crownState;
+- (SDWListManaged *) selectedList;
 - (SDWBoardManaged *)selectedBoard;
 
 - (void)findAllBoardsSortedBy:(SDWBoardsListSortType)sortType;

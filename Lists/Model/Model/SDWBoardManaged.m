@@ -45,7 +45,7 @@
     self.name = json[@"name"];
     self.listsID = json[@"id"];
     self.isStarred = json[@"starred"];
-  //  self.updatedAt = json
+    //  self.updatedAt = json
 
     if (json[@"lists"]) {
         NSArray *lists = [SDWMapper arrayOfObjectsOfClass:[SDWListManaged class] fromJSON:json[@"lists"]];

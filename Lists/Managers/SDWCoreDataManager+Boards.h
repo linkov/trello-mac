@@ -10,7 +10,6 @@
 
 @interface SDWCoreDataManager (Boards)
 
-
 - (NSArray *)allBoards;
 
 @end

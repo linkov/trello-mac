@@ -12,8 +12,7 @@
 @implementation SDWCoreDataManager (Boards)
 
 - (NSArray *)allBoards {
-
-    return  [self fetchAllEntitiesWithName:[SDWBoardManaged entityName]];
+    return [self fetchAllEntitiesWithName:[SDWBoardManaged entityName]];
 }
 
 @end

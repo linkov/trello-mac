@@ -24,7 +24,6 @@
 #pragma mark - SDWCardsListInteractorOutput
 
 - (void)didMoveCard {
-    
 }
 
 - (void)foundAllCards:(NSArray *)allCards {

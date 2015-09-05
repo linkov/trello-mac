@@ -35,7 +35,6 @@
     /* provide local data if available */
     NSArray *localCards = [[self currentList].cards allObjects];
     if (localCards.count) {
-
         [self.output foundAllCards:localCards];
     }
 
@@ -49,7 +48,6 @@
         NSArray *cardsFromJSONasCoreDataObjects = [SDWMapper arrayOfObjectsOfClass:[SDWCardManaged class] fromJSON:object];
         [[self currentList].cardsSet addObjectsFromArray:cardsFromJSONasCoreDataObjects];
 
-
         [[SDWCoreDataManager manager] save];
 
         [self.output foundAllCards:[[self currentList].cards allObjects]];
@@ -57,7 +55,6 @@
 }
 
 - (void)moveCardFromPosition:(NSUInteger)from toPosition:(NSUInteger)to {
-
 }
 
 - (NSString *)currentListTitle {

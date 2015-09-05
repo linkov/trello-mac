@@ -61,7 +61,7 @@ static SDWAppSettings *sharedInstance = nil;
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"com.sdwr.trello-mac.token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 
-    NSLog( @"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation] );
+    NSLog(@"%@", [[NSUserDefaults standardUserDefaults] dictionaryRepresentation]);
 }
 
 - (NSString *)userToken {
