@@ -31,7 +31,7 @@
 
     [self setTranslatesAutoresizingMaskIntoConstraints:NO];
 
-    self.fillColor =  [NSColor whiteColor];
+    self.fillColor =  [NSColor controlHighlightColor];
     self.cornerRadius = 1.5;
     self.borderColor = [NSColor clearColor];
     self.borderWidth = 0;

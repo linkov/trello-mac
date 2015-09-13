@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1514" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
-        <plugIn identifier="com.apple.WebKitIBPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
+        <plugIn identifier="com.apple.WebKitIBPlugin" version="7706"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -522,6 +522,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <outlineView appearanceType="vibrantLight" verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="15" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="16" outlineTableColumn="EuZ-6V-FKx" id="PL6-OM-kuT" customClass="WSCBoardsOutlineView">
+                                                <rect key="frame" x="0.0" y="0.0" width="230" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -548,7 +549,7 @@
                                                                         <rect key="frame" x="2" y="0.0" width="227" height="14"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" usesSingleLineMode="YES" id="GOh-T5-Gub">
                                                                             <font key="font" metaFont="smallSystem"/>
-                                                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                                            <color key="textColor" name="controlHighlightColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </textFieldCell>
                                                                         <connections>
@@ -783,6 +784,7 @@
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="35" rowSizeStyle="automatic" viewBased="YES" id="teg-4I-hCA" customClass="JWCTableView">
+                                                <rect key="frame" x="0.0" y="0.0" width="405" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1132,6 +1134,7 @@
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <subviews>
                                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="44" rowSizeStyle="automatic" viewBased="YES" id="r4F-SQ-vKL" customClass="JWCTableView">
+                                                                <rect key="frame" x="0.0" y="0.0" width="270" height="0.0"/>
                                                                 <autoresizingMask key="autoresizingMask"/>
                                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1355,6 +1358,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="29" rowSizeStyle="automatic" viewBased="YES" id="EDN-qs-34J" customClass="JWCTableView">
+                                            <rect key="frame" x="0.0" y="0.0" width="268" height="0.0"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="1"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
