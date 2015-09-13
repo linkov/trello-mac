@@ -32,10 +32,8 @@
 }
 
 - (void)setupUI {
-
     [self.view setWantsLayer:YES];
     [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
-
 }
 
 @end

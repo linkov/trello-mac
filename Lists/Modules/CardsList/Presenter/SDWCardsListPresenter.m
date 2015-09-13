@@ -13,7 +13,6 @@
 #pragma mark - SDWCardsListModuleInterface
 
 - (void)updateUserInterface {
-
     [self showCardsForCurrentList];
 }
 

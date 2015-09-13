@@ -10,19 +10,15 @@
 
 @implementation SDWCardDetailPresenter
 
-
 #pragma mark - SDWCardDetailModuleInterface
 
 - (void)updateUserInterface {
-
 }
 
 - (void)hidePanel {
-
 }
 
 - (void)revealPanel {
-    
 }
 
 @end

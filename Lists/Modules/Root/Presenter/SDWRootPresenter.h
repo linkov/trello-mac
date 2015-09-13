@@ -15,7 +15,7 @@
 #import "SDWBoardsListModuleDelegate.h"
 #import "SDWCardsListModuleDelegate.h"
 
-@interface SDWRootPresenter : NSObject <SDWRootModuleInterface,SDWBoardsListModuleDelegate, SDWCardsListModuleDelegate>
+@interface SDWRootPresenter : NSObject <SDWRootModuleInterface, SDWBoardsListModuleDelegate, SDWCardsListModuleDelegate>
 
 @property (nonatomic, weak) NSViewController<SDWRootUserInterface> *userInterface;
 @property (nonatomic, strong) SDWRootWireframe *wireframe;

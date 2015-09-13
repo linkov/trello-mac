@@ -27,7 +27,6 @@
 #import "SDWCardsListModuleInterface.h"
 #import "SDWCardsListUserInterface.h"
 
-
 #import "SDWBoardsListModuleInterface.h"
 #import "SDWBoardsListUserInterface.h"
 
@@ -110,7 +109,6 @@
 }
 
 - (NSViewController *)cardDetailUserInterfaceWithModuleDelegate:(nullable id)delegate {
-
     SDWCardDetailWireframe *wireframe = [[SDWCardDetailWireframe alloc] init];
     return [wireframe cardDetailUserInterfaceWithDelegate:delegate];
 }
