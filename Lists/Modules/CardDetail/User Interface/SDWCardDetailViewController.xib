@@ -15,8 +15,8 @@
             <rect key="frame" x="0.0" y="0.0" width="308" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="MCI-Jh-zVR">
-                    <rect key="frame" x="14" y="132" width="280" height="96"/>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="MCI-Jh-zVR" userLabel="top controls container">
+                    <rect key="frame" x="14" y="176" width="280" height="96"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="96" id="hMt-BP-y8C"/>
                         <constraint firstAttribute="width" constant="280" id="vFB-4a-ahb"/>
@@ -24,7 +24,7 @@
                 </customView>
             </subviews>
             <constraints>
-                <constraint firstItem="MCI-Jh-zVR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="44" id="5Ls-oI-IG2"/>
+                <constraint firstItem="MCI-Jh-zVR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="5Ls-oI-IG2"/>
                 <constraint firstItem="MCI-Jh-zVR" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="14" id="LrP-4D-yVC"/>
                 <constraint firstAttribute="trailing" secondItem="MCI-Jh-zVR" secondAttribute="trailing" constant="14" id="ru9-Yh-Opm"/>
             </constraints>
