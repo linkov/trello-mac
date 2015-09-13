@@ -890,6 +890,10 @@
         NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
         NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
 
+        if (itemMovedFromIndex == self.dropIndex) {
+            return NO;
+        }
+
         self.cardsArrayController.content = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.cardsArrayController.content];
     }
 
