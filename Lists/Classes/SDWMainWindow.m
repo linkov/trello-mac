@@ -19,5 +19,11 @@
 /* trash quicklook event b/c it causes crash  */
 - (void)quickLookWithEvent:(NSEvent *)event {}
 
+- (BOOL)windowShouldClose:(id)sender {
+
+    [[NSRunningApplication currentApplication] hide];
+
+    return NO;
+}
 
 @end

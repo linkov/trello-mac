@@ -566,7 +566,31 @@
 
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    [self deleteCardWithID:dataDict[@"cardID"]];
+    [self archiveCardWithID:dataDict[@"cardID"]];
+}
+
+- (void)archiveCardWithID:(NSString *)cardID {
+
+    [self showCardSavingIndicator:YES];
+
+    [[self cardDetailsVC] setCard:nil];
+
+    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+    [arr removeObject:cardToDelete];
+    self.cardsArrayController.content = arr;
+    [self.tableView reloadData];
+
+    [[SDWTrelloStore store] archiveCardID:cardID withCompletion:^(id object, NSError *error) {
+
+        [self showCardSavingIndicator:NO];
+
+        if (!error) {
+            
+            
+        }
+        
+    }];
 }
 
 - (void)deleteCardWithID:(NSString *)cardID {
@@ -890,6 +914,10 @@
         NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
         NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
 
+        if (itemMovedFromIndex == self.dropIndex) {
+            return NO;
+        }
+
         self.cardsArrayController.content = [self reorderFromIndex:itemMovedFromIndex toIndex:self.dropIndex inArray:self.cardsArrayController.content];
     }
 
@@ -903,7 +931,7 @@
 
 - (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
 
-    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+    self.addCardButton.image = [NSImage imageNamed:@"archive"];
 }
 - (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {
 
