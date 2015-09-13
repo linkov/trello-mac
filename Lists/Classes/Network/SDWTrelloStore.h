@@ -43,6 +43,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)deleteCardID:(NSString *)cardID
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+- (void)archiveCardID:(NSString *)cardID
+       withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
 - (void)updateLabelsForCardID:(NSString *)cardID
                        colors:(NSString *)colors
                    completion:(SDWTrelloStoreCompletionBlock)block;
@@ -60,6 +63,7 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
 - (void)deleteListID:(NSString *)listID
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
 
 
 /* Checklists ops */
