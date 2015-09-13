@@ -12,6 +12,11 @@
 
 #pragma mark - SDWCardsListModuleInterface
 
+- (void)updateUserInterface {
+
+    [self showCardsForCurrentList];
+}
+
 - (void)showCardsForCurrentList {
     NSString *listTitle = [[self.listInteractor currentListTitle] capitalizedString];
     [self.userInterface showListTitle:listTitle];

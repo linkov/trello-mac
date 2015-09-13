@@ -8,6 +8,17 @@
 
 #import "SDWCardDetailViewController.h"
 
+/*-------View Controllers-------*/
+
+/*-------Frameworks-------*/
+
+/*-------Views-------*/
+
+/*-------Helpers & Managers-------*/
+#import "NSColor+AppColors.h"
+
+/*-------Models-------*/
+
 @interface SDWCardDetailViewController ()
 
 @end
@@ -16,7 +27,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do view setup here.
+    [self setupUI];
+    [self.eventHandler updateUserInterface];
+}
+
+- (void)setupUI {
+
+    [self.view setWantsLayer:YES];
+    [self.view.layer setBackgroundColor:[[NSColor appBackgroundColorDark] CGColor]];
+
 }
 
 @end

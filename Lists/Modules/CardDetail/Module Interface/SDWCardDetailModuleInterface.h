@@ -10,4 +10,9 @@
 
 @protocol SDWCardDetailModuleInterface <NSObject>
 
+- (void)updateUserInterface;
+
+- (void)revealPanel;
+- (void)hidePanel;
+
 @end

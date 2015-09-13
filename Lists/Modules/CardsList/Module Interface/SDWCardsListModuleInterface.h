@@ -10,6 +10,7 @@
 
 @protocol SDWCardsListModuleInterface <NSObject>
 
+- (void)updateUserInterface;
 - (void)showCardsForCurrentList;
 - (void)reloadCards;
 

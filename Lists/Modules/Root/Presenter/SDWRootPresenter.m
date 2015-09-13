@@ -66,4 +66,18 @@
     [self.wireframe showBoardsForCurrentUser];
 }
 
+#pragma mark - SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate
+
+- (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
+    [self selectList:list];
+}
+
+- (void)boardsListModuleDidSwitchCrown:(BOOL)on {
+    [self switchCrown:on];
+}
+
+- (void)boardsListModuleDidRequestLogout {
+    [self doLogout];
+}
+
 @end

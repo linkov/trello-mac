@@ -45,7 +45,7 @@
     [self.tableView setDraggingDestinationFeedbackStyle:NSTableViewDraggingDestinationFeedbackStyleGap];
 
     [self setupUI];
-    [self.eventHandler showCardsForCurrentList];
+    [self.eventHandler updateUserInterface];
 }
 
 - (void)setupUI {

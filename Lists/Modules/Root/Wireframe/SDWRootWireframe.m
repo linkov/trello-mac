@@ -11,9 +11,9 @@
 /*-------View Controllers-------*/
 #import "SDWMainSplitController.h"
 #import "SDWMainWindowController.h"
-#import "SDWCardsListWireframe.h"
+#import "SDWBoardsListViewController.h"
 #import "SDWLoginVC.h"
-
+#import "SDWCardsListViewController.h"
 /*-------Frameworks-------*/
 
 /*-------Views-------*/
@@ -26,11 +26,13 @@
 
 #import "SDWCardsListModuleInterface.h"
 #import "SDWCardsListUserInterface.h"
-#import "SDWCardsListViewController.h"
+
 
 #import "SDWBoardsListModuleInterface.h"
 #import "SDWBoardsListUserInterface.h"
-#import "SDWBoardsListViewController.h"
+
+#import "SDWCardsListWireframe.h"
+#import "SDWCardDetailWireframe.h"
 
 /*-------Models-------*/
 
@@ -54,9 +56,9 @@
 
     self.userInterface = splitViewController;
 
-    [splitViewController addChildViewController:[self boardsListUserInterfaceWithModuleDelegate:splitViewController]];
-    [splitViewController addChildViewController:[self cardsListUserInterfaceWithModuleDelegate:splitViewController]];
-    //[splitViewController addChildViewController:[self cardDetailsUserInterfaceWithModuleDelegate:splitViewController]];
+    [splitViewController addChildViewController:[self boardsListUserInterfaceWithModuleDelegate:presenter]];
+    [splitViewController addChildViewController:[self cardsListUserInterfaceWithModuleDelegate:presenter]];
+    [splitViewController addChildViewController:[self cardDetailUserInterfaceWithModuleDelegate:presenter]];
 
     [windowController setContentViewController:splitViewController];
 
@@ -94,7 +96,7 @@
 #pragma mark - Helpers
 
 - (NSViewController *)loginUserInterface {
-    return [[NSStoryboard mainStoryboard] instantiateControllerWithIdentifier:@"loginVC"];;
+    return [[NSStoryboard mainStoryboard] instantiateControllerWithIdentifier:@"loginVC"];
 }
 
 - (NSViewController *)boardsListUserInterfaceWithModuleDelegate:(nullable id)delegate {
@@ -107,10 +109,10 @@
     return [wireframe cardsListUserInterfaceWithDelegate:delegate];
 }
 
-- (NSViewController *)cardDetailsUserInterfaceWithModuleDelegate:(nullable id)delegate {
-//    CNIGuestDetailsWireframe *wireframe = [[CNIGuestDetailsWireframe alloc] init];
-//    return [wireframe guestDetailsUserInterfaceWithGuest:guest moduleDelegate:delegate];
-    return nil;
+- (NSViewController *)cardDetailUserInterfaceWithModuleDelegate:(nullable id)delegate {
+
+    SDWCardDetailWireframe *wireframe = [[SDWCardDetailWireframe alloc] init];
+    return [wireframe cardDetailUserInterfaceWithDelegate:delegate];
 }
 
 - (id <SDWCardsListModuleInterface>)cardsListModuleIterface {

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5023" systemVersion="13A603" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14F27" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5023"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SDWCardDetailViewController">
@@ -10,10 +10,24 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <rect key="frame" x="0.0" y="0.0" width="308" height="272"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <customView translatesAutoresizingMaskIntoConstraints="NO" id="MCI-Jh-zVR">
+                    <rect key="frame" x="14" y="132" width="280" height="96"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="96" id="hMt-BP-y8C"/>
+                        <constraint firstAttribute="width" constant="280" id="vFB-4a-ahb"/>
+                    </constraints>
+                </customView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="MCI-Jh-zVR" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="44" id="5Ls-oI-IG2"/>
+                <constraint firstItem="MCI-Jh-zVR" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="14" id="LrP-4D-yVC"/>
+                <constraint firstAttribute="trailing" secondItem="MCI-Jh-zVR" secondAttribute="trailing" constant="14" id="ru9-Yh-Opm"/>
+            </constraints>
         </customView>
     </objects>
 </document>

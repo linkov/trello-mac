@@ -106,18 +106,6 @@
 
 #pragma mark - SDWRootUserInterface
 
-#pragma mark - SDWBoardsListModuleDelegate,SDWCardsListModuleDelegate
 
-- (void)boardsListModuleDidSelectList:(SDWListManaged *)list {
-    [self.eventHandler selectList:list];
-}
-
-- (void)boardsListModuleDidSwitchCrown:(BOOL)on {
-    [self.eventHandler switchCrown:on];
-}
-
-- (void)boardsListModuleDidRequestLogout {
-    [self.eventHandler doLogout];
-}
 
 @end

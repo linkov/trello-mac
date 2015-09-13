@@ -11,6 +11,7 @@
 #import "SDWCardDetailUserInterface.h"
 #import "SDWCardDetailInteractor.h"
 #import "SDWCardDetailInteractorIO.h"
+#import "SDWCardDetailModuleInterface.h"
 
 @interface SDWCardDetailPresenter : NSObject <SDWCardDetailModuleInterface, SDWCardDetailInteractorOutput>
 
