@@ -487,7 +487,6 @@
     [self archiveCardWithID:dataDict[@"cardID"]];
 }
 
-
 - (void)archiveCardWithID:(NSString *)cardID {
     [self showCardSavingIndicator:YES];
 
