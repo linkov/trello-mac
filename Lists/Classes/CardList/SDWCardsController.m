@@ -484,10 +484,11 @@
 - (void)control:(NSControl *)control didAcceptDropWithPasteBoard:(NSPasteboard *)pasteboard {
     NSData *data = [pasteboard dataForType:@"TRASH_DRAG_TYPE"];
     NSDictionary *dataDict = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-    [self deleteCardWithID:dataDict[@"cardID"]];
+    [self archiveCardWithID:dataDict[@"cardID"]];
 }
 
-- (void)deleteCardWithID:(NSString *)cardID {
+
+- (void)archiveCardWithID:(NSString *)cardID {
     [self showCardSavingIndicator:YES];
 
     [[self cardDetailsVC] setCard:nil];
@@ -498,7 +499,7 @@
     self.cardsArrayController.content = arr;
     [self.tableView reloadData];
 
-    [[SDWTrelloStore store] deleteCardID:cardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] archiveCardID:cardID withCompletion:^(id object, NSError *error) {
         [self showCardSavingIndicator:NO];
 
         if (!error) {
@@ -763,7 +764,7 @@
 }
 
 - (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session willBeginAtPoint:(NSPoint)screenPoint forRowIndexes:(NSIndexSet *)rowIndexes {
-    self.addCardButton.image = [NSImage imageNamed:@"trashSM"];
+    self.addCardButton.image = [NSImage imageNamed:@"archive"];
 }
 
 - (void)_jwcTableView:(NSTableView *)tableView draggingSession:(NSDraggingSession *)session endedAtPoint:(NSPoint)screenPoint operation:(NSDragOperation)operation {

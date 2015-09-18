@@ -39,6 +39,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)updateCard:(SDWCard *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+- (void)archiveCardID:(NSString *)cardID
+       withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
 - (void)deleteCardID:(NSString *)cardID
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
 

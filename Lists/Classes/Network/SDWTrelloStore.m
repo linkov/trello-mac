@@ -147,6 +147,24 @@
     }];
 }
 
+- (void)archiveCardID:(NSString *)cardID
+       withCompletion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/closed?",cardID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
+
+        if(block) block(responseObject,nil);
+
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+        if(block) block(nil,error);
+        [self handleError:error];
+    }];
+}
+
+
 - (void)updateLabelsForCardID:(NSString *)cardID
                        colors:(NSString *)colors
                    completion:(SDWTrelloStoreCompletionBlock)block {
