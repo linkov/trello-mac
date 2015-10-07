@@ -463,6 +463,7 @@
                 <windowController id="B8D-0N-5wS" customClass="SDWMainWindowController" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA" customClass="SDWMainWindow">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenPrimary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="877"/>
@@ -1084,11 +1085,11 @@
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tkg-jf-kNw">
                                                                 <rect key="frame" x="3" y="3" width="262" height="88"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="Tp9-0v-AJf">
-                                                                    <rect key="frame" x="1" y="1" width="223" height="133"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="88"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textView importsGraphics="NO" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="yE5-ep-IIX" customClass="SDWCardDetailsTextView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="223" height="133"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="262" height="88"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <animations/>
                                                                             <color key="backgroundColor" red="0.1176470588" green="0.33725490200000002" blue="0.46274509800000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1138,11 +1139,11 @@
                                                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7bz-y9-NZA">
                                                                 <rect key="frame" x="3" y="3" width="262" height="46"/>
                                                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="IoN-on-MyC">
-                                                                    <rect key="frame" x="1" y="1" width="238" height="133"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="262" height="46"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
                                                                         <textView importsGraphics="NO" continuousSpellChecking="YES" allowsDocumentBackgroundColorChange="YES" allowsUndo="YES" usesRuler="YES" usesFontPanel="YES" verticallyResizable="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="XdP-RA-rhu" customClass="SDWCardDetailsTextView">
-                                                                            <rect key="frame" x="0.0" y="0.0" width="238" height="133"/>
+                                                                            <rect key="frame" x="0.0" y="0.0" width="262" height="46"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <animations/>
                                                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1361,7 +1362,7 @@
                                     <animations/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" horizontal="NO" id="DBe-aE-uyS">
-                                    <rect key="frame" x="284" y="0.0" width="16" height="477"/>
+                                    <rect key="frame" x="285" y="0.0" width="15" height="477"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </scroller>
