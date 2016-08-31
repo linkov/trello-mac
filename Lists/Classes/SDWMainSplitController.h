@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-@class SDWBoardsController,SDWCardsController,SDWCardViewController;
+@class SDWBoardsController,SDWCardsController,SDWCardViewController, SDWBoard;
 #import <Cocoa/Cocoa.h>
 #import "Utils.h"
 
@@ -20,7 +20,7 @@
 - (void)logout;
 
 
-
+- (void)boardsListVCDidRequestBoardEdit:(SDWBoard *)board;
 - (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel;
 - (void)boardsListVCDidRequestAddItem;
 

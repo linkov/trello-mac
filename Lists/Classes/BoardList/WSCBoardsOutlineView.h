@@ -13,6 +13,7 @@
 
 @optional
 
+- (void)outlineviewShouldEditBoardAtRow:(NSUInteger)boardRow;
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow;
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow;
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow;

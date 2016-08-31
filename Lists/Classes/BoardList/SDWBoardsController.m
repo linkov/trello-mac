@@ -275,6 +275,15 @@
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
+- (void)outlineviewShouldEditBoardAtRow:(NSUInteger)boardRow {
+
+     SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+
+    if (self.delegate) {
+        [self.delegate boardsListVCDidRequestBoardEdit:board];
+    }
+}
+
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow {
     SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
 

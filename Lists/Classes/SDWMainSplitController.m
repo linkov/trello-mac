@@ -9,24 +9,25 @@
 #import "SDWCardViewController.h"
 #import "SDWCardsController.h"
 #import "SDWBoardsController.h"
-#import "SDWAddNamedItemVC.h"
+#import "SDWModalEditVC.h"
 #import "SDWBoard.h"
 #import "SDWCard.h"
 #import "AFRecordPathManager.h"
 #import "SDWMainSplitController.h"
 #import "SDWLoginVC.h"
 #import "SDWTrelloStore.h"
-
+#import "SDWBoard.h"
 
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardDetailSplitItem;
 
-@property (strong) SDWAddNamedItemVC *addItemVC;
+@property (strong) SDWModalEditVC *addItemVC;
 @property (strong) SDWLoginVC *loginVC;
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
+@property (strong) SDWBoard *currentlyEditedBoardList;
 
 @end
 
@@ -139,25 +140,63 @@
 
 - (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel {
 
+    self.currentlyEditedBoardList.name = name;
+
     [self dismissViewController:self.addItemVC];
 
     if (didCancel) {
         return;
     }
 
+    if (self.currentlyEditedBoardList) {
 
-    [[SDWTrelloStore store] createBoardWithName:name completion:^(id object, NSError *error) {
+        if (self.currentlyEditedBoardList.isLeaf) {
+            
 
-        [self.boardsVC reloadBoards:nil];
+        } else {
 
-    }];
+            [[SDWTrelloStore store] renameBoardID:self.currentlyEditedBoardList.boardID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
+
+                self.currentlyEditedBoardList = nil;
+                [self.boardsVC reloadBoards:nil];
+                
+                
+            }];
+        }
+
+
+
+    } else {
+
+        [[SDWTrelloStore store] createBoardWithName:name completion:^(id object, NSError *error) {
+
+            [self.boardsVC reloadBoards:nil];
+
+        }];
+    }
+
+
+
 
 
 }
 
+- (void)boardsListVCDidRequestBoardEdit:(SDWBoard *)board {
+
+    self.currentlyEditedBoardList = board;
+
+    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWModalEditVC"];
+    self.addItemVC.delegate = self;
+    self.addItemVC.titleString = @"Rename board";
+    self.addItemVC.valueString = board.name;
+    [self presentViewControllerAsSheet:self.addItemVC];
+    
+}
+
+
 - (void)boardsListVCDidRequestAddItem {
 
-    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWAddNamedItemVC"];
+    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWModalEditVC"];
     self.addItemVC.delegate = self;
     self.addItemVC.titleString = @"Add board";
     [self presentViewControllerAsSheet:self.addItemVC];

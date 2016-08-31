@@ -240,6 +240,25 @@
     
 }
 
+- (void)renameBoardID:(NSString *)boardID
+                 name:(NSString *)newName
+           completion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"boards/%@/name?",boardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString
+                                  parameters:@{@"value":newName}
+                                     success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         if(block) block(responseObject,nil);
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+         if(block) block(nil,error);
+         [self handleError:error];
+     }];
+}
+
 - (void)deleteBoardID:(NSString *)boardID
                  completion:(SDWTrelloStoreCompletionBlock)block {
 

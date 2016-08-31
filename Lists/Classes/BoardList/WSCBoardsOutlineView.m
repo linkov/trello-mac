@@ -61,16 +61,22 @@
                           action:@selector(removeBoard)
                    keyEquivalent:@""
                          atIndex:0];
-//    [theMenu insertItemWithTitle:@"Rename board"
-//                          action:@selector(removeBoard)
-//                   keyEquivalent:@""
-//                         atIndex:1];
+    [theMenu insertItemWithTitle:@"Rename board"
+                          action:@selector(editBoard)
+                   keyEquivalent:@""
+                         atIndex:1];
 
 
     self.contextRow = row;
 
     return theMenu;
 }
+
+
+- (void)editBoard {
+    [self.menuDelegate outlineviewShouldEditBoardAtRow:self.contextRow];
+}
+
 - (void)removeBoard {
 
     [self.menuDelegate outlineviewShouldDeleteBoardAtRow:self.contextRow];

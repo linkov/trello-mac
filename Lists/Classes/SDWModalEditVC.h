@@ -10,8 +10,9 @@
 #import "Utils.h"
 #import "SDWMainSplitController.h"
 
-@interface SDWAddNamedItemVC : NSViewController
+@interface SDWModalEditVC : NSViewController
 
+@property (strong) NSString *valueString;
 @property (strong) NSString *titleString;
 @property (weak) SDWMainSplitController *delegate;
 

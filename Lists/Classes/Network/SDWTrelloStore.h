@@ -60,7 +60,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                  completion:(SDWTrelloStoreCompletionBlock)block;
 - (void)deleteBoardID:(NSString *)name
                  completion:(SDWTrelloStoreCompletionBlock)block;
-
+- (void)renameBoardID:(NSString *)boardID
+                 name:(NSString *)newName
+           completion:(SDWTrelloStoreCompletionBlock)block;
 
 /* Lists ops */
 - (void)createListWithName:(NSString *)name

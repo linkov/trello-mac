@@ -75,7 +75,7 @@
 		F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */; };
 		F1C454AD1A267AE7002FFAF6 /* SDWLiveUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */; };
 		F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */; };
-		F1F54DB61D76DFD700941906 /* SDWAddNamedItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */; };
+		F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */; };
 		F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */; };
 /* End PBXBuildFile section */
 
@@ -211,8 +211,8 @@
 		F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLiveUpdateManager.m; sourceTree = "<group>"; };
 		F1D9ACA61A3CEA380067B119 /* SDWCardDetailsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailsTextView.h; sourceTree = "<group>"; };
 		F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailsTextView.m; sourceTree = "<group>"; };
-		F1F54DB41D76DFD700941906 /* SDWAddNamedItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemVC.h; sourceTree = "<group>"; };
-		F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAddNamedItemVC.m; sourceTree = "<group>"; };
+		F1F54DB41D76DFD700941906 /* SDWModalEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWModalEditVC.h; sourceTree = "<group>"; };
+		F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWModalEditVC.m; sourceTree = "<group>"; };
 		F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemTextField.h; sourceTree = "<group>"; };
 		F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAddNamedItemTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,8 +260,8 @@
 				F10AAA151A12AFD800FD4E85 /* Network */,
 				F10AAA181A12AFD800FD4E85 /* SDWMainSplitController.h */,
 				F10AAA191A12AFD800FD4E85 /* SDWMainSplitController.m */,
-				F1F54DB41D76DFD700941906 /* SDWAddNamedItemVC.h */,
-				F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */,
+				F1F54DB41D76DFD700941906 /* SDWModalEditVC.h */,
+				F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */,
 				F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */,
 				F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */,
 				F10AAA1A1A12AFD800FD4E85 /* SDWMainSplitView.h */,
@@ -637,7 +637,7 @@
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
-				F1F54DB61D76DFD700941906 /* SDWAddNamedItemVC.m in Sources */,
+				F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,

@@ -6,15 +6,15 @@
 //  Copyright © 2016 SDWR. All rights reserved.
 //
 
-#import "SDWAddNamedItemVC.h"
+#import "SDWModalEditVC.h"
 #import "SDWAppSettings.h"
 
-@interface SDWAddNamedItemVC () <NSTextFieldDelegate>
+@interface SDWModalEditVC () <NSTextFieldDelegate>
 @property (strong) IBOutlet NSTextField *mainTextField;
 @property BOOL shouldCancel;
 @end
 
-@implementation SDWAddNamedItemVC
+@implementation SDWModalEditVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,6 +27,9 @@
     self.mainTextField.editable = NO;
     [self.mainTextField resignFirstResponder];
 
+    if (self.valueString.length) {
+        self.mainTextField.stringValue = self.valueString;
+    }
 
 }
 
