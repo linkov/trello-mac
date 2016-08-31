@@ -73,6 +73,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)deleteListID:(NSString *)listID
       withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+- (void)renameListID:(NSString *)boardID
+                 name:(NSString *)newName
+           completion:(SDWTrelloStoreCompletionBlock)block;
 
 
 /* Checklists ops */

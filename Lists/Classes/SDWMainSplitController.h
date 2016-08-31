@@ -23,5 +23,6 @@
 - (void)boardsListVCDidRequestBoardEdit:(SDWBoard *)board;
 - (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel;
 - (void)boardsListVCDidRequestAddItem;
+- (void)boardsListVCDidRequestAddListToBoard:(SDWBoard *)board;
 
 @end

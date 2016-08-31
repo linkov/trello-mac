@@ -28,6 +28,7 @@
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
 @property (strong) SDWBoard *currentlyEditedBoardList;
+@property (strong) SDWBoard *parentBoardForNewList;
 
 @end
 
@@ -151,7 +152,12 @@
     if (self.currentlyEditedBoardList) {
 
         if (self.currentlyEditedBoardList.isLeaf) {
-            
+
+            [[SDWTrelloStore store] renameListID:self.currentlyEditedBoardList.boardID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
+
+                self.currentlyEditedBoardList = nil;
+                [self.boardsVC reloadBoards:nil];
+            }];
 
         } else {
 
@@ -166,7 +172,17 @@
 
 
 
-    } else {
+    } else if (self.parentBoardForNewList) {
+
+        [[SDWTrelloStore store] createListWithName:name boardID:self.parentBoardForNewList.boardID position:@(0) completion:^(id object, NSError *error) {
+
+            self.parentBoardForNewList = nil;
+            [self.boardsVC reloadBoards:nil];
+        }];
+    }
+
+
+    else {
 
         [[SDWTrelloStore store] createBoardWithName:name completion:^(id object, NSError *error) {
 
@@ -185,14 +201,32 @@
 
     self.currentlyEditedBoardList = board;
 
+    NSString *title;
+
+    if (self.currentlyEditedBoardList.isLeaf) {
+        title = @"Rename list";
+    } else {
+        title = @"Rename board";
+    }
+
     self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWModalEditVC"];
     self.addItemVC.delegate = self;
-    self.addItemVC.titleString = @"Rename board";
+    self.addItemVC.titleString = title;
     self.addItemVC.valueString = board.name;
     [self presentViewControllerAsSheet:self.addItemVC];
     
 }
 
+
+- (void)boardsListVCDidRequestAddListToBoard:(SDWBoard *)board {
+
+    self.parentBoardForNewList = board;
+
+    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWModalEditVC"];
+    self.addItemVC.delegate = self;
+    self.addItemVC.titleString = @"Add list";
+    [self presentViewControllerAsSheet:self.addItemVC];
+}
 
 - (void)boardsListVCDidRequestAddItem {
 

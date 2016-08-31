@@ -280,6 +280,25 @@
 
 #pragma mark - Lists ops
 
+- (void)renameListID:(NSString *)boardID
+                name:(NSString *)newName
+          completion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"lists/%@/name?",boardID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString
+                               parameters:@{@"value":newName}
+                                  success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         if(block) block(responseObject,nil);
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+         if(block) block(nil,error);
+         [self handleError:error];
+     }];
+}
+
 - (void)createListWithName:(NSString *)name
                    boardID:(NSString *)boardID
                   position:(NSNumber *)pos

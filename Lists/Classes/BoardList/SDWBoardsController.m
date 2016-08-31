@@ -275,6 +275,14 @@
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
+- (void)outlineviewShouldAddListToBoardAtRow:(NSUInteger)boardRow {
+
+    SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+    if (self.delegate) {
+        [self.delegate boardsListVCDidRequestAddListToBoard:board];
+    }
+}
+
 - (void)outlineviewShouldEditBoardAtRow:(NSUInteger)boardRow {
 
      SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
@@ -296,8 +304,12 @@
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
 
-    //SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
+    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
 
+    [[SDWTrelloStore store] deleteListID:board.boardID withCompletion:^(id object, NSError *error) {
+
+        [self reloadBoards:nil];
+    }];
 
 }
 

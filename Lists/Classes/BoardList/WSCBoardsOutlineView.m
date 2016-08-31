@@ -28,8 +28,7 @@
 
     SDWBoard *board =[self itemAtRow:row];
     if (board.isLeaf) {
-        return nil;
-//        return [self listMenuForRow:row];
+        return [self listMenuForRow:row];
     } else {
         return [self boardMenuForRow:row];
     }
@@ -45,6 +44,10 @@
                           action:@selector(removeList)
                    keyEquivalent:@""
                          atIndex:0];
+    [theMenu insertItemWithTitle:@"Rename list"
+                          action:@selector(editBoard)
+                   keyEquivalent:@""
+                         atIndex:1];
 
 
     self.contextRow = row;
@@ -65,6 +68,11 @@
                           action:@selector(editBoard)
                    keyEquivalent:@""
                          atIndex:1];
+    [theMenu insertItemWithTitle:@"Add list"
+                          action:@selector(addList)
+                   keyEquivalent:@""
+                         atIndex:2];
+
 
 
     self.contextRow = row;
@@ -91,10 +99,10 @@
 
 }
 
-//- (void)addList {
-//    [self.menuDelegate outlineviewShouldAddListBelowRow:self.contextRow];
-//
-//}
+- (void)addList {
+    [self.menuDelegate outlineviewShouldAddListToBoardAtRow:self.contextRow];
+
+}
 
 
 @end
