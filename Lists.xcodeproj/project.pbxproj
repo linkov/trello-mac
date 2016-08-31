@@ -68,13 +68,15 @@
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
 		F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAA1A3F819900CD22CE /* JWCTableView.m */; };
 		F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */; };
-		F192866D1BCD70E50048DEDA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192866C1BCD70E50048DEDA /* Fabric.framework */; settings = {ASSET_TAGS = (); }; };
+		F192866D1BCD70E50048DEDA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192866C1BCD70E50048DEDA /* Fabric.framework */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
 		F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */; };
 		F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */; };
 		F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */; };
 		F1C454AD1A267AE7002FFAF6 /* SDWLiveUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */; };
 		F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */; };
+		F1F54DB61D76DFD700941906 /* SDWAddNamedItemVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */; };
+		F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -209,6 +211,10 @@
 		F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLiveUpdateManager.m; sourceTree = "<group>"; };
 		F1D9ACA61A3CEA380067B119 /* SDWCardDetailsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailsTextView.h; sourceTree = "<group>"; };
 		F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailsTextView.m; sourceTree = "<group>"; };
+		F1F54DB41D76DFD700941906 /* SDWAddNamedItemVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemVC.h; sourceTree = "<group>"; };
+		F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAddNamedItemVC.m; sourceTree = "<group>"; };
+		F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemTextField.h; sourceTree = "<group>"; };
+		F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAddNamedItemTextField.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -254,6 +260,10 @@
 				F10AAA151A12AFD800FD4E85 /* Network */,
 				F10AAA181A12AFD800FD4E85 /* SDWMainSplitController.h */,
 				F10AAA191A12AFD800FD4E85 /* SDWMainSplitController.m */,
+				F1F54DB41D76DFD700941906 /* SDWAddNamedItemVC.h */,
+				F1F54DB51D76DFD700941906 /* SDWAddNamedItemVC.m */,
+				F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */,
+				F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */,
 				F10AAA1A1A12AFD800FD4E85 /* SDWMainSplitView.h */,
 				F10AAA1B1A12AFD800FD4E85 /* SDWMainSplitView.m */,
 				F10AAA1C1A12AFD800FD4E85 /* SDWMainWindowController.h */,
@@ -517,7 +527,7 @@
 		F119AE6C19FD4CFC0061D7DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = SDWR;
 				TargetAttributes = {
 					F119AE7319FD4CFC0061D7DF = {
@@ -602,6 +612,7 @@
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
 				F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */,
 				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
+				F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */,
 				F10AAA731A12AFD800FD4E85 /* AFSecurityPolicy.m in Sources */,
 				F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */,
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,
@@ -626,6 +637,7 @@
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
+				F1F54DB61D76DFD700941906 /* SDWAddNamedItemVC.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
@@ -682,6 +694,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -743,8 +756,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -754,8 +767,9 @@
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "3c782c6a-6619-47d0-87d4-a9f7ca1e3b78";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -764,8 +778,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
-				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "3rd Party Mac Developer Application: Alexey Linkov (43R88X5B35)";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -774,8 +788,9 @@
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
-				PROVISIONING_PROFILE = "3c782c6a-6619-47d0-87d4-a9f7ca1e3b78";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

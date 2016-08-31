@@ -9,17 +9,21 @@
 #import "SDWCardViewController.h"
 #import "SDWCardsController.h"
 #import "SDWBoardsController.h"
+#import "SDWAddNamedItemVC.h"
 #import "SDWBoard.h"
 #import "SDWCard.h"
 #import "AFRecordPathManager.h"
 #import "SDWMainSplitController.h"
 #import "SDWLoginVC.h"
+#import "SDWTrelloStore.h"
+
 
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardsSplitItem;
 @property (strong) IBOutlet NSSplitViewItem *cardDetailSplitItem;
 
+@property (strong) SDWAddNamedItemVC *addItemVC;
 @property (strong) SDWLoginVC *loginVC;
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
@@ -40,6 +44,7 @@
 	self.sideBarWidth = [NSLayoutConstraint constraintWithItem:self.boardsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:200];
 
 	[self.boardsVC.view addConstraint:self.sideBarWidth];
+    self.boardsVC.delegate = self;
 
     self.cardDetailsWidth = [NSLayoutConstraint constraintWithItem:self.cardDetailsVC.view attribute:NSLayoutAttributeWidth relatedBy:NSLayoutRelationEqual toItem:nil attribute:NSLayoutAttributeNotAnAttribute multiplier:1.0 constant:0];
 
@@ -108,6 +113,13 @@
     [self dismissViewController:self.loginVC];
 }
 
+- (void)openAddItem {
+
+
+
+
+}
+
 - (void)logout {
 
     if (!SharedSettings.userToken) {
@@ -121,6 +133,37 @@
 
     [self logout];
 }
+
+
+# pragma mark - Delegate methods
+
+- (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel {
+
+    [self dismissViewController:self.addItemVC];
+
+    if (didCancel) {
+        return;
+    }
+
+
+    [[SDWTrelloStore store] createBoardWithName:name completion:^(id object, NSError *error) {
+
+        [self.boardsVC reloadBoards:nil];
+
+    }];
+
+
+}
+
+- (void)boardsListVCDidRequestAddItem {
+
+    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWAddNamedItemVC"];
+    self.addItemVC.delegate = self;
+    self.addItemVC.titleString = @"Add board";
+    [self presentViewControllerAsSheet:self.addItemVC];
+
+}
+
 
 
 @end

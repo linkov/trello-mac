@@ -5,8 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSImage+Util.h"
-#import "NSImage+HHTint.h"
+
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 #import "SDWMainSplitController.h"
@@ -151,6 +150,15 @@
 
 #pragma mark - Board operations
 
+
+- (IBAction)addBoard:(id)sender {
+
+    if (self.delegate) {
+
+        [self.delegate boardsListVCDidRequestAddItem];
+    }
+}
+
 - (IBAction)reloadBoards:(id)sender {
 
     self.boards = @[];
@@ -267,13 +275,27 @@
 
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
-- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
-//
-//    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
-//    [self deleteList:board];
+- (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow {
+    SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+
+    [[SDWTrelloStore store] deleteBoardID:board.boardID completion:^(id object, NSError *error) {
+
+        [self reloadBoards:nil];
+    }];
+
 }
 
-- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {}
+- (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
+
+    //SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
+
+
+}
+
+- (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {
+
+
+}
 
 
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource

@@ -7,6 +7,8 @@
 //
 @class SDWBoardsController,SDWCardsController,SDWCardViewController;
 #import <Cocoa/Cocoa.h>
+#import "Utils.h"
+
 
 @interface SDWMainSplitController : NSSplitViewController
 
@@ -16,5 +18,10 @@
 @property (strong) SDWCardViewController *cardDetailsVC;
 
 - (void)logout;
+
+
+
+- (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel;
+- (void)boardsListVCDidRequestAddItem;
 
 @end

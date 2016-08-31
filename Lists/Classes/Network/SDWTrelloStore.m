@@ -216,6 +216,49 @@
 
 }
 
+
+
+#pragma mark - Boards ops
+
+- (void)createBoardWithName:(NSString *)name
+                completion:(SDWTrelloStoreCompletionBlock)block {
+
+    [[AFTrelloAPIClient sharedClient] POST:@"boards?"
+                                parameters:@{
+                                             @"name":name
+                                             }
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         if(block) block(responseObject,nil);
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+         if(block) block(nil,error);
+         [self handleError:error];
+     }];
+    
+}
+
+- (void)deleteBoardID:(NSString *)boardID
+                 completion:(SDWTrelloStoreCompletionBlock)block {
+
+    NSString *urlString = [NSString stringWithFormat:@"boards/%@?",boardID];
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString
+                                parameters:@{@"closed":@"true"}
+                                   success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+
+         if(block) block(responseObject,nil);
+
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+
+         if(block) block(nil,error);
+         [self handleError:error];
+     }];
+}
+
+
 #pragma mark - Lists ops
 
 - (void)createListWithName:(NSString *)name

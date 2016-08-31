@@ -55,6 +55,13 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                   completion:(SDWTrelloStoreCompletionBlock)block;
 
 
+/* Boards ops */
+- (void)createBoardWithName:(NSString *)name
+                 completion:(SDWTrelloStoreCompletionBlock)block;
+- (void)deleteBoardID:(NSString *)name
+                 completion:(SDWTrelloStoreCompletionBlock)block;
+
+
 /* Lists ops */
 - (void)createListWithName:(NSString *)name
                    boardID:(NSString *)boardID

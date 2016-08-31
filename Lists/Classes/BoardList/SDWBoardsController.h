@@ -7,10 +7,12 @@
 //
 
 #import <Cocoa/Cocoa.h>
+#import "SDWMainSplitController.h"
 
 @interface SDWBoardsController : NSViewController
 
 @property (strong,nonatomic) NSColor *textColor;
+@property (weak) SDWMainSplitController *delegate;
 
 - (void)loadBoards;
 - (IBAction)reloadBoards:(id)sender;
