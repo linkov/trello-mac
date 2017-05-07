@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 
@@ -27,7 +27,7 @@
         SharedSettings.shouldShowCardLabels = YES;
     }
 
-    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
+//    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

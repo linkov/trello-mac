@@ -6,12 +6,13 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 #import "SDWCard.h"
+#import "SDWMCard.h"
 #import <Cocoa/Cocoa.h>
 
 @interface SDWCardViewController : NSViewController
 
 
-@property (strong,nonatomic) SDWCard *card;
+@property (strong,nonatomic) SDWMCard *card;
 
 @end
 

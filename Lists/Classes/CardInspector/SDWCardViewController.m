@@ -20,10 +20,14 @@
 
 #import "ITSwitch.h"
 #import "SDWTrelloStore.h"
-#import "SDWChecklist.h"
-#import "SDWChecklistItem.h"
+
 #import "SDWCheckItemTableCellView.h"
 #import "NSControl+DragInteraction.h"
+
+#import "SDWMChecklist.h"
+#import "SDWMChecklistItem.h"
+
+#import "SDWDataModelManager.h"
 
 #define kLIST_ITEM_TOP_BOTTOM_PAD 12 // hotfix for wrong height
 
@@ -120,7 +124,7 @@
 
         self.card.dueDate = note.userInfo[@"date"];
         [self updateDueDateViewWithDate:self.card.dueDate];
-        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+//        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
         
     }];
 
@@ -133,7 +137,7 @@
 }
 
 
-- (void)setCard:(SDWCard *)card {
+- (void)setCard:(SDWMCard *)card {
 
     if (!card) {
         [self animateLogoIn:YES];
@@ -169,7 +173,7 @@
 
     if (card.cardID) {
         
-        [self fetchActivities];
+//        [self fetchActivities];
         [self fetchChecklists];
     }
 
@@ -202,7 +206,7 @@
             }
 
         } else {
-            CLSLog(@"fetchActivities error %@",err.localizedDescription);
+//            CLSLog(@"fetchActivities error %@",err.localizedDescription);
         }
 
     }];
@@ -211,25 +215,64 @@
 - (void)fetchChecklists {
 
     [[self cardsVC] showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
-
+    
+    [[SDWTrelloStore store] fetchAllChecklistsForCardID:self.card.trelloID CurrentData:^(id object, NSError *error) {
+        
         [[self cardsVC] showCardSavingIndicator:NO];
-
+        
         if (!error) {
-
+            
             self.rawcheckLists = object;
             [self loadRowsAndSectionsFromFlatData:object];
-
-
+            
+            
             if (self.todoSectionKeys.count == 0) {
                 self.addChecklistOnboard.hidden = NO;
             } else {
                 self.addChecklistOnboard.hidden = YES;
             }
-
+            
         }
+        
+        
+    } FetchedData:^(id object, NSError *error) {
+       
+        [[self cardsVC] showCardSavingIndicator:NO];
+        
+        if (!error) {
+            
+            self.rawcheckLists = object;
+            [self loadRowsAndSectionsFromFlatData:object];
+            
+            
+            if (self.todoSectionKeys.count == 0) {
+                self.addChecklistOnboard.hidden = NO;
+            } else {
+                self.addChecklistOnboard.hidden = YES;
+            }
+            
+        }
+        
     }];
+
+//    [[SDWTrelloStore store] fetchChecklistsForCardID:self.card.cardID completion:^(id object, NSError *error) {
+//
+//        [[self cardsVC] showCardSavingIndicator:NO];
+//
+//        if (!error) {
+//
+//            self.rawcheckLists = object;
+//            [self loadRowsAndSectionsFromFlatData:object];
+//
+//
+//            if (self.todoSectionKeys.count == 0) {
+//                self.addChecklistOnboard.hidden = NO;
+//            } else {
+//                self.addChecklistOnboard.hidden = YES;
+//            }
+//
+//        }
+//    }];
 
 
 }
@@ -246,13 +289,13 @@
     NSSortDescriptor *sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
     dataArray = [NSMutableArray arrayWithArray:[dataArray sortedArrayUsingDescriptors:@[sortBy]]];
 
-    for (SDWChecklist *checkList in dataArray) {
+    for (SDWMChecklist *checkList in dataArray) {
         
         [self.flatContent addObject:checkList.name];
-        [self.flatContent addObjectsFromArray:[checkList.items sortedArrayUsingDescriptors:@[sortBy]]];
+        [self.flatContent addObjectsFromArray:[checkList.items.allObjects sortedArrayUsingDescriptors:@[sortBy]]];
 
-        [contents setObject:[checkList.items sortedArrayUsingDescriptors:@[sortBy]] forKey:checkList.listID];
-        [keys addObject:checkList.listID];
+        [contents setObject:[checkList.items.allObjects sortedArrayUsingDescriptors:@[sortBy]] forKey:checkList.trelloID];
+        [keys addObject:checkList.trelloID];
     }
 
     self.todoSectionContents = contents;
@@ -306,7 +349,7 @@
 
         self.card.name = self.cardNameTextView.string;
         self.card.cardDescription = self.cardDescriptionTextView.string;
-        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+//        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
 
     } else {
 
@@ -451,7 +494,7 @@
 
         NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
         NSArray *contents = [[self todoSectionContents] objectForKey:key];
-        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
+        SDWMChecklistItem *item = [contents objectAtIndex:[indexPath row]];
 
         CGRect rec = [item.name boundingRectWithSize:CGSizeMake(220, MAXFLOAT) options:NSStringDrawingUsesLineFragmentOrigin attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:12]}];
 
@@ -498,7 +541,7 @@
 
         NSString *key = [[self todoSectionKeys] objectAtIndex:[indexPath section]];
         NSArray *contents = [[self todoSectionContents] objectForKey:key];
-        SDWChecklistItem *item = [contents objectAtIndex:[indexPath row]];
+        SDWMChecklistItem *item = [contents objectAtIndex:[indexPath row]];
 
         SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
         resultView.textField.stringValue = item.name;
@@ -514,7 +557,7 @@
         resultView.delegate = self;
 
         resultView.trelloCheckItem = item;
-        resultView.trelloCheckListID = item.listID;
+        resultView.trelloCheckListID = item.checklist.trelloID;
 
 //        resultView.centerYConstraint.constant = 0;
         resultView.checkBoxWidth.constant = 23;
@@ -589,22 +632,22 @@
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
 
     // 1. swap 2 elements
-    SDWChecklistItem *movedItem = [mutableArray objectAtIndex:fromIndex];
-    SDWChecklistItem *newSiblingItem = [mutableArray objectAtIndex:toIndex];
+    SDWMChecklistItem *movedItem = [mutableArray objectAtIndex:fromIndex];
+    SDWMChecklistItem *newSiblingItem = [mutableArray objectAtIndex:toIndex];
 
-    NSUInteger movedCardPos = movedItem.position;
-    NSUInteger newSiblingCardPos = newSiblingItem.position;
+    NSUInteger movedCardPos = movedItem.positionValue;
+    NSUInteger newSiblingCardPos = newSiblingItem.positionValue;
 
-    movedItem.position = newSiblingCardPos;
-    newSiblingItem.position = movedCardPos;
+    movedItem.positionValue = newSiblingCardPos;
+    newSiblingItem.positionValue = movedCardPos;
 
     [mutableArray removeObject:movedItem];
     [mutableArray insertObject:movedItem atIndex:toIndex];
 
     // 2. set positions to all cards equal to cards' indexes in array
     for (int i = 0; i<mutableArray.count; i++) {
-        SDWChecklistItem *item = mutableArray[i];
-        item.position = i;
+        SDWMChecklistItem *item = mutableArray[i];
+        item.positionValue = i;
     }
 
 
@@ -639,13 +682,13 @@
     SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
     [cellView animateControlsOpacityIn:NO];
 
-    if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWChecklistItem class]]) {
+    if ([[self.flatContent objectAtIndex:row] isKindOfClass:[SDWMChecklistItem class]]) {
 
-        SDWChecklistItem *item = [self.flatContent objectAtIndex:row];
-        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
+        SDWMChecklistItem *item = [self.flatContent objectAtIndex:row];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.checklist.trelloID];
         itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
         self.dropSectionKey = cellView.trelloCheckListID;
-        sectionKeyNew = item.listID;
+        sectionKeyNew = item.checklist.trelloID;
 
     } else {
 
@@ -686,11 +729,11 @@
     NSUInteger itemMovedFromIndex = [cardDict[@"itemIndex"] integerValue];
     NSString *sectionKey = cardDict[@"sectionKey"];
     NSUInteger itemFlatIndex = [cardDict[@"itemFlatIndex"] integerValue];
-    SDWChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
+    SDWMChecklistItem *originalItem = [self.flatContent objectAtIndex:itemFlatIndex];
 
-
-    originalItem.listID = self.dropSectionKey;
-    originalItem.position = self.dropIndex;
+    SDWMChecklist *checklist = [[SDWDataModelManager manager] fetchEntityForName:[SDWMChecklist entityName] withTrelloID:self.dropSectionKey inContext:[SDWDataModelManager manager].managedObjectContext];
+    originalItem.checklist = checklist;
+    originalItem.positionValue = self.dropIndex;
 
 
     if ([sectionKey isEqualToString:self.dropSectionKey]) {
@@ -735,7 +778,7 @@
 
         [newFlatContent addObject:[self checkListNameFromID:key] ];
 
-        for (SDWChecklistItem *item in self.todoSectionContents[key]) {
+        for (SDWMChecklistItem *item in self.todoSectionContents[key]) {
 
             [newFlatContent addObject:item];
         }
@@ -750,7 +793,7 @@
         return NO;
     }
 
-    if (![[self.flatContent objectAtIndex:rowIndexes.firstIndex] isKindOfClass:[SDWChecklistItem class]]) {
+    if (![[self.flatContent objectAtIndex:rowIndexes.firstIndex] isKindOfClass:[SDWMChecklistItem class]]) {
 
         NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexes.firstIndex makeIfNecessary:YES];
         SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
@@ -765,8 +808,8 @@
 
     } else {
 
-        SDWChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
-        NSArray *sectionContentsOfItem = self.todoSectionContents[item.listID];
+        SDWMChecklistItem *item = [self.flatContent objectAtIndex:rowIndexes.firstIndex];
+        NSArray *sectionContentsOfItem = self.todoSectionContents[item.checklist.trelloID];
         NSUInteger itemIndexInSection = [sectionContentsOfItem indexOfObject:item];
 
         NSLog(@"writeRowsWithIndexes - itemIndexInSection %lu",(unsigned long)itemIndexInSection);
@@ -781,9 +824,9 @@
 
         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:@{
                                                                      @"isSection":@NO,
-                                                                     @"itemID":item.itemID,
+                                                                     @"itemID":item.trelloID,
                                                                      @"name":item.name,
-                                                                     @"sectionKey":item.listID,
+                                                                     @"sectionKey":item.checklist.trelloID,
                                                                      @"itemIndex":[NSNumber numberWithInteger:itemIndexInSection],
                                                                      @"itemFlatIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
                                                                      }];
@@ -821,7 +864,7 @@
 
     if (isSection) {
 
-        SDWChecklist *checkList = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"listID = %@",dataDict[@"sectionKey"]]].firstObject;
+        SDWMChecklist *checkList = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID = %@",dataDict[@"sectionKey"]]].firstObject;
 
         [[SDWTrelloStore store] deleteCheckList:checkList withCompletion:^(id object, NSError *error) {
 
@@ -847,7 +890,7 @@
     } else {
 
         NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[dataDict[@"sectionKey"]]];
-        SDWChecklistItem *item = [sectionContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"itemID == %@",dataDict[@"itemID"]]].firstObject;
+        SDWMChecklistItem *item = [sectionContent filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",dataDict[@"trelloID"]]].firstObject;
 
                 [sectionContent removeObject:item];
                 self.todoSectionContents[dataDict[@"sectionKey"]] = sectionContent;
@@ -873,42 +916,41 @@
 
 - (void)checkItemShouldAddItem:(SDWCheckItemTableCellView *)itemView {
 
-    SDWChecklistItem *newItem = [SDWChecklistItem new];
-    newItem.name = @"new item";
-    newItem.state = @"incomplete";
-
-    NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[itemView.trelloCheckListID]];
-    newItem.listID = itemView.trelloCheckListID;
-
+//    SDWChecklistItem *newItem = [SDWChecklistItem new];
+//    newItem.name = @"new item";
+//    newItem.state = @"incomplete";
+//
+//    NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[itemView.trelloCheckListID]];
+//    newItem.listID = itemView.trelloCheckListID;
+//
     [[self cardsVC] showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] createCheckItem:newItem cardID:self.card.cardID withCompletion:^(id object, NSError *error) {
-
-        [[self cardsVC] showCardSavingIndicator:NO];
-
+    
+  
+    [[SDWTrelloStore store] createCheckItemWithName:@"new item" inChecklistID:itemView.trelloCheckListID cardID:self.card.trelloID withCompletion:^(id object, NSError *error) {
+        
+        
         if (!error) {
-
-            SDWChecklistItem *createdItem = [[SDWChecklistItem alloc] initWithAttributes:object];
-            createdItem.listName = itemView.textField.stringValue;
-
-            createdItem.listID = itemView.trelloCheckListID;
-
-            [sectionContent addObject:createdItem];
+            NSMutableArray *sectionContent =  [NSMutableArray arrayWithArray:self.todoSectionContents[itemView.trelloCheckListID]];
+            
+            [sectionContent addObject:object];
             [self.todoSectionContents setObject:sectionContent forKey:itemView.trelloCheckListID];
             [self.checkListsTable reloadData];
             [self updateFlatContent];
-
-            NSUInteger rowIndexInFlat = [self.flatContent indexOfObject:createdItem];
-
+            
+            NSUInteger rowIndexInFlat = [self.flatContent indexOfObject:object];
+            
             [self.checkListsTable scrollRowToVisible:rowIndexInFlat];
-
+            
             NSTableRowView *rowView = [self.checkListsTable rowViewAtRow:rowIndexInFlat makeIfNecessary:YES];
             SDWCheckItemTableCellView *cellView = rowView.subviews.firstObject;
             [cellView.textField becomeFirstResponder];
-
         }
+        
 
+        
     }];
+    
+
 
 }
 
@@ -916,7 +958,7 @@
 
 #pragma mark - Trello API
 
-- (void)moveCheckItem:(SDWChecklistItem *)item fromListID:(NSString *)listID {
+- (void)moveCheckItem:(SDWMChecklistItem *)item fromListID:(NSString *)listID {
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
@@ -926,7 +968,7 @@
     }];
 }
 
-- (void)changePositionForCheckItem:(SDWChecklistItem *)item {
+- (void)changePositionForCheckItem:(SDWMChecklistItem *)item {
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
@@ -956,10 +998,10 @@
     /* invalidate heightForRow - in case user typed multiline text we need to change cell height */
     [self.checkListsTable reloadData];
 
-    if (itemView.trelloCheckItem && [itemView.trelloCheckItem isKindOfClass:[SDWChecklistItem class]]) {
+    if (itemView.trelloCheckItem && [itemView.trelloCheckItem isKindOfClass:[SDWMChecklistItem class]]) {
 
         [[SDWTrelloStore store] updateCheckItem:itemView.trelloCheckItem
-                                         cardID:self.card.cardID
+                                         cardID:self.card.trelloID
                                  withCompletion:^(id object, NSError *error) {
 
             [[self cardsVC] showCardSavingIndicator:NO];
@@ -991,7 +1033,7 @@
 
     [[self cardsVC] showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(SDWChecklist *checklist, NSError *error) {
+    [[SDWTrelloStore store] addCheckListForCardID:self.card.cardID withCompletion:^(SDWMChecklist *checklist, NSError *error) {
 
         [[self cardsVC] showCardSavingIndicator:NO];
 
@@ -1001,7 +1043,7 @@
             self.rawcheckLists = [NSArray arrayWithArray:newRaw];
 
             [self.flatContent addObject:checklist.name];
-            [self.todoSectionKeys addObject:checklist.listID];
+            [self.todoSectionKeys addObject:checklist.trelloID];
             [self.checkListsTable reloadData];
 
             [self.checkListsTable scrollRowToVisible:self.flatContent.count-1];
@@ -1026,16 +1068,16 @@
                                    filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",@"incomplete"]].count;
     BOOL hasOpenTodos = (BOOL)(countOfOpenItems > 0);
 
-    if (hasOpenTodos != self.card.hasOpenTodos) {
-        self.card.hasOpenTodos = hasOpenTodos;
-        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
-    }
+//    if (hasOpenTodos != self.card.hasOpenTodos) {
+//        self.card.hasOpenTodos = hasOpenTodos;
+//        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+//    }
 
 }
 
 - (NSString *)checkListNameFromID:(NSString *)checkListID {
 
-    SDWChecklist *list = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"listID == %@",checkListID]].firstObject;
+    SDWMChecklist *list = [self.rawcheckLists filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",checkListID]].firstObject;
     return list.name;
 }
 

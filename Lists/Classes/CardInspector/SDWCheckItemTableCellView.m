@@ -7,7 +7,7 @@
 //
 #import "SDWAppSettings.h"
 #import "SDWCheckItemTableCellView.h"
-#import "SDWChecklistItem.h"
+#import "SDWMChecklistItem.h"
 
 @interface SDWCheckItemTableCellView () <NSTextFieldDelegate>
 @property (strong) IBOutlet NSButton *addCheckItemButton;

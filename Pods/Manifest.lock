@@ -1,0 +1,12 @@
+PODS:
+  - FastEasyMapping (1.1.2)
+
+DEPENDENCIES:
+  - FastEasyMapping (~> 1.1)
+
+SPEC CHECKSUMS:
+  FastEasyMapping: fe654d4b8d3c5650f41da1563a4385c6a19adea3
+
+PODFILE CHECKSUM: 4fc02ee78224f246d2456702bc96321f914bfb38
+
+COCOAPODS: 1.2.1

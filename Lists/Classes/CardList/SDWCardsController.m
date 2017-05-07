@@ -169,22 +169,22 @@
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
 
     // 1. swap 2 elements
-    SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
-    SDWCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
+    SDWMCard *movedCard = [mutableArray objectAtIndex:fromIndex];
+    SDWMCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
 
-    NSUInteger movedCardPos = movedCard.position;
-    NSUInteger newSiblingCardPos = newSiblingCard.position;
+    NSUInteger movedCardPos = movedCard.positionValue;
+    NSUInteger newSiblingCardPos = newSiblingCard.positionValue;
 
-    movedCard.position = newSiblingCardPos;
-    newSiblingCard.position = movedCardPos;
+    movedCard.positionValue = newSiblingCardPos;
+    newSiblingCard.positionValue = movedCardPos;
 
     [mutableArray removeObject:movedCard];
     [mutableArray insertObject:movedCard atIndex:toIndex];
 
     // 2. set positions to all cards equal to cards' indexes in array
     for (int i = 0; i<mutableArray.count; i++) {
-        SDWCard *card = mutableArray[i];
-        card.position = i;
+        SDWMCard *card = mutableArray[i];
+        card.positionValue = i;
     }
 
     return mutableArray;
@@ -253,12 +253,12 @@
 }
 
 
-- (void)updateCardPosition:(SDWCard *)card {
+- (void)updateCardPosition:(SDWMCard *)card {
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] moveCardID:card.cardID
-                            toPosition:[NSNumber numberWithInteger:card.position]
+    [[SDWTrelloStore store] moveCardID:card.trelloID
+                            toPosition:card.position
                             completion:^(id object, NSError *error)
     {
         [self showCardSavingIndicator:NO];
@@ -308,14 +308,14 @@
     self.listNameLabel.hidden = YES;
 }
 
-- (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
+- (void)setupCardsForList:(SDWMList *)list parentList:(SDWBoard *)parentList {
 
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
     self.parentListName = parentList.name;
     self.listName = list.name;
-    self.currentListID = list.boardID;
+    self.currentListID = list.trelloID;
     self.parentListID = parentList.boardID;
 
     [self reloadCards];
@@ -343,8 +343,10 @@
      */
     self.cardsArrayController.content = nil;
     [self.tableView reloadData];
+    
+    [self loadCardsForListID:self.currentListID];
 
-    [self loadMembers:self.parentListID];
+//    [self loadMembers:self.parentListID];
 
 }
 
@@ -380,37 +382,74 @@
         } else {
             self.reloadButton.hidden = NO;
             [self.mainProgressIndicator stopAnimation];
-            CLS_LOG(@"err = %@", err.localizedDescription);
+//            CLS_LOG(@"err = %@", err.localizedDescription);
         }
     }];
 
 }
 
 - (void)loadCardsForListID:(NSString *)listID {
+    
+    [self.mainProgressIndicator startAnimation];
 
-    NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
-    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
-
-    NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
-
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWCard class]
-	    toConcretePath:URLF];
-
-    [SDWCard findAll:^(NSArray *objs, NSError *err) {
-
-        //[self.loadingIndicator stopAnimation:nil];
-        [self.mainProgressIndicator stopAnimation];
-
-        if (!err) {
+    
+    [[SDWTrelloStore store] fetchAllCardsForListID:listID CurrentData:^(NSArray *objects, NSError *error) {
+        
+        if (objects.count > 0) {
+            [self.mainProgressIndicator stopAnimation];
+        }
+        
+        
+        if (!error) {
             self.reloadButton.hidden = YES;
-            [self reloadCollection:objs];
+            [self reloadCollection:objects];
         } else {
             self.reloadButton.hidden = NO;
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            //            CLS_LOG(@"err = %@", err.localizedDescription);
         }
+        
+    } FetchedData:^(id objects, NSError *error) {
+        
+        [self.mainProgressIndicator stopAnimation];
+        
+        if (self.currentListID == listID) {
+            if (!error) {
+                self.reloadButton.hidden = YES;
+                [self reloadCollection:objects];
+            } else {
+                self.reloadButton.hidden = NO;
+                //            CLS_LOG(@"err = %@", err.localizedDescription);
+            }
+        }
+        
+
     }];
+    
+
+
+//    NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
+//    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
+//
+//    NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
+//
+//    [[AFRecordPathManager manager]
+//     setAFRecordMethod:@"findAll"
+//     forModel:[SDWCard class]
+//	    toConcretePath:URLF];
+//
+//    [SDWCard findAll:^(NSArray *objs, NSError *err) {
+//
+//        //[self.loadingIndicator stopAnimation:nil];
+//        [self.mainProgressIndicator stopAnimation];
+//
+//        if (!err) {
+//            self.reloadButton.hidden = YES;
+//            [self reloadCollection:objs];
+//        } else {
+//            self.reloadButton.hidden = NO;
+////            CLS_LOG(@"err = %@", err.localizedDescription);
+//        }
+//    }];
 }
 
 - (void)reloadCollection:(NSArray *)objects {
@@ -451,10 +490,10 @@
 
 - (void)updateCardsPositions {
 
-    for (SDWCard *card in self.cardsArrayController.content) {
+    for (SDWMCard *card in self.cardsArrayController.content) {
 
         [self updateCardPosition:card];
-        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
+//        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
     }
 }
 
@@ -685,7 +724,7 @@
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    SDWMCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
     CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
     CGFloat height = ceilf(rec.size.height);
@@ -707,7 +746,7 @@
         return nil;
     }
 
-    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    SDWMCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.mainBox.textField.stringValue = card.name;
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
@@ -717,7 +756,7 @@
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
-        view.mainBox.labels = card.labels;
+        view.mainBox.labels = [card displayLabels];
     } else {
         view.mainBox.labels = @[];
     }
@@ -766,9 +805,9 @@
 
         case SDWDotOptionHasOpenTodos: {
 
-            BOOL hasOpenTodos = [[self.representedObject valueForKey:@"hasOpenTodos"] boolValue];
+            BOOL hasOpenTodos = card.hasOpenTodos;
 
-            if (hasOpenTodos) {
+            if (hasOpenTodos == YES) {
                 [view.mainBox setHasDot:YES];
             }
         }
@@ -813,7 +852,7 @@
         if (text.stringValue.length >0) {
 
             //TODO: remove this hack
-            if (card.labels.count == 0) {
+            if ([card displayLabels].count == 0) {
 
                 for (NSLayoutConstraint *co in view.mainBox.constraints) {
                     if (co.priority == 750) {
@@ -841,11 +880,11 @@
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
 
-    CLS_LOG(@"--------------%@-------------\n",title);
+//    CLS_LOG(@"--------------%@-------------\n",title);
 
     for (SDWCard *card in self.cardsArrayController.content) {
 
-        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
+//        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
     }
 }
 
@@ -854,7 +893,7 @@
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard {
 
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
+    SDWMCard *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
     NSDictionary *cardDict = @{
                                @"cardID":card.cardID,
                                @"itemID":card.cardID,

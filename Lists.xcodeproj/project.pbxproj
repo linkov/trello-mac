@@ -6,7 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		F10E13111EBCA8180044802C /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = F10E13141EBCA8180044802C /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				F10E13151EBCA8260044802C /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		B5F947BBE75634A58531207D /* libPods-Lists.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 34B0998BCC3BC8ED27C33131 /* libPods-Lists.a */; };
 		F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */; };
 		F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F10AA9E51A12AFD800FD4E85 /* Main.storyboard */; };
 		F10AAA4D1A12AFD800FD4E85 /* SDWBoardsCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9EA1A12AFD800FD4E85 /* SDWBoardsCellView.m */; };
@@ -50,6 +65,23 @@
 		F10AAA771A12AFD800FD4E85 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA441A12AFD800FD4E85 /* AFURLSessionManager.m */; };
 		F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA471A12AFD800FD4E85 /* ITSwitch.m */; };
 		F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */; };
+		F10E13071EBC8E420044802C /* SDWDataModelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13061EBC8E420044802C /* SDWDataModelManager.m */; };
+		F10E13101EBCA2540044802C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F10E130F1EBCA2540044802C /* CoreData.framework */; };
+		F10E13341EBCAFDA0044802C /* SDWMBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13291EBCAFDA0044802C /* SDWMBoard.m */; };
+		F10E13351EBCAFDA0044802C /* SDWMCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E132B1EBCAFDA0044802C /* SDWMCard.m */; };
+		F10E13361EBCAFDA0044802C /* SDWMChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E132D1EBCAFDA0044802C /* SDWMChecklist.m */; };
+		F10E13371EBCAFDA0044802C /* SDWMChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E132F1EBCAFDA0044802C /* SDWMChecklistItem.m */; };
+		F10E13381EBCAFDA0044802C /* SDWMLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13311EBCAFDA0044802C /* SDWMLabel.m */; };
+		F10E13391EBCAFDA0044802C /* SDWMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13331EBCAFDA0044802C /* SDWMUser.m */; };
+		F10E13461EBCAFE30044802C /* _SDWMBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E133B1EBCAFE30044802C /* _SDWMBoard.m */; };
+		F10E13471EBCAFE30044802C /* _SDWMCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E133D1EBCAFE30044802C /* _SDWMCard.m */; };
+		F10E13481EBCAFE30044802C /* _SDWMChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E133F1EBCAFE30044802C /* _SDWMChecklist.m */; };
+		F10E13491EBCAFE30044802C /* _SDWMChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13411EBCAFE30044802C /* _SDWMChecklistItem.m */; };
+		F10E134A1EBCAFE30044802C /* _SDWMLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13431EBCAFE30044802C /* _SDWMLabel.m */; };
+		F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13451EBCAFE30044802C /* _SDWMUser.m */; };
+		F10E13511EBCB36E0044802C /* SDWMappingConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13501EBCB36E0044802C /* SDWMappingConstants.m */; };
+		F10E13541EBCB4360044802C /* FEMAttribute+listsAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13531EBCB4360044802C /* FEMAttribute+listsAttributes.m */; };
+		F10E13571EBCE4BC0044802C /* SDWMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13561EBCE4BC0044802C /* SDWMapper.m */; };
 		F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */; };
 		F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF91A58EAB400353914 /* SDWChecklist.m */; };
 		F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */; };
@@ -61,14 +93,15 @@
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
 		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
-		F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1665A661A22847700A1519D /* Crashlytics.framework */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
 		F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAA1A3F819900CD22CE /* JWCTableView.m */; };
 		F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */; };
-		F192866D1BCD70E50048DEDA /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F192866C1BCD70E50048DEDA /* Fabric.framework */; };
+		F1AF66EF1EBF12EC009F230F /* listsmodel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */; };
+		F1AF66F51EBF1C21009F230F /* _SDWMList.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AF66F21EBF1C21009F230F /* _SDWMList.m */; };
+		F1AF66F61EBF1C21009F230F /* SDWMList.m in Sources */ = {isa = PBXBuildFile; fileRef = F1AF66F41EBF1C21009F230F /* SDWMList.m */; };
 		F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1B3AB841A04E9A400927CB9 /* WebKit.framework */; };
 		F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */; };
 		F1C454A01A23ED0A002FFAF6 /* SDWShortcutsManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C4549F1A23ED0A002FFAF6 /* SDWShortcutsManager.m */; };
@@ -80,6 +113,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		34B0998BCC3BC8ED27C33131 /* libPods-Lists.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lists.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3F9F8E33CAEB544DB8F90D5B /* Pods-Lists.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lists.release.xcconfig"; path = "Pods/Target Support Files/Pods-Lists/Pods-Lists.release.xcconfig"; sourceTree = "<group>"; };
+		CF59BFBDD3F2246FB11E10BF /* Pods-Lists.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Lists.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Lists/Pods-Lists.debug.xcconfig"; sourceTree = "<group>"; };
 		F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		F10AA9E61A12AFD800FD4E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -165,6 +201,42 @@
 		F10AAA471A12AFD800FD4E85 /* ITSwitch.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ITSwitch.m; sourceTree = "<group>"; };
 		F10AAA491A12AFD800FD4E85 /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
 		F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
+		F10E13051EBC8E420044802C /* SDWDataModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWDataModelManager.h; sourceTree = "<group>"; };
+		F10E13061EBC8E420044802C /* SDWDataModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWDataModelManager.m; sourceTree = "<group>"; };
+		F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listsmodel.xcdatamodel; sourceTree = "<group>"; };
+		F10E130D1EBCA13C0044802C /* SDWObjectMapping.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWObjectMapping.h; sourceTree = "<group>"; };
+		F10E130F1EBCA2540044802C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		F10E13281EBCAFDA0044802C /* SDWMBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMBoard.h; sourceTree = "<group>"; };
+		F10E13291EBCAFDA0044802C /* SDWMBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMBoard.m; sourceTree = "<group>"; };
+		F10E132A1EBCAFDA0044802C /* SDWMCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMCard.h; sourceTree = "<group>"; };
+		F10E132B1EBCAFDA0044802C /* SDWMCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMCard.m; sourceTree = "<group>"; };
+		F10E132C1EBCAFDA0044802C /* SDWMChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMChecklist.h; sourceTree = "<group>"; };
+		F10E132D1EBCAFDA0044802C /* SDWMChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMChecklist.m; sourceTree = "<group>"; };
+		F10E132E1EBCAFDA0044802C /* SDWMChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMChecklistItem.h; sourceTree = "<group>"; };
+		F10E132F1EBCAFDA0044802C /* SDWMChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMChecklistItem.m; sourceTree = "<group>"; };
+		F10E13301EBCAFDA0044802C /* SDWMLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMLabel.h; sourceTree = "<group>"; };
+		F10E13311EBCAFDA0044802C /* SDWMLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMLabel.m; sourceTree = "<group>"; };
+		F10E13321EBCAFDA0044802C /* SDWMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMUser.h; sourceTree = "<group>"; };
+		F10E13331EBCAFDA0044802C /* SDWMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMUser.m; sourceTree = "<group>"; };
+		F10E133A1EBCAFE30044802C /* _SDWMBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMBoard.h; sourceTree = "<group>"; };
+		F10E133B1EBCAFE30044802C /* _SDWMBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMBoard.m; sourceTree = "<group>"; };
+		F10E133C1EBCAFE30044802C /* _SDWMCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMCard.h; sourceTree = "<group>"; };
+		F10E133D1EBCAFE30044802C /* _SDWMCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMCard.m; sourceTree = "<group>"; };
+		F10E133E1EBCAFE30044802C /* _SDWMChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMChecklist.h; sourceTree = "<group>"; };
+		F10E133F1EBCAFE30044802C /* _SDWMChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMChecklist.m; sourceTree = "<group>"; };
+		F10E13401EBCAFE30044802C /* _SDWMChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMChecklistItem.h; sourceTree = "<group>"; };
+		F10E13411EBCAFE30044802C /* _SDWMChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMChecklistItem.m; sourceTree = "<group>"; };
+		F10E13421EBCAFE30044802C /* _SDWMLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMLabel.h; sourceTree = "<group>"; };
+		F10E13431EBCAFE30044802C /* _SDWMLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMLabel.m; sourceTree = "<group>"; };
+		F10E13441EBCAFE30044802C /* _SDWMUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMUser.h; sourceTree = "<group>"; };
+		F10E13451EBCAFE30044802C /* _SDWMUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMUser.m; sourceTree = "<group>"; };
+		F10E134F1EBCB36E0044802C /* SDWMappingConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMappingConstants.h; sourceTree = "<group>"; };
+		F10E13501EBCB36E0044802C /* SDWMappingConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMappingConstants.m; sourceTree = "<group>"; };
+		F10E13521EBCB4360044802C /* FEMAttribute+listsAttributes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FEMAttribute+listsAttributes.h"; sourceTree = "<group>"; };
+		F10E13531EBCB4360044802C /* FEMAttribute+listsAttributes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FEMAttribute+listsAttributes.m"; sourceTree = "<group>"; };
+		F10E13551EBCE4BC0044802C /* SDWMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMapper.h; sourceTree = "<group>"; };
+		F10E13561EBCE4BC0044802C /* SDWMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMapper.m; sourceTree = "<group>"; };
+		F10E13581EBCE6EA0044802C /* SDWMacros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SDWMacros.h; sourceTree = "<group>"; };
 		F119AE7419FD4CFC0061D7DF /* Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11E3BF51A58AA3900353914 /* SDWTrelloStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTrelloStore.h; sourceTree = "<group>"; };
 		F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWTrelloStore.m; sourceTree = "<group>"; };
@@ -187,7 +259,6 @@
 		F14B36141A145ADF00AFD5C9 /* PulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseView.m; sourceTree = "<group>"; };
 		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
 		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
-		F1665A661A22847700A1519D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
 		F18089B91A280B7000A701B7 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
@@ -199,7 +270,11 @@
 		F1918AAA1A3F819900CD22CE /* JWCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCTableView.m; sourceTree = "<group>"; };
 		F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivityTableCellView.h; sourceTree = "<group>"; };
 		F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivityTableCellView.m; sourceTree = "<group>"; };
-		F192866C1BCD70E50048DEDA /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = SOURCE_ROOT; };
+		F1AF66F01EBF16D5009F230F /* SDWTreeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTreeView.h; sourceTree = "<group>"; };
+		F1AF66F11EBF1C21009F230F /* _SDWMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMList.h; sourceTree = "<group>"; };
+		F1AF66F21EBF1C21009F230F /* _SDWMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMList.m; sourceTree = "<group>"; };
+		F1AF66F31EBF1C21009F230F /* SDWMList.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMList.h; sourceTree = "<group>"; };
+		F1AF66F41EBF1C21009F230F /* SDWMList.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMList.m; sourceTree = "<group>"; };
 		F1B3AB841A04E9A400927CB9 /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
 		F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainWindow.h; sourceTree = "<group>"; };
 		F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMainWindow.m; sourceTree = "<group>"; };
@@ -222,21 +297,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1665A671A22847700A1519D /* Crashlytics.framework in Frameworks */,
+				F10E13101EBCA2540044802C /* CoreData.framework in Frameworks */,
 				F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */,
-				F192866D1BCD70E50048DEDA /* Fabric.framework in Frameworks */,
+				B5F947BBE75634A58531207D /* libPods-Lists.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50F075A65464C71CC13032E6 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CF59BFBDD3F2246FB11E10BF /* Pods-Lists.debug.xcconfig */,
+				3F9F8E33CAEB544DB8F90D5B /* Pods-Lists.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		F10AA9E21A12AFD800FD4E85 /* Lists */ = {
 			isa = PBXGroup;
 			children = (
 				F12A38921A12B6C000611257 /* Lists.entitlements */,
-				F192866C1BCD70E50048DEDA /* Fabric.framework */,
-				F1665A661A22847700A1519D /* Crashlytics.framework */,
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
 				F10AA9E51A12AFD800FD4E85 /* Main.storyboard */,
@@ -252,6 +334,10 @@
 		F10AA9E71A12AFD800FD4E85 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F10E134C1EBCB3380044802C /* Mapping */,
+				F10E130C1EBCA1040044802C /* Protocols */,
+				F10E13081EBC920A0044802C /* DataModel */,
+				F10E13041EBC8E0D0044802C /* Managers */,
 				F10AA9E81A12AFD800FD4E85 /* BoardList */,
 				F10AA9F11A12AFD800FD4E85 /* CardInspector */,
 				F10AA9F41A12AFD800FD4E85 /* CardList */,
@@ -271,6 +357,7 @@
 				F1C4549B1A23EAB5002FFAF6 /* SDWMainWindow.h */,
 				F1C4549C1A23EAB5002FFAF6 /* SDWMainWindow.m */,
 				F10AAA1E1A12AFD800FD4E85 /* Utils */,
+				F10E13581EBCE6EA0044802C /* SDWMacros.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -460,6 +547,82 @@
 			path = Xtrace;
 			sourceTree = "<group>";
 		};
+		F10E13041EBC8E0D0044802C /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				F10E13051EBC8E420044802C /* SDWDataModelManager.h */,
+				F10E13061EBC8E420044802C /* SDWDataModelManager.m */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		F10E13081EBC920A0044802C /* DataModel */ = {
+			isa = PBXGroup;
+			children = (
+				F1AF66F11EBF1C21009F230F /* _SDWMList.h */,
+				F1AF66F21EBF1C21009F230F /* _SDWMList.m */,
+				F1AF66F31EBF1C21009F230F /* SDWMList.h */,
+				F1AF66F41EBF1C21009F230F /* SDWMList.m */,
+				F10E133A1EBCAFE30044802C /* _SDWMBoard.h */,
+				F10E133B1EBCAFE30044802C /* _SDWMBoard.m */,
+				F10E133C1EBCAFE30044802C /* _SDWMCard.h */,
+				F10E133D1EBCAFE30044802C /* _SDWMCard.m */,
+				F10E133E1EBCAFE30044802C /* _SDWMChecklist.h */,
+				F10E133F1EBCAFE30044802C /* _SDWMChecklist.m */,
+				F10E13401EBCAFE30044802C /* _SDWMChecklistItem.h */,
+				F10E13411EBCAFE30044802C /* _SDWMChecklistItem.m */,
+				F10E13421EBCAFE30044802C /* _SDWMLabel.h */,
+				F10E13431EBCAFE30044802C /* _SDWMLabel.m */,
+				F10E13441EBCAFE30044802C /* _SDWMUser.h */,
+				F10E13451EBCAFE30044802C /* _SDWMUser.m */,
+				F10E13281EBCAFDA0044802C /* SDWMBoard.h */,
+				F10E13291EBCAFDA0044802C /* SDWMBoard.m */,
+				F10E132A1EBCAFDA0044802C /* SDWMCard.h */,
+				F10E132B1EBCAFDA0044802C /* SDWMCard.m */,
+				F10E132C1EBCAFDA0044802C /* SDWMChecklist.h */,
+				F10E132D1EBCAFDA0044802C /* SDWMChecklist.m */,
+				F10E132E1EBCAFDA0044802C /* SDWMChecklistItem.h */,
+				F10E132F1EBCAFDA0044802C /* SDWMChecklistItem.m */,
+				F10E13301EBCAFDA0044802C /* SDWMLabel.h */,
+				F10E13311EBCAFDA0044802C /* SDWMLabel.m */,
+				F10E13321EBCAFDA0044802C /* SDWMUser.h */,
+				F10E13331EBCAFDA0044802C /* SDWMUser.m */,
+				F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */,
+			);
+			path = DataModel;
+			sourceTree = "<group>";
+		};
+		F10E130C1EBCA1040044802C /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F10E130D1EBCA13C0044802C /* SDWObjectMapping.h */,
+				F1AF66F01EBF16D5009F230F /* SDWTreeView.h */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		F10E130E1EBCA2540044802C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F10E130F1EBCA2540044802C /* CoreData.framework */,
+				34B0998BCC3BC8ED27C33131 /* libPods-Lists.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F10E134C1EBCB3380044802C /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				F10E13521EBCB4360044802C /* FEMAttribute+listsAttributes.h */,
+				F10E13531EBCB4360044802C /* FEMAttribute+listsAttributes.m */,
+				F10E134F1EBCB36E0044802C /* SDWMappingConstants.h */,
+				F10E13501EBCB36E0044802C /* SDWMappingConstants.m */,
+				F10E13551EBCE4BC0044802C /* SDWMapper.h */,
+				F10E13561EBCE4BC0044802C /* SDWMapper.m */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
 		F119AE6B19FD4CFC0061D7DF = {
 			isa = PBXGroup;
 			children = (
@@ -469,6 +632,8 @@
 				F10AAA301A12AFD800FD4E85 /* Vendor */,
 				F1B3AB841A04E9A400927CB9 /* WebKit.framework */,
 				F119AE7519FD4CFC0061D7DF /* Products */,
+				F10E130E1EBCA2540044802C /* Frameworks */,
+				50F075A65464C71CC13032E6 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -507,10 +672,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F119AE9419FD4CFC0061D7DF /* Build configuration list for PBXNativeTarget "Lists" */;
 			buildPhases = (
+				754DD24C3127C5F561B38FAB /* [CP] Check Pods Manifest.lock */,
 				F119AE7019FD4CFC0061D7DF /* Sources */,
 				F119AE7119FD4CFC0061D7DF /* Frameworks */,
 				F119AE7219FD4CFC0061D7DF /* Resources */,
-				F1665A651A22840700A1519D /* ShellScript */,
+				6D01718323A9017A2EE54CCE /* [CP] Embed Pods Frameworks */,
+				CAD999274A7FF27C85340847 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -530,6 +697,11 @@
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = SDWR;
 				TargetAttributes = {
+					F10E13111EBCA8180044802C = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 43R88X5B35;
+						ProvisioningStyle = Automatic;
+					};
 					F119AE7319FD4CFC0061D7DF = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 43R88X5B35;
@@ -555,6 +727,7 @@
 			projectRoot = "";
 			targets = (
 				F119AE7319FD4CFC0061D7DF /* Lists */,
+				F10E13111EBCA8180044802C /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -564,6 +737,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1AF66EF1EBF12EC009F230F /* listsmodel.xcdatamodeld in Resources */,
 				F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */,
 				F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */,
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
@@ -575,7 +749,52 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		F1665A651A22840700A1519D /* ShellScript */ = {
+		6D01718323A9017A2EE54CCE /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lists/Pods-Lists-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		754DD24C3127C5F561B38FAB /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		CAD999274A7FF27C85340847 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lists/Pods-Lists-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F10E13151EBCA8260044802C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -586,7 +805,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "./Crashlytics.framework/run 7afe2a1f919e83706ec88df871b173b4faf5c453 3839a1107ea2065826d0f2cc6c1d95263dc301ca2f0209be3f35956a167721f1";
+			shellScript = "/usr/local/bin/mogenerator -m /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel/listsmodel.xcdatamodeld -O /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel --template-var arc=true --template-var modules=true";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -605,11 +824,16 @@
 				F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */,
 				F10AAA621A12AFD800FD4E85 /* SDWMainSplitController.m in Sources */,
 				F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */,
+				F10E13371EBCAFDA0044802C /* SDWMChecklistItem.m in Sources */,
+				F10E13571EBCE4BC0044802C /* SDWMapper.m in Sources */,
 				F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */,
 				F10AAA4D1A12AFD800FD4E85 /* SDWBoardsCellView.m in Sources */,
 				F10AAA691A12AFD800FD4E85 /* SDWAppSettings.m in Sources */,
 				F10AAA751A12AFD800FD4E85 /* AFURLRequestSerialization.m in Sources */,
+				F10E13361EBCAFDA0044802C /* SDWMChecklist.m in Sources */,
+				F10E13071EBC8E420044802C /* SDWDataModelManager.m in Sources */,
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
+				F10E13471EBCAFE30044802C /* _SDWMCard.m in Sources */,
 				F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */,
 				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
 				F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */,
@@ -620,43 +844,56 @@
 				F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */,
 				F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */,
 				F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */,
+				F10E13381EBCAFDA0044802C /* SDWMLabel.m in Sources */,
 				F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
 				F10AAA4F1A12AFD800FD4E85 /* SDWBoardsListRow.m in Sources */,
 				F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */,
 				F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */,
 				F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */,
+				F10E13351EBCAFDA0044802C /* SDWMCard.m in Sources */,
 				F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */,
 				F10AAA671A12AFD800FD4E85 /* NSImage+Util.m in Sources */,
+				F10E13511EBCB36E0044802C /* SDWMappingConstants.m in Sources */,
 				F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */,
 				F10AAA501A12AFD800FD4E85 /* WSCBoardsOutlineView.m in Sources */,
 				F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */,
+				F1AF66F61EBF1C21009F230F /* SDWMList.m in Sources */,
 				F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */,
 				F10AAA5F1A12AFD800FD4E85 /* SDWSourceListModel.m in Sources */,
 				F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */,
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
+				F10E13341EBCAFDA0044802C /* SDWMBoard.m in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
+				F10E134A1EBCAFE30044802C /* _SDWMLabel.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
+				F10E13541EBCB4360044802C /* FEMAttribute+listsAttributes.m in Sources */,
+				F1AF66F51EBF1C21009F230F /* _SDWMList.m in Sources */,
 				F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */,
 				F10AAA5B1A12AFD800FD4E85 /* AFRecordPathManager.m in Sources */,
+				F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */,
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
 				F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */,
 				F10AAA701A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m in Sources */,
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
+				F10E13491EBCAFE30044802C /* _SDWMChecklistItem.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
 				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
 				F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
+				F10E13481EBCAFE30044802C /* _SDWMChecklist.m in Sources */,
+				F10E13461EBCAFE30044802C /* _SDWMBoard.m in Sources */,
+				F10E13391EBCAFDA0044802C /* SDWMUser.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -674,6 +911,22 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		F10E13121EBCA8180044802C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 43R88X5B35;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		F10E13131EBCA8180044802C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 43R88X5B35;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		F119AE9219FD4CFC0061D7DF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -753,6 +1006,7 @@
 		};
 		F119AE9519FD4CFC0061D7DF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CF59BFBDD3F2246FB11E10BF /* Pods-Lists.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
@@ -767,6 +1021,7 @@
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
@@ -775,6 +1030,7 @@
 		};
 		F119AE9619FD4CFC0061D7DF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3F9F8E33CAEB544DB8F90D5B /* Pods-Lists.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
@@ -788,6 +1044,7 @@
 				);
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
@@ -797,6 +1054,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		F10E13141EBCA8180044802C /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F10E13121EBCA8180044802C /* Debug */,
+				F10E13131EBCA8180044802C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		F119AE6F19FD4CFC0061D7DF /* Build configuration list for PBXProject "Lists" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -816,6 +1082,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */,
+			);
+			currentVersion = F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */;
+			path = listsmodel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = F119AE6C19FD4CFC0061D7DF /* Project object */;
 }

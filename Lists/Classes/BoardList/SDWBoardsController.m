@@ -21,7 +21,6 @@
 #import "SDWBoardsCellView.h"
 #import "SDWProgressIndicator.h"
 #import "SDWCardViewController.h"
-
 #import "SDWTrelloStore.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
@@ -170,42 +169,63 @@
 - (void)loadBoards {
 
     [[self cardDetailsVC] setCard:nil];
+    
 
 	if (SharedSettings.userToken) {
-
-        [self.loadingProgress startAnimation];
-
         self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
-
-		[[AFRecordPathManager manager]
-		 setAFRecordMethod:@"findAll"
-		          forModel:[SDWBoard class]
-		    toConcretePath:@"members/me/boards?filter=open&fields=name,starred&lists=open"];
-
-
-		[SDWBoard findAll:^(NSArray *objects, NSError *error) {
-
-		    [self.loadingProgress stopAnimation];
-
-		    if (!error) {
-
-                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:NO];
-
-		        self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
-		        self.outlineView.delegate = self;
-
+        [self.loadingProgress startAnimation];
+        
+        [[SDWTrelloStore store] fetchAllBoardsCurrentData:^(id objects, NSError *error) {
+            
+            [self.loadingProgress stopAnimation];
+            
+            if (!error) {
+                
+                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
+                
+                self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
+                self.outlineView.delegate = self;
+                
                 if(self.crownSwitch.on) {
                     [self loadBoardsIDsWithUserCards];
                 } else {
                     self.boards = self.unfilteredBoards;
                     [self reloadDataSource];
                 }
-
-			} else {
+                
+            } else {
                 self.reloadButton.hidden = NO;
-		        CLS_LOG(@"err = %@", error.localizedDescription);
-			}
-		}];
+                //                CLS_LOG(@"err = %@", error.localizedDescription);
+            }
+            
+        } fetchedData:^(id objects, NSError *error) {
+            
+            [self.loadingProgress stopAnimation];
+            
+            if (!error) {
+                
+                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
+                
+                self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
+                self.outlineView.delegate = self;
+                
+                if(self.crownSwitch.on) {
+                    [self loadBoardsIDsWithUserCards];
+                } else {
+                    self.boards = self.unfilteredBoards;
+                    [self reloadDataSource];
+                }
+                
+            } else {
+                self.reloadButton.hidden = NO;
+                //                CLS_LOG(@"err = %@", error.localizedDescription);
+            }
+            
+        }];
+
+
+
+
 	}
     else {
 
@@ -344,15 +364,15 @@
 
     [[self cardDetailsVC] setCard:nil];
 
-	SDWBoard *board = item.representedObject;
+	SDWMList *list = item.representedObject;
 
-	if (board.isLeaf) {
+	if (list.isLeaf) {
 
-        SharedSettings.lastSelectedList = board.boardID;
+        SharedSettings.lastSelectedList = list.trelloID;
         self.lastSelectedItem = item;
 		SDWBoard *parentBoard = item.parentNode.representedObject;
 
-		[[self cardsVC] setupCardsForList:board parentList:parentBoard];
+		[[self cardsVC] setupCardsForList:list parentList:parentBoard];
 
 		return YES;
 	}
