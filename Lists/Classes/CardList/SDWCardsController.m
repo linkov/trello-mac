@@ -32,8 +32,7 @@
 
 @property (strong) NSArray *storedUsers;
 @property (strong) NSString *currentListID;
-@property (strong) NSString *parentListName;
-@property (strong) NSString *parentListID;
+@property (strong) SDWMBoard *parentBoard;
 @property (strong) NSString *listName;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSButton *addCardButton;
@@ -41,7 +40,7 @@
 @property (strong) IBOutlet NSButton *reloadButton;
 
 @property (strong) SDWSingleCardTableCellView *lastSelectedItem;
-@property (strong) SDWCard *lastSelectedCard;
+@property (strong) SDWMCard *lastSelectedCard;
 
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
@@ -111,7 +110,7 @@
 
         [[self cardDetailsVC] setCard:nil];
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        SDWCard *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",note.userInfo[@"cardID"]]].firstObject;
+        SDWMCard *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",note.userInfo[@"cardID"]]].firstObject;
         [arr removeObject:cardToRemove];
 
         self.cardsArrayController.content = arr;
@@ -193,7 +192,7 @@
 
 #pragma mark - Card actions
 
-- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
+- (void)updateCardDetails:(SDWMCard *)card localOnly:(BOOL)local {
 
     if (local) {
 
@@ -207,13 +206,12 @@
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] updateCard:card withCompletion:^(SDWMCard *updatedCard, NSError *error) {
 
         [self showCardSavingIndicator:NO];
 
         if (!error) {
 
-            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
             [[self cardDetailsVC] setCard:updatedCard];
 
             //TODO: refactor this
@@ -233,24 +231,6 @@
 
 }
 
-- (void)updateCard:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
-
-        [self showCardSavingIndicator:NO];
-
-        if (!error) {
-
-            self.lastSelectedItem.mainBox.selected = NO;
-            self.lastSelectedItem.mainBox.textField.toolTip = self.lastSelectedItem.textField.stringValue;
-            [self.lastSelectedItem setNeedsDisplay:YES];
-
-        }
-    }];
-
-}
 
 
 - (void)updateCardPosition:(SDWMCard *)card {
@@ -267,31 +247,6 @@
 
 }
 
-- (void)createCard:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] createCardWithName:card.name
-                                        listID:self.currentListID
-                                withCompletion:^(id object, NSError *error)
-    {
-
-        [self showCardSavingIndicator:NO];
-
-        if (!error) {
-
-            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
-
-            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-            [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
-            [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
-            [self reloadCollection:arr];
-            [[self cardDetailsVC] setCard:updatedCard];
-        } 
-
-    }];
-
-}
 
 - (void)dismissNewEditedCard {
     
@@ -308,15 +263,14 @@
     self.listNameLabel.hidden = YES;
 }
 
-- (void)setupCardsForList:(SDWMList *)list parentList:(SDWBoard *)parentList {
+- (void)setupCardsForList:(SDWMList *)list {
 
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.reloadButton.hidden = YES;
-    self.parentListName = parentList.name;
     self.listName = list.name;
     self.currentListID = list.trelloID;
-    self.parentListID = parentList.boardID;
+    self.parentBoard = list.board;
 
     [self reloadCards];
 }
@@ -352,7 +306,7 @@
 
 - (void)reloadCardsAndFilter:(NSArray *)content {
     NSMutableArray *filteredCards = [NSMutableArray array];
-    for (SDWCard *card in content) {
+    for (SDWMCard *card in content) {
 
         NSString *idM = [card.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self==%@",SharedSettings.userID]].firstObject;
 
@@ -506,11 +460,9 @@
     }
 
     SDWCard *newCard = [SDWCard new];
-    newCard.boardID = self.parentListID;
     newCard.name = @"";
-    newCard.isSynced = NO;
 
-    self.lastSelectedCard = newCard;
+
 
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr addObject:newCard];
@@ -536,7 +488,7 @@
 
 - (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
 
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
+    SDWMCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
     self.lastSelectedCard = selectedCard;
 }
 
@@ -578,19 +530,55 @@
     self.lastSelectedItem = cardView;
     self.lastSelectedItem.mainBox.selected = NO;
 
-    SDWCard *card = self.lastSelectedCard;
 
-    card.name = cardView.mainBox.textField.stringValue;
 
-    [[self cardDetailsVC] setCard:card];
 
-    if (card.isSynced) {
 
-        [self updateCard:card];
+    if (self.lastSelectedCard) {
+        SDWMCard *card = self.lastSelectedCard;
+        card.name = cardView.mainBox.textField.stringValue;
+        [[self cardDetailsVC] setCard:self.lastSelectedCard];
+        
+        
+        [self showCardSavingIndicator:YES];
+        
+        [[SDWTrelloStore store] updateCard:self.lastSelectedCard withCompletion:^(id object, NSError *error) {
+            
+            [self showCardSavingIndicator:NO];
+            
+            if (!error) {
+                
+                self.lastSelectedItem.mainBox.selected = NO;
+                self.lastSelectedItem.mainBox.textField.toolTip = self.lastSelectedItem.textField.stringValue;
+                [self.lastSelectedItem setNeedsDisplay:YES];
+                
+            }
+        }];
+
+
     }
     else {
 
-        [self createCard:card];
+        [self showCardSavingIndicator:YES];
+        
+        [[SDWTrelloStore store] createCardWithName:cardView.mainBox.textField.stringValue
+                                            listID:self.currentListID
+                                    withCompletion:^(SDWMCard *updatedCard, NSError *error)
+         {
+             
+             [self showCardSavingIndicator:NO];
+             
+             if (!error) {
+                 
+                 
+                 NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+                 [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
+                 [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
+                 [self reloadCollection:arr];
+                 [[self cardDetailsVC] setCard:updatedCard];
+             } 
+             
+         }];
     }
 }
 
@@ -614,7 +602,7 @@
 
     [[self cardDetailsVC] setCard:nil];
 
-    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    SDWMCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObject:cardToDelete];
     self.cardsArrayController.content = arr;
@@ -638,7 +626,7 @@
 
     [[self cardDetailsVC] setCard:nil];
 
-    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    SDWMCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObject:cardToDelete];
     self.cardsArrayController.content = arr;
@@ -687,7 +675,7 @@
 
     }
 
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
+    SDWMCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
     self.lastSelectedCard = selectedCard;
     [[self cardDetailsVC] setCard:selectedCard];
 
@@ -880,12 +868,7 @@
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
 
-//    CLS_LOG(@"--------------%@-------------\n",title);
 
-    for (SDWCard *card in self.cardsArrayController.content) {
-
-//        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
-    }
 }
 
 
@@ -995,7 +978,7 @@
 
 - (CGFloat)widthForMembersCount:(NSUInteger)count {
 
-    CGFloat width;
+    CGFloat width = 297;
     if (count == 0) {
 
         width = 375;

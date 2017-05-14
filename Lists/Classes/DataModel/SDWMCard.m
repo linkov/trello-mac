@@ -14,7 +14,7 @@
 @implementation SDWMCard
 
 - (NSArray *)members {
-    return nil;
+    return [NSArray array];
 }
 
 - (NSArray *)displayLabels {

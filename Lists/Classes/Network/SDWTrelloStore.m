@@ -107,7 +107,14 @@
                                    success:^(NSURLSessionDataTask *task, id responseObject)
      {
 
-         if(block) block(responseObject,nil);
+         [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+             
+             NSArray *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+
+             [self saveContext];
+             SDWPerformBlock(block,mappedObject,nil);
+             
+         }];
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -164,7 +171,7 @@
 
 }
 
-- (void)updateCard:(SDWCard *)card
+- (void)updateCard:(SDWMCard *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.cardID];
@@ -176,7 +183,14 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject)
      {
 
-         if(block) block(responseObject,nil);
+         [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+             
+             NSArray *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+             
+             [self saveContext];
+             SDWPerformBlock(block,mappedObject,nil);
+             
+         }];
          
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -193,6 +207,10 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/closed?",cardID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        SDWMCard *card = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+        [self.dataModelManager.managedObjectContext deleteObject:card];
+        [self saveContext];
 
         if(block) block(responseObject,nil);
 
@@ -206,11 +224,17 @@
 
 - (void)deleteCardID:(NSString *)cardID
       withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
 
+    
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",cardID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
-
+        
+        SDWMCard *card = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+        [self.dataModelManager.managedObjectContext deleteObject:card];
+        [self saveContext];
+        
         if(block) block(responseObject,nil);
 
         
@@ -309,10 +333,8 @@
         [self.dataModelManager fetchAllEntitiesForName:[SDWMBoard entityName] withPredicate:nil inContext:self.dataModelManager.managedObjectContext withCompletion:^(id fetchedEntities, NSError *error) {
             if (error) {
                 SDWPerformBlock(currentBlock,nil,error);
-//                CNIPerformBlockOnMainThread(dataHandler, nil, error);
             } else {
                 SDWPerformBlock(currentBlock,fetchedEntities,nil);
-//                CNIPerformBlockOnMainThread(dataHandler, fetchedEntities, nil);
             }
         }];
     }];
@@ -322,7 +344,6 @@
                                    success:^(NSURLSessionDataTask *task, id responseObject)
      {
          
-//         if(block) block(responseObject,nil);
          
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
@@ -330,7 +351,6 @@
              [self saveContext];
              SDWPerformBlock(fetchedBlock,mappedObjects,nil);
              
-//             CNIPerformBlock(updatedDataHandler, mappedTransactions, nil);
          }];
          
          
@@ -523,30 +543,6 @@
     
 }
 
-- (void)fetchChecklistsForCardID:(NSString *)cardID
-                      completion:(SDWTrelloStoreCompletionBlock)block {
-
-
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWChecklist class]
-     toConcretePath:[NSString stringWithFormat:@"cards/%@/checklists?",cardID]];
-
-
-    [SDWChecklist findAll:^(NSArray *objects, NSError *error) {
-
-        if (!error) {
-
-            if(block) block(objects,nil);
-
-        } else {
-            
-            if(block) block(nil,error);
-            [self handleError:error];
-        }
-    }];
-
-}
 
 - (void)moveCheckItem:(SDWMChecklistItem *)item
              fromList:(NSString *)initialListID

@@ -89,10 +89,9 @@
 
     }
 
-    SDWBoard *board = self.lastSelectedItem.representedObject;
-    SDWBoard *parentBoard =self.lastSelectedItem.parentNode.representedObject;
+    SDWMList *list = self.lastSelectedItem.representedObject;
 
-    [[self cardsVC] setupCardsForList:board parentList:parentBoard];
+    [[self cardsVC] setupCardsForList:list];
 
 }
 
@@ -370,9 +369,8 @@
 
         SharedSettings.lastSelectedList = list.trelloID;
         self.lastSelectedItem = item;
-		SDWBoard *parentBoard = item.parentNode.representedObject;
 
-		[[self cardsVC] setupCardsForList:list parentList:parentBoard];
+		[[self cardsVC] setupCardsForList:list];
 
 		return YES;
 	}

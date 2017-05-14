@@ -334,6 +334,7 @@
 		F10AA9E71A12AFD800FD4E85 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				F1621D8C1EC8549B002DEE68 /* DisplayModel */,
 				F10E134C1EBCB3380044802C /* Mapping */,
 				F10E130C1EBCA1040044802C /* Protocols */,
 				F10E13081EBC920A0044802C /* DataModel */,
@@ -654,6 +655,13 @@
 				F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */,
 			);
 			path = AAPLCheckBox;
+			sourceTree = "<group>";
+		};
+		F1621D8C1EC8549B002DEE68 /* DisplayModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = DisplayModel;
 			sourceTree = "<group>";
 		};
 		F1918AA81A3F819900CD22CE /* JWCTableView */ = {

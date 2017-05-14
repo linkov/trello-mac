@@ -50,7 +50,7 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
         completion:(SDWTrelloStoreCompletionBlock)block;
 
 
-- (void)updateCard:(SDWCard *)card
+- (void)updateCard:(SDWMCard *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 - (void)deleteCardID:(NSString *)cardID

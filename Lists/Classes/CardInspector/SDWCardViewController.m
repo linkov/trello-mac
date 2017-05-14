@@ -124,7 +124,7 @@
 
         self.card.dueDate = note.userInfo[@"date"];
         [self updateDueDateViewWithDate:self.card.dueDate];
-//        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
         
     }];
 
@@ -349,7 +349,7 @@
 
         self.card.name = self.cardNameTextView.string;
         self.card.cardDescription = self.cardDescriptionTextView.string;
-//        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
+        [[self cardsVC] updateCardDetails:self.card localOnly:NO];
 
     } else {
 
