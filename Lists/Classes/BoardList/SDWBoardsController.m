@@ -6,41 +6,57 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 
-#import "NSColor+Util.h"
-#import "SDWAppSettings.h"
-#import "SDWMainSplitController.h"
-#import "SDWBoard.h"
+
+
 #import "SDWBoardsController.h"
+
+
+/*-------View Controllers-------*/
+
 #import "SDWCardsController.h"
-#import "SDWBoardsListRow.h"
-#import "AFTrelloAPIClient.h"
+#import "SDWMainSplitController.h"
+#import "SDWCardViewController.h"
 #import "SDWLoginVC.h"
+
+/*-------Frameworks-------*/
 #import <QuartzCore/QuartzCore.h>
+
+/*-------Views-------*/
 #import "ITSwitch.h"
 #import "WSCBoardsOutlineView.h"
 #import "SDWBoardsCellView.h"
 #import "SDWProgressIndicator.h"
-#import "SDWCardViewController.h"
+#import "SDWBoardsListRow.h"
+
+/*-------Helpers & Managers-------*/
 #import "SDWTrelloStore.h"
+#import "SDWAppSettings.h"
+#import "NSColor+Util.h"
+#import "AFTrelloAPIClient.h"
+
+/*-------Models-------*/
+#import "SDWBoardDisplayItem.h"
+#import "SDWListDisplayItem.h"
 
 @interface SDWBoardsController () <NSOutlineViewDelegate,NSOutlineViewDataSource,SDWBoardsListRowDelegate,SDWBoardsListOutlineViewDelegate,NSTextFieldDelegate>
-@property (strong) NSArray *boards;
-//@property (strong) NSArray *crownBoards;
-@property (strong) NSArray *unfilteredBoards;
+@property (strong) NSArray<SDWBoardDisplayItem *> *boards;
+
+
+@property (strong) NSArray<SDWBoardDisplayItem *> *unfilteredBoards;
 @property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
 
 @property (strong) NSTreeNode *lastSelectedItem;
 @property (strong) SDWBoardsListRow *prevSelectedRow;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *crownImageView;
-@property (strong) SDWBoard *boardWithDrop;
-@property (strong) SDWBoard *boardWithDropParent;
+@property (strong) SDWBoardDisplayItem *boardWithDrop;
+@property (strong) SDWBoardDisplayItem *boardWithDropParent;
 @property (strong) IBOutlet NSButton *logoutButton;
 @property (strong) IBOutlet ITSwitch *crownSwitch;
 @property (strong) IBOutlet NSScrollView *mainScroll;
 @property (strong) IBOutlet NSButton *reloadButton;
 
-@property (strong) SDWBoard *parentBoardForEditedList;
+@property (strong) SDWBoardDisplayItem *parentBoardForEditedList;
 @property (strong) NSString *editedListName;
 @property NSUInteger editedListPositon;
 @property NSUInteger editedRow;
@@ -95,32 +111,7 @@
 
 }
 
-- (NSArray *)filteredBoardsForIDs:(NSArray *)ids listIDs:(NSArray *)lids {
 
-    NSMutableArray *boards = [NSMutableArray array];
-
-    for (SDWBoard *board in self.unfilteredBoards) {
-
-        NSString *boardID = [ids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",board.boardID]].firstObject;
-
-        if (boardID) {
-            NSMutableArray *lists = [NSMutableArray array];
-            for (SDWBoard *list in board.children) {
-
-                NSString *listID = [lids filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self == %@",list.boardID]].firstObject;
-
-                if (listID) {
-                    [lists addObject:list];
-                }
-
-            }
-            board.children = lists;
-            [boards addObject:board];
-        }
-        
-    }
-    return boards;
-}
 
 - (NSColor *)textColor {
 
@@ -169,67 +160,34 @@
 
     [[self cardDetailsVC] setCard:nil];
     
-
-	if (SharedSettings.userToken) {
-        self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
-        [self.loadingProgress startAnimation];
-        
-        [[SDWTrelloStore store] fetchAllBoardsCurrentData:^(id objects, NSError *error) {
-            
-            [self.loadingProgress stopAnimation];
-            
-            if (!error) {
-                
-                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
-                
-                self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
-                self.outlineView.delegate = self;
-                
-                if(self.crownSwitch.on) {
-                    [self loadBoardsIDsWithUserCards];
-                } else {
-                    self.boards = self.unfilteredBoards;
-                    [self reloadDataSource];
-                }
-                
-            } else {
-                self.reloadButton.hidden = NO;
-                //                CLS_LOG(@"err = %@", error.localizedDescription);
-            }
-            
-        } fetchedData:^(id objects, NSError *error) {
-            
-            [self.loadingProgress stopAnimation];
-            
-            if (!error) {
-                
-                NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
-                
-                self.unfilteredBoards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
-                self.outlineView.delegate = self;
-                
-                if(self.crownSwitch.on) {
-                    [self loadBoardsIDsWithUserCards];
-                } else {
-                    self.boards = self.unfilteredBoards;
-                    [self reloadDataSource];
-                }
-                
-            } else {
-                self.reloadButton.hidden = NO;
-                //                CLS_LOG(@"err = %@", error.localizedDescription);
-            }
-            
-        }];
-
-
-
-
-	}
-    else {
-
+    if (!SharedSettings.userToken) {
         self.logoutButton.image = [NSImage imageNamed:@"logout-small-flip"];
+        return;
     }
+
+    self.logoutButton.image = [NSImage imageNamed:@"logout-small"];
+    [self.loadingProgress startAnimation];
+    
+    SDWTrelloStoreCompletionBlock block =^(id objects, NSError *error) {
+        
+        [self.loadingProgress stopAnimation];
+        
+        if (!error) {
+            
+            self.outlineView.delegate = self;
+            NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
+            self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
+            [self reloadDataSource];
+           
+            
+            
+        } else {
+            self.reloadButton.hidden = NO;
+        }
+    };
+    
+    [[SDWTrelloStore store] fetchAllBoardsCurrentData:block fetchedData:block crownFiltered:self.crownSwitch.on];
+
 }
 
 - (void)reloadDataSource {
@@ -244,20 +202,6 @@
 
 }
 
-- (void)loadBoardsIDsWithUserCards {
-
-    [[SDWTrelloStore store] fetchAllAssigneesWithCompletion:^(NSDictionary *object, NSError *error) {
-
-        if (!error) {
-
-            self.boards = [self filteredBoardsForIDs:object[@"crownBoardIDs"] listIDs:object[@"crownListIDs"]];
-            [self reloadDataSource];
-        } else {
-            [self.crownSwitch setOn:NO];
-        }
-
-    }];
-}
 
 
 
@@ -281,8 +225,8 @@
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
 
     [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
-                              toListID:self.boardWithDrop.boardID
-                               boardID:self.boardWithDropParent.boardID];
+                              toListID:self.boardWithDrop.trelloID
+                               boardID:self.boardWithDropParent.trelloID];
 }
 
 
@@ -312,9 +256,9 @@
 }
 
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow {
-    SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+    SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:boardRow] representedObject];
 
-    [[SDWTrelloStore store] deleteBoardID:board.boardID completion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] deleteBoardID:board.trelloID completion:^(id object, NSError *error) {
 
         [self reloadBoards:nil];
     }];
@@ -323,9 +267,9 @@
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
 
-    SDWBoard *board =[[self.outlineView itemAtRow:listRow] representedObject];
+    SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:listRow] representedObject];
 
-    [[SDWTrelloStore store] deleteListID:board.boardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] deleteListID:board.trelloID withCompletion:^(id object, NSError *error) {
 
         [self reloadBoards:nil];
     }];
@@ -348,7 +292,7 @@
 
 - (void)outlineView:(NSOutlineView *)outlineView didAddRowView:(NSTableRowView *)rowView forRow:(NSInteger)row {
 
-    SDWBoard *board =[[self.outlineView itemAtRow:row] representedObject];
+    SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:row] representedObject];
     SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
     boardNameRow.delegate = self;
 
@@ -363,7 +307,7 @@
 
     [[self cardDetailsVC] setCard:nil];
 
-	SDWMList *list = item.representedObject;
+	SDWListDisplayItem *list = item.representedObject;
 
 	if (list.isLeaf) {
 
@@ -398,20 +342,18 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldExpandItem:(id)item {
 
-    SDWBoard *board  = [item representedObject];
+    SDWBoardDisplayItem *board  = [item representedObject];
 
     if (self.isAccessingExpandViaDataReload) {
 
-        if ([SharedSettings.collapsedBoardsIDs containsObject:board.boardID]) {
+        if ([SharedSettings.collapsedBoardsIDs containsObject:board.trelloID]) {
             return NO;
         }
 
     } else {
 
-        SDWBoard *board  = [item representedObject];
-
         NSMutableSet *set = [NSMutableSet setWithSet:SharedSettings.collapsedBoardsIDs];
-        [set removeObject:board.boardID];
+        [set removeObject:board.trelloID];
         SharedSettings.collapsedBoardsIDs = [NSSet setWithSet:set];
 
     }
@@ -426,10 +368,10 @@
         [[self cardsVC] clearCards];
     }
 
-    SDWBoard *board  = [item representedObject];
+    SDWBoardDisplayItem *board  = [item representedObject];
     NSMutableSet *set = [NSMutableSet setWithSet:SharedSettings.collapsedBoardsIDs];
 
-    [set addObject:board.boardID];
+    [set addObject:board.trelloID];
 
     SharedSettings.collapsedBoardsIDs = [NSSet setWithSet:set];
 
@@ -454,7 +396,7 @@
 
     NSDictionary *cardDict = [NSKeyedUnarchiver unarchiveObjectWithData:indexData];
 
-    if ([cardDict[@"boardID"] isEqualToString:self.boardWithDrop.boardID]) {
+    if ([cardDict[@"boardID"] isEqualToString:self.boardWithDrop.trelloID]) {
         return NO;
     }
     else  {

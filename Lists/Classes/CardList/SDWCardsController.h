@@ -5,14 +5,15 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-@class SDWBoard,SDWCard,SDWMList,SDWMCard;
+@class SDWBoard,SDWCard,SDWMList,SDWMCard,SDWListDisplayItem;
 #import <Cocoa/Cocoa.h>
 
 @interface SDWCardsController : NSViewController
 
 @property (strong) IBOutlet NSImageView *onboardingImage;
 
-- (void)setupCardsForList:(SDWMList *)list;
+
+- (void)setupCardsForList:(SDWListDisplayItem *)list;
 - (void)reloadCards;
 - (void)clearCards;
 

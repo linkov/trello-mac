@@ -28,17 +28,3 @@
 
 
 @end
-
-
-
-@implementation SDWMList (TreeView)
-
-- (BOOL)isLeaf {
-    return YES;
-}
-
-- (NSArray *)children {
-    return nil;
-}
-
-@end

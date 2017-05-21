@@ -8,7 +8,7 @@
 
 #import "SDWMapper.h"
 #import <FastEasyMapping/FastEasyMapping.h>
-
+#import "SDWMCard.h"
 
 @implementation SDWMapper
 
@@ -20,6 +20,12 @@
 //}
 
 + (NSArray *)ez_arrayOfObjectsOfClass:(Class<SDWObjectMapping>)objectClass fromJSON:(NSArray *)json context:(NSManagedObjectContext *)context {
+    
+    
+
+        
+    
+    
     return [FEMDeserializer collectionFromRepresentation:json mapping:[objectClass defaultMapping] context:context];
 }
 

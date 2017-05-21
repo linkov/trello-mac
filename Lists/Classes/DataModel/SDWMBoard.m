@@ -33,17 +33,3 @@
 
 
 @end
-
-
-@implementation SDWMBoard (TreeView)
-
-- (BOOL)isLeaf {
-    return NO;
-}
-
-- (NSArray *)children {
-    NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
-    return  [self.lists.allObjects sortedArrayUsingDescriptors:@[sortByPos]];
-}
-
-@end

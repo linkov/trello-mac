@@ -94,6 +94,13 @@
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
 		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
+		F18B583E1ECE0D6700884CDC /* SDWCardDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */; };
+		F18B58411ECE0D7A00884CDC /* SDWBoardDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58401ECE0D7A00884CDC /* SDWBoardDisplayItem.m */; };
+		F18B58441ECE0D9200884CDC /* SDWLabelDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58431ECE0D9200884CDC /* SDWLabelDisplayItem.m */; };
+		F18B58471ECE0DE700884CDC /* SDWListDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58461ECE0DE700884CDC /* SDWListDisplayItem.m */; };
+		F18B584A1ECE0E4600884CDC /* SDWUserDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */; };
+		F18B584D1ECE0E8100884CDC /* SDWChecklistDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */; };
+		F18B58501ECE0E9C00884CDC /* SDWChecklistItemItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
@@ -260,6 +267,20 @@
 		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
 		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
 		F18089B91A280B7000A701B7 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
+		F18B583C1ECE0D6700884CDC /* SDWCardDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDisplayItem.h; sourceTree = "<group>"; };
+		F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDisplayItem.m; sourceTree = "<group>"; };
+		F18B583F1ECE0D7A00884CDC /* SDWBoardDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoardDisplayItem.h; sourceTree = "<group>"; };
+		F18B58401ECE0D7A00884CDC /* SDWBoardDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoardDisplayItem.m; sourceTree = "<group>"; };
+		F18B58421ECE0D9200884CDC /* SDWLabelDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabelDisplayItem.h; sourceTree = "<group>"; };
+		F18B58431ECE0D9200884CDC /* SDWLabelDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabelDisplayItem.m; sourceTree = "<group>"; };
+		F18B58451ECE0DE700884CDC /* SDWListDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWListDisplayItem.h; sourceTree = "<group>"; };
+		F18B58461ECE0DE700884CDC /* SDWListDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWListDisplayItem.m; sourceTree = "<group>"; };
+		F18B58481ECE0E4600884CDC /* SDWUserDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUserDisplayItem.h; sourceTree = "<group>"; };
+		F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUserDisplayItem.m; sourceTree = "<group>"; };
+		F18B584B1ECE0E8100884CDC /* SDWChecklistDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistDisplayItem.h; sourceTree = "<group>"; };
+		F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistDisplayItem.m; sourceTree = "<group>"; };
+		F18B584E1ECE0E9C00884CDC /* SDWChecklistItemItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemItem.h; sourceTree = "<group>"; };
+		F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemItem.m; sourceTree = "<group>"; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
 		F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardCalendarVC.h; sourceTree = "<group>"; };
@@ -660,6 +681,20 @@
 		F1621D8C1EC8549B002DEE68 /* DisplayModel */ = {
 			isa = PBXGroup;
 			children = (
+				F18B583C1ECE0D6700884CDC /* SDWCardDisplayItem.h */,
+				F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */,
+				F18B583F1ECE0D7A00884CDC /* SDWBoardDisplayItem.h */,
+				F18B58401ECE0D7A00884CDC /* SDWBoardDisplayItem.m */,
+				F18B58421ECE0D9200884CDC /* SDWLabelDisplayItem.h */,
+				F18B58431ECE0D9200884CDC /* SDWLabelDisplayItem.m */,
+				F18B58451ECE0DE700884CDC /* SDWListDisplayItem.h */,
+				F18B58461ECE0DE700884CDC /* SDWListDisplayItem.m */,
+				F18B58481ECE0E4600884CDC /* SDWUserDisplayItem.h */,
+				F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */,
+				F18B584B1ECE0E8100884CDC /* SDWChecklistDisplayItem.h */,
+				F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */,
+				F18B584E1ECE0E9C00884CDC /* SDWChecklistItemItem.h */,
+				F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */,
 			);
 			path = DisplayModel;
 			sourceTree = "<group>";
@@ -840,9 +875,11 @@
 				F10AAA751A12AFD800FD4E85 /* AFURLRequestSerialization.m in Sources */,
 				F10E13361EBCAFDA0044802C /* SDWMChecklist.m in Sources */,
 				F10E13071EBC8E420044802C /* SDWDataModelManager.m in Sources */,
+				F18B583E1ECE0D6700884CDC /* SDWCardDisplayItem.m in Sources */,
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
 				F10E13471EBCAFE30044802C /* _SDWMCard.m in Sources */,
 				F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */,
+				F18B58471ECE0DE700884CDC /* SDWListDisplayItem.m in Sources */,
 				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
 				F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */,
 				F10AAA731A12AFD800FD4E85 /* AFSecurityPolicy.m in Sources */,
@@ -882,6 +919,7 @@
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
 				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
+				F18B58441ECE0D9200884CDC /* SDWLabelDisplayItem.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
@@ -891,13 +929,17 @@
 				F10AAA5B1A12AFD800FD4E85 /* AFRecordPathManager.m in Sources */,
 				F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */,
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
+				F18B58501ECE0E9C00884CDC /* SDWChecklistItemItem.m in Sources */,
 				F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */,
 				F10AAA701A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m in Sources */,
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
 				F10E13491EBCAFE30044802C /* _SDWMChecklistItem.m in Sources */,
+				F18B584A1ECE0E4600884CDC /* SDWUserDisplayItem.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
 				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
+				F18B584D1ECE0E8100884CDC /* SDWChecklistDisplayItem.m in Sources */,
 				F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */,
+				F18B58411ECE0D7A00884CDC /* SDWBoardDisplayItem.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
 				F10E13481EBCAFE30044802C /* _SDWMChecklist.m in Sources */,
 				F10E13461EBCAFE30044802C /* _SDWMBoard.m in Sources */,
