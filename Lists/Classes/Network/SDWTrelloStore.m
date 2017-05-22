@@ -9,7 +9,7 @@
 
 #import "SDWTrelloStore.h"
 #import "AFTrelloAPIClient.h"
-#import <Crashlytics/Crashlytics.h>
+
 #import "SDWAppSettings.h"
 #import "SDWChecklist.h"
 #import "SDWMapper.h"
@@ -19,17 +19,24 @@
 #import "SDWListDisplayItem.h"
 #import "SDWUserDisplayItem.h"
 #import "SDWCardDisplayItem.h"
-
+#import "SDWChecklistItemDisplayItem.h"
+#import "SDWChecklistDisplayItem.h"
 
 #import "SDWMCard.h"
 #import "SDWMList.h"
 #import "SDWMBoard.h"
 #import "SDWMChecklistItem.h"
 #import "SDWMUser.h"
+#import "SDWMLabel.h"
+#import "SDWActivityDisplayItem.h"
+#import "SDWMActivity.h"
+
+#import "SDWAppSettings.h"
 
 @interface SDWTrelloStore ()
 
 @property (nonatomic, strong) SDWDataModelManager *dataModelManager;
+@property (strong) NSArray *crownCardIDs;
 
 @end
 
@@ -48,14 +55,18 @@
             switch (status) {
                 case AFNetworkReachabilityStatusReachableViaWWAN:
                 case AFNetworkReachabilityStatusReachableViaWiFi: {
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveNetworkOnNotification object:nil userInfo:nil];
                     NSOperationQueue *operationQueue = [AFTrelloAPIClient sharedClient].operationQueue;
+                    [SharedSettings setOffline:NO];
                     [operationQueue setSuspended:NO];
                     NSLog(@"WIFI");
                     break;
                 }
                 case AFNetworkReachabilityStatusNotReachable:
                  {
-                    NSOperationQueue *operationQueue = [AFTrelloAPIClient sharedClient].operationQueue;
+                    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidReceiveNetworkOffNotification object:nil userInfo:nil];
+                     NSOperationQueue *operationQueue = [AFTrelloAPIClient sharedClient].operationQueue;
+                     [SharedSettings setOffline:YES];
                     [operationQueue setSuspended:YES];
                     NSLog(@"oflline, baby");
                     break;
@@ -114,11 +125,47 @@
     
 }
 
-+ (NSArray <SDWCardDisplayItem *>*)displayCardsfromCards:(NSArray<SDWMCard *> *)modelUsers {
+- (NSArray <SDWCardDisplayItem *>*)displayCardsfromCards:(NSArray<SDWMCard *> *)modelUsers crownFiltered:(BOOL)crownFiltered {
     
     NSMutableArray  <SDWCardDisplayItem *>*arr = [NSMutableArray arrayWithCapacity:modelUsers.count];
     for (SDWMCard *model in modelUsers) {
-        SDWCardDisplayItem *item = [[SDWCardDisplayItem alloc]initWithModel:model];
+        
+         SDWCardDisplayItem *item = [[SDWCardDisplayItem alloc]initWithModel:model];
+        if (crownFiltered) {
+            
+            if([self.crownCardIDs containsObject:item.trelloID]) {
+                [arr addObject:item];
+            }
+            
+        } else {
+            [arr addObject:item];
+        }
+       
+        
+    }
+    
+    return [arr copy];
+    
+}
+
++ (NSArray <SDWChecklistDisplayItem *>*)displayChecklistsfromChecklists:(NSArray<SDWMChecklist *> *)models {
+    
+    NSMutableArray  <SDWChecklistDisplayItem *>*arr = [NSMutableArray arrayWithCapacity:models.count];
+    for (SDWMChecklist *model in models) {
+        SDWChecklistDisplayItem *item = [[SDWChecklistDisplayItem alloc]initWithModel:model];
+        [arr addObject:item];
+    }
+    
+    return [arr copy];
+    
+}
+
+
++ (NSArray <SDWActivityDisplayItem *>*)displayActivitiesFromActivities:(NSArray<SDWMActivity *> *)models {
+    
+    NSMutableArray  <SDWActivityDisplayItem *>*arr = [NSMutableArray arrayWithCapacity:models.count];
+    for (SDWMActivity *model in models) {
+        SDWActivityDisplayItem *item = [[SDWActivityDisplayItem alloc]initWithModel:model];
         [arr addObject:item];
     }
     
@@ -140,6 +187,7 @@
     [[AFTrelloAPIClient sharedClient] GET:@"members/me?fields=none&cards=all&card_fields=idBoard,idList" parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
 
         SharedSettings.userID = responseObject[@"id"];
+        self.crownCardIDs = [responseObject[@"cards"] valueForKeyPath:@"id"];
         NSArray *crownBoardIDs = [responseObject[@"cards"] valueForKeyPath:@"idBoard"];
         NSArray *crownListIDs = [responseObject[@"cards"] valueForKeyPath:@"idList"];
         
@@ -209,8 +257,6 @@
     
     SDWMList *list = [self.dataModelManager fetchEntityForName:SDWMList.entityName withTrelloID:listID inContext:self.dataModelManager.managedObjectContext];
     
-    SDWMBoard *board = [self.dataModelManager fetchEntityForName:SDWMBoard.entityName withTrelloID:boardID inContext:self.dataModelManager.managedObjectContext];
-    card.board = board;
     card.list = list;
     
     
@@ -335,22 +381,31 @@
     }];
 }
 
-- (void)updateLabelsForCardID:(NSString *)cardID
-                       colors:(NSString *)colors
-                   completion:(SDWTrelloStoreCompletionBlock)block {
+
+
+- (void)addLabelForCardID:(NSString *)cardID
+                       color:(NSString *)color
+                  completion:(SDWTrelloStoreCompletionBlock)block {
     
-
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",cardID];
-
-    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":colors} success:^(NSURLSessionDataTask *task, id responseObject) {
-
+    
+    [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{@"color":color} success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        SDWMLabel *label = [self.dataModelManager fetchEntityForName:SDWMLabel.entityName withPredicate:[NSPredicate predicateWithFormat:@"color == %@",color] inContext:self.dataModelManager.managedObjectContext];
+        SDWMCard *card = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+        
+        
+        [card addLabelsObject:label];
+        [self saveContext];
+        
         SDWPerformBlock(block,responseObject,nil);
-
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
+        
         if(block) block(nil,error);
         [self handleError:error];
     }];
+    
 }
 
 - (void)removeLabelForCardID:(NSString *)cardID
@@ -360,6 +415,13 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels/%@?",cardID,color];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        SDWMLabel *label = [self.dataModelManager fetchEntityForName:SDWMLabel.entityName withPredicate:[NSPredicate predicateWithFormat:@"color == %@",color] inContext:self.dataModelManager.managedObjectContext];
+         SDWMCard *card = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+        
+        
+        [card removeLabelsObject:label];
+        [self saveContext];
 
         SDWPerformBlock(block,responseObject,nil);
 
@@ -372,18 +434,18 @@
 }
 
 
-
 #pragma mark - Boards ops
 
 - (void)fetchAllCardsForListID:(NSString *)listID
                    CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
-                   FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock {
+                   FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
+                 crownFiltered:(BOOL)crownFiltered {
     
     
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
         SDWMList *list = [self.dataModelManager fetchEntityForName:[SDWMList entityName] withTrelloID:listID inContext:self.dataModelManager.managedObjectContext];
-        SDWPerformBlock(currentBlock,[SDWTrelloStore displayCardsfromCards:list.cards.allObjects],nil);
+        SDWPerformBlock(currentBlock,[self displayCardsfromCards:list.cards.allObjects crownFiltered:crownFiltered],nil);
 
     }];
     
@@ -398,12 +460,8 @@
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
              NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
-             SDWMList *list = [self.dataModelManager fetchEntityForName:[SDWMList entityName] withTrelloID:listID inContext:self.dataModelManager.managedObjectContext];
-             SDWMBoard *board = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withTrelloID:list.board.trelloID inContext:self.dataModelManager.managedObjectContext];
-             board.cards = [NSSet setWithArray:mappedObjects];
-             list.cards = [NSSet setWithArray:mappedObjects];
              [self saveContext];
-             SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayCardsfromCards:mappedObjects],nil);
+             SDWPerformBlock(fetchedBlock,[self displayCardsfromCards:mappedObjects crownFiltered:crownFiltered],nil);
              
          }];
          
@@ -413,6 +471,46 @@
          [self handleError:error];
      }];
 }
+
+- (void)fetchAllActivitiesForCardID:(NSString *)cardID
+                        currentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                        fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock {
+    
+    
+    [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+        
+        SDWMCard *card = [self.dataModelManager fetchEntityForName:[SDWMCard entityName] withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+
+        SDWPerformBlock(currentBlock,[SDWTrelloStore displayActivitiesFromActivities:card.activities.allObjects],nil);
+        
+    }];
+    
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/actions?filter=commentCard",cardID];
+    
+    [[AFTrelloAPIClient sharedClient] GET:urlString
+                               parameters:nil
+                                  success:^(NSURLSessionDataTask *task, id responseObject)
+     {
+         
+         
+         [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+             
+             NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMActivity class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+             SDWMCard *card = [self.dataModelManager fetchEntityForName:[SDWMCard entityName] withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
+             [card addActivities:[NSSet setWithArray:mappedObjects]];
+              [self saveContext];
+             SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayActivitiesFromActivities:card.activities.allObjects],nil);
+             
+         }];
+         
+         
+     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+         SDWPerformBlock(fetchedBlock,nil,error);
+         [self handleError:error];
+     }];
+    
+}
+
 
 - (void)fetchUsersForBoardID:(NSString *)boardID
                  currentData:(SDWTrelloStoreCompletionBlock)currentBlock
@@ -452,16 +550,18 @@
 - (void)fetchAllBoardsCurrentData:(SDWTrelloStoreCompletionBlock)currentBlock fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
                     crownFiltered:(BOOL)shouldCrownFilter {
     
-    
-    [self.dataModelManager.managedObjectContext performBlockAndWait:^{
-        [self.dataModelManager fetchAllEntitiesForName:[SDWMBoard entityName] withPredicate:nil inContext:self.dataModelManager.managedObjectContext withCompletion:^(id fetchedEntities, NSError *error) {
-            if (error) {
-                SDWPerformBlock(currentBlock,nil,error);
-            } else {
-                SDWPerformBlock(currentBlock,[SDWTrelloStore displayBoardsFromBoards:fetchedEntities],nil);
-            }
+    if (!shouldCrownFilter) {
+        [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+            [self.dataModelManager fetchAllEntitiesForName:[SDWMBoard entityName] withPredicate:nil inContext:self.dataModelManager.managedObjectContext withCompletion:^(id fetchedEntities, NSError *error) {
+                if (error) {
+                    SDWPerformBlock(currentBlock,nil,error);
+                } else {
+                    SDWPerformBlock(currentBlock,[SDWTrelloStore displayBoardsFromBoards:fetchedEntities],nil);
+                }
+            }];
         }];
-    }];
+    }
+
     
     [[AFTrelloAPIClient sharedClient] GET:@"members/me/boards?filter=open&fields=name,starred&lists=open"
                                 parameters:nil
@@ -635,25 +735,27 @@
 #pragma mark - Checklists ops
 
 
-- (void)createChecklistWithName:(NSString *)name
-                         cardID:(NSString *)cardID
-                     completion:(SDWTrelloStoreCompletionBlock)block {
-
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklists?",cardID];
-
-    [[AFTrelloAPIClient sharedClient] POST:urlString
-                                parameters:@{@"name":name}
-                                   success:^(NSURLSessionDataTask *task, id responseObject)
-     {
-
-         if(block) block(responseObject,nil);
-
-     } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-         if(block) block(nil,error);
-         [self handleError:error];
-     }];
-}
+//- (void)createChecklistWithName:(NSString *)name
+//                         cardID:(NSString *)cardID
+//                     completion:(SDWTrelloStoreCompletionBlock)block {
+//
+//    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklists?",cardID];
+//
+//    [[AFTrelloAPIClient sharedClient] POST:urlString
+//                                parameters:@{@"name":name}
+//                                   success:^(NSURLSessionDataTask *task, id responseObject)
+//     {
+//
+//         SDWMChecklist *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMChecklist class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+//         
+//         [self saveContext];
+//         SDWPerformBlock(block,[[SDWChecklistDisplayItem alloc]initWithModel:mappedObject],nil);
+//
+//     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//         SDWPerformBlock(block,nil,error);
+//         [self handleError:error];
+//     }];
+//}
 
 - (void)fetchAllChecklistsForCardID:(NSString *)cardID
                         CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
@@ -663,7 +765,7 @@
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
         SDWMCard *card = [self.dataModelManager fetchEntityForName:[SDWMCard entityName] withTrelloID:cardID inContext:self.dataModelManager.managedObjectContext];
-        SDWPerformBlock(currentBlock,card.checklists.allObjects,nil);
+        SDWPerformBlock(currentBlock,[SDWTrelloStore displayChecklistsfromChecklists:card.checklists.allObjects],nil);
         
     }];
     
@@ -673,7 +775,6 @@
                                   success:^(NSURLSessionDataTask *task, id responseObject)
      {
          
-         //         if(block) block(responseObject,nil);
          
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
@@ -682,9 +783,8 @@
 
              card.checklists = [NSSet setWithArray:mappedObjects];
              [self saveContext];
-             SDWPerformBlock(fetchedBlock,mappedObjects,nil);
+             SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayChecklistsfromChecklists:mappedObjects],nil);
              
-             //             CNIPerformBlock(updatedDataHandler, mappedTransactions, nil);
          }];
          
          
@@ -697,26 +797,28 @@
 }
 
 
-- (void)moveCheckItem:(SDWMChecklistItem *)item
+- (void)moveCheckItem:(SDWChecklistItemDisplayItem *)item
              fromList:(NSString *)initialListID
+               toList:(NSString *)newListID
                cardID:(NSString *)cardID
        withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
-//    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,initialListID,item.itemID];
-//
-//    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idChecklist":item.listID}
-//                                  success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//                                      if(block) block(responseObject,nil);
-//
-//                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                      
-//                                      if(block) block(nil,error);
-//                                      [self handleError:error];
-//                                  }];
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,initialListID,item.trelloID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"idChecklist":newListID}
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                      SDWMChecklistItem *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMChecklistItem class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+                                      [self saveContext];
+                                      if(block) block([[SDWChecklistItemDisplayItem alloc]initWithModel:mappedObject],nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
 }
 
-- (void)updateCheckItem:(SDWMChecklistItem *)item
+- (void)updateCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
@@ -727,9 +829,9 @@
                                                                  @"name":item.name,
                                                                  }
                                   success:^(NSURLSessionDataTask *task, id responseObject) {
-                            
+                            SDWMChecklistItem *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMChecklistItem class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
                             [self saveContext];
-                            SDWPerformBlock(block,responseObject,nil);
+                            SDWPerformBlock(block,[[SDWChecklistItemDisplayItem alloc]initWithModel:mappedObject],nil);
                                       
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -739,22 +841,24 @@
     }];
 }
 
-- (void)updateCheckItemPosition:(SDWMChecklistItem *)item
+- (void)updateCheckItemPosition:(SDWChecklistItemDisplayItem *)item
                          cardID:(NSString *)cardID
                  withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
-//    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?",cardID,item.listID,item.itemID];
-//
-//    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":[NSNumber numberWithInteger:item.position]}
-//                                  success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//                                      if(block) block(responseObject,nil);
-//
-//                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                      
-//                                      if(block) block(nil,error);
-//                                      [self handleError:error];
-//                                  }];
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?",cardID,item.checklist.trelloID,item.trelloID];
+
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":[NSNumber numberWithInteger:item.position]}
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                      
+                                      SDWMChecklistItem *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMChecklistItem class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+                                      [self saveContext];
+                                      if(block) block([[SDWChecklistItemDisplayItem alloc]initWithModel:mappedObject],nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
 
 }
 
@@ -778,7 +882,7 @@
                                           
                                           [list addItemsObject:mappedObject];
                                           [self saveContext];
-                                          SDWPerformBlock(block,mappedObject,nil);
+                                          SDWPerformBlock(block,[[SDWChecklistItemDisplayItem alloc]initWithModel:mappedObject],nil);
                                           
                                           //             CNIPerformBlock(updatedDataHandler, mappedTransactions, nil);
                                       }];
@@ -793,36 +897,42 @@
 
 }
 
-- (void)deleteCheckItem:(SDWMChecklistItem *)item
+- (void)deleteCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
-//    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,item.listID,item.itemID];
-//
-//    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:@{
-//                                                                 @"state":item.state,
-//                                                                 @"name":item.name
-//                                                                 }
-//                                  success:^(NSURLSessionDataTask *task, id responseObject) {
-//
-//                                      if(block) block(responseObject,nil);
-//
-//                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
-//                                      
-//                                      if(block) block(nil,error);
-//                                      [self handleError:error];
-//                                  }];
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,item.checklist.trelloID,item.trelloID];
+
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:@{
+                                                                 @"state":item.state,
+                                                                 @"name":item.name
+                                                                 }
+                                  success:^(NSURLSessionDataTask *task, id responseObject) {
+                                      
+                                      SDWMChecklistItem *itm = [self.dataModelManager fetchEntityForName:SDWMChecklistItem.entityName withTrelloID:item.trelloID inContext:self.dataModelManager.managedObjectContext];
+                                      [self.dataModelManager.managedObjectContext deleteObject:itm];
+                                      [self saveContext];
+
+                                      if(block) block(responseObject,nil);
+
+                                  } failure:^(NSURLSessionDataTask *task, NSError *error) {
+                                      
+                                      if(block) block(nil,error);
+                                      [self handleError:error];
+                                  }];
 
 }
 
-- (void)deleteCheckList:(SDWChecklist *)checkList
+- (void)deleteCheckList:(SDWChecklistDisplayItem *)checkList
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
 
-    NSString *urlString = [NSString stringWithFormat:@"checklists/%@?",checkList.listID];
+    NSString *urlString = [NSString stringWithFormat:@"checklists/%@?",checkList.trelloID];
 
     [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil
                                      success:^(NSURLSessionDataTask *task, id responseObject) {
-
+                                         SDWMChecklistItem *itm = [self.dataModelManager fetchEntityForName:SDWMChecklistItem.entityName withTrelloID:checkList.trelloID inContext:self.dataModelManager.managedObjectContext];
+                                         [self.dataModelManager.managedObjectContext deleteObject:itm];
+                                         [self saveContext];
                                          if(block) block(responseObject,nil);
 
                                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -849,7 +959,7 @@
                                              
                                              [card addChecklistsObject:mappedObject];
                                              [self saveContext];
-                                             SDWPerformBlock(block,mappedObject,nil);
+                                             SDWPerformBlock(block,[[SDWChecklistDisplayItem alloc] initWithModel:mappedObject],nil);
                                              
                                              //             CNIPerformBlock(updatedDataHandler, mappedTransactions, nil);
                                          }];
@@ -857,8 +967,7 @@
                                         
 
                                      } failure:^(NSURLSessionDataTask *task, NSError *error) {
-
-                                         if(block) block(nil,error);
+                                         SDWPerformBlock(block,nil,error);
                                          [self handleError:error];
                                      }];
 

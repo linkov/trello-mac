@@ -5,7 +5,7 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-@class SDWBoardsController,SDWCardsController,SDWCardViewController, SDWBoard;
+@class SDWBoardsController,SDWCardsController,SDWCardViewController, SDWBoard,SDWBoardDisplayItem;
 #import <Cocoa/Cocoa.h>
 #import "Utils.h"
 
@@ -20,9 +20,9 @@
 - (void)logout;
 
 
-- (void)boardsListVCDidRequestBoardEdit:(SDWBoard *)board;
+- (void)boardsListVCDidRequestBoardEdit:(SDWBoardDisplayItem *)board;
 - (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel;
 - (void)boardsListVCDidRequestAddItem;
-- (void)boardsListVCDidRequestAddListToBoard:(SDWBoard *)board;
+- (void)boardsListVCDidRequestAddListToBoard:(SDWBoardDisplayItem *)board;
 
 @end

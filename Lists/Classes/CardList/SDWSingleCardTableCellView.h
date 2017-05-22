@@ -26,8 +26,8 @@
 
 @optional
 
-- (void)cardViewShouldContainLabelColors:(NSString *)colors;
 - (void)cardViewShouldRemoveLabelOfColor:(NSString *)color;
+- (void)cardViewShouldAddLabelOfColor:(NSString *)color;
 - (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView;
 - (void)cardViewShouldSaveCard:(SDWSingleCardTableCellView *)cardView;
 - (void)cardViewShouldDismissCard:(SDWSingleCardTableCellView *)cardView;

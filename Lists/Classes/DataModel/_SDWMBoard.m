@@ -87,17 +87,6 @@
 
 @dynamic trelloID;
 
-@dynamic cards;
-
-- (NSMutableSet<SDWMCard*>*)cardsSet {
-	[self willAccessValueForKey:@"cards"];
-
-	NSMutableSet<SDWMCard*> *result = (NSMutableSet<SDWMCard*>*)[self mutableSetValueForKey:@"cards"];
-
-	[self didAccessValueForKey:@"cards"];
-	return result;
-}
-
 @dynamic lists;
 
 - (NSMutableSet<SDWMList*>*)listsSet {
@@ -129,9 +118,6 @@
 @end
 
 @implementation SDWMBoardRelationships 
-+ (NSString *)cards {
-	return @"cards";
-}
 + (NSString *)lists {
 	return @"lists";
 }

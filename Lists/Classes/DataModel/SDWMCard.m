@@ -24,19 +24,6 @@
 - (NSString *)cardID {
     return self.trelloID;
 }
-- (NSString *)boardID {
-    return self.board.trelloID;
-}
-
-- (BOOL)hasOpenTodos {
-    if (self.checkItemsCountValue - self.checkItemsCheckedCountValue > 0) {
-        return YES;
-    } else {
-        return NO;
-    }
-    
-}
-
 
 
 @end
@@ -48,7 +35,7 @@
     mapping.primaryKey = SDWMappingDefaultPrimaryKey;
     [mapping addAttribute:[FEMAttribute listsIDAttribute]];
     [mapping addAttributeWithProperty:@"name" keyPath:@"name"];
-    [mapping addAttributeWithProperty:@"cardDescription" keyPath:@"description"];
+    [mapping addAttributeWithProperty:@"cardDescription" keyPath:@"desc"];
     [mapping addAttributeWithProperty:@"position" keyPath:@"pos"];
     [mapping addAttributeWithProperty:@"checkItemsCount" keyPath:@"badges.checkItems"];
     [mapping addAttributeWithProperty:@"checkItemsCheckedCount" keyPath:@"badges.checkItemsChecked"];
@@ -80,21 +67,14 @@
 //    membersRelationship.toMany = YES;
 //    [mapping addRelationship:membersRelationship];
     
-//    FEMMapping *listMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMList"];
-//    listMapping.primaryKey = @"remoteID";
-//    [listMapping addAttributeWithProperty:@"remoteID" keyPath:nil];
-//    
-//    FEMRelationship *listRelationship = [[FEMRelationship alloc]initWithProperty:@"list" keyPath:@"idList" mapping:listMapping];
-//    listRelationship.weak = YES;
-//    [mapping addRelationship:listRelationship];
-//    
-//    FEMMapping *boardMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMBoard"];
-//    boardMapping.primaryKey = @"remoteID";
-//    [boardMapping addAttributeWithProperty:@"remoteID" keyPath:nil];
-//    
-//    FEMRelationship *boardRelationship = [[FEMRelationship alloc]initWithProperty:@"board" keyPath:@"idBoard" mapping:boardMapping];
-//    boardRelationship.weak = YES;
-//    [mapping addRelationship:boardRelationship];
+    FEMMapping *listMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMList"];
+    listMapping.primaryKey = @"trelloID";
+    [listMapping addAttributeWithProperty:@"trelloID" keyPath:nil];
+    
+    FEMRelationship *listRelationship = [[FEMRelationship alloc]initWithProperty:@"list" keyPath:@"idList" mapping:listMapping];
+    listRelationship.weak = YES;
+    [mapping addRelationship:listRelationship];
+    
     
     
 

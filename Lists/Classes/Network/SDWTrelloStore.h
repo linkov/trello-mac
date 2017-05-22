@@ -12,7 +12,7 @@
 #import "SDWDataModelManager.h"
 
 
-@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem;
+@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem;
 
 typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
@@ -31,10 +31,18 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
 /* Cards ops */
 
+
+//v2
+- (void)fetchAllActivitiesForCardID:(NSString *)cardID
+                        currentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                        fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
+
+
 //v2
 - (void)fetchAllCardsForListID:(NSString *)listID
                    CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
-                   FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
+                   FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
+                 crownFiltered:(BOOL)crownFiltered;
 
 //v2
 - (void)createCardWithName:(NSString *)name
@@ -65,11 +73,12 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
        withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 
+//v2
+- (void)addLabelForCardID:(NSString *)cardID
+                    color:(NSString *)color
+               completion:(SDWTrelloStoreCompletionBlock)block;
 
-- (void)updateLabelsForCardID:(NSString *)cardID
-                       colors:(NSString *)colors
-                   completion:(SDWTrelloStoreCompletionBlock)block;
-
+//v2
 - (void)removeLabelForCardID:(NSString *)cardID
                        color:(NSString *)color
                   completion:(SDWTrelloStoreCompletionBlock)block;
@@ -126,18 +135,18 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 
 /* Checklists ops */
 
+//v2
 - (void)fetchAllChecklistsForCardID:(NSString *)cardID
                    CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
                    FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
 
-- (void)createChecklistWithName:(NSString *)name
-                         cardID:(NSString *)cardID
-                     completion:(SDWTrelloStoreCompletionBlock)block;
 
+
+//v2
 - (void)fetchChecklistsForCardID:(NSString *)cardID
                       completion:(SDWTrelloStoreCompletionBlock)block;
 
-- (void)updateCheckItem:(SDWMChecklistItem *)item
+- (void)updateCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
@@ -148,17 +157,27 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                  withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 
-- (void)deleteCheckItem:(SDWMChecklistItem *)item
+//v2
+- (void)deleteCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
-- (void)updateCheckItemPosition:(SDWMChecklistItem *)item
+//v2
+- (void)updateCheckItemPosition:(SDWChecklistItemDisplayItem *)item
                          cardID:(NSString *)cardID
                  withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
-- (void)deleteCheckList:(SDWMChecklist *)checkList
+//v2
+- (void)deleteCheckList:(SDWChecklistDisplayItem *)checkList
          withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
+
+//- (void)createChecklistWithName:(NSString *)name
+//                         cardID:(NSString *)cardID
+//                     completion:(SDWTrelloStoreCompletionBlock)block;
+
+
+//v2
 - (void)addCheckListForCardID:(NSString *)cardID
                withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
@@ -166,8 +185,10 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                   forListID:(NSString *)listID
              withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
-- (void)moveCheckItem:(SDWMChecklistItem *)item
+
+- (void)moveCheckItem:(SDWChecklistItemDisplayItem *)item
              fromList:(NSString *)initialListID
+               toList:(NSString *)newListID
                cardID:(NSString *)cardID
        withCompletion:(SDWTrelloStoreCompletionBlock)block;
 

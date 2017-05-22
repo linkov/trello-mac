@@ -7,7 +7,19 @@
 //
 
 #import <Foundation/Foundation.h>
+@class SDWMChecklist,SDWChecklistItemDisplayItem;
 
 @interface SDWChecklistDisplayItem : NSObject
+
+@property (readonly) SDWMChecklist *model;
+
+@property NSString *trelloID;
+@property NSString *name;
+@property int64_t position;
+@property BOOL hasOpenChecklistItems;
+
+@property NSArray<SDWChecklistItemDisplayItem *> *items;
+
+- (instancetype)initWithModel:(SDWMChecklist *)model;
 
 @end

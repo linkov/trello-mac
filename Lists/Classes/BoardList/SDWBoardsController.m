@@ -54,7 +54,6 @@
 @property (strong) IBOutlet NSButton *logoutButton;
 @property (strong) IBOutlet ITSwitch *crownSwitch;
 @property (strong) IBOutlet NSScrollView *mainScroll;
-@property (strong) IBOutlet NSButton *reloadButton;
 
 @property (strong) SDWBoardDisplayItem *parentBoardForEditedList;
 @property (strong) NSString *editedListName;
@@ -76,7 +75,6 @@
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
     self.outlineView.dataSource = self;
-    self.reloadButton.hidden = YES;
     self.outlineView.menuDelegate = self;
 
     self.dueSortButton.image = [NSImage imageNamed:@"dueSortOff"];
@@ -105,7 +103,7 @@
 
     }
 
-    SDWMList *list = self.lastSelectedItem.representedObject;
+    SDWListDisplayItem *list = self.lastSelectedItem.representedObject;
 
     [[self cardsVC] setupCardsForList:list];
 
@@ -131,7 +129,7 @@
 - (IBAction)crownSwitchDidChange:(ITSwitch *)sender {
 
     SharedSettings.shouldFilter = sender.on;
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:sender.on]}];
+
     self.boards = nil;
     [self loadBoards];
 }
@@ -141,6 +139,10 @@
 
 
 - (IBAction)addBoard:(id)sender {
+    
+    if([SharedSettings isOffline]) {
+        return;
+    }
 
     if (self.delegate) {
 
@@ -152,15 +154,14 @@
 
     self.boards = @[];
     [self.outlineView reloadData];
-    self.reloadButton.hidden = YES;
     [self loadBoards];
 }
 
 - (void)loadBoards {
 
-    [[self cardDetailsVC] setCard:nil];
+    [[self cardDetailsVC] setupCard:nil];
     
-    if (!SharedSettings.userToken) {
+    if (SharedSettings.userToken.length == 0) {
         self.logoutButton.image = [NSImage imageNamed:@"logout-small-flip"];
         return;
     }
@@ -176,13 +177,18 @@
             
             self.outlineView.delegate = self;
             NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"starred" ascending:NO];
-            self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos]];
+            NSSortDescriptor *sortByName = [[NSSortDescriptor alloc]initWithKey:@"name" ascending:NO];
+            self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos,sortByName]];
             [self reloadDataSource];
+            
+            if (self.crownSwitch.on) {
+                [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:self.crownSwitch.on]}];
+            }
+
            
             
             
         } else {
-            self.reloadButton.hidden = NO;
         }
     };
     
@@ -194,7 +200,7 @@
 
     self.isAccessingExpandViaDataReload = YES;
 
-    [self.outlineView deselectAll:nil];
+//    [self.outlineView deselectAll:nil];
     [self.outlineView expandItem:nil expandChildren:YES];
     [self.outlineView reloadData];
 
@@ -239,8 +245,12 @@
 #pragma mark - SDWBoardsListOutlineViewDelegate
 
 - (void)outlineviewShouldAddListToBoardAtRow:(NSUInteger)boardRow {
+    
+    if([SharedSettings isOffline]) {
+        return;
+    }
 
-    SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+    SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:boardRow] representedObject];
     if (self.delegate) {
         [self.delegate boardsListVCDidRequestAddListToBoard:board];
     }
@@ -305,7 +315,7 @@
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
 
-    [[self cardDetailsVC] setCard:nil];
+    [[self cardDetailsVC] setupCard:nil];
 
 	SDWListDisplayItem *list = item.representedObject;
 

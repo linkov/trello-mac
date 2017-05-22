@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16E195" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+    <entity name="SDWMActivity" representedClassName="SDWMActivity" syncable="YES" codeGenerationType="class">
+        <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="memberInitials" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="trelloID" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="activities" inverseEntity="SDWMCard" syncable="YES"/>
+    </entity>
     <entity name="SDWMBoard" representedClassName="SDWMBoard" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="starred" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="trelloID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="board" inverseEntity="SDWMCard" syncable="YES"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMList" inverseName="board" inverseEntity="SDWMList" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMUser" inverseName="boards" inverseEntity="SDWMUser" syncable="YES"/>
     </entity>
@@ -18,7 +24,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="position" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="trelloID" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="board" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMBoard" inverseName="cards" inverseEntity="SDWMBoard" syncable="YES"/>
+        <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMActivity" inverseName="card" inverseEntity="SDWMActivity" syncable="YES"/>
         <relationship name="checklists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMChecklist" inverseName="card" inverseEntity="SDWMChecklist" syncable="YES"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMLabel" inverseName="card" inverseEntity="SDWMLabel" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMList" inverseName="cards" inverseEntity="SDWMList" syncable="YES"/>
@@ -59,7 +65,8 @@
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="members" inverseEntity="SDWMCard" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SDWMBoard" positionX="-63" positionY="-18" width="128" height="150"/>
+        <element name="SDWMActivity" positionX="-18" positionY="90" width="128" height="120"/>
+        <element name="SDWMBoard" positionX="-63" positionY="-18" width="128" height="135"/>
         <element name="SDWMCard" positionX="-54" positionY="-9" width="128" height="255"/>
         <element name="SDWMChecklist" positionX="18" positionY="63" width="128" height="120"/>
         <element name="SDWMChecklistItem" positionX="0" positionY="45" width="128" height="120"/>

@@ -29,11 +29,12 @@
 @property int checkItemsCount;
 @property int checkItemsCheckedCount;
 
-@property BOOL hasOpenTodos;
 
 - (instancetype)initWithModel:(SDWMCard *)model;
 
 - (NSArray <SDWUserDisplayItem *> *)members;
 - (NSArray <SDWLabelDisplayItem *> *)labels;
+
+- (BOOL)hasOpenChecklistItems;
 
 @end

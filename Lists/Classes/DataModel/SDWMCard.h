@@ -5,11 +5,7 @@
 
 - (NSArray *)displayLabels;
 - (NSArray *)members;
-
 - (NSString *)cardID;
-- (NSString *)boardID;
-
-- (BOOL)hasOpenTodos;
 
 @end
 

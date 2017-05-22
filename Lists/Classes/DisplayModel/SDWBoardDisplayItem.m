@@ -40,7 +40,7 @@
         self.starred = model.starredValue;
         
         NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
-        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:self.model.lists.count];
+        NSMutableArray *arr = [NSMutableArray new];
         for (SDWMList *list in self.model.lists ) {
             SDWListDisplayItem *listItem = [[SDWListDisplayItem alloc]initWithModel:list];
             [arr addObject:listItem];

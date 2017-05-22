@@ -5,7 +5,7 @@
 //  Created by alex on 1/4/15.
 //  Copyright (c) 2015 SDWR. All rights reserved.
 //
-@class SDWCheckItemTableCellView,SDWMChecklistItem;
+@class SDWCheckItemTableCellView,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem;
 
 #import <Cocoa/Cocoa.h>
 #import "AAPLCheckBox.h"
@@ -25,8 +25,8 @@
 @property (strong) IBOutlet AAPLCheckBox *checkBox;
 @property (strong) IBOutlet NSLayoutConstraint *centerYConstraint;
 @property (weak) id<SDWCheckItemDelegate> delegate;
-@property (strong) SDWMChecklistItem *trelloCheckItem;
-@property (strong) NSString *trelloCheckListID;
+@property (strong) SDWChecklistItemDisplayItem *trelloCheckItem;
+@property (strong,nonatomic) NSString *trelloCheckListID;
 @property (strong) IBOutlet NSLayoutConstraint *checkBoxWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemWidth;
 @property (strong) IBOutlet NSLayoutConstraint *addCheckItemCenterY;

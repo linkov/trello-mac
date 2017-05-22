@@ -92,7 +92,10 @@
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
+		F14F4BD51ED2E3E500D63659 /* SDWActivityDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F14F4BD41ED2E3E500D63659 /* SDWActivityDisplayItem.m */; };
 		F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */; };
+		F1624CD61ED2BED6003F0EA7 /* _SDWMActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1624CD31ED2BED6003F0EA7 /* _SDWMActivity.m */; };
+		F1624CD71ED2BED6003F0EA7 /* SDWMActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1624CD51ED2BED6003F0EA7 /* SDWMActivity.m */; };
 		F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F18089B91A280B7000A701B7 /* Credits.rtf */; };
 		F18B583E1ECE0D6700884CDC /* SDWCardDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */; };
 		F18B58411ECE0D7A00884CDC /* SDWBoardDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58401ECE0D7A00884CDC /* SDWBoardDisplayItem.m */; };
@@ -100,7 +103,7 @@
 		F18B58471ECE0DE700884CDC /* SDWListDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58461ECE0DE700884CDC /* SDWListDisplayItem.m */; };
 		F18B584A1ECE0E4600884CDC /* SDWUserDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */; };
 		F18B584D1ECE0E8100884CDC /* SDWChecklistDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */; };
-		F18B58501ECE0E9C00884CDC /* SDWChecklistItemItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */; };
+		F18B58501ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
 		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
@@ -264,8 +267,14 @@
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
 		F14B36131A145ADF00AFD5C9 /* PulseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PulseView.h; sourceTree = "<group>"; };
 		F14B36141A145ADF00AFD5C9 /* PulseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PulseView.m; sourceTree = "<group>"; };
+		F14F4BD31ED2E3E500D63659 /* SDWActivityDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivityDisplayItem.h; sourceTree = "<group>"; };
+		F14F4BD41ED2E3E500D63659 /* SDWActivityDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivityDisplayItem.m; sourceTree = "<group>"; };
 		F1610E661A8BF3D000DECA86 /* SDWSingleCardTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSingleCardTableCellView.h; sourceTree = "<group>"; };
 		F1610E671A8BF3D000DECA86 /* SDWSingleCardTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSingleCardTableCellView.m; sourceTree = "<group>"; };
+		F1624CD21ED2BED6003F0EA7 /* _SDWMActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SDWMActivity.h; sourceTree = "<group>"; };
+		F1624CD31ED2BED6003F0EA7 /* _SDWMActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SDWMActivity.m; sourceTree = "<group>"; };
+		F1624CD41ED2BED6003F0EA7 /* SDWMActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMActivity.h; sourceTree = "<group>"; };
+		F1624CD51ED2BED6003F0EA7 /* SDWMActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWMActivity.m; sourceTree = "<group>"; };
 		F18089B91A280B7000A701B7 /* Credits.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
 		F18B583C1ECE0D6700884CDC /* SDWCardDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDisplayItem.h; sourceTree = "<group>"; };
 		F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDisplayItem.m; sourceTree = "<group>"; };
@@ -279,8 +288,8 @@
 		F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUserDisplayItem.m; sourceTree = "<group>"; };
 		F18B584B1ECE0E8100884CDC /* SDWChecklistDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistDisplayItem.h; sourceTree = "<group>"; };
 		F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistDisplayItem.m; sourceTree = "<group>"; };
-		F18B584E1ECE0E9C00884CDC /* SDWChecklistItemItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemItem.h; sourceTree = "<group>"; };
-		F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemItem.m; sourceTree = "<group>"; };
+		F18B584E1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemDisplayItem.h; sourceTree = "<group>"; };
+		F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemDisplayItem.m; sourceTree = "<group>"; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
 		F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardCalendarVC.h; sourceTree = "<group>"; };
@@ -581,6 +590,10 @@
 		F10E13081EBC920A0044802C /* DataModel */ = {
 			isa = PBXGroup;
 			children = (
+				F1624CD21ED2BED6003F0EA7 /* _SDWMActivity.h */,
+				F1624CD31ED2BED6003F0EA7 /* _SDWMActivity.m */,
+				F1624CD41ED2BED6003F0EA7 /* SDWMActivity.h */,
+				F1624CD51ED2BED6003F0EA7 /* SDWMActivity.m */,
 				F1AF66F11EBF1C21009F230F /* _SDWMList.h */,
 				F1AF66F21EBF1C21009F230F /* _SDWMList.m */,
 				F1AF66F31EBF1C21009F230F /* SDWMList.h */,
@@ -681,6 +694,8 @@
 		F1621D8C1EC8549B002DEE68 /* DisplayModel */ = {
 			isa = PBXGroup;
 			children = (
+				F14F4BD31ED2E3E500D63659 /* SDWActivityDisplayItem.h */,
+				F14F4BD41ED2E3E500D63659 /* SDWActivityDisplayItem.m */,
 				F18B583C1ECE0D6700884CDC /* SDWCardDisplayItem.h */,
 				F18B583D1ECE0D6700884CDC /* SDWCardDisplayItem.m */,
 				F18B583F1ECE0D7A00884CDC /* SDWBoardDisplayItem.h */,
@@ -693,8 +708,8 @@
 				F18B58491ECE0E4600884CDC /* SDWUserDisplayItem.m */,
 				F18B584B1ECE0E8100884CDC /* SDWChecklistDisplayItem.h */,
 				F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */,
-				F18B584E1ECE0E9C00884CDC /* SDWChecklistItemItem.h */,
-				F18B584F1ECE0E9C00884CDC /* SDWChecklistItemItem.m */,
+				F18B584E1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.h */,
+				F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */,
 			);
 			path = DisplayModel;
 			sourceTree = "<group>";
@@ -721,6 +736,7 @@
 				F119AE7219FD4CFC0061D7DF /* Resources */,
 				6D01718323A9017A2EE54CCE /* [CP] Embed Pods Frameworks */,
 				CAD999274A7FF27C85340847 /* [CP] Copy Pods Resources */,
+				F10417941ED3119B00D2F3B1 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -837,6 +853,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Lists/Pods-Lists-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		F10417941ED3119B00D2F3B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 7afe2a1f919e83706ec88df871b173b4faf5c453 3839a1107ea2065826d0f2cc6c1d95263dc301ca2f0209be3f35956a167721f1";
+		};
 		F10E13151EBCA8260044802C /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -914,6 +943,7 @@
 				F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
 				F10AAA4B1A12AFD800FD4E85 /* AppDelegate.m in Sources */,
+				F1624CD61ED2BED6003F0EA7 /* _SDWMActivity.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10E134A1EBCAFE30044802C /* _SDWMLabel.m in Sources */,
 				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
@@ -921,6 +951,7 @@
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
 				F18B58441ECE0D9200884CDC /* SDWLabelDisplayItem.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
+				F14F4BD51ED2E3E500D63659 /* SDWActivityDisplayItem.m in Sources */,
 				F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */,
 				F10AAA511A12AFD800FD4E85 /* SDWCardViewController.m in Sources */,
 				F10E13541EBCB4360044802C /* FEMAttribute+listsAttributes.m in Sources */,
@@ -929,7 +960,8 @@
 				F10AAA5B1A12AFD800FD4E85 /* AFRecordPathManager.m in Sources */,
 				F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */,
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
-				F18B58501ECE0E9C00884CDC /* SDWChecklistItemItem.m in Sources */,
+				F18B58501ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m in Sources */,
+				F1624CD71ED2BED6003F0EA7 /* SDWMActivity.m in Sources */,
 				F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */,
 				F10AAA701A12AFD800FD4E85 /* AFHTTPRequestOperationManager.m in Sources */,
 				F10AAA761A12AFD800FD4E85 /* AFURLResponseSerialization.m in Sources */,
@@ -1058,7 +1090,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF59BFBDD3F2246FB11E10BF /* Pods-Lists.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
@@ -1082,7 +1114,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F9F8E33CAEB544DB8F90D5B /* Pods-Lists.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";

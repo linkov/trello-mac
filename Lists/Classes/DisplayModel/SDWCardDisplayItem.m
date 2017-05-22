@@ -12,6 +12,9 @@
 #import "SDWListDisplayItem.h"
 #import "SDWBoardDisplayItem.h"
 
+#import "SDWChecklistDisplayItem.h"
+#import "SDWChecklistItemDisplayItem.h"
+
 @interface SDWCardDisplayItem ()
 
 @property (readwrite) SDWMCard *model;
@@ -34,9 +37,8 @@
         self.dueDate = model.dueDate;
         self.lastUpdate = model.lastUpdate;
         self.position = model.positionValue;
-        self.hasOpenTodos = [model hasOpenTodos];
         self.list = [[SDWListDisplayItem alloc]initWithModel:model.list];
-        self.board = [[SDWBoardDisplayItem alloc]initWithModel:model.board];
+        self.board = [[SDWBoardDisplayItem alloc]initWithModel:model.list.board];
     }
     return self;
 
@@ -44,8 +46,8 @@
 
 - (NSArray <SDWUserDisplayItem *> *)members {
     
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:self.model.members.count];
-    for (SDWMUser *user in self.model.members) {
+    NSMutableArray *arr = [NSMutableArray new];
+    for (SDWMUser *user in [self.model members]) {
         SDWUserDisplayItem *item = [[SDWUserDisplayItem alloc]initWithModel:user];
         [arr addObject:item];
     }
@@ -55,13 +57,39 @@
 
 - (NSArray <SDWLabelDisplayItem *> *)labels {
     
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:self.model.labels.count];
+    NSMutableArray *arr = [NSMutableArray new];
     for (SDWMLabel *model in self.model.labels) {
         SDWLabelDisplayItem *item = [[SDWLabelDisplayItem alloc]initWithModel:model];
         [arr addObject:item];
     }
     
     return [arr copy];
+}
+
+
+- (NSArray <SDWChecklistDisplayItem *> *)checklists {
+    
+    NSMutableArray *arr = [NSMutableArray new];
+    for (SDWMChecklist *model in self.model.checklists) {
+        SDWChecklistDisplayItem *item = [[SDWChecklistDisplayItem alloc]initWithModel:model];
+        [arr addObject:item];
+    }
+    
+    return [arr copy];
+}
+
+- (BOOL)hasOpenChecklistItems {
+    BOOL checklistsLoaded = ([self.model checklists].count > 0);
+
+    if (!checklistsLoaded) {
+        if (self.model.checkItemsCountValue - self.model.checkItemsCheckedCountValue > 0) {
+            return YES;
+        } else {
+            return NO;
+        }
+    }
+    
+    return  [[self checklists] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"hasOpenChecklistItems == 1"]].count;
 }
 
 

@@ -21,7 +21,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
         _sharedClient = [[AFTrelloAPIClient alloc] initWithBaseURL:[NSURL URLWithString:AFAppTrelloAPIBaseURLString]];
         _sharedClient.securityPolicy = [AFSecurityPolicy policyWithPinningMode:AFSSLPinningModeNone];
         _sharedClient.responseSerializer = [AFJSONResponseSerializer serializer];
-        _sharedClient.responseSerializer.acceptableContentTypes = [_sharedClient.responseSerializer.acceptableContentTypes setByAddingObject:@"text/plain"];
+        _sharedClient.responseSerializer.acceptableContentTypes = [_sharedClient.responseSerializer.acceptableContentTypes setByAddingObjectsFromArray:@[@"text/plain",@"application/json"]];
         _sharedClient.requestSerializer = [AFJSONRequestSerializer serializer];
         _sharedClient.requestSerializer.HTTPMethodsEncodingParametersInURI = [NSSet setWithObject:@"POST"];
 

@@ -16,7 +16,7 @@
 #import "SDWMainSplitController.h"
 #import "SDWLoginVC.h"
 #import "SDWTrelloStore.h"
-#import "SDWBoard.h"
+#import "SDWBoardDisplayItem.h"
 
 @interface SDWMainSplitController ()
 @property (strong) IBOutlet NSSplitViewItem *boardsSplitItem;
@@ -27,8 +27,8 @@
 @property (strong) SDWLoginVC *loginVC;
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
-@property (strong) SDWBoard *currentlyEditedBoardList;
-@property (strong) SDWBoard *parentBoardForNewList;
+@property (strong) SDWBoardDisplayItem *currentlyEditedBoardList;
+@property (strong) SDWBoardDisplayItem *parentBoardForNewList;
 
 @end
 
@@ -36,6 +36,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
 
     SharedSettings.shouldFilter = NO;
 
@@ -132,7 +133,7 @@
 }
 
 - (void)viewDidAppear {
-
+    [self toggleCardDetails];
     [self logout];
 }
 
@@ -153,7 +154,7 @@
 
         if (self.currentlyEditedBoardList.isLeaf) {
 
-            [[SDWTrelloStore store] renameListID:self.currentlyEditedBoardList.boardID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
+            [[SDWTrelloStore store] renameListID:self.currentlyEditedBoardList.trelloID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
 
                 self.currentlyEditedBoardList = nil;
                 [self.boardsVC reloadBoards:nil];
@@ -161,7 +162,7 @@
 
         } else {
 
-            [[SDWTrelloStore store] renameBoardID:self.currentlyEditedBoardList.boardID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
+            [[SDWTrelloStore store] renameBoardID:self.currentlyEditedBoardList.trelloID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
 
                 self.currentlyEditedBoardList = nil;
                 [self.boardsVC reloadBoards:nil];
@@ -174,7 +175,7 @@
 
     } else if (self.parentBoardForNewList) {
 
-        [[SDWTrelloStore store] createListWithName:name boardID:self.parentBoardForNewList.boardID position:@(0) completion:^(id object, NSError *error) {
+        [[SDWTrelloStore store] createListWithName:name boardID:self.parentBoardForNewList.trelloID position:@(0) completion:^(id object, NSError *error) {
 
             self.parentBoardForNewList = nil;
             [self.boardsVC reloadBoards:nil];
@@ -197,7 +198,7 @@
 
 }
 
-- (void)boardsListVCDidRequestBoardEdit:(SDWBoard *)board {
+- (void)boardsListVCDidRequestBoardEdit:(SDWBoardDisplayItem *)board {
 
     self.currentlyEditedBoardList = board;
 
@@ -218,7 +219,7 @@
 }
 
 
-- (void)boardsListVCDidRequestAddListToBoard:(SDWBoard *)board {
+- (void)boardsListVCDidRequestAddListToBoard:(SDWBoardDisplayItem *)board {
 
     self.parentBoardForNewList = board;
 

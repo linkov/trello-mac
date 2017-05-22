@@ -39,7 +39,7 @@
 
 - (NSArray<SDWCardDisplayItem *> *)cards {
     
-    NSMutableArray *arr = [NSMutableArray arrayWithCapacity:self.model.cards.count];
+    NSMutableArray *arr = [NSMutableArray new];
     for (SDWMCard *card in self.model.cards ) {
         SDWCardDisplayItem *cardItem = [[SDWCardDisplayItem alloc]initWithModel:card];
         [arr addObject:cardItem];

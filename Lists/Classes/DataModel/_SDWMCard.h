@@ -11,7 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@class SDWMBoard;
+@class SDWMActivity;
 @class SDWMChecklist;
 @class SDWMLabel;
 @class SDWMList;
@@ -55,7 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* trelloID;
 
-@property (nonatomic, strong, nullable) SDWMBoard *board;
+@property (nonatomic, strong, nullable) NSSet<SDWMActivity*> *activities;
+- (nullable NSMutableSet<SDWMActivity*>*)activitiesSet;
 
 @property (nonatomic, strong, nullable) NSSet<SDWMChecklist*> *checklists;
 - (nullable NSMutableSet<SDWMChecklist*>*)checklistsSet;
@@ -69,6 +70,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSMutableSet<SDWMUser*>*)membersSet;
 
 @property (nonatomic, strong, nullable) SDWMUser *user;
+
+@end
+
+@interface _SDWMCard (ActivitiesCoreDataGeneratedAccessors)
+- (void)addActivities:(NSSet<SDWMActivity*>*)value_;
+- (void)removeActivities:(NSSet<SDWMActivity*>*)value_;
+- (void)addActivitiesObject:(SDWMActivity*)value_;
+- (void)removeActivitiesObject:(SDWMActivity*)value_;
 
 @end
 
@@ -131,8 +140,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveTrelloID;
 - (void)setPrimitiveTrelloID:(nullable NSString*)value;
 
-- (SDWMBoard*)primitiveBoard;
-- (void)setPrimitiveBoard:(SDWMBoard*)value;
+- (NSMutableSet<SDWMActivity*>*)primitiveActivities;
+- (void)setPrimitiveActivities:(NSMutableSet<SDWMActivity*>*)value;
 
 - (NSMutableSet<SDWMChecklist*>*)primitiveChecklists;
 - (void)setPrimitiveChecklists:(NSMutableSet<SDWMChecklist*>*)value;
@@ -163,7 +172,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMCardRelationships: NSObject
-+ (NSString *)board;
++ (NSString *)activities;
 + (NSString *)checklists;
 + (NSString *)labels;
 + (NSString *)list;
