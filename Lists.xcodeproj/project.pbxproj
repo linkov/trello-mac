@@ -764,6 +764,7 @@
 					F119AE7319FD4CFC0061D7DF = {
 						CreatedOnToolsVersion = 6.1;
 						DevelopmentTeam = 43R88X5B35;
+						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -1092,10 +1093,11 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 43R88X5B35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lists",
@@ -1107,6 +1109,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Debug;
 		};
@@ -1116,9 +1119,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-3";
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 43R88X5B35;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Lists",
@@ -1130,6 +1134,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
 			name = Release;
 		};
