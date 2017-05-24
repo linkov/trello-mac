@@ -5,9 +5,12 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import <Crashlytics/Crashlytics.h>
+//#import <Crashlytics/Crashlytics.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
+
 
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
@@ -27,7 +30,7 @@
         SharedSettings.shouldShowCardLabels = YES;
     }
 
-    [Crashlytics startWithAPIKey:@"7afe2a1f919e83706ec88df871b173b4faf5c453"];
+    [Fabric with:@[[Crashlytics class]]];
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {

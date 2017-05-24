@@ -114,7 +114,7 @@
         [self.delegate cardViewShouldRemoveLabelOfColor:sender.title];
     } else {
         [modifiedLabels addObject:newLabel];
-        [self.delegate cardViewShouldContainLabelColors:[[modifiedLabels valueForKeyPath:@"color"] componentsJoinedByString:@","]];
+        [self.delegate cardViewShouldAddLabelOfColor:sender.title];
     }
 
     self.mainBox.labels = modifiedLabels;

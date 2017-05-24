@@ -8,7 +8,7 @@
 #define SharedSettings [SDWAppSettings sharedSettings]
 #import <AppKit/AppKit.h>
 #import <Foundation/Foundation.h>
-#import <Crashlytics/Crashlytics.h>
+
 
 typedef enum {
     SDWDotOptionNoDue = 0,
@@ -17,6 +17,9 @@ typedef enum {
     SDWDotOptionOff
 } SDWDotOption;
 
+
+extern NSString * const SDWListsDidReceiveNetworkOffNotification;
+extern NSString * const SDWListsDidReceiveNetworkOnNotification;
 
 extern NSString * const SDWListsDidReceiveUserTokenNotification;
 extern NSString * const SDWListsDidChangeSidebarStatusNotification;
@@ -51,6 +54,9 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 @property SDWDotOption dotOption;
 
 @property (strong) NSSet *collapsedBoardsIDs;
+
+- (void)setOffline:(BOOL)offline;
+- (BOOL)isOffline;
 
 - (NSColor *)appBleakWhiteColor;
 - (NSColor *)appBackgroundColorDark;

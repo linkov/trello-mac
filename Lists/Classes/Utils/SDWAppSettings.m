@@ -33,7 +33,8 @@ NSString * const SDWListsDidRemoveCardNotification = @"com.sdwr.trello-mac.didRe
 NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.shouldFilterNotification";
 NSString * const SDWListsDidUpdateDueNotification = @"com.sdwr.trello-mac.didUpdateDueNotification";
 
-
+NSString * const SDWListsDidReceiveNetworkOffNotification = @"com.sdwr.trello-mac.SDWListsDidReceiveNetworkOffNotification";
+NSString * const SDWListsDidReceiveNetworkOnNotification = @"com.sdwr.trello-mac.SDWListsDidReceiveNetworkOnNotification";
 
 NSString * const SDWListsShouldCreateCardNotification = @"com.sdwr.trello-mac.shouldCreateCardNotification";
 NSString * const SDWListsShouldReloadListNotification = @"com.sdwr.trello-mac.shouldReloadListNotification";
@@ -62,6 +63,20 @@ static SDWAppSettings *sharedInstance = nil;
 
     return @"6825229a76db5b6a5737eb97e9c4a923";
 }
+
+- (void)setOffline:(BOOL)offline {
+    
+    
+    [[NSUserDefaults standardUserDefaults] setBool:offline forKey:@"com.sdwr.trello-mac.offline"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (BOOL)isOffline {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"com.sdwr.trello-mac.offline"];
+}
+
+
 
 - (void)setUserToken:(NSString *)userToken {
 

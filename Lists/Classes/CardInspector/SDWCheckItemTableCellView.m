@@ -7,7 +7,7 @@
 //
 #import "SDWAppSettings.h"
 #import "SDWCheckItemTableCellView.h"
-#import "SDWChecklistItem.h"
+#import "SDWChecklistItemDisplayItem.h"
 
 @interface SDWCheckItemTableCellView () <NSTextFieldDelegate>
 @property (strong) IBOutlet NSButton *addCheckItemButton;
@@ -29,6 +29,7 @@
     self.textField.delegate = self;
     self.addCheckItemButton.hidden = self.handleImage.hidden = YES;
     self.addCheckItemButton.wantsLayer = self.handleImage.wantsLayer = YES;
+    
 
     int opts = (NSTrackingMouseEnteredAndExited | NSTrackingActiveAlways);
    NSTrackingArea *trackingArea = [ [NSTrackingArea alloc] initWithRect:[self bounds]
@@ -47,6 +48,8 @@
 
     [self.delegate checkItemShouldAddItem:self];
 }
+
+
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
 

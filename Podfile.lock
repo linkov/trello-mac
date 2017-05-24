@@ -1,0 +1,19 @@
+PODS:
+  - Crashlytics (3.8.4):
+    - Fabric (~> 1.6.3)
+  - Fabric (1.6.11)
+  - FastEasyMapping (1.1.2)
+
+DEPENDENCIES:
+  - Crashlytics
+  - Fabric
+  - FastEasyMapping (~> 1.1)
+
+SPEC CHECKSUMS:
+  Crashlytics: 79e236942ca1e7fc641df1feb9a275360a78ab6a
+  Fabric: 5911403591946b8228ab1c51d98f1d7137e863c6
+  FastEasyMapping: fe654d4b8d3c5650f41da1563a4385c6a19adea3
+
+PODFILE CHECKSUM: 2797fe6625da6a818583eef069880b199f4dddd1
+
+COCOAPODS: 1.2.1

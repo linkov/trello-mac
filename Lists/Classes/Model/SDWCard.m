@@ -53,4 +53,8 @@
     return self;
 }
 
+- (NSArray *)displayLabels {
+    return nil;
+}
+
 @end

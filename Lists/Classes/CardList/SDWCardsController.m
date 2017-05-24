@@ -5,43 +5,51 @@
 //  Created by alex on 10/26/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "NSColor+Util.h"
-#import "SDWBoard.h"
-#import "SDWUser.h"
-#import "SDWcard.h"
-#import "AFRecordPathManager.h"
-#import "SDWCardsController.h"
-#import "SDWAppSettings.h"
-#import "PulseView.h"
-#import "SDWProgressIndicator.h"
+
+
+/*-------View Controllers-------*/
 #import "SDWCardViewController.h"
 #import "SDWMainSplitController.h"
+#import "SDWCardsController.h"
 
-#import "SDWTrelloStore.h"
-#import "NSControl+DragInteraction.h"
+/*-------Frameworks-------*/
+#import "Xtrace.h"
 
+/*-------Views-------*/
 #import "JWCTableView.h"
 #import "SDWSingleCardTableCellView.h"
-#import "Utils.h"
 #import "SDWCardListView.h"
+#import "PulseView.h"
+#import "SDWProgressIndicator.h"
 
-#import "Xtrace.h"
+/*-------Helpers & Managers-------*/
+#import "Utils.h"
+#import "SDWTrelloStore.h"
+#import "NSControl+DragInteraction.h"
+#import "AFRecordPathManager.h"
+#import "SDWAppSettings.h"
+#import "NSColor+Util.h"
+
+/*-------Models-------*/
+#import "SDWListDisplayItem.h"
+#import "SDWCardDisplayItem.h"
+#import "SDWUserDisplayItem.h"
+#import "SDWBoardDisplayItem.h"
+
 
 @interface SDWCardsController () <NSCollectionViewDelegate,NSControlInteractionDelegate,SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
+@property (weak) IBOutlet NSImageView *noConnectionImage;
 
 @property (strong) NSArray *storedUsers;
-@property (strong) NSString *currentListID;
-@property (strong) NSString *parentListName;
-@property (strong) NSString *parentListID;
-@property (strong) NSString *listName;
+@property (strong) SDWListDisplayItem *currentList;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
-@property (strong) IBOutlet NSButton *reloadButton;
 
+@property NSString *listName;
 @property (strong) SDWSingleCardTableCellView *lastSelectedItem;
-@property (strong) SDWCard *lastSelectedCard;
+@property (strong) SDWCardDisplayItem *lastSelectedCard;
 
 @property NSUInteger dropIndex;
 @property (strong) IBOutlet SDWProgressIndicator *mainProgressIndicator;
@@ -64,7 +72,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-    self.reloadButton.hidden = YES;
+   
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
     self.tableView.backgroundColor = [NSColor clearColor];
 
@@ -109,9 +117,9 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-        [[self cardDetailsVC] setCard:nil];
+        [[self cardDetailsVC] setupCard:nil];
         NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-        SDWCard *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",note.userInfo[@"cardID"]]].firstObject;
+        SDWCardDisplayItem *cardToRemove = [arr filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",note.userInfo[@"cardID"]]].firstObject;
         [arr removeObject:cardToRemove];
 
         self.cardsArrayController.content = arr;
@@ -125,14 +133,27 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-        [self loadCardsForListID:self.currentListID];
+        [self loadCardsForListID:self.currentList.trelloID];
 
     }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveNetworkOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        
+        self.noConnectionImage.hidden = YES;
+        
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveNetworkOffNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        
+        self.noConnectionImage.hidden = NO;
+        
+    }];
+
 
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeDotOptionNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-        [self loadCardsForListID:self.currentListID];
+        [self loadCardsForListID:self.currentList.trelloID];
 
     }];
 
@@ -141,7 +162,7 @@
 
 - (BOOL)isShowingListCards {
 
-    if (self.currentListID.length) {
+    if (self.currentList) {
         return YES;
     }
 
@@ -169,8 +190,8 @@
     NSMutableArray *mutableArray = [NSMutableArray arrayWithArray:arr];
 
     // 1. swap 2 elements
-    SDWCard *movedCard = [mutableArray objectAtIndex:fromIndex];
-    SDWCard *newSiblingCard = [mutableArray objectAtIndex:toIndex];
+    SDWCardDisplayItem *movedCard = [mutableArray objectAtIndex:fromIndex];
+    SDWCardDisplayItem *newSiblingCard = [mutableArray objectAtIndex:toIndex];
 
     NSUInteger movedCardPos = movedCard.position;
     NSUInteger newSiblingCardPos = newSiblingCard.position;
@@ -183,7 +204,7 @@
 
     // 2. set positions to all cards equal to cards' indexes in array
     for (int i = 0; i<mutableArray.count; i++) {
-        SDWCard *card = mutableArray[i];
+        SDWCardDisplayItem *card = mutableArray[i];
         card.position = i;
     }
 
@@ -193,7 +214,7 @@
 
 #pragma mark - Card actions
 
-- (void)updateCardDetails:(SDWCard *)card localOnly:(BOOL)local {
+- (void)updateCardDetails:(SDWCardDisplayItem *)card localOnly:(BOOL)local {
 
     if (local) {
 
@@ -207,14 +228,13 @@
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] updateCard:card withCompletion:^(SDWCardDisplayItem *updatedCard, NSError *error) {
 
         [self showCardSavingIndicator:NO];
 
         if (!error) {
 
-            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
-            [[self cardDetailsVC] setCard:updatedCard];
+            [[self cardDetailsVC] setupCard:updatedCard];
 
             //TODO: refactor this
             if (![self isValidIndex:[self.cardsArrayController.content indexOfObject:card]]) {
@@ -233,32 +253,14 @@
 
 }
 
-- (void)updateCard:(SDWCard *)card {
+
+
+- (void)updateCardPosition:(SDWCardDisplayItem *)card {
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] updateCard:card withCompletion:^(id object, NSError *error) {
-
-        [self showCardSavingIndicator:NO];
-
-        if (!error) {
-
-            self.lastSelectedItem.mainBox.selected = NO;
-            self.lastSelectedItem.mainBox.textField.toolTip = self.lastSelectedItem.textField.stringValue;
-            [self.lastSelectedItem setNeedsDisplay:YES];
-
-        }
-    }];
-
-}
-
-
-- (void)updateCardPosition:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] moveCardID:card.cardID
-                            toPosition:[NSNumber numberWithInteger:card.position]
+    [[SDWTrelloStore store] moveCardID:card.trelloID
+                            toPosition:@(card.position)
                             completion:^(id object, NSError *error)
     {
         [self showCardSavingIndicator:NO];
@@ -267,31 +269,6 @@
 
 }
 
-- (void)createCard:(SDWCard *)card {
-
-    [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] createCardWithName:card.name
-                                        listID:self.currentListID
-                                withCompletion:^(id object, NSError *error)
-    {
-
-        [self showCardSavingIndicator:NO];
-
-        if (!error) {
-
-            SDWCard *updatedCard = [[SDWCard alloc]initWithAttributes:object];
-
-            NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
-            [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
-            [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
-            [self reloadCollection:arr];
-            [[self cardDetailsVC] setCard:updatedCard];
-        } 
-
-    }];
-
-}
 
 - (void)dismissNewEditedCard {
     
@@ -308,27 +285,25 @@
     self.listNameLabel.hidden = YES;
 }
 
-- (void)setupCardsForList:(SDWBoard *)list parentList:(SDWBoard *)parentList {
+- (void)setupCardsForList:(SDWListDisplayItem *)list {
 
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
-    self.reloadButton.hidden = YES;
-    self.parentListName = parentList.name;
+
+    self.currentList = list;
     self.listName = list.name;
-    self.currentListID = list.boardID;
-    self.parentListID = parentList.boardID;
 
     [self reloadCards];
 }
 - (IBAction)reloadCardsAfterFail:(id)sender {
 
-    self.reloadButton.hidden = YES;
+
     [self reloadCards];
 }
 
 - (void)reloadCards {
 
-    [[self cardDetailsVC] setCard:nil];
+    [[self cardDetailsVC] setupCard:nil];
 
     if (![self isShowingListCards]) {
         return;
@@ -343,74 +318,94 @@
      */
     self.cardsArrayController.content = nil;
     [self.tableView reloadData];
+    
+    [self loadCardsForListID:self.currentList.trelloID];
 
-    [self loadMembers:self.parentListID];
+    [self loadMembers:self.currentList.board.trelloID];
 
 }
 
 - (void)reloadCardsAndFilter:(NSArray *)content {
-    NSMutableArray *filteredCards = [NSMutableArray array];
-    for (SDWCard *card in content) {
-
-        NSString *idM = [card.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"self==%@",SharedSettings.userID]].firstObject;
-
-        if (idM) {
-            [filteredCards addObject:card];
+    
+    NSMutableArray *filteredArray = [NSMutableArray new];
+    
+    for (SDWCardDisplayItem *cardItem in self.cardsArrayController.content) {
+        
+        if ([cardItem.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",SharedSettings.userID]].count > 0) {
+            [filteredArray addObject:cardItem];
         }
     }
 
-    self.cardsArrayController.content = filteredCards;
+    self.cardsArrayController.content = filteredArray;
 }
 
-- (void)loadMembers:(NSString *)listID {
-
-    NSString *URL = [NSString stringWithFormat:@"boards/%@/members?", listID];
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWUser class]
-	    toConcretePath:URL];
-
+- (void)loadMembers:(NSString *)boardID {
+    
     [self.mainProgressIndicator startAnimation];
-
-    [SDWUser findAll:^(NSArray *objs, NSError *err) {
-
-        if (!err) {
-            SharedSettings.selectedListUsers = objs;
-            [self loadCardsForListID:self.currentListID];
+    
+    [[SDWTrelloStore store] fetchUsersForBoardID:boardID currentData:^(NSArray *objects, NSError *error) {
+        
+        if (objects.count > 0) {
+             [self.mainProgressIndicator stopAnimation];
+        }
+        
+        if (!error) {
+            SharedSettings.selectedListUsers = objects;
+            [self loadCardsForListID:self.currentList.trelloID];
         } else {
-            self.reloadButton.hidden = NO;
             [self.mainProgressIndicator stopAnimation];
-            CLS_LOG(@"err = %@", err.localizedDescription);
+            //            CLS_LOG(@"err = %@", err.localizedDescription);
+        }
+        
+    } fetchedData:^(NSArray *objects, NSError *error) {
+        
+         [self.mainProgressIndicator stopAnimation];
+        
+        if (!error) {
+            SharedSettings.selectedListUsers = objects;
+            [self loadCardsForListID:self.currentList.trelloID];
+        } else {
+            [self.mainProgressIndicator stopAnimation];
         }
     }];
+    
 
 }
 
 - (void)loadCardsForListID:(NSString *)listID {
+    
+    [self.mainProgressIndicator startAnimation];
 
-    NSString *URL = [NSString stringWithFormat:@"lists/%@/cards", listID];
-    NSString *URL2 = [NSString stringWithFormat:@"?lists=open&cards=open"];
-
-    NSString *URLF = [NSString stringWithFormat:@"%@%@", URL, URL2];
-
-    [[AFRecordPathManager manager]
-     setAFRecordMethod:@"findAll"
-     forModel:[SDWCard class]
-	    toConcretePath:URLF];
-
-    [SDWCard findAll:^(NSArray *objs, NSError *err) {
-
-        //[self.loadingIndicator stopAnimation:nil];
-        [self.mainProgressIndicator stopAnimation];
-
-        if (!err) {
-            self.reloadButton.hidden = YES;
-            [self reloadCollection:objs];
-        } else {
-            self.reloadButton.hidden = NO;
-            CLS_LOG(@"err = %@", err.localizedDescription);
+    
+    [[SDWTrelloStore store] fetchAllCardsForListID:listID CurrentData:^(NSArray *objects, NSError *error) {
+        
+        if (objects.count > 0) {
+            [self.mainProgressIndicator stopAnimation];
         }
-    }];
+        
+        
+        if (!error) {
+            [self reloadCollection:objects];
+        } else {
+            NSLog(@"%@", error);
+        }
+        
+    } FetchedData:^(id objects, NSError *error) {
+        
+        [self.mainProgressIndicator stopAnimation];
+        
+        if (self.currentList.trelloID == listID) {
+            if (!error) {
+                [self reloadCollection:objects];
+            } else {
+                NSLog(@"%@", error);
+            }
+        }
+        
+
+    } crownFiltered:SharedSettings.shouldFilter];
+    
+
 }
 
 - (void)reloadCollection:(NSArray *)objects {
@@ -435,13 +430,8 @@
     }
 
 
-    if (SharedSettings.shouldFilter) {
-        [self reloadCardsAndFilter:[objects sortedArrayUsingDescriptors:@[sortBy]]];
-    } else {
-        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
 
-    }
-
+    self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
 
     // tableView implementation
     [self.tableView reloadData];
@@ -451,10 +441,10 @@
 
 - (void)updateCardsPositions {
 
-    for (SDWCard *card in self.cardsArrayController.content) {
+    for (SDWCardDisplayItem *card in self.cardsArrayController.content) {
 
         [self updateCardPosition:card];
-        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
+//        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
     }
 }
 
@@ -462,16 +452,15 @@
 
 - (IBAction)addCard:(id)sender {
 
-    if (![self isShowingListCards]) {
+    if (![self isShowingListCards] || [SharedSettings isOffline]) {
         return;
     }
 
-    SDWCard *newCard = [SDWCard new];
-    newCard.boardID = self.parentListID;
+    SDWCardDisplayItem *newCard = [SDWCardDisplayItem new];
     newCard.name = @"";
-    newCard.isSynced = NO;
-
     self.lastSelectedCard = newCard;
+
+
 
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr addObject:newCard];
@@ -497,17 +486,18 @@
 
 - (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
 
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
+    SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
     self.lastSelectedCard = selectedCard;
 }
 
-- (void)cardViewShouldContainLabelColors:(NSString *)colors {
 
+- (void)cardViewShouldAddLabelOfColor:(NSString *)color {
+    
     [self showCardSavingIndicator:YES];
-
-    [[SDWTrelloStore store] updateLabelsForCardID:self.lastSelectedCard.cardID
-                                           colors:colors
-                                       completion:^(id object, NSError *error)
+    
+    [[SDWTrelloStore store] addLabelForCardID:self.lastSelectedCard.trelloID
+                                           color:color
+                                      completion:^(id object, NSError *error)
      {
          [self showCardSavingIndicator:NO];
      }];
@@ -517,7 +507,7 @@
 
     [self showCardSavingIndicator:YES];
 
-    [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.cardID
+    [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.trelloID
                                            color:color
                                       completion:^(id object, NSError *error)
     {
@@ -529,7 +519,7 @@
 - (void)cardViewShouldDeselectCard:(SDWSingleCardTableCellView *)cardView {
 
     if (![self isValidIndex:self.cardsArrayController.selectionIndex]) {
-        [[self cardDetailsVC] setCard:nil];
+        [[self cardDetailsVC] setupCard:nil];
     }
 }
 
@@ -539,19 +529,55 @@
     self.lastSelectedItem = cardView;
     self.lastSelectedItem.mainBox.selected = NO;
 
-    SDWCard *card = self.lastSelectedCard;
 
-    card.name = cardView.mainBox.textField.stringValue;
 
-    [[self cardDetailsVC] setCard:card];
 
-    if (card.isSynced) {
 
-        [self updateCard:card];
+    if (self.lastSelectedCard.trelloID) {
+        SDWCardDisplayItem *card = self.lastSelectedCard;
+        card.name = cardView.mainBox.textField.stringValue;
+        [[self cardDetailsVC] setupCard:self.lastSelectedCard];
+        
+        
+        [self showCardSavingIndicator:YES];
+        
+        [[SDWTrelloStore store] updateCard:self.lastSelectedCard withCompletion:^(id object, NSError *error) {
+            
+            [self showCardSavingIndicator:NO];
+            
+            if (!error) {
+                
+                self.lastSelectedItem.mainBox.selected = NO;
+                self.lastSelectedItem.mainBox.textField.toolTip = self.lastSelectedItem.textField.stringValue;
+                [self.lastSelectedItem setNeedsDisplay:YES];
+                
+            }
+        }];
+
+
     }
     else {
 
-        [self createCard:card];
+        [self showCardSavingIndicator:YES];
+        
+        [[SDWTrelloStore store] createCardWithName:cardView.mainBox.textField.stringValue
+                                            listID:self.currentList.trelloID
+                                    withCompletion:^(SDWCardDisplayItem *updatedCard, NSError *error)
+         {
+             
+             [self showCardSavingIndicator:NO];
+             
+             if (!error) {
+                 
+                 
+                 NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
+                 [arr removeObjectAtIndex:[self bottomObjectIndex:arr]];
+                 [arr insertObject:updatedCard atIndex:[self bottomObjectIndex:arr]];
+                 [self reloadCollection:arr];
+                 [[self cardDetailsVC] setupCard:updatedCard];
+             } 
+             
+         }];
     }
 }
 
@@ -569,19 +595,19 @@
     [self archiveCardWithID:dataDict[@"cardID"]];
 }
 
-- (void)archiveCardWithID:(NSString *)cardID {
+- (void)archiveCardWithID:(NSString *)trelloID {
 
     [self showCardSavingIndicator:YES];
 
-    [[self cardDetailsVC] setCard:nil];
+    [[self cardDetailsVC] setupCard:nil];
 
-    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    SDWCardDisplayItem *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",trelloID]].firstObject;
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObject:cardToDelete];
     self.cardsArrayController.content = arr;
     [self.tableView reloadData];
 
-    [[SDWTrelloStore store] archiveCardID:cardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] archiveCardID:trelloID withCompletion:^(id object, NSError *error) {
 
         [self showCardSavingIndicator:NO];
 
@@ -593,19 +619,19 @@
     }];
 }
 
-- (void)deleteCardWithID:(NSString *)cardID {
+- (void)deleteCardWithID:(NSString *)trelloID {
 
     [self showCardSavingIndicator:YES];
 
-    [[self cardDetailsVC] setCard:nil];
+    [[self cardDetailsVC] setupCard:nil];
 
-    SDWCard *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"cardID == %@",cardID]].firstObject;
+    SDWCardDisplayItem *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"trelloID == %@",trelloID]].firstObject;
     NSMutableArray *arr =[NSMutableArray arrayWithArray:self.cardsArrayController.content];
     [arr removeObject:cardToDelete];
     self.cardsArrayController.content = arr;
     [self.tableView reloadData];
 
-    [[SDWTrelloStore store] deleteCardID:cardID withCompletion:^(id object, NSError *error) {
+    [[SDWTrelloStore store] deleteCardID:trelloID withCompletion:^(id object, NSError *error) {
 
         [self showCardSavingIndicator:NO];
 
@@ -648,9 +674,9 @@
 
     }
 
-    SDWCard *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
+    SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
     self.lastSelectedCard = selectedCard;
-    [[self cardDetailsVC] setCard:selectedCard];
+    [[self cardDetailsVC] setupCard:selectedCard];
 
 
     return YES;
@@ -685,7 +711,7 @@
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
 
     CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
     CGFloat height = ceilf(rec.size.height);
@@ -707,7 +733,7 @@
         return nil;
     }
 
-    SDWCard *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
     view.mainBox.textField.stringValue = card.name;
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
@@ -717,7 +743,7 @@
 
     /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
-        view.mainBox.labels = card.labels;
+        view.mainBox.labels = [card labels];
     } else {
         view.mainBox.labels = @[];
     }
@@ -759,6 +785,8 @@
 
             if (due == nil) {
                 [view.mainBox setHasDot:YES];
+            } else {
+                [view.mainBox setHasDot:NO];
             }
         }
 
@@ -766,10 +794,12 @@
 
         case SDWDotOptionHasOpenTodos: {
 
-            BOOL hasOpenTodos = [[self.representedObject valueForKey:@"hasOpenTodos"] boolValue];
+            BOOL hasOpenTodos = [card hasOpenChecklistItems];
 
-            if (hasOpenTodos) {
+            if (hasOpenTodos != 0 && hasOpenTodos != NO) {
                 [view.mainBox setHasDot:YES];
+            } else {
+                 [view.mainBox setHasDot:NO];
             }
         }
             
@@ -794,7 +824,7 @@
 //    [testMembers addObject:@"DL"];
 //    [testMembers addObject:@"MK"];
 
-    for (NSString *memberID in members) {
+    for (SDWUserDisplayItem *member in members) {
 
         NSTextField *text = [[NSTextField alloc]init];
 
@@ -802,7 +832,7 @@
         [text setTranslatesAutoresizingMaskIntoConstraints:NO];
         [text setFont:[NSFont systemFontOfSize:9]];
         [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
-        [text setStringValue:[self memberNameFromID:memberID] ];
+        [text setStringValue:member.twoLetterID];
         [text setEditable:NO];
         text.alignment = NSCenterTextAlignment;
 
@@ -813,7 +843,7 @@
         if (text.stringValue.length >0) {
 
             //TODO: remove this hack
-            if (card.labels.count == 0) {
+            if ([card labels].count == 0) {
 
                 for (NSLayoutConstraint *co in view.mainBox.constraints) {
                     if (co.priority == 750) {
@@ -841,12 +871,7 @@
 
 - (void)_dbgArrayElementsWithTitle:(NSString *)title {
 
-    CLS_LOG(@"--------------%@-------------\n",title);
 
-    for (SDWCard *card in self.cardsArrayController.content) {
-
-        CLS_LOG(@"%@ - %lu",card.name,(unsigned long)card.position);
-    }
 }
 
 
@@ -854,11 +879,11 @@
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard {
 
-    SDWCard *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
+    SDWCardDisplayItem *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
     NSDictionary *cardDict = @{
-                               @"cardID":card.cardID,
-                               @"itemID":card.cardID,
-                               @"boardID":card.boardID,
+                               @"cardID":card.trelloID,
+                               @"itemID":card.trelloID,
+                               @"boardID":card.model.list.board.trelloID,
                                @"itemIndex":[NSNumber numberWithInteger:rowIndexes.firstIndex]
                                };
 
@@ -940,23 +965,11 @@
 
 #pragma mark - Utils
 
-- (NSString *)memberNameFromID:(NSString *)userID {
 
-    for (SDWUser *user in SharedSettings.selectedListUsers) {
-
-        if ([user.userID isEqualToString:userID]) {
-
-            NSString *str = [Utils twoLetterIDFromName:user.name];
-
-            return str;
-        }
-    }
-    return @"NA";
-}
 
 - (CGFloat)widthForMembersCount:(NSUInteger)count {
 
-    CGFloat width;
+    CGFloat width = 297;
     if (count == 0) {
 
         width = 375;
