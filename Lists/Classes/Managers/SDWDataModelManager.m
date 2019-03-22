@@ -60,7 +60,28 @@ NSString *const CNIDataModelManagerClassLogIdentifier = @"com.conichi.ios-mercha
     }
 }
 
+- (void)deleteAllEntitiesWithName:(NSString *)entityName inContext:(NSManagedObjectContext *)context {
+    
+    [context performBlockAndWait:^{
+
+        NSFetchRequest          *fetchRequest = nil;
+        NSEntityDescription     *entity = nil;
+        
+        fetchRequest = [[NSFetchRequest alloc] init];
+        entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+        fetchRequest.entity = entity;
+        
+        NSBatchDeleteRequest *deleteRequest = [[NSBatchDeleteRequest alloc] initWithFetchRequest:fetchRequest];
+        
+        [context executeRequest:deleteRequest error:nil];
+        
+    }];
+}
+
+
 #pragma mark - Fecth CoreData Entities
+
+
 
 - (id)fetchSingleEntityForName:(NSString *)entityName
                sortDescriptors:(nullable NSArray <NSSortDescriptor *> *)sortDescriptors
@@ -97,6 +118,54 @@ NSString *const CNIDataModelManagerClassLogIdentifier = @"com.conichi.ios-mercha
     }
     return nil;
 }
+
+
+- (void)fetchEntityForName:(NSString *)entityName
+              withUID:(NSString *)conichiID
+                 inContext:(NSManagedObjectContext *)context
+            withCompletion:(void (^)(id fetchedEntity, NSError *))completion {
+    if (!context || !entityName || !conichiID) {
+        return;
+    }
+    
+    [context performBlock:^{
+        NSError                         *error = nil;
+        NSArray                         *results = nil;
+        NSFetchRequest          *fetchRequest = nil;
+        NSPredicate                     *predicate = nil;
+        NSEntityDescription     *entity = nil;
+        
+        fetchRequest = [[NSFetchRequest alloc] init];
+        entity = [NSEntityDescription entityForName:entityName inManagedObjectContext:context];
+        fetchRequest.entity = entity;
+        
+        predicate = [NSPredicate predicateWithFormat:@"uniqueIdentifier == %@", conichiID];
+        fetchRequest.predicate = predicate;
+        
+        results = [context executeFetchRequest:fetchRequest error:&error];
+        if (error) {
+            completion(nil, error);
+        } else {
+            completion(results.firstObject, nil);
+        }
+    }];
+}
+
+- (id)fetchEntityForName:(NSString *)entityName
+            withUID:(NSString *)conichiID
+               inContext:(NSManagedObjectContext *)context {
+    if (!context || !entityName || !conichiID) {
+        return nil;
+    }
+    
+    __block id fetchedEntity;
+    
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"uniqueIdentifier == %@", conichiID];
+    fetchedEntity = [self fetchEntityForName:entityName withPredicate:predicate inContext:context];
+    
+    return fetchedEntity;
+}
+
 
 - (void)fetchEntityForName:(NSString *)entityName
              withTrelloID:(NSString *)conichiID

@@ -118,12 +118,14 @@
 
 - (IBAction)logout:(id)sender {
 
+    [[SDWTrelloStore store] clearDatabase];
     SharedSettings.userToken = nil;
     [(SDWMainSplitController *)self.parentViewController logout];
     self.boards = @[];
     [self loadBoards];
     [self.outlineView reloadData];
     [[self cardsVC] clearCards];
+    
 
 }
 - (IBAction)crownSwitchDidChange:(ITSwitch *)sender {
@@ -228,11 +230,14 @@
 
 - (void)moveCard:(NSDictionary *)cardData {
 
-    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+    
 
     [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
-                              toListID:self.boardWithDrop.trelloID
-                               boardID:self.boardWithDropParent.trelloID];
+                              toListID:self.boardWithDrop.model.uniqueIdentifier
+                               boardID:self.boardWithDropParent.model.uniqueIdentifier completion:^(id object) {
+                                   
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+                               }];
 }
 
 
@@ -258,7 +263,7 @@
 
 - (void)outlineviewShouldEditBoardAtRow:(NSUInteger)boardRow {
 
-     SDWBoard *board =[[self.outlineView itemAtRow:boardRow] representedObject];
+     SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:boardRow] representedObject];
 
     if (self.delegate) {
         [self.delegate boardsListVCDidRequestBoardEdit:board];
@@ -268,10 +273,8 @@
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow {
     SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:boardRow] representedObject];
 
-    [[SDWTrelloStore store] deleteBoardID:board.trelloID completion:^(id object, NSError *error) {
-
-        [self reloadBoards:nil];
-    }];
+    [[SDWTrelloStore store] deleteBoard:board];
+    [self reloadBoards:nil];
 
 }
 
@@ -279,10 +282,8 @@
 
     SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:listRow] representedObject];
 
-    [[SDWTrelloStore store] deleteListID:board.trelloID withCompletion:^(id object, NSError *error) {
-
-        [self reloadBoards:nil];
-    }];
+    [[SDWTrelloStore store] deleteList:board];
+    [self reloadBoards:nil];
 
 }
 

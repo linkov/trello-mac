@@ -125,17 +125,17 @@ static SDWAppSettings *sharedInstance = nil;
 
 - (NSColor *)appBackgroundColor {
 
-   return [NSColor colorWithHexColorString:@"1E5676"];
+   return [NSColor colorWithHexColorString:@"E2E4E6"];
 }
 
 - (NSColor *)appSelectionColor {
 
-    return [NSColor colorWithHexColorString:@"deeef4"];
+    return [NSColor colorWithHexColorString:@"D9E4EB"];
 }
 
 
 - (NSColor *)appHighlightGreenColor {
-    return [NSColor colorWithHexColorString:@"1D8722"];
+    return [NSColor colorWithHexColorString:@"3DB8DE"];
 }
 
 - (NSColor *)appUIColor {
@@ -145,17 +145,22 @@ static SDWAppSettings *sharedInstance = nil;
 
 - (NSColor *)appBleakWhiteColor {
 
-    return [NSColor colorWithHexColorString:@"E8E8E8"];
+    return [NSColor colorWithHexColorString:@"30364C"];
 }
 
 - (NSColor *)appHighlightColor {
 
-    return [NSColor colorWithHexColorString:@"3E6378"];
+    return [NSColor colorWithHexColorString:@"D9E4EB"];
 }
 
 - (NSColor *)appBackgroundColorDark {
 
-    return [NSColor colorWithCalibratedRed:0.096 green:0.265 blue:0.387 alpha:1.000];
+    return [NSColor colorWithHexColorString:@"EDEFF0"];
+}
+
+- (NSColor *)dotColor {
+    
+    return [NSColor colorWithHexColorString:@"30364C"];
 }
 
 

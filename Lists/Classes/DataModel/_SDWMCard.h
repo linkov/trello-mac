@@ -55,6 +55,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* trelloID;
 
+@property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
+
 @property (nonatomic, strong, nullable) NSSet<SDWMActivity*> *activities;
 - (nullable NSMutableSet<SDWMActivity*>*)activitiesSet;
 
@@ -140,6 +142,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveTrelloID;
 - (void)setPrimitiveTrelloID:(nullable NSString*)value;
 
+- (nullable NSString*)primitiveUniqueIdentifier;
+- (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
+
 - (NSMutableSet<SDWMActivity*>*)primitiveActivities;
 - (void)setPrimitiveActivities:(NSMutableSet<SDWMActivity*>*)value;
 
@@ -169,6 +174,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)name;
 + (NSString *)position;
 + (NSString *)trelloID;
++ (NSString *)uniqueIdentifier;
 @end
 
 @interface SDWMCardRelationships: NSObject

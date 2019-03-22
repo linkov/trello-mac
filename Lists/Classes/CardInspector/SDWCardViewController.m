@@ -120,8 +120,8 @@
     self.logoImageView.wantsLayer = YES;
     self.logoImageView.layer.opacity = 0.2;
 
-    self.dueDateLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.9];
-    self.titleDescLabel.textColor = self.commentsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
+    self.dueDateLabel.textColor = [NSColor colorWithHexColorString:@"30364C"];
+    self.titleDescLabel.textColor = self.commentsLabel.textColor = [[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.4];
 
     CIFilter *invert = [CIFilter filterWithName: @"CIColorInvert"];
     [invert setDefaults];
@@ -272,7 +272,7 @@
         }
     };
     
-    [[SDWTrelloStore store] fetchAllActivitiesForCardID:self.card.trelloID currentData:block fetchedData:block];
+    [[SDWTrelloStore store] fetchAllActivitiesForCard:self.card currentData:block fetchedData:block];
 
 
 }
@@ -492,7 +492,7 @@
         resultView.textField.stringValue = [self checkListNameFromID: [[self todoSectionKeys] objectAtIndex:section] ];
 
         resultView.checkBoxWidth.constant = 0;
-        resultView.textField.textColor =[[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.3];
+        resultView.textField.textColor =[[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.4];
 
         if (section == 0) {
             resultView.addCheckItemCenterY.constant = 4;
@@ -566,7 +566,7 @@
         SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
         resultView.textField.stringValue = activity.content;
         resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-        resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2];
+        resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.8];
         resultView.initialsLabel.stringValue = activity.memberInitials;
         resultView.timeLabel.stringValue = activity.dateString;
 
@@ -581,7 +581,7 @@
         resultView.initialsLabel.wantsLayer = YES;
         resultView.initialsLabel.layer.cornerRadius = 1.5;
         resultView.initialsLabel.layer.borderWidth = 1;
-        resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"EDEDF4"] colorWithAlphaComponent:0.2].CGColor;
+        resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.8].CGColor;
         
         result = resultView;
 

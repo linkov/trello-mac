@@ -118,6 +118,8 @@
 
 @dynamic trelloID;
 
+@dynamic uniqueIdentifier;
+
 @dynamic activities;
 
 - (NSMutableSet<SDWMActivity*>*)activitiesSet {
@@ -192,6 +194,9 @@
 }
 + (NSString *)trelloID {
 	return @"trelloID";
+}
++ (NSString *)uniqueIdentifier {
+	return @"uniqueIdentifier";
 }
 @end
 

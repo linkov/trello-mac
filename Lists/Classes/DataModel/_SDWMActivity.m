@@ -40,6 +40,8 @@
 
 @dynamic trelloID;
 
+@dynamic uniqueIdentifier;
+
 @dynamic card;
 
 @end
@@ -56,6 +58,9 @@
 }
 + (NSString *)trelloID {
 	return @"trelloID";
+}
++ (NSString *)uniqueIdentifier {
+	return @"uniqueIdentifier";
 }
 @end
 

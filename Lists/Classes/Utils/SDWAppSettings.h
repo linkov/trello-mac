@@ -65,6 +65,7 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 - (NSColor *)appHighlightGreenColor;
 - (NSColor *)appSelectionColor;
 - (NSColor *)appUIColor;
+- (NSColor *)dotColor;
 
 - (NSColor *)colorForTrelloColor:(NSString *)colorString;
 - (NSColor *)colorWithAlphaForTrelloColor:(NSColor *)color;

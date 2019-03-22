@@ -9,7 +9,8 @@
 #import "SDWSingleCardTableCellView.h"
 #import "SDWCardListView.h"
 #import "Utils.h"
-#import "SDWLabel.h"
+
+#import "SDWLabelDisplayItem.h"
 
 @interface SDWSingleCardTableCellView ()
 
@@ -68,7 +69,6 @@
 - (BOOL)control:(NSControl *)control textShouldBeginEditing:(NSText *)fieldEditor {
 
     NSTextField* tf = (NSTextField*)control;
-
     self.originalText = tf.stringValue;
     return YES;
 }
@@ -77,24 +77,26 @@
 
 
 - (void)controlTextDidEndEditing:(NSNotification *)obj {
-
     self.mainBox.textField.editable = NO;
 
     if (self.mainBox.textField.stringValue.length == 0) {
          [self.delegate cardViewShouldDismissCard:self];
     }
-
-}
-
-- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
-
+    
     if (![self.originalText isEqualToString:self.textField.stringValue]) {
-
+        
         [self.delegate cardViewShouldSaveCard:self];
         [self.mainBox.textField resignFirstResponder];
         self.mainBox.textField.editable = NO;
     }
     
+
+}
+
+- (BOOL)control:(NSControl *)control textShouldEndEditing:(NSText *)fieldEditor {
+    
+
+
     return YES;
 }
 
@@ -103,8 +105,8 @@
 - (void)changeCardLabel:(NSMenuItem *)sender {
 
     NSMutableArray *modifiedLabels = [NSMutableArray arrayWithArray:self.mainBox.labels];
-    SDWLabel *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",sender.title]] firstObject];
-    SDWLabel *newLabel = [SDWLabel new];
+    SDWLabelDisplayItem *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",sender.title]] firstObject];
+    SDWLabelDisplayItem *newLabel = [SDWLabelDisplayItem new];
     newLabel.color = sender.title;
 
 

@@ -2,13 +2,13 @@
   "images" : [
     {
       "idiom" : "universal",
-      "scale" : "1x",
-      "filename" : "onboard.png"
+      "filename" : "onboard@2x-1.png",
+      "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "scale" : "2x",
-      "filename" : "onboard@2x.png"
+      "filename" : "onboard@2x.png",
+      "scale" : "2x"
     },
     {
       "idiom" : "universal",

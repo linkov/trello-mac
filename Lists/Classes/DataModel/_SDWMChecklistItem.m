@@ -64,6 +64,8 @@
 
 @dynamic trelloID;
 
+@dynamic uniqueIdentifier;
+
 @dynamic checklist;
 
 @end
@@ -80,6 +82,9 @@
 }
 + (NSString *)trelloID {
 	return @"trelloID";
+}
++ (NSString *)uniqueIdentifier {
+	return @"uniqueIdentifier";
 }
 @end
 

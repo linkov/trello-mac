@@ -39,6 +39,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* trelloID;
 
+@property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
+
 @property (nonatomic, strong, nullable) NSSet<SDWMList*> *lists;
 - (nullable NSMutableSet<SDWMList*>*)listsSet;
 
@@ -74,6 +76,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveTrelloID;
 - (void)setPrimitiveTrelloID:(nullable NSString*)value;
 
+- (nullable NSString*)primitiveUniqueIdentifier;
+- (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
+
 - (NSMutableSet<SDWMList*>*)primitiveLists;
 - (void)setPrimitiveLists:(NSMutableSet<SDWMList*>*)value;
 
@@ -87,6 +92,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)position;
 + (NSString *)starred;
 + (NSString *)trelloID;
++ (NSString *)uniqueIdentifier;
 @end
 
 @interface SDWMBoardRelationships: NSObject

@@ -78,6 +78,7 @@ static NSString * const AFAppTrelloAPIBaseURLString = @"https://api.trello.com/1
     NSMutableArray *array = [NSMutableArray arrayWithArray:[sourceString  componentsSeparatedByCharactersInSet:separatorSet]];
     [array removeObject:@""];
 //    CLS_LOG(@"%@ -%@ POST %@%@",[array objectAtIndex:3],[array objectAtIndex:4],AFAppTrelloAPIBaseURLString,paramsStr);
+    
 
 
     return [super POST:paramsStr parameters:parameters success:success failure:failure];

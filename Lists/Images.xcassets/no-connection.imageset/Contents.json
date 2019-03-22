@@ -2,7 +2,7 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "no-connection.png",
+      "filename" : "no-connection@1x.png",
       "scale" : "1x"
     },
     {

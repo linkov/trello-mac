@@ -10,7 +10,12 @@
 
 @implementation SDWMList
 
-// Custom logic goes here.
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    if (!self.uniqueIdentifier) {
+        self.uniqueIdentifier = [[NSProcessInfo processInfo] globallyUniqueString];
+    }
+}
 
 @end
 

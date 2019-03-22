@@ -29,11 +29,11 @@ static CGFloat const kDisabledOpacity = 0.5f;
 // ----------------------------------------------------
 
 #import "NSColor+Util.h"
-#define kKnobBackgroundColor [NSColor colorWithHexColorString:@"3E6378"]
+#define kKnobBackgroundColor [NSColor colorWithHexColorString:@"30364C"]
 
-#define kDisabledBorderColor [NSColor colorWithHexColorString:@"3E6378"]
+#define kDisabledBorderColor [NSColor colorWithHexColorString:@"30364C"]
 #define kDisabledBackgroundColor [NSColor clearColor]
-#define kDefaultTintColor [NSColor colorWithHexColorString:@"1E5676"]
+#define kDefaultTintColor [NSColor colorWithHexColorString:@"3DB8DE"]
 #define kInactiveBackgroundColor [NSColor colorWithCalibratedWhite:0 alpha:0.3]
 
 // ---------------------------------------------------------------------------------------

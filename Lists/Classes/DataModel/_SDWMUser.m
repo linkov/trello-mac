@@ -36,6 +36,8 @@
 
 @dynamic trelloID;
 
+@dynamic uniqueIdentifier;
+
 @dynamic boards;
 
 - (NSMutableSet<SDWMBoard*>*)boardsSet {
@@ -66,6 +68,9 @@
 }
 + (NSString *)trelloID {
 	return @"trelloID";
+}
++ (NSString *)uniqueIdentifier {
+	return @"uniqueIdentifier";
 }
 @end
 

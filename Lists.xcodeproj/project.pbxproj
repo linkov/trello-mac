@@ -33,14 +33,6 @@
 		F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9F81A12AFD800FD4E85 /* SDWCardListView.m */; };
 		F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */; };
 		F10AAA581A12AFD800FD4E85 /* SDWLoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */; };
-		F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA061A12AFD800FD4E85 /* AFRecord.m */; };
-		F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA081A12AFD800FD4E85 /* AFRecordModel.m */; };
-		F10AAA5B1A12AFD800FD4E85 /* AFRecordPathManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA0A1A12AFD800FD4E85 /* AFRecordPathManager.m */; };
-		F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA0C1A12AFD800FD4E85 /* SDWBoard.m */; };
-		F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA0E1A12AFD800FD4E85 /* SDWCard.m */; };
-		F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA101A12AFD800FD4E85 /* SDWLabel.m */; };
-		F10AAA5F1A12AFD800FD4E85 /* SDWSourceListModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA121A12AFD800FD4E85 /* SDWSourceListModel.m */; };
-		F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA141A12AFD800FD4E85 /* SDWUser.m */; };
 		F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA171A12AFD800FD4E85 /* AFTrelloAPIClient.m */; };
 		F10AAA621A12AFD800FD4E85 /* SDWMainSplitController.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA191A12AFD800FD4E85 /* SDWMainSplitController.m */; };
 		F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA1B1A12AFD800FD4E85 /* SDWMainSplitView.m */; };
@@ -83,8 +75,6 @@
 		F10E13541EBCB4360044802C /* FEMAttribute+listsAttributes.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13531EBCB4360044802C /* FEMAttribute+listsAttributes.m */; };
 		F10E13571EBCE4BC0044802C /* SDWMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = F10E13561EBCE4BC0044802C /* SDWMapper.m */; };
 		F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */; };
-		F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BF91A58EAB400353914 /* SDWChecklist.m */; };
-		F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */; };
 		F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */; };
 		F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C031A591B5900353914 /* AAPLCheckBox.m */; };
 		F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */; };
@@ -106,7 +96,6 @@
 		F18B58501ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */; };
 		F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */; };
 		F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */; };
-		F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */; };
 		F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAA1A3F819900CD22CE /* JWCTableView.m */; };
 		F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1918AAD1A3F9DBA00CD22CE /* SDWActivityTableCellView.m */; };
 		F1AF66EF1EBF12EC009F230F /* listsmodel.xcdatamodeld in Resources */ = {isa = PBXBuildFile; fileRef = F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */; };
@@ -120,6 +109,12 @@
 		F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */; };
 		F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */; };
 		F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */; };
+		F1F8D8C522451DAF00838563 /* IBMPlexSerif-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C222451DAF00838563 /* IBMPlexSerif-Regular.otf */; };
+		F1F8D8C622451DAF00838563 /* IBMPlexSerif-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C322451DAF00838563 /* IBMPlexSerif-SemiBold.otf */; };
+		F1F8D8C722451DAF00838563 /* IBMPlexSerif-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C422451DAF00838563 /* IBMPlexSerif-Text.otf */; };
+		F1F8D8CB22451DBE00838563 /* IBMPlexSans-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C822451DBE00838563 /* IBMPlexSans-SemiBold.otf */; };
+		F1F8D8CC22451DBE00838563 /* IBMPlexSans-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C922451DBE00838563 /* IBMPlexSans-Text.otf */; };
+		F1F8D8CD22451DBE00838563 /* IBMPlexSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -147,22 +142,6 @@
 		F10AA9FE1A12AFD800FD4E85 /* SDWCardsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardsController.m; sourceTree = "<group>"; };
 		F10AAA021A12AFD800FD4E85 /* SDWLoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLoginVC.h; sourceTree = "<group>"; };
 		F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLoginVC.m; sourceTree = "<group>"; };
-		F10AAA051A12AFD800FD4E85 /* AFRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecord.h; sourceTree = "<group>"; };
-		F10AAA061A12AFD800FD4E85 /* AFRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecord.m; sourceTree = "<group>"; };
-		F10AAA071A12AFD800FD4E85 /* AFRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecordModel.h; sourceTree = "<group>"; };
-		F10AAA081A12AFD800FD4E85 /* AFRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecordModel.m; sourceTree = "<group>"; };
-		F10AAA091A12AFD800FD4E85 /* AFRecordPathManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFRecordPathManager.h; sourceTree = "<group>"; };
-		F10AAA0A1A12AFD800FD4E85 /* AFRecordPathManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFRecordPathManager.m; sourceTree = "<group>"; };
-		F10AAA0B1A12AFD800FD4E85 /* SDWBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWBoard.h; sourceTree = "<group>"; };
-		F10AAA0C1A12AFD800FD4E85 /* SDWBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWBoard.m; sourceTree = "<group>"; };
-		F10AAA0D1A12AFD800FD4E85 /* SDWCard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCard.h; sourceTree = "<group>"; };
-		F10AAA0E1A12AFD800FD4E85 /* SDWCard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCard.m; sourceTree = "<group>"; };
-		F10AAA0F1A12AFD800FD4E85 /* SDWLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWLabel.h; sourceTree = "<group>"; };
-		F10AAA101A12AFD800FD4E85 /* SDWLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLabel.m; sourceTree = "<group>"; };
-		F10AAA111A12AFD800FD4E85 /* SDWSourceListModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWSourceListModel.h; sourceTree = "<group>"; };
-		F10AAA121A12AFD800FD4E85 /* SDWSourceListModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWSourceListModel.m; sourceTree = "<group>"; };
-		F10AAA131A12AFD800FD4E85 /* SDWUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWUser.h; sourceTree = "<group>"; };
-		F10AAA141A12AFD800FD4E85 /* SDWUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWUser.m; sourceTree = "<group>"; };
 		F10AAA161A12AFD800FD4E85 /* AFTrelloAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFTrelloAPIClient.h; sourceTree = "<group>"; };
 		F10AAA171A12AFD800FD4E85 /* AFTrelloAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFTrelloAPIClient.m; sourceTree = "<group>"; };
 		F10AAA181A12AFD800FD4E85 /* SDWMainSplitController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWMainSplitController.h; sourceTree = "<group>"; };
@@ -250,10 +229,6 @@
 		F119AE7419FD4CFC0061D7DF /* Lists.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Lists.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F11E3BF51A58AA3900353914 /* SDWTrelloStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWTrelloStore.h; sourceTree = "<group>"; };
 		F11E3BF61A58AA3900353914 /* SDWTrelloStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWTrelloStore.m; sourceTree = "<group>"; };
-		F11E3BF81A58EAB400353914 /* SDWChecklist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklist.h; sourceTree = "<group>"; };
-		F11E3BF91A58EAB400353914 /* SDWChecklist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklist.m; sourceTree = "<group>"; };
-		F11E3BFB1A58EAC400353914 /* SDWChecklistItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItem.h; sourceTree = "<group>"; };
-		F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItem.m; sourceTree = "<group>"; };
 		F11E3BFE1A5908B700353914 /* SDWCheckItemTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCheckItemTableCellView.h; sourceTree = "<group>"; };
 		F11E3BFF1A5908B700353914 /* SDWCheckItemTableCellView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCheckItemTableCellView.m; sourceTree = "<group>"; };
 		F11E3C021A591B5900353914 /* AAPLCheckBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AAPLCheckBox.h; sourceTree = "<group>"; };
@@ -294,8 +269,6 @@
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
 		F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardCalendarVC.h; sourceTree = "<group>"; };
 		F1918A9A1A3D535200CD22CE /* SDWCardCalendarVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardCalendarVC.m; sourceTree = "<group>"; };
-		F1918A9C1A3DCE9A00CD22CE /* SDWActivity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivity.h; sourceTree = "<group>"; };
-		F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWActivity.m; sourceTree = "<group>"; };
 		F1918AA91A3F819900CD22CE /* JWCTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JWCTableView.h; sourceTree = "<group>"; };
 		F1918AAA1A3F819900CD22CE /* JWCTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JWCTableView.m; sourceTree = "<group>"; };
 		F1918AAC1A3F9DBA00CD22CE /* SDWActivityTableCellView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWActivityTableCellView.h; sourceTree = "<group>"; };
@@ -320,6 +293,12 @@
 		F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWModalEditVC.m; sourceTree = "<group>"; };
 		F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemTextField.h; sourceTree = "<group>"; };
 		F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAddNamedItemTextField.m; sourceTree = "<group>"; };
+		F1F8D8C222451DAF00838563 /* IBMPlexSerif-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Regular.otf"; sourceTree = "<group>"; };
+		F1F8D8C322451DAF00838563 /* IBMPlexSerif-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-SemiBold.otf"; sourceTree = "<group>"; };
+		F1F8D8C422451DAF00838563 /* IBMPlexSerif-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Text.otf"; sourceTree = "<group>"; };
+		F1F8D8C822451DBE00838563 /* IBMPlexSans-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-SemiBold.otf"; sourceTree = "<group>"; };
+		F1F8D8C922451DBE00838563 /* IBMPlexSans-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Text.otf"; sourceTree = "<group>"; };
+		F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -351,6 +330,7 @@
 				F12A38921A12B6C000611257 /* Lists.entitlements */,
 				F10AA9E31A12AFD800FD4E85 /* AppDelegate.h */,
 				F10AA9E41A12AFD800FD4E85 /* AppDelegate.m */,
+				F1F8D8C122451D8700838563 /* Fonts */,
 				F10AA9E51A12AFD800FD4E85 /* Main.storyboard */,
 				F10AA9E71A12AFD800FD4E85 /* Classes */,
 				F10AAA2D1A12AFD800FD4E85 /* Images.xcassets */,
@@ -373,7 +353,6 @@
 				F10AA9F11A12AFD800FD4E85 /* CardInspector */,
 				F10AA9F41A12AFD800FD4E85 /* CardList */,
 				F10AAA011A12AFD800FD4E85 /* Login */,
-				F10AAA041A12AFD800FD4E85 /* Model */,
 				F10AAA151A12AFD800FD4E85 /* Network */,
 				F10AAA181A12AFD800FD4E85 /* SDWMainSplitController.h */,
 				F10AAA191A12AFD800FD4E85 /* SDWMainSplitController.m */,
@@ -451,35 +430,6 @@
 				F10AAA031A12AFD800FD4E85 /* SDWLoginVC.m */,
 			);
 			path = Login;
-			sourceTree = "<group>";
-		};
-		F10AAA041A12AFD800FD4E85 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				F10AAA051A12AFD800FD4E85 /* AFRecord.h */,
-				F10AAA061A12AFD800FD4E85 /* AFRecord.m */,
-				F10AAA071A12AFD800FD4E85 /* AFRecordModel.h */,
-				F10AAA081A12AFD800FD4E85 /* AFRecordModel.m */,
-				F10AAA091A12AFD800FD4E85 /* AFRecordPathManager.h */,
-				F10AAA0A1A12AFD800FD4E85 /* AFRecordPathManager.m */,
-				F10AAA0B1A12AFD800FD4E85 /* SDWBoard.h */,
-				F10AAA0C1A12AFD800FD4E85 /* SDWBoard.m */,
-				F11E3BFB1A58EAC400353914 /* SDWChecklistItem.h */,
-				F11E3BFC1A58EAC400353914 /* SDWChecklistItem.m */,
-				F11E3BF81A58EAB400353914 /* SDWChecklist.h */,
-				F11E3BF91A58EAB400353914 /* SDWChecklist.m */,
-				F1918A9C1A3DCE9A00CD22CE /* SDWActivity.h */,
-				F1918A9D1A3DCE9A00CD22CE /* SDWActivity.m */,
-				F10AAA0D1A12AFD800FD4E85 /* SDWCard.h */,
-				F10AAA0E1A12AFD800FD4E85 /* SDWCard.m */,
-				F10AAA0F1A12AFD800FD4E85 /* SDWLabel.h */,
-				F10AAA101A12AFD800FD4E85 /* SDWLabel.m */,
-				F10AAA111A12AFD800FD4E85 /* SDWSourceListModel.h */,
-				F10AAA121A12AFD800FD4E85 /* SDWSourceListModel.m */,
-				F10AAA131A12AFD800FD4E85 /* SDWUser.h */,
-				F10AAA141A12AFD800FD4E85 /* SDWUser.m */,
-			);
-			path = Model;
 			sourceTree = "<group>";
 		};
 		F10AAA151A12AFD800FD4E85 /* Network */ = {
@@ -723,6 +673,19 @@
 			path = JWCTableView;
 			sourceTree = "<group>";
 		};
+		F1F8D8C122451D8700838563 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */,
+				F1F8D8C822451DBE00838563 /* IBMPlexSans-SemiBold.otf */,
+				F1F8D8C922451DBE00838563 /* IBMPlexSans-Text.otf */,
+				F1F8D8C222451DAF00838563 /* IBMPlexSerif-Regular.otf */,
+				F1F8D8C322451DAF00838563 /* IBMPlexSerif-SemiBold.otf */,
+				F1F8D8C422451DAF00838563 /* IBMPlexSerif-Text.otf */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -797,11 +760,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1F8D8C522451DAF00838563 /* IBMPlexSerif-Regular.otf in Resources */,
 				F1AF66EF1EBF12EC009F230F /* listsmodel.xcdatamodeld in Resources */,
 				F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */,
 				F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */,
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
+				F1F8D8C622451DAF00838563 /* IBMPlexSerif-SemiBold.otf in Resources */,
+				F1F8D8CD22451DBE00838563 /* IBMPlexSans-Regular.otf in Resources */,
+				F1F8D8CC22451DBE00838563 /* IBMPlexSans-Text.otf in Resources */,
+				F1F8D8CB22451DBE00838563 /* IBMPlexSans-SemiBold.otf in Resources */,
+				F1F8D8C722451DAF00838563 /* IBMPlexSerif-Text.otf in Resources */,
 				F14B36101A1441C000AFD5C9 /* icon.icns in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -896,7 +865,6 @@
 				F10AAA711A12AFD800FD4E85 /* AFHTTPSessionManager.m in Sources */,
 				F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */,
 				F10AAA621A12AFD800FD4E85 /* SDWMainSplitController.m in Sources */,
-				F1918A9E1A3DCE9A00CD22CE /* SDWActivity.m in Sources */,
 				F10E13371EBCAFDA0044802C /* SDWMChecklistItem.m in Sources */,
 				F10E13571EBCE4BC0044802C /* SDWMapper.m in Sources */,
 				F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */,
@@ -908,7 +876,6 @@
 				F18B583E1ECE0D6700884CDC /* SDWCardDisplayItem.m in Sources */,
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
 				F10E13471EBCAFE30044802C /* _SDWMCard.m in Sources */,
-				F10AAA5A1A12AFD800FD4E85 /* AFRecordModel.m in Sources */,
 				F18B58471ECE0DE700884CDC /* SDWListDisplayItem.m in Sources */,
 				F1610E681A8BF3D000DECA86 /* SDWSingleCardTableCellView.m in Sources */,
 				F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */,
@@ -916,15 +883,12 @@
 				F10AAA521A12AFD800FD4E85 /* SDWCardDetailsTextField.m in Sources */,
 				F10AAA531A12AFD800FD4E85 /* SDWCardListView.m in Sources */,
 				F1918A9B1A3D535200CD22CE /* SDWCardCalendarVC.m in Sources */,
-				F10AAA5E1A12AFD800FD4E85 /* SDWLabel.m in Sources */,
-				F11E3BFA1A58EAB400353914 /* SDWChecklist.m in Sources */,
 				F10AAA781A12AFD800FD4E85 /* ITSwitch.m in Sources */,
 				F10E13381EBCAFDA0044802C /* SDWMLabel.m in Sources */,
 				F10AAA631A12AFD800FD4E85 /* SDWMainSplitView.m in Sources */,
 				F10AAA741A12AFD800FD4E85 /* AFURLConnectionOperation.m in Sources */,
 				F10AAA4F1A12AFD800FD4E85 /* SDWBoardsListRow.m in Sources */,
 				F1918AAE1A3F9DBA00CD22CE /* SDWActivityTableCellView.m in Sources */,
-				F10AAA5D1A12AFD800FD4E85 /* SDWCard.m in Sources */,
 				F10AAA611A12AFD800FD4E85 /* AFTrelloAPIClient.m in Sources */,
 				F10E13351EBCAFDA0044802C /* SDWMCard.m in Sources */,
 				F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */,
@@ -935,7 +899,6 @@
 				F11E3BF71A58AA3900353914 /* SDWTrelloStore.m in Sources */,
 				F1AF66F61EBF1C21009F230F /* SDWMList.m in Sources */,
 				F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */,
-				F10AAA5F1A12AFD800FD4E85 /* SDWSourceListModel.m in Sources */,
 				F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */,
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10E13341EBCAFDA0044802C /* SDWMBoard.m in Sources */,
@@ -947,8 +910,6 @@
 				F1624CD61ED2BED6003F0EA7 /* _SDWMActivity.m in Sources */,
 				F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */,
 				F10E134A1EBCAFE30044802C /* _SDWMLabel.m in Sources */,
-				F10AAA601A12AFD800FD4E85 /* SDWUser.m in Sources */,
-				F10AAA5C1A12AFD800FD4E85 /* SDWBoard.m in Sources */,
 				F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */,
 				F18B58441ECE0D9200884CDC /* SDWLabelDisplayItem.m in Sources */,
 				F11E3C001A5908B700353914 /* SDWCheckItemTableCellView.m in Sources */,
@@ -958,7 +919,6 @@
 				F10E13541EBCB4360044802C /* FEMAttribute+listsAttributes.m in Sources */,
 				F1AF66F51EBF1C21009F230F /* _SDWMList.m in Sources */,
 				F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */,
-				F10AAA5B1A12AFD800FD4E85 /* AFRecordPathManager.m in Sources */,
 				F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */,
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
 				F18B58501ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m in Sources */,
@@ -969,9 +929,7 @@
 				F10E13491EBCAFE30044802C /* _SDWMChecklistItem.m in Sources */,
 				F18B584A1ECE0E4600884CDC /* SDWUserDisplayItem.m in Sources */,
 				F10AAA6F1A12AFD800FD4E85 /* AFHTTPRequestOperation.m in Sources */,
-				F10AAA591A12AFD800FD4E85 /* AFRecord.m in Sources */,
 				F18B584D1ECE0E8100884CDC /* SDWChecklistDisplayItem.m in Sources */,
-				F11E3BFD1A58EAC400353914 /* SDWChecklistItem.m in Sources */,
 				F18B58411ECE0D7A00884CDC /* SDWBoardDisplayItem.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
 				F10E13481EBCAFE30044802C /* _SDWMChecklist.m in Sources */,

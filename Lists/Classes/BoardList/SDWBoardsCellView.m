@@ -14,4 +14,11 @@
 
 @implementation SDWBoardsCellView
 
+- (void)drawRect:(NSRect)dirtyRect {
+    [super drawRect:dirtyRect];
+    
+//    self.textLabel.font = [NSFont fontWithName:@"IBMPlexSans-Regular" size:11];
+    
+}
+
 @end

@@ -12,9 +12,10 @@
 #import "SDWDataModelManager.h"
 
 
-@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem;
+@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem,SDWListDisplayItem,SDWBoardDisplayItem;
 
 typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
+typedef void (^SDWTrelloStoreLocalCompletionBlock)(id object);
 
 @interface SDWTrelloStore : NSObject
 
@@ -25,6 +26,9 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 - (void)handleError:(NSError *)error;
 - (void)handleError:(NSError *)error withReason:(id)reason;
 
+
+- (void)clearDatabase;
+
 /* General */
 - (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block;
 
@@ -32,51 +36,48 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 /* Cards ops */
 
 
-//v2
-- (void)fetchAllActivitiesForCardID:(NSString *)cardID
-                        currentData:(SDWTrelloStoreCompletionBlock)currentBlock
-                        fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
+//v3
+- (void)fetchAllActivitiesForCard:(SDWCardDisplayItem *)card
+                      currentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                      fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
 
 
-//v2
-- (void)fetchAllCardsForListID:(NSString *)listID
-                   CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
-                   FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
-                 crownFiltered:(BOOL)crownFiltered;
+//v3
+- (void)fetchAllCardsForList:(SDWListDisplayItem *)list
+                 CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                 FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
+               crownFiltered:(BOOL)crownFiltered;
 
-//v2
+//v3
 - (void)createCardWithName:(NSString *)name
-                    listID:(NSString *)listID
-            withCompletion:(SDWTrelloStoreCompletionBlock)block;
+                      list:(SDWListDisplayItem *)list
+                  position:(int64_t)position
+updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
 
-//v2
+//v3
 - (void)moveCardID:(NSString *)cardID
           toListID:(NSString *)listID
-           boardID:(NSString *)boardID;
+           boardID:(NSString *)boardID
+        completion:(SDWTrelloStoreLocalCompletionBlock)block;
 
-//v2
-- (void)moveCardID:(NSString *)cardID
-        toPosition:(NSNumber *)pos
-        completion:(SDWTrelloStoreCompletionBlock)block;
+//v3
+- (void)moveCard:(SDWCardDisplayItem *)card
+      toPosition:(NSNumber *)pos;
 
-
-//v2
+//v3
 - (void)updateCard:(SDWCardDisplayItem *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
-//v2
-- (void)deleteCardID:(NSString *)cardID
-      withCompletion:(SDWTrelloStoreCompletionBlock)block;
-
-//v2
-- (void)archiveCardID:(NSString *)cardID
-       withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 
-//v2
-- (void)addLabelForCardID:(NSString *)cardID
-                    color:(NSString *)color
-               completion:(SDWTrelloStoreCompletionBlock)block;
+//v3
+- (void)archiveCard:(SDWCardDisplayItem *)card;
+
+
+//v3
+- (void)addLabelForCard:(SDWCardDisplayItem *)card
+                  color:(NSString *)color
+             completion:(SDWTrelloStoreCompletionBlock)block;
 
 //v2
 - (void)removeLabelForCardID:(NSString *)cardID
@@ -91,45 +92,39 @@ typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
                  currentData:(SDWTrelloStoreCompletionBlock)currentBlock
                  fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
 
-//v2
+//v3
 - (void)fetchAllBoardsCurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
                       fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
                     crownFiltered:(BOOL)shouldCrownFilter;
 
-//v2
+//v3
 - (void)createBoardWithName:(NSString *)name
-                 completion:(SDWTrelloStoreCompletionBlock)block;
+                updatedBoard:(SDWTrelloStoreLocalCompletionBlock)block;
 
-//v2
-- (void)deleteBoardID:(NSString *)name
-                 completion:(SDWTrelloStoreCompletionBlock)block;
+//v3
+- (void)deleteBoard:(SDWBoardDisplayItem *)board;
 
 
-//v2
-- (void)renameBoardID:(NSString *)boardID
-                 name:(NSString *)newName
-           completion:(SDWTrelloStoreCompletionBlock)block;
+//v3
+- (void)renameBoard:(SDWBoardDisplayItem *)board;
 
 
 
 /* Lists ops */
 
 
-//v2
+//v3
 - (void)createListWithName:(NSString *)name
-                   boardID:(NSString *)boardID
+                   inBoard:(SDWBoardDisplayItem *)board
                   position:(NSNumber *)pos
-                completion:(SDWTrelloStoreCompletionBlock)block;
+               updatedList:(SDWTrelloStoreLocalCompletionBlock)block;
 
-//v2
-- (void)deleteListID:(NSString *)listID
-      withCompletion:(SDWTrelloStoreCompletionBlock)block;
+//v3
+- (void)deleteList:(SDWListDisplayItem *)list;
 
-//v2
-- (void)renameListID:(NSString *)boardID
-                 name:(NSString *)newName
-           completion:(SDWTrelloStoreCompletionBlock)block;
 
+//v3
+- (void)renameList:(SDWListDisplayItem *)list;
 
 
 

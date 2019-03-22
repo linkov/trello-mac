@@ -39,6 +39,10 @@
 
 
     self.textField.editable = NO;
+    self.textField.wantsLayer = true;
+    self.textField.focusRingType = NSFocusRingTypeNone;
+    
+    
    // self.textField.delegate = self;
 }
 
@@ -76,8 +80,8 @@
 
         NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(3.5, self.bounds.size.height/2-4/2, 4, 4)];
 
-        [[SharedSettings appBackgroundColorDark] setFill];
-        [[SharedSettings appBackgroundColorDark] setStroke];
+        [[SharedSettings dotColor] setFill];
+        [[SharedSettings dotColor] setStroke];
         [ovalPath fill];
 
     }
@@ -96,7 +100,7 @@
 
 - (void)setSelected:(BOOL)selected {
 	if (selected) {
-		self.fillColor = [SharedSettings appSelectionColor];
+		self.fillColor = [NSColor colorWithHexColorString:@"F5F6F8"];
 	} else {
 
 		self.fillColor = [NSColor whiteColor];

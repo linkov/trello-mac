@@ -28,6 +28,13 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)saveContext;
 - (void)saveToDisk;
 
+- (void)deleteAllEntitiesWithName:(NSString *)entityName
+                        inContext:(NSManagedObjectContext *)context;
+
+- (id)fetchEntityForName:(NSString *)entityName
+            withUID:(NSString *)conichiID
+               inContext:(NSManagedObjectContext *)context;
+
 - (id)fetchEntityForName:(NSString *)entityName
             withTrelloID:(NSString *)conichiID
                inContext:(NSManagedObjectContext *)context;

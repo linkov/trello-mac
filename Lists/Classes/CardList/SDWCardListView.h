@@ -8,6 +8,8 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class SDWLabelDisplayItem;
+
 @interface SDWCardListView : NSBox
 
 @property (strong) IBOutlet NSTextField *textField;
@@ -16,6 +18,6 @@
 @property (nonatomic,assign) BOOL hasDot;
 @property (nonatomic,assign) BOOL shouldDrawSideLine;
 @property (nonatomic,assign) BOOL shouldDrawSideLineAmber;
-@property (nonatomic,strong) NSArray *labels;
+@property (nonatomic,strong) NSArray <SDWLabelDisplayItem *> *labels;
 
 @end

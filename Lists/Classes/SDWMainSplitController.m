@@ -10,9 +10,7 @@
 #import "SDWCardsController.h"
 #import "SDWBoardsController.h"
 #import "SDWModalEditVC.h"
-#import "SDWBoard.h"
-#import "SDWCard.h"
-#import "AFRecordPathManager.h"
+
 #import "SDWMainSplitController.h"
 #import "SDWLoginVC.h"
 #import "SDWTrelloStore.h"
@@ -154,42 +152,38 @@
 
         if (self.currentlyEditedBoardList.isLeaf) {
 
-            [[SDWTrelloStore store] renameListID:self.currentlyEditedBoardList.trelloID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
-
-                self.currentlyEditedBoardList = nil;
-                [self.boardsVC reloadBoards:nil];
-            }];
+            [[SDWTrelloStore store] renameList:self.currentlyEditedBoardList];
+            self.currentlyEditedBoardList = nil;
+            [self.boardsVC reloadBoards:nil];
 
         } else {
 
-            [[SDWTrelloStore store] renameBoardID:self.currentlyEditedBoardList.trelloID name:self.currentlyEditedBoardList.name completion:^(id object, NSError *error) {
-
-                self.currentlyEditedBoardList = nil;
-                [self.boardsVC reloadBoards:nil];
-                
-                
-            }];
+            [[SDWTrelloStore store] renameBoard:self.currentlyEditedBoardList];
+            self.currentlyEditedBoardList = nil;
+            [self.boardsVC reloadBoards:nil];
         }
 
 
 
     } else if (self.parentBoardForNewList) {
-
-        [[SDWTrelloStore store] createListWithName:name boardID:self.parentBoardForNewList.trelloID position:@(0) completion:^(id object, NSError *error) {
-
+        
+        [[SDWTrelloStore store] createListWithName:name inBoard:self.parentBoardForNewList position:@(0) updatedList:^(id object) {
+           
             self.parentBoardForNewList = nil;
             [self.boardsVC reloadBoards:nil];
         }];
+
+
+        
     }
 
 
     else {
 
-        [[SDWTrelloStore store] createBoardWithName:name completion:^(id object, NSError *error) {
-
+        [[SDWTrelloStore store] createBoardWithName:name updatedBoard:^(id object) {
             [self.boardsVC reloadBoards:nil];
-
         }];
+        
     }
 
 

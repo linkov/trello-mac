@@ -36,7 +36,7 @@
 - (void)mouseDown:(NSEvent *)theEvent {
 
     NSTextField *textField = self;
-    NSColor *insertionPointColor = [NSColor whiteColor];
+    NSColor *insertionPointColor = [NSColor blackColor];
 
     NSTextView *fieldEditor = (NSTextView*)[textField.window fieldEditor:YES
                                                                forObject:textField];

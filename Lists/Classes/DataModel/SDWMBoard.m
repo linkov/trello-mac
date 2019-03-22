@@ -16,6 +16,13 @@
     return self.trelloID;
 }
 
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    if (!self.uniqueIdentifier) {
+        self.uniqueIdentifier = [[NSProcessInfo processInfo] globallyUniqueString];
+    }
+}
+
 @end
 
 

@@ -25,6 +25,13 @@
     return self.trelloID;
 }
 
+- (void)awakeFromInsert {
+    [super awakeFromInsert];
+    if (!self.uniqueIdentifier) {
+        self.uniqueIdentifier = [[NSProcessInfo processInfo] globallyUniqueString];
+    }
+}
+
 
 @end
 
@@ -42,30 +49,7 @@
     [mapping addAttribute:[FEMAttribute dateAttributeWithProperty:@"dueDate" keyPath:@"due"]];
     [mapping addToManyRelationshipMapping:[SDWMLabel defaultMapping] forProperty:@"labels" keyPath:@"labels"];
     
-//    FEMAttribute *conichiID = [[FEMAttribute alloc] initWithProperty:@"members" keyPath:@"idMembers" map:^id (id value) {
-//        NSString *guestID_prefereceID;
-//
-//        return guestID_prefereceID;
-//    } reverseMap:^id (id value) {
-//        return nil;
-//    }];
-//    
-//    [mapping addAttribute:conichiID];
-//    
-//    FEMMapping *mm = [FEMMapping alloc]initWithEntityName:<#(nonnull NSString *)#> rootPath:<#(nullable NSString *)#>
-    
-    
 
-//    FEMMapping *membersMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMUser"];
-//    membersMapping.primaryKey = SDWMappingDefaultPrimaryKey;
-////    [membersMapping addAttribute:[FEMAttribute listsIDAttribute] ];
-//    [membersMapping addAttributeWithProperty:@"trelloID" keyPath:nil];
-//
-//    
-//    FEMRelationship *membersRelationship = [[FEMRelationship alloc]initWithProperty:@"members" keyPath:@"idMembers" mapping:membersMapping];
-//    membersRelationship.weak = YES;
-//    membersRelationship.toMany = YES;
-//    [mapping addRelationship:membersRelationship];
     
     FEMMapping *listMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMList"];
     listMapping.primaryKey = @"trelloID";

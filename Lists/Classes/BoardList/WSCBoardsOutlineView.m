@@ -5,9 +5,10 @@
 //  Created by alex on 11/1/14.
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
-#import "SDWBoard.h"
 #import "NSColor+Util.h"
 #import "WSCBoardsOutlineView.h"
+
+#import "SDWBoardDisplayItem.h"
 
 @interface WSCBoardsOutlineView ()
 
@@ -26,7 +27,7 @@
     NSPoint pt = [self convertPoint:[evt locationInWindow] fromView:nil];
     NSUInteger row = [self rowAtPoint:pt];
 
-    SDWBoard *board =[self itemAtRow:row];
+    SDWBoardDisplayItem *board =[self itemAtRow:row];
     if (board.isLeaf) {
         return [self listMenuForRow:row];
     } else {

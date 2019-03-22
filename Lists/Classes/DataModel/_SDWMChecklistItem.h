@@ -34,6 +34,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* trelloID;
 
+@property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
+
 @property (nonatomic, strong, nullable) SDWMChecklist *checklist;
 
 @end
@@ -55,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveTrelloID;
 - (void)setPrimitiveTrelloID:(nullable NSString*)value;
 
+- (nullable NSString*)primitiveUniqueIdentifier;
+- (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
+
 - (SDWMChecklist*)primitiveChecklist;
 - (void)setPrimitiveChecklist:(SDWMChecklist*)value;
 
@@ -65,6 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)position;
 + (NSString *)state;
 + (NSString *)trelloID;
++ (NSString *)uniqueIdentifier;
 @end
 
 @interface SDWMChecklistItemRelationships: NSObject
