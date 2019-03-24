@@ -227,12 +227,12 @@
                     list:(SDWListDisplayItem *)list
                   position:(int64_t)position updatedCard:(SDWTrelloStoreLocalCompletionBlock)block {
     
-    SDWMCard *card = [SDWMCard insertInManagedObjectContext:self.dataModelManager.managedObjectContext];
-    card.name = name;
-    card.positionValue =  position;
-    card.list = list.model;
-    [self saveContext];
-    
+//    SDWMCard *card = [SDWMCard insertInManagedObjectContext:self.dataModelManager.managedObjectContext];
+//    card.name = name;
+//    card.positionValue =  position;
+//    card.list = list.model;
+//    [self saveContext];
+//    
     
     
 
@@ -250,7 +250,7 @@
 
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
-             [SDWMapper ez_objectOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+             SDWMCard *card =  [SDWMapper ez_objectOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
              [self saveContext];
              
              SDWPerformBlock(block,[[SDWCardDisplayItem alloc]initWithModel:card])
@@ -370,7 +370,7 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/closed?",card.trelloID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
-        
+
 
 
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -474,12 +474,15 @@
                         currentData:(SDWTrelloStoreCompletionBlock)currentBlock
                         fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock {
     
+    NSSortDescriptor *ageDescriptor = [[NSSortDescriptor alloc] initWithKey:@"time" ascending:YES];
+    NSArray *sortDescriptors = @[ageDescriptor];
+    
     
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
         SDWMCard *crd = [self.dataModelManager fetchEntityForName:[SDWMCard entityName] withUID:card.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
 
-        SDWPerformBlock(currentBlock,[SDWTrelloStore displayActivitiesFromActivities:crd.activities.allObjects],nil);
+        SDWPerformBlock(currentBlock,[SDWTrelloStore displayActivitiesFromActivities:[crd.activities.allObjects sortedArrayUsingDescriptors:sortDescriptors]],nil);
         
     }];
     
@@ -495,6 +498,7 @@
              
              NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMActivity class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
              SDWMCard *crd = [self.dataModelManager fetchEntityForName:[SDWMCard entityName] withUID:card.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
+             mappedObjects = [mappedObjects sortedArrayUsingDescriptors:sortDescriptors];
              [crd addActivities:[NSSet setWithArray:mappedObjects]];
               [self saveContext];
              SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayActivitiesFromActivities:crd.activities.allObjects],nil);
@@ -548,9 +552,12 @@
 - (void)fetchAllBoardsCurrentData:(SDWTrelloStoreCompletionBlock)currentBlock fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
                     crownFiltered:(BOOL)shouldCrownFilter {
     
+    __block NSArray *storedBoards;
     if (!shouldCrownFilter) {
         [self.dataModelManager.managedObjectContext performBlockAndWait:^{
             [self.dataModelManager fetchAllEntitiesForName:[SDWMBoard entityName] withPredicate:nil inContext:self.dataModelManager.managedObjectContext withCompletion:^(id fetchedEntities, NSError *error) {
+                
+                storedBoards = fetchedEntities;
                 if (error) {
                     SDWPerformBlock(currentBlock,nil,error);
                 } else {
@@ -570,6 +577,13 @@
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
            NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMBoard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+             
+             NSMutableArray *mutalbleStored = [NSMutableArray arrayWithArray:storedBoards];
+             [mutalbleStored removeObjectsInArray:mappedObjects];
+             for (SDWMBoard *board in mutalbleStored) {
+                 [self.dataModelManager.managedObjectContext deleteObject:board];
+             }
+             
              [self saveContext];
              if (shouldCrownFilter) {
                  

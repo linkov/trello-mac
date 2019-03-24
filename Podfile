@@ -10,5 +10,4 @@ target 'Lists' do
   pod 'FastEasyMapping', '~> 1.1'
   pod 'Fabric'
   pod 'Crashlytics'
-
 end

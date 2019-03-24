@@ -368,16 +368,16 @@
     
     [[SDWTrelloStore store] fetchAllCardsForList:list CurrentData:^(NSArray *objects, NSError *error) {
         
-//        if (objects.count > 0) {
-//            [self.mainProgressIndicator stopAnimation];
-//        }
-//
-//
-//        if (!error) {
-//            [self reloadCollection:objects];
-//        } else {
-//            NSLog(@"%@", error);
-//        }
+        if (objects.count > 0) {
+            [self.mainProgressIndicator stopAnimation];
+        }
+
+
+        if (!error) {
+            [self reloadCollection:objects];
+        } else {
+            NSLog(@"%@", error);
+        }
         
     } FetchedData:^(id objects, NSError *error) {
         
@@ -775,51 +775,72 @@
     /* load card users */
     [view.stackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
-    NSArray *members = card.members;
+//    NSArray *members = card.members;
 
 //    NSMutableArray *testMembers = [NSMutableArray arrayWithArray:members];
 //    [testMembers addObject:@"DL"];
 //    [testMembers addObject:@"MK"];
-
-    for (SDWUserDisplayItem *member in members) {
-
+    
+    if(card.dueDate){
         NSTextField *text = [[NSTextField alloc]init];
-
+        
         [text setWantsLayer:YES];
         [text setTranslatesAutoresizingMaskIntoConstraints:NO];
         [text setFont:[NSFont systemFontOfSize:9]];
         [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
-        [text setStringValue:member.twoLetterID];
+        [text setStringValue:[Utils dateToString:card.dueDate]];
         [text setEditable:NO];
         text.alignment = NSCenterTextAlignment;
-
+        
         text.layer.cornerRadius = 1.5;
         text.layer.borderWidth = 1;
         text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
-
-        if (text.stringValue.length >0) {
-
-            //TODO: remove this hack
-            if ([card labels].count == 0) {
-
-                for (NSLayoutConstraint *co in view.mainBox.constraints) {
-                    if (co.priority == 750) {
-                        co.constant = 7;
-                    }
-                }
-            } else {
-
-                for (NSLayoutConstraint *co in view.mainBox.constraints) {
-                    if (co.priority == 750) {
-                        co.constant = 3;
-                    }
-                }
-            }
-
-
-            [view.stackView addView:text inGravity:NSStackViewGravityTrailing];
-        }
+        [view.stackView addView:text inGravity:NSStackViewGravityTrailing];
     }
+    
+
+    
+    
+
+//    for (SDWUserDisplayItem *member in members) {
+//
+//        NSTextField *text = [[NSTextField alloc]init];
+//
+//        [text setWantsLayer:YES];
+//        [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+//        [text setFont:[NSFont systemFontOfSize:9]];
+//        [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
+//        [text setStringValue:member.twoLetterID];
+//        [text setEditable:NO];
+//        text.alignment = NSCenterTextAlignment;
+//
+//        text.layer.cornerRadius = 1.5;
+//        text.layer.borderWidth = 1;
+//        text.layer.borderColor = [NSColor colorWithHexColorString:@"3E6378"].CGColor;
+//
+//        if (text.stringValue.length >0) {
+//
+//            //TODO: remove this hack
+//            if ([card labels].count == 0) {
+//
+//                for (NSLayoutConstraint *co in view.mainBox.constraints) {
+//                    if (co.priority == 750) {
+//                        co.constant = 7;
+//                    }
+//                }
+//            } else {
+//
+//                for (NSLayoutConstraint *co in view.mainBox.constraints) {
+//                    if (co.priority == 750) {
+//                        co.constant = 3;
+//                    }
+//                }
+//            }
+//
+//
+//            [view.stackView addView:text inGravity:NSStackViewGravityTrailing];
+//        }
+//    }
 
 
     return view;

@@ -4,6 +4,7 @@
 
 #import "SDWMLabel.h"
 #import "SDWMBoard.h"
+#import "SDWMUser.h"
 
 @interface SDWMCard ()
 

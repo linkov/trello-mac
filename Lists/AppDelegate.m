@@ -61,6 +61,12 @@
      andEventID:kAEGetURL];
 }
 
+- (void)showHelp:(id)sender {
+    
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lists4trello.com/manual"]];
+    
+}
+
 - (IBAction)hideSideBar:(id)sender {
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeSidebarStatusNotification object:nil];
