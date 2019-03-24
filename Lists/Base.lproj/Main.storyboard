@@ -821,7 +821,7 @@
                                                                                     <rect key="frame" x="345" y="15" width="50" height="14"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="width" constant="50" placeholder="YES" id="BDz-hd-9SN"/>
-                                                                                        <constraint firstAttribute="height" constant="14" id="pjY-Ya-0Ea"/>
+                                                                                        <constraint firstAttribute="height" constant="16" id="pjY-Ya-0Ea"/>
                                                                                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="qY4-Km-GfA"/>
                                                                                     </constraints>
                                                                                 </stackView>
@@ -1350,7 +1350,7 @@
                                                                         <constraint firstAttribute="width" constant="23" id="mwV-aa-aYc"/>
                                                                         <constraint firstAttribute="height" constant="17" id="rYg-iz-Uwm"/>
                                                                     </constraints>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="left" borderStyle="border" inset="2" id="Nbn-5M-I4e">
+                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" imagePosition="left" inset="2" id="Nbn-5M-I4e">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
                                                                     </buttonCell>

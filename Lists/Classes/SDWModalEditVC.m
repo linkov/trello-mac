@@ -24,8 +24,8 @@
 
     self.mainTextField.placeholderAttributedString = [[NSAttributedString alloc] initWithString:self.titleString attributes:attributes];
 
-    self.mainTextField.editable = NO;
-    [self.mainTextField resignFirstResponder];
+//    self.mainTextField.editable = NO;
+//    [self.mainTextField resignFirstResponder];
 
     if (self.valueString.length) {
         self.mainTextField.stringValue = self.valueString;

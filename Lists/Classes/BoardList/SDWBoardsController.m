@@ -183,9 +183,10 @@
             self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos,sortByName]];
             [self reloadDataSource];
             
-            if (self.crownSwitch.on) {
-                [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:self.crownSwitch.on]}];
-            }
+//            if (self.crownSwitch.on) {
+//                [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:self.crownSwitch.on]}];
+//            }
+            [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:self.crownSwitch.on]}];
 
            
             
@@ -273,8 +274,10 @@
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow {
     SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:boardRow] representedObject];
 
-    [[SDWTrelloStore store] deleteBoard:board];
-    [self reloadBoards:nil];
+    [[SDWTrelloStore store] deleteBoard:board  complition:^(id object) {
+        [self reloadBoards:nil];
+    }];
+    
 
 }
 

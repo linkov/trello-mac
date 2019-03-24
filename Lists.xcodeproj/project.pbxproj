@@ -115,6 +115,8 @@
 		F1F8D8CB22451DBE00838563 /* IBMPlexSans-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C822451DBE00838563 /* IBMPlexSans-SemiBold.otf */; };
 		F1F8D8CC22451DBE00838563 /* IBMPlexSans-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8C922451DBE00838563 /* IBMPlexSans-Text.otf */; };
 		F1F8D8CD22451DBE00838563 /* IBMPlexSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */; };
+		F1F8D8D32247A28800838563 /* Base64.c in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D12247A28700838563 /* Base64.c */; };
+		F1F8D8D42247A28800838563 /* MixpanelTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D22247A28700838563 /* MixpanelTracker.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -299,6 +301,10 @@
 		F1F8D8C822451DBE00838563 /* IBMPlexSans-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-SemiBold.otf"; sourceTree = "<group>"; };
 		F1F8D8C922451DBE00838563 /* IBMPlexSans-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Text.otf"; sourceTree = "<group>"; };
 		F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.otf"; sourceTree = "<group>"; };
+		F1F8D8CF2247A28700838563 /* Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64.h; sourceTree = "<group>"; };
+		F1F8D8D02247A28700838563 /* MixpanelTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelTracker.h; sourceTree = "<group>"; };
+		F1F8D8D12247A28700838563 /* Base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64.c; sourceTree = "<group>"; };
+		F1F8D8D22247A28700838563 /* MixpanelTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelTracker.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -475,6 +481,7 @@
 		F10AAA301A12AFD800FD4E85 /* Vendor */ = {
 			isa = PBXGroup;
 			children = (
+				F1F8D8CE2247A28700838563 /* MixpanelTracker */,
 				F11E3C011A591B5900353914 /* AAPLCheckBox */,
 				F1918AA81A3F819900CD22CE /* JWCTableView */,
 				F10AAA311A12AFD800FD4E85 /* AFNetworking */,
@@ -684,6 +691,17 @@
 				F1F8D8C422451DAF00838563 /* IBMPlexSerif-Text.otf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		F1F8D8CE2247A28700838563 /* MixpanelTracker */ = {
+			isa = PBXGroup;
+			children = (
+				F1F8D8CF2247A28700838563 /* Base64.h */,
+				F1F8D8D02247A28700838563 /* MixpanelTracker.h */,
+				F1F8D8D12247A28700838563 /* Base64.c */,
+				F1F8D8D22247A28700838563 /* MixpanelTracker.m */,
+			);
+			path = MixpanelTracker;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -902,6 +920,7 @@
 				F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */,
 				F1918A981A3D2FBD00CD22CE /* SDWCardDetailBox.m in Sources */,
 				F10E13341EBCAFDA0044802C /* SDWMBoard.m in Sources */,
+				F1F8D8D32247A28800838563 /* Base64.c in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */,
@@ -932,6 +951,7 @@
 				F18B584D1ECE0E8100884CDC /* SDWChecklistDisplayItem.m in Sources */,
 				F18B58411ECE0D7A00884CDC /* SDWBoardDisplayItem.m in Sources */,
 				F1C4549D1A23EAB5002FFAF6 /* SDWMainWindow.m in Sources */,
+				F1F8D8D42247A28800838563 /* MixpanelTracker.m in Sources */,
 				F10E13481EBCAFE30044802C /* _SDWMChecklist.m in Sources */,
 				F10E13461EBCAFE30044802C /* _SDWMBoard.m in Sources */,
 				F10E13391EBCAFDA0044802C /* SDWMUser.m in Sources */,
@@ -1033,6 +1053,7 @@
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "PRODUCTION=1";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;

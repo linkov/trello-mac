@@ -102,7 +102,8 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
                 updatedBoard:(SDWTrelloStoreLocalCompletionBlock)block;
 
 //v3
-- (void)deleteBoard:(SDWBoardDisplayItem *)board;
+- (void)deleteBoard:(SDWBoardDisplayItem *)board
+       complition:(SDWTrelloStoreLocalCompletionBlock)block;
 
 
 //v3

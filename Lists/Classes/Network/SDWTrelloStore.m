@@ -32,6 +32,8 @@
 
 #import "SDWAppSettings.h"
 
+#import "MixpanelTracker.h"
+
 @interface SDWTrelloStore ()
 
 @property (nonatomic, strong) SDWDataModelManager *dataModelManager;
@@ -227,6 +229,10 @@
                     list:(SDWListDisplayItem *)list
                   position:(int64_t)position updatedCard:(SDWTrelloStoreLocalCompletionBlock)block {
     
+    if (name.length == 0) {
+        return;
+    }
+    
 //    SDWMCard *card = [SDWMCard insertInManagedObjectContext:self.dataModelManager.managedObjectContext];
 //    card.name = name;
 //    card.positionValue =  position;
@@ -234,6 +240,7 @@
 //    [self saveContext];
 //    
     
+    MIXPANEL_TRACK_EVENT(@"Create card",NULL);
     
 
     NSDictionary *params = @{
@@ -271,6 +278,9 @@
            boardID:(NSString *)boardID
         completion:(SDWTrelloStoreLocalCompletionBlock)block {
     
+    MIXPANEL_TRACK_EVENT(@"Move card",NULL);
+
+    
     SDWMCard *card = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withUID:cardID inContext:self.dataModelManager.managedObjectContext];
     SDWMBoard *board = [self.dataModelManager fetchEntityForName:SDWMBoard.entityName withUID:boardID inContext:self.dataModelManager.managedObjectContext];
     SDWMList *list = [self.dataModelManager fetchEntityForName:SDWMList.entityName withUID:listID inContext:self.dataModelManager.managedObjectContext];
@@ -303,6 +313,8 @@
 - (void)moveCard:(SDWCardDisplayItem *)card
         toPosition:(NSNumber *)pos {
     
+    MIXPANEL_TRACK_EVENT(@"Reorder card",NULL);
+    
     SDWMCard *crd = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withUID:card.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
     crd.position = pos;
     [self saveContext];
@@ -326,6 +338,8 @@
 
 - (void)updateCard:(SDWCardDisplayItem *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Update card",NULL);
     
     SDWMCard *crd = card.model;
     crd.name = card.name;
@@ -363,6 +377,8 @@
 
 - (void)archiveCard:(SDWCardDisplayItem *)card {
     
+    MIXPANEL_TRACK_EVENT(@"Archive card",NULL);
+    
     SDWMCard *crd = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withUID:card.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
     [self.dataModelManager.managedObjectContext deleteObject:crd];
     [self saveContext];
@@ -385,15 +401,12 @@
                        color:(NSString *)color
                   completion:(SDWTrelloStoreCompletionBlock)block {
     
-    NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",card.trelloID];
+    MIXPANEL_TRACK_EVENT(@"Add label",NULL);
     
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels?",card.trelloID];
     [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{@"color":color} success:^(NSURLSessionDataTask *task, id responseObject) {
         
-        SDWMLabel *label = [self.dataModelManager fetchEntityForName:SDWMLabel.entityName withPredicate:[NSPredicate predicateWithFormat:@"color == %@",color] inContext:self.dataModelManager.managedObjectContext];
-        SDWMCard *crd = [self.dataModelManager fetchEntityForName:SDWMCard.entityName withUID:card.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
-        
-        
-        [crd addLabelsObject:label];
+
         [self saveContext];
         
         SDWPerformBlock(block,responseObject,nil);
@@ -409,6 +422,8 @@
 - (void)removeLabelForCardID:(NSString *)cardID
                        color:(NSString *)color
                   completion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Remove label",NULL);
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/labels/%@?",cardID,color];
 
@@ -608,6 +623,7 @@
 
 - (void)createBoardWithName:(NSString *)name updatedBoard:(SDWTrelloStoreLocalCompletionBlock)block {
     
+    MIXPANEL_TRACK_EVENT(@"Create board",NULL);
     
     SDWMBoard *board = [SDWMBoard insertInManagedObjectContext:self.dataModelManager.managedObjectContext];
     board.name = name;
@@ -638,6 +654,8 @@
 
 - (void)renameBoard:(SDWBoardDisplayItem *)board {
     
+    MIXPANEL_TRACK_EVENT(@"Rename board",NULL);
+    
     SDWMBoard *brd = board.model;
     brd.name = board.name;
 
@@ -659,7 +677,9 @@
      }];
 }
 
-- (void)deleteBoard:(SDWBoardDisplayItem *)board {
+- (void)deleteBoard:(SDWBoardDisplayItem *)board complition:(SDWTrelloStoreLocalCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Delete board",NULL);
     
     SDWMBoard *brd = [self.dataModelManager fetchEntityForName:SDWMBoard.entityName withUID:board.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
     [self.dataModelManager.managedObjectContext deleteObject:brd];
@@ -671,7 +691,7 @@
                                    success:^(NSURLSessionDataTask *task, id responseObject)
      {
 
-
+         SDWPerformBlock(block,nil);
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -684,6 +704,8 @@
 #pragma mark - Lists ops
 
 - (void)renameList:(SDWListDisplayItem *)list {
+    
+    MIXPANEL_TRACK_EVENT(@"Rename list",NULL);
     
     SDWMList *lst = list.model;
     lst.name = list.name;
@@ -710,6 +732,9 @@
                    inBoard:(SDWBoardDisplayItem *)board
                   position:(NSNumber *)pos
                updatedList:(SDWTrelloStoreLocalCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Create list",NULL);
+
     
     SDWMList *list = [SDWMList insertInManagedObjectContext:self.dataModelManager.managedObjectContext];
     list.name = name;
@@ -738,6 +763,8 @@
 }
 
 - (void)deleteList:(SDWListDisplayItem *)list {
+    
+    MIXPANEL_TRACK_EVENT(@"Delete list",NULL);
     
     SDWMList *lst = [self.dataModelManager fetchEntityForName:SDWMList.entityName withUID:list.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
     [self.dataModelManager.managedObjectContext deleteObject:lst];
@@ -845,6 +872,8 @@
 - (void)updateCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+     MIXPANEL_TRACK_EVENT(@"Update checklist item",NULL);
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,item.checklist.trelloID,item.trelloID];
 
@@ -868,6 +897,8 @@
 - (void)updateCheckItemPosition:(SDWChecklistItemDisplayItem *)item
                          cardID:(NSString *)cardID
                  withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+     MIXPANEL_TRACK_EVENT(@"Reorder checklist item",NULL);
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@/pos?",cardID,item.checklist.trelloID,item.trelloID];
 
@@ -890,6 +921,9 @@
                   inChecklistID:(NSString *)checklistID
                          cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Create checklist item",NULL);
+
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem?",cardID,checklistID];
 
@@ -924,6 +958,8 @@
 - (void)deleteCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+     MIXPANEL_TRACK_EVENT(@"Delete checklist item",NULL);
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/checklist/%@/checkItem/%@?",cardID,item.checklist.trelloID,item.trelloID];
 
@@ -949,6 +985,8 @@
 
 - (void)deleteCheckList:(SDWChecklistDisplayItem *)checkList
          withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+     MIXPANEL_TRACK_EVENT(@"Delete checklist",NULL);
 
     NSString *urlString = [NSString stringWithFormat:@"checklists/%@?",checkList.trelloID];
 
@@ -969,6 +1007,9 @@
 
 - (void)addCheckListForCardID:(NSString *)cardID
                withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+    
+    MIXPANEL_TRACK_EVENT(@"Create checklist",NULL);
 
     [[AFTrelloAPIClient sharedClient] POST:@"checklists?" parameters:@{
                                                                     @"idCard":cardID,

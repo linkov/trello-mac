@@ -10,7 +10,7 @@
 #import "SDWAppSettings.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
-
+#import "MixpanelTracker.h"
 
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
@@ -31,6 +31,10 @@
     }
 
     [Fabric with:@[[Crashlytics class]]];
+    
+    #ifdef PRODUCTION
+        [MixpanelTracker startWithToken:@"671b5e87eee999e25d472a57666153df"];
+    #endif
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -63,7 +67,7 @@
 
 - (void)showHelp:(id)sender {
     
-    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lists4trello.com/manual"]];
+    [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lists4trello.com/#manual"]];
     
 }
 
