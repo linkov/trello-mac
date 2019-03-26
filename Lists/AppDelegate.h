@@ -14,6 +14,7 @@
 - (IBAction)hideCardDetails:(id)sender;
 - (IBAction)toggleCardLabels:(id)sender;
 - (IBAction)showHelp:(id)sender;
+- (IBAction)print:(id)sender;
 
 @end
 

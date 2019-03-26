@@ -790,7 +790,7 @@
         [text setTextColor:[NSColor colorWithHexColorString:@"3E6378"]];
         [text setStringValue:[Utils dateToString:card.dueDate]];
         [text setEditable:NO];
-        text.alignment = NSCenterTextAlignment;
+        text.alignment = NSTextAlignmentCenter;
         
         text.layer.cornerRadius = 1.5;
         text.layer.borderWidth = 1;

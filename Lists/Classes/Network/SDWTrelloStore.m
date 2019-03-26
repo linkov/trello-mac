@@ -285,8 +285,7 @@
     SDWMBoard *board = [self.dataModelManager fetchEntityForName:SDWMBoard.entityName withUID:boardID inContext:self.dataModelManager.managedObjectContext];
     SDWMList *list = [self.dataModelManager fetchEntityForName:SDWMList.entityName withUID:listID inContext:self.dataModelManager.managedObjectContext];
     
-    card.list = list;
-    
+    [card setList:list];
     
 
     NSString *urlString = [NSString stringWithFormat:@"cards/%@?",card.trelloID];

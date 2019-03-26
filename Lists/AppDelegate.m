@@ -6,11 +6,15 @@
 //  Copyright (c) 2014 SDWR. All rights reserved.
 //
 //#import <Crashlytics/Crashlytics.h>
+#import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
 #import "MixpanelTracker.h"
+#import "SDWMainSplitView.h"
+#import "SDWMainSplitController.h"
+#import "SDWCardsController.h"
 
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
@@ -65,7 +69,25 @@
      andEventID:kAEGetURL];
 }
 
-- (void)showHelp:(id)sender {
+
+
+//- (BOOL)applicationShouldTerminateAfterLastWindowClosed:(NSApplication *)sender {
+//    NSLog(@"in applicationShouldTerminateAfterLastWindowClosed");
+//   return true;
+//}
+
+- (IBAction)print:(id)sender {
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+    if (controller) {
+        NSPrintOperation *op = [NSPrintOperation printOperationWithView:controller.cardsVC.view];
+        [op runOperation];
+    }
+    
+
+}
+
+- (IBAction)showHelp:(id)sender {
     
     [[NSWorkspace sharedWorkspace] openURL:[NSURL URLWithString:@"http://lists4trello.com/#manual"]];
     
