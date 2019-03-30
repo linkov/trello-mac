@@ -41,7 +41,6 @@
 		F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA221A12AFD800FD4E85 /* NSImage+HHTint.m */; };
 		F10AAA671A12AFD800FD4E85 /* NSImage+Util.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA241A12AFD800FD4E85 /* NSImage+Util.m */; };
 		F10AAA681A12AFD800FD4E85 /* NSView+Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA261A12AFD800FD4E85 /* NSView+Utils.m */; };
-		F10AAA691A12AFD800FD4E85 /* SDWAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA281A12AFD800FD4E85 /* SDWAppSettings.m */; };
 		F10AAA6A1A12AFD800FD4E85 /* SDWScroller.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */; };
 		F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */ = {isa = PBXBuildFile; fileRef = F10AAA2C1A12AFD800FD4E85 /* Utils.m */; };
 		F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F10AAA2D1A12AFD800FD4E85 /* Images.xcassets */; };
@@ -79,6 +78,7 @@
 		F11E3C061A591B5900353914 /* AAPLCheckBox.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C031A591B5900353914 /* AAPLCheckBox.m */; };
 		F11E3C071A591B5900353914 /* AAPLCheckBoxLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */; };
 		F11E3C0A1A5B4E0300353914 /* NSControl+DragInteraction.m in Sources */ = {isa = PBXBuildFile; fileRef = F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */; };
+		F123DA51224ED433000ED555 /* SDWAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F123DA4F224ED433000ED555 /* SDWAppSettings.m */; };
 		F14B36101A1441C000AFD5C9 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B360F1A1441C000AFD5C9 /* icon.icns */; };
 		F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */ = {isa = PBXBuildFile; fileRef = F14B36111A1443A600AFD5C9 /* Lists.icns */; };
 		F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */ = {isa = PBXBuildFile; fileRef = F14B36141A145ADF00AFD5C9 /* PulseView.m */; };
@@ -118,6 +118,19 @@
 		F1F8D8D32247A28800838563 /* Base64.c in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D12247A28700838563 /* Base64.c */; };
 		F1F8D8D42247A28800838563 /* MixpanelTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D22247A28700838563 /* MixpanelTracker.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F1910D16224EC4E300C4DD91 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		34B0998BCC3BC8ED27C33131 /* libPods-Lists.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Lists.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -160,8 +173,6 @@
 		F10AAA241A12AFD800FD4E85 /* NSImage+Util.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSImage+Util.m"; sourceTree = "<group>"; };
 		F10AAA251A12AFD800FD4E85 /* NSView+Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSView+Utils.h"; sourceTree = "<group>"; };
 		F10AAA261A12AFD800FD4E85 /* NSView+Utils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSView+Utils.m"; sourceTree = "<group>"; };
-		F10AAA271A12AFD800FD4E85 /* SDWAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAppSettings.h; sourceTree = "<group>"; };
-		F10AAA281A12AFD800FD4E85 /* SDWAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAppSettings.m; sourceTree = "<group>"; };
 		F10AAA291A12AFD800FD4E85 /* SDWScroller.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWScroller.h; sourceTree = "<group>"; };
 		F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWScroller.m; sourceTree = "<group>"; };
 		F10AAA2B1A12AFD800FD4E85 /* Utils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utils.h; sourceTree = "<group>"; };
@@ -239,6 +250,8 @@
 		F11E3C051A591B5900353914 /* AAPLCheckBoxLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AAPLCheckBoxLayer.m; sourceTree = "<group>"; };
 		F11E3C081A5B4E0300353914 /* NSControl+DragInteraction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSControl+DragInteraction.h"; sourceTree = "<group>"; };
 		F11E3C091A5B4E0300353914 /* NSControl+DragInteraction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSControl+DragInteraction.m"; sourceTree = "<group>"; };
+		F123DA4F224ED433000ED555 /* SDWAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAppSettings.m; sourceTree = "<group>"; };
+		F123DA50224ED433000ED555 /* SDWAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAppSettings.h; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F14B360F1A1441C000AFD5C9 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = icon.icns; sourceTree = "<group>"; };
 		F14B36111A1443A600AFD5C9 /* Lists.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = Lists.icns; sourceTree = "<group>"; };
@@ -267,6 +280,7 @@
 		F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistDisplayItem.m; sourceTree = "<group>"; };
 		F18B584E1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemDisplayItem.h; sourceTree = "<group>"; };
 		F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemDisplayItem.m; sourceTree = "<group>"; };
+		F1910CFE224EC4E200C4DD91 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
 		F1918A991A3D535200CD22CE /* SDWCardCalendarVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardCalendarVC.h; sourceTree = "<group>"; };
@@ -452,6 +466,8 @@
 		F10AAA1E1A12AFD800FD4E85 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				F123DA50224ED433000ED555 /* SDWAppSettings.h */,
+				F123DA4F224ED433000ED555 /* SDWAppSettings.m */,
 				F10AAA1F1A12AFD800FD4E85 /* NSColor+Util.h */,
 				F10AAA201A12AFD800FD4E85 /* NSColor+Util.m */,
 				F10AAA211A12AFD800FD4E85 /* NSImage+HHTint.h */,
@@ -460,8 +476,6 @@
 				F10AAA241A12AFD800FD4E85 /* NSImage+Util.m */,
 				F10AAA251A12AFD800FD4E85 /* NSView+Utils.h */,
 				F10AAA261A12AFD800FD4E85 /* NSView+Utils.m */,
-				F10AAA271A12AFD800FD4E85 /* SDWAppSettings.h */,
-				F10AAA281A12AFD800FD4E85 /* SDWAppSettings.m */,
 				F10AAA291A12AFD800FD4E85 /* SDWScroller.h */,
 				F10AAA2A1A12AFD800FD4E85 /* SDWScroller.m */,
 				F10AAA2B1A12AFD800FD4E85 /* Utils.h */,
@@ -598,6 +612,7 @@
 			children = (
 				F10E130F1EBCA2540044802C /* CoreData.framework */,
 				34B0998BCC3BC8ED27C33131 /* libPods-Lists.a */,
+				F1910CFE224EC4E200C4DD91 /* NotificationCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -718,6 +733,7 @@
 				6D01718323A9017A2EE54CCE /* [CP] Embed Pods Frameworks */,
 				CAD999274A7FF27C85340847 /* [CP] Copy Pods Resources */,
 				F10417941ED3119B00D2F3B1 /* ShellScript */,
+				F1910D16224EC4E300C4DD91 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
@@ -734,6 +750,7 @@
 		F119AE6C19FD4CFC0061D7DF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 1020;
 				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = SDWR;
 				TargetAttributes = {
@@ -747,6 +764,9 @@
 						DevelopmentTeam = 43R88X5B35;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 0;
+							};
 							com.apple.Sandbox = {
 								enabled = 1;
 							};
@@ -759,6 +779,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -865,7 +886,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/mogenerator -m /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel/listsmodel.xcdatamodeld -O /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel --template-var arc=true --template-var modules=true";
+			shellScript = "/usr/local/bin/mogenerator -m /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel/listsmodel.xcdatamodeld -O /Users/linkov/Documents/sdwr/trello-mac/Lists/Classes/DataModel --template-var arc=true --template-var modules=true\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -887,7 +908,6 @@
 				F10E13571EBCE4BC0044802C /* SDWMapper.m in Sources */,
 				F14B36151A145ADF00AFD5C9 /* PulseView.m in Sources */,
 				F10AAA4D1A12AFD800FD4E85 /* SDWBoardsCellView.m in Sources */,
-				F10AAA691A12AFD800FD4E85 /* SDWAppSettings.m in Sources */,
 				F10AAA751A12AFD800FD4E85 /* AFURLRequestSerialization.m in Sources */,
 				F10E13361EBCAFDA0044802C /* SDWMChecklist.m in Sources */,
 				F10E13071EBC8E420044802C /* SDWDataModelManager.m in Sources */,
@@ -922,6 +942,7 @@
 				F10E13341EBCAFDA0044802C /* SDWMBoard.m in Sources */,
 				F1F8D8D32247A28800838563 /* Base64.c in Sources */,
 				F10AAA6B1A12AFD800FD4E85 /* Utils.m in Sources */,
+				F123DA51224ED433000ED555 /* SDWAppSettings.m in Sources */,
 				F10AAA561A12AFD800FD4E85 /* SDWCardsController.m in Sources */,
 				F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */,
 				F10AAA661A12AFD800FD4E85 /* NSImage+HHTint.m in Sources */,
@@ -1070,6 +1091,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CF59BFBDD3F2246FB11E10BF /* Pods-Lists.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
@@ -1096,6 +1118,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3F9F8E33CAEB544DB8F90D5B /* Pods-Lists.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Lists/Lists.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14490.98" systemVersion="18E226" minimumToolsVersion="Automatic" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="SDWMActivity" representedClassName="SDWMActivity" syncable="YES" codeGenerationType="class">
         <attribute name="content" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="memberInitials" optional="YES" attributeType="String" syncable="YES"/>
@@ -29,7 +29,7 @@
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="activities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMActivity" inverseName="card" inverseEntity="SDWMActivity" syncable="YES"/>
         <relationship name="checklists" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMChecklist" inverseName="card" inverseEntity="SDWMChecklist" syncable="YES"/>
-        <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMLabel" inverseName="card" inverseEntity="SDWMLabel" syncable="YES"/>
+        <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMLabel" inverseName="cards" inverseEntity="SDWMLabel" syncable="YES"/>
         <relationship name="list" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMList" inverseName="cards" inverseEntity="SDWMList" syncable="YES"/>
         <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMUser" inverseName="cards" inverseEntity="SDWMUser" syncable="YES"/>
         <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMUser" syncable="YES"/>
@@ -55,7 +55,7 @@
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="trelloID" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="card" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="labels" inverseEntity="SDWMCard" syncable="YES"/>
+        <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="labels" inverseEntity="SDWMCard" syncable="YES"/>
     </entity>
     <entity name="SDWMList" representedClassName="SDWMList" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>

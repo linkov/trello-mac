@@ -107,7 +107,7 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
 
 
 //v3
-- (void)renameBoard:(SDWBoardDisplayItem *)board;
+- (void)renameBoard:(SDWBoardDisplayItem *)board complition:(SDWTrelloStoreLocalCompletionBlock)block;
 
 
 
@@ -121,11 +121,11 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
                updatedList:(SDWTrelloStoreLocalCompletionBlock)block;
 
 //v3
-- (void)deleteList:(SDWListDisplayItem *)list;
+- (void)deleteList:(SDWListDisplayItem *)list complition:(SDWTrelloStoreLocalCompletionBlock)block;
 
 
 //v3
-- (void)renameList:(SDWListDisplayItem *)list;
+- (void)renameList:(SDWListDisplayItem *)list complition:(SDWTrelloStoreLocalCompletionBlock)block;
 
 
 

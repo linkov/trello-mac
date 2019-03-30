@@ -13,6 +13,7 @@
 #import "NSColor+Util.h"
 
 #import "SDWMLabel.h"
+#import "SDWLabelDisplayItem.h"
 #import "Utils.h"
 
 @interface SDWCardListView ()
@@ -86,7 +87,7 @@
 
     }
 
-    for (SDWMLabel *label in self.labels) {
+    for (SDWLabelDisplayItem *label in self.labels) {
 
         CGFloat xPos = self.bounds.size.width - self.labels.count*kCardLabelPad + ([self.labels indexOfObject:label]*kCardLabelPad);
 

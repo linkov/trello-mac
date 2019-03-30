@@ -29,6 +29,7 @@
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
 
     [self setupDotOption];
+    NSApp.appearance = [NSAppearance appearanceNamed: NSAppearanceNameAqua];
 
     if (!SharedSettings.shouldShowCardLabels) {
         SharedSettings.shouldShowCardLabels = YES;

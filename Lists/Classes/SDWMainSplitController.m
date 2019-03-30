@@ -152,20 +152,25 @@
 
         if (self.currentlyEditedBoardList.isLeaf) {
 
-            [[SDWTrelloStore store] renameList:self.currentlyEditedBoardList];
-            self.currentlyEditedBoardList = nil;
-            [self.boardsVC reloadBoards:nil];
+            [[SDWTrelloStore store] renameList:(SDWListDisplayItem *)self.currentlyEditedBoardList complition:^(id object) {
+                self.currentlyEditedBoardList = nil;
+                [self.boardsVC reloadBoards:nil];
+            }];
+
 
         } else {
 
-            [[SDWTrelloStore store] renameBoard:self.currentlyEditedBoardList];
-            self.currentlyEditedBoardList = nil;
-            [self.boardsVC reloadBoards:nil];
+            [[SDWTrelloStore store] renameBoard:self.currentlyEditedBoardList complition:^(id object) {
+                self.currentlyEditedBoardList = nil;
+                [self.boardsVC reloadBoards:nil];
+            }];
+
         }
 
 
 
     } else if (self.parentBoardForNewList) {
+        
         
         [[SDWTrelloStore store] createListWithName:name inBoard:self.parentBoardForNewList position:@(0) updatedList:^(id object) {
            

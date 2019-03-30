@@ -30,7 +30,16 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
 
-@property (nonatomic, strong, nullable) SDWMCard *card;
+@property (nonatomic, strong, nullable) NSSet<SDWMCard*> *cards;
+- (nullable NSMutableSet<SDWMCard*>*)cardsSet;
+
+@end
+
+@interface _SDWMLabel (CardsCoreDataGeneratedAccessors)
+- (void)addCards:(NSSet<SDWMCard*>*)value_;
+- (void)removeCards:(NSSet<SDWMCard*>*)value_;
+- (void)addCardsObject:(SDWMCard*)value_;
+- (void)removeCardsObject:(SDWMCard*)value_;
 
 @end
 
@@ -48,8 +57,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUniqueIdentifier;
 - (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
 
-- (SDWMCard*)primitiveCard;
-- (void)setPrimitiveCard:(SDWMCard*)value;
+- (NSMutableSet<SDWMCard*>*)primitiveCards;
+- (void)setPrimitiveCards:(NSMutableSet<SDWMCard*>*)value;
 
 @end
 
@@ -61,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMLabelRelationships: NSObject
-+ (NSString *)card;
++ (NSString *)cards;
 @end
 
 NS_ASSUME_NONNULL_END

@@ -133,10 +133,10 @@
     
 }
 
-- (NSArray <SDWCardDisplayItem *>*)displayCardsfromCards:(NSArray<SDWMCard *> *)modelUsers crownFiltered:(BOOL)crownFiltered {
+- (NSArray <SDWCardDisplayItem *>*)displayCardsfromCards:(NSArray<SDWMCard *> *)modelCards crownFiltered:(BOOL)crownFiltered {
     
-    NSMutableArray  <SDWCardDisplayItem *>*arr = [NSMutableArray arrayWithCapacity:modelUsers.count];
-    for (SDWMCard *model in modelUsers) {
+    NSMutableArray  <SDWCardDisplayItem *>*arr = [NSMutableArray arrayWithCapacity:modelCards.count];
+    for (SDWMCard *model in modelCards) {
         
          SDWCardDisplayItem *item = [[SDWCardDisplayItem alloc]initWithModel:model];
         if (crownFiltered) {
@@ -651,7 +651,7 @@
     
 }
 
-- (void)renameBoard:(SDWBoardDisplayItem *)board {
+- (void)renameBoard:(SDWBoardDisplayItem *)board complition:(SDWTrelloStoreLocalCompletionBlock)block {
     
     MIXPANEL_TRACK_EVENT(@"Rename board",NULL);
     
@@ -667,7 +667,8 @@
      {
 
          [SDWMapper ez_objectOfClass:[SDWMBoard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
-         
+          [self saveContext];
+         SDWPerformBlock(block,nil);
         
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
@@ -702,7 +703,7 @@
 
 #pragma mark - Lists ops
 
-- (void)renameList:(SDWListDisplayItem *)list {
+- (void)renameList:(SDWListDisplayItem *)list complition:(SDWTrelloStoreLocalCompletionBlock)block {
     
     MIXPANEL_TRACK_EVENT(@"Rename list",NULL);
     
@@ -720,6 +721,8 @@
          [SDWMapper ez_objectOfClass:[SDWMList class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
          
          [self saveContext];
+         
+         SDWPerformBlock(block,nil);
 
      } failure:^(NSURLSessionDataTask *task, NSError *error) {
 
@@ -744,7 +747,7 @@
                                 parameters:@{
                                              @"name":name,
                                              @"idBoard":board.trelloID,
-                                             @"pos":pos
+                                             @"pos":@"bottom"
                                              }
                                    success:^(NSURLSessionDataTask *task, id responseObject)
      {
@@ -761,20 +764,23 @@
 
 }
 
-- (void)deleteList:(SDWListDisplayItem *)list {
+- (void)deleteList:(SDWListDisplayItem *)list complition:(SDWTrelloStoreLocalCompletionBlock)block {
     
     MIXPANEL_TRACK_EVENT(@"Delete list",NULL);
     
     SDWMList *lst = [self.dataModelManager fetchEntityForName:SDWMList.entityName withUID:list.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
     [self.dataModelManager.managedObjectContext deleteObject:lst];
     [self saveContext];
+    
+    
 
     NSString *urlString = [NSString stringWithFormat:@"lists/%@?",list.trelloID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"closed":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
 
 
-
+        SDWPerformBlock(block,nil);
+        
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         
         [self handleError:error];

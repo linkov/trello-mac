@@ -40,7 +40,16 @@
 
 @dynamic uniqueIdentifier;
 
-@dynamic card;
+@dynamic cards;
+
+- (NSMutableSet<SDWMCard*>*)cardsSet {
+	[self willAccessValueForKey:@"cards"];
+
+	NSMutableSet<SDWMCard*> *result = (NSMutableSet<SDWMCard*>*)[self mutableSetValueForKey:@"cards"];
+
+	[self didAccessValueForKey:@"cards"];
+	return result;
+}
 
 @end
 
@@ -60,8 +69,8 @@
 @end
 
 @implementation SDWMLabelRelationships 
-+ (NSString *)card {
-	return @"card";
++ (NSString *)cards {
+	return @"cards";
 }
 @end
 

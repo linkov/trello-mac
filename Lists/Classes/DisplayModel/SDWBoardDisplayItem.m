@@ -68,7 +68,8 @@
 
 - (NSArray *)children {
     
-    return  [self lists];
+    NSSortDescriptor *sortByPos = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES];
+    return  [[self lists] sortedArrayUsingDescriptors:@[sortByPos]];
 }
 
 @end

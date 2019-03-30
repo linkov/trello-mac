@@ -283,10 +283,12 @@
 
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
 
-    SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:listRow] representedObject];
+    SDWListDisplayItem *list =[[self.outlineView itemAtRow:listRow] representedObject];
 
-    [[SDWTrelloStore store] deleteList:board];
-    [self reloadBoards:nil];
+    [[SDWTrelloStore store] deleteList:list complition:^(id object) {
+        [self reloadBoards:nil];
+    }];
+    
 
 }
 
