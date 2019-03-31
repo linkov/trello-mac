@@ -49,6 +49,11 @@
                           action:@selector(editBoard)
                    keyEquivalent:@""
                          atIndex:1];
+    [theMenu insertItemWithTitle:@"Display list in Today Widget"
+                          action:@selector(addListToToday)
+                   keyEquivalent:@""
+                         atIndex:2];
+
 
 
     self.contextRow = row;
@@ -81,6 +86,11 @@
     return theMenu;
 }
 
+
+- (void)addListToToday {
+    [self.menuDelegate outlineviewShouldAddListToTodayAtRow:self.contextRow];
+
+}
 
 - (void)editBoard {
     [self.menuDelegate outlineviewShouldEditBoardAtRow:self.contextRow];

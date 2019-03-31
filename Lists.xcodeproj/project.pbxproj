@@ -117,7 +117,30 @@
 		F1F8D8CD22451DBE00838563 /* IBMPlexSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1F8D8CA22451DBE00838563 /* IBMPlexSans-Regular.otf */; };
 		F1F8D8D32247A28800838563 /* Base64.c in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D12247A28700838563 /* Base64.c */; };
 		F1F8D8D42247A28800838563 /* MixpanelTracker.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D22247A28700838563 /* MixpanelTracker.m */; };
+		F1FAE1C622503B0D00802080 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1910CFE224EC4E200C4DD91 /* NotificationCenter.framework */; };
+		F1FAE1CA22503B0D00802080 /* TodayViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FAE1C922503B0D00802080 /* TodayViewController.m */; };
+		F1FAE1CD22503B0D00802080 /* ListRowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F1FAE1CC22503B0D00802080 /* ListRowViewController.m */; };
+		F1FAE1D022503B0D00802080 /* TodayViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1CE22503B0D00802080 /* TodayViewController.xib */; };
+		F1FAE1D322503B0D00802080 /* ListRowViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1D122503B0D00802080 /* ListRowViewController.xib */; };
+		F1FAE1D722503B0D00802080 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1D522503B0D00802080 /* InfoPlist.strings */; };
+		F1FAE1DB22503B0D00802080 /* Lists 4 Trello.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = F1FAE1C522503B0C00802080 /* Lists 4 Trello.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		F1FAE1E6225136A600802080 /* IBMPlexSerif-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E0225136A600802080 /* IBMPlexSerif-SemiBold.otf */; };
+		F1FAE1E7225136A600802080 /* IBMPlexSerif-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E1225136A600802080 /* IBMPlexSerif-Regular.otf */; };
+		F1FAE1E8225136A600802080 /* IBMPlexSans-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E2225136A600802080 /* IBMPlexSans-Text.otf */; };
+		F1FAE1E9225136A600802080 /* IBMPlexSerif-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E3225136A600802080 /* IBMPlexSerif-Text.otf */; };
+		F1FAE1EA225136A600802080 /* IBMPlexSans-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E4225136A600802080 /* IBMPlexSans-Regular.otf */; };
+		F1FAE1EB225136A600802080 /* IBMPlexSans-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1FAE1E5225136A600802080 /* IBMPlexSans-SemiBold.otf */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F1FAE1D922503B0D00802080 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F119AE6C19FD4CFC0061D7DF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F1FAE1C422503B0C00802080;
+			remoteInfo = Lists4TrelloToday;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F1910D16224EC4E300C4DD91 /* Embed App Extensions */ = {
@@ -126,6 +149,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
+				F1FAE1DB22503B0D00802080 /* Lists 4 Trello.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -319,6 +343,22 @@
 		F1F8D8D02247A28700838563 /* MixpanelTracker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MixpanelTracker.h; sourceTree = "<group>"; };
 		F1F8D8D12247A28700838563 /* Base64.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = Base64.c; sourceTree = "<group>"; };
 		F1F8D8D22247A28700838563 /* MixpanelTracker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MixpanelTracker.m; sourceTree = "<group>"; };
+		F1FAE1C522503B0C00802080 /* Lists 4 Trello.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Lists 4 Trello.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F1FAE1C822503B0D00802080 /* TodayViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TodayViewController.h; sourceTree = "<group>"; };
+		F1FAE1C922503B0D00802080 /* TodayViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TodayViewController.m; sourceTree = "<group>"; };
+		F1FAE1CB22503B0D00802080 /* ListRowViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ListRowViewController.h; sourceTree = "<group>"; };
+		F1FAE1CC22503B0D00802080 /* ListRowViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ListRowViewController.m; sourceTree = "<group>"; };
+		F1FAE1CF22503B0D00802080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/TodayViewController.xib; sourceTree = "<group>"; };
+		F1FAE1D222503B0D00802080 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/ListRowViewController.xib; sourceTree = "<group>"; };
+		F1FAE1D422503B0D00802080 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1FAE1D622503B0D00802080 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		F1FAE1D822503B0D00802080 /* Lists4TrelloToday.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Lists4TrelloToday.entitlements; sourceTree = "<group>"; };
+		F1FAE1E0225136A600802080 /* IBMPlexSerif-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-SemiBold.otf"; sourceTree = "<group>"; };
+		F1FAE1E1225136A600802080 /* IBMPlexSerif-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Regular.otf"; sourceTree = "<group>"; };
+		F1FAE1E2225136A600802080 /* IBMPlexSans-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Text.otf"; sourceTree = "<group>"; };
+		F1FAE1E3225136A600802080 /* IBMPlexSerif-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Text.otf"; sourceTree = "<group>"; };
+		F1FAE1E4225136A600802080 /* IBMPlexSans-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Regular.otf"; sourceTree = "<group>"; };
+		F1FAE1E5225136A600802080 /* IBMPlexSans-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-SemiBold.otf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,6 +369,14 @@
 				F10E13101EBCA2540044802C /* CoreData.framework in Frameworks */,
 				F1B3AB851A04E9A400927CB9 /* WebKit.framework in Frameworks */,
 				B5F947BBE75634A58531207D /* libPods-Lists.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FAE1C222503B0C00802080 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FAE1C622503B0D00802080 /* NotificationCenter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -638,6 +686,7 @@
 				F10AA9E21A12AFD800FD4E85 /* Lists */,
 				F10AAA301A12AFD800FD4E85 /* Vendor */,
 				F1B3AB841A04E9A400927CB9 /* WebKit.framework */,
+				F1FAE1C722503B0D00802080 /* Lists4TrelloToday */,
 				F119AE7519FD4CFC0061D7DF /* Products */,
 				F10E130E1EBCA2540044802C /* Frameworks */,
 				50F075A65464C71CC13032E6 /* Pods */,
@@ -648,6 +697,7 @@
 			isa = PBXGroup;
 			children = (
 				F119AE7419FD4CFC0061D7DF /* Lists.app */,
+				F1FAE1C522503B0C00802080 /* Lists 4 Trello.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -719,6 +769,37 @@
 			path = MixpanelTracker;
 			sourceTree = "<group>";
 		};
+		F1FAE1C722503B0D00802080 /* Lists4TrelloToday */ = {
+			isa = PBXGroup;
+			children = (
+				F1FAE1DF225136A600802080 /* Fonts */,
+				F1FAE1C822503B0D00802080 /* TodayViewController.h */,
+				F1FAE1C922503B0D00802080 /* TodayViewController.m */,
+				F1FAE1CB22503B0D00802080 /* ListRowViewController.h */,
+				F1FAE1CC22503B0D00802080 /* ListRowViewController.m */,
+				F1FAE1CE22503B0D00802080 /* TodayViewController.xib */,
+				F1FAE1D122503B0D00802080 /* ListRowViewController.xib */,
+				F1FAE1D422503B0D00802080 /* Info.plist */,
+				F1FAE1D522503B0D00802080 /* InfoPlist.strings */,
+				F1FAE1D822503B0D00802080 /* Lists4TrelloToday.entitlements */,
+			);
+			path = Lists4TrelloToday;
+			sourceTree = "<group>";
+		};
+		F1FAE1DF225136A600802080 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				F1FAE1E0225136A600802080 /* IBMPlexSerif-SemiBold.otf */,
+				F1FAE1E1225136A600802080 /* IBMPlexSerif-Regular.otf */,
+				F1FAE1E2225136A600802080 /* IBMPlexSans-Text.otf */,
+				F1FAE1E3225136A600802080 /* IBMPlexSerif-Text.otf */,
+				F1FAE1E4225136A600802080 /* IBMPlexSans-Regular.otf */,
+				F1FAE1E5225136A600802080 /* IBMPlexSans-SemiBold.otf */,
+			);
+			name = Fonts;
+			path = Lists/Fonts;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -738,11 +819,29 @@
 			buildRules = (
 			);
 			dependencies = (
+				F1FAE1DA22503B0D00802080 /* PBXTargetDependency */,
 			);
 			name = Lists;
 			productName = Lists;
 			productReference = F119AE7419FD4CFC0061D7DF /* Lists.app */;
 			productType = "com.apple.product-type.application";
+		};
+		F1FAE1C422503B0C00802080 /* Lists4Trello */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F1FAE1DC22503B0D00802080 /* Build configuration list for PBXNativeTarget "Lists4Trello" */;
+			buildPhases = (
+				F1FAE1C122503B0C00802080 /* Sources */,
+				F1FAE1C222503B0C00802080 /* Frameworks */,
+				F1FAE1C322503B0C00802080 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Lists4Trello;
+			productName = Lists4TrelloToday;
+			productReference = F1FAE1C522503B0C00802080 /* Lists 4 Trello.appex */;
+			productType = "com.apple.product-type.app-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -765,7 +864,20 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.Mac = {
-								enabled = 0;
+								enabled = 1;
+							};
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
+					};
+					F1FAE1C422503B0C00802080 = {
+						CreatedOnToolsVersion = 10.2;
+						DevelopmentTeam = 43R88X5B35;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.Mac = {
+								enabled = 1;
 							};
 							com.apple.Sandbox = {
 								enabled = 1;
@@ -790,6 +902,7 @@
 			targets = (
 				F119AE7319FD4CFC0061D7DF /* Lists */,
 				F10E13111EBCA8180044802C /* Mogenerator */,
+				F1FAE1C422503B0C00802080 /* Lists4Trello */,
 			);
 		};
 /* End PBXProject section */
@@ -811,6 +924,22 @@
 				F1F8D8CB22451DBE00838563 /* IBMPlexSans-SemiBold.otf in Resources */,
 				F1F8D8C722451DAF00838563 /* IBMPlexSerif-Text.otf in Resources */,
 				F14B36101A1441C000AFD5C9 /* icon.icns in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F1FAE1C322503B0C00802080 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FAE1D022503B0D00802080 /* TodayViewController.xib in Resources */,
+				F1FAE1E8225136A600802080 /* IBMPlexSans-Text.otf in Resources */,
+				F1FAE1E7225136A600802080 /* IBMPlexSerif-Regular.otf in Resources */,
+				F1FAE1EB225136A600802080 /* IBMPlexSans-SemiBold.otf in Resources */,
+				F1FAE1EA225136A600802080 /* IBMPlexSans-Regular.otf in Resources */,
+				F1FAE1D722503B0D00802080 /* InfoPlist.strings in Resources */,
+				F1FAE1E6225136A600802080 /* IBMPlexSerif-SemiBold.otf in Resources */,
+				F1FAE1D322503B0D00802080 /* ListRowViewController.xib in Resources */,
+				F1FAE1E9225136A600802080 /* IBMPlexSerif-Text.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -979,7 +1108,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F1FAE1C122503B0C00802080 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F1FAE1CA22503B0D00802080 /* TodayViewController.m in Sources */,
+				F1FAE1CD22503B0D00802080 /* ListRowViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F1FAE1DA22503B0D00802080 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F1FAE1C422503B0C00802080 /* Lists4Trello */;
+			targetProxy = F1FAE1D922503B0D00802080 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F10AA9E51A12AFD800FD4E85 /* Main.storyboard */ = {
@@ -988,6 +1134,30 @@
 				F10AA9E61A12AFD800FD4E85 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F1FAE1CE22503B0D00802080 /* TodayViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FAE1CF22503B0D00802080 /* Base */,
+			);
+			name = TodayViewController.xib;
+			sourceTree = "<group>";
+		};
+		F1FAE1D122503B0D00802080 /* ListRowViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FAE1D222503B0D00802080 /* Base */,
+			);
+			name = ListRowViewController.xib;
+			sourceTree = "<group>";
+		};
+		F1FAE1D522503B0D00802080 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F1FAE1D622503B0D00802080 /* en */,
+			);
+			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1140,6 +1310,83 @@
 			};
 			name = Release;
 		};
+		F1FAE1DD22503B0D00802080 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Lists4TrelloToday/Lists4TrelloToday.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 43R88X5B35;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Lists4TrelloToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = SDWR.Lists.Lists4TrelloToday;
+				PRODUCT_NAME = "Lists 4 Trello";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		F1FAE1DE22503B0D00802080 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Lists4TrelloToday/Lists4TrelloToday.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application";
+				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEVELOPMENT_TEAM = 43R88X5B35;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = Lists4TrelloToday/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = SDWR.Lists.Lists4TrelloToday;
+				PRODUCT_NAME = "Lists 4 Trello";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1166,6 +1413,15 @@
 			buildConfigurations = (
 				F119AE9519FD4CFC0061D7DF /* Debug */,
 				F119AE9619FD4CFC0061D7DF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F1FAE1DC22503B0D00802080 /* Build configuration list for PBXNativeTarget "Lists4Trello" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F1FAE1DD22503B0D00802080 /* Debug */,
+				F1FAE1DE22503B0D00802080 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

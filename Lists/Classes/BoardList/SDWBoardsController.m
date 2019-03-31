@@ -120,6 +120,8 @@
 
     [[SDWTrelloStore store] clearDatabase];
     SharedSettings.userToken = nil;
+    [SharedSettings setTodayListID:nil];
+    [SharedSettings setTodayListName:nil];
     [(SDWMainSplitController *)self.parentViewController logout];
     self.boards = @[];
     [self loadBoards];
@@ -290,6 +292,15 @@
     }];
     
 
+}
+
+- (void)outlineviewShouldAddListToTodayAtRow:(NSUInteger)listRow {
+    
+    SDWListDisplayItem *list =[[self.outlineView itemAtRow:listRow] representedObject];
+    [SharedSettings setTodayListID:list.trelloID];
+    [SharedSettings setTodayListName:list.name];
+    
+    
 }
 
 - (void)outlineviewShouldAddListBelowRow:(NSUInteger)listRow {

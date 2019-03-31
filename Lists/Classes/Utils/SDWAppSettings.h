@@ -57,6 +57,8 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 
 - (void)setOffline:(BOOL)offline;
 - (BOOL)isOffline;
+- (void)setTodayListID:(NSString *)listID;
+- (void)setTodayListName:(NSString *)listName;
 
 - (NSColor *)appBleakWhiteColor;
 - (NSColor *)appBackgroundColorDark;

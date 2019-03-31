@@ -1,0 +1,4 @@
+/* Display name and description for this extension. */
+"CFBundleDisplayName" = "Lists4Trello";
+"com.apple.notificationcenter.widget.description" = "Access one of your Lists 4 Trello lists from Today  widget";
+
