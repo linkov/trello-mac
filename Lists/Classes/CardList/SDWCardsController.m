@@ -271,6 +271,7 @@
 
     self.cardsArrayController.content = @[];
     self.listNameLabel.hidden = YES;
+    [self.tableView reloadData];
 }
 
 - (void)setupCardsForList:(SDWListDisplayItem *)list {

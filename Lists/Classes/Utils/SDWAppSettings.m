@@ -60,13 +60,13 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 - (void)setTodayListID:(NSString *)listID {
-    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.sdwr.lists.appgroup"];
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"43R88X5B35.com.sdwr.lists.appgroup"];
     [shared setObject:listID forKey:@"com.sdwr.trello-mac.todaylistID"];
     [shared synchronize];
 }
 
 - (void)setTodayListName:(NSString *)listName {
-    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.sdwr.lists.appgroup"];
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"43R88X5B35.com.sdwr.lists.appgroup"];
     [shared setObject:listName forKey:@"com.sdwr.trello-mac.todaylistName"];
     [shared synchronize];
 }
@@ -89,6 +89,12 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 
+- (void)setTodayWidgetUserToken:(NSString *)userToken {
+    
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"43R88X5B35.com.sdwr.lists.appgroup"];
+    [shared setObject:userToken forKey:@"com.sdwr.trello-mac.userToken"];
+    [shared synchronize];
+}
 
 - (void)setUserToken:(NSString *)userToken {
 
@@ -97,9 +103,7 @@ static SDWAppSettings *sharedInstance = nil;
     [[NSUserDefaults standardUserDefaults] setObject:userToken forKey:@"com.sdwr.trello-mac.token"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.sdwr.lists.appgroup"];
-    [shared setObject:userToken forKey:@"com.sdwr.trello-mac.userToken"];
-    [shared synchronize];
+    [self setTodayWidgetUserToken:userToken];
     
 }
 

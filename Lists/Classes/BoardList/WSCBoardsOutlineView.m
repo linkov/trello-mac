@@ -49,7 +49,7 @@
                           action:@selector(editBoard)
                    keyEquivalent:@""
                          atIndex:1];
-    [theMenu insertItemWithTitle:@"Display list in Today Widget"
+    [theMenu insertItemWithTitle:@"Show in Today Widget"
                           action:@selector(addListToToday)
                    keyEquivalent:@""
                          atIndex:2];

@@ -126,7 +126,7 @@
     if (!SharedSettings.userToken) {
 
         self.loginVC = [self.storyboard instantiateControllerWithIdentifier:@"loginVC"];
-        [self presentViewControllerAsSheet:self.loginVC];
+        [self presentViewControllerAsModalWindow:self.loginVC];
     }
 }
 

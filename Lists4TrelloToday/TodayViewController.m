@@ -10,6 +10,8 @@
 #import "ListRowViewController.h"
 #import <NotificationCenter/NotificationCenter.h>
 
+typedef void (^SDWUpdateResultBlock)(NCUpdateResult updateResult);
+
 @interface TodayViewController () <NCWidgetProviding, NCWidgetListViewDelegate, NCWidgetSearchViewDelegate>
 
 @property (strong) IBOutlet NCWidgetListViewController *listViewController;
@@ -22,78 +24,97 @@
 
 #pragma mark - NSViewController
 
+- (void)viewWillAppear {
+    [super viewWillAppear];
+    
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     [self.listViewController setHasDividerLines:NO];
-
-    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"com.sdwr.lists.appgroup"];
-    NSString *listID = [shared objectForKey:@"com.sdwr.trello-mac.todaylistID"];
-    NSString *listName = [shared objectForKey:@"com.sdwr.trello-mac.todaylistName"];
-    NSString *userToken = [shared objectForKey:@"com.sdwr.trello-mac.userToken"];
-
-    if (listID) {
-        self.listViewController.contents = @[@"loading ..."];
-
-
-        // 1
-        NSString *dataUrl = [NSString stringWithFormat:@"https://api.trello.com/1/lists/%@/cards?lists=open&cards=open&key=6825229a76db5b6a5737eb97e9c4a923&token=%@",listID,userToken];
-        NSURL *url = [NSURL URLWithString:dataUrl];
-
-
-
-
-
-        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
-
-        //create the Method "GET"
-        [urlRequest setHTTPMethod:@"GET"];
-
-        NSURLSession *session = [NSURLSession sharedSession];
-
-        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
-        {
-            NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
-            if(httpResponse.statusCode == 200)
-            {
-                NSError *parseError = nil;
-                NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
-
-                NSMutableArray *ts = [NSMutableArray array];
-
-                for (NSDictionary *taskObject in responseArray) {
-                    [ts addObject:[taskObject valueForKey:@"name"]];
-
-                }
-                
-                [ts insertObject:listName atIndex:0];
-
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    self.listViewController.contents = [NSArray arrayWithArray:ts];
-                });
-
-
-
-            }
-            else
-            {
-                dispatch_async(dispatch_get_main_queue(), ^(void) {
-                    self.listViewController.contents = @[@"Failed to load tasks, try again later"];
-                });
-                
-            }
-        }];
-        [dataTask resume];
-
-
-
-    } else {
-        self.listViewController.contents = @[@"Right click on a list in the main application and add it to this widget"];
-    }
-    
+    [self fetchContentWithUpdate:^(NCUpdateResult updateResult) {
+        
+    }];
     
 
    
+}
+
+- (void)fetchContentWithUpdate:(SDWUpdateResultBlock)block {
+    NSUserDefaults *shared = [[NSUserDefaults alloc] initWithSuiteName:@"43R88X5B35.com.sdwr.lists.appgroup"];
+    NSString *listID = [shared objectForKey:@"com.sdwr.trello-mac.todaylistID"];
+    NSString *listName = [shared objectForKey:@"com.sdwr.trello-mac.todaylistName"];
+    NSString *userToken = [shared objectForKey:@"com.sdwr.trello-mac.userToken"];
+    
+    if (listID) {
+        self.listViewController.contents = @[@"loading ..."];
+        
+        
+        // 1
+        NSString *dataUrl = [NSString stringWithFormat:@"https://api.trello.com/1/lists/%@/cards?lists=open&cards=open&key=6825229a76db5b6a5737eb97e9c4a923&token=%@",listID,userToken];
+        NSURL *url = [NSURL URLWithString:dataUrl];
+        
+        
+        
+        
+        
+        NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:url];
+        
+        //create the Method "GET"
+        [urlRequest setHTTPMethod:@"GET"];
+        
+        NSURLSession *session = [NSURLSession sharedSession];
+        
+        NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error)
+                                          {
+                                              NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *)response;
+                                              if(httpResponse.statusCode == 200)
+                                              {
+                                                  NSError *parseError = nil;
+                                                  NSArray *responseArray = [NSJSONSerialization JSONObjectWithData:data options:0 error:&parseError];
+                                                  
+                                                  NSMutableArray *ts = [NSMutableArray array];
+                                                  
+                                                  for (NSDictionary *taskObject in responseArray) {
+                                                      [ts addObject:[taskObject valueForKey:@"name"]];
+                                                      
+                                                  }
+                                                  
+                                                  [ts insertObject:listName atIndex:0];
+                                                  
+                                                  dispatch_async(dispatch_get_main_queue(), ^(void) {
+                                                      if ([self.listViewController.contents isEqualToArray:[NSArray arrayWithArray:ts]]) {
+                                                          NSLog(@"EQUAL");
+                                                          block(NCUpdateResultNoData);
+                                                      } else {
+                                                          NSLog(@"NOT EQUAL");
+                                                          self.listViewController.contents = [NSArray arrayWithArray:ts];
+                                                           block(NCUpdateResultNewData);
+                                                      }
+                                                      
+                                                  });
+                                                  
+                                                  
+                                                  
+                                              }
+                                              else
+                                              {
+                                                  dispatch_async(dispatch_get_main_queue(), ^(void) {
+                                                      self.listViewController.contents = @[@"Failed to load tasks, try again later"];
+                                                      block(NCUpdateResultFailed);
+                                                  });
+                                                  
+                                              }
+                                          }];
+        [dataTask resume];
+        
+        
+        
+    } else {
+        self.listViewController.contents = @[@"Left click on a list in the main application and select 'Show in Today Widget' to add it."];
+    }
+    
 }
 
 - (void)dismissViewController:(NSViewController *)viewController {
@@ -108,12 +129,10 @@
 #pragma mark - NCWidgetProviding
 
 - (void)widgetPerformUpdateWithCompletionHandler:(void (^)(NCUpdateResult result))completionHandler {
-    // Refresh the widget's contents in preparation for a snapshot.
-    // Call the completion handler block after the widget's contents have been
-    // refreshed. Pass NCUpdateResultNoData to indicate that nothing has changed
-    // or NCUpdateResultNewData to indicate that there is new data since the
-    // last invocation of this method.
-    completionHandler(NCUpdateResultNoData);
+    [self fetchContentWithUpdate:^(NCUpdateResult updateResult) {
+        completionHandler(updateResult);
+    }];
+    
 }
 
 - (NSEdgeInsets)widgetMarginInsetsForProposedMarginInsets:(NSEdgeInsets)defaultMarginInset {

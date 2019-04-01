@@ -357,6 +357,7 @@ NSString *const CNIDataModelManagerClassLogIdentifier = @"com.conichi.ios-mercha
 }
 
 - (void)saveToDisk {
+    
     [self.backgroundManagedObjectContext performBlockAndWait:^{
         NSError *backgroundSaveError = nil;
         BOOL didSaveBackground = [self.backgroundManagedObjectContext save:&backgroundSaveError];

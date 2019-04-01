@@ -34,6 +34,8 @@
     if (!SharedSettings.shouldShowCardLabels) {
         SharedSettings.shouldShowCardLabels = YES;
     }
+    
+    [SharedSettings setTodayWidgetUserToken:SharedSettings.userToken];
 
     [Fabric with:@[[Crashlytics class]]];
     
