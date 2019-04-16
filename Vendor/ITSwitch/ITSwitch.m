@@ -33,7 +33,7 @@ static CGFloat const kDisabledOpacity = 0.5f;
 
 #define kDisabledBorderColor [NSColor colorWithHexColorString:@"30364C"]
 #define kDisabledBackgroundColor [NSColor clearColor]
-#define kDefaultTintColor [NSColor colorWithHexColorString:@"3DB8DE"]
+#define kDefaultTintColor [NSColor clearColor]
 #define kInactiveBackgroundColor [NSColor colorWithCalibratedWhite:0 alpha:0.3]
 
 // ---------------------------------------------------------------------------------------
@@ -184,6 +184,7 @@ static CGFloat const kDisabledOpacity = 0.5f;
         if (([self hasDragged] && [self isDraggingTowardsOn]) || (![self hasDragged] && [self isOn])) {
             _backgroundLayer.borderColor = [self.tintColor CGColor];
             _backgroundLayer.backgroundColor = [self.tintColor CGColor];
+             _backgroundLayer.borderColor = [kDisabledBorderColor CGColor];
         } else {
             _backgroundLayer.borderColor = [kDisabledBorderColor CGColor];
             _backgroundLayer.backgroundColor = [kDisabledBackgroundColor CGColor];

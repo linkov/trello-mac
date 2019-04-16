@@ -18,6 +18,8 @@
 
 @property (readonly) SDWMList *model;
 
+@property NSUInteger cardCount;
+
 @property NSString *trelloID;
 @property NSString *name;
 @property int64_t position;

@@ -226,6 +226,8 @@
         [self showCardSavingIndicator:NO];
 
         if (!error) {
+            
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"SDWListsShouldReloadBoardsDatasourceNotification" object:nil userInfo:nil];
 
             [[self cardDetailsVC] setupCard:updatedCard];
 
@@ -587,8 +589,7 @@
 
 - (void)archiveCardWithID:(NSString *)UID {
 
-
-
+    
     [[self cardDetailsVC] setupCard:nil];
 
     SDWCardDisplayItem *cardToDelete = [self.cardsArrayController.content filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"SELF.model.uniqueIdentifier == %@",UID]].firstObject;

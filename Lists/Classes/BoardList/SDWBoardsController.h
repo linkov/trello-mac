@@ -16,5 +16,6 @@
 
 - (void)loadBoards;
 - (IBAction)reloadBoards:(id)sender;
+- (void)reloadLayout;
 
 @end

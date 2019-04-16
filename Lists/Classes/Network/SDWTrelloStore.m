@@ -152,7 +152,10 @@
         
     }
     
-    return [arr copy];
+    NSSortDescriptor *ageDescriptor = [[NSSortDescriptor alloc] initWithKey:@"position" ascending:YES];
+    NSArray *sortDescriptors = @[ageDescriptor];
+    
+    return [[arr copy] sortedArrayUsingDescriptors:sortDescriptors];
     
 }
 
@@ -261,7 +264,7 @@
              [self saveContext];
              
              SDWPerformBlock(block,[[SDWCardDisplayItem alloc]initWithModel:card])
-             
+             [[NSNotificationCenter defaultCenter] postNotificationName:@"SDWListsShouldReloadBoardsDatasourceNotification" object:nil];
              
              
          }];
@@ -385,6 +388,8 @@
     NSString *urlString = [NSString stringWithFormat:@"cards/%@/closed?",card.trelloID];
 
     [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":@"true"} success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"SDWListsShouldReloadBoardsDatasourceNotification" object:nil];
 
 
 
@@ -452,6 +457,8 @@
                    CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
                    FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
                  crownFiltered:(BOOL)crownFiltered {
+    
+    
     
     
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{

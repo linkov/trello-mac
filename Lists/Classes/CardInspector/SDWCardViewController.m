@@ -565,7 +565,7 @@
 
         SDWActivityTableCellView *resultView = [tableView makeViewWithIdentifier:@"cellView" owner:self];
         resultView.textField.stringValue = activity.content;
-        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
+        resultView.textField.textColor = [SharedSettings appAccentDarkColor];
         resultView.timeLabel.textColor = resultView.initialsLabel.textColor = [[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.8];
         resultView.initialsLabel.stringValue = activity.memberInitials;
         resultView.timeLabel.stringValue = activity.dateString;
@@ -580,7 +580,7 @@
 
         resultView.initialsLabel.wantsLayer = YES;
         resultView.initialsLabel.layer.cornerRadius = 1.5;
-        resultView.initialsLabel.layer.borderWidth = 1;
+        resultView.initialsLabel.layer.borderWidth = 0;
         resultView.initialsLabel.layer.borderColor = [[NSColor colorWithHexColorString:@"30364C"] colorWithAlphaComponent:0.8].CGColor;
         
         result = resultView;
@@ -593,8 +593,8 @@
 
         SDWCheckItemTableCellView *resultView = [tableView makeViewWithIdentifier:@"checkListCellView" owner:self];
         resultView.textField.stringValue = item.name;
-        resultView.textField.textColor = [SharedSettings appBleakWhiteColor];
-        resultView.checkBox.tintColor = [SharedSettings appBleakWhiteColor];
+        resultView.textField.textColor = [SharedSettings appAccentDarkColor];
+        resultView.checkBox.tintColor = [SharedSettings appAccentDarkColor];
         [resultView.checkBox setChecked:!item.isOpen];
         resultView.textField.enabled = !resultView.checkBox.checked;
         //resultView.toolTip = resultView.textField.stringValue;

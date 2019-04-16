@@ -184,6 +184,7 @@
             NSSortDescriptor *sortByName = [[NSSortDescriptor alloc]initWithKey:@"name" ascending:NO];
             self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos,sortByName]];
             [self reloadDataSource];
+            [self preloadAllLists];
             
 //            if (self.crownSwitch.on) {
 //                [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldFilterNotification object:nil userInfo:@{@"shouldFilter":[NSNumber numberWithBool:self.crownSwitch.on]}];
@@ -201,11 +202,28 @@
 
 }
 
+-  (void)preloadAllLists {
+    
+    for (SDWBoardDisplayItem *board in self.boards) {
+        
+        for (SDWListDisplayItem *list in board.lists) {
+            
+            [[SDWTrelloStore store] fetchAllCardsForList:list CurrentData:nil FetchedData:^(id object, NSError *error) {
+                [self reloadDataSource];
+            } crownFiltered:NO];
+        }
+    }
+}
+
+- (void)reloadLayout {
+   
+    [self.outlineView reloadData];
+}
+
 - (void)reloadDataSource {
 
     self.isAccessingExpandViaDataReload = YES;
 
-//    [self.outlineView deselectAll:nil];
     [self.outlineView expandItem:nil expandChildren:YES];
     [self.outlineView reloadData];
 
@@ -233,13 +251,13 @@
 
 - (void)moveCard:(NSDictionary *)cardData {
 
-    
-
     [[SDWTrelloStore store] moveCardID:cardData[@"cardID"]
                               toListID:self.boardWithDrop.model.uniqueIdentifier
                                boardID:self.boardWithDropParent.model.uniqueIdentifier completion:^(id object) {
                                    
                                    [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidRemoveCardNotification object:nil userInfo:@{@"cardID":cardData[@"cardID"]}];
+                                   
+                                   [[NSNotificationCenter defaultCenter] postNotificationName:@"SDWListsShouldReloadBoardsDatasourceNotification" object:nil userInfo:nil];
                                }];
 }
 
@@ -312,8 +330,11 @@
 #pragma mark - NSOutlineViewDelegate,NSOutlineViewDataSource
 
 - (NSTableRowView *)outlineView:(NSOutlineView *)outlineView rowViewForItem:(NSTreeNode *)item {
-
     SDWBoardsListRow *row = [SDWBoardsListRow new];
+    if (item.isLeaf) {
+        row.list = item.representedObject;
+    }
+    
     return row;
 }
 
@@ -322,6 +343,8 @@
     SDWBoardDisplayItem *board =[[self.outlineView itemAtRow:row] representedObject];
     SDWBoardsListRow *boardNameRow = (SDWBoardsListRow *)[self.outlineView rowViewAtRow:row makeIfNecessary:YES];
     boardNameRow.delegate = self;
+    
+   
 
     if (!board.isLeaf) {
         boardNameRow.backgroundColor = [SharedSettings appBackgroundColor];
@@ -416,7 +439,7 @@
 
 }
 
-- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(id)item childIndex:(NSInteger)index {
+- (BOOL)outlineView:(NSOutlineView *)outlineView acceptDrop:(id<NSDraggingInfo>)info item:(NSTreeNode *)item childIndex:(NSInteger)index {
 
     NSPasteboard *pBoard = [info draggingPasteboard];
     NSData *indexData = [pBoard dataForType:@"REORDER_DRAG_TYPE"];
@@ -427,6 +450,8 @@
         return NO;
     }
     else  {
+        
+        
 
         [self moveCard:cardDict];
 

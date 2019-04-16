@@ -163,7 +163,7 @@ static SDWAppSettings *sharedInstance = nil;
     return [NSColor colorWithHexColorString:@"4F778A"];
 }
 
-- (NSColor *)appBleakWhiteColor {
+- (NSColor *)appAccentDarkColor {
 
     return [NSColor colorWithHexColorString:@"30364C"];
 }

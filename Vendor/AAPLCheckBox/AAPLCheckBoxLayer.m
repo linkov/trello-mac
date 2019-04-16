@@ -71,11 +71,11 @@
 
 
     if (self.isChecked) {
-        CGContextSetStrokeColorWithColor(context, [SharedSettings.appBleakWhiteColor colorWithAlphaComponent:0.2].CGColor);
+        CGContextSetStrokeColorWithColor(context, [SharedSettings.appAccentDarkColor colorWithAlphaComponent:0.2].CGColor);
 
     } else {
 
-        CGContextSetStrokeColorWithColor(context, [SharedSettings.appBleakWhiteColor colorWithAlphaComponent:0.2].CGColor);
+        CGContextSetStrokeColorWithColor(context, [SharedSettings.appAccentDarkColor colorWithAlphaComponent:0.2].CGColor);
     }
     
     // Draw the outer box.
@@ -95,7 +95,7 @@
         CGContextMoveToPoint(context,9.5, -3.62);
         CGContextAddLineToPoint(context,11.21, -5.5);
         CGContextAddLineToPoint(context,13.5, -0.5);
-        CGContextSetStrokeColorWithColor(context, [SharedSettings.appBleakWhiteColor colorWithAlphaComponent:0.2].CGColor);
+        CGContextSetStrokeColorWithColor(context, [SharedSettings.appAccentDarkColor colorWithAlphaComponent:0.2].CGColor);
 
         CGContextStrokePath(context);
 

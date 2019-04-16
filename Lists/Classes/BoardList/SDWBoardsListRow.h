@@ -9,11 +9,14 @@
 @protocol SDWBoardsListRowDelegate;
 
 #import <Cocoa/Cocoa.h>
+#import "SDWListDisplayItem.h"
 
 @interface SDWBoardsListRow : NSTableRowView
 
 @property (weak) id <SDWBoardsListRowDelegate> delegate;
+@property SDWListDisplayItem *list;
 
+- (void)loadCardNumbers;
 
 @end
 

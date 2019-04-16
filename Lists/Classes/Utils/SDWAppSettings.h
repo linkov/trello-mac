@@ -61,7 +61,7 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 - (void)setTodayListName:(NSString *)listName;
 - (void)setTodayWidgetUserToken:(NSString *)userToken;
 
-- (NSColor *)appBleakWhiteColor;
+- (NSColor *)appAccentDarkColor;
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;
 - (NSColor *)appHighlightColor;

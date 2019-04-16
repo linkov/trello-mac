@@ -28,6 +28,7 @@
         self.model = model;
         self.trelloID = model.trelloID;
         self.name = model.name;
+        self.cardCount = model.cards.count;
         self.position = model.primitivePositionValue;
         
         
@@ -45,6 +46,7 @@
         [arr addObject:cardItem];
         
     }
+    self.cardCount = self.model.cards.count;
     return [arr copy];
 }
 

@@ -12,7 +12,7 @@
 
 - (void)awakeFromNib {
 
-    self.textColor = [SharedSettings appBleakWhiteColor];
+    self.textColor = [SharedSettings appAccentDarkColor];
     self.backgroundColor = [NSColor clearColor];
     self.font = [NSFont systemFontOfSize:12];
 
