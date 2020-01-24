@@ -12,7 +12,7 @@
 #import "SDWAppSettings.h"
 
 
-typedef void (^SDWEmptyBlock)();
+typedef void (^SDWEmptyBlock)(void);
 typedef void (^SDWBooleanBlock)(BOOL result);
 typedef void (^SDWResultErrorBlock)(id object, NSError *error);
 typedef void (^SDWResultBooleanBlock)(id object, BOOL valid);

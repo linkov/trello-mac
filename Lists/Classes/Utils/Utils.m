@@ -88,6 +88,15 @@
     return item;
 }
 
++ (NSMenuItem *)itemForCardLabelsMenuWithHour:(NSNumber *)hour {
+    
+    NSMenuItem *item = [[NSMenuItem alloc]init];
+    item.title = [NSString stringWithFormat:@"%@",hour];
+    item.image = [NSImage imageNamed:@"dueSortDes"];
+    return item;
+}
+
+
 + (NSMenu *)labelsMenu {
 
     NSMenu *menu = [[NSMenu alloc]init];

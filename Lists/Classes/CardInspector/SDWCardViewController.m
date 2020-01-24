@@ -659,7 +659,7 @@
 
     }
 
-    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context){
+    [NSAnimationContext runAnimationGroup:^(NSAnimationContext *context) {
         context.duration = 0.3; // you can leave this out if the default is acceptable
         context.allowsImplicitAnimation = YES;
         context.timingFunction =  [CAMediaTimingFunction functionWithControlPoints:0.25 :0.10 :0.25 :1.00];
@@ -822,7 +822,7 @@
 
 }
 
-- (void)updateFlatContent  {
+- (void)updateFlatContent {
 
     NSMutableArray *newFlatContent = [NSMutableArray array];
 

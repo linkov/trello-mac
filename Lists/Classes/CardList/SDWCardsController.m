@@ -113,6 +113,16 @@
 }
 
 - (void)subscribeToEvents {
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsWillExitFullscreenNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        
+        [self.ListWidth setPriority:NSLayoutPriorityDefaultHigh];
+    }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsWillEnterFullscreenNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+        
+        [self.ListWidth setPriority:NSLayoutPriorityDefaultLow];
+    }];
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidRemoveCardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 

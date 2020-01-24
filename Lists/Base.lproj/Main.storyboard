@@ -346,9 +346,9 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Toggle Labels" keyEquivalent="l" id="mAm-jf-iwY">
+                                        <menuItem title="Toggle Labels" keyEquivalent="l" id="XU9-bd-NUn">
                                             <connections>
-                                                <action selector="toggleCardLabels:" target="Voe-Tx-rLC" id="P8R-Og-No1"/>
+                                                <action selector="toggleCardLabels:" target="Voe-Tx-rLC" id="Xgn-L9-sEH"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Toggle Sidebar" keyEquivalent="1" id="DgX-Zk-iYg">
@@ -485,7 +485,7 @@
             <objects>
                 <splitViewController title="Lists" id="rgx-jx-vs0" customClass="SDWMainSplitController" sceneMemberID="viewController">
                     <splitViewItems>
-                        <splitViewItem canCollapse="YES" holdingPriority="251" id="Ap8-JL-e7N" userLabel="Boards list"/>
+                        <splitViewItem id="Ap8-JL-e7N" userLabel="Boards list"/>
                         <splitViewItem id="85d-57-W9m" userLabel="Cards list"/>
                         <splitViewItem id="DWs-hg-Gls" userLabel="Card details"/>
                     </splitViewItems>
@@ -738,7 +738,7 @@
                 </treeController>
                 <userDefaultsController representsSharedInstance="YES" id="bDe-ea-y9f"/>
             </objects>
-            <point key="canvasLocation" x="94" y="1201"/>
+            <point key="canvasLocation" x="86" y="1222"/>
         </scene>
         <!--Jwc Table View Data Source-->
         <scene sceneID="cQG-6O-QS0">
@@ -863,7 +863,7 @@
                                         </subviews>
                                     </clipView>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="405" id="I5L-Ye-pqE"/>
+                                        <constraint firstAttribute="width" priority="750" constant="405" id="I5L-Ye-pqE"/>
                                     </constraints>
                                     <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="eNB-Ve-W1H">
                                         <rect key="frame" x="1" y="119" width="223" height="15"/>
@@ -896,16 +896,16 @@
                                     </connections>
                                 </button>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-TF-9NK">
-                                    <rect key="frame" x="191" y="473" width="48" height="33"/>
+                                    <rect key="frame" x="196" y="480" width="38" height="23"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="48" id="0VO-N2-Ssm"/>
-                                        <constraint firstAttribute="height" constant="33" id="2Tc-9R-m83"/>
+                                        <constraint firstAttribute="width" constant="38" id="0VO-N2-Ssm"/>
+                                        <constraint firstAttribute="height" constant="23" id="2Tc-9R-m83"/>
                                     </constraints>
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="no-connection" id="61V-OJ-7V7"/>
                                 </imageView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="aA9-TF-9NK" firstAttribute="top" secondItem="fLg-he-sjk" secondAttribute="top" constant="3" id="INd-JO-G1P"/>
+                                <constraint firstItem="aA9-TF-9NK" firstAttribute="top" secondItem="fLg-he-sjk" secondAttribute="top" constant="6" id="INd-JO-G1P"/>
                                 <constraint firstItem="aA9-TF-9NK" firstAttribute="centerX" secondItem="fLg-he-sjk" secondAttribute="centerX" id="jtE-Mz-AOY"/>
                             </constraints>
                         </view>
@@ -930,6 +930,7 @@
                         <color key="fillColor" red="0.094117647058823528" green="0.26666666666666666" blue="0.38823529411764707" alpha="1" colorSpace="calibratedRGB"/>
                     </box>
                     <connections>
+                        <outlet property="ListWidth" destination="I5L-Ye-pqE" id="v2A-S7-j4H"/>
                         <outlet property="addCardButton" destination="sUr-Tl-WD0" id="qon-sS-kno"/>
                         <outlet property="cardActionIndicator" destination="chB-T3-pMn" id="wd7-Rn-YdP"/>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
@@ -953,7 +954,7 @@
                 </arrayController>
                 <userDefaultsController id="2xi-FN-1a8"/>
             </objects>
-            <point key="canvasLocation" x="522" y="1423"/>
+            <point key="canvasLocation" x="612" y="1424"/>
         </scene>
         <!--Jwc Table View Data Source-->
         <scene sceneID="Grh-YV-seD">
@@ -1490,7 +1491,7 @@
                 </viewController>
                 <customObject id="Gtm-aa-RcQ" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1193" y="1317"/>
+            <point key="canvasLocation" x="1188" y="1350"/>
         </scene>
         <!--Card CalendarVC-->
         <scene sceneID="dJW-OH-SRG">
@@ -1672,7 +1673,7 @@
         <image name="handle4" width="5" height="5"/>
         <image name="logo" width="32" height="32"/>
         <image name="logout-small" width="20" height="16"/>
-        <image name="no-connection" width="19" height="18"/>
+        <image name="no-connection" width="38" height="36"/>
         <image name="saveAlt2" width="20" height="18"/>
         <image name="todolist" width="14" height="11"/>
     </resources>

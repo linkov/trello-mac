@@ -31,6 +31,9 @@ extern NSString * const SDWListsShouldFilterNotification;
 extern NSString * const SDWListsShouldCreateCardNotification;
 extern NSString * const SDWListsDidUpdateDueNotification;
 
+extern NSString * const SDWListsWillExitFullscreenNotification;
+extern NSString * const SDWListsWillEnterFullscreenNotification;
+
 extern NSString * const SDWListsShouldReloadListNotification;
 extern NSString * const SDWListsShouldReloadBoardsNotification;
 
@@ -68,6 +71,7 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 - (NSColor *)appHighlightGreenColor;
 - (NSColor *)appSelectionColor;
 - (NSColor *)appUIColor;
+- (NSColor *)cardTextColor;
 - (NSColor *)dotColor;
 
 - (NSColor *)colorForTrelloColor:(NSString *)colorString;

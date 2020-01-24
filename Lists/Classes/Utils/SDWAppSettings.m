@@ -29,6 +29,10 @@ NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trell
 NSString * const SDWListsDidChangeCardDetailsStatusNotification  =  @"com.sdwr.trello-mac.didChangeCardDetailsStatusNotification";
 NSString * const SDWListsDidChangeDotOptionNotification =  @"com.sdwr.trello-mac.didChangeDotOptionNotification";
 
+NSString * const SDWListsWillExitFullscreenNotification = @"com.sdwr.trello-mac.willExitFullscreenNotification";
+
+NSString * const SDWListsWillEnterFullscreenNotification = @"com.sdwr.trello-mac.willEnterFullscreenNotification";
+
 NSString * const SDWListsDidRemoveCardNotification = @"com.sdwr.trello-mac.didRemoveCardNotification";
 NSString * const SDWListsShouldFilterNotification = @"com.sdwr.trello-mac.shouldFilterNotification";
 NSString * const SDWListsDidUpdateDueNotification = @"com.sdwr.trello-mac.didUpdateDueNotification";
@@ -143,44 +147,55 @@ static SDWAppSettings *sharedInstance = nil;
 }
 
 
+
+- (NSColor *)cardTextColor {
+    if (NSAppearance.currentAppearance.name == NSAppearanceNameDarkAqua)  {
+        return [NSColor blackColor];
+    } else {
+        return [NSColor whiteColor];
+    }
+    
+      // Card text color
+}
+
 - (NSColor *)appBackgroundColor {
 
-   return [NSColor colorWithHexColorString:@"E2E4E6"];
+   return [NSColor colorWithHexColorString:@"E2E4E6"]; // Board lines and split views separators
 }
 
 - (NSColor *)appSelectionColor {
 
-    return [NSColor colorWithHexColorString:@"D9E4EB"];
+    return [NSColor colorWithHexColorString:@"D9E4EB"]; // not used
 }
 
 
 - (NSColor *)appHighlightGreenColor {
-    return [NSColor colorWithHexColorString:@"3DB8DE"];
+    return [NSColor colorWithHexColorString:@"3DB8DE"]; // not used
 }
 
 - (NSColor *)appUIColor {
 
-    return [NSColor colorWithHexColorString:@"4F778A"];
+    return [NSColor colorWithHexColorString:@"4F778A"]; // not used
 }
 
 - (NSColor *)appAccentDarkColor {
 
-    return [NSColor colorWithHexColorString:@"30364C"];
+    return [NSColor colorWithHexColorString:@"30364C"]; // not used
 }
 
 - (NSColor *)appHighlightColor {
 
-    return [NSColor colorWithHexColorString:@"D9E4EB"];
+    return [NSColor colorWithHexColorString:@"D9E4EB"]; // list selection color
 }
 
 - (NSColor *)appBackgroundColorDark {
 
-    return [NSColor colorWithHexColorString:@"EDEFF0"];
+    return [NSColor colorWithHexColorString:@"EDEFF0"]; // app background color
 }
 
 - (NSColor *)dotColor {
     
-    return [NSColor colorWithHexColorString:@"30364C"];
+    return [NSColor colorWithHexColorString:@"30364C"]; // dot color
 }
 
 

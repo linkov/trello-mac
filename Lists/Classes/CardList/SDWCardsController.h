@@ -11,6 +11,7 @@
 @interface SDWCardsController : NSViewController
 
 @property (strong) IBOutlet NSImageView *onboardingImage;
+@property (weak) IBOutlet NSLayoutConstraint *ListWidth;
 
 
 - (void)setupCardsForList:(SDWListDisplayItem *)list;

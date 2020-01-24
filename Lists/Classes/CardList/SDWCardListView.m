@@ -15,6 +15,7 @@
 #import "SDWMLabel.h"
 #import "SDWLabelDisplayItem.h"
 #import "Utils.h"
+#import "SDWAppSettings.h"
 
 @interface SDWCardListView ()
 
@@ -38,7 +39,7 @@
     self.borderColor = [NSColor clearColor];
     self.borderWidth = 0;
 
-
+//    self.textField.textColor = [SharedSettings cardTextColor];
     self.textField.editable = NO;
     self.textField.wantsLayer = true;
     self.textField.focusRingType = NSFocusRingTypeNone;

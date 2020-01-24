@@ -16,6 +16,10 @@
 #import "SDWMainSplitController.h"
 #import "SDWCardsController.h"
 
+@import AppCenter;
+@import AppCenterAnalytics;
+@import AppCenterCrashes;
+
 @interface AppDelegate ()
 @property (weak) IBOutlet NSMenuItem *dotMenu10;
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
@@ -39,7 +43,13 @@
 
     [Fabric with:@[[Crashlytics class]]];
     
+    [MSAppCenter start:@"b8a9c7d4-812c-421f-a3a1-9846465fb7ea" withServices:@[
+                                                                              [MSAnalytics class],
+                                                                              [MSCrashes class]
+                                                                              ]];
+    
     #ifdef PRODUCTION
+    
         [MixpanelTracker startWithToken:@"671b5e87eee999e25d472a57666153df"];
     #endif
 }
