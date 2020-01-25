@@ -225,27 +225,27 @@ static SDWAppSettings *sharedInstance = nil;
 
     if ([colorString isEqualToString:@"green"]) {
 
-        color = [NSColor colorWithHexColorString:@"417505"];
+        color = [NSColor colorWithHexColorString:@"61BD4F"];
 
     } else if ([colorString isEqualToString:@"yellow"]) {
 
-        color = [NSColor colorWithHexColorString:@"F8CA00"];
+        color = [NSColor colorWithHexColorString:@"F2D600"];
 
     } else if ([colorString isEqualToString:@"orange"]) {
 
-        color = [NSColor orangeColor];
+        color = [NSColor colorWithHexColorString:@"FF9F1A"];
 
     } else if ([colorString isEqualToString:@"red"]) {
 
-        color = [NSColor redColor];
+        color = [NSColor colorWithHexColorString:@"EB5A46"];
 
     } else if ([colorString isEqualToString:@"blue"]) {
 
-        color = [NSColor blueColor];
+        color = [NSColor colorWithHexColorString:@"0079BF"];
 
     } else if ([colorString isEqualToString:@"purple"]) {
 
-        color = [NSColor purpleColor];
+        color = [NSColor colorWithHexColorString:@"C377E0"];
 
     }
 
@@ -253,29 +253,29 @@ static SDWAppSettings *sharedInstance = nil;
 
     else if ([colorString isEqualToString:@"black"]) {
 
-        color = [NSColor colorWithHexColorString:@"4d4d4d"];
+        color = [NSColor colorWithHexColorString:@"344563"];
     }
 
     else if ([colorString isEqualToString:@"lime"]) {
 
-        color = [NSColor colorWithHexColorString:@"7aecae"];
+        color = [NSColor colorWithHexColorString:@"51E898"];
     }
 
 
     else if ([colorString isEqualToString:@"pink"]) {
 
-        color = [NSColor colorWithHexColorString:@"fd7bca"];
+        color = [NSColor colorWithHexColorString:@"FF78CB"];
     }
 
 
     else if ([colorString isEqualToString:@"sky"]) {
 
-        color = [NSColor colorWithHexColorString:@"20c2de"];
+        color = [NSColor colorWithHexColorString:@"00C2E0"];
     }
 
 
 
-    return [color colorWithAlphaComponent:0.6];
+    return color;
 }
 
 - (void)saveCustomObject:(id)object forKey:(NSString *)key {
