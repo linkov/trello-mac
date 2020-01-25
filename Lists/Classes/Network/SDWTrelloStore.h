@@ -12,7 +12,7 @@
 #import "SDWDataModelManager.h"
 
 
-@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem,SDWListDisplayItem,SDWBoardDisplayItem;
+@class SDWCardDisplayItem,SDWMChecklist,SDWMChecklistItem,SDWChecklistItemDisplayItem,SDWChecklistDisplayItem,SDWListDisplayItem,SDWBoardDisplayItem, SDWMLabel, SDWLabelDisplayItem;
 
 typedef void (^SDWTrelloStoreCompletionBlock)(id object, NSError *error);
 typedef void (^SDWTrelloStoreLocalCompletionBlock)(id object);
@@ -43,6 +43,17 @@ typedef void (^SDWTrelloStoreLocalCompletionBlock)(id object);
 
 
 //v3
+
+- (void)fetchLabelsForBoardID:(NSString *)boardID
+currentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                  fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock;
+
+
+- (void)fetchAllCardsForBoard:(SDWBoardDisplayItem *)board
+  CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
+  FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
+                crownFiltered:(BOOL)crownFiltered;
+
 - (void)fetchAllCardsForList:(SDWListDisplayItem *)list
                  CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
                  FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
@@ -76,12 +87,12 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
 
 //v3
 - (void)addLabelForCard:(SDWCardDisplayItem *)card
-                  color:(NSString *)color
+                labelID:(NSString *)trelloID
              completion:(SDWTrelloStoreCompletionBlock)block;
 
 //v2
 - (void)removeLabelForCardID:(NSString *)cardID
-                       color:(NSString *)color
+                     labelID:(NSString *)trelloID
                   completion:(SDWTrelloStoreCompletionBlock)block;
 
 
@@ -108,6 +119,10 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
 
 //v3
 - (void)renameBoard:(SDWBoardDisplayItem *)board complition:(SDWTrelloStoreLocalCompletionBlock)block;
+
+
+/* Labels ops */
+
 
 
 
@@ -172,7 +187,7 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
 //                         cardID:(NSString *)cardID
 //                     completion:(SDWTrelloStoreCompletionBlock)block;
 
-
++ (NSArray <SDWLabelDisplayItem *>*)displayLabelsFromLabels:(NSArray<SDWMLabel *> *)modelLabels;
 //v2
 - (void)addCheckListForCardID:(NSString *)cardID
                withCompletion:(SDWTrelloStoreCompletionBlock)block;

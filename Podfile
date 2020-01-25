@@ -11,4 +11,6 @@ target 'Lists' do
   pod 'Fabric'
   pod 'Crashlytics'
   pod 'AppCenter'
+  pod 'SYFlatButton'
+
 end

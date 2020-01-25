@@ -366,10 +366,13 @@
 
 		[[self cardsVC] setupCardsForList:list];
 
-		return YES;
-	}
+		
+    } else {
+        SDWBoardDisplayItem *board = item.representedObject;
+        [[self cardsVC] setupCardsForBoard:board];
+    }
     
-	return NO;
+	return YES;
 }
 
 

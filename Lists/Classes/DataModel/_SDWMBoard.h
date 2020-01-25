@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SDWMLabel;
 @class SDWMList;
 @class SDWMUser;
 
@@ -41,10 +42,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
 
+@property (nonatomic, strong, nullable) NSSet<SDWMLabel*> *labels;
+- (nullable NSMutableSet<SDWMLabel*>*)labelsSet;
+
 @property (nonatomic, strong, nullable) NSSet<SDWMList*> *lists;
 - (nullable NSMutableSet<SDWMList*>*)listsSet;
 
 @property (nonatomic, strong, nullable) SDWMUser *user;
+
+@end
+
+@interface _SDWMBoard (LabelsCoreDataGeneratedAccessors)
+- (void)addLabels:(NSSet<SDWMLabel*>*)value_;
+- (void)removeLabels:(NSSet<SDWMLabel*>*)value_;
+- (void)addLabelsObject:(SDWMLabel*)value_;
+- (void)removeLabelsObject:(SDWMLabel*)value_;
 
 @end
 
@@ -79,11 +91,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUniqueIdentifier;
 - (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
 
+- (NSMutableSet<SDWMLabel*>*)primitiveLabels;
+- (void)setPrimitiveLabels:(NSMutableSet<SDWMLabel*>*)value;
+
 - (NSMutableSet<SDWMList*>*)primitiveLists;
 - (void)setPrimitiveLists:(NSMutableSet<SDWMList*>*)value;
 
-- (SDWMUser*)primitiveUser;
-- (void)setPrimitiveUser:(SDWMUser*)value;
+- (nullable SDWMUser*)primitiveUser;
+- (void)setPrimitiveUser:(nullable SDWMUser*)value;
 
 @end
 
@@ -96,6 +111,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMBoardRelationships: NSObject
++ (NSString *)labels;
 + (NSString *)lists;
 + (NSString *)user;
 @end

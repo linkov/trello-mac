@@ -12,6 +12,8 @@
 
 #import "SDWLabelDisplayItem.h"
 
+#import "SDWCardDisplayItem.h"
+
 @interface SDWSingleCardTableCellView ()
 
 @property (strong) NSString *originalText;
@@ -45,13 +47,13 @@
 
     [self.delegate cardViewDidSelectCard:self];
 
-    NSMenu *labelsMenu = [Utils labelsMenu];
+    NSMenu *labelsMenu = [Utils labelsMenuForBoard:self.boardID];
 
     for (NSMenuItem *item in labelsMenu.itemArray) {
 
         [item setTarget:self];
         [item setAction:@selector(changeCardLabel:)];
-        item.state = [self isActiveLabelWithTitle:item.title] ? 1 : 0;
+        item.state = [self labelActiveWitItemName:item.title] ? 1 : 0;
 
     }
 
@@ -105,12 +107,12 @@
 - (void)changeCardLabel:(NSMenuItem *)sender {
 
     NSMutableArray *modifiedLabels = [NSMutableArray arrayWithArray:self.mainBox.labels];
-    SDWLabelDisplayItem *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",sender.title]] firstObject];
+    SDWLabelDisplayItem *selectedLabel = [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@ || color == %@",sender.title, sender.title]] firstObject];
     SDWLabelDisplayItem *newLabel = [SDWLabelDisplayItem new];
     newLabel.color = sender.title;
 
 
-    if ([self isActiveLabelWithTitle:sender.title]) {
+    if ([self labelActiveWitItemName:sender.title]) {
 
         [modifiedLabels removeObject:selectedLabel];
         [self.delegate cardViewShouldRemoveLabelOfColor:sender.title];
@@ -124,12 +126,19 @@
     
 }
 
+- (BOOL)labelActiveWitItemName:(NSString *)name {
 
-- (BOOL)isActiveLabelWithTitle:(NSString *)title {
-
-    NSUInteger count =  [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",title]] count];
+    NSUInteger count =  [[self.cardDisplayItem.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@ || color == %@",name, name]] count];
 
     return count > 0;
 }
+
+
+//- (BOOL)isActiveLabelWithTitle:(NSString *)title {
+//
+//    NSUInteger count =  [[self.mainBox.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@",title]] count];
+//
+//    return count > 0;
+//}
 
 @end

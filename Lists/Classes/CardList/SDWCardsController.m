@@ -21,6 +21,8 @@
 #import "SDWCardListView.h"
 #import "PulseView.h"
 #import "SDWProgressIndicator.h"
+#import "SDWLabelDisplayItem.h"
+#import "BadgeTextField.h"
 
 /*-------Helpers & Managers-------*/
 #import "Utils.h"
@@ -28,6 +30,7 @@
 #import "NSControl+DragInteraction.h"
 #import "SDWAppSettings.h"
 #import "NSColor+Util.h"
+
 
 /*-------Models-------*/
 #import "SDWListDisplayItem.h"
@@ -41,7 +44,10 @@
 @property (weak) IBOutlet NSImageView *noConnectionImage;
 
 @property (strong) NSArray *storedUsers;
+
 @property (strong) SDWListDisplayItem *currentList;
+@property (strong) SDWBoardDisplayItem *currentBoard;
+
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSButton *addCardButton;
 @property (strong) IBOutlet NSTextField *listNameLabel;
@@ -291,16 +297,57 @@
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
-
+    
+    self.currentBoard = nil;
     self.currentList = list;
     self.listName = list.name;
+    
 
     [self reloadCards];
+    [self loadAndSaveAllLabelsForBoard:self.currentList.board.trelloID];
 }
+
+- (void)setupCardsForBoard:(SDWBoardDisplayItem *)board {
+
+    [self.onboardingImage removeFromSuperview];
+    self.listNameLabel.hidden = NO;
+    self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:18];
+    self.currentList = nil;
+    self.currentBoard = board;
+    self.listName =  [NSString stringWithFormat:@"%@ [overview]",self.currentBoard.name];
+    
+    
+    [self reloadCardsForCurrentBoard];
+}
+
+
 - (IBAction)reloadCardsAfterFail:(id)sender {
 
 
     [self reloadCards];
+}
+
+- (void)reloadCardsForCurrentBoard {
+
+    [[self cardDetailsVC] setupCard:nil];
+
+
+    SharedSettings.selectedListUsers = nil;
+
+
+    /*
+     clean previous cards before loading new ones
+     so that loading indicator is not on top of cards
+     */
+    self.cardsArrayController.content = nil;
+    [self.tableView reloadData];
+
+    [self loadCardsForBoard:self.currentBoard];
+
+    [self loadMembers:self.currentList.board.trelloID];
+ 
+    
+
 }
 
 - (void)reloadCards {
@@ -374,10 +421,66 @@
 
 }
 
+
+- (void)loadAndSaveAllLabelsForBoard:(NSString *)boardID {
+    
+    
+    [[SDWTrelloStore store] fetchLabelsForBoardID:boardID currentData:^(NSArray *objects, NSError *error) {
+        
+      
+        
+    } fetchedData:^(NSArray *objects, NSError *error) {
+        
+
+    }];
+    
+
+}
+
+
+- (void)loadCardsForBoard:(SDWBoardDisplayItem *)board {
+    
+    [self.mainProgressIndicator startAnimation];
+
+    
+    [[SDWTrelloStore store] fetchAllCardsForBoard:board CurrentData:^(NSArray *objects, NSError *error) {
+        
+        if (objects.count > 0) {
+            [self.mainProgressIndicator stopAnimation];
+        }
+
+
+        if (!error) {
+            [self reloadCollection:objects];
+        } else {
+            NSLog(@"%@", error);
+        }
+        
+    } FetchedData:^(id objects, NSError *error) {
+        
+        [self.mainProgressIndicator stopAnimation];
+        
+        if (self.currentBoard.model.uniqueIdentifier == board.model.uniqueIdentifier) {
+            if (!error) {
+                [self reloadCollection:objects];
+            } else {
+                NSLog(@"%@", error);
+            }
+        }
+        
+
+    } crownFiltered:SharedSettings.shouldFilter];
+    
+
+}
+
+
+
 - (void)loadCardsForList:(SDWListDisplayItem *)list {
     
     [self.mainProgressIndicator startAnimation];
 
+//    self.currentBoard = nil;
     
     [[SDWTrelloStore store] fetchAllCardsForList:list CurrentData:^(NSArray *objects, NSError *error) {
         
@@ -412,7 +515,7 @@
 
 - (void)reloadCollection:(NSArray *)objects {
 
-    [self.addCardButton setHidden:NO];
+    [self.addCardButton setHidden:self.currentBoard != nil];
 
 
     NSSortDescriptor *sortBy;
@@ -474,6 +577,13 @@
 
     SDWSingleCardTableCellView *newRow = (SDWSingleCardTableCellView *)[self.tableView viewAtColumn:0 row:lastIndex makeIfNecessary:NO];
     newRow.delegate = self;
+    newRow.boardID = self.currentList.board.trelloID;
+    
+    
+    if (self.currentBoard) {
+        newRow.boardID = self.currentBoard.trelloID;
+    }
+    
     newRow.mainBox.textField.delegate = newRow;
     newRow.mainBox.selected = YES;
     newRow.mainBox.textField.editable = YES;
@@ -489,32 +599,66 @@
 - (void)cardViewDidSelectCard:(SDWSingleCardTableCellView *)cardView {
 
     SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:[self.tableView rowForView:cardView]];
+    
     self.lastSelectedCard = selectedCard;
 }
 
 
 - (void)cardViewShouldAddLabelOfColor:(NSString *)color {
     
+    
+    SDWLabelDisplayItem *label;
+    
+    if (self.currentBoard) {
+            label = [self.currentBoard.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
+
+    } else {
+        label = [self.currentList.board.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
+
+    }
+    
+    
     [self showCardSavingIndicator:YES];
     
-    [[SDWTrelloStore store] addLabelForCard:self.lastSelectedCard
-                                           color:color
-                                      completion:^(id object, NSError *error)
-     {
-         [self showCardSavingIndicator:NO];
-     }];
+    if (label) {
+        [[SDWTrelloStore store] addLabelForCard:self.lastSelectedCard labelID:label.trelloID completion:^(id object, NSError *error) {
+            [self showCardSavingIndicator:NO];
+            [self reloadCards];
+        }];
+    }
+   
 }
 
 - (void)cardViewShouldRemoveLabelOfColor:(NSString *)color {
+    
+    SDWLabelDisplayItem *label;
+    
+    if (self.currentBoard) {
+            label = [self.currentBoard.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
 
+    } else {
+        label = [self.currentList.board.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
+
+    }
+    
+    
     [self showCardSavingIndicator:YES];
+    
+    if (label) {
+        [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.trelloID labelID:label.trelloID completion:^(id object, NSError *error) {
+            [self showCardSavingIndicator:NO];
+            [self reloadCards];
+        }];
+    }
 
-    [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.trelloID
-                                           color:color
-                                      completion:^(id object, NSError *error)
-    {
-        [self showCardSavingIndicator:NO];
-    }];
+//    [self showCardSavingIndicator:YES];
+//
+//    [[SDWTrelloStore store] removeLabelForCardID:self.lastSelectedCard.trelloID
+//                                           color:color
+//                                      completion:^(id object, NSError *error)
+//    {
+//        [self showCardSavingIndicator:NO];
+//    }];
 }
 
 
@@ -626,6 +770,10 @@
 }
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    if (self.currentBoard) {
+        return NO;
+    }
 
     SDWSingleCardTableCellView *selectedCell = [self.tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
     [selectedCell.mainBox setSelected:YES];
@@ -652,43 +800,98 @@
 }
 
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
-
+    if (self.currentBoard) {
+        
+        SDWListDisplayItem *list  = self.currentBoard.lists[section];
+        return [self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"list.trelloID == %@",list.trelloID]].count;
+    }
     return [self.cardsArrayController.arrangedObjects count];
 }
 
 
 -(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
 
+    if (self.currentBoard) {
+        return self.currentBoard.lists.count;
+    }
+    
+    
     return 1;
 }
 
--(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
 
+
+-(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
+    SDWListDisplayItem *list  = self.currentBoard.lists[section];
+    if (self.currentBoard && list.cards.count > 0) {
+        return YES;
+    }
     return NO;
 }
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
-
+    if (self.currentBoard) {
+        return 32;
+    }
     return 0;
 }
 
 
 -(NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    if (self.currentBoard) {
+        SDWListDisplayItem *list  = self.currentBoard.lists[section];
+        NSTextView *headerLabel = [[NSTextView alloc] initWithFrame:NSMakeRect(0.0, 0.0, self.tableView.bounds.size.width, 20.0)];
+        [headerLabel setBackgroundColor: [NSColor clearColor]];
+        [headerLabel setString: list.name];
+        [headerLabel setEditable:NO];
+        [headerLabel setFont:[NSFont fontWithName:@"IBMPlexSans-Medium" size:16]];
+        [headerLabel setTextColor:  [NSColor blackColor]];
 
+        NSSize txtPadding;
+        txtPadding.width = 4.0;
+        txtPadding.height = 8.0;
+        [headerLabel setTextContainerInset:txtPadding];
+//
+        return headerLabel;
+
+    }
     return nil;
 }
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
     SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    
+    
+    if (self.currentBoard) {
+        
+        SDWListDisplayItem *list = self.currentBoard.lists[indexPath.section];
+        card = list.cards[indexPath.row];
+    }
+    
 
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont systemFontOfSize:11]}];
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
     CGFloat height = ceilf(rec.size.height);
 
-    if (height > 14) {
+    if ([card labels].count) {
+        NSObject *view = [self.tableView tableView:tableView viewForTableColumn:[[NSTableColumn alloc] initWithIdentifier:@"firstColumn"]  row:indexPath.row];
+        
+        if ([view isKindOfClass:[NSTableCellView class]]) {
+             height += ((SDWSingleCardTableCellView *)view).customLabelsView.frame.size.height;
+        } else {
+            height += 20;
+        }
+       
 
+
+    }
+
+    
+    if (height > 14) {
+        
         return height+7+7;
     }
+    
 
     return 27;
 
@@ -702,20 +905,40 @@
         return nil;
     }
 
+    
     SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    
+    if (self.currentBoard) {
+        
+        SDWListDisplayItem *list = self.currentBoard.lists[indexPath.section];
+        card = list.cards[indexPath.row];
+    }
+    
+    
+
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
+    
+    view.boardID = self.currentList.board.trelloID;
+    view.cardDisplayItem = card;
+    
+    if (self.currentBoard) {
+        view.boardID = self.currentBoard.trelloID;
+    }
+    
     view.mainBox.textField.stringValue = card.name;
+    view.mainBox.textField.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:13];
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
     view.textField.backgroundColor = [NSColor clearColor];
     view.delegate = self;
     view.mainBox.selected = NO;
+    
 
-    /* mark labels */
     if (SharedSettings.shouldShowCardLabels == YES) {
         view.mainBox.labels = [card labels];
     } else {
         view.mainBox.labels = @[];
     }
+
 
     /* mark due */
     NSDate *due = card.dueDate;
@@ -786,6 +1009,8 @@
 
     /* load card users */
     [view.stackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
+    
+    [view.customLabelsView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
 
 //    NSArray *members = card.members;
 
@@ -810,8 +1035,36 @@
         [view.stackView addView:text inGravity:NSStackViewGravityTrailing];
     }
     
+    /* show labels */
+    if ([card labels].count && SharedSettings.shouldShowCardLabels == YES) {
 
-    
+        for (SDWLabelDisplayItem *label in [card labels]) {
+            
+              BadgeTextField *text = [[BadgeTextField alloc]init];
+                  [text setWantsLayer:YES];
+                  [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+                  [text setFont: [NSFont fontWithName:@"IBMPlexSans-Medium" size:12]];
+
+                  [text setBezeled:NO];
+                  [text setTextColor:[NSColor whiteColor]];
+            [text setStringValue:[NSString stringWithFormat:@" %@ ",label.name.length > 0 ? label.name: label.color]];
+                  [text setEditable:NO];
+                  text.backgroundColor = [SharedSettings colorForTrelloColor:label.color];
+                  text.alignment = NSTextAlignmentLeft;
+                  text.layer.backgroundColor = [SharedSettings colorForTrelloColor:label.color].CGColor;
+                  text.layer.cornerRadius = 2;
+
+            [view.customLabelsView addArrangedSubview:text];
+            
+            NSLog(@"name = %@, color = %@", label.name, label.color);
+        }
+        
+        NSView *spacer = [NSView new];
+        [spacer setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
+        
+        [view.customLabelsView addArrangedSubview:spacer];
+    }
+
     
 
 //    for (SDWUserDisplayItem *member in members) {
@@ -869,6 +1122,11 @@
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard {
 
+    if (self.currentBoard) {
+        return NO;
+    }
+
+    
     SDWCardDisplayItem *card = [self.cardsArrayController.content objectAtIndex:rowIndexes.firstIndex];
     NSDictionary *cardDict = @{
                                @"cardID":card.model.uniqueIdentifier,
@@ -885,7 +1143,7 @@
 }
 - (NSDragOperation)_jwcTableView:(NSTableView*)tv validateDrop:(id <NSDraggingInfo>)info proposedRow:(NSInteger)row proposedDropOperation:(NSTableViewDropOperation)op {
 
-    if ([self.cardsArrayController.arrangedObjects count] == 1) {
+    if ([self.cardsArrayController.arrangedObjects count] == 1 || self.currentBoard) {
         return NSDragOperationNone;
     }
 

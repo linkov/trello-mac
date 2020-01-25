@@ -154,14 +154,14 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableSet<SDWMLabel*>*)primitiveLabels;
 - (void)setPrimitiveLabels:(NSMutableSet<SDWMLabel*>*)value;
 
-- (SDWMList*)primitiveList;
-- (void)setPrimitiveList:(SDWMList*)value;
+- (nullable SDWMList*)primitiveList;
+- (void)setPrimitiveList:(nullable SDWMList*)value;
 
 - (NSMutableSet<SDWMUser*>*)primitiveMembers;
 - (void)setPrimitiveMembers:(NSMutableSet<SDWMUser*>*)value;
 
-- (SDWMUser*)primitiveUser;
-- (void)setPrimitiveUser:(SDWMUser*)value;
+- (nullable SDWMUser*)primitiveUser;
+- (void)setPrimitiveUser:(nullable SDWMUser*)value;
 
 @end
 

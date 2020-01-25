@@ -11,6 +11,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@class SDWMBoard;
 @class SDWMCard;
 
 @interface SDWMLabelID : NSManagedObjectID {}
@@ -29,6 +30,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, strong, nullable) NSString* trelloID;
 
 @property (nonatomic, strong, nullable) NSString* uniqueIdentifier;
+
+@property (nonatomic, strong, nullable) SDWMBoard *board;
 
 @property (nonatomic, strong, nullable) NSSet<SDWMCard*> *cards;
 - (nullable NSMutableSet<SDWMCard*>*)cardsSet;
@@ -57,6 +60,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUniqueIdentifier;
 - (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
 
+- (nullable SDWMBoard*)primitiveBoard;
+- (void)setPrimitiveBoard:(nullable SDWMBoard*)value;
+
 - (NSMutableSet<SDWMCard*>*)primitiveCards;
 - (void)setPrimitiveCards:(NSMutableSet<SDWMCard*>*)value;
 
@@ -70,6 +76,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMLabelRelationships: NSObject
++ (NSString *)board;
 + (NSString *)cards;
 @end
 

@@ -67,8 +67,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUniqueIdentifier;
 - (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
 
-- (SDWMBoard*)primitiveBoard;
-- (void)setPrimitiveBoard:(SDWMBoard*)value;
+- (nullable SDWMBoard*)primitiveBoard;
+- (void)setPrimitiveBoard:(nullable SDWMBoard*)value;
 
 - (NSMutableSet<SDWMCard*>*)primitiveCards;
 - (void)setPrimitiveCards:(NSMutableSet<SDWMCard*>*)value;

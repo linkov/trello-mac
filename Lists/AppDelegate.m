@@ -48,6 +48,10 @@
                                                                               [MSCrashes class]
                                                                               ]];
     
+//    for (NSString *font in NSFontManager.sharedFontManager.availableFonts) {
+//        NSLog(@"%@",font);
+//    }
+    
     #ifdef PRODUCTION
     
         [MixpanelTracker startWithToken:@"671b5e87eee999e25d472a57666153df"];

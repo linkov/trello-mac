@@ -60,8 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 - (nullable NSString*)primitiveUniqueIdentifier;
 - (void)setPrimitiveUniqueIdentifier:(nullable NSString*)value;
 
-- (SDWMChecklist*)primitiveChecklist;
-- (void)setPrimitiveChecklist:(SDWMChecklist*)value;
+- (nullable SDWMChecklist*)primitiveChecklist;
+- (void)setPrimitiveChecklist:(nullable SDWMChecklist*)value;
 
 @end
 

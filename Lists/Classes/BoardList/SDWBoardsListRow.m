@@ -102,7 +102,7 @@
         NSDictionary* stringAttrs = @{
                                       NSFontAttributeName : font,
                                       NSParagraphStyleAttributeName:paragraphStyle,
-                                      NSForegroundColorAttributeName : [[SharedSettings appAccentDarkColor] colorWithAlphaComponent:0.3]
+                                      NSForegroundColorAttributeName : [SharedSettings appAccentDarkColor]
                                       
                                       
                                       };

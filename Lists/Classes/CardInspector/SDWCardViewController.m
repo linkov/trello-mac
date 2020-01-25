@@ -24,7 +24,8 @@
 #import "JWCTableView.h"
 #import "SDWActivityTableCellView.h"
 #import "SDWCheckItemTableCellView.h"
-
+#import "SDWLabelDisplayItem.h"
+#import "SYFlatButton.h"
 
 /*-------Helpers & Managers-------*/
 #import "NSColor+Util.h"
@@ -49,6 +50,7 @@
 @property (strong) IBOutlet NSImageView *logoImageView;
 @property (strong) IBOutlet NSTextField *dueDateLabel;
 
+@property (weak) IBOutlet NSStackView *labelsStackView;
 
 @property (strong,nonatomic) SDWCardDisplayItem *card;
 
@@ -148,6 +150,8 @@
     
     self.cardDescriptionTextView.delegate = self;
     self.cardNameTextView.delegate = self;
+    
+
 }
 
 
@@ -201,9 +205,19 @@
     self.checkListsScrollLeadingSpace.constant = self.addChecklistOnboardLeading.constant = -500;
 }
 
+- (void)viewWillDisappear {
+    [self.labelsStackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
+}
+
+
+- (void)onAddLabel:(id)sender {
+    
+//    SDWMainSplitController *splitViewVC  = (SDWMainSplitController *)self.parentViewController;
+//    splitViewVC.boardsListVCDidRequestAddItem
+}
 
 - (void)setupCard:(SDWCardDisplayItem *)card {
-    
+    [self.labelsStackView.views makeObjectsPerformSelector:@selector(removeFromSuperview)];
     self.saveButton.hidden = !self.isInTODOMode;
     
 
@@ -246,8 +260,58 @@
         [self fetchActivities];
         [self fetchChecklists];
     }
+    
+    
+   // NSButton *addLabel = [NSButton buttonWithImage:[NSImage imageNamed:@"add_label"] target:self action:@selector(onAddLabel:)];
+//    NSButton *addLabel = [[NSButton alloc] init];
+//
+//    [addLabel setImage:[NSImage imageNamed:@"add_label"]];
+//    [addLabel setAction:@selector(onAddLabel:)];
+//    [addLabel setTarget:self];
+//
+//
+//    SYFlatButton *button = [[SYFlatButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, 30.0)];
+//    button.title = @" + Add label ";
+////    button.momentary = YES;
+//    button.cornerRadius = 4.0;
+//    button.font = [NSFont fontWithName:@"IBMPlexSans-Medium" size:13];
+//    button.titleNormalColor = [NSColor whiteColor];
+//     button.titleHighlightColor = [NSColor whiteColor];
+//    button.backgroundNormalColor = [NSColor blackColor];
+//    button.backgroundHighlightColor = [NSColor blackColor];
+//    button.action = @selector(onAddLabel:);
+//    button.target = self;
+////    [self.view addSubview:button];
+//
+//
+//    [self.labelsStackView addView:button inGravity:NSStackViewGravityCenter];
+    
+    for (SDWLabelDisplayItem *label in [self.card labels]) {
+        
+          NSTextField *text = [[NSTextField alloc]init];
+              [text setWantsLayer:YES];
+              [text setTranslatesAutoresizingMaskIntoConstraints:NO];
+              [text setFont: [NSFont fontWithName:@"IBMPlexSans-Medium" size:12]];
 
+              [text setBezeled:NO];
+              [text setTextColor:[NSColor whiteColor]];
+        [text setStringValue:[NSString stringWithFormat:@" %@ ",label.name.length > 0 ? label.name: label.color]];
+              [text setEditable:NO];
+              text.backgroundColor = [SharedSettings colorForTrelloColor:label.color];
+              text.alignment = NSTextAlignmentLeft;
+              text.layer.backgroundColor = [SharedSettings colorForTrelloColor:label.color].CGColor;
+              text.layer.cornerRadius = 2;
 
+        [self.labelsStackView addArrangedSubview:text];
+        
+        NSLog(@"name = %@, color = %@", label.name, label.color);
+    }
+   
+
+    NSView *spacer = [NSView new];
+    [spacer setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
+    
+    [self.labelsStackView addArrangedSubview:spacer];
 }
 
 

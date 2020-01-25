@@ -89,6 +89,17 @@
 
 @dynamic uniqueIdentifier;
 
+@dynamic labels;
+
+- (NSMutableSet<SDWMLabel*>*)labelsSet {
+	[self willAccessValueForKey:@"labels"];
+
+	NSMutableSet<SDWMLabel*> *result = (NSMutableSet<SDWMLabel*>*)[self mutableSetValueForKey:@"labels"];
+
+	[self didAccessValueForKey:@"labels"];
+	return result;
+}
+
 @dynamic lists;
 
 - (NSMutableSet<SDWMList*>*)listsSet {
@@ -123,6 +134,9 @@
 @end
 
 @implementation SDWMBoardRelationships 
++ (NSString *)labels {
+	return @"labels";
+}
 + (NSString *)lists {
 	return @"lists";
 }

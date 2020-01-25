@@ -9,6 +9,12 @@
 #import "Utils.h"
 
 
+#import "SDWDataModelManager.h"
+#import "SDWMBoard.h"
+#import "SDWBoardDisplayItem.h"
+#import "SDWLabelDisplayItem.h"
+
+
 @implementation Utils
 
 + (NSString *)twoLetterIDFromName:(NSString *)name {
@@ -88,6 +94,17 @@
     return item;
 }
 
+
++ (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color name:(NSString *)name {
+
+    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(2, 5, 5, 5)];
+
+    NSMenuItem *item = [[NSMenuItem alloc]init];
+    item.title = name;
+    item.image = [NSImage imageFromBezierPath:ovalPath color:[SharedSettings colorForTrelloColor:color]];
+    return item;
+}
+
 + (NSMenuItem *)itemForCardLabelsMenuWithHour:(NSNumber *)hour {
     
     NSMenuItem *item = [[NSMenuItem alloc]init];
@@ -97,43 +114,20 @@
 }
 
 
-+ (NSMenu *)labelsMenu {
++ (NSMenu *)labelsMenuForBoard:(NSString *)trelloID {
 
     NSMenu *menu = [[NSMenu alloc]init];
     menu.minimumWidth = 250.0;
+    
+    SDWMBoard *brd = [[SDWDataModelManager manager] fetchEntityForName:SDWMBoard.entityName withTrelloID:trelloID inContext:[SDWDataModelManager manager].managedObjectContext];
+    SDWBoardDisplayItem *displayModel = [[SDWBoardDisplayItem alloc] initWithModel: brd];
 
-    NSMenuItem *greenLabel = [Utils itemForCardLabelsMenuWithColorString:@"green"];
-    [menu addItem:greenLabel];
+    for (SDWLabelDisplayItem *lab in displayModel.labels) {
 
-    NSMenuItem *redLabel = [Utils itemForCardLabelsMenuWithColorString:@"red"];
-    [menu addItem:redLabel];
+        NSMenuItem *label = [Utils itemForCardLabelsMenuWithColorString:lab.color name:lab.name.length > 0 ? lab.name : lab.color];
+        [menu addItem:label];
+    }
 
-    NSMenuItem *yellowLabel = [Utils itemForCardLabelsMenuWithColorString:@"yellow"];
-    [menu addItem:yellowLabel];
-
-    NSMenuItem *blueLabel = [Utils itemForCardLabelsMenuWithColorString:@"blue"];
-    [menu addItem:blueLabel];
-
-    NSMenuItem *purpleLabel = [Utils itemForCardLabelsMenuWithColorString:@"purple"];
-    [menu addItem:purpleLabel];
-
-    NSMenuItem *orangeLabel = [Utils itemForCardLabelsMenuWithColorString:@"orange"];
-    [menu addItem:orangeLabel];
-
-    NSMenuItem *separator = [NSMenuItem separatorItem];
-    [menu addItem:separator];
-
-    NSMenuItem *blackLabel = [Utils itemForCardLabelsMenuWithColorString:@"black"];
-    [menu addItem:blackLabel];
-
-    NSMenuItem *limeLabel = [Utils itemForCardLabelsMenuWithColorString:@"lime"];
-    [menu addItem:limeLabel];
-
-    NSMenuItem *skyLabel = [Utils itemForCardLabelsMenuWithColorString:@"sky"];
-    [menu addItem:skyLabel];
-
-    NSMenuItem *pinkLabel = [Utils itemForCardLabelsMenuWithColorString:@"pink"];
-    [menu addItem:pinkLabel];
 
     return menu;
 }

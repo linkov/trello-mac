@@ -3,7 +3,7 @@
 #import "FEMAttribute+listsAttributes.h"
 
 #import "SDWMList.h"
-
+#import "SDWMLabel.h"
 @interface SDWMBoard ()
 
 
@@ -35,6 +35,7 @@
     [mapping addAttributeWithProperty:@"name" keyPath:@"name"];
     [mapping addAttributeWithProperty:@"starred" keyPath:@"starred"];
     [mapping addToManyRelationshipMapping:[SDWMList defaultMapping] forProperty:@"lists" keyPath:@"lists"];
+    [mapping addToManyRelationshipMapping:[SDWMLabel defaultMapping] forProperty:@"labels" keyPath:@"labels"];
     return mapping;
 }
 

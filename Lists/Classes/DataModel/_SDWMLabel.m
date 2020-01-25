@@ -40,6 +40,8 @@
 
 @dynamic uniqueIdentifier;
 
+@dynamic board;
+
 @dynamic cards;
 
 - (NSMutableSet<SDWMCard*>*)cardsSet {
@@ -69,6 +71,9 @@
 @end
 
 @implementation SDWMLabelRelationships 
++ (NSString *)board {
+	return @"board";
+}
 + (NSString *)cards {
 	return @"cards";
 }

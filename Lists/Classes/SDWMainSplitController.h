@@ -24,5 +24,6 @@
 - (void)addItemVCDidFinishWithName:(NSString *)name didCancel:(BOOL)didCancel;
 - (void)boardsListVCDidRequestAddItem;
 - (void)boardsListVCDidRequestAddListToBoard:(SDWBoardDisplayItem *)board;
+- (void)cardDetailDidRequestAddLabel:(NSString *)name forCardID:(NSString *)trelloID;
 
 @end

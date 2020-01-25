@@ -10,12 +10,13 @@
 #import "SDWMBoard.h"
 #import "SDWTreeView.h"
 
-@class SDWMList,SDWListDisplayItem;
+@class SDWMList,SDWListDisplayItem, SDWLabelDisplayItem;
 
 @interface SDWBoardDisplayItem : NSObject
 
 @property (readonly) SDWMBoard *model;
 @property (readonly) NSArray <SDWListDisplayItem *> *lists;
+@property (readonly) NSArray <SDWLabelDisplayItem *> *labels;
 
 @property NSString *trelloID;
 @property NSString *name;

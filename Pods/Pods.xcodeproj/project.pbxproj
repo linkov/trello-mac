@@ -38,67 +38,84 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
-		0342E024642833B7D2E4E4A364B1B678 /* NSObject+FEMKVCExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = 32F19D127061FB890B640844D09032E1 /* NSObject+FEMKVCExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		08307E48E17DFB41F2B7EC67722BA60C /* NSObject+FEMKVCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 965A11293B4FC8E83399BFD9F9A1BB1B /* NSObject+FEMKVCExtension.m */; };
-		134BFE6B6B30077C7E3509DFF73AF7B1 /* FEMRepresentationUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = DF95E2A039E557286D4FD402ABE5A5BE /* FEMRepresentationUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		15AD47B8BD950E963121DA98B43EFF5D /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = D3EA30D5CD1CD7934F9978C18B47F79E /* FEMMapping.m */; };
-		169AECD94D3C781864A527BC9B913907 /* FEMObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 49ACEC9A09296F9CAD34CD5B8B0BDE03 /* FEMObjectStore.m */; };
-		1D822FBE4EB3DFC35AE302280ACAE50A /* NSArray+FEMPropertyRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E7E2450AEDCAE032DAB5A0F5DBF5641 /* NSArray+FEMPropertyRepresentation.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		244BA102EB85D27F44BE37EDACFBC9CF /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9409E244BC915A390392E059DB92A486 /* FEMMergeableCollection.m */; };
-		2BA9E5DBC6807C812F8B77390EA57B45 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = E0D27EF5312D6B11A05452CADC2AE2D3 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		31FC4AD30665F650FCEA5AC85A591C80 /* FEMDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 06FC50F2B8F9F8D4EA5791AD2BEB80FD /* FEMDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3ACF5EADBB8459AAA3B0C7BF1BDF336D /* FEMObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = CEEA41E92600BEB8FDFE519407A73598 /* FEMObjectMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		3EBFCA1167F25C0B925471DB801988C2 /* FEMSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = AEDE094951166E14F9B6C32DF52BD692 /* FEMSerializer.m */; };
-		4352743373F7C0F623335EEF12FABCD5 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7AC87B303113C817CFD598114CA94F7F /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		43722BF66192F53208217AA0574E9DE7 /* FEMMappingUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 7E8ABFBD785342E7E14CA3D79DFE5E2B /* FEMMappingUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		43AA8D0DB8EA1D4BC5C338B319482724 /* FEMManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 1D2517E1650BE39F36CC8ADC36F09BDC /* FEMManagedObjectStore.m */; };
-		442AC2E04BAD42966663CC2FA468F4EE /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 73316CB656B93F6C9731E1A98EF53083 /* FEMAttribute.m */; };
-		452BA964733ECBC63FA03C9B7036CC1D /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 35F50A034BFDD639647A938666179A34 /* FEMAssignmentPolicy.m */; };
-		4696158DAE58E78BAEEB2654E19D1922 /* FEMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 2DD90AB9FC55E61898579F8865798B6B /* FEMProperty.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		478DADC9E026905B3757247309038F83 /* FEMTypeIntrospection.h in Headers */ = {isa = PBXBuildFile; fileRef = 50B9EB9764D021A4BDF55BFC44C08C90 /* FEMTypeIntrospection.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		4DB5EA2865EED7AF8F0E602BD8CBFF9A /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = ED7212EF51DBA514DF6A70564794A77A /* FEMRepresentationUtility.m */; };
-		51E0F6D42BB2A630106E0C34889A05C6 /* FEMManagedObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C3B8FB6C34296EEA1C44919DE11203B7 /* FEMManagedObjectCache.m */; };
-		63A5F6E0FF59D0DB9A7C92FF4441EC15 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = E7E918E27305A4A945AD8B2084DB2D4E /* FEMRelationship.m */; };
-		675A075B1D9AC8A3AC2EAEDAF20C4E45 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = AAD515C33BF3B579743D49F0E4455E1A /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6D6FA115D47F3DE6B1479BD5D705B38F /* FEMManagedObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = F4F15ECDC2389390DCAB3DC9D5C32C1E /* FEMManagedObjectStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		77DC4395F3568E02BEB4F9E62458F6B2 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = 6F4CE80FB717A272310F8E1FBC8CDF61 /* FEMRelationshipAssignmentContext+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		77E8B1FFF08EE8E011F937410EF135E9 /* FEMMergeableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = C1423DC5F2BC6BB1764868487609C331 /* FEMMergeableCollection.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		808C42CEFDB9AD72525E39CB5172ACF0 /* FEMTypeIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = DAA04B8F28C72566C484EC9725D29394 /* FEMTypeIntrospection.m */; };
-		9363C6067AADE72F239C6B7E94CAC1A7 /* Pods-Lists-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29502052867538B8EBD08B10654D6B63 /* Pods-Lists-dummy.m */; };
-		9857C3C09EC11EDFBEAFBE0923FBDD09 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = 00886620CA8BDB25E52541103E1C0D26 /* FEMRelationshipAssignmentContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9A2D125A9535526FDFD0E6A15431D5FB /* NSArray+FEMPropertyRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 7960252EB6916BAC69E4A5114B7C43BE /* NSArray+FEMPropertyRepresentation.m */; };
-		9C251B51AD2B725BD8553CFF7B9C59F4 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 0C414A6CB76D5F4269565AE670D839E7 /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		9FF355AB89D96C050BE24E4A77533E4A /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A302D99ACC77AEA9FC7F84A980206E54 /* FEMRelationshipAssignmentContext.m */; };
-		A43613A7259ACD8E0D2CF74E2846D2FC /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = FC40948FE5C7141E58E9869373473750 /* FEMExcludableCollection.m */; };
-		BE0EBBC54202D50F1A2F7866CDB987F4 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 4122200048361A9E8D70C281B91ED62E /* FEMDeserializer.m */; };
-		C1FB77F5C21F065FCB8655B510FFC571 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = C8255750142BB3AD92EE2F32703BB33C /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		C53E4D6C12EB5926CBFC26C9A824CAE5 /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 2487095956C89FB2BB842CA5E06AD5F1 /* FEMExcludableCollection.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CBA6C2E51569B96DFAE3BD6356E1AD5E /* FEMMappingUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = D701306D0B7C1F8ECB5DDE88A1FBB8DB /* FEMMappingUtility.m */; };
-		CDE38FE07C52B9CCF597DD5A84A5E67A /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = FE6CE7F1512B04E8172D13D6718AD274 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		CE9330C8F6706EB5C36F8A45F6458611 /* FastEasyMapping-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 332ECBDDADA909BE19A08DDD9E562F2F /* FastEasyMapping-dummy.m */; };
-		DAD83E28FEE916B37CDB12471DE48AB2 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 412D6248ECA6D7FC79735F4EDDAD6E39 /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E4BB603AEA9BBA64080ECFA7924C4FF0 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = C7E7A80E486A7300A72D10EDE0E9D154 /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		EE9E9AB65D0A710594A99CD1D7251E52 /* FEMSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 05E3B9E889170EE5F4548B548402590D /* FEMSerializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F09F5131D8A23162201F7A79CEC23463 /* FEMMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A6EA2D874F31E16F3CD1DEAB0B490C9 /* FEMMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		F8B818D4724D316C8CEFAE03201E24A1 /* FEMAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 8A09BBD6F308339520E9356402AB7CA5 /* FEMAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0342E024642833B7D2E4E4A364B1B678 /* NSObject+FEMKVCExtension.h in Headers */ = {isa = PBXBuildFile; fileRef = BCF7A45853C360D6B35BC8658206B871 /* NSObject+FEMKVCExtension.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		08307E48E17DFB41F2B7EC67722BA60C /* NSObject+FEMKVCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = C265C3323CB2F657C971ACCCFD9030C7 /* NSObject+FEMKVCExtension.m */; };
+		134BFE6B6B30077C7E3509DFF73AF7B1 /* FEMRepresentationUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 5A705E01740DDEEE8D7FA5F30FAF0652 /* FEMRepresentationUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		15AD47B8BD950E963121DA98B43EFF5D /* FEMMapping.m in Sources */ = {isa = PBXBuildFile; fileRef = 5FB754C8CE80C6E5AABCC8569DB6CA82 /* FEMMapping.m */; };
+		169AECD94D3C781864A527BC9B913907 /* FEMObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 4055AB4E350186D7870883D95710920C /* FEMObjectStore.m */; };
+		1D822FBE4EB3DFC35AE302280ACAE50A /* NSArray+FEMPropertyRepresentation.h in Headers */ = {isa = PBXBuildFile; fileRef = FE32CF93FFB82810D3E2F6FC3A6D8B80 /* NSArray+FEMPropertyRepresentation.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		20621AC27816F4D96A6A6881DCE99DF7 /* SYFlatButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 73A578FCB41E6A04320DA9FA18419D6F /* SYFlatButton.m */; };
+		244BA102EB85D27F44BE37EDACFBC9CF /* FEMMergeableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 2DF12001DDBE472E32159981B55BB854 /* FEMMergeableCollection.m */; };
+		2BA9E5DBC6807C812F8B77390EA57B45 /* FEMRelationship.h in Headers */ = {isa = PBXBuildFile; fileRef = 3CBC1DFCAC748CA61B3B763676032819 /* FEMRelationship.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		31FC4AD30665F650FCEA5AC85A591C80 /* FEMDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = C2AD86AD8856B75933EB1A15D6AD89A2 /* FEMDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3ACF5EADBB8459AAA3B0C7BF1BDF336D /* FEMObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 22BD66C68493725FEE1141D0DBEECD9F /* FEMObjectMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3EBFCA1167F25C0B925471DB801988C2 /* FEMSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A115B7A7F6E465D1A2B0315C26E72E4 /* FEMSerializer.m */; };
+		4352743373F7C0F623335EEF12FABCD5 /* FEMManagedObjectMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = C950ECDA9CF4D2405D0B1117745D0C30 /* FEMManagedObjectMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		43722BF66192F53208217AA0574E9DE7 /* FEMMappingUtility.h in Headers */ = {isa = PBXBuildFile; fileRef = 3F4EAE08C2242FC5309CD35F990D13D8 /* FEMMappingUtility.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		43AA8D0DB8EA1D4BC5C338B319482724 /* FEMManagedObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 3D7C75E4A4D92503B31D9E42F0D72BE1 /* FEMManagedObjectStore.m */; };
+		442AC2E04BAD42966663CC2FA468F4EE /* FEMAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = C832B5C065063845E1A29AC28F756286 /* FEMAttribute.m */; };
+		452BA964733ECBC63FA03C9B7036CC1D /* FEMAssignmentPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 14627BC5CE0FEBD5633170C6BDE62E9A /* FEMAssignmentPolicy.m */; };
+		4696158DAE58E78BAEEB2654E19D1922 /* FEMProperty.h in Headers */ = {isa = PBXBuildFile; fileRef = 354B24575D9AA9E9BD36424733FD77BB /* FEMProperty.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		478DADC9E026905B3757247309038F83 /* FEMTypeIntrospection.h in Headers */ = {isa = PBXBuildFile; fileRef = 37EA766CD536FA1091BC7CFF0887D97E /* FEMTypeIntrospection.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		4DB5EA2865EED7AF8F0E602BD8CBFF9A /* FEMRepresentationUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 04F9C84EB109FD9D2D45838105FFDC25 /* FEMRepresentationUtility.m */; };
+		51E0F6D42BB2A630106E0C34889A05C6 /* FEMManagedObjectCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7A7799318587D00F3C4263883F2EA6C3 /* FEMManagedObjectCache.m */; };
+		63A5F6E0FF59D0DB9A7C92FF4441EC15 /* FEMRelationship.m in Sources */ = {isa = PBXBuildFile; fileRef = E4B98599380562D0E5CF4EBA86B47D8B /* FEMRelationship.m */; };
+		675A075B1D9AC8A3AC2EAEDAF20C4E45 /* FEMAssignmentPolicy.h in Headers */ = {isa = PBXBuildFile; fileRef = FE70FFCC8BE3E8697B6CDEEF2E8F056E /* FEMAssignmentPolicy.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6D6FA115D47F3DE6B1479BD5D705B38F /* FEMManagedObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = 8B46E0A293AA6321761B2466503A2E64 /* FEMManagedObjectStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		77DC4395F3568E02BEB4F9E62458F6B2 /* FEMRelationshipAssignmentContext+Internal.h in Headers */ = {isa = PBXBuildFile; fileRef = DAC7C1C610848FEBD447D052F3F21EBD /* FEMRelationshipAssignmentContext+Internal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		77E8B1FFF08EE8E011F937410EF135E9 /* FEMMergeableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 635940692781C6E962BC6913404DF3D4 /* FEMMergeableCollection.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		808C42CEFDB9AD72525E39CB5172ACF0 /* FEMTypeIntrospection.m in Sources */ = {isa = PBXBuildFile; fileRef = 7487E390021AB80CBA55942571DFC7EB /* FEMTypeIntrospection.m */; };
+		9857C3C09EC11EDFBEAFBE0923FBDD09 /* FEMRelationshipAssignmentContext.h in Headers */ = {isa = PBXBuildFile; fileRef = D052732E60BC4EF3FCB49B9453D439C1 /* FEMRelationshipAssignmentContext.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9A2D125A9535526FDFD0E6A15431D5FB /* NSArray+FEMPropertyRepresentation.m in Sources */ = {isa = PBXBuildFile; fileRef = 4E7B3E200B7B36159F2BFE2487092FB1 /* NSArray+FEMPropertyRepresentation.m */; };
+		9C251B51AD2B725BD8553CFF7B9C59F4 /* FEMManagedObjectCache.h in Headers */ = {isa = PBXBuildFile; fileRef = E4332212957231F055C67DE11D18DA99 /* FEMManagedObjectCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9FF355AB89D96C050BE24E4A77533E4A /* FEMRelationshipAssignmentContext.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CAFD66563419E66C0C271B61C9CF425 /* FEMRelationshipAssignmentContext.m */; };
+		A43613A7259ACD8E0D2CF74E2846D2FC /* FEMExcludableCollection.m in Sources */ = {isa = PBXBuildFile; fileRef = 871ACAE538E1605560AC0D762619EC87 /* FEMExcludableCollection.m */; };
+		B9DDE87E9E10423F68DBE991F78907DF /* Pods-Lists-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29502052867538B8EBD08B10654D6B63 /* Pods-Lists-dummy.m */; };
+		BE0EBBC54202D50F1A2F7866CDB987F4 /* FEMDeserializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 015212BB2965CB4B27A8E3928C54CF86 /* FEMDeserializer.m */; };
+		C1FB77F5C21F065FCB8655B510FFC571 /* FEMObjectStore.h in Headers */ = {isa = PBXBuildFile; fileRef = AF16BE334D7E86E58E0323A5D6242121 /* FEMObjectStore.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C53E4D6C12EB5926CBFC26C9A824CAE5 /* FEMExcludableCollection.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C92C74580E04E90B804BA0780CE9BA1 /* FEMExcludableCollection.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CBA6C2E51569B96DFAE3BD6356E1AD5E /* FEMMappingUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = BD57A0B55C6C05935425B3FAEA11746B /* FEMMappingUtility.m */; };
+		CDE38FE07C52B9CCF597DD5A84A5E67A /* FastEasyMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = E264B11A5B30C8E3ED864DE0014DEFD3 /* FastEasyMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		CE9330C8F6706EB5C36F8A45F6458611 /* FastEasyMapping-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F2375E3170B72D14BF4D5A10F95AB5 /* FastEasyMapping-dummy.m */; };
+		DAD83E28FEE916B37CDB12471DE48AB2 /* FEMManagedObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 1587099616D8112D1DAC95664E8F2948 /* FEMManagedObjectDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DB4F7F2053B3F9877F83C89D7CABFBFA /* SYFlatButton-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0D5CE1B2FA33733DB20096001DC31B /* SYFlatButton-dummy.m */; };
+		E4BB603AEA9BBA64080ECFA7924C4FF0 /* FEMObjectDeserializer.h in Headers */ = {isa = PBXBuildFile; fileRef = 7278C4420FB9261404B469E5782CCFCD /* FEMObjectDeserializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		EE9E9AB65D0A710594A99CD1D7251E52 /* FEMSerializer.h in Headers */ = {isa = PBXBuildFile; fileRef = F2E661F5DB8857544427186062483D12 /* FEMSerializer.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F09F5131D8A23162201F7A79CEC23463 /* FEMMapping.h in Headers */ = {isa = PBXBuildFile; fileRef = 3A3ED4BD1B2B46C63B981623D672FC2E /* FEMMapping.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F8B818D4724D316C8CEFAE03201E24A1 /* FEMAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 73C23C1A1AE89B0B32872BC28024CE60 /* FEMAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FC905A1EFFCF6525CCCFEE1D8459A204 /* SYFlatButton.h in Headers */ = {isa = PBXBuildFile; fileRef = 6229421A083173EAED03601892A555E4 /* SYFlatButton.h */; settings = {ATTRIBUTES = (Project, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1148DB9A1473EFF2C63A04389AF50906 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ABB048B191245233986A7CD75FE412A5;
-			remoteInfo = Fabric;
-		};
-		607B45D61369953EEEA3A04DA9A01F30 /* PBXContainerItemProxy */ = {
+		15F7B95CACC9642B68AD56BA12063D42 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = C0E41540D6862472ED7F2FA11669BE1F;
 			remoteInfo = Crashlytics;
 		};
-		D2D2E69620148048350FDA0C00D9FF0F /* PBXContainerItemProxy */ = {
+		373BBA9C5A0774D2471F842DB33D25C4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 01DC88D154043E2F41A960472178A6E3;
+			remoteInfo = SYFlatButton;
+		};
+		4C788BFEC370F83F8906D35EB66B06EE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = ABB048B191245233986A7CD75FE412A5;
+			remoteInfo = Fabric;
+		};
+		C0E65D045F54C4127B44DA7A84A0B999 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
+			remoteInfo = AppCenter;
+		};
+		C47B3A2C33F802EFC8B7F811CDAAAC08 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -112,89 +129,95 @@
 			remoteGlobalIDString = ABB048B191245233986A7CD75FE412A5;
 			remoteInfo = Fabric;
 		};
-		E577C8306E37D38322C3BAD05D91658E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A3282A5B2437E609EEB85861D7ECE717;
-			remoteInfo = AppCenter;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		00886620CA8BDB25E52541103E1C0D26 /* FEMRelationshipAssignmentContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRelationshipAssignmentContext.h; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext.h"; sourceTree = "<group>"; };
-		03D5DE8587D83F8CF35B103002DF6AD9 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
-		041C9ABCDC4D9B515B100185DBCB145E /* Fabric.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fabric.xcconfig; sourceTree = "<group>"; };
-		05E3B9E889170EE5F4548B548402590D /* FEMSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMSerializer.h; path = FastEasyMapping/Source/Core/Serializer/FEMSerializer.h; sourceTree = "<group>"; };
-		06FC50F2B8F9F8D4EA5791AD2BEB80FD /* FEMDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMDeserializer.h; sourceTree = "<group>"; };
-		0C414A6CB76D5F4269565AE670D839E7 /* FEMManagedObjectCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectCache.h; path = FastEasyMapping/Source/Core/Cache/FEMManagedObjectCache.h; sourceTree = "<group>"; };
-		17EC0B8619D7537C8C584C8B83022545 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = OSX/Fabric.framework/Versions/A/Headers/Fabric.h; sourceTree = "<group>"; };
-		1D2517E1650BE39F36CC8ADC36F09BDC /* FEMManagedObjectStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMManagedObjectStore.m; path = FastEasyMapping/Source/Core/Store/FEMManagedObjectStore.m; sourceTree = "<group>"; };
-		1F418E055F4016954CD7735A780ABF6A /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
-		2487095956C89FB2BB842CA5E06AD5F1 /* FEMExcludableCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMExcludableCollection.h; path = FastEasyMapping/Source/Extensions/Collection/FEMExcludableCollection.h; sourceTree = "<group>"; };
+		015212BB2965CB4B27A8E3928C54CF86 /* FEMDeserializer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMDeserializer.m; path = FastEasyMapping/Source/Core/Deserializer/FEMDeserializer.m; sourceTree = "<group>"; };
+		04F9C84EB109FD9D2D45838105FFDC25 /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRepresentationUtility.m; path = FastEasyMapping/Source/Utility/FEMRepresentationUtility.m; sourceTree = "<group>"; };
+		06BC4ABCEBAF9DCA8DC8E2E137453413 /* SYFlatButton.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SYFlatButton.xcconfig; sourceTree = "<group>"; };
+		0A0D5CE1B2FA33733DB20096001DC31B /* SYFlatButton-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SYFlatButton-dummy.m"; sourceTree = "<group>"; };
+		0A115B7A7F6E465D1A2B0315C26E72E4 /* FEMSerializer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMSerializer.m; path = FastEasyMapping/Source/Core/Serializer/FEMSerializer.m; sourceTree = "<group>"; };
+		1146F6377E752CF1803D23F12875407D /* Crashlytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Crashlytics.xcconfig; sourceTree = "<group>"; };
+		1209E5B1AE3F1BA8D2689602795965E7 /* FastEasyMapping-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastEasyMapping-prefix.pch"; sourceTree = "<group>"; };
+		128FD30C5410E952FDF56B6EFE49AE4D /* Fabric.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Fabric.xcconfig; sourceTree = "<group>"; };
+		14627BC5CE0FEBD5633170C6BDE62E9A /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMAssignmentPolicy.m; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMAssignmentPolicy.m"; sourceTree = "<group>"; };
+		1587099616D8112D1DAC95664E8F2948 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
+		18900A7AADB7271B1726E84A91927E0C /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
+		22BD66C68493725FEE1141D0DBEECD9F /* FEMObjectMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMObjectMapping.h; sourceTree = "<group>"; };
+		24D9F2D7AB5D7EA5B2279CA77BB096A2 /* SYFlatButton-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SYFlatButton-prefix.pch"; sourceTree = "<group>"; };
 		29502052867538B8EBD08B10654D6B63 /* Pods-Lists-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-Lists-dummy.m"; sourceTree = "<group>"; };
-		2DD90AB9FC55E61898579F8865798B6B /* FEMProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMProperty.h; path = FastEasyMapping/Source/Core/Mapping/FEMProperty.h; sourceTree = "<group>"; };
-		32F19D127061FB890B640844D09032E1 /* NSObject+FEMKVCExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FEMKVCExtension.h"; path = "FastEasyMapping/Source/Extensions/Foundation/NSObject+FEMKVCExtension.h"; sourceTree = "<group>"; };
-		332ECBDDADA909BE19A08DDD9E562F2F /* FastEasyMapping-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FastEasyMapping-dummy.m"; sourceTree = "<group>"; };
-		35F50A034BFDD639647A938666179A34 /* FEMAssignmentPolicy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMAssignmentPolicy.m; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMAssignmentPolicy.m"; sourceTree = "<group>"; };
-		387C02BED7193224C3FB76AF2608F58B /* FastEasyMapping-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FastEasyMapping-prefix.pch"; sourceTree = "<group>"; };
-		4122200048361A9E8D70C281B91ED62E /* FEMDeserializer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMDeserializer.m; path = FastEasyMapping/Source/Core/Deserializer/FEMDeserializer.m; sourceTree = "<group>"; };
-		412D6248ECA6D7FC79735F4EDDAD6E39 /* FEMManagedObjectDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMManagedObjectDeserializer.h; sourceTree = "<group>"; };
-		49ACEC9A09296F9CAD34CD5B8B0BDE03 /* FEMObjectStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMObjectStore.m; path = FastEasyMapping/Source/Core/Store/FEMObjectStore.m; sourceTree = "<group>"; };
-		4CAD714C3942F68DFB7D246CBFB97A10 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/macOS/AppCenter.framework"; sourceTree = "<group>"; };
-		50B9EB9764D021A4BDF55BFC44C08C90 /* FEMTypeIntrospection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMTypeIntrospection.h; path = FastEasyMapping/Source/Utility/FEMTypeIntrospection.h; sourceTree = "<group>"; };
-		50E2958FD5C806A67A2CBA79F89A57D4 /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/macOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
-		561583BE20BCD19BE466DE6231A1AB7F /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
+		2C279DA3948B2E54ED2A41FAB4F3988B /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = OSX/Fabric.framework/Versions/A/Headers/FABAttributes.h; sourceTree = "<group>"; };
+		2DF12001DDBE472E32159981B55BB854 /* FEMMergeableCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMergeableCollection.m; path = FastEasyMapping/Source/Extensions/Collection/FEMMergeableCollection.m; sourceTree = "<group>"; };
+		354B24575D9AA9E9BD36424733FD77BB /* FEMProperty.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMProperty.h; path = FastEasyMapping/Source/Core/Mapping/FEMProperty.h; sourceTree = "<group>"; };
+		37EA766CD536FA1091BC7CFF0887D97E /* FEMTypeIntrospection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMTypeIntrospection.h; path = FastEasyMapping/Source/Utility/FEMTypeIntrospection.h; sourceTree = "<group>"; };
+		3A3ED4BD1B2B46C63B981623D672FC2E /* FEMMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMMapping.h; sourceTree = "<group>"; };
+		3B05E855287EC842F75ED34A3456C12A /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
+		3CBC1DFCAC748CA61B3B763676032819 /* FEMRelationship.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRelationship.h; path = FastEasyMapping/Source/Core/Mapping/FEMRelationship.h; sourceTree = "<group>"; };
+		3D7C75E4A4D92503B31D9E42F0D72BE1 /* FEMManagedObjectStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMManagedObjectStore.m; path = FastEasyMapping/Source/Core/Store/FEMManagedObjectStore.m; sourceTree = "<group>"; };
+		3F4EAE08C2242FC5309CD35F990D13D8 /* FEMMappingUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMappingUtility.h; path = FastEasyMapping/Source/Utility/FEMMappingUtility.h; sourceTree = "<group>"; };
+		4055AB4E350186D7870883D95710920C /* FEMObjectStore.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMObjectStore.m; path = FastEasyMapping/Source/Core/Store/FEMObjectStore.m; sourceTree = "<group>"; };
+		4CAFD66563419E66C0C271B61C9CF425 /* FEMRelationshipAssignmentContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRelationshipAssignmentContext.m; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext.m"; sourceTree = "<group>"; };
+		4E7B3E200B7B36159F2BFE2487092FB1 /* NSArray+FEMPropertyRepresentation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+FEMPropertyRepresentation.m"; path = "FastEasyMapping/Source/Extensions/Foundation/NSArray+FEMPropertyRepresentation.m"; sourceTree = "<group>"; };
+		5A705E01740DDEEE8D7FA5F30FAF0652 /* FEMRepresentationUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRepresentationUtility.h; path = FastEasyMapping/Source/Utility/FEMRepresentationUtility.h; sourceTree = "<group>"; };
+		5C283A52A60F4490F2B6F08C8C1DF143 /* AppCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenter.framework; path = "AppCenter-SDK-Apple/macOS/AppCenter.framework"; sourceTree = "<group>"; };
+		5FB754C8CE80C6E5AABCC8569DB6CA82 /* FEMMapping.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMapping.m; path = FastEasyMapping/Source/Core/Mapping/FEMMapping.m; sourceTree = "<group>"; };
 		606B5E8EBAB4D23BC7EC3B3B610B6CE3 /* Pods-Lists.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lists.release.xcconfig"; sourceTree = "<group>"; };
-		6260CBE533DA65E9D5791228E27175FD /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
-		64A511BA058BF7FE97319CC1B629A797 /* AppCenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenter.xcconfig; sourceTree = "<group>"; };
-		6BAEE0A22D245E9B7F87FCA88EBA017A /* FastEasyMapping.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FastEasyMapping.xcconfig; sourceTree = "<group>"; };
-		6F4CE80FB717A272310F8E1FBC8CDF61 /* FEMRelationshipAssignmentContext+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FEMRelationshipAssignmentContext+Internal.h"; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext+Internal.h"; sourceTree = "<group>"; };
-		73316CB656B93F6C9731E1A98EF53083 /* FEMAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMAttribute.m; path = FastEasyMapping/Source/Core/Mapping/FEMAttribute.m; sourceTree = "<group>"; };
-		7960252EB6916BAC69E4A5114B7C43BE /* NSArray+FEMPropertyRepresentation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+FEMPropertyRepresentation.m"; path = "FastEasyMapping/Source/Extensions/Foundation/NSArray+FEMPropertyRepresentation.m"; sourceTree = "<group>"; };
-		7A6EA2D874F31E16F3CD1DEAB0B490C9 /* FEMMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMMapping.h; sourceTree = "<group>"; };
-		7AC87B303113C817CFD598114CA94F7F /* FEMManagedObjectMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMManagedObjectMapping.h; sourceTree = "<group>"; };
-		7E8ABFBD785342E7E14CA3D79DFE5E2B /* FEMMappingUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMappingUtility.h; path = FastEasyMapping/Source/Utility/FEMMappingUtility.h; sourceTree = "<group>"; };
-		8A09BBD6F308339520E9356402AB7CA5 /* FEMAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMAttribute.h; path = FastEasyMapping/Source/Core/Mapping/FEMAttribute.h; sourceTree = "<group>"; };
+		6229421A083173EAED03601892A555E4 /* SYFlatButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SYFlatButton.h; path = SYFlatButton/SYFlatButton/SYFlatButton.h; sourceTree = "<group>"; };
+		635940692781C6E962BC6913404DF3D4 /* FEMMergeableCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMergeableCollection.h; path = FastEasyMapping/Source/Extensions/Collection/FEMMergeableCollection.h; sourceTree = "<group>"; };
+		65EF50001E68E8C739F730E739355F6C /* FastEasyMapping.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = FastEasyMapping.xcconfig; sourceTree = "<group>"; };
+		6A1BF4B5243100AF7D54F363D3B6AADB /* CLSAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSAttributes.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSAttributes.h; sourceTree = "<group>"; };
+		6BBBA2B9D74A0D692F5F229595E8383D /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Crashlytics.framework; path = OSX/Crashlytics.framework; sourceTree = "<group>"; };
+		7278C4420FB9261404B469E5782CCFCD /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMObjectDeserializer.h; sourceTree = "<group>"; };
+		73A578FCB41E6A04320DA9FA18419D6F /* SYFlatButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SYFlatButton.m; path = SYFlatButton/SYFlatButton/SYFlatButton.m; sourceTree = "<group>"; };
+		73C23C1A1AE89B0B32872BC28024CE60 /* FEMAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMAttribute.h; path = FastEasyMapping/Source/Core/Mapping/FEMAttribute.h; sourceTree = "<group>"; };
+		7487E390021AB80CBA55942571DFC7EB /* FEMTypeIntrospection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMTypeIntrospection.m; path = FastEasyMapping/Source/Utility/FEMTypeIntrospection.m; sourceTree = "<group>"; };
+		7A7799318587D00F3C4263883F2EA6C3 /* FEMManagedObjectCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMManagedObjectCache.m; path = FastEasyMapping/Source/Core/Cache/FEMManagedObjectCache.m; sourceTree = "<group>"; };
+		7C92C74580E04E90B804BA0780CE9BA1 /* FEMExcludableCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMExcludableCollection.h; path = FastEasyMapping/Source/Extensions/Collection/FEMExcludableCollection.h; sourceTree = "<group>"; };
+		7D541DD9AA19B31326CE89CD4B4B2DE3 /* ANSCompatibility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = ANSCompatibility.h; path = OSX/Crashlytics.framework/Versions/A/Headers/ANSCompatibility.h; sourceTree = "<group>"; };
+		871ACAE538E1605560AC0D762619EC87 /* FEMExcludableCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMExcludableCollection.m; path = FastEasyMapping/Source/Extensions/Collection/FEMExcludableCollection.m; sourceTree = "<group>"; };
+		8A2B95AEFFC5C246DB9D7DF8F5BBDDE1 /* AppCenter.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AppCenter.xcconfig; sourceTree = "<group>"; };
 		8A3779E79B97E13A7B1F04D1D7DE979E /* Pods-Lists-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-Lists-acknowledgements.markdown"; sourceTree = "<group>"; };
-		91515354D52302B04225B8D6A93B81A4 /* CLSStackFrame.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSStackFrame.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSStackFrame.h; sourceTree = "<group>"; };
-		9409E244BC915A390392E059DB92A486 /* FEMMergeableCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMergeableCollection.m; path = FastEasyMapping/Source/Extensions/Collection/FEMMergeableCollection.m; sourceTree = "<group>"; };
-		941446FBB09644A9A65E4E569EBD7EDC /* FABAttributes.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FABAttributes.h; path = OSX/Fabric.framework/Versions/A/Headers/FABAttributes.h; sourceTree = "<group>"; };
-		965A11293B4FC8E83399BFD9F9A1BB1B /* NSObject+FEMKVCExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FEMKVCExtension.m"; path = "FastEasyMapping/Source/Extensions/Foundation/NSObject+FEMKVCExtension.m"; sourceTree = "<group>"; };
+		8B46E0A293AA6321761B2466503A2E64 /* FEMManagedObjectStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectStore.h; path = FastEasyMapping/Source/Core/Store/FEMManagedObjectStore.h; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9E7E2450AEDCAE032DAB5A0F5DBF5641 /* NSArray+FEMPropertyRepresentation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+FEMPropertyRepresentation.h"; path = "FastEasyMapping/Source/Extensions/Foundation/NSArray+FEMPropertyRepresentation.h"; sourceTree = "<group>"; };
-		A302D99ACC77AEA9FC7F84A980206E54 /* FEMRelationshipAssignmentContext.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRelationshipAssignmentContext.m; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext.m"; sourceTree = "<group>"; };
+		9FF34C3F0CFC0FACDF0067C1DD12AC5A /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
 		A6B166A842D71F6EDA201D800AA39E5F /* Pods-Lists.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-Lists.debug.xcconfig"; sourceTree = "<group>"; };
-		AAD515C33BF3B579743D49F0E4455E1A /* FEMAssignmentPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMAssignmentPolicy.h; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMAssignmentPolicy.h"; sourceTree = "<group>"; };
-		AEDE094951166E14F9B6C32DF52BD692 /* FEMSerializer.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMSerializer.m; path = FastEasyMapping/Source/Core/Serializer/FEMSerializer.m; sourceTree = "<group>"; };
+		AF16BE334D7E86E58E0323A5D6242121 /* FEMObjectStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectStore.h; path = FastEasyMapping/Source/Core/Store/FEMObjectStore.h; sourceTree = "<group>"; };
 		B00F382F272F0DCFDEE3CA161D2602CE /* libPods-Lists.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-Lists.a"; path = "libPods-Lists.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B7618E38DDEF56EBA850499E7BE53616 /* Pods-Lists-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-Lists-acknowledgements.plist"; sourceTree = "<group>"; };
-		C1423DC5F2BC6BB1764868487609C331 /* FEMMergeableCollection.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMMergeableCollection.h; path = FastEasyMapping/Source/Extensions/Collection/FEMMergeableCollection.h; sourceTree = "<group>"; };
-		C3B8FB6C34296EEA1C44919DE11203B7 /* FEMManagedObjectCache.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMManagedObjectCache.m; path = FastEasyMapping/Source/Core/Cache/FEMManagedObjectCache.m; sourceTree = "<group>"; };
-		C7E7A80E486A7300A72D10EDE0E9D154 /* FEMObjectDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMObjectDeserializer.h; sourceTree = "<group>"; };
-		C8255750142BB3AD92EE2F32703BB33C /* FEMObjectStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectStore.h; path = FastEasyMapping/Source/Core/Store/FEMObjectStore.h; sourceTree = "<group>"; };
-		CEEA41E92600BEB8FDFE519407A73598 /* FEMObjectMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMObjectMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMObjectMapping.h; sourceTree = "<group>"; };
-		CEFE1A504C28EDB445DD993292DB9B93 /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Fabric.framework; path = OSX/Fabric.framework; sourceTree = "<group>"; };
-		D17B4ABF223B8E6F8CA6869FB491548A /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
-		D3EA30D5CD1CD7934F9978C18B47F79E /* FEMMapping.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMapping.m; path = FastEasyMapping/Source/Core/Mapping/FEMMapping.m; sourceTree = "<group>"; };
-		D701306D0B7C1F8ECB5DDE88A1FBB8DB /* FEMMappingUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMappingUtility.m; path = FastEasyMapping/Source/Utility/FEMMappingUtility.m; sourceTree = "<group>"; };
-		DAA04B8F28C72566C484EC9725D29394 /* FEMTypeIntrospection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMTypeIntrospection.m; path = FastEasyMapping/Source/Utility/FEMTypeIntrospection.m; sourceTree = "<group>"; };
-		DF95E2A039E557286D4FD402ABE5A5BE /* FEMRepresentationUtility.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRepresentationUtility.h; path = FastEasyMapping/Source/Utility/FEMRepresentationUtility.h; sourceTree = "<group>"; };
-		E0D27EF5312D6B11A05452CADC2AE2D3 /* FEMRelationship.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRelationship.h; path = FastEasyMapping/Source/Core/Mapping/FEMRelationship.h; sourceTree = "<group>"; };
+		BB5A377C84D3BB7C4E6772067CD8461D /* AppCenterAnalytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterAnalytics.framework; path = "AppCenter-SDK-Apple/macOS/AppCenterAnalytics.framework"; sourceTree = "<group>"; };
+		BCF7A45853C360D6B35BC8658206B871 /* NSObject+FEMKVCExtension.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSObject+FEMKVCExtension.h"; path = "FastEasyMapping/Source/Extensions/Foundation/NSObject+FEMKVCExtension.h"; sourceTree = "<group>"; };
+		BD57A0B55C6C05935425B3FAEA11746B /* FEMMappingUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMMappingUtility.m; path = FastEasyMapping/Source/Utility/FEMMappingUtility.m; sourceTree = "<group>"; };
+		C01467084685E5D36DB9FFC923F0E88B /* Answers.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Answers.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Answers.h; sourceTree = "<group>"; };
+		C1F2375E3170B72D14BF4D5A10F95AB5 /* FastEasyMapping-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "FastEasyMapping-dummy.m"; sourceTree = "<group>"; };
+		C265C3323CB2F657C971ACCCFD9030C7 /* NSObject+FEMKVCExtension.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSObject+FEMKVCExtension.m"; path = "FastEasyMapping/Source/Extensions/Foundation/NSObject+FEMKVCExtension.m"; sourceTree = "<group>"; };
+		C2AD86AD8856B75933EB1A15D6AD89A2 /* FEMDeserializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMDeserializer.h; path = FastEasyMapping/Source/Core/Deserializer/FEMDeserializer.h; sourceTree = "<group>"; };
+		C33364A4D5E90BBED98DC0E1213C365A /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/macOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
+		C832B5C065063845E1A29AC28F756286 /* FEMAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMAttribute.m; path = FastEasyMapping/Source/Core/Mapping/FEMAttribute.m; sourceTree = "<group>"; };
+		C950ECDA9CF4D2405D0B1117745D0C30 /* FEMManagedObjectMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectMapping.h; path = FastEasyMapping/Source/Core/Mapping/FEMManagedObjectMapping.h; sourceTree = "<group>"; };
+		D052732E60BC4EF3FCB49B9453D439C1 /* FEMRelationshipAssignmentContext.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMRelationshipAssignmentContext.h; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext.h"; sourceTree = "<group>"; };
+		DAC7C1C610848FEBD447D052F3F21EBD /* FEMRelationshipAssignmentContext+Internal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "FEMRelationshipAssignmentContext+Internal.h"; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMRelationshipAssignmentContext+Internal.h"; sourceTree = "<group>"; };
+		DE603189A82BBC4CF04D6D5C4D605212 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
+		DF4CBA43C494784A3A1C7FEEA5C6F811 /* CLSLogging.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSLogging.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSLogging.h; sourceTree = "<group>"; };
+		E264B11A5B30C8E3ED864DE0014DEFD3 /* FastEasyMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastEasyMapping.h; path = FastEasyMapping/Source/FastEasyMapping.h; sourceTree = "<group>"; };
+		E4332212957231F055C67DE11D18DA99 /* FEMManagedObjectCache.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectCache.h; path = FastEasyMapping/Source/Core/Cache/FEMManagedObjectCache.h; sourceTree = "<group>"; };
 		E454898ABEDB570D28452E8DF12502C0 /* libFastEasyMapping.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libFastEasyMapping.a; path = libFastEasyMapping.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4BCEDF9F1F668872E9C28C3867DC083 /* CLSReport.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = CLSReport.h; path = OSX/Crashlytics.framework/Versions/A/Headers/CLSReport.h; sourceTree = "<group>"; };
-		E7E918E27305A4A945AD8B2084DB2D4E /* FEMRelationship.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRelationship.m; path = FastEasyMapping/Source/Core/Mapping/FEMRelationship.m; sourceTree = "<group>"; };
-		ED7212EF51DBA514DF6A70564794A77A /* FEMRepresentationUtility.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRepresentationUtility.m; path = FastEasyMapping/Source/Utility/FEMRepresentationUtility.m; sourceTree = "<group>"; };
-		EE9ACC96E4026EB20CB792E22ACF4290 /* AppCenterCrashes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppCenterCrashes.framework; path = "AppCenter-SDK-Apple/macOS/AppCenterCrashes.framework"; sourceTree = "<group>"; };
-		F3C762130C449D238B567157D0DFA1B7 /* Crashlytics.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Crashlytics.h; path = OSX/Crashlytics.framework/Versions/A/Headers/Crashlytics.h; sourceTree = "<group>"; };
-		F4F15ECDC2389390DCAB3DC9D5C32C1E /* FEMManagedObjectStore.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMManagedObjectStore.h; path = FastEasyMapping/Source/Core/Store/FEMManagedObjectStore.h; sourceTree = "<group>"; };
-		F6E5CACBA77605C7550950DD8D892395 /* Crashlytics.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Crashlytics.xcconfig; sourceTree = "<group>"; };
-		FC40948FE5C7141E58E9869373473750 /* FEMExcludableCollection.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMExcludableCollection.m; path = FastEasyMapping/Source/Extensions/Collection/FEMExcludableCollection.m; sourceTree = "<group>"; };
-		FE6CE7F1512B04E8172D13D6718AD274 /* FastEasyMapping.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FastEasyMapping.h; path = FastEasyMapping/Source/FastEasyMapping.h; sourceTree = "<group>"; };
+		E4B98599380562D0E5CF4EBA86B47D8B /* FEMRelationship.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FEMRelationship.m; path = FastEasyMapping/Source/Core/Mapping/FEMRelationship.m; sourceTree = "<group>"; };
+		E81BD7D7125458CE58AB7D59A64B877F /* libSYFlatButton.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libSYFlatButton.a; path = libSYFlatButton.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		EE683F55BBEA2D284A9EC77039B44182 /* Fabric.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Fabric.h; path = OSX/Fabric.framework/Versions/A/Headers/Fabric.h; sourceTree = "<group>"; };
+		F2E661F5DB8857544427186062483D12 /* FEMSerializer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMSerializer.h; path = FastEasyMapping/Source/Core/Serializer/FEMSerializer.h; sourceTree = "<group>"; };
+		FE32CF93FFB82810D3E2F6FC3A6D8B80 /* NSArray+FEMPropertyRepresentation.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+FEMPropertyRepresentation.h"; path = "FastEasyMapping/Source/Extensions/Foundation/NSArray+FEMPropertyRepresentation.h"; sourceTree = "<group>"; };
+		FE70FFCC8BE3E8697B6CDEEF2E8F056E /* FEMAssignmentPolicy.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FEMAssignmentPolicy.h; path = "FastEasyMapping/Source/Core/Assignment Policy/FEMAssignmentPolicy.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		463DCAFDF76AA99C37865D2F67724CD9 /* Frameworks */ = {
+		188B90DD43B3536E4C949AB50365E4D4 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AC10BD74B5C133D484773D4CBC878B31 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -211,27 +234,38 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		1C096426CC1F7137C0E0140DA87DF8E2 /* Crashes */ = {
+		0AB6CCD50D2EB591A589A58DB43221E3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				9600D744B7D1497387687FFA47BBCB5F /* Frameworks */,
+				C33364A4D5E90BBED98DC0E1213C365A /* AppCenterCrashes.framework */,
 			);
-			name = Crashes;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		27998E17A837B0757DC3F1356CF8F799 /* Support Files */ = {
+		0C6DC1DC318907DDA8D03F7FDB2A1D80 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				F6E5CACBA77605C7550950DD8D892395 /* Crashlytics.xcconfig */,
+				8A2B95AEFFC5C246DB9D7DF8F5BBDDE1 /* AppCenter.xcconfig */,
 			);
 			name = "Support Files";
-			path = "../Target Support Files/Crashlytics";
+			path = "../Target Support Files/AppCenter";
 			sourceTree = "<group>";
 		};
-		3194F025ACD8745D4B2FCF3555CA9550 /* Frameworks */ = {
+		0FCAEC1DDA3D3DE095F929929AFEE954 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				4CAD714C3942F68DFB7D246CBFB97A10 /* AppCenter.framework */,
+				65EF50001E68E8C739F730E739355F6C /* FastEasyMapping.xcconfig */,
+				C1F2375E3170B72D14BF4D5A10F95AB5 /* FastEasyMapping-dummy.m */,
+				1209E5B1AE3F1BA8D2689602795965E7 /* FastEasyMapping-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/FastEasyMapping";
+			sourceTree = "<group>";
+		};
+		11DEABC61C8CA0F5BF2AECDD2B4A1DF4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				6BBBA2B9D74A0D692F5F229595E8383D /* Crashlytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -249,141 +283,164 @@
 			path = "Target Support Files/Pods-Lists";
 			sourceTree = "<group>";
 		};
-		43B3BC62A6F245ABAD15D636EDECD88C /* AppCenter */ = {
+		385B13B405BC615667A495B1EBA7F0F7 /* Fabric */ = {
 			isa = PBXGroup;
 			children = (
-				49A932FE83441FBAF38AC97925FF9C04 /* Analytics */,
-				D76D0ED214D835D2923F1281314A921E /* Core */,
-				1C096426CC1F7137C0E0140DA87DF8E2 /* Crashes */,
-				F0E61103CC3456790185E315E500ECB9 /* Support Files */,
-			);
-			name = AppCenter;
-			path = AppCenter;
-			sourceTree = "<group>";
-		};
-		49A932FE83441FBAF38AC97925FF9C04 /* Analytics */ = {
-			isa = PBXGroup;
-			children = (
-				E0184AF7CF876EA52C17D7BFFDDD2CD9 /* Frameworks */,
-			);
-			name = Analytics;
-			sourceTree = "<group>";
-		};
-		75687EAAA23B4826FDAAC33A54120705 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				43B3BC62A6F245ABAD15D636EDECD88C /* AppCenter */,
-				9F2864E58E1CDC3F238CB80EB7FE3789 /* Crashlytics */,
-				88010F572A9AF81975D179CD82AED73C /* Fabric */,
-				AA6AAB24FE0FD8DCD3246F66A33A4D90 /* FastEasyMapping */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
-		8232D2311F77BBE414E010884CCA7EB5 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				CEFE1A504C28EDB445DD993292DB9B93 /* Fabric.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		88010F572A9AF81975D179CD82AED73C /* Fabric */ = {
-			isa = PBXGroup;
-			children = (
-				941446FBB09644A9A65E4E569EBD7EDC /* FABAttributes.h */,
-				17EC0B8619D7537C8C584C8B83022545 /* Fabric.h */,
-				8232D2311F77BBE414E010884CCA7EB5 /* Frameworks */,
-				D9517A3277F5D20DA3CC843A55D9F78B /* Support Files */,
+				2C279DA3948B2E54ED2A41FAB4F3988B /* FABAttributes.h */,
+				EE683F55BBEA2D284A9EC77039B44182 /* Fabric.h */,
+				F3D0A8920705BF4D4F104D6E546246C7 /* Frameworks */,
+				8345FC226D842B4C8C79CBADE66512F8 /* Support Files */,
 			);
 			name = Fabric;
 			path = Fabric;
 			sourceTree = "<group>";
 		};
-		8F50C0B1642A17895F17A1EEAAA8FA23 /* Support Files */ = {
+		3E5B8AA1B7724B1654A5CE7AC45BF664 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6BAEE0A22D245E9B7F87FCA88EBA017A /* FastEasyMapping.xcconfig */,
-				332ECBDDADA909BE19A08DDD9E562F2F /* FastEasyMapping-dummy.m */,
-				387C02BED7193224C3FB76AF2608F58B /* FastEasyMapping-prefix.pch */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/FastEasyMapping";
-			sourceTree = "<group>";
-		};
-		9600D744B7D1497387687FFA47BBCB5F /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				EE9ACC96E4026EB20CB792E22ACF4290 /* AppCenterCrashes.framework */,
+				5C283A52A60F4490F2B6F08C8C1DF143 /* AppCenter.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		9F2864E58E1CDC3F238CB80EB7FE3789 /* Crashlytics */ = {
+		422BAB0DF6F6E2DE036A203E57D9AEDA /* SYFlatButton */ = {
 			isa = PBXGroup;
 			children = (
-				6260CBE533DA65E9D5791228E27175FD /* ANSCompatibility.h */,
-				D17B4ABF223B8E6F8CA6869FB491548A /* Answers.h */,
-				1F418E055F4016954CD7735A780ABF6A /* CLSAttributes.h */,
-				03D5DE8587D83F8CF35B103002DF6AD9 /* CLSLogging.h */,
-				E4BCEDF9F1F668872E9C28C3867DC083 /* CLSReport.h */,
-				91515354D52302B04225B8D6A93B81A4 /* CLSStackFrame.h */,
-				F3C762130C449D238B567157D0DFA1B7 /* Crashlytics.h */,
-				E6940E5D8AB02D2F2AD6FC3743859D5E /* Frameworks */,
-				27998E17A837B0757DC3F1356CF8F799 /* Support Files */,
+				6229421A083173EAED03601892A555E4 /* SYFlatButton.h */,
+				73A578FCB41E6A04320DA9FA18419D6F /* SYFlatButton.m */,
+				7DC0AB3CFFB58AF15BD378C2F6E9FE44 /* Support Files */,
 			);
-			name = Crashlytics;
-			path = Crashlytics;
+			name = SYFlatButton;
+			path = SYFlatButton;
 			sourceTree = "<group>";
 		};
-		AA6AAB24FE0FD8DCD3246F66A33A4D90 /* FastEasyMapping */ = {
+		5272802CBE9D585B101CF1FD42E5AFFD /* AppCenter */ = {
 			isa = PBXGroup;
 			children = (
-				FE6CE7F1512B04E8172D13D6718AD274 /* FastEasyMapping.h */,
-				AAD515C33BF3B579743D49F0E4455E1A /* FEMAssignmentPolicy.h */,
-				35F50A034BFDD639647A938666179A34 /* FEMAssignmentPolicy.m */,
-				8A09BBD6F308339520E9356402AB7CA5 /* FEMAttribute.h */,
-				73316CB656B93F6C9731E1A98EF53083 /* FEMAttribute.m */,
-				06FC50F2B8F9F8D4EA5791AD2BEB80FD /* FEMDeserializer.h */,
-				4122200048361A9E8D70C281B91ED62E /* FEMDeserializer.m */,
-				2487095956C89FB2BB842CA5E06AD5F1 /* FEMExcludableCollection.h */,
-				FC40948FE5C7141E58E9869373473750 /* FEMExcludableCollection.m */,
-				0C414A6CB76D5F4269565AE670D839E7 /* FEMManagedObjectCache.h */,
-				C3B8FB6C34296EEA1C44919DE11203B7 /* FEMManagedObjectCache.m */,
-				412D6248ECA6D7FC79735F4EDDAD6E39 /* FEMManagedObjectDeserializer.h */,
-				7AC87B303113C817CFD598114CA94F7F /* FEMManagedObjectMapping.h */,
-				F4F15ECDC2389390DCAB3DC9D5C32C1E /* FEMManagedObjectStore.h */,
-				1D2517E1650BE39F36CC8ADC36F09BDC /* FEMManagedObjectStore.m */,
-				7A6EA2D874F31E16F3CD1DEAB0B490C9 /* FEMMapping.h */,
-				D3EA30D5CD1CD7934F9978C18B47F79E /* FEMMapping.m */,
-				7E8ABFBD785342E7E14CA3D79DFE5E2B /* FEMMappingUtility.h */,
-				D701306D0B7C1F8ECB5DDE88A1FBB8DB /* FEMMappingUtility.m */,
-				C1423DC5F2BC6BB1764868487609C331 /* FEMMergeableCollection.h */,
-				9409E244BC915A390392E059DB92A486 /* FEMMergeableCollection.m */,
-				C7E7A80E486A7300A72D10EDE0E9D154 /* FEMObjectDeserializer.h */,
-				CEEA41E92600BEB8FDFE519407A73598 /* FEMObjectMapping.h */,
-				C8255750142BB3AD92EE2F32703BB33C /* FEMObjectStore.h */,
-				49ACEC9A09296F9CAD34CD5B8B0BDE03 /* FEMObjectStore.m */,
-				2DD90AB9FC55E61898579F8865798B6B /* FEMProperty.h */,
-				E0D27EF5312D6B11A05452CADC2AE2D3 /* FEMRelationship.h */,
-				E7E918E27305A4A945AD8B2084DB2D4E /* FEMRelationship.m */,
-				00886620CA8BDB25E52541103E1C0D26 /* FEMRelationshipAssignmentContext.h */,
-				A302D99ACC77AEA9FC7F84A980206E54 /* FEMRelationshipAssignmentContext.m */,
-				6F4CE80FB717A272310F8E1FBC8CDF61 /* FEMRelationshipAssignmentContext+Internal.h */,
-				DF95E2A039E557286D4FD402ABE5A5BE /* FEMRepresentationUtility.h */,
-				ED7212EF51DBA514DF6A70564794A77A /* FEMRepresentationUtility.m */,
-				05E3B9E889170EE5F4548B548402590D /* FEMSerializer.h */,
-				AEDE094951166E14F9B6C32DF52BD692 /* FEMSerializer.m */,
-				50B9EB9764D021A4BDF55BFC44C08C90 /* FEMTypeIntrospection.h */,
-				DAA04B8F28C72566C484EC9725D29394 /* FEMTypeIntrospection.m */,
-				9E7E2450AEDCAE032DAB5A0F5DBF5641 /* NSArray+FEMPropertyRepresentation.h */,
-				7960252EB6916BAC69E4A5114B7C43BE /* NSArray+FEMPropertyRepresentation.m */,
-				32F19D127061FB890B640844D09032E1 /* NSObject+FEMKVCExtension.h */,
-				965A11293B4FC8E83399BFD9F9A1BB1B /* NSObject+FEMKVCExtension.m */,
-				8F50C0B1642A17895F17A1EEAAA8FA23 /* Support Files */,
+				FBD10C5B42C6718A5F0EDA09046B9AAE /* Analytics */,
+				7184B3120A1B4BD2AD6501C5E2AFA12C /* Core */,
+				79BD1D8390F7997B5747772900D2E742 /* Crashes */,
+				0C6DC1DC318907DDA8D03F7FDB2A1D80 /* Support Files */,
+			);
+			name = AppCenter;
+			path = AppCenter;
+			sourceTree = "<group>";
+		};
+		5FB81F49F4BDA58B7602E613F81F6232 /* FastEasyMapping */ = {
+			isa = PBXGroup;
+			children = (
+				E264B11A5B30C8E3ED864DE0014DEFD3 /* FastEasyMapping.h */,
+				FE70FFCC8BE3E8697B6CDEEF2E8F056E /* FEMAssignmentPolicy.h */,
+				14627BC5CE0FEBD5633170C6BDE62E9A /* FEMAssignmentPolicy.m */,
+				73C23C1A1AE89B0B32872BC28024CE60 /* FEMAttribute.h */,
+				C832B5C065063845E1A29AC28F756286 /* FEMAttribute.m */,
+				C2AD86AD8856B75933EB1A15D6AD89A2 /* FEMDeserializer.h */,
+				015212BB2965CB4B27A8E3928C54CF86 /* FEMDeserializer.m */,
+				7C92C74580E04E90B804BA0780CE9BA1 /* FEMExcludableCollection.h */,
+				871ACAE538E1605560AC0D762619EC87 /* FEMExcludableCollection.m */,
+				E4332212957231F055C67DE11D18DA99 /* FEMManagedObjectCache.h */,
+				7A7799318587D00F3C4263883F2EA6C3 /* FEMManagedObjectCache.m */,
+				1587099616D8112D1DAC95664E8F2948 /* FEMManagedObjectDeserializer.h */,
+				C950ECDA9CF4D2405D0B1117745D0C30 /* FEMManagedObjectMapping.h */,
+				8B46E0A293AA6321761B2466503A2E64 /* FEMManagedObjectStore.h */,
+				3D7C75E4A4D92503B31D9E42F0D72BE1 /* FEMManagedObjectStore.m */,
+				3A3ED4BD1B2B46C63B981623D672FC2E /* FEMMapping.h */,
+				5FB754C8CE80C6E5AABCC8569DB6CA82 /* FEMMapping.m */,
+				3F4EAE08C2242FC5309CD35F990D13D8 /* FEMMappingUtility.h */,
+				BD57A0B55C6C05935425B3FAEA11746B /* FEMMappingUtility.m */,
+				635940692781C6E962BC6913404DF3D4 /* FEMMergeableCollection.h */,
+				2DF12001DDBE472E32159981B55BB854 /* FEMMergeableCollection.m */,
+				7278C4420FB9261404B469E5782CCFCD /* FEMObjectDeserializer.h */,
+				22BD66C68493725FEE1141D0DBEECD9F /* FEMObjectMapping.h */,
+				AF16BE334D7E86E58E0323A5D6242121 /* FEMObjectStore.h */,
+				4055AB4E350186D7870883D95710920C /* FEMObjectStore.m */,
+				354B24575D9AA9E9BD36424733FD77BB /* FEMProperty.h */,
+				3CBC1DFCAC748CA61B3B763676032819 /* FEMRelationship.h */,
+				E4B98599380562D0E5CF4EBA86B47D8B /* FEMRelationship.m */,
+				D052732E60BC4EF3FCB49B9453D439C1 /* FEMRelationshipAssignmentContext.h */,
+				4CAFD66563419E66C0C271B61C9CF425 /* FEMRelationshipAssignmentContext.m */,
+				DAC7C1C610848FEBD447D052F3F21EBD /* FEMRelationshipAssignmentContext+Internal.h */,
+				5A705E01740DDEEE8D7FA5F30FAF0652 /* FEMRepresentationUtility.h */,
+				04F9C84EB109FD9D2D45838105FFDC25 /* FEMRepresentationUtility.m */,
+				F2E661F5DB8857544427186062483D12 /* FEMSerializer.h */,
+				0A115B7A7F6E465D1A2B0315C26E72E4 /* FEMSerializer.m */,
+				37EA766CD536FA1091BC7CFF0887D97E /* FEMTypeIntrospection.h */,
+				7487E390021AB80CBA55942571DFC7EB /* FEMTypeIntrospection.m */,
+				FE32CF93FFB82810D3E2F6FC3A6D8B80 /* NSArray+FEMPropertyRepresentation.h */,
+				4E7B3E200B7B36159F2BFE2487092FB1 /* NSArray+FEMPropertyRepresentation.m */,
+				BCF7A45853C360D6B35BC8658206B871 /* NSObject+FEMKVCExtension.h */,
+				C265C3323CB2F657C971ACCCFD9030C7 /* NSObject+FEMKVCExtension.m */,
+				0FCAEC1DDA3D3DE095F929929AFEE954 /* Support Files */,
 			);
 			name = FastEasyMapping;
 			path = FastEasyMapping;
+			sourceTree = "<group>";
+		};
+		7184B3120A1B4BD2AD6501C5E2AFA12C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3E5B8AA1B7724B1654A5CE7AC45BF664 /* Frameworks */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		79BD1D8390F7997B5747772900D2E742 /* Crashes */ = {
+			isa = PBXGroup;
+			children = (
+				0AB6CCD50D2EB591A589A58DB43221E3 /* Frameworks */,
+			);
+			name = Crashes;
+			sourceTree = "<group>";
+		};
+		7DC0AB3CFFB58AF15BD378C2F6E9FE44 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				06BC4ABCEBAF9DCA8DC8E2E137453413 /* SYFlatButton.xcconfig */,
+				0A0D5CE1B2FA33733DB20096001DC31B /* SYFlatButton-dummy.m */,
+				24D9F2D7AB5D7EA5B2279CA77BB096A2 /* SYFlatButton-prefix.pch */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/SYFlatButton";
+			sourceTree = "<group>";
+		};
+		8345FC226D842B4C8C79CBADE66512F8 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				128FD30C5410E952FDF56B6EFE49AE4D /* Fabric.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Fabric";
+			sourceTree = "<group>";
+		};
+		9BE73A6A8EDA51B49A8787C512940813 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5272802CBE9D585B101CF1FD42E5AFFD /* AppCenter */,
+				FE2E08F3819E465546CF5F31A60F6A73 /* Crashlytics */,
+				385B13B405BC615667A495B1EBA7F0F7 /* Fabric */,
+				5FB81F49F4BDA58B7602E613F81F6232 /* FastEasyMapping */,
+				422BAB0DF6F6E2DE036A203E57D9AEDA /* SYFlatButton */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		9EB738C506B73F45A928D2F831ECA7BB /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				1146F6377E752CF1803D23F12875407D /* Crashlytics.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Target Support Files/Crashlytics";
+			sourceTree = "<group>";
+		};
+		BFC25C2E4689991DA1B684859CE7B491 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E454898ABEDB570D28452E8DF12502C0 /* libFastEasyMapping.a */,
+				B00F382F272F0DCFDEE3CA161D2602CE /* libPods-Lists.a */,
+				E81BD7D7125458CE58AB7D59A64B877F /* libSYFlatButton.a */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -391,18 +448,10 @@
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				D89477F20FB1DE18A04690586D7808C4 /* Frameworks */,
-				75687EAAA23B4826FDAAC33A54120705 /* Pods */,
-				F9807BC49C3596191F68C77706D218CA /* Products */,
+				9BE73A6A8EDA51B49A8787C512940813 /* Pods */,
+				BFC25C2E4689991DA1B684859CE7B491 /* Products */,
 				EE70F51D9523D87C4102C1CD2D38B544 /* Targets Support Files */,
 			);
-			sourceTree = "<group>";
-		};
-		D76D0ED214D835D2923F1281314A921E /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				3194F025ACD8745D4B2FCF3555CA9550 /* Frameworks */,
-			);
-			name = Core;
 			sourceTree = "<group>";
 		};
 		D89477F20FB1DE18A04690586D7808C4 /* Frameworks */ = {
@@ -412,27 +461,10 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D9517A3277F5D20DA3CC843A55D9F78B /* Support Files */ = {
+		DAEA628609090FC0F626515D8F9E3CB1 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				041C9ABCDC4D9B515B100185DBCB145E /* Fabric.xcconfig */,
-			);
-			name = "Support Files";
-			path = "../Target Support Files/Fabric";
-			sourceTree = "<group>";
-		};
-		E0184AF7CF876EA52C17D7BFFDDD2CD9 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				50E2958FD5C806A67A2CBA79F89A57D4 /* AppCenterAnalytics.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E6940E5D8AB02D2F2AD6FC3743859D5E /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				561583BE20BCD19BE466DE6231A1AB7F /* Crashlytics.framework */,
+				BB5A377C84D3BB7C4E6772067CD8461D /* AppCenterAnalytics.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -445,31 +477,47 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		F0E61103CC3456790185E315E500ECB9 /* Support Files */ = {
+		F3D0A8920705BF4D4F104D6E546246C7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				64A511BA058BF7FE97319CC1B629A797 /* AppCenter.xcconfig */,
+				9FF34C3F0CFC0FACDF0067C1DD12AC5A /* Fabric.framework */,
 			);
-			name = "Support Files";
-			path = "../Target Support Files/AppCenter";
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		F9807BC49C3596191F68C77706D218CA /* Products */ = {
+		FBD10C5B42C6718A5F0EDA09046B9AAE /* Analytics */ = {
 			isa = PBXGroup;
 			children = (
-				E454898ABEDB570D28452E8DF12502C0 /* libFastEasyMapping.a */,
-				B00F382F272F0DCFDEE3CA161D2602CE /* libPods-Lists.a */,
+				DAEA628609090FC0F626515D8F9E3CB1 /* Frameworks */,
 			);
-			name = Products;
+			name = Analytics;
+			sourceTree = "<group>";
+		};
+		FE2E08F3819E465546CF5F31A60F6A73 /* Crashlytics */ = {
+			isa = PBXGroup;
+			children = (
+				7D541DD9AA19B31326CE89CD4B4B2DE3 /* ANSCompatibility.h */,
+				C01467084685E5D36DB9FFC923F0E88B /* Answers.h */,
+				6A1BF4B5243100AF7D54F363D3B6AADB /* CLSAttributes.h */,
+				DF4CBA43C494784A3A1C7FEEA5C6F811 /* CLSLogging.h */,
+				3B05E855287EC842F75ED34A3456C12A /* CLSReport.h */,
+				18900A7AADB7271B1726E84A91927E0C /* CLSStackFrame.h */,
+				DE603189A82BBC4CF04D6D5C4D605212 /* Crashlytics.h */,
+				11DEABC61C8CA0F5BF2AECDD2B4A1DF4 /* Frameworks */,
+				9EB738C506B73F45A928D2F831ECA7BB /* Support Files */,
+			);
+			name = Crashlytics;
+			path = Crashlytics;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		724C27AE64D305A903F636080D2151FA /* Headers */ = {
+		701DE98A88422B15BBBDDAD956CC44FB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FC905A1EFFCF6525CCCFEE1D8459A204 /* SYFlatButton.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -504,9 +552,33 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		ABDEEF3290B3C3DBBBCDD2DFA0419526 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
+		01DC88D154043E2F41A960472178A6E3 /* SYFlatButton */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65C0BDC0C88042F473DDE3C713FE2C87 /* Build configuration list for PBXNativeTarget "SYFlatButton" */;
+			buildPhases = (
+				701DE98A88422B15BBBDDAD956CC44FB /* Headers */,
+				A618ADFB053B6761F1255F651A1F7536 /* Sources */,
+				AC10BD74B5C133D484773D4CBC878B31 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SYFlatButton;
+			productName = SYFlatButton;
+			productReference = E81BD7D7125458CE58AB7D59A64B877F /* libSYFlatButton.a */;
+			productType = "com.apple.product-type.library.static";
+		};
 		373E97D3AA8D34584C7C701F81CE93FA /* FastEasyMapping */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 73E286255689B55B582A18CDFF3DD0F2 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */;
@@ -526,19 +598,20 @@
 		};
 		7DB15174D17446D51C1A0E96B2A5BFA8 /* Pods-Lists */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 0849B4DB410E8A5A8EDD534AF9A64999 /* Build configuration list for PBXNativeTarget "Pods-Lists" */;
+			buildConfigurationList = BBB8E5A1561128EC08E617A524887FC2 /* Build configuration list for PBXNativeTarget "Pods-Lists" */;
 			buildPhases = (
-				724C27AE64D305A903F636080D2151FA /* Headers */,
-				5E0E289A9B836A1D0463DC4397DE9ADE /* Sources */,
-				463DCAFDF76AA99C37865D2F67724CD9 /* Frameworks */,
+				ABDEEF3290B3C3DBBBCDD2DFA0419526 /* Headers */,
+				7F4E2CE1FB9F469156E53BCD6684BD52 /* Sources */,
+				188B90DD43B3536E4C949AB50365E4D4 /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				BEB12F88C1631AC7135422FD9236824A /* PBXTargetDependency */,
-				147FE3C7B11081F5F8261D5058BDCE01 /* PBXTargetDependency */,
-				72147EF81B55C86CBEDA6DCA19685EAA /* PBXTargetDependency */,
-				1DFA8D515919EB95FC7077FE8C661E8C /* PBXTargetDependency */,
+				7A5BFBA9510C04D8616F4F89C9F8ABEB /* PBXTargetDependency */,
+				1BB41DF393A61C73022E0650934714CD /* PBXTargetDependency */,
+				BBB78D901923FBE64D14366EC9E90CAE /* PBXTargetDependency */,
+				10FE25D3C30F423A1DEC5B98AB02BA19 /* PBXTargetDependency */,
+				52E84FD919FDBD9D5B70F7DA3517432D /* PBXTargetDependency */,
 			);
 			name = "Pods-Lists";
 			productName = "Pods-Lists";
@@ -562,7 +635,7 @@
 				en,
 			);
 			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
-			productRefGroup = F9807BC49C3596191F68C77706D218CA /* Products */;
+			productRefGroup = BFC25C2E4689991DA1B684859CE7B491 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -571,19 +644,12 @@
 				ABB048B191245233986A7CD75FE412A5 /* Fabric */,
 				373E97D3AA8D34584C7C701F81CE93FA /* FastEasyMapping */,
 				7DB15174D17446D51C1A0E96B2A5BFA8 /* Pods-Lists */,
+				01DC88D154043E2F41A960472178A6E3 /* SYFlatButton */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		5E0E289A9B836A1D0463DC4397DE9ADE /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				9363C6067AADE72F239C6B7E94CAC1A7 /* Pods-Lists-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		7E390B444F40C79A0925B8A5FA949709 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -609,32 +675,55 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		7F4E2CE1FB9F469156E53BCD6684BD52 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B9DDE87E9E10423F68DBE991F78907DF /* Pods-Lists-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A618ADFB053B6761F1255F651A1F7536 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB4F7F2053B3F9877F83C89D7CABFBFA /* SYFlatButton-dummy.m in Sources */,
+				20621AC27816F4D96A6A6881DCE99DF7 /* SYFlatButton.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		147FE3C7B11081F5F8261D5058BDCE01 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = Crashlytics;
-			target = C0E41540D6862472ED7F2FA11669BE1F /* Crashlytics */;
-			targetProxy = 607B45D61369953EEEA3A04DA9A01F30 /* PBXContainerItemProxy */;
-		};
-		1DFA8D515919EB95FC7077FE8C661E8C /* PBXTargetDependency */ = {
+		10FE25D3C30F423A1DEC5B98AB02BA19 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = FastEasyMapping;
 			target = 373E97D3AA8D34584C7C701F81CE93FA /* FastEasyMapping */;
-			targetProxy = D2D2E69620148048350FDA0C00D9FF0F /* PBXContainerItemProxy */;
+			targetProxy = C47B3A2C33F802EFC8B7F811CDAAAC08 /* PBXContainerItemProxy */;
 		};
-		72147EF81B55C86CBEDA6DCA19685EAA /* PBXTargetDependency */ = {
+		1BB41DF393A61C73022E0650934714CD /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			name = Fabric;
-			target = ABB048B191245233986A7CD75FE412A5 /* Fabric */;
-			targetProxy = 1148DB9A1473EFF2C63A04389AF50906 /* PBXContainerItemProxy */;
+			name = Crashlytics;
+			target = C0E41540D6862472ED7F2FA11669BE1F /* Crashlytics */;
+			targetProxy = 15F7B95CACC9642B68AD56BA12063D42 /* PBXContainerItemProxy */;
 		};
-		BEB12F88C1631AC7135422FD9236824A /* PBXTargetDependency */ = {
+		52E84FD919FDBD9D5B70F7DA3517432D /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SYFlatButton;
+			target = 01DC88D154043E2F41A960472178A6E3 /* SYFlatButton */;
+			targetProxy = 373BBA9C5A0774D2471F842DB33D25C4 /* PBXContainerItemProxy */;
+		};
+		7A5BFBA9510C04D8616F4F89C9F8ABEB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = AppCenter;
 			target = A3282A5B2437E609EEB85861D7ECE717 /* AppCenter */;
-			targetProxy = E577C8306E37D38322C3BAD05D91658E /* PBXContainerItemProxy */;
+			targetProxy = C0E65D045F54C4127B44DA7A84A0B999 /* PBXContainerItemProxy */;
+		};
+		BBB78D901923FBE64D14366EC9E90CAE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Fabric;
+			target = ABB048B191245233986A7CD75FE412A5 /* Fabric */;
+			targetProxy = 4C788BFEC370F83F8906D35EB66B06EE /* PBXContainerItemProxy */;
 		};
 		C9CEFEFAAAEDB8CD947737FA56C849D4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -647,7 +736,7 @@
 /* Begin XCBuildConfiguration section */
 		05B52EF50B0825DBC070EEA38D64556F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 041C9ABCDC4D9B515B100185DBCB145E /* Fabric.xcconfig */;
+			baseConfigurationReference = 128FD30C5410E952FDF56B6EFE49AE4D /* Fabric.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -721,7 +810,7 @@
 		};
 		0B84DA889D67C6536E995EE953D18480 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BAEE0A22D245E9B7F87FCA88EBA017A /* FastEasyMapping.xcconfig */;
+			baseConfigurationReference = 65EF50001E68E8C739F730E739355F6C /* FastEasyMapping.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_IDENTITY = "-";
@@ -743,7 +832,7 @@
 			};
 			name = Debug;
 		};
-		277D05F3FDA413F76E452C0F215B85BF /* Debug */ = {
+		2F8388CF1EA5F9D939C6F7F4D1E9B113 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A6B166A842D71F6EDA201D800AA39E5F /* Pods-Lists.debug.xcconfig */;
 			buildSettings = {
@@ -766,7 +855,7 @@
 			};
 			name = Debug;
 		};
-		47A42F53FD3D535FDABE8EBB79354097 /* Release */ = {
+		49B9236B8C11BE6107791740EEB10A32 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 606B5E8EBAB4D23BC7EC3B3B610B6CE3 /* Pods-Lists.release.xcconfig */;
 			buildSettings = {
@@ -855,7 +944,7 @@
 		};
 		67EA6253D87A88F86D31070F1217699A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64A511BA058BF7FE97319CC1B629A797 /* AppCenter.xcconfig */;
+			baseConfigurationReference = 8A2B95AEFFC5C246DB9D7DF8F5BBDDE1 /* AppCenter.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -869,7 +958,7 @@
 		};
 		8717DDB7A09CC25CEBE5DF989176CB17 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6E5CACBA77605C7550950DD8D892395 /* Crashlytics.xcconfig */;
+			baseConfigurationReference = 1146F6377E752CF1803D23F12875407D /* Crashlytics.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -881,9 +970,33 @@
 			};
 			name = Release;
 		};
+		B226E28A189DC88DC542E8AC0B9D1423 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06BC4ABCEBAF9DCA8DC8E2E137453413 /* SYFlatButton.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/SYFlatButton/SYFlatButton-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SYFlatButton;
+				PRODUCT_NAME = SYFlatButton;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Debug;
+		};
 		C35D2597B0740C30DCD77E82986EE32A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 041C9ABCDC4D9B515B100185DBCB145E /* Fabric.xcconfig */;
+			baseConfigurationReference = 128FD30C5410E952FDF56B6EFE49AE4D /* Fabric.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -897,7 +1010,7 @@
 		};
 		CF1BC1FB6FED83490FA165D8D69DC31A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F6E5CACBA77605C7550950DD8D892395 /* Crashlytics.xcconfig */;
+			baseConfigurationReference = 1146F6377E752CF1803D23F12875407D /* Crashlytics.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -911,7 +1024,7 @@
 		};
 		D86A6471A36C59895B03EF5F71B457B2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6BAEE0A22D245E9B7F87FCA88EBA017A /* FastEasyMapping.xcconfig */;
+			baseConfigurationReference = 65EF50001E68E8C739F730E739355F6C /* FastEasyMapping.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CODE_SIGN_IDENTITY = "-";
@@ -933,9 +1046,33 @@
 			};
 			name = Release;
 		};
+		F438919799FFB779FF8E4EFC64DBE1D9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 06BC4ABCEBAF9DCA8DC8E2E137453413 /* SYFlatButton.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CODE_SIGN_IDENTITY = "-";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				EXECUTABLE_PREFIX = lib;
+				GCC_PREFIX_HEADER = "Target Support Files/SYFlatButton/SYFlatButton-prefix.pch";
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = SYFlatButton;
+				PRODUCT_NAME = SYFlatButton;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+			};
+			name = Release;
+		};
 		FA056057BD419BAD4CFD1C4F408058BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64A511BA058BF7FE97319CC1B629A797 /* AppCenter.xcconfig */;
+			baseConfigurationReference = 8A2B95AEFFC5C246DB9D7DF8F5BBDDE1 /* AppCenter.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -950,15 +1087,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		0849B4DB410E8A5A8EDD534AF9A64999 /* Build configuration list for PBXNativeTarget "Pods-Lists" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				277D05F3FDA413F76E452C0F215B85BF /* Debug */,
-				47A42F53FD3D535FDABE8EBB79354097 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
 		13B185864087F75D556AC109B2D70BF7 /* Build configuration list for PBXAggregateTarget "Fabric" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -977,6 +1105,15 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		65C0BDC0C88042F473DDE3C713FE2C87 /* Build configuration list for PBXNativeTarget "SYFlatButton" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B226E28A189DC88DC542E8AC0B9D1423 /* Debug */,
+				F438919799FFB779FF8E4EFC64DBE1D9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		73E286255689B55B582A18CDFF3DD0F2 /* Build configuration list for PBXNativeTarget "FastEasyMapping" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -991,6 +1128,15 @@
 			buildConfigurations = (
 				CF1BC1FB6FED83490FA165D8D69DC31A /* Debug */,
 				8717DDB7A09CC25CEBE5DF989176CB17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BBB8E5A1561128EC08E617A524887FC2 /* Build configuration list for PBXNativeTarget "Pods-Lists" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2F8388CF1EA5F9D939C6F7F4D1E9B113 /* Debug */,
+				49B9236B8C11BE6107791740EEB10A32 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

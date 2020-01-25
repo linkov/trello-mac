@@ -26,6 +26,7 @@
 @property (strong) NSLayoutConstraint *sideBarWidth;
 @property (strong) NSLayoutConstraint *cardDetailsWidth;
 @property (strong) SDWBoardDisplayItem *currentlyEditedBoardList;
+@property (strong) SDWCardDisplayItem *currentlyEditedCard;
 @property (strong) SDWBoardDisplayItem *parentBoardForNewList;
 
 @end
@@ -184,7 +185,16 @@
         
     }
 
-
+    else if (self.currentlyEditedCard)
+    {
+        
+        [[SDWTrelloStore store] createBoardWithName:name updatedBoard:^(id object) {
+            
+            
+            [self.cardDetailsVC setupCard:self.currentlyEditedCard];
+            self.currentlyEditedCard = nil;
+        }];
+    }
     else {
 
         [[SDWTrelloStore store] createBoardWithName:name updatedBoard:^(id object) {
@@ -228,6 +238,16 @@
     self.addItemVC.delegate = self;
     self.addItemVC.titleString = @"Add list";
     [self presentViewControllerAsSheet:self.addItemVC];
+}
+
+- (void)cardDetailDidRequestAddLabel:(NSString *)name forCardID:(SDWCardDisplayItem *)currentlyEditedCard {
+
+    self.currentlyEditedCard = currentlyEditedCard;
+    self.addItemVC = [self.storyboard instantiateControllerWithIdentifier:@"SDWModalEditVC"];
+    self.addItemVC.delegate = self;
+    self.addItemVC.titleString = @"Add label";
+    [self presentViewControllerAsSheet:self.addItemVC];
+
 }
 
 - (void)boardsListVCDidRequestAddItem {
