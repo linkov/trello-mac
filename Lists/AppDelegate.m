@@ -15,6 +15,12 @@
 #import "SDWMainSplitView.h"
 #import "SDWMainSplitController.h"
 #import "SDWCardsController.h"
+#import "SDWBoardsController.h"
+#import "WSCBoardsOutlineView.h"
+#import "SDWBoardDisplayItem.h"
+#import "SDWListDisplayItem.h"
+
+#import "SDWTrelloStore.h"
 
 @import AppCenter;
 @import AppCenterAnalytics;
@@ -25,6 +31,12 @@
 @property (weak) IBOutlet NSMenuItem *dotMenu20;
 @property (weak) IBOutlet NSMenuItem *dotMenu30;
 @property (weak) IBOutlet NSMenuItem *dotMenu40;
+@property (weak) IBOutlet NSMenuItem *boardRenameMenuItem;
+@property (weak) IBOutlet NSMenuItem *boardCloseMenuItem;
+@property (weak) IBOutlet NSMenuItem *listCloseMenuItem;
+@property (weak) IBOutlet NSMenuItem *listShowInTodayWidget;
+@property (weak) IBOutlet NSMenuItem *listRenameMenuItem;
+@property (weak) IBOutlet NSMenuItem *listAddMenuItem;
 
 @end
 
@@ -56,6 +68,36 @@
     
         [MixpanelTracker startWithToken:@"671b5e87eee999e25d472a57666153df"];
     #endif
+    
+    
+      [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsOutlineViewDidSelectBoardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull board) {
+          
+          
+          self.listCloseMenuItem.enabled = NO;
+          self.listShowInTodayWidget.enabled = NO;
+          self.listRenameMenuItem.enabled = NO;
+          
+          self.listAddMenuItem.enabled = YES;
+          self.boardCloseMenuItem.enabled = YES;
+          self.boardRenameMenuItem.enabled = YES;
+          NSLog(@" %@", board);
+          
+      }];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsOutlineViewDidSelectListNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull list) {
+       
+       
+        self.listCloseMenuItem.enabled = YES;
+        self.listShowInTodayWidget.enabled = YES;
+        self.listRenameMenuItem.enabled = YES;
+        
+         self.listAddMenuItem.enabled = NO;
+        self.boardCloseMenuItem.enabled = NO;
+        self.boardRenameMenuItem.enabled = NO;
+        NSLog(@" %@", list);
+        
+    }];
+    
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
@@ -130,6 +172,133 @@
 
     [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsShouldReloadListNotification object:nil];
 
+}
+
+- (IBAction)addBoard:(id)sender {
+    
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+       if (controller) {
+           [controller boardsListVCDidRequestAddItem];
+       }
+}
+
+- (IBAction)addListToBoard:(id)sender {
+    
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+       if (controller) {
+           SDWBoardsController *boardsVC = controller.boardsVC;
+           WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+           if ([outlineView selectedRow]) {
+               
+               SDWBoardDisplayItem *board = (SDWBoardDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+
+               [controller boardsListVCDidRequestAddListToBoard:board];
+           }
+           
+       }
+}
+
+
+- (IBAction)archiveBoard:(id)sender {
+    
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+    SDWBoardsController *boardsVC = controller.boardsVC;
+    WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+    
+
+    
+    if ([outlineView selectedRow]) {
+        
+        SDWBoardDisplayItem *board = (SDWBoardDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+
+        [[SDWTrelloStore store] deleteBoard:board  complition:^(id object) {
+            [boardsVC reloadBoards:nil];
+        }];
+        
+    }
+  
+    
+}
+
+- (IBAction)renameBoard:(id)sender {
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+       if (controller) {
+           SDWBoardsController *boardsVC = controller.boardsVC;
+           WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+           if ([outlineView selectedRow]) {
+               
+               SDWBoardDisplayItem *board = (SDWBoardDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+
+               [controller boardsListVCDidRequestBoardEdit:board];
+           }
+       }
+    // - (void)boardsListVCDidRequestBoardEdit:(SDWBoardDisplayItem *)board
+}
+
+
+
+
+
+// Lists
+- (IBAction)showListInTodayWidget:(id)sender {
+    
+      SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+      SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+      SDWBoardsController *boardsVC = controller.boardsVC;
+      WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+      
+
+      
+      if ([outlineView selectedRow]) {
+          
+          SDWListDisplayItem *list = (SDWListDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+          [SharedSettings setTodayListID:list.trelloID];
+          [SharedSettings setTodayListName:list.name];
+      }
+    
+}
+
+
+- (IBAction)archiveList:(id)sender {
+    
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+    SDWBoardsController *boardsVC = controller.boardsVC;
+    WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+    
+
+    
+    if ([outlineView selectedRow]) {
+        
+        SDWListDisplayItem *list = (SDWListDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+
+        [[SDWTrelloStore store] deleteList:list  complition:^(id object) {
+            [boardsVC reloadBoards:nil];
+        }];
+        
+    }
+  
+    
+}
+
+- (IBAction)renameList:(id)sender {
+    SDWMainSplitView *splitview = [[NSApplication sharedApplication] mainWindow].contentView;
+    SDWMainSplitController *controller = (SDWMainSplitController *) splitview.nextResponder;
+       if (controller) {
+           SDWBoardsController *boardsVC = controller.boardsVC;
+           WSCBoardsOutlineView *outlineView = boardsVC.outlineView;
+           if ([outlineView selectedRow]) {
+               
+               SDWBoardDisplayItem *board = (SDWBoardDisplayItem *)[[outlineView itemAtRow:[outlineView selectedRow]] representedObject];
+
+               [controller boardsListVCDidRequestBoardEdit:board];
+           }
+       }
+    // - (void)boardsListVCDidRequestBoardEdit:(SDWBoardDisplayItem *)board
 }
 
 

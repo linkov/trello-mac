@@ -44,6 +44,7 @@
 @property (weak) IBOutlet NSImageView *noConnectionImage;
 
 @property (strong) NSArray *storedUsers;
+@property (weak) IBOutlet NSLayoutConstraint *listNameTopConstraint;
 
 @property (strong) SDWListDisplayItem *currentList;
 @property (strong) SDWBoardDisplayItem *currentBoard;
@@ -296,6 +297,7 @@
 
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
+    self.listNameTopConstraint.constant = 16;
     self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
     
     self.currentBoard = nil;
@@ -311,6 +313,7 @@
 
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
+    self.listNameTopConstraint.constant = 22;
     self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:18];
     self.currentList = nil;
     self.currentBoard = board;

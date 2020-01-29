@@ -43,9 +43,9 @@
 
 
 @property (strong) NSArray<SDWBoardDisplayItem *> *unfilteredBoards;
-@property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
 
-@property (strong) NSTreeNode *lastSelectedItem;
+
+
 @property (strong) SDWBoardsListRow *prevSelectedRow;
 @property (strong) IBOutlet NSBox *mainBox;
 @property (strong) IBOutlet NSImageView *crownImageView;
@@ -366,10 +366,13 @@
 
 		[[self cardsVC] setupCardsForList:list];
 
-		
+		[[NSNotificationCenter defaultCenter] postNotificationName:SDWListsOutlineViewDidSelectListNotification object:list];
+        
     } else {
         SDWBoardDisplayItem *board = item.representedObject;
         [[self cardsVC] setupCardsForBoard:board];
+        
+        [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsOutlineViewDidSelectBoardNotification object:board];
     }
     
 	return YES;
@@ -390,6 +393,8 @@
 	[selectedRow setNeedsDisplay:YES];
 
 	self.prevSelectedRow = selectedRow;
+    
+
 }
 
 

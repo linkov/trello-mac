@@ -44,6 +44,10 @@ NSString * const SDWListsShouldCreateCardNotification = @"com.sdwr.trello-mac.sh
 NSString * const SDWListsShouldReloadListNotification = @"com.sdwr.trello-mac.shouldReloadListNotification";
 NSString * const SDWListsShouldReloadBoardsNotification = @"com.sdwr.trello-mac.shouldReloadBoardsNotification";
 
+
+NSString * const SDWListsOutlineViewDidSelectBoardNotification = @"com.sdwr.trello-mac.outlineViewDidSelectBoardNotification";
+NSString * const SDWListsOutlineViewDidSelectListNotification = @"com.sdwr.trello-mac.outlineViewDidSelectListNotification";
+
 #import "NSColor+Util.h"
 #import "SDWAppSettings.h"
 

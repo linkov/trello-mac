@@ -37,6 +37,8 @@ extern NSString * const SDWListsWillEnterFullscreenNotification;
 extern NSString * const SDWListsShouldReloadListNotification;
 extern NSString * const SDWListsShouldReloadBoardsNotification;
 
+extern NSString * const  SDWListsOutlineViewDidSelectBoardNotification;
+extern NSString * const  SDWListsOutlineViewDidSelectListNotification;
 
 @interface SDWAppSettings : NSObject
 

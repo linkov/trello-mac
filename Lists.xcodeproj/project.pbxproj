@@ -81,6 +81,9 @@
 		F120C1DD23DBAB5F00B98805 /* BadgeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F120C1DC23DBAB5F00B98805 /* BadgeTextField.m */; };
 		F120C1DE23DBAB5F00B98805 /* BadgeTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F120C1DC23DBAB5F00B98805 /* BadgeTextField.m */; };
 		F123DA51224ED433000ED555 /* SDWAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F123DA4F224ED433000ED555 /* SDWAppSettings.m */; };
+		F1325B6A23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
+		F1325B6B23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
+		F1325B6C23DD509800D62285 /* IBMPlexSans-Medium.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
 		F1491BEF23DB96A50037163A /* IBMPlexSerif-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BE823DB96A50037163A /* IBMPlexSerif-SemiBold.otf */; };
 		F1491BF123DB96A50037163A /* IBMPlexSerif-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BE923DB96A50037163A /* IBMPlexSerif-Regular.otf */; };
 		F1491BF323DB96A50037163A /* IBMPlexSerif-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BEA23DB96A50037163A /* IBMPlexSerif-Text.otf */; };
@@ -147,10 +150,11 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		F1491BFA23DB971D0037163A /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = Fonts;
 			dstSubfolderSpec = 7;
 			files = (
+				F1325B6C23DD509800D62285 /* IBMPlexSans-Medium.otf in CopyFiles */,
 				F1491BFB23DB97600037163A /* IBMPlexSans-Regular.otf in CopyFiles */,
 				F1491BFC23DB97600037163A /* IBMPlexSans-SemiBold.otf in CopyFiles */,
 				F1491BFD23DB97600037163A /* IBMPlexSans-Text.otf in CopyFiles */,
@@ -158,7 +162,7 @@
 				F1491BFF23DB97600037163A /* IBMPlexSerif-SemiBold.otf in CopyFiles */,
 				F1491C0023DB97600037163A /* IBMPlexSerif-Text.otf in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 		F1910D16224EC4E300C4DD91 /* Embed App Extensions */ = {
 			isa = PBXCopyFilesBuildPhase;
@@ -297,6 +301,7 @@
 		F123DA4F224ED433000ED555 /* SDWAppSettings.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWAppSettings.m; sourceTree = "<group>"; };
 		F123DA50224ED433000ED555 /* SDWAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAppSettings.h; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
+		F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Medium.otf"; sourceTree = "<group>"; };
 		F1491BE823DB96A50037163A /* IBMPlexSerif-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-SemiBold.otf"; sourceTree = "<group>"; };
 		F1491BE923DB96A50037163A /* IBMPlexSerif-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Regular.otf"; sourceTree = "<group>"; };
 		F1491BEA23DB96A50037163A /* IBMPlexSerif-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Text.otf"; sourceTree = "<group>"; };
@@ -764,6 +769,7 @@
 		F1F8D8C122451D8700838563 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
+				F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */,
 				F1491BED23DB96A50037163A /* IBMPlexSans-Regular.otf */,
 				F1491BEC23DB96A50037163A /* IBMPlexSans-SemiBold.otf */,
 				F1491BEB23DB96A50037163A /* IBMPlexSans-Text.otf */,
@@ -922,6 +928,7 @@
 			files = (
 				F1AF66EF1EBF12EC009F230F /* listsmodel.xcdatamodeld in Resources */,
 				F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */,
+				F1325B6A23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */,
 				F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */,
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
@@ -942,6 +949,7 @@
 				F1491BEF23DB96A50037163A /* IBMPlexSerif-SemiBold.otf in Resources */,
 				F1491BF323DB96A50037163A /* IBMPlexSerif-Text.otf in Resources */,
 				F1FAE1D322503B0D00802080 /* ListRowViewController.xib in Resources */,
+				F1325B6B23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

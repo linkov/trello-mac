@@ -403,6 +403,62 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Board" id="tC7-xv-ExZ">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Board" autoenablesItems="NO" id="VcY-cV-Gp5">
+                                    <items>
+                                        <menuItem title="Create a Board" id="GLL-mL-Ihp">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="addBoard:" target="Voe-Tx-rLC" id="Fp4-V4-EAs"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Add a List to this Board" enabled="NO" id="t0f-LS-xai">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="addListToBoard:" target="Voe-Tx-rLC" id="C0A-WE-8a3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Close" enabled="NO" id="owF-Y5-OTZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="archiveBoard:" target="Voe-Tx-rLC" id="b9a-hb-fW5"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Rename" enabled="NO" id="9x5-PY-IGP">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="renameBoard:" target="Voe-Tx-rLC" id="GYC-Pe-TKP"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="List" id="Ez1-Q7-aDi">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="List" autoenablesItems="NO" id="kX1-yR-iaC">
+                                    <items>
+                                        <menuItem title="Close" enabled="NO" id="0Gd-26-Ps6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="archiveList:" target="Voe-Tx-rLC" id="qZO-DD-3Hg"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Rename" enabled="NO" id="aYp-AF-9y2">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="renameList:" target="Voe-Tx-rLC" id="0w7-9S-jOX"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Show in Today Widget" enabled="NO" id="pAF-Y7-zZj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="showListInTodayWidget:" target="Voe-Tx-rLC" id="ysl-zX-THc"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Window" id="aUF-d1-5bR">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
@@ -448,10 +504,16 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate">
                     <connections>
+                        <outlet property="boardCloseMenuItem" destination="owF-Y5-OTZ" id="OGi-bI-TWp"/>
+                        <outlet property="boardRenameMenuItem" destination="9x5-PY-IGP" id="G0x-OI-hl8"/>
                         <outlet property="dotMenu10" destination="xOY-wd-jM7" id="if8-xV-lPc"/>
                         <outlet property="dotMenu20" destination="QhI-4z-JJf" id="0lb-b4-xtM"/>
                         <outlet property="dotMenu30" destination="dqE-9m-YL8" id="PMZ-ba-LAX"/>
                         <outlet property="dotMenu40" destination="bIE-9x-WSN" id="ayr-0e-89h"/>
+                        <outlet property="listAddMenuItem" destination="t0f-LS-xai" id="mtu-XT-pxL"/>
+                        <outlet property="listCloseMenuItem" destination="0Gd-26-Ps6" id="d2Q-vr-ee8"/>
+                        <outlet property="listRenameMenuItem" destination="aYp-AF-9y2" id="lbT-bU-Pwv"/>
+                        <outlet property="listShowInTodayWidget" destination="pAF-Y7-zZj" id="0qf-zz-Dti"/>
                     </connections>
                 </customObject>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -555,7 +617,7 @@
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="227" height="14"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub">
-                                                                            <font key="font" metaFont="label" size="11"/>
+                                                                            <font key="font" metaFont="message" size="11"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </textFieldCell>
@@ -949,6 +1011,7 @@
                         <outlet property="cardActionIndicator" destination="chB-T3-pMn" id="wd7-Rn-YdP"/>
                         <outlet property="cardsArrayController" destination="qXJ-Td-58h" id="hDF-ek-iFr"/>
                         <outlet property="listNameLabel" destination="49o-Ud-LWD" id="Umd-f5-had"/>
+                        <outlet property="listNameTopConstraint" destination="ugZ-44-Mh5" id="F7M-Nw-Ndm"/>
                         <outlet property="mainBox" destination="06c-xL-hpn" id="9Bn-OX-ol7"/>
                         <outlet property="mainProgressIndicator" destination="mUn-cv-PjH" id="0Xs-Jt-EYZ"/>
                         <outlet property="noConnectionImage" destination="aA9-TF-9NK" id="tRf-Hc-XqL"/>
@@ -1155,7 +1218,7 @@
                                                                                             <constraint firstAttribute="height" constant="12" id="Ru5-sn-fyG"/>
                                                                                         </constraints>
                                                                                         <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Label" id="aja-KV-Y87">
-                                                                                            <font key="font" metaFont="label" size="9"/>
+                                                                                            <font key="font" metaFont="menu" size="9"/>
                                                                                             <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                                         </textFieldCell>

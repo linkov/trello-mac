@@ -9,10 +9,13 @@
 #import <Cocoa/Cocoa.h>
 #import "SDWMainSplitController.h"
 
-@interface SDWBoardsController : NSViewController
+@class WSCBoardsOutlineView;
 
+@interface SDWBoardsController : NSViewController
+@property (strong) NSTreeNode *lastSelectedItem;
 @property (strong,nonatomic) NSColor *textColor;
 @property (weak) SDWMainSplitController *delegate;
+@property (strong) IBOutlet WSCBoardsOutlineView *outlineView;
 
 - (void)loadBoards;
 - (IBAction)reloadBoards:(id)sender;
