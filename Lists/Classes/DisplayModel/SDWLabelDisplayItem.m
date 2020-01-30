@@ -33,4 +33,18 @@
     return self;
 }
 
+- (BOOL)isEqualToID:(SDWLabelDisplayItem *)item {
+    return [self.trelloID isEqualToString:item.trelloID];
+}
+
+- (BOOL)isEqual:(id)object {
+
+    return [self isEqualToID:(SDWLabelDisplayItem *)object];
+}
+
+- (NSUInteger)hash
+{
+    return [self.trelloID hash];
+}
+
 @end

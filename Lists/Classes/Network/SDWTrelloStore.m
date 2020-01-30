@@ -477,12 +477,12 @@
     
     SDWPerformBlock(currentBlock,@[],nil);
     
-//    [self.dataModelManager.managedObjectContext performBlockAndWait:^{
-//
-//        SDWMBoard *brd = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withUID:board.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
-//        SDWPerformBlock(currentBlock,[self displayCardsfromCards:brd.cards.allObjects crownFiltered:crownFiltered],nil);
-//
-//    }];
+    [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+
+        SDWMBoard *brd = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withUID:board.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
+        SDWPerformBlock(currentBlock,[self displayCardsfromCards:brd.cards.allObjects crownFiltered:crownFiltered],nil);
+
+    }];
     
     NSString *urlString = [NSString stringWithFormat:@"boards/%@/cards/open?limit=10000",board.trelloID];
     
@@ -495,6 +495,8 @@
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
              NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+              SDWMBoard *brd = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withUID:board.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
+             [brd addCards:[NSSet setWithArray:mappedObjects]];
              [self saveContext];
              SDWPerformBlock(fetchedBlock,[self displayCardsfromCards:mappedObjects crownFiltered:crownFiltered],nil);
              
@@ -592,6 +594,7 @@
 - (void)fetchLabelsForBoardID:(NSString *)boardID
                  currentData:(SDWTrelloStoreCompletionBlock)currentBlock
                  fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock {
+    
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
         NSArray <SDWMLabel*> *labels = [self.dataModelManager fetchAllEntitiesForName:[SDWMLabel entityName] withPredicate:[NSPredicate predicateWithFormat:@"board.trelloID == %@",boardID] inContext:self.dataModelManager.managedObjectContext];
@@ -616,8 +619,7 @@
                         [self saveContext];
              
 
-             [self saveContext];
-             SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayUsersFromUsers:mappedObjects],nil);
+             SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayLabelsFromLabels:mappedObjects],nil);
              
          }];
          

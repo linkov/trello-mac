@@ -84,6 +84,12 @@
 		F1325B6A23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
 		F1325B6B23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
 		F1325B6C23DD509800D62285 /* IBMPlexSans-Medium.otf in CopyFiles */ = {isa = PBXBuildFile; fileRef = F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */; };
+		F1325B6F23E2074600D62285 /* LabelCloudView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1325B6E23E2074600D62285 /* LabelCloudView.m */; };
+		F1325B7023E2074600D62285 /* LabelCloudView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1325B6E23E2074600D62285 /* LabelCloudView.m */; };
+		F1325B7B23E210D800D62285 /* LabelViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1325B7923E210D800D62285 /* LabelViewItem.m */; };
+		F1325B7C23E210D800D62285 /* LabelViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = F1325B7923E210D800D62285 /* LabelViewItem.m */; };
+		F1325B7D23E210D800D62285 /* LabelViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1325B7A23E210D800D62285 /* LabelViewItem.xib */; };
+		F1325B7E23E210D800D62285 /* LabelViewItem.xib in Resources */ = {isa = PBXBuildFile; fileRef = F1325B7A23E210D800D62285 /* LabelViewItem.xib */; };
 		F1491BEF23DB96A50037163A /* IBMPlexSerif-SemiBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BE823DB96A50037163A /* IBMPlexSerif-SemiBold.otf */; };
 		F1491BF123DB96A50037163A /* IBMPlexSerif-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BE923DB96A50037163A /* IBMPlexSerif-Regular.otf */; };
 		F1491BF323DB96A50037163A /* IBMPlexSerif-Text.otf in Resources */ = {isa = PBXBuildFile; fileRef = F1491BEA23DB96A50037163A /* IBMPlexSerif-Text.otf */; };
@@ -124,6 +130,7 @@
 		F1C454AA1A2534BF002FFAF6 /* SDWProgressIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454A91A2534BF002FFAF6 /* SDWProgressIndicator.m */; };
 		F1C454AD1A267AE7002FFAF6 /* SDWLiveUpdateManager.m in Sources */ = {isa = PBXBuildFile; fileRef = F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */; };
 		F1D9ACA81A3CEA380067B119 /* SDWCardDetailsTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */; };
+		F1F4AD6223E226160022F589 /* SDWAppSettings.m in Sources */ = {isa = PBXBuildFile; fileRef = F123DA4F224ED433000ED555 /* SDWAppSettings.m */; };
 		F1F54DB61D76DFD700941906 /* SDWModalEditVC.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */; };
 		F1F54DBA1D77102C00941906 /* SDWAddNamedItemTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = F1F54DB91D77102C00941906 /* SDWAddNamedItemTextField.m */; };
 		F1F8D8D32247A28800838563 /* Base64.c in Sources */ = {isa = PBXBuildFile; fileRef = F1F8D8D12247A28700838563 /* Base64.c */; };
@@ -302,6 +309,11 @@
 		F123DA50224ED433000ED555 /* SDWAppSettings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAppSettings.h; sourceTree = "<group>"; };
 		F12A38921A12B6C000611257 /* Lists.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Lists.entitlements; sourceTree = "<group>"; };
 		F1325B6923DD504D00D62285 /* IBMPlexSans-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSans-Medium.otf"; sourceTree = "<group>"; };
+		F1325B6D23E2074600D62285 /* LabelCloudView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelCloudView.h; sourceTree = "<group>"; };
+		F1325B6E23E2074600D62285 /* LabelCloudView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelCloudView.m; sourceTree = "<group>"; };
+		F1325B7823E210D800D62285 /* LabelViewItem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LabelViewItem.h; sourceTree = "<group>"; };
+		F1325B7923E210D800D62285 /* LabelViewItem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LabelViewItem.m; sourceTree = "<group>"; };
+		F1325B7A23E210D800D62285 /* LabelViewItem.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LabelViewItem.xib; sourceTree = "<group>"; };
 		F1491BE823DB96A50037163A /* IBMPlexSerif-SemiBold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-SemiBold.otf"; sourceTree = "<group>"; };
 		F1491BE923DB96A50037163A /* IBMPlexSerif-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Regular.otf"; sourceTree = "<group>"; };
 		F1491BEA23DB96A50037163A /* IBMPlexSerif-Text.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "IBMPlexSerif-Text.otf"; sourceTree = "<group>"; };
@@ -360,6 +372,7 @@
 		F1C454AC1A267AE7002FFAF6 /* SDWLiveUpdateManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWLiveUpdateManager.m; sourceTree = "<group>"; };
 		F1D9ACA61A3CEA380067B119 /* SDWCardDetailsTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailsTextView.h; sourceTree = "<group>"; };
 		F1D9ACA71A3CEA380067B119 /* SDWCardDetailsTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailsTextView.m; sourceTree = "<group>"; };
+		F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "listsmodel 3.xcdatamodel"; sourceTree = "<group>"; };
 		F1F54DB41D76DFD700941906 /* SDWModalEditVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWModalEditVC.h; sourceTree = "<group>"; };
 		F1F54DB51D76DFD700941906 /* SDWModalEditVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWModalEditVC.m; sourceTree = "<group>"; };
 		F1F54DB81D77102C00941906 /* SDWAddNamedItemTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWAddNamedItemTextField.h; sourceTree = "<group>"; };
@@ -498,6 +511,11 @@
 		F10AA9F41A12AFD800FD4E85 /* CardList */ = {
 			isa = PBXGroup;
 			children = (
+				F1325B7823E210D800D62285 /* LabelViewItem.h */,
+				F1325B7923E210D800D62285 /* LabelViewItem.m */,
+				F1325B7A23E210D800D62285 /* LabelViewItem.xib */,
+				F1325B6D23E2074600D62285 /* LabelCloudView.h */,
+				F1325B6E23E2074600D62285 /* LabelCloudView.m */,
 				F14B36131A145ADF00AFD5C9 /* PulseView.h */,
 				F14B36141A145ADF00AFD5C9 /* PulseView.m */,
 				F10AA9F71A12AFD800FD4E85 /* SDWCardListView.h */,
@@ -930,6 +948,7 @@
 				F18089BA1A280B7000A701B7 /* Credits.rtf in Resources */,
 				F1325B6A23DD504D00D62285 /* IBMPlexSans-Medium.otf in Resources */,
 				F14B36121A1443A600AFD5C9 /* Lists.icns in Resources */,
+				F1325B7D23E210D800D62285 /* LabelViewItem.xib in Resources */,
 				F10AAA4C1A12AFD800FD4E85 /* Main.storyboard in Resources */,
 				F10AAA6C1A12AFD800FD4E85 /* Images.xcassets in Resources */,
 				F14B36101A1441C000AFD5C9 /* icon.icns in Resources */,
@@ -940,6 +959,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1325B7E23E210D800D62285 /* LabelViewItem.xib in Resources */,
 				F1491BF523DB96A50037163A /* IBMPlexSans-Text.otf in Resources */,
 				F1491BF923DB96A50037163A /* IBMPlexSans-Regular.otf in Resources */,
 				F1491BF723DB96A50037163A /* IBMPlexSans-SemiBold.otf in Resources */,
@@ -1024,6 +1044,7 @@
 				F10E13361EBCAFDA0044802C /* SDWMChecklist.m in Sources */,
 				F10E13071EBC8E420044802C /* SDWDataModelManager.m in Sources */,
 				F18B583E1ECE0D6700884CDC /* SDWCardDisplayItem.m in Sources */,
+				F1325B6F23E2074600D62285 /* LabelCloudView.m in Sources */,
 				F120C1DD23DBAB5F00B98805 /* BadgeTextField.m in Sources */,
 				F1918AAB1A3F819900CD22CE /* JWCTableView.m in Sources */,
 				F10E13471EBCAFE30044802C /* _SDWMCard.m in Sources */,
@@ -1074,6 +1095,7 @@
 				F10AAA791A12AFD800FD4E85 /* Xtrace.mm in Sources */,
 				F10E134B1EBCAFE30044802C /* _SDWMUser.m in Sources */,
 				F10AAA721A12AFD800FD4E85 /* AFNetworkReachabilityManager.m in Sources */,
+				F1325B7B23E210D800D62285 /* LabelViewItem.m in Sources */,
 				F18B58501ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m in Sources */,
 				F1624CD71ED2BED6003F0EA7 /* SDWMActivity.m in Sources */,
 				F10AAA6E1A12AFD800FD4E85 /* main.m in Sources */,
@@ -1097,8 +1119,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1FAE1CA22503B0D00802080 /* TodayViewController.m in Sources */,
+				F1325B7C23E210D800D62285 /* LabelViewItem.m in Sources */,
+				F1325B7023E2074600D62285 /* LabelCloudView.m in Sources */,
 				F1FAE1CD22503B0D00802080 /* ListRowViewController.m in Sources */,
 				F120C1DE23DBAB5F00B98805 /* BadgeTextField.m in Sources */,
+				F1F4AD6223E226160022F589 /* SDWAppSettings.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1275,7 +1300,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1305,7 +1330,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1347,7 +1372,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1390,7 +1415,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 43;
+				CURRENT_PROJECT_VERSION = 44;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1451,10 +1476,11 @@
 		F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */,
 				F10BC8B023DC0E8000B58AF4 /* listsmodel2.xcdatamodel */,
 				F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */,
 			);
-			currentVersion = F10BC8B023DC0E8000B58AF4 /* listsmodel2.xcdatamodel */;
+			currentVersion = F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */;
 			path = listsmodel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

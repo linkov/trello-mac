@@ -236,7 +236,6 @@
                [controller boardsListVCDidRequestBoardEdit:board];
            }
        }
-    // - (void)boardsListVCDidRequestBoardEdit:(SDWBoardDisplayItem *)board
 }
 
 

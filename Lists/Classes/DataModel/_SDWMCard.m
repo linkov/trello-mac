@@ -131,6 +131,8 @@
 	return result;
 }
 
+@dynamic board;
+
 @dynamic checklists;
 
 - (NSMutableSet<SDWMChecklist*>*)checklistsSet {
@@ -203,6 +205,9 @@
 @implementation SDWMCardRelationships 
 + (NSString *)activities {
 	return @"activities";
+}
++ (NSString *)board {
+	return @"board";
 }
 + (NSString *)checklists {
 	return @"checklists";

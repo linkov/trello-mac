@@ -12,6 +12,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class SDWMActivity;
+@class SDWMBoard;
 @class SDWMChecklist;
 @class SDWMLabel;
 @class SDWMList;
@@ -59,6 +60,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, strong, nullable) NSSet<SDWMActivity*> *activities;
 - (nullable NSMutableSet<SDWMActivity*>*)activitiesSet;
+
+@property (nonatomic, strong, nullable) SDWMBoard *board;
 
 @property (nonatomic, strong, nullable) NSSet<SDWMChecklist*> *checklists;
 - (nullable NSMutableSet<SDWMChecklist*>*)checklistsSet;
@@ -148,6 +151,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (NSMutableSet<SDWMActivity*>*)primitiveActivities;
 - (void)setPrimitiveActivities:(NSMutableSet<SDWMActivity*>*)value;
 
+- (nullable SDWMBoard*)primitiveBoard;
+- (void)setPrimitiveBoard:(nullable SDWMBoard*)value;
+
 - (NSMutableSet<SDWMChecklist*>*)primitiveChecklists;
 - (void)setPrimitiveChecklists:(NSMutableSet<SDWMChecklist*>*)value;
 
@@ -179,6 +185,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SDWMCardRelationships: NSObject
 + (NSString *)activities;
++ (NSString *)board;
 + (NSString *)checklists;
 + (NSString *)labels;
 + (NSString *)list;
