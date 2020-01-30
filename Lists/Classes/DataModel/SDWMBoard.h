@@ -4,7 +4,7 @@
 @interface SDWMBoard : _SDWMBoard
 
 - (NSString *)boardID;
-- (NSArray *)labels;
+- (NSSet *)labels;
 @end
 
 

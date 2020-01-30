@@ -597,7 +597,10 @@
     
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
+          SDWMBoard *board = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withTrelloID:boardID inContext:self.dataModelManager.managedObjectContext];
+        
         NSArray <SDWMLabel*> *labels = [self.dataModelManager fetchAllEntitiesForName:[SDWMLabel entityName] withPredicate:[NSPredicate predicateWithFormat:@"board.trelloID == %@",boardID] inContext:self.dataModelManager.managedObjectContext];
+        board.labels = [NSSet setWithArray:labels];
         SDWPerformBlock(currentBlock,[SDWTrelloStore displayLabelsFromLabels:labels],nil);
         
     }];

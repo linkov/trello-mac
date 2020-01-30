@@ -16,14 +16,13 @@
 
 @property (readonly) SDWMBoard *model;
 @property (readonly) NSArray <SDWListDisplayItem *> *lists;
-@property (readonly) NSArray <SDWLabelDisplayItem *> *labels;
 
 @property NSString *trelloID;
 @property NSString *name;
 @property int64_t position;
 @property BOOL starred;
 
-
+- (NSArray <SDWLabelDisplayItem *> *)labels;
 - (instancetype)initWithModel:(SDWMBoard *)model;
 - (instancetype)initWithModel:(SDWMBoard *)model crownListIDs:(NSArray *)crownIDs;
 

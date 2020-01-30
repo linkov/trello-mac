@@ -14,7 +14,6 @@
 
 @property (readwrite) SDWMBoard *model;
 @property (readwrite) NSArray <SDWListDisplayItem *> *lists;
-@property (readwrite) NSArray <SDWLabelDisplayItem *> *labels;
 
 @end
 
@@ -53,20 +52,22 @@
         self.lists = [[arr copy] sortedArrayUsingDescriptors:@[sortByPos]];
         
         
-        NSMutableArray *arr1 = [NSMutableArray new];
-        for (SDWMLabel *list in [self.model labels] ) {
-            SDWLabelDisplayItem *labelItem = [[SDWLabelDisplayItem alloc]initWithModel:list];
-            [arr1 addObject:labelItem];
-            
-        }
-        
-        self.labels = [arr1 copy];
-        
         
 
     }
     return self;
     
+}
+
+- (NSArray <SDWLabelDisplayItem *> *)labels {
+    
+    NSMutableArray *arr = [NSMutableArray new];
+    for (SDWMLabel *model in self.model.labels) {
+        SDWLabelDisplayItem *item = [[SDWLabelDisplayItem alloc]initWithModel:model];
+        [arr addObject:item];
+    }
+    
+    return [arr copy];
 }
 
 
