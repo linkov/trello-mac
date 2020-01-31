@@ -105,6 +105,7 @@
 //    NSBezierPath *thePath=[NSBezierPath bezierPathWithRect:aRect];
     [color set];
     [path stroke];
+    [path fill];
 
     [image unlockFocus];
 

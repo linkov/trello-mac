@@ -5,6 +5,7 @@
 
 - (NSString *)boardID;
 - (NSSet *)labels;
+
 @end
 
 

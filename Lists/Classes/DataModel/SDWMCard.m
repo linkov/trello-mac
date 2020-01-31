@@ -14,10 +14,6 @@
 
 @implementation SDWMCard
 
-- (NSArray *)members {
-    return [NSArray array];
-}
-
 - (NSArray *)displayLabels {
     return self.labels.allObjects;
 }
@@ -49,6 +45,7 @@
     [mapping addAttributeWithProperty:@"checkItemsCheckedCount" keyPath:@"badges.checkItemsChecked"];
     [mapping addAttribute:[FEMAttribute dateAttributeWithProperty:@"dueDate" keyPath:@"due"]];
     [mapping addToManyRelationshipMapping:[SDWMLabel defaultMapping] forProperty:@"labels" keyPath:@"labels"];
+//    [mapping addToManyRelationshipMapping:[SDWMUser defaultMapping] forProperty:@"members" keyPath:@"members"];
     
 
     
@@ -62,7 +59,29 @@
     
     
     
+//    FEMMapping *bMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMBoard"];
+//    bMapping.primaryKey = @"trelloID";
+//    [bMapping addAttributeWithProperty:@"trelloID" keyPath:nil];
+//    
+//    FEMRelationship *bRelationship = [[FEMRelationship alloc]initWithProperty:@"board" keyPath:@"idBoard" mapping:bMapping];
+//    bRelationship.weak = YES;
+//    [mapping addRelationship:bRelationship];
+    
 
+    FEMMapping *userMapping = [[FEMMapping alloc]initWithEntityName:@"SDWMUser"];
+    userMapping.primaryKey = SDWMappingDefaultPrimaryKey;
+    [userMapping addAttribute:[FEMAttribute listsIDAttribute]];
+    [userMapping addAttributeWithProperty:@"name" keyPath:@"fullName"];
+    [userMapping addAttributeWithProperty:@"initials" keyPath:@"initials"];
+    
+    FEMRelationship *userRelationship = [[FEMRelationship alloc]initWithProperty:@"members" keyPath:@"members" mapping:userMapping];
+    userRelationship.weak = YES;
+    [userRelationship setToMany:YES];
+    [mapping addRelationship:userRelationship];
+
+    
+    
+    
     return mapping;
 }
 

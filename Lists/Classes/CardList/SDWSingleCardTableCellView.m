@@ -11,8 +11,9 @@
 #import "Utils.h"
 
 #import "SDWLabelDisplayItem.h"
-
+#import "SDWUserDisplayItem.h"
 #import "SDWCardDisplayItem.h"
+#import "SDWBoardDisplayItem.h"
 
 @interface SDWSingleCardTableCellView ()
 
@@ -47,15 +48,32 @@
 
     [self.delegate cardViewDidSelectCard:self];
 
+    
+    
     NSMenu *labelsMenu = [Utils labelsMenuForBoard:self.boardID];
+    
 
     for (NSMenuItem *item in labelsMenu.itemArray) {
 
         [item setTarget:self];
-        [item setAction:@selector(changeCardLabel:)];
-        item.state = [self labelActiveWitItemName:item.title] ? 1 : 0;
+        
+        if (item.image) {
+            [item setAction:@selector(changeCardLabel:)];
+            item.state = [self labelActiveWitItemName:item.title] ? 1 : 0;
+        } else {
+            
 
+            [item setAction:@selector(changeUser:)];
+            item.state = [self labelActiveWitUserName:item.title] ? 1 : 0;
+        }
+        
+
+        
+
+        
     }
+    
+    
 
     [NSMenu popUpContextMenu:labelsMenu withEvent:theEvent forView:self];
     
@@ -104,6 +122,22 @@
 
 #pragma mark - Card labels
 
+
+- (void)changeUser:(NSMenuItem *)sender {
+    
+    SDWBoardDisplayItem *board = self.cardDisplayItem.board;
+   SDWUserDisplayItem *selectedUser = [[[board members] filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"initials == %@",sender.title]] firstObject];
+    if ([self labelActiveWitUserName:sender.title]) {
+        [self.delegate cardViewShouldRemoveUser:selectedUser.trelloID];
+    } else {
+        [self.delegate cardViewShouldAddUser:selectedUser.trelloID];
+    }
+
+//    self.mainBox.labels = modifiedLabels;
+    //[self loadCardUsers];
+    
+}
+
 - (void)changeCardLabel:(NSMenuItem *)sender {
 
     NSMutableArray *modifiedLabels = [NSMutableArray arrayWithArray:self.mainBox.labels];
@@ -129,6 +163,13 @@
 - (BOOL)labelActiveWitItemName:(NSString *)name {
 
     NSUInteger count =  [[self.cardDisplayItem.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"name == %@ || color == %@",name, name]] count];
+
+    return count > 0;
+}
+
+- (BOOL)labelActiveWitUserName:(NSString *)name {
+
+    NSUInteger count =  [[self.cardDisplayItem.members filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"initials == %@",name]] count];
 
     return count > 0;
 }

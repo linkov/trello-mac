@@ -256,6 +256,8 @@
 		F10AAA491A12AFD800FD4E85 /* Xtrace.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Xtrace.h; sourceTree = "<group>"; };
 		F10AAA4A1A12AFD800FD4E85 /* Xtrace.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = Xtrace.mm; sourceTree = "<group>"; };
 		F10BC8B023DC0E8000B58AF4 /* listsmodel2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listsmodel2.xcdatamodel; sourceTree = "<group>"; };
+		F10C718423E4014000784490 /* listsmodel 4.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "listsmodel 4.xcdatamodel"; sourceTree = "<group>"; };
+		F10C718523E414D600784490 /* listsmodel 5.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "listsmodel 5.xcdatamodel"; sourceTree = "<group>"; };
 		F10E13051EBC8E420044802C /* SDWDataModelManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWDataModelManager.h; sourceTree = "<group>"; };
 		F10E13061EBC8E420044802C /* SDWDataModelManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWDataModelManager.m; sourceTree = "<group>"; };
 		F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = listsmodel.xcdatamodel; sourceTree = "<group>"; };
@@ -1300,7 +1302,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1330,7 +1332,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1372,7 +1374,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1415,7 +1417,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 47;
+				CURRENT_PROJECT_VERSION = 50;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -1476,11 +1478,13 @@
 		F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F10C718523E414D600784490 /* listsmodel 5.xcdatamodel */,
+				F10C718423E4014000784490 /* listsmodel 4.xcdatamodel */,
 				F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */,
 				F10BC8B023DC0E8000B58AF4 /* listsmodel2.xcdatamodel */,
 				F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */,
 			);
-			currentVersion = F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */;
+			currentVersion = F10C718523E414D600784490 /* listsmodel 5.xcdatamodel */;
 			path = listsmodel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

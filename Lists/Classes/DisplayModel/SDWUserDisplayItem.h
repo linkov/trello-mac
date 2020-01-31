@@ -16,7 +16,7 @@
 
 @property NSString *trelloID;
 @property NSString *name;
-@property NSString *twoLetterID;
+@property NSString *initials;
 
 
 - (instancetype)initWithModel:(SDWMUser *)model;

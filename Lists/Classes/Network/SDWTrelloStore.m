@@ -416,6 +416,52 @@
 
 
 
+- (void)addUserToCard:(SDWCardDisplayItem *)card
+                       userID:(NSString *)trelloID
+                  completion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Add user to card",NULL);
+    
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/idMembers?",card.trelloID];
+    [[AFTrelloAPIClient sharedClient] POST:urlString parameters:@{@"value":trelloID} success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+
+        [self saveContext];
+        
+        SDWPerformBlock(block,responseObject,nil);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if(block) block(nil,error);
+        [self handleError:error];
+    }];
+    
+}
+
+
+- (void)removeUserFromCard:(SDWCardDisplayItem *)card
+                       userID:(NSString *)trelloID
+                  completion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Remove user from card",NULL);
+    
+    NSString *urlString = [NSString stringWithFormat:@"cards/%@/idMembers/%@?",card.trelloID, trelloID];
+    [[AFTrelloAPIClient sharedClient] DELETE:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+
+        [self saveContext];
+        
+        SDWPerformBlock(block,responseObject,nil);
+        
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        
+        if(block) block(nil,error);
+        [self handleError:error];
+    }];
+    
+}
+
+
 
 - (void)addLabelForCard:(SDWCardDisplayItem *)card
                        labelID:(NSString *)trelloID
@@ -484,7 +530,7 @@
 
     }];
     
-    NSString *urlString = [NSString stringWithFormat:@"boards/%@/cards/open?limit=10000",board.trelloID];
+    NSString *urlString = [NSString stringWithFormat:@"boards/%@/cards/open?limit=10000&members=true",board.trelloID];
     
     [[AFTrelloAPIClient sharedClient] GET:urlString
                                parameters:nil
@@ -524,7 +570,7 @@
 
     }];
     
-    NSString *urlString = [NSString stringWithFormat:@"lists/%@/cards?lists=open&cards=open",list.trelloID];
+    NSString *urlString = [NSString stringWithFormat:@"lists/%@/cards?lists=open&cards=open&members=true&member_fields=initials,id,fullName",list.trelloID];
     
     [[AFTrelloAPIClient sharedClient] GET:urlString
                                parameters:nil
@@ -637,6 +683,8 @@
 - (void)fetchUsersForBoardID:(NSString *)boardID
                  currentData:(SDWTrelloStoreCompletionBlock)currentBlock
                  fetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock {
+    
+    
     [self.dataModelManager.managedObjectContext performBlockAndWait:^{
         
         NSArray <SDWMUser*> *users = [self.dataModelManager fetchEntityForName:[SDWMUser entityName] withTrelloID:boardID inContext:self.dataModelManager.managedObjectContext];
@@ -644,7 +692,7 @@
         
     }];
     
-    NSString *urlString = [NSString stringWithFormat:@"boards/%@/members",boardID];
+    NSString *urlString = [NSString stringWithFormat:@"boards/%@/members?",boardID];
     
     [[AFTrelloAPIClient sharedClient] GET:urlString
                                parameters:nil
@@ -655,7 +703,9 @@
          [self.dataModelManager.managedObjectContext performBlockAndWait:^{
              
              NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMUser class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+             SDWMBoard *board = [self.dataModelManager fetchEntityForName:[SDWMBoard entityName] withTrelloID:boardID inContext:self.dataModelManager.managedObjectContext];
 
+             board.members = [NSSet setWithArray:mappedObjects];
              [self saveContext];
              SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayUsersFromUsers:mappedObjects],nil);
              

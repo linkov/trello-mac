@@ -168,6 +168,14 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
                  withCompletion:(SDWTrelloStoreCompletionBlock)block;
 
 
+- (void)removeUserFromCard:(SDWCardDisplayItem *)card
+     userID:(NSString *)trelloID
+                completion:(SDWTrelloStoreCompletionBlock)block;
+
+- (void)addUserToCard:(SDWCardDisplayItem *)card
+                       userID:(NSString *)trelloID
+           completion:(SDWTrelloStoreCompletionBlock)block;
+
 //v2
 - (void)deleteCheckItem:(SDWChecklistItemDisplayItem *)item
                  cardID:(NSString *)cardID

@@ -25,7 +25,7 @@
         self.model = model;
         self.trelloID = model.trelloID;
         self.name = model.name;
-        self.twoLetterID = [self twoLetterIDFromName:self.name];
+        self.initials = model.initials;
         
         
         

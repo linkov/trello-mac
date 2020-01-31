@@ -32,6 +32,8 @@
 	return keyPaths;
 }
 
+@dynamic initials;
+
 @dynamic name;
 
 @dynamic trelloID;
@@ -63,6 +65,9 @@
 @end
 
 @implementation SDWMUserAttributes 
++ (NSString *)initials {
+	return @"initials";
+}
 + (NSString *)name {
 	return @"name";
 }

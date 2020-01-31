@@ -346,11 +346,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="HyV-fh-RgO">
                                     <items>
-                                        <menuItem title="Toggle Labels" keyEquivalent="l" id="XU9-bd-NUn">
-                                            <connections>
-                                                <action selector="toggleCardLabels:" target="Voe-Tx-rLC" id="Xgn-L9-sEH"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Toggle Sidebar" keyEquivalent="1" id="DgX-Zk-iYg">
                                             <connections>
                                                 <action selector="hideSideBar:" target="Voe-Tx-rLC" id="v2c-T5-lBQ"/>
@@ -616,7 +611,7 @@
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="227" height="14"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub">
-                                                                            <font key="font" metaFont="label" size="11"/>
+                                                                            <font key="font" metaFont="message" size="11"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </textFieldCell>
@@ -878,34 +873,33 @@
                                                                                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                                     </textFieldCell>
                                                                                 </textField>
-                                                                                <stackView orientation="horizontal" alignment="top" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="sCM-Np-Xy8">
-                                                                                    <rect key="frame" x="343" y="13" width="50" height="16"/>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="width" constant="50" placeholder="YES" id="BDz-hd-9SN"/>
-                                                                                        <constraint firstAttribute="height" constant="16" id="pjY-Ya-0Ea"/>
-                                                                                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="100" id="qY4-Km-GfA"/>
-                                                                                    </constraints>
-                                                                                </stackView>
                                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" translatesAutoresizingMaskIntoConstraints="NO" id="aM1-XC-rJQ">
                                                                                     <rect key="frame" x="11" y="-9" width="297" height="20"/>
                                                                                     <edgeInsets key="edgeInsets" left="3" right="0.0" top="3" bottom="0.0"/>
                                                                                     <constraints>
-                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Poo-Bz-8YN"/>
+                                                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="20" id="Poo-Bz-8YN"/>
+                                                                                    </constraints>
+                                                                                </stackView>
+                                                                                <stackView orientation="horizontal" alignment="top" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="sCM-Np-Xy8">
+                                                                                    <rect key="frame" x="13" y="-28" width="295" height="16"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="height" constant="16" id="pjY-Ya-0Ea"/>
                                                                                     </constraints>
                                                                                 </stackView>
                                                                             </subviews>
                                                                             <constraints>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="leading" secondItem="gng-eQ-Hld" secondAttribute="leading" id="OZ3-zK-z6C"/>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="top" secondItem="gng-eQ-Hld" secondAttribute="bottom" constant="2" id="T0r-7S-rOX"/>
+                                                                                <constraint firstItem="sCM-Np-Xy8" firstAttribute="trailing" secondItem="gng-eQ-Hld" secondAttribute="trailing" id="coS-s2-bRg"/>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gng-eQ-Hld" secondAttribute="trailing" id="eCV-Vc-hPx"/>
+                                                                                <constraint firstItem="sCM-Np-Xy8" firstAttribute="top" secondItem="aM1-XC-rJQ" secondAttribute="bottom" constant="3" id="oRn-5a-WU4"/>
+                                                                                <constraint firstItem="sCM-Np-Xy8" firstAttribute="leading" secondItem="gng-eQ-Hld" secondAttribute="leading" constant="2" id="tgR-0N-qGm"/>
                                                                             </constraints>
                                                                         </view>
                                                                         <constraints>
                                                                             <constraint firstItem="gng-eQ-Hld" firstAttribute="top" secondItem="M81-XC-LPW" secondAttribute="top" constant="6" id="QrC-RT-gQD"/>
                                                                             <constraint firstAttribute="width" priority="250" constant="397" id="df6-yZ-LQz"/>
-                                                                            <constraint firstItem="sCM-Np-Xy8" firstAttribute="top" secondItem="M81-XC-LPW" secondAttribute="top" priority="750" constant="6" id="ovx-Yj-sUz"/>
                                                                             <constraint firstItem="gng-eQ-Hld" firstAttribute="leading" secondItem="M81-XC-LPW" secondAttribute="leading" constant="11" id="syX-OV-rac"/>
-                                                                            <constraint firstAttribute="trailing" secondItem="sCM-Np-Xy8" secondAttribute="trailing" constant="4" id="tUz-94-n2R"/>
                                                                         </constraints>
                                                                         <color key="fillColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                                         <connections>
@@ -921,6 +915,7 @@
                                                                 </constraints>
                                                                 <connections>
                                                                     <outlet property="customLabelsView" destination="aM1-XC-rJQ" id="7Vd-aJ-n0X"/>
+                                                                    <outlet property="customLabelsViewHeightConstaint" destination="Poo-Bz-8YN" id="C1E-UR-jlg"/>
                                                                     <outlet property="mainBox" destination="M81-XC-LPW" id="ZxC-uY-1at"/>
                                                                     <outlet property="stackView" destination="sCM-Np-Xy8" id="O6y-Hm-E4T"/>
                                                                     <outlet property="textField" destination="gng-eQ-Hld" id="R6k-7Q-IZ8"/>
@@ -1703,7 +1698,7 @@
                                         <box boxType="custom" borderType="line" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="kHB-pL-hBe">
                                             <rect key="frame" x="20" y="16" width="262" height="1"/>
                                             <view key="contentView" id="PlQ-Eb-yPf">
-                                                <rect key="frame" x="1" y="0.0" width="260" height="0.0"/>
+                                                <rect key="frame" x="1" y="1" width="260" height="0.0"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             </view>
                                             <constraints>

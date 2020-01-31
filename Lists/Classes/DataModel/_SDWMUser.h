@@ -23,6 +23,8 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) SDWMUserID *objectID;
 
+@property (nonatomic, strong, nullable) NSString* initials;
+
 @property (nonatomic, strong, nullable) NSString* name;
 
 @property (nonatomic, strong, nullable) NSString* trelloID;
@@ -55,6 +57,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _SDWMUser (CoreDataGeneratedPrimitiveAccessors)
 
+- (nullable NSString*)primitiveInitials;
+- (void)setPrimitiveInitials:(nullable NSString*)value;
+
 - (nullable NSString*)primitiveName;
 - (void)setPrimitiveName:(nullable NSString*)value;
 
@@ -73,6 +78,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMUserAttributes: NSObject 
++ (NSString *)initials;
 + (NSString *)name;
 + (NSString *)trelloID;
 + (NSString *)uniqueIdentifier;

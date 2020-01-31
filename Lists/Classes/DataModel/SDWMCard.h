@@ -4,7 +4,6 @@
 @interface SDWMCard : _SDWMCard
 
 - (NSArray *)displayLabels;
-- (NSArray *)members;
 - (NSString *)cardID;
 
 @end

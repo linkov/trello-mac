@@ -122,6 +122,17 @@
 	return result;
 }
 
+@dynamic members;
+
+- (NSMutableSet<SDWMUser*>*)membersSet {
+	[self willAccessValueForKey:@"members"];
+
+	NSMutableSet<SDWMUser*> *result = (NSMutableSet<SDWMUser*>*)[self mutableSetValueForKey:@"members"];
+
+	[self didAccessValueForKey:@"members"];
+	return result;
+}
+
 @dynamic user;
 
 @end
@@ -153,6 +164,9 @@
 }
 + (NSString *)lists {
 	return @"lists";
+}
++ (NSString *)members {
+	return @"members";
 }
 + (NSString *)user {
 	return @"user";

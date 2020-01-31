@@ -25,8 +25,9 @@
 + (FEMMapping *)defaultMapping {
     FEMMapping *mapping = [[FEMMapping alloc] initWithEntityName:@"SDWMUser"];
     mapping.primaryKey = SDWMappingDefaultPrimaryKey;
-//    [mapping addAttributeWithProperty:@"status" keyPath:@"status"];
     [mapping addAttribute:[FEMAttribute listsIDAttribute]];
+    [mapping addAttributeWithProperty:@"name" keyPath:@"fullName"];
+    [mapping addAttributeWithProperty:@"initials" keyPath:@"initials"];
     return mapping;
 }
 

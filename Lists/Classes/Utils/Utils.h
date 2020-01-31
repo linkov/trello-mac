@@ -22,6 +22,8 @@ typedef void (^SDWResultBooleanBlock)(id object, BOOL valid);
 + (NSString *)twoLetterIDFromName:(NSString *)name;
 + (NSDate *)stringToDate:(NSString *)string;
 + (NSString *)dateToString:(NSDate *)date;
+
 + (NSMenu *)labelsMenuForBoard:(NSString *)trelloID;
++ (NSMenu *)usersMenuForBoard:(NSString *)trelloID;
 
 @end

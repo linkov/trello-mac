@@ -9,6 +9,7 @@
 #import "SDWBoardDisplayItem.h"
 #import "SDWListDisplayItem.h"
 #import "SDWLabelDisplayItem.h"
+#import "SDWUserDisplayItem.h"
 
 @interface SDWBoardDisplayItem ()
 
@@ -70,6 +71,17 @@
     return [arr copy];
 }
 
+
+- (NSArray <SDWUserDisplayItem *> *)members {
+    
+    NSMutableArray *arr = [NSMutableArray new];
+    for (SDWUserDisplayItem *model in self.model.members) {
+        SDWUserDisplayItem *item = [[SDWUserDisplayItem alloc]initWithModel:model];
+        [arr addObject:item];
+    }
+    
+    return [arr copy];
+}
 
 @end
 

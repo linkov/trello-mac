@@ -17,6 +17,7 @@
 @property (strong) IBOutlet NSLayoutConstraint *widthConstraint;
 @property (strong) IBOutlet SDWCardListView *mainBox;
 @property (weak) IBOutlet NSStackView *customLabelsView;
+@property (weak) IBOutlet NSLayoutConstraint *customLabelsViewHeightConstaint;
 
 @property (weak) id <SDWSingleCardViewDelegate> delegate;
 
@@ -29,6 +30,9 @@
 @protocol SDWSingleCardViewDelegate
 
 @optional
+
+- (void)cardViewShouldRemoveUser:(NSString *)trelloID;
+- (void)cardViewShouldAddUser:(NSString *)trelloID;
 
 - (void)cardViewShouldRemoveLabelOfColor:(NSString *)color;
 - (void)cardViewShouldAddLabelOfColor:(NSString *)color;

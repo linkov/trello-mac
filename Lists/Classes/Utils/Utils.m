@@ -13,7 +13,7 @@
 #import "SDWMBoard.h"
 #import "SDWBoardDisplayItem.h"
 #import "SDWLabelDisplayItem.h"
-
+#include "SDWUserDisplayItem.h"
 
 @implementation Utils
 
@@ -94,10 +94,17 @@
     return item;
 }
 
++ (NSMenuItem *)itemForCardUsersMenuWithInitialsString:(NSString *)name {
+
+    NSMenuItem *item = [[NSMenuItem alloc]init];
+    item.title = name;
+    return item;
+}
+
 
 + (NSMenuItem *)itemForCardLabelsMenuWithColorString:(NSString *)color name:(NSString *)name {
 
-    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithOvalInRect: NSMakeRect(2, 5, 5, 5)];
+    NSBezierPath* ovalPath = [NSBezierPath bezierPathWithRoundedRect:NSMakeRect(2, 5, 10, 5) xRadius:1 yRadius:1 ];
 
     NSMenuItem *item = [[NSMenuItem alloc]init];
     item.title = name;
@@ -127,6 +134,25 @@
         NSMenuItem *label = [Utils itemForCardLabelsMenuWithColorString:lab.color name:lab.name.length > 0 ? lab.name : lab.color];
         [menu addItem:label];
     }
+
+    NSMenuItem *separator = [NSMenuItem separatorItem];
+    [menu addItem:separator];
+    
+    for (SDWUserDisplayItem *usr in displayModel.members) {
+
+        NSMenuItem *label = [Utils itemForCardUsersMenuWithInitialsString:usr.initials];
+        [menu addItem:label];
+    }
+
+    
+
+    return menu;
+}
+
++ (NSMenu *)usersMenuForBoard:(NSString *)trelloID {
+
+    NSMenu *menu = [[NSMenu alloc]init];
+    menu.minimumWidth = 250.0;
 
 
     return menu;

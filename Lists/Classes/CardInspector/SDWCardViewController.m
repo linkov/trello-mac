@@ -261,30 +261,7 @@
         [self fetchChecklists];
     }
     
-    
-   // NSButton *addLabel = [NSButton buttonWithImage:[NSImage imageNamed:@"add_label"] target:self action:@selector(onAddLabel:)];
-//    NSButton *addLabel = [[NSButton alloc] init];
-//
-//    [addLabel setImage:[NSImage imageNamed:@"add_label"]];
-//    [addLabel setAction:@selector(onAddLabel:)];
-//    [addLabel setTarget:self];
-//
-//
-//    SYFlatButton *button = [[SYFlatButton alloc] initWithFrame:CGRectMake(0.0, 0.0, 80.0, 30.0)];
-//    button.title = @" + Add label ";
-////    button.momentary = YES;
-//    button.cornerRadius = 4.0;
-//    button.font = [NSFont fontWithName:@"IBMPlexSans-Medium" size:13];
-//    button.titleNormalColor = [NSColor whiteColor];
-//     button.titleHighlightColor = [NSColor whiteColor];
-//    button.backgroundNormalColor = [NSColor blackColor];
-//    button.backgroundHighlightColor = [NSColor blackColor];
-//    button.action = @selector(onAddLabel:);
-//    button.target = self;
-////    [self.view addSubview:button];
-//
-//
-//    [self.labelsStackView addView:button inGravity:NSStackViewGravityCenter];
+
     
     for (SDWLabelDisplayItem *label in [self.card labels]) {
         
@@ -294,7 +271,11 @@
               [text setFont: [NSFont fontWithName:@"IBMPlexSans-Medium" size:12]];
 
               [text setBezeled:NO];
-              [text setTextColor:[NSColor whiteColor]];
+                if (label.name.length == 0) {
+                   [text setTextColor:[SharedSettings colorForTrelloColor:label.color]];
+               } else {
+                   [text setTextColor:[NSColor whiteColor]];
+               }
         [text setStringValue:[NSString stringWithFormat:@" %@ ",label.name.length > 0 ? label.name: label.color]];
               [text setEditable:NO];
               text.backgroundColor = [SharedSettings colorForTrelloColor:label.color];

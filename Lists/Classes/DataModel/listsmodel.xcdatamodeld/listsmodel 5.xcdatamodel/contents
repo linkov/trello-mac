@@ -17,7 +17,8 @@
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="board" inverseEntity="SDWMCard"/>
         <relationship name="labels" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMLabel" inverseName="board" inverseEntity="SDWMLabel"/>
         <relationship name="lists" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SDWMList" inverseName="board" inverseEntity="SDWMList"/>
-        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMUser" inverseName="boards" inverseEntity="SDWMUser"/>
+        <relationship name="members" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMUser" inverseName="boards" inverseEntity="SDWMUser"/>
+        <relationship name="user" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SDWMUser"/>
     </entity>
     <entity name="SDWMCard" representedClassName="SDWMCard" syncable="YES" codeGenerationType="class">
         <attribute name="cardDescription" optional="YES" attributeType="String"/>
@@ -74,12 +75,12 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="trelloID" optional="YES" attributeType="String"/>
         <attribute name="uniqueIdentifier" optional="YES" attributeType="String"/>
-        <relationship name="boards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMBoard" inverseName="user" inverseEntity="SDWMBoard"/>
+        <relationship name="boards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMBoard" inverseName="members" inverseEntity="SDWMBoard"/>
         <relationship name="cards" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SDWMCard" inverseName="members" inverseEntity="SDWMCard"/>
     </entity>
     <elements>
         <element name="SDWMActivity" positionX="-18" positionY="90" width="128" height="135"/>
-        <element name="SDWMBoard" positionX="-63" positionY="-18" width="128" height="178"/>
+        <element name="SDWMBoard" positionX="-63" positionY="-18" width="128" height="193"/>
         <element name="SDWMCard" positionX="-54" positionY="-9" width="128" height="283"/>
         <element name="SDWMChecklist" positionX="18" positionY="63" width="128" height="135"/>
         <element name="SDWMChecklistItem" positionX="0" positionY="45" width="128" height="135"/>

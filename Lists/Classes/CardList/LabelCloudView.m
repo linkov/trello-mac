@@ -118,7 +118,12 @@
     cell.view.layer.backgroundColor = [[SDWAppSettings sharedSettings] colorForTrelloColor:label.color].CGColor;
     
     cell.mainTextField.stringValue = label.name.length > 0 ? label.name : label.color;
-    cell.mainTextField.textColor = [NSColor whiteColor];
+    if (label.name.length == 0) {
+        cell.mainTextField.textColor = [[SDWAppSettings sharedSettings] colorForTrelloColor:label.color];
+    } else {
+        cell.mainTextField.textColor = [NSColor whiteColor];
+    }
+    
     
     
     if ([self.includedLabels containsObject:label]) {
