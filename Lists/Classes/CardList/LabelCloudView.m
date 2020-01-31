@@ -13,7 +13,7 @@
 @interface LabelCloudView () <NSCollectionViewDataSource, NSCollectionViewDelegate, NSCollectionViewDelegateFlowLayout>
 
 @property (strong) NSMutableSet *disabledLabels;
-
+@property (strong) NSMutableSet *includedLabels;
 
 @end
 
@@ -36,8 +36,7 @@
     
     self.bottomBorder = [CALayer layer];
 
-
-    self.bottomBorder.backgroundColor = [[SDWAppSettings sharedSettings] appHighlightColor].CGColor;
+    self.bottomBorder.backgroundColor = [[SDWAppSettings sharedSettings] appBackgroundColor].CGColor;
 
     [self.layer addSublayer:self.bottomBorder];
     self.bottomBorder.frame = CGRectMake(0.0f, 1.,self.collectionView.frame.size.width, 1.0f);
@@ -75,6 +74,7 @@
      
     
     self.disabledLabels = [NSMutableSet set];
+    self.includedLabels = [NSMutableSet set];
     
     NSCollectionViewFlowLayout *layout = [NSCollectionViewFlowLayout new];
     layout.minimumLineSpacing = 8;
@@ -121,10 +121,10 @@
     cell.mainTextField.textColor = [NSColor whiteColor];
     
     
-    if ([self.disabledLabels containsObject:label]) {
-         cell.view.layer.opacity = 0.35;
-    } else {
+    if ([self.includedLabels containsObject:label]) {
          cell.view.layer.opacity = 1;
+    } else {
+         cell.view.layer.opacity = 0.35;
     }
     
     
@@ -136,17 +136,17 @@
     NSIndexPath *indexPath = indexPaths.allObjects.firstObject;
     SDWLabelDisplayItem *label = self.labels[indexPath.item];
        
-    if ([self.disabledLabels containsObject:label]) {
-        [self.disabledLabels removeObject:label];
+    if ([self.includedLabels containsObject:label]) {
+        [self.includedLabels removeObject:label];
     } else {
-        [self.disabledLabels addObject:label];
+        [self.includedLabels addObject:label];
     }
     
     
     
     [self.collectionView reloadData];
     
-    [self.delegate labelCloudDidUpdateDisabledLabels:self.disabledLabels];
+    [self.delegate labelCloudDidUpdateDisabledLabels:self.disabledLabels includedLabels:self.includedLabels];
    
     
 

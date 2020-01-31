@@ -67,7 +67,7 @@
 @property (weak) IBOutlet NSLayoutConstraint *labelsViewHeightConstaint;
 
 @property (strong)  NSSet *excludedLabels;
-
+@property (strong)  NSSet *includedLabels;
 @property (strong) NSPredicate *labelFilerPredicate;
 
 @end
@@ -77,8 +77,41 @@
 
 #pragma mark - Lifecycle
 
-- (void)awakeFromNib {
+- (NSPredicate *)predicateForIncludedLabelsFilter {
+    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(SDWCardDisplayItem *item,
+                                                                   NSDictionary *bindings) {
+        
+        if (item.labels.count == 0) {
+            if (self.includedLabels.count > 0) {
+                      return NO;
+                  }
+            return YES;
+        }
+        for (SDWLabelDisplayItem *cardLabel in item.labels) {
 
+            if (!cardLabel) {
+                return NO;
+            }
+            
+            for (SDWLabelDisplayItem *includedLabel in [self.includedLabels allObjects]) {
+        
+                
+                if (([includedLabel.name isEqualToString:cardLabel.name] && includedLabel.name.length > 0 && cardLabel.name.length > 0) || ([includedLabel.color isEqualToString:cardLabel.color] && includedLabel.color.length > 0 && cardLabel.color.length > 0)) {
+                    return YES;
+                }
+            }
+        }
+        
+        if (self.includedLabels.count > 0) {
+            return NO;
+        }
+        return YES;
+    }];
+    
+    return predicate;
+}
+
+- (NSPredicate *)predicateForExcludedLabelsFilter {
     NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(SDWCardDisplayItem *item,
                                                                    NSDictionary *bindings) {
         
@@ -93,9 +126,6 @@
             
             for (SDWLabelDisplayItem *excludedLabel in [self.excludedLabels allObjects]) {
         
-                if ([excludedLabel.color isEqualToString:@"purple"]) {
-                    
-                }
                 
                 if (([excludedLabel.name isEqualToString:cardLabel.name] && excludedLabel.name.length > 0 && cardLabel.name.length > 0) || ([excludedLabel.color isEqualToString:cardLabel.color] && excludedLabel.color.length > 0 && cardLabel.color.length > 0)) {
                     return NO;
@@ -104,7 +134,14 @@
         }
         return YES;
     }];
-    self.labelFilerPredicate = predicate;
+    
+    return predicate;
+}
+
+- (void)awakeFromNib {
+
+
+    self.labelFilerPredicate = [self predicateForIncludedLabelsFilter];
 }
 
 - (void)viewDidLoad {
@@ -138,38 +175,13 @@
 }
 
 
-- (void)labelCloudDidUpdateDisabledLabels:(NSSet<SDWLabelDisplayItem *> *)labels {
+- (void)labelCloudDidUpdateDisabledLabels:(NSSet<SDWLabelDisplayItem *> *)labels includedLabels:(nonnull NSSet<SDWLabelDisplayItem *> *)includedLabels {
     
+    self.includedLabels = includedLabels;
     self.excludedLabels = labels;
     
-    NSPredicate *predicate = [NSPredicate predicateWithBlock:^BOOL(SDWCardDisplayItem *item,
-                                                                   NSDictionary *bindings) {
-        
-        if (item.labels.count == 0) {
-            return YES;
-        }
-        for (SDWLabelDisplayItem *cardLabel in item.labels) {
-
-            if (!cardLabel) {
-                return YES;
-            }
-            
-            for (SDWLabelDisplayItem *excludedLabel in [self.excludedLabels allObjects]) {
-        
-                if ([excludedLabel.color isEqualToString:@"purple"]) {
-                    
-                }
-                
-                if (([excludedLabel.name isEqualToString:cardLabel.name] && excludedLabel.name.length > 0 && cardLabel.name.length > 0) || ([excludedLabel.color isEqualToString:cardLabel.color] && excludedLabel.color.length > 0 && cardLabel.color.length > 0)) {
-                    return NO;
-                }
-            }
-        }
-        return YES;
-    }];
     
-    
-    self.labelFilerPredicate = predicate;
+    self.labelFilerPredicate = [self predicateForIncludedLabelsFilter];
     
     [self loadCardsForBoard:self.currentBoard];
 }
@@ -504,6 +516,7 @@
 - (void)loadAndSaveAllLabelsForBoard:(SDWBoardDisplayItem *)board {
 
     self.excludedLabels = [NSSet new];
+    self.includedLabels = [NSSet new];
     
 //    if (self.excludedLabels.count > 0) {
         self.labelsView.bottomBorder.frame = CGRectMake(15.0f, 1.,self.labelsView.frame.size.width - 30, 1.0f);
@@ -517,8 +530,11 @@
       self.labelsViewHeightConstaint.constant = 80;
 
       [self.labelsView resetDisabledLabels];
+      
       self.excludedLabels = [NSSet new];
-      self.labelsView.labels = self.currentBoard.labels;
+      self.includedLabels = [NSSet new];
+      
+        self.labelsView.labels = self.currentBoard.labels;
       [self.labelsView.collectionView reloadData];
       self.listName =  [NSString stringWithFormat:@"%@ [overview]",self.currentBoard.name];
       

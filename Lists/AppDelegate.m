@@ -91,7 +91,7 @@
         self.listShowInTodayWidget.enabled = YES;
         self.listRenameMenuItem.enabled = YES;
         
-         self.listAddMenuItem.enabled = NO;
+        self.listAddMenuItem.enabled = NO;
         self.boardCloseMenuItem.enabled = NO;
         self.boardRenameMenuItem.enabled = NO;
         NSLog(@" %@", list);

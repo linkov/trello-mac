@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-- (void)labelCloudDidUpdateDisabledLabels:(NSSet<SDWLabelDisplayItem *>*)labels;
+- (void)labelCloudDidUpdateDisabledLabels:(NSSet<SDWLabelDisplayItem *>*)labels includedLabels:(NSSet<SDWLabelDisplayItem *>*)includedLabels;
 
 @end
 
