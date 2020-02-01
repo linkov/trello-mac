@@ -70,7 +70,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	[self loadBoards];
+//	[self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];

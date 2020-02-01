@@ -9,8 +9,6 @@
 #import <Cocoa/Cocoa.h>
 #import "AppDelegate.h"
 #import "SDWAppSettings.h"
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 #import "MixpanelTracker.h"
 #import "SDWMainSplitView.h"
 #import "SDWMainSplitController.h"
