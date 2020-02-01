@@ -499,33 +499,37 @@
 
 - (void)loadMembers:(NSString *)boardID {
     
-    [self.mainProgressIndicator startAnimation];
+    //
     
-    [[SDWTrelloStore store] fetchUsersForBoardID:boardID currentData:^(NSArray *objects, NSError *error) {
-        
-        if (objects.count > 0) {
-             [self.mainProgressIndicator stopAnimation];
-        }
-        
-        if (!error) {
-            SharedSettings.selectedListUsers = objects;
-            [self loadCardsForList:self.currentList];
-        } else {
-            [self.mainProgressIndicator stopAnimation];
-            //            CLS_LOG(@"err = %@", err.localizedDescription);
-        }
-        
-    } fetchedData:^(NSArray *objects, NSError *error) {
-        
-         [self.mainProgressIndicator stopAnimation];
-        
-        if (!error) {
-            SharedSettings.selectedListUsers = objects;
-            [self loadCardsForList:self.currentList];
-        } else {
-            [self.mainProgressIndicator stopAnimation];
-        }
-    }];
+     [self loadCardsForList:self.currentList];
+    
+//    [self.mainProgressIndicator startAnimation];
+//
+//    [[SDWTrelloStore store] fetchUsersForBoardID:boardID currentData:^(NSArray *objects, NSError *error) {
+//
+//        if (objects.count > 0) {
+//             [self.mainProgressIndicator stopAnimation];
+//        }
+//
+//        if (!error) {
+//            SharedSettings.selectedListUsers = objects;
+//            [self loadCardsForList:self.currentList];
+//        } else {
+//            [self.mainProgressIndicator stopAnimation];
+//            //            CLS_LOG(@"err = %@", err.localizedDescription);
+//        }
+//
+//    } fetchedData:^(NSArray *objects, NSError *error) {
+//
+//         [self.mainProgressIndicator stopAnimation];
+//
+//        if (!error) {
+//            SharedSettings.selectedListUsers = objects;
+//            [self loadCardsForList:self.currentList];
+//        } else {
+//            [self.mainProgressIndicator stopAnimation];
+//        }
+//    }];
     
 
 }

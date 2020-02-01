@@ -4,6 +4,7 @@
 
 #import "SDWMList.h"
 #import "SDWMLabel.h"
+#import "SDWMUser.h"
 @interface SDWMBoard ()
 
 
@@ -36,6 +37,7 @@
     [mapping addAttributeWithProperty:@"starred" keyPath:@"starred"];
     [mapping addToManyRelationshipMapping:[SDWMList defaultMapping] forProperty:@"lists" keyPath:@"lists"];
     [mapping addToManyRelationshipMapping:[SDWMLabel defaultMapping] forProperty:@"labels" keyPath:@"labels"];
+    [mapping addToManyRelationshipMapping:[SDWMUser defaultMapping] forProperty:@"members" keyPath:@"members"];
     return mapping;
 }
 

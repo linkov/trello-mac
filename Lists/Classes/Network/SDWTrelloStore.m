@@ -731,6 +731,7 @@
                 if (error) {
                     SDWPerformBlock(currentBlock,nil,error);
                 } else {
+                    
                     SDWPerformBlock(currentBlock,[SDWTrelloStore displayBoardsFromBoards:fetchedEntities],nil);
                 }
             }];
@@ -738,7 +739,7 @@
     }
 
     
-    [[AFTrelloAPIClient sharedClient] GET:@"members/me/boards?filter=open&fields=name,starred&lists=open"
+    [[AFTrelloAPIClient sharedClient] GET:@"members/me/boards?filter=open&fields=name,starred&lists=open&members=all&member_fields=id,initials,fullName"
                                 parameters:nil
                                    success:^(NSURLSessionDataTask *task, id responseObject)
      {
@@ -763,6 +764,7 @@
                  }];
                  
              } else {
+                 
               SDWPerformBlock(fetchedBlock,[SDWTrelloStore displayBoardsFromBoards:mappedObjects],nil);
              }
              

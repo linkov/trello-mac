@@ -70,7 +70,7 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-//	[self loadBoards];
+	[self loadBoards];
     self.mainBox.fillColor = [SharedSettings appBackgroundColorDark];
     self.outlineView.backgroundColor = [SharedSettings appBackgroundColorDark];
     [self.outlineView registerForDraggedTypes:@[@"REORDER_DRAG_TYPE"]];
@@ -184,6 +184,8 @@
             NSSortDescriptor *sortByName = [[NSSortDescriptor alloc]initWithKey:@"name" ascending:NO];
             self.boards = [objects sortedArrayUsingDescriptors:@[sortByPos,sortByName]];
             [self reloadDataSource];
+            
+            
             [self preloadAllLists];
             
 //            if (self.crownSwitch.on) {
