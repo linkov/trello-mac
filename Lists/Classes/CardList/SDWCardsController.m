@@ -1032,7 +1032,7 @@
     }
     
 
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake([self widthForMembersCount:card.members.count]-2, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(375, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
     CGFloat height = ceilf(rec.size.height);
 
     if ([card labels].count) {
@@ -1040,7 +1040,7 @@
         height += 20;
     }
     
-    if ([card members].count) {
+    if ([card members].count || card.dueDate) {
         
         height += 22;
        
@@ -1252,7 +1252,7 @@
     
     
     
-    if (card.members.count) {
+    if (card.members.count || card.dueDate) {
         NSView *spacer = [NSView new];
         [spacer setContentHuggingPriority:NSLayoutPriorityDefaultLow forOrientation:NSLayoutConstraintOrientationHorizontal];
         [view.stackView addArrangedSubview:spacer];

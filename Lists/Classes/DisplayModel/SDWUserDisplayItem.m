@@ -8,6 +8,7 @@
 
 #import "SDWUserDisplayItem.h"
 #import "SDWMUser.h"
+#import "Utils.h"
 
 @interface SDWUserDisplayItem ()
 
@@ -25,7 +26,13 @@
         self.model = model;
         self.trelloID = model.trelloID;
         self.name = model.name;
-        self.initials = model.initials;
+        
+        if (model.initials) {
+             self.initials = model.initials;
+        } else {
+            self.initials = model.name;
+        }
+       
         
         
         

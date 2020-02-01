@@ -52,8 +52,6 @@
     }
     
     [SharedSettings setTodayWidgetUserToken:SharedSettings.userToken];
-
-    [Fabric with:@[[Crashlytics class]]];
     
     [MSAppCenter start:@"b8a9c7d4-812c-421f-a3a1-9846465fb7ea" withServices:@[
                                                                               [MSAnalytics class],
