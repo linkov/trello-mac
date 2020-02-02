@@ -611,7 +611,7 @@
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dgo-3k-Zcq">
                                                                         <rect key="frame" x="2" y="0.0" width="227" height="14"/>
                                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Label" id="GOh-T5-Gub">
-                                                                            <font key="font" metaFont="label" size="11"/>
+                                                                            <font key="font" metaFont="message" size="11"/>
                                                                             <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                                             <color key="backgroundColor" red="0.15686274510000001" green="0.44705882349999998" blue="0.61568627450000002" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                                                         </textFieldCell>
@@ -801,15 +801,15 @@
         <scene sceneID="cQG-6O-QS0">
             <objects>
                 <viewController storyboardIdentifier="cardsVC" id="s73-N2-doq" customClass="SDWCardsController" sceneMemberID="viewController">
-                    <box key="view" autoresizesSubviews="NO" boxType="custom" borderType="none" title="Box" id="06c-xL-hpn">
-                        <rect key="frame" x="0.0" y="0.0" width="430" height="638"/>
+                    <box key="view" autoresizesSubviews="NO" misplaced="YES" boxType="custom" borderType="none" title="Box" id="06c-xL-hpn">
+                        <rect key="frame" x="0.0" y="0.0" width="432" height="637"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <view key="contentView" id="fLg-he-sjk">
-                            <rect key="frame" x="0.0" y="0.0" width="430" height="638"/>
+                            <rect key="frame" x="0.0" y="0.0" width="432" height="637"/>
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="49o-Ud-LWD">
-                                    <rect key="frame" x="18" y="594" width="61" height="28"/>
+                                    <rect key="frame" x="18" y="590" width="61" height="28"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="Xy8-Qi-kvX">
                                         <font key="font" metaFont="system" size="24"/>
                                         <color key="textColor" red="0.18823529411764706" green="0.21176470588235294" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -820,26 +820,26 @@
                                     </connections>
                                 </textField>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="chB-T3-pMn" customClass="SDWProgressIndicator">
-                                    <rect key="frame" x="90" y="588" width="20" height="20"/>
+                                    <rect key="frame" x="90" y="584" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="QsW-iH-zVN"/>
                                         <constraint firstAttribute="height" constant="20" id="Yb0-YH-y7s"/>
                                     </constraints>
                                 </customView>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQK-mH-vOP">
-                                    <rect key="frame" x="15" y="0.0" width="405" height="454"/>
+                                    <rect key="frame" x="15" y="0.0" width="407" height="450"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cGQ-Pd-6cj">
-                                        <rect key="frame" x="0.0" y="0.0" width="405" height="454"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="407" height="450"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="35" rowSizeStyle="automatic" viewBased="YES" id="teg-4I-hCA" customClass="JWCTableView">
-                                                <rect key="frame" x="0.0" y="0.0" width="405" height="454"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="407" height="450"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
                                                 <tableColumns>
-                                                    <tableColumn identifier="firstColumn" width="402" minWidth="40" maxWidth="1000" id="SiU-Ld-vzo">
+                                                    <tableColumn identifier="firstColumn" width="404" minWidth="40" maxWidth="1000" id="SiU-Ld-vzo">
                                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
                                                             <font key="font" metaFont="message" size="11"/>
                                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
@@ -853,7 +853,7 @@
                                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                         <prototypeCellViews>
                                                             <tableCellView identifier="cellView" id="UhZ-aE-0ve" customClass="SDWSingleCardTableCellView">
-                                                                <rect key="frame" x="1" y="1" width="402" height="35"/>
+                                                                <rect key="frame" x="1" y="1" width="404" height="35"/>
                                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                 <subviews>
                                                                     <box autoresizesSubviews="NO" misplaced="YES" boxType="custom" borderType="line" borderWidth="0.0" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="M81-XC-LPW" customClass="SDWCardListView">
@@ -862,8 +862,24 @@
                                                                             <rect key="frame" x="0.0" y="0.0" width="399" height="35"/>
                                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                             <subviews>
+                                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ip7-Lx-9sb">
+                                                                                    <rect key="frame" x="364" y="10" width="26" height="16"/>
+                                                                                    <textFieldCell key="cell" lineBreakMode="clipping" title="120" id="8PI-A8-Zc7">
+                                                                                        <font key="font" metaFont="system"/>
+                                                                                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                                                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                                                    </textFieldCell>
+                                                                                </textField>
+                                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fnI-uv-SvN">
+                                                                                    <rect key="frame" x="345" y="10" width="16" height="16"/>
+                                                                                    <constraints>
+                                                                                        <constraint firstAttribute="width" constant="16" id="F0U-yG-YWa"/>
+                                                                                        <constraint firstAttribute="height" constant="16" id="Lbv-qO-IwC"/>
+                                                                                    </constraints>
+                                                                                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="commentsIcon" id="iaw-og-W0p"/>
+                                                                                </imageView>
                                                                                 <textField verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gng-eQ-Hld">
-                                                                                    <rect key="frame" x="11" y="13" width="375" height="16"/>
+                                                                                    <rect key="frame" x="11" y="13" width="323" height="16"/>
                                                                                     <textFieldCell key="cell" sendsActionOnEndEditing="YES" state="on" drawsBackground="YES" id="JNL-qQ-9J9">
                                                                                         <font key="font" size="14" name="HelveticaNeue"/>
                                                                                         <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
@@ -871,25 +887,29 @@
                                                                                     </textFieldCell>
                                                                                 </textField>
                                                                                 <stackView distribution="fill" orientation="horizontal" alignment="centerY" translatesAutoresizingMaskIntoConstraints="NO" id="aM1-XC-rJQ">
-                                                                                    <rect key="frame" x="11" y="-9" width="375" height="20"/>
+                                                                                    <rect key="frame" x="11" y="-9" width="323" height="20"/>
                                                                                     <edgeInsets key="edgeInsets" left="3" right="0.0" top="3" bottom="0.0"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="20" id="Poo-Bz-8YN"/>
                                                                                     </constraints>
                                                                                 </stackView>
                                                                                 <stackView orientation="horizontal" alignment="top" spacing="2" hasEqualSpacing="YES" horizontalHuggingPriority="249" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="sCM-Np-Xy8">
-                                                                                    <rect key="frame" x="13" y="-28" width="373" height="16"/>
+                                                                                    <rect key="frame" x="13" y="-28" width="321" height="16"/>
                                                                                     <constraints>
                                                                                         <constraint firstAttribute="height" constant="16" id="pjY-Ya-0Ea"/>
                                                                                     </constraints>
                                                                                 </stackView>
                                                                             </subviews>
                                                                             <constraints>
-                                                                                <constraint firstAttribute="trailing" secondItem="gng-eQ-Hld" secondAttribute="trailing" constant="11" id="HAv-6R-jty"/>
+                                                                                <constraint firstItem="ip7-Lx-9sb" firstAttribute="centerY" secondItem="mTf-wB-oXU" secondAttribute="centerY" id="CYR-S9-3QU"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="gng-eQ-Hld" secondAttribute="trailing" constant="65" id="HAv-6R-jty"/>
+                                                                                <constraint firstAttribute="trailing" secondItem="ip7-Lx-9sb" secondAttribute="trailing" constant="11" id="HQH-nf-rit"/>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="leading" secondItem="gng-eQ-Hld" secondAttribute="leading" id="OZ3-zK-z6C"/>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="top" secondItem="gng-eQ-Hld" secondAttribute="bottom" constant="2" id="T0r-7S-rOX"/>
                                                                                 <constraint firstItem="sCM-Np-Xy8" firstAttribute="trailing" secondItem="gng-eQ-Hld" secondAttribute="trailing" id="coS-s2-bRg"/>
                                                                                 <constraint firstItem="aM1-XC-rJQ" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="gng-eQ-Hld" secondAttribute="trailing" id="eCV-Vc-hPx"/>
+                                                                                <constraint firstItem="fnI-uv-SvN" firstAttribute="centerY" secondItem="mTf-wB-oXU" secondAttribute="centerY" id="gSZ-fz-WU3"/>
+                                                                                <constraint firstItem="fnI-uv-SvN" firstAttribute="trailing" secondItem="ip7-Lx-9sb" secondAttribute="leading" constant="-5" id="hUd-Jc-Qib"/>
                                                                                 <constraint firstItem="sCM-Np-Xy8" firstAttribute="top" secondItem="aM1-XC-rJQ" secondAttribute="bottom" constant="3" id="oRn-5a-WU4"/>
                                                                                 <constraint firstItem="sCM-Np-Xy8" firstAttribute="leading" secondItem="gng-eQ-Hld" secondAttribute="leading" constant="2" id="tgR-0N-qGm"/>
                                                                             </constraints>
@@ -912,9 +932,13 @@
                                                                     <constraint firstAttribute="bottom" secondItem="M81-XC-LPW" secondAttribute="bottom" id="afK-VB-IhN"/>
                                                                 </constraints>
                                                                 <connections>
+                                                                    <outlet property="commentsCountTextfield" destination="ip7-Lx-9sb" id="PWk-hY-KVq"/>
+                                                                    <outlet property="commentsIconImageView" destination="fnI-uv-SvN" id="vZq-ns-CY1"/>
+                                                                    <outlet property="commentsIconWidth" destination="F0U-yG-YWa" id="MMv-Mo-YtK"/>
                                                                     <outlet property="customLabelsView" destination="aM1-XC-rJQ" id="7Vd-aJ-n0X"/>
                                                                     <outlet property="customLabelsViewHeightConstaint" destination="Poo-Bz-8YN" id="C1E-UR-jlg"/>
                                                                     <outlet property="mainBox" destination="M81-XC-LPW" id="ZxC-uY-1at"/>
+                                                                    <outlet property="mainTextfieldTrailingConstraint" destination="HAv-6R-jty" id="3Hz-mO-2ap"/>
                                                                     <outlet property="stackView" destination="sCM-Np-Xy8" id="O6y-Hm-E4T"/>
                                                                     <outlet property="textField" destination="gng-eQ-Hld" id="R6k-7Q-IZ8"/>
                                                                 </connections>
@@ -942,14 +966,14 @@
                                     </scroller>
                                 </scrollView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mUn-cv-PjH" customClass="SDWProgressIndicator">
-                                    <rect key="frame" x="165" y="269" width="100" height="100"/>
+                                    <rect key="frame" x="166" y="267" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="G8M-VG-JTt"/>
                                         <constraint firstAttribute="width" constant="100" id="sNK-P9-9LK"/>
                                     </constraints>
                                 </customView>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="sUr-Tl-WD0" userLabel="add card button">
-                                    <rect key="frame" x="387" y="590" width="32" height="23"/>
+                                    <rect key="frame" x="389" y="586" width="32" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="32" id="PqG-M0-29y"/>
                                         <constraint firstAttribute="height" constant="23" id="kao-Oz-wwf"/>
@@ -963,7 +987,7 @@
                                     </connections>
                                 </button>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-TF-9NK">
-                                    <rect key="frame" x="196" y="609" width="38" height="23"/>
+                                    <rect key="frame" x="197" y="605" width="38" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="38" id="0VO-N2-Ssm"/>
                                         <constraint firstAttribute="height" constant="23" id="2Tc-9R-m83"/>
@@ -971,16 +995,16 @@
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="no-connection" id="61V-OJ-7V7"/>
                                 </imageView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="K1C-y7-TFT" customClass="LabelCloudView">
-                                    <rect key="frame" x="10" y="464" width="410" height="120"/>
+                                    <rect key="frame" x="10" y="460" width="412" height="120"/>
                                     <subviews>
                                         <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-gB-HFs">
-                                            <rect key="frame" x="0.0" y="0.0" width="410" height="120"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="412" height="120"/>
                                             <clipView key="contentView" id="vlG-sE-BvS">
-                                                <rect key="frame" x="0.0" y="0.0" width="410" height="120"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="412" height="120"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <collectionView id="OHd-3W-dAK">
-                                                        <rect key="frame" x="0.0" y="0.0" width="410" height="120"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="412" height="120"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                         <collectionViewFlowLayout key="collectionViewLayout" minimumInteritemSpacing="10" minimumLineSpacing="10" id="sgx-hQ-bro">
                                                             <size key="itemSize" width="50" height="50"/>
@@ -1768,6 +1792,7 @@
         <image name="backLogo" width="66" height="66"/>
         <image name="card" width="14" height="12"/>
         <image name="close_cancel" width="11" height="11"/>
+        <image name="commentsIcon" width="26" height="26"/>
         <image name="crown-new" width="15" height="15"/>
         <image name="dueButton" width="12" height="13"/>
         <image name="dueSort" width="20" height="24"/>

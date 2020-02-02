@@ -80,6 +80,8 @@
     [mapping addRelationship:userRelationship];
 
     
+    [mapping addAttributeWithProperty:@"attachmentsCount" keyPath:@"badges.attachments"];
+    [mapping addAttributeWithProperty:@"commentsCount" keyPath:@"badges.comments"];
     
     
     return mapping;

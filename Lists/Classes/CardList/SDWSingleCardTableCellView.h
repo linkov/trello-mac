@@ -18,11 +18,15 @@
 @property (strong) IBOutlet SDWCardListView *mainBox;
 @property (weak) IBOutlet NSStackView *customLabelsView;
 @property (weak) IBOutlet NSLayoutConstraint *customLabelsViewHeightConstaint;
+@property (weak) IBOutlet NSLayoutConstraint *commentsIconWidth;
+@property (weak) IBOutlet NSTextField *commentsCountTextfield;
+@property (weak) IBOutlet NSImageView *commentsIconImageView;
 
 @property (weak) id <SDWSingleCardViewDelegate> delegate;
 
 @property (strong) NSString *boardID;
 @property (strong) SDWCardDisplayItem *cardDisplayItem;
+@property (weak) IBOutlet NSLayoutConstraint *mainTextfieldTrailingConstraint;
 
 @end
 

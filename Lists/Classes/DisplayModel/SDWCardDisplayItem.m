@@ -29,6 +29,8 @@
     self = [super init];
     if (self) {
         self.model = model;
+        self.attachmentsCount = model.attachmentsCount;
+        self.commentsCount = model.commentsCount;
         self.name = model.name;
         self.cardDescription = model.cardDescription;
         self.trelloID = model.trelloID;

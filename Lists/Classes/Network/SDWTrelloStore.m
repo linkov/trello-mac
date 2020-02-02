@@ -570,7 +570,7 @@
 
     }];
     
-    NSString *urlString = [NSString stringWithFormat:@"lists/%@/cards?lists=open&cards=open&members=true&member_fields=initials,id,fullName",list.trelloID];
+    NSString *urlString = [NSString stringWithFormat:@"lists/%@/cards?lists=open&cards=open&card_attachments=true&members=true&member_fields=initials,id,fullName",list.trelloID];
     
     [[AFTrelloAPIClient sharedClient] GET:urlString
                                parameters:nil

@@ -17,6 +17,9 @@
 
 @property NSString *trelloID;
 
+@property NSNumber *attachmentsCount;
+@property NSNumber *commentsCount;
+
 @property NSString *cardDescription;
 @property NSDate *dueDate;
 @property NSDate *lastUpdate;

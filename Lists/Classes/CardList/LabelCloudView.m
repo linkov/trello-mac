@@ -120,14 +120,24 @@
     cell.mainTextField.stringValue = label.name.length > 0 ? label.name : label.color;
     if (label.name.length == 0) {
         cell.mainTextField.textColor = [[SDWAppSettings sharedSettings] colorForTrelloColor:label.color];
+        
+        
     } else {
         cell.mainTextField.textColor = [NSColor whiteColor];
     }
     
-    
+
     
     if ([self.includedLabels containsObject:label]) {
          cell.view.layer.opacity = 1;
+        
+        
+        cell.view.layer.shadowOpacity = 0.4;
+        cell.view.layer.shadowColor = [SharedSettings colorForTrelloColor:label.color].CGColor;
+        cell.view.layer.shadowOffset = NSMakeSize(0, 0);
+        cell.view.layer.shadowRadius = 6;
+        
+        
     } else {
          cell.view.layer.opacity = 0.35;
     }
@@ -144,6 +154,8 @@
     if ([self.includedLabels containsObject:label]) {
         [self.includedLabels removeObject:label];
     } else {
+        
+
         [self.includedLabels addObject:label];
     }
     

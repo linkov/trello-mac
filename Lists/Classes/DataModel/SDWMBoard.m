@@ -35,6 +35,7 @@
     [mapping addAttribute:[FEMAttribute listsIDAttribute]];
     [mapping addAttributeWithProperty:@"name" keyPath:@"name"];
     [mapping addAttributeWithProperty:@"starred" keyPath:@"starred"];
+    
     [mapping addToManyRelationshipMapping:[SDWMList defaultMapping] forProperty:@"lists" keyPath:@"lists"];
     [mapping addToManyRelationshipMapping:[SDWMLabel defaultMapping] forProperty:@"labels" keyPath:@"labels"];
     [mapping addToManyRelationshipMapping:[SDWMUser defaultMapping] forProperty:@"members" keyPath:@"members"];

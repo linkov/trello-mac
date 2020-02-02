@@ -29,6 +29,11 @@
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 
+	if ([key isEqualToString:@"attachmentsCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"attachmentsCount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"checkItemsCheckedCountValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"checkItemsCheckedCount"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -39,6 +44,11 @@
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
+	if ([key isEqualToString:@"commentsCountValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"commentsCount"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"positionValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"position"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -46,6 +56,26 @@
 	}
 
 	return keyPaths;
+}
+
+@dynamic attachmentsCount;
+
+- (int16_t)attachmentsCountValue {
+	NSNumber *result = [self attachmentsCount];
+	return [result shortValue];
+}
+
+- (void)setAttachmentsCountValue:(int16_t)value_ {
+	[self setAttachmentsCount:@(value_)];
+}
+
+- (int16_t)primitiveAttachmentsCountValue {
+	NSNumber *result = [self primitiveAttachmentsCount];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveAttachmentsCountValue:(int16_t)value_ {
+	[self setPrimitiveAttachmentsCount:@(value_)];
 }
 
 @dynamic cardDescription;
@@ -88,6 +118,26 @@
 
 - (void)setPrimitiveCheckItemsCountValue:(int16_t)value_ {
 	[self setPrimitiveCheckItemsCount:@(value_)];
+}
+
+@dynamic commentsCount;
+
+- (int16_t)commentsCountValue {
+	NSNumber *result = [self commentsCount];
+	return [result shortValue];
+}
+
+- (void)setCommentsCountValue:(int16_t)value_ {
+	[self setCommentsCount:@(value_)];
+}
+
+- (int16_t)primitiveCommentsCountValue {
+	NSNumber *result = [self primitiveCommentsCount];
+	return [result shortValue];
+}
+
+- (void)setPrimitiveCommentsCountValue:(int16_t)value_ {
+	[self setPrimitiveCommentsCount:@(value_)];
 }
 
 @dynamic dueDate;
@@ -173,6 +223,9 @@
 @end
 
 @implementation SDWMCardAttributes 
++ (NSString *)attachmentsCount {
+	return @"attachmentsCount";
+}
 + (NSString *)cardDescription {
 	return @"cardDescription";
 }
@@ -181,6 +234,9 @@
 }
 + (NSString *)checkItemsCount {
 	return @"checkItemsCount";
+}
++ (NSString *)commentsCount {
+	return @"commentsCount";
 }
 + (NSString *)dueDate {
 	return @"dueDate";

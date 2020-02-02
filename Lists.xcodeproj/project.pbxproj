@@ -349,6 +349,7 @@
 		F18B584C1ECE0E8100884CDC /* SDWChecklistDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistDisplayItem.m; sourceTree = "<group>"; };
 		F18B584E1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWChecklistItemDisplayItem.h; sourceTree = "<group>"; };
 		F18B584F1ECE0E9C00884CDC /* SDWChecklistItemDisplayItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWChecklistItemDisplayItem.m; sourceTree = "<group>"; };
+		F18F271223E6D02C00740D55 /* listsmodel 6.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "listsmodel 6.xcdatamodel"; sourceTree = "<group>"; };
 		F1910CFE224EC4E200C4DD91 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F1918A961A3D2FBD00CD22CE /* SDWCardDetailBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWCardDetailBox.h; sourceTree = "<group>"; };
 		F1918A971A3D2FBD00CD22CE /* SDWCardDetailBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWCardDetailBox.m; sourceTree = "<group>"; };
@@ -1302,7 +1303,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1313,7 +1314,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
@@ -1332,7 +1333,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1342,7 +1343,7 @@
 				INFOPLIST_FILE = Lists/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "SDWR.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = Lists;
 				PROVISIONING_PROFILE = "";
@@ -1374,7 +1375,7 @@
 				"CODE_SIGN_IDENTITY[sdk=macosx*]" = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -1382,7 +1383,7 @@
 				INFOPLIST_FILE = Lists4TrelloToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.6;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SDWR.Lists.Lists4TrelloToday;
@@ -1417,14 +1418,14 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
-				CURRENT_PROJECT_VERSION = 53;
+				CURRENT_PROJECT_VERSION = 55;
 				DEVELOPMENT_TEAM = "";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Lists4TrelloToday/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @executable_path/../../../../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.5;
+				MARKETING_VERSION = 2.6;
 				MTL_FAST_MATH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = SDWR.Lists.Lists4TrelloToday;
 				PRODUCT_NAME = "Lists 4 Trello";
@@ -1478,13 +1479,14 @@
 		F10E13091EBC922B0044802C /* listsmodel.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				F18F271223E6D02C00740D55 /* listsmodel 6.xcdatamodel */,
 				F10C718523E414D600784490 /* listsmodel 5.xcdatamodel */,
 				F10C718423E4014000784490 /* listsmodel 4.xcdatamodel */,
 				F1F4AD6323E24A010022F589 /* listsmodel 3.xcdatamodel */,
 				F10BC8B023DC0E8000B58AF4 /* listsmodel2.xcdatamodel */,
 				F10E130A1EBC922B0044802C /* listsmodel.xcdatamodel */,
 			);
-			currentVersion = F10C718523E414D600784490 /* listsmodel 5.xcdatamodel */;
+			currentVersion = F18F271223E6D02C00740D55 /* listsmodel 6.xcdatamodel */;
 			path = listsmodel.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

@@ -28,6 +28,12 @@ NS_ASSUME_NONNULL_BEGIN
 + (nullable NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 @property (nonatomic, readonly, strong) SDWMCardID *objectID;
 
+@property (nonatomic, strong) NSNumber* attachmentsCount;
+
+@property (atomic) int16_t attachmentsCountValue;
+- (int16_t)attachmentsCountValue;
+- (void)setAttachmentsCountValue:(int16_t)value_;
+
 @property (nonatomic, strong, nullable) NSString* cardDescription;
 
 @property (nonatomic, strong, nullable) NSNumber* checkItemsCheckedCount;
@@ -41,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 @property (atomic) int16_t checkItemsCountValue;
 - (int16_t)checkItemsCountValue;
 - (void)setCheckItemsCountValue:(int16_t)value_;
+
+@property (nonatomic, strong) NSNumber* commentsCount;
+
+@property (atomic) int16_t commentsCountValue;
+- (int16_t)commentsCountValue;
+- (void)setCommentsCountValue:(int16_t)value_;
 
 @property (nonatomic, strong, nullable) NSDate* dueDate;
 
@@ -112,6 +124,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface _SDWMCard (CoreDataGeneratedPrimitiveAccessors)
 
+- (NSNumber*)primitiveAttachmentsCount;
+- (void)setPrimitiveAttachmentsCount:(NSNumber*)value;
+
+- (int16_t)primitiveAttachmentsCountValue;
+- (void)setPrimitiveAttachmentsCountValue:(int16_t)value_;
+
 - (nullable NSString*)primitiveCardDescription;
 - (void)setPrimitiveCardDescription:(nullable NSString*)value;
 
@@ -126,6 +144,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (int16_t)primitiveCheckItemsCountValue;
 - (void)setPrimitiveCheckItemsCountValue:(int16_t)value_;
+
+- (NSNumber*)primitiveCommentsCount;
+- (void)setPrimitiveCommentsCount:(NSNumber*)value;
+
+- (int16_t)primitiveCommentsCountValue;
+- (void)setPrimitiveCommentsCountValue:(int16_t)value_;
 
 - (nullable NSDate*)primitiveDueDate;
 - (void)setPrimitiveDueDate:(nullable NSDate*)value;
@@ -172,9 +196,11 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface SDWMCardAttributes: NSObject 
++ (NSString *)attachmentsCount;
 + (NSString *)cardDescription;
 + (NSString *)checkItemsCheckedCount;
 + (NSString *)checkItemsCount;
++ (NSString *)commentsCount;
 + (NSString *)dueDate;
 + (NSString *)lastUpdate;
 + (NSString *)name;

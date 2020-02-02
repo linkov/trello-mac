@@ -146,7 +146,7 @@
 }
 
 - (void)viewDidLoad {
-	[super viewDidLoad];
+    [super viewDidLoad];
 
   
    
@@ -1036,7 +1036,7 @@
     }
     
 
-    CGRect rec = [card.name boundingRectWithSize:CGSizeMake(375, MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
+    CGRect rec = [card.name boundingRectWithSize:CGSizeMake( (card.commentsCount.intValue > 0 ? 323 : 375), MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
     CGFloat height = ceilf(rec.size.height);
 
     if ([card labels].count) {
@@ -1098,6 +1098,20 @@
     view.delegate = self;
     view.mainBox.selected = NO;
     
+    if (card.commentsCount.intValue > 0) {
+        view.mainTextfieldTrailingConstraint.constant = 65;
+        view.commentsIconWidth.constant = 16;
+        view.commentsCountTextfield.font = [NSFont fontWithName:@"IBMPlexSans-SemiBold" size:10];
+        view.commentsCountTextfield.stringValue = [card.commentsCount stringValue];
+        
+        view.commentsCountTextfield.textColor = [NSColor colorWithHexColorString:@"BBBBBB"];
+        view.commentsIconImageView.contentTintColor = [NSColor colorWithHexColorString:@"BBBBBB"];
+    } else {
+        view.mainTextfieldTrailingConstraint.constant = 11;
+        view.commentsCountTextfield.stringValue = @"";
+        view.commentsIconWidth.constant = 0;
+    }
+
 
     if (SharedSettings.shouldShowCardLabels == YES) {
         view.mainBox.labels = [card labels];
@@ -1212,6 +1226,8 @@
             } else {
                 [text setTextColor:[NSColor whiteColor]];
             }
+            
+
                   
                   [text setStringValue:[NSString stringWithFormat:@" %@ ",label.name.length > 0 ? label.name: label.color]];
                   [text setEditable:NO];

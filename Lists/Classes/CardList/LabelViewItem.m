@@ -19,8 +19,11 @@
     
     self.view.wantsLayer = YES;
     self.view.layer.cornerRadius = 2;
-    self.view.layer.masksToBounds = YES;
+//    self.view.layer.masksToBounds = YES;
     
+    
+    self.view.shadow = [NSShadow new];
+
     self.mainTextField.wantsLayer = YES;
 }
 
