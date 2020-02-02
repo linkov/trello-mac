@@ -140,6 +140,7 @@
         
     } else {
          cell.view.layer.opacity = 0.35;
+        cell.view.layer.shadowOpacity = 0.0;
     }
     
     
