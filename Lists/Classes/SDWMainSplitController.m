@@ -62,6 +62,11 @@
 	    [(SDWBoardsController *)self.boardsSplitItem.viewController loadBoards];
         self.cardsVC.onboardingImage.hidden = NO;
 	}];
+    
+    [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeTimelineStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
+
+        [self toggleTimeline];
+    }];
 
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidChangeSidebarStatusNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -98,6 +103,29 @@
 
         self.cardDetailsWidth.constant = 300;
     }
+
+}
+
+
+- (void)toggleTimeline {
+    
+    if (SDWAppSettings.sharedSettings.isInTimelineMode == YES) {
+        self.cardDetailsWidth.constant = 300;
+        self.sideBarWidth.constant = 200;
+        [SDWAppSettings.sharedSettings setIsInTimelineMode:NO];
+        
+        [self.cardsVC clearCards];
+        [self.boardsVC reloadBoards:nil];
+        
+        
+    } else {
+        self.cardDetailsWidth.constant = 0;
+        self.sideBarWidth.constant = 0;
+        [SDWAppSettings.sharedSettings setIsInTimelineMode:YES];
+        [self.cardsVC clearCards];
+        [self.boardsVC reloadBoards:nil];
+    }
+    
 
 }
 

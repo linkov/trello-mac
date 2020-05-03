@@ -16,7 +16,7 @@
 
 static NSTimeInterval const kAnimationDuration = 0.4f;
 
-static CGFloat const kBorderLineWidth = 1.f;
+static CGFloat const kBorderLineWidth = 2.f;
 
 static CGFloat const kGoldenRatio = 1.61803398875f;
 static CGFloat const kDecreasedGoldenRatio = 1.38;

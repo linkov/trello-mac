@@ -13,6 +13,9 @@
 @property (strong) IBOutlet NSImageView *onboardingImage;
 @property (weak) IBOutlet NSLayoutConstraint *ListWidth;
 
+
+- (void)setupCardsForTimeline;
+
 - (void)setupCardsForBoard:(SDWBoardDisplayItem *)board;
 - (void)setupCardsForList:(SDWListDisplayItem *)list;
 - (void)reloadCards;

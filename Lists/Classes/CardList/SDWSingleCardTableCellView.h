@@ -13,6 +13,8 @@
 
 @interface SDWSingleCardTableCellView : NSTableCellView <NSTextFieldDelegate>
 
+@property Boolean menuClickEnabled;
+
 @property (strong) IBOutlet NSStackView *stackView;
 @property (strong) IBOutlet NSLayoutConstraint *widthConstraint;
 @property (strong) IBOutlet SDWCardListView *mainBox;

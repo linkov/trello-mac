@@ -77,36 +77,14 @@
     self.outlineView.dataSource = self;
     self.outlineView.menuDelegate = self;
 
-    self.dueSortButton.image = [NSImage imageNamed:@"dueSortOff"];
+    self.dueSortButton.image = [NSImage imageNamed:@"dueSortDes"];
 
 }
 
 #pragma mark - Utils
 - (IBAction)sortByDue:(NSButton *)sender {
 
-    if (!SharedSettings.shouldFilterDueAccending && !SharedSettings.shouldFilterDueDecending) {
-
-        SharedSettings.shouldFilterDueAccending = YES;
-        self.dueSortButton.image = [NSImage imageNamed:@"dueSort"];
-
-    } else if (SharedSettings.shouldFilterDueAccending) {
-
-        SharedSettings.shouldFilterDueDecending = YES;
-        SharedSettings.shouldFilterDueAccending = NO;
-        self.dueSortButton.image = [NSImage imageNamed:@"dueSortDes"];
-
-    } else if (SharedSettings.shouldFilterDueDecending) {
-
-        SharedSettings.shouldFilterDueDecending = NO;
-        SharedSettings.shouldFilterDueAccending = NO;
-        self.dueSortButton.image = [NSImage imageNamed:@"dueSortOff"];
-
-    }
-
-    SDWListDisplayItem *list = self.lastSelectedItem.representedObject;
-
-    [[self cardsVC] setupCardsForList:list];
-
+ [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeTimelineStatusNotification object:nil];
 }
 
 
@@ -115,6 +93,10 @@
 
 	return [NSColor blackColor];
 }
+
+
+
+
 
 - (IBAction)logout:(id)sender {
 

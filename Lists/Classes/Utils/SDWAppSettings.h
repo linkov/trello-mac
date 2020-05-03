@@ -40,6 +40,9 @@ extern NSString * const SDWListsShouldReloadBoardsNotification;
 extern NSString * const  SDWListsOutlineViewDidSelectBoardNotification;
 extern NSString * const  SDWListsOutlineViewDidSelectListNotification;
 
+
+extern NSString * const  SDWListsDidChangeTimelineStatusNotification;
+
 @interface SDWAppSettings : NSObject
 
 + (instancetype)sharedSettings;
@@ -60,6 +63,10 @@ extern NSString * const  SDWListsOutlineViewDidSelectListNotification;
 
 @property (strong) NSSet *collapsedBoardsIDs;
 
+
+
+- (void)setIsInTimelineMode:(BOOL)intimeline;
+- (BOOL)isInTimelineMode;
 - (void)setOffline:(BOOL)offline;
 - (BOOL)isOffline;
 - (void)setTodayListID:(NSString *)listID;

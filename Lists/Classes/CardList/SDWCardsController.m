@@ -408,6 +408,28 @@
     
 }
 
+- (void)setupCardsForTimeline {
+
+//    [self.onboardingImage removeFromSuperview];
+//    self.listNameLabel.hidden = NO;
+//    self.listNameTopConstraint.constant = 22;
+//    self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:18];
+//    self.currentList = nil;
+//
+//
+//    self.currentBoard = board;
+//    self.listName =  [NSString stringWithFormat:@"%@ [overview]",self.currentBoard.name];
+//
+//    [self loadAndSaveAllLabelsForBoardID:board.trelloID completion:^{
+//
+//         [self reloadCardsForCurrentBoard];
+//
+//    }];
+    
+
+}
+
+
 - (void)setupCardsForBoard:(SDWBoardDisplayItem *)board {
 
     [self.onboardingImage removeFromSuperview];
@@ -622,15 +644,15 @@
         if (objects.count > 0) {
             [self.mainProgressIndicator stopAnimation];
         }
-
-
-        NSArray *objectsExcludingLabels = [objects filteredArrayUsingPredicate:self.labelFilerPredicate];
-        
-        if (!error) {
-            [self reloadCollection:objectsExcludingLabels];
-        } else {
-            NSLog(@"%@", error);
-        }
+//
+//
+//        NSArray *objectsExcludingLabels = [objects filteredArrayUsingPredicate:self.labelFilerPredicate];
+//        
+//        if (!error) {
+//            [self reloadCollection:objectsExcludingLabels];
+//        } else {
+//            NSLog(@"%@", error);
+//        }
         
     } FetchedData:^(id objects, NSError *error) {
         
@@ -674,7 +696,7 @@
     }
 
 
-    self.cardsArrayController.content = @[];
+//    self.cardsArrayController.content = @[];
 
     self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
 
@@ -936,6 +958,7 @@
   
 
     SDWSingleCardTableCellView *selectedCell = [tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
+   
     [selectedCell.mainBox setSelected:YES];
     selectedCell.delegate = self;
     selectedCell.mainBox.textField.delegate = selectedCell;
@@ -1083,7 +1106,7 @@
     
 
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
-    
+    view.menuClickEnabled = (self.currentBoard == nil);
     view.boardID = self.currentList.board.trelloID;
     view.cardDisplayItem = card;
     

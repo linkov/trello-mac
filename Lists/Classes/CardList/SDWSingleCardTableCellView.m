@@ -42,10 +42,12 @@
 
 - (void)rightMouseDown:(NSEvent *)theEvent {
 
-    if (SharedSettings.shouldShowCardLabels == NO) {
-        return;
+    if (!self.menuClickEnabled) {
+         return;
     }
-
+    
+   
+    
     [self.delegate cardViewDidSelectCard:self];
 
     

@@ -24,6 +24,9 @@
 
 #define valueForKeyExists(key)                  objectForKey(key) != nil
 
+
+NSString * const SDWListsDidChangeTimelineStatusNotification  =  @"com.sdwr.trello-mac.didChangeTimelineStatusNotification";
+
 NSString * const SDWListsDidReceiveUserTokenNotification  =  @"com.sdwr.trello-mac.didReceiveUserTokenNotification";
 NSString * const SDWListsDidChangeSidebarStatusNotification  =  @"com.sdwr.trello-mac.didChangeSidebarStatusNotification";
 NSString * const SDWListsDidChangeCardDetailsStatusNotification  =  @"com.sdwr.trello-mac.didChangeCardDetailsStatusNotification";
@@ -95,6 +98,25 @@ static SDWAppSettings *sharedInstance = nil;
 - (BOOL)isOffline {
     return [[NSUserDefaults standardUserDefaults] boolForKey:@"com.sdwr.trello-mac.offline"];
 }
+
+
+
+
+- (void)setIsInTimelineMode:(BOOL)intimeline {
+    
+    
+    [[NSUserDefaults standardUserDefaults] setBool:intimeline forKey:@"com.sdwr.trello-mac.intimeline"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+}
+
+- (BOOL)isInTimelineMode {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"com.sdwr.trello-mac.intimeline"];
+}
+
+
+
+
 
 
 - (void)setTodayWidgetUserToken:(NSString *)userToken {
