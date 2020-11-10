@@ -354,6 +354,33 @@
 
 }
 
+- (void)moveBoard:(SDWListDisplayItem *)board toPosition:(NSString *)pos withCompletion:(SDWTrelloStoreCompletionBlock)block {
+    
+    MIXPANEL_TRACK_EVENT(@"Reorder card",NULL);
+    
+//    SDWMList *crd = [self.dataModelManager fetchEntityForName:SDWMList.entityName withUID:board.model.uniqueIdentifier inContext:self.dataModelManager.managedObjectContext];
+////    crd.position = pos;
+//    [self saveContext];
+
+    NSString *urlString = [NSString stringWithFormat:@"lists/%@/pos?",board.trelloID];
+    [[AFTrelloAPIClient sharedClient] PUT:urlString parameters:@{@"value":pos}
+                                  success:^(NSURLSessionDataTask *task, id responseObject)
+    {
+        
+        [self saveContext];
+        
+        if(block) block(responseObject,nil);
+
+    } failure:^(NSURLSessionDataTask *task, NSError *error)
+
+    {
+        if(block) block(nil,error);
+        [self handleError:error];
+
+    }];
+
+}
+
 - (void)updateCard:(SDWCardDisplayItem *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block {
     

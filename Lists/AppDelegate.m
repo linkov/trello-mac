@@ -51,17 +51,17 @@
     
     [SharedSettings setTodayWidgetUserToken:SharedSettings.userToken];
     
-    [MSAppCenter start:@"b8a9c7d4-812c-421f-a3a1-9846465fb7ea" withServices:@[
-                                                                              [MSAnalytics class],
-                                                                              [MSCrashes class]
-                                                                              ]];
+
     
 //    for (NSString *font in NSFontManager.sharedFontManager.availableFonts) {
 //        NSLog(@"%@",font);
 //    }
     
     #ifdef PRODUCTION
-    
+    [MSAppCenter start:@"b8a9c7d4-812c-421f-a3a1-9846465fb7ea" withServices:@[
+                                                                              [MSAnalytics class],
+                                                                              [MSCrashes class]
+                                                                              ]];
         [MixpanelTracker startWithToken:@"671b5e87eee999e25d472a57666153df"];
     #endif
     

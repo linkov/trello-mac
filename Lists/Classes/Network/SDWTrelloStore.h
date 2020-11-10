@@ -80,6 +80,9 @@ updatedCard:(SDWTrelloStoreLocalCompletionBlock)block;
       toPosition:(NSNumber *)pos;
 
 //v3
+- (void)moveBoard:(SDWListDisplayItem *)board toPosition:(NSString *)pos withCompletion:(SDWTrelloStoreCompletionBlock)block;
+
+//v3
 - (void)updateCard:(SDWCardDisplayItem *)card
     withCompletion:(SDWTrelloStoreCompletionBlock)block;
 

@@ -286,11 +286,30 @@
 
 }
 
+
+- (void)outlineviewShoulMoveUpListAtRow:(NSUInteger)listRow {
+    SDWListDisplayItem *list =[[self.outlineView itemAtRow:listRow] representedObject];
+    list.position -= 1;
+    [[SDWTrelloStore store] moveBoard:list toPosition:@(list.position) withCompletion:^(id object, NSError *error) {
+        [self reloadBoards:nil];
+    }];
+}
+
+- (void)outlineviewShoulMoveDownListAtRow:(NSUInteger)listRow {
+    SDWListDisplayItem *list =[[self.outlineView itemAtRow:listRow] representedObject];
+ 
+    [[SDWTrelloStore store] moveBoard:list toPosition:@"bottom" withCompletion:^(id object, NSError *error) {
+        
+        [self reloadBoards:nil];
+    }];
+}
+
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow {
 
     SDWListDisplayItem *list =[[self.outlineView itemAtRow:listRow] representedObject];
 
-    [[SDWTrelloStore store] deleteList:list complition:^(id object) {
+    [[SDWTrelloStore store] moveBoard:list toPosition:@"top" withCompletion:^(id object, NSError *error) {
+        
         [self reloadBoards:nil];
     }];
     

@@ -16,6 +16,10 @@
 - (void)outlineviewShouldEditBoardAtRow:(NSUInteger)boardRow;
 - (void)outlineviewShouldDeleteBoardAtRow:(NSUInteger)boardRow;
 - (void)outlineviewShouldDeleteListAtRow:(NSUInteger)listRow;
+
+- (void)outlineviewShoulMoveDownListAtRow:(NSUInteger)listRow;
+- (void)outlineviewShoulMoveUpListAtRow:(NSUInteger)listRow;
+
 - (void)outlineviewShouldAddListToBoardAtRow:(NSUInteger)boardRow;
 - (void)outlineviewShouldAddListToTodayAtRow:(NSUInteger)listRow;
 

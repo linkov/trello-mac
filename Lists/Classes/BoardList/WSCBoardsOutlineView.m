@@ -54,6 +54,15 @@
                    keyEquivalent:@""
                          atIndex:2];
 
+    [theMenu insertItemWithTitle:@"Move ↑"
+                          action:@selector(moveListUp)
+                   keyEquivalent:@""
+                         atIndex:3];
+    [theMenu insertItemWithTitle:@"Move ↓"
+                          action:@selector(moveListDown)
+                   keyEquivalent:@""
+                         atIndex:4];
+
 
 
     self.contextRow = row;
@@ -81,6 +90,7 @@
 
 
 
+
     self.contextRow = row;
 
     return theMenu;
@@ -103,6 +113,13 @@
 }
 
 
+- (void)moveListUp {
+    [self.menuDelegate outlineviewShoulMoveUpListAtRow:self.contextRow];
+}
+
+- (void)moveListDown {
+    [self.menuDelegate outlineviewShoulMoveDownListAtRow:self.contextRow];
+}
 
 - (void)removeList {
 

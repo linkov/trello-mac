@@ -781,6 +781,7 @@
                         <outlet property="mainBox" destination="Ksb-xN-yU4" id="zGA-cT-NAd"/>
                         <outlet property="mainScroll" destination="Hmz-VM-KlS" id="bzo-WI-FPq"/>
                         <outlet property="outlineView" destination="PL6-OM-kuT" id="cbs-2c-GCs"/>
+                        <outlet property="treeController" destination="qT0-9T-gOJ" id="acX-u5-mtC"/>
                     </connections>
                 </viewController>
                 <customObject id="yCC-Kp-vc8" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -808,7 +809,7 @@
                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                             <subviews>
                                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="49o-Ud-LWD">
-                                    <rect key="frame" x="18" y="577" width="61" height="28"/>
+                                    <rect key="frame" x="18" y="575" width="61" height="28"/>
                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" allowsUndo="NO" sendsActionOnEndEditing="YES" title="Label" id="Xy8-Qi-kvX">
                                         <font key="font" metaFont="system" size="24"/>
                                         <color key="textColor" red="0.18823529411764706" green="0.21176470588235294" blue="0.29803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -819,20 +820,20 @@
                                     </connections>
                                 </textField>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="chB-T3-pMn" customClass="SDWProgressIndicator">
-                                    <rect key="frame" x="90" y="571" width="20" height="20"/>
+                                    <rect key="frame" x="90" y="569" width="20" height="20"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="20" id="QsW-iH-zVN"/>
                                         <constraint firstAttribute="height" constant="20" id="Yb0-YH-y7s"/>
                                     </constraints>
                                 </customView>
                                 <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="37" horizontalPageScroll="10" verticalLineScroll="37" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sQK-mH-vOP">
-                                    <rect key="frame" x="15" y="0.0" width="407" height="437"/>
+                                    <rect key="frame" x="15" y="0.0" width="407" height="435"/>
                                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="cGQ-Pd-6cj">
-                                        <rect key="frame" x="0.0" y="0.0" width="407" height="437"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="407" height="435"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
                                             <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="35" rowSizeStyle="automatic" viewBased="YES" id="teg-4I-hCA" customClass="JWCTableView">
-                                                <rect key="frame" x="0.0" y="0.0" width="407" height="437"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="407" height="435"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <size key="intercellSpacing" width="3" height="2"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -964,14 +965,14 @@
                                     </scroller>
                                 </scrollView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="mUn-cv-PjH" customClass="SDWProgressIndicator">
-                                    <rect key="frame" x="166" y="261" width="100" height="100"/>
+                                    <rect key="frame" x="166" y="260" width="100" height="100"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="100" id="G8M-VG-JTt"/>
                                         <constraint firstAttribute="width" constant="100" id="sNK-P9-9LK"/>
                                     </constraints>
                                 </customView>
                                 <button translatesAutoresizingMaskIntoConstraints="NO" id="sUr-Tl-WD0" userLabel="add card button">
-                                    <rect key="frame" x="389" y="573" width="32" height="23"/>
+                                    <rect key="frame" x="389" y="571" width="32" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="32" id="PqG-M0-29y"/>
                                         <constraint firstAttribute="height" constant="23" id="kao-Oz-wwf"/>
@@ -985,7 +986,7 @@
                                     </connections>
                                 </button>
                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aA9-TF-9NK">
-                                    <rect key="frame" x="197" y="592" width="38" height="23"/>
+                                    <rect key="frame" x="197" y="590" width="38" height="23"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="38" id="0VO-N2-Ssm"/>
                                         <constraint firstAttribute="height" constant="23" id="2Tc-9R-m83"/>
@@ -993,7 +994,7 @@
                                     <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="no-connection" id="61V-OJ-7V7"/>
                                 </imageView>
                                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="K1C-y7-TFT" customClass="LabelCloudView">
-                                    <rect key="frame" x="10" y="447" width="412" height="120"/>
+                                    <rect key="frame" x="10" y="445" width="412" height="120"/>
                                     <subviews>
                                         <scrollView wantsLayer="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HEQ-gB-HFs">
                                             <rect key="frame" x="0.0" y="0.0" width="412" height="120"/>
@@ -1394,7 +1395,7 @@
                                     <rect key="frame" x="0.0" y="459" width="300" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="0.75" horizontal="NO" id="DBe-aE-uyS">
+                                <scroller key="verticalScroller" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="DBe-aE-uyS">
                                     <rect key="frame" x="284" y="0.0" width="16" height="475"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
