@@ -257,7 +257,7 @@
 //    card.positionValue =  position;
 //    card.list = list.model;
 //    [self saveContext];
-//    
+//
     
     MIXPANEL_TRACK_EVENT(@"Create card",NULL);
     
@@ -555,6 +555,49 @@
      }];
 }
 
+
+- (void)fetchAllCardsForTodayCurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                 crownFiltered:(BOOL)crownFiltered {
+    
+    
+    
+    
+    [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+        
+      
+            NSArray *cards = [self.dataModelManager fetchAllEntitiesForName:[SDWMCard entityName] withPredicate:[NSPredicate predicateWithFormat: @"dueDate != nil"] inContext:self.dataModelManager.managedObjectContext];
+            
+            
+            SDWPerformBlock(currentBlock,[self displayCardsfromCards:cards crownFiltered:crownFiltered],nil);
+  
+
+    }];
+    
+   // SDWPerformBlock(fetchedBlock,[self displayCardsfromCards:cards crownFiltered:crownFiltered],nil);
+//
+//    NSString *urlString = [NSString stringWithFormat:@"lists/%@/cards?lists=open&cards=open&card_attachments=true&members=true&member_fields=initials,id,fullName",list.trelloID];
+//
+//    [[AFTrelloAPIClient sharedClient] GET:urlString
+//                               parameters:nil
+//                                  success:^(NSURLSessionDataTask *task, id responseObject)
+//     {
+//
+//
+//         [self.dataModelManager.managedObjectContext performBlockAndWait:^{
+//
+//             NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
+//             [self saveContext];
+//             SDWPerformBlock(fetchedBlock,[self displayCardsfromCards:mappedObjects crownFiltered:crownFiltered],nil);
+//
+//         }];
+//
+//
+//     } failure:^(NSURLSessionDataTask *task, NSError *error) {
+//         SDWPerformBlock(fetchedBlock,nil,error);
+//         [self handleError:error];
+//     }];
+}
+
 - (void)fetchAllCardsForList:(SDWListDisplayItem *)list
                    CurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
                    FetchedData:(SDWTrelloStoreCompletionBlock)fetchedBlock
@@ -582,6 +625,7 @@
              
              NSArray *mappedObjects =  [SDWMapper ez_arrayOfObjectsOfClass:[SDWMCard class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
              [self saveContext];
+             
              SDWPerformBlock(fetchedBlock,[self displayCardsfromCards:mappedObjects crownFiltered:crownFiltered],nil);
              
          }];
@@ -961,7 +1005,7 @@
 //     {
 //
 //         SDWMChecklist *mappedObject =  [SDWMapper ez_objectOfClass:[SDWMChecklist class] fromJSON:responseObject context:self.dataModelManager.managedObjectContext];
-//         
+//
 //         [self saveContext];
 //         SDWPerformBlock(block,[[SDWChecklistDisplayItem alloc]initWithModel:mappedObject],nil);
 //

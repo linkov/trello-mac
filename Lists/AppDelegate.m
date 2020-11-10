@@ -66,6 +66,7 @@
     #endif
     
     
+    
       [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsOutlineViewDidSelectBoardNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification * _Nonnull board) {
           
           
@@ -95,6 +96,7 @@
     }];
     
 }
+
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification {
     // Insert code here to tear down your application

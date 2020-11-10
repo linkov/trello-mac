@@ -145,6 +145,7 @@
     {
         rowHeight = [self.jwcTableViewDataSource tableView:tableView
                              heightForHeaderViewForSection:section];
+        
     }
     else
     {
@@ -153,6 +154,7 @@
         
         rowHeight = [self.jwcTableViewDataSource tableView:tableView
                                    heightForRowAtIndexPath:indexPath];
+        
     }
     
     return rowHeight;

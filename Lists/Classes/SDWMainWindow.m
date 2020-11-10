@@ -16,6 +16,8 @@
     [[SDWShortcutsManager sharedManager] handlekeyDown:theEvent];
 }
 
+
+
 /* trash quicklook event b/c it causes crash  */
 - (void)quickLookWithEvent:(NSEvent *)event {}
 

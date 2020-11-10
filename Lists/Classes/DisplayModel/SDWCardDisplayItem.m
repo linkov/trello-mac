@@ -25,6 +25,7 @@
 @implementation SDWCardDisplayItem
 
 - (instancetype)initWithModel:(SDWMCard *)model {
+
     NSParameterAssert(model);
     self = [super init];
     if (self) {
@@ -39,8 +40,13 @@
         self.dueDate = model.dueDate;
         self.lastUpdate = model.lastUpdate;
         self.position = model.positionValue;
-        self.list = [[SDWListDisplayItem alloc]initWithModel:model.list];
-        self.board = [[SDWBoardDisplayItem alloc]initWithModel:model.list.board];
+        if (model.list != nil) {
+            self.list = [[SDWListDisplayItem alloc]initWithModel:model.list];
+        }
+        if (model.list != nil && model.list.board != nil) {
+            self.board = [[SDWBoardDisplayItem alloc]initWithModel:model.list.board];
+        }
+        
     }
     return self;
 

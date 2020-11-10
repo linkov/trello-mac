@@ -14,6 +14,8 @@
 @property (weak) IBOutlet NSLayoutConstraint *ListWidth;
 
 
+- (void)reloadCardsForToday;
+
 - (void)setupCardsForTimeline;
 
 - (void)setupCardsForBoard:(SDWBoardDisplayItem *)board;

@@ -62,7 +62,7 @@
 @property (strong) IBOutlet SDWProgressIndicator *loadingProgress;
 
 @property BOOL isAccessingExpandViaDataReload;
-@property (strong) IBOutlet NSButton *dueSortButton;
+@property (strong) IBOutlet NSButton *dayViewButton;
 
 @end
 
@@ -77,14 +77,14 @@
     self.outlineView.dataSource = self;
     self.outlineView.menuDelegate = self;
 
-    self.dueSortButton.image = [NSImage imageNamed:@"dueSortDes"];
+    self.dayViewButton.image = [NSImage imageNamed:@"dayView"];
 
 }
 
 #pragma mark - Utils
-- (IBAction)sortByDue:(NSButton *)sender {
+- (IBAction)toggleDayView:(NSButton *)sender {
 
- [[NSNotificationCenter defaultCenter] postNotificationName:SDWListsDidChangeTimelineStatusNotification object:nil];
+    [[self cardsVC] reloadCardsForToday];
 }
 
 
@@ -194,7 +194,7 @@
             
             [[SDWTrelloStore store] fetchAllCardsForList:list CurrentData:nil FetchedData:^(id object, NSError *error) {
                 [self reloadDataSource];
-            } crownFiltered:NO];
+            } crownFiltered:SharedSettings.shouldFilter];
         }
     }
 }

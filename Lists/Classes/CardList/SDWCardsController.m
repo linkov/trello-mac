@@ -40,6 +40,12 @@
 #import "SDWUserDisplayItem.h"
 #import "SDWBoardDisplayItem.h"
 
+typedef NS_ENUM(NSUInteger, DisplayMode) {
+        listView,
+        boardOverviewView,
+        todayView
+    };
+
 
 @interface SDWCardsController () <NSCollectionViewDelegate,SDWLabelCloudViewDelegate, NSControlInteractionDelegate,SDWSingleCardViewDelegate, JWCTableViewDataSource, JWCTableViewDelegate>
 @property (strong) IBOutlet NSArrayController *cardsArrayController;
@@ -70,6 +76,15 @@
 @property (strong)  NSSet *excludedLabels;
 @property (strong)  NSSet *includedLabels;
 @property (strong) NSPredicate *labelFilerPredicate;
+
+
+@property (strong) NSArray *upcomingCards;
+@property (strong) NSArray *todayCards;
+@property (strong) NSArray *overdueCards;
+
+@property (strong) NSArray *todayViewCardSections;
+
+@property enum DisplayMode displayMode;
 
 @end
 
@@ -149,6 +164,8 @@
     [super viewDidLoad];
 
   
+    self.displayMode = listView;
+    
    
     self.mainBox.fillColor  = [SharedSettings appBackgroundColorDark];
     self.tableView.backgroundColor = [NSColor clearColor];
@@ -234,8 +251,15 @@
 
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsShouldFilterNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
 
-        [self loadCardsForList:self.currentList];
-
+        if (self.displayMode == boardOverviewView) {
+            [self loadCardsForBoard:self.currentBoard];
+        }
+        if (self.displayMode == listView) {
+            [self loadCardsForList:self.currentList];
+        }
+        if (self.displayMode == todayView) {
+            [self loadCardsForToday];
+        }
     }];
     
     [[NSNotificationCenter defaultCenter] addObserverForName:SDWListsDidReceiveNetworkOnNotification object:nil queue:[NSOperationQueue mainQueue] usingBlock:^(NSNotification *note) {
@@ -384,29 +408,7 @@
     [self.tableView reloadData];
 }
 
-- (void)setupCardsForList:(SDWListDisplayItem *)list {
 
-    [self.onboardingImage removeFromSuperview];
-    self.listNameLabel.hidden = NO;
-    self.listNameTopConstraint.constant = 16;
-    self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
-    
-    self.currentBoard = nil;
-    self.currentList = list;
-    self.listName = list.name;
-    
-    self.labelsViewHeightConstaint.constant = 2;
-    [self.view setNeedsLayout:YES];
-    
-    [self loadAndSaveAllLabelsForBoardID:self.currentList.board.trelloID completion:^{
-        
-         [self reloadCards];
-        
-    }];
-
-    
-    
-}
 
 - (void)setupCardsForTimeline {
 
@@ -432,6 +434,7 @@
 
 - (void)setupCardsForBoard:(SDWBoardDisplayItem *)board {
 
+    self.displayMode = boardOverviewView;
     [self.onboardingImage removeFromSuperview];
     self.listNameLabel.hidden = NO;
     self.listNameTopConstraint.constant = 22;
@@ -449,6 +452,31 @@
     }];
     
 
+}
+
+- (void)setupCardsForList:(SDWListDisplayItem *)list {
+    
+    self.displayMode = listView;
+    [self.onboardingImage removeFromSuperview];
+    self.listNameLabel.hidden = NO;
+    self.listNameTopConstraint.constant = 16;
+    self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
+    
+    self.currentBoard = nil;
+    self.currentList = list;
+    self.listName = list.name;
+    
+    self.labelsViewHeightConstaint.constant = 2;
+    [self.view setNeedsLayout:YES];
+    
+    [self loadAndSaveAllLabelsForBoardID:self.currentList.board.trelloID completion:^{
+        
+         [self reloadCards];
+        
+    }];
+
+    
+    
 }
 
 
@@ -470,7 +498,7 @@
      clean previous cards before loading new ones
      so that loading indicator is not on top of cards
      */
-    self.cardsArrayController.content = nil;
+    self.cardsArrayController.content = @[];
     [self.tableView reloadData];
 
     [self loadCardsForBoard:self.currentBoard];
@@ -496,10 +524,32 @@
      clean previous cards before loading new ones
      so that loading indicator is not on top of cards
      */
-    self.cardsArrayController.content = nil;
+    self.cardsArrayController.content = @[];
     [self.tableView reloadData];
     
     [self loadCardsForList:self.currentList];
+
+    [self loadMembers:self.currentList.board.trelloID];
+
+}
+
+- (void)reloadCardsForToday {
+    self.displayMode = todayView;
+    self.currentBoard = nil;
+    [[self cardDetailsVC] setupCard:nil];
+    self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
+
+    SharedSettings.selectedListUsers = nil;
+
+
+    /*
+     clean previous cards before loading new ones
+     so that loading indicator is not on top of cards
+     */
+    self.cardsArrayController.content = @[];
+    [self.tableView reloadData];
+    
+    [self loadCardsForToday];
 
     [self loadMembers:self.currentList.board.trelloID];
 
@@ -523,7 +573,7 @@
     
     //
     
-     [self loadCardsForList:self.currentList];
+    // [self loadCardsForList:self.currentList];
     
 //    [self.mainProgressIndicator startAnimation];
 //
@@ -595,6 +645,7 @@
 
 - (void)loadCardsForBoard:(SDWBoardDisplayItem *)board {
     
+    
     [self.mainProgressIndicator startAnimation];
 
 
@@ -632,6 +683,37 @@
 }
 
 
+- (void)loadCardsForToday {
+    
+    self.listName = @"Scheduled";
+    
+    
+    
+    self.labelsViewHeightConstaint.constant = 2;
+    [self.view setNeedsLayout:YES];
+    
+    [self.mainProgressIndicator startAnimation];
+    
+    [[SDWTrelloStore store] fetchAllCardsForTodayCurrentData:^(NSArray *objects, NSError *error) {
+        
+        [self.mainProgressIndicator stopAnimation];
+              
+     
+        
+        
+        [self reloadCollection:objects];
+//        if (self.currentList.model.uniqueIdentifier == list.model.uniqueIdentifier) {
+//            if (!error) {
+//                [self reloadCollection:objectsExcludingLabels];
+//            } else {
+//                NSLog(@"%@", error);
+//            }
+//        }
+        
+    } crownFiltered:SharedSettings.shouldFilter];
+    
+
+}
 
 - (void)loadCardsForList:(SDWListDisplayItem *)list {
     
@@ -676,29 +758,59 @@
 
 - (void)reloadCollection:(NSArray *)objects {
 
-    [self.addCardButton setHidden:self.currentBoard != nil];
-
-
     NSSortDescriptor *sortBy;
-
-
-    if (SharedSettings.shouldFilterDueAccending) {
-
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:YES selector:@selector(compare:)];
-
-    } else if (SharedSettings.shouldFilterDueDecending) {
-
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:NO selector:@selector(compare:)];
-
-    } else {
-
-        sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
+    sortBy = [[NSSortDescriptor alloc]initWithKey:@"position" ascending:YES selector:@selector(compare:)];
+    
+    if (self.displayMode == boardOverviewView) {
+        [self.addCardButton setHidden:YES];
     }
+    if (self.displayMode == listView) {
+        [self.addCardButton setHidden:NO];
+    }
+    
+    if (self.displayMode == todayView) {
+        [self.addCardButton setHidden:YES];
+        sortBy = [[NSSortDescriptor alloc]initWithKey:@"dueDate" ascending:NO selector:@selector(compare:)];
+        
+       
+    }
+    
+    
+
+
+ 
 
 
 //    self.cardsArrayController.content = @[];
 
-    self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
+    if (self.displayMode == todayView) {
+        
+        NSDate *startOfToday;
+        NSTimeInterval interval = 0;
+
+        [[NSCalendar currentCalendar] rangeOfUnit: NSCalendarUnitDay startDate:&startOfToday interval:&interval forDate:[NSDate date]];
+//        NSCalendar.currentCalendar().rangeOfUnit(.Day, startDate: &startOfToday, interval: &interval, forDate: NSDate())
+        NSDate *startOfTomorrow = [startOfToday dateByAddingTimeInterval:interval];
+
+        NSPredicate *upcoming = [NSPredicate predicateWithFormat: @"dueDate > %@", startOfTomorrow];
+        
+        NSPredicate *today = [NSPredicate predicateWithFormat: @"dueDate >= %@ && dueDate < %@ ", startOfToday, startOfTomorrow];
+        
+        NSPredicate *overdue = [NSPredicate predicateWithFormat: @"dueDate < %@ ", startOfToday];
+        
+        self.upcomingCards = [objects filteredArrayUsingPredicate:upcoming];
+        self.todayCards = [objects filteredArrayUsingPredicate:today];
+        self.overdueCards = [objects filteredArrayUsingPredicate:overdue];
+        
+        
+        self.todayViewCardSections = @[self.upcomingCards, self.todayCards, self.overdueCards];
+        
+        self.cardsArrayController.content = self.todayViewCardSections;
+        
+    } else {
+        self.cardsArrayController.content = [objects sortedArrayUsingDescriptors:@[sortBy]];
+    }
+   
 
     // tableView implementation
     [self.tableView reloadData];
@@ -770,10 +882,10 @@
     
     SDWLabelDisplayItem *label;
     
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         label = [self.currentBoard.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
 
-    } else {
+    } else if (self.displayMode == listView) {
         label = [self.currentList.board.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
 
     }
@@ -794,10 +906,10 @@
     
     SDWLabelDisplayItem *label;
     
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
             label = [self.currentBoard.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
 
-    } else {
+    } else if (self.displayMode == listView) {
         label = [self.currentList.board.labels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"color == %@ || name == %@",color, color]].firstObject;
 
     }
@@ -950,84 +1062,183 @@
 
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         
         return YES;
     }
     
-  
+    if (self.displayMode == listView || self.displayMode == todayView) {
+        
+        SDWSingleCardTableCellView *selectedCell = [tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
+       
+        [selectedCell.mainBox setSelected:YES];
+        selectedCell.delegate = self;
+        selectedCell.mainBox.textField.delegate = selectedCell;
 
-    SDWSingleCardTableCellView *selectedCell = [tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
-   
-    [selectedCell.mainBox setSelected:YES];
-    selectedCell.delegate = self;
-    selectedCell.mainBox.textField.delegate = selectedCell;
+        //TODO: refactor
+        for (int i = 0; i<[self.cardsArrayController.content count]; i++) {
 
-    //TODO: refactor
-    for (int i = 0; i<[self.cardsArrayController.content count]; i++) {
+            SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:i makeIfNecessary:NO];
 
-        SDWSingleCardTableCellView *cell = [self.tableView viewAtColumn:0 row:i makeIfNecessary:NO];
+            if(cell != selectedCell) {
+                [cell.mainBox setSelected:NO];
+            }
 
-        if(cell != selectedCell) {
-            [cell.mainBox setSelected:NO];
         }
 
+        SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
+        self.lastSelectedCard = selectedCard;
+        [[self cardDetailsVC] setupCard:selectedCard];
+
+
+        return YES;
     }
 
-    SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
-    self.lastSelectedCard = selectedCard;
-    [[self cardDetailsVC] setupCard:selectedCard];
-
-
+    
     return YES;
+
 }
 
 -(NSInteger)tableView:(NSTableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.currentBoard) {
+   
+    if (self.displayMode == boardOverviewView) {
         
         SDWListDisplayItem *list  = self.currentBoard.lists[section];
          NSArray *objectsExcludingLabels = [self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:self.labelFilerPredicate];
         
         return [objectsExcludingLabels filteredArrayUsingPredicate:[NSPredicate predicateWithFormat:@"list.trelloID == %@",list.trelloID]].count;
     }
-    return [[self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:self.labelFilerPredicate] count];
+    
+    if (self.displayMode == listView) {
+        
+        return [[self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:self.labelFilerPredicate] count];
+    }
+    
+    if (self.displayMode == todayView) {
+        
+        return [self.todayViewCardSections[section] count];
+    }
+    
+    
+    
+    return 0;
+    
 }
 
 
 -(NSInteger)numberOfSectionsInTableView:(NSTableView *)tableView {
 
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         return self.currentBoard.lists.count;
     }
+    if (self.displayMode == listView) {
+        return 1;
+    }
     
+    if (self.displayMode == todayView) {
+        return self.todayViewCardSections.count;
+    }
     
-    return 1;
+    return 0;
 }
 
 
 
 -(BOOL)tableView:(NSTableView *)tableView hasHeaderViewForSection:(NSInteger)section {
     SDWListDisplayItem *list  = self.currentBoard.lists[section];
-    if (self.currentBoard && list.cards.count > 0) {
+    if ((self.currentBoard && list.cards.count > 0) || self.displayMode == todayView) {
+        
+        if (self.displayMode == todayView) {
+            
+            BOOL upcomingPresent = self.upcomingCards.count > 0;
+            BOOL todayPresent = self.todayCards.count > 0;
+            BOOL overduePresent = self.overdueCards.count > 0;
+            
+            if (section == 0 && !upcomingPresent) {
+                return 0;
+            }
+            
+            if (section == 1 && !todayPresent) {
+                return 0;
+            }
+            
+            if (section == 2 && !overduePresent) {
+                return 0;
+            }
+            
+           
+        }
+        
         return YES;
     }
     return NO;
 }
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForHeaderViewForSection:(NSInteger)section {
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         return 32;
     }
+    
+    if (self.displayMode == todayView) {
+        
+        BOOL upcomingPresent = self.upcomingCards.count > 0;
+        BOOL todayPresent = self.todayCards.count > 0;
+        BOOL overduePresent = self.overdueCards.count > 0;
+        
+        if (section == 0 && !upcomingPresent) {
+            return 0;
+        }
+        
+        if (section == 1 && !todayPresent) {
+            return 0;
+        }
+        
+        if (section == 2 && !overduePresent) {
+            return 0;
+        }
+        
+        return 32;
+    }
+    
+    if (self.displayMode == listView) {
+        return 0;
+    }
+
+    
     return 0;
 }
 
 
 -(NSView *)tableView:(NSTableView *)tableView viewForHeaderInSection:(NSInteger)section {
-    if (self.currentBoard) {
-        SDWListDisplayItem *list  = self.currentBoard.lists[section];
+    
+    if (self.displayMode == boardOverviewView || self.displayMode == todayView) {
+        
+
+      
         NSTextView *headerLabel = [[NSTextView alloc] initWithFrame:NSMakeRect(0.0, 0.0, self.tableView.bounds.size.width, 20.0)];
         [headerLabel setBackgroundColor: [NSColor clearColor]];
-        [headerLabel setString: list.name];
+        
+        
+        if (self.displayMode == boardOverviewView) {
+            
+            SDWListDisplayItem *list  = self.currentBoard.lists[section];
+            [headerLabel setString: list.name];
+        } else {
+            NSString *name;
+            if (section == 0) {
+                name = @"Upcoming";
+            }
+            if (section == 1) {
+                name = @"Today";
+            }
+            if (section == 2) {
+                name = @"Overdue";
+            }
+            
+            [headerLabel setString: name];
+        }
+
+        
         [headerLabel setEditable:NO];
         [headerLabel setFont:[NSFont fontWithName:@"IBMPlexSans-Medium" size:16]];
         [headerLabel setTextColor:  [NSColor blackColor]];
@@ -1040,16 +1251,45 @@
         return headerLabel;
 
     }
+    
+    if (self.displayMode == listView) {
+        return nil;
+    }
+    
+    if (self.displayMode == todayView) {
+        
+        BOOL upcomingPresent = self.upcomingCards.count > 0;
+        BOOL todayPresent = self.todayCards.count > 0;
+        BOOL overduePresent = self.overdueCards.count > 0;
+        
+        if (section == 0 && !upcomingPresent) {
+            return nil;
+        }
+        
+        if (section == 1 && !todayPresent) {
+            return nil;
+        }
+        
+        if (section == 2 && !overduePresent) {
+            return nil;
+        }
+    }
+
+    
     return nil;
 }
 
 -(CGFloat)tableView:(NSTableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 
-    SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
     
+    SDWCardDisplayItem *card;
     
-    if (self.currentBoard) {
-        
+    if (self.displayMode == todayView && [self.cardsArrayController.arrangedObjects count]) {
+        card = self.cardsArrayController.arrangedObjects[indexPath.section][indexPath.row];
+    }
+    
+    if (self.displayMode == boardOverviewView) {
+        card = self.cardsArrayController.arrangedObjects[indexPath.row];
         SDWListDisplayItem *list = self.currentBoard.lists[indexPath.section];
         card = [list.cards filteredArrayUsingPredicate:self.labelFilerPredicate][indexPath.row];
         
@@ -1058,6 +1298,10 @@
         }
     }
     
+    if (self.displayMode == listView) {
+        
+        card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    }
 
     CGRect rec = [card.name boundingRectWithSize:CGSizeMake( (card.commentsCount.intValue > 0 ? 323 : 375), MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
     CGFloat height = ceilf(rec.size.height);
@@ -1088,15 +1332,20 @@
 
 -(NSView *)tableView:(NSTableView *)tableView viewForIndexPath:(NSIndexPath *)indexPath {
 
-    if ([[self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:self.labelFilerPredicate] count] == 0) {
-        return nil;
-    }
 
+    SDWCardDisplayItem *card;
+    if (self.displayMode == todayView   && [self.cardsArrayController.arrangedObjects count]) {
+        card = self.cardsArrayController.arrangedObjects[indexPath.section][indexPath.row];
+    }
+ 
     
-    SDWCardDisplayItem *card = self.cardsArrayController.arrangedObjects[indexPath.row];
-    
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         
+        if ([[self.cardsArrayController.arrangedObjects filteredArrayUsingPredicate:self.labelFilerPredicate] count] == 0) {
+            return nil;
+        }
+        
+        card = self.cardsArrayController.arrangedObjects[indexPath.row];
         SDWListDisplayItem *list = self.currentBoard.lists[indexPath.section];
         
         NSArray *objectsExcludingLabels = [list.cards filteredArrayUsingPredicate:self.labelFilerPredicate];
@@ -1104,17 +1353,26 @@
     }
     
     
+    if (self.displayMode == listView) {
+        
+        card = self.cardsArrayController.arrangedObjects[indexPath.row];
+    }
 
     SDWSingleCardTableCellView *view = [self.tableView makeViewWithIdentifier:@"cellView" owner:self];
+    
+
     view.menuClickEnabled = (self.currentBoard == nil);
     view.boardID = self.currentList.board.trelloID;
     view.cardDisplayItem = card;
     
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView) {
         view.boardID = self.currentBoard.trelloID;
     }
+    if (self.displayMode == todayView) {
+        view.menuClickEnabled = false;
+    }
     
-    view.mainBox.textField.stringValue = card.name;
+    view.mainBox.textField.stringValue = card.name ?: @"";
     view.mainBox.textField.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:13];
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
     view.textField.backgroundColor = [NSColor clearColor];
@@ -1317,7 +1575,7 @@
 
 - (BOOL)_jwcTableView:(NSTableView *)tv writeRowsWithIndexes:(NSIndexSet *)rowIndexes toPasteboard:(NSPasteboard*)pboard {
 
-    if (self.currentBoard) {
+    if (self.displayMode == boardOverviewView || self.displayMode == todayView) {
         return NO;
     }
 

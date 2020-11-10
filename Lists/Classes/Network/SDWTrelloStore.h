@@ -29,6 +29,10 @@ typedef void (^SDWTrelloStoreLocalCompletionBlock)(id object);
 
 - (void)clearDatabase;
 
+
+- (void)fetchAllCardsForTodayCurrentData:(SDWTrelloStoreCompletionBlock)currentBlock
+                           crownFiltered:(BOOL)crownFiltered;
+
 /* General */
 - (void)fetchAllAssigneesWithCompletion:(SDWTrelloStoreCompletionBlock)block;
 
