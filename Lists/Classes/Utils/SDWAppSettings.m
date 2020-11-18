@@ -184,6 +184,12 @@ static SDWAppSettings *sharedInstance = nil;
       // Card text color
 }
 
+- (NSColor *)appBoardSelectedColor {
+
+   return [NSColor colorWithHexColorString:@"DFDFDF"]; 
+}
+
+
 - (NSColor *)appBackgroundColor {
 
    return [NSColor colorWithHexColorString:@"E2E4E6"]; // Board lines and split views separators

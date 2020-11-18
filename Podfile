@@ -8,8 +8,6 @@ target 'Lists' do
   # Pods for Lists
 
   pod 'FastEasyMapping', '~> 1.1'
-  pod 'Fabric'
-  pod 'AppCenter'
   pod 'SYFlatButton'
 
 end

@@ -26,6 +26,11 @@
 - (void)drawRect:(NSRect)dirtyRect {
     [super drawRect:dirtyRect];
     
+    if (self.selected) {
+        NSRect drawRect = NSInsetRect(self.bounds, 0, 0);
+        [[SharedSettings appHighlightColor] set];
+        [NSBezierPath fillRect:drawRect];
+    }
     if(self.list)  {
          [self loadCardNumbers];
         [self markListWithOverdueCards];

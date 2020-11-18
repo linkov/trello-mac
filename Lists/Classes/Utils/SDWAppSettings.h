@@ -72,7 +72,7 @@ extern NSString * const  SDWListsDidChangeTimelineStatusNotification;
 - (void)setTodayListID:(NSString *)listID;
 - (void)setTodayListName:(NSString *)listName;
 - (void)setTodayWidgetUserToken:(NSString *)userToken;
-
+- (NSColor *)appBoardSelectedColor;
 - (NSColor *)appAccentDarkColor;
 - (NSColor *)appBackgroundColorDark;
 - (NSColor *)appBackgroundColor;

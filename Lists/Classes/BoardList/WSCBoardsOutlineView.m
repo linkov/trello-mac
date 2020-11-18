@@ -54,11 +54,11 @@
                    keyEquivalent:@""
                          atIndex:2];
 
-    [theMenu insertItemWithTitle:@"Move ↑"
+    [theMenu insertItemWithTitle:@"Move to top ↑"
                           action:@selector(moveListUp)
                    keyEquivalent:@""
                          atIndex:3];
-    [theMenu insertItemWithTitle:@"Move ↓"
+    [theMenu insertItemWithTitle:@"Move to bottom ↓"
                           action:@selector(moveListDown)
                    keyEquivalent:@""
                          atIndex:4];

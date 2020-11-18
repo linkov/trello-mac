@@ -83,7 +83,7 @@
 
 #pragma mark - Utils
 - (IBAction)toggleDayView:(NSButton *)sender {
-
+    [self.dayViewButton setImage:[NSImage imageNamed:@"dayViewActive"]];
     [[self cardsVC] reloadCardsForToday];
 }
 
@@ -358,6 +358,9 @@
 }
 
 - (BOOL)outlineView:(NSOutlineView *)outlineView shouldSelectItem:(NSTreeNode *)item {
+    
+  
+    [self.dayViewButton setImage:[NSImage imageNamed:@"dayView"]];
 
     [[self cardDetailsVC] setupCard:nil];
 

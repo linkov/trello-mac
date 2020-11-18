@@ -38,12 +38,16 @@
     self.cornerRadius = 1.5;
     self.borderColor = [NSColor clearColor];
     self.borderWidth = 0;
-
+    self.textField.cell.lineBreakMode = NSLineBreakByWordWrapping;
+    self.textField.cell.wraps = YES;
+    self.textField.cell.scrollable = NO;
 //    self.textField.textColor = [SharedSettings cardTextColor];
-    self.textField.editable = NO;
+    self.textField.editable = YES;
     self.textField.wantsLayer = true;
     self.textField.focusRingType = NSFocusRingTypeNone;
     
+    
+   
     
    // self.textField.delegate = self;
 }

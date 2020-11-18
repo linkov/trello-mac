@@ -538,7 +538,7 @@ typedef NS_ENUM(NSUInteger, DisplayMode) {
     self.currentBoard = nil;
     [[self cardDetailsVC] setupCard:nil];
     self.listNameLabel.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:28];
-
+    
     SharedSettings.selectedListUsers = nil;
 
 
@@ -1063,13 +1063,15 @@ typedef NS_ENUM(NSUInteger, DisplayMode) {
 -(BOOL)tableView:(NSTableView *)tableView shouldSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     if (self.displayMode == boardOverviewView) {
-        
+        SDWCardDisplayItem *selectedCard = [self.cardsArrayController.arrangedObjects objectAtIndex:indexPath.row];
+        self.lastSelectedCard = selectedCard;
+        [[self cardDetailsVC] setupCard:selectedCard];
         return YES;
     }
-    
-    if (self.displayMode == listView || self.displayMode == todayView) {
-        
+
+    if (self.displayMode == listView) {
         SDWSingleCardTableCellView *selectedCell = [tableView viewAtColumn:0 row:indexPath.row makeIfNecessary:NO];
+
        
         [selectedCell.mainBox setSelected:YES];
         selectedCell.delegate = self;
@@ -1093,9 +1095,17 @@ typedef NS_ENUM(NSUInteger, DisplayMode) {
 
         return YES;
     }
+    
+    if (self.displayMode == todayView) {
+        
+        SDWCardDisplayItem *selectedCard = self.cardsArrayController.arrangedObjects[indexPath.section][indexPath.row];
+        self.lastSelectedCard = selectedCard;
+        [[self cardDetailsVC] setupCard:selectedCard];
+        return YES;
+    }
 
     
-    return YES;
+    return NO;
 
 }
 
@@ -1373,11 +1383,16 @@ typedef NS_ENUM(NSUInteger, DisplayMode) {
     }
     
     view.mainBox.textField.stringValue = card.name ?: @"";
+    [view.mainBox.textField sizeToFit];
     view.mainBox.textField.font = [NSFont fontWithName:@"IBMPlexSans-Text" size:13];
     view.widthConstraint.constant = [self widthForMembersCount:card.members.count];
     view.textField.backgroundColor = [NSColor clearColor];
     view.delegate = self;
     view.mainBox.selected = NO;
+    
+//    CGRect rec = [card.name boundingRectWithSize:CGSizeMake( (card.commentsCount.intValue > 0 ? 323 : 375), MAXFLOAT) options:(NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading) attributes:@{NSFontAttributeName: [NSFont fontWithName:@"IBMPlexSans-Text" size:13]}];
+//    CGFloat height = ceilf(rec.size.height);
+//    view.mainBox.textField.frame = CGRectMake(0, 0, view.mainBox.textField.frame.size.width , height);
     
     if (card.commentsCount.intValue > 0) {
         view.mainTextfieldTrailingConstraint.constant = 65;
